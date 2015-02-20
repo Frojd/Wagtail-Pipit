@@ -1,2 +1,8 @@
 # Virtualenv
 venv/
+
+# Environment
+.env
+
+# Python specific
+*.pyc

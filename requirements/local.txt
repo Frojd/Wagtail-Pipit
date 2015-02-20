@@ -1,0 +1,4 @@
+# Extend base.txt
+-r base.txt
+
+# Add local extra requirements here (django-debug etc)
