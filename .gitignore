@@ -4,5 +4,7 @@ venv/
 # Environment
 .env
 
-# Python specific
-*.pyc
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
