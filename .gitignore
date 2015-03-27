@@ -4,8 +4,10 @@ venv/
 # Environment
 .env
 
-# Python specific
+# Python specific, Byte-compiled / optimized / DLL files
 *.pyc
+__pycache__/
+*.py[cod]
 
 # PyCharm
 .idea/
