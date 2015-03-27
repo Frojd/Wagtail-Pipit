@@ -7,10 +7,9 @@ Django settings for Fröjd Django projects.
 """
 
 import os
-from . import get_env_variable, PROJECT_NAME, settings_context_processor
+from . import get_env_variable, PROJECT_NAME
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
 
 # Version, be sure to bump this with each release
 APP_VERSION = '0.0.1'
@@ -19,12 +18,10 @@ APP_VERSION = '0.0.1'
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env_variable('DEBUG', True)
+DEBUG = get_env_variable('DEBUG', is_bool=True)
 
 # Minified, by default it is set to the same as Debug
-MINIFIED = get_env_variable('MINIFIED', True, True) \
-    if get_env_variable('MINIFIED', True, True) is not None \
-    else not DEBUG
+MINIFIED = get_env_variable('MINIFIED', is_bool=True, default=not DEBUG)
 
 # This is when debug is off, else django wont allow you to visit the site
 ALLOWED_HOSTS = get_env_variable('ALLOWED_HOSTS').split(',')
@@ -41,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,4 +113,4 @@ else:
         get_env_variable('STATIC_PATH'),
     )
 
-GA_ACCOUNT = get_env_variable('GA_ACCOUNT')
+GA_ACCOUNT = get_env_variable('GA_ACCOUNT', is_bool=False, default="GA-XXXX")

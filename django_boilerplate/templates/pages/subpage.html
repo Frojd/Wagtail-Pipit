@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main %}
+    <p>{{ content }}</p>
+    <p><a href="{% url 'startpage'%}">{% trans 'Back to startpage' %}.</a></p>
+{% endblock %}
