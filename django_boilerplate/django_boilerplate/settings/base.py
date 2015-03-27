@@ -19,10 +19,12 @@ APP_VERSION = '0.0.1'
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if get_env_variable('DEBUG') == 'True' else False
+DEBUG = get_env_variable('DEBUG', True)
 
 # Minified, by default it is set to the same as Debug
-MINIFIED = DEBUG
+MINIFIED = get_env_variable('MINIFIED', True, True) \
+    if get_env_variable('MINIFIED', True, True) is not None \
+    else not DEBUG
 
 # This is when debug is off, else django wont allow you to visit the site
 ALLOWED_HOSTS = get_env_variable('ALLOWED_HOSTS').split(',')
