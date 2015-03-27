@@ -6,3 +6,6 @@ venv/
 
 # Python specific
 *.pyc
+
+# PyCharm
+.idea/

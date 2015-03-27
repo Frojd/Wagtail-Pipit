@@ -1,21 +1,18 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
-Django settings for django_boilerplate project.
+Django settings for Fröjd Django projects.
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from . import get_env_variable, PROJECT_NAME
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# Version, be sure to bump this with each release
+APP_VERSION = "0.0.1"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable("SECRET_KEY")
@@ -23,10 +20,15 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if get_env_variable("DEBUG") == "True" else False
 
+# Minified, by default it is set to the same as Debug
+MINIFIED = DEBUG
+
 # This is when debug is off, else django wont allow you to visit the site
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = get_env_variable("ALLOWED_HOSTS").split(",")
+
+INTERNAL_IPS = (
     "127.0.0.1",
-]
+)
 
 # Application definition
 INSTALLED_APPS = (
@@ -81,10 +83,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_URL = '/static/'
 
 # Uploaded media
@@ -97,10 +95,14 @@ TEMPLATE_DIRS = (
     'templates',
 )
 
-# Static files
+# Static files, if in production use static root, else use static dirs
 if not DEBUG:
     STATIC_ROOT = get_env_variable("STATIC_PATH")
 else:
     STATICFILES_DIRS = (
         get_env_variable("STATIC_PATH"),
     )
+
+# Static folder for gulp/grunt generated files
+STATIC_FOLDER = 'builds'
+GA_ACCOUNT = "UA-xxxxxxx"
