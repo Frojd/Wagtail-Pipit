@@ -7,7 +7,8 @@ Django settings for Fröjd Django projects.
 """
 
 import os
-from . import get_env_variable, PROJECT_NAME
+from . import get_env_variable, PROJECT_NAME, settings_context_processor
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -59,7 +60,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
-    )
+    '%s.settings.settings_context_processor' % PROJECT_NAME,
+)
 
 # Project name is set in .env
 ROOT_URLCONF = '%s.urls' % PROJECT_NAME
@@ -100,7 +102,11 @@ TEMPLATE_DIRS = (
 )
 
 # Static files, if in production use static root, else use static dirs
-STATIC_URL = '/static/'
+# Static folder for gulp/grunt generated files
+STATIC_FOLDER = 'builds'  # This is the default from Frojd Gulp
+
+# Static URL, this is prefixed when using 'static' in a template
+STATIC_URL = '/static/%s/' % STATIC_FOLDER
 
 if not DEBUG:
     STATIC_ROOT = get_env_variable('STATIC_PATH')
@@ -109,6 +115,4 @@ else:
         get_env_variable('STATIC_PATH'),
     )
 
-# Static folder for gulp/grunt generated files
-STATIC_FOLDER = 'builds'
-GA_ACCOUNT = 'UA-xxxxxxx'
+GA_ACCOUNT = get_env_variable('GA_ACCOUNT')
