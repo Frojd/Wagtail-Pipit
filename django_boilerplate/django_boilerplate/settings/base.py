@@ -104,11 +104,9 @@ TEMPLATE_DIRS = (
 )
 
 # Static files, if in production use static root, else use static dirs
-# Static folder for gulp/grunt generated files
-STATIC_FOLDER = 'builds'  # This is the default from Frojd Gulp
 
 # Static URL, this is prefixed when using 'static' in a template
-STATIC_URL = '/static/%s/' % STATIC_FOLDER
+STATIC_URL = '/static/'
 
 if not DEBUG:
     STATIC_ROOT = get_env_variable('STATIC_PATH')
