@@ -60,7 +60,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
-    '%s.settings.settings_context_processor' % PROJECT_NAME,
+    '%s.context_processors.settings_context_processor' % PROJECT_NAME,
 )
 
 # Project name is set in .env
