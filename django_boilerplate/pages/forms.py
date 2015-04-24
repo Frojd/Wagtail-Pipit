@@ -10,7 +10,7 @@ from django import forms
 class PageForm(forms.ModelForm):
     class Meta:
         model = Page
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'slug']
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
