@@ -7,7 +7,7 @@ Django settings for Fröjd Django projects.
 """
 
 import os
-from . import get_env_variable, PROJECT_NAME
+from . import get_env_variable
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -60,13 +60,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
-    '%s.context_processors.settings_context_processor' % PROJECT_NAME,
+    'core.context_processors.settings_context_processor',
 )
 
-# Project name is set in .env
-ROOT_URLCONF = '%s.urls' % PROJECT_NAME
+ROOT_URLCONF = 'core.urls'
 
-WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_NAME
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
