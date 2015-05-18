@@ -21,3 +21,7 @@ This is a basic setup for Django.
 10. Start the developmentserver: `python manage.py runserver`
 11. Visit your site on: http://localhost:8000
 12. Visit the adminview on: http://localhost:8000/admin
+
+## Example app
+
+To activate the example app, uncomment in it in base.py and it's included urls in urls.py in the core folder.

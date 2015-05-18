@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages',
+    #'pages', # Uncomment this to activate the example app
 )
 
 MIDDLEWARE_CLASSES = (
