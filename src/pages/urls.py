@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 
+
 urlpatterns = patterns('pages.views',
     # Some basic examples
     # Root startpage eg. http://site.com
