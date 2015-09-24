@@ -10,7 +10,7 @@ This is a basic setup for Django.
 ## Installation
 1. Clone the project
 2. Copy everything except the .git folder and readme.md to your new project
-3. Install a virtualenv in your new project folder (virtualenv venv)
+3. Install a virtualenv in your new project folder (`virtualenv venv`)
 4. Activate the virtualenv: source venv/bin/activate (or on windows: ./venv/Scripts/activate)
 4. Install the requirements from the environment you want (usually local version) with: pip install -r requirements/local.txt
 5. Create a database in postgres and remember the database name and user/password
