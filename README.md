@@ -33,5 +33,5 @@ To activate the example app, uncomment in it in base.py and it's included urls i
 
 ## Versioning
 
-We use [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
+This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
 
