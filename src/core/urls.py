@@ -7,4 +7,3 @@ urlpatterns = patterns('',
     # Prefered way of including an apps urls
     # url(r'', include('pages.urls')) # Uncomment this to use the example app
 )
-

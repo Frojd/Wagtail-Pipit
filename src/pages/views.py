@@ -24,9 +24,9 @@ def subpage(request, slug_value):
         page_form = PageForm(instance=page)
 
     return render_to_response('pages/subpage.html',
-                                {
-                                    'title': page.title,
-                                    'content': page.content,
-                                    'page_form': page_form
-                                },
+                              {
+                                  'title': page.title,
+                                  'content': page.content,
+                                  'page_form': page_form
+                              },
                               context_instance=RequestContext(request))
