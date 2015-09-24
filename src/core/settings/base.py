@@ -11,7 +11,7 @@ from . import get_env_variable
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Version, be sure to bump this with each release
+# Version, be sure to bump this with each release (please follow semver.org)
 APP_VERSION = '0.0.1'
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'pages', # Uncomment this to activate the example app
+    # 'pages', # Uncomment this to activate the example app
 )
 
 MIDDLEWARE_CLASSES = (

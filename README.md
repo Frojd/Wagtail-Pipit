@@ -2,15 +2,18 @@
 This is a basic setup for Django.
 
 ## Requirements
+
 - Python 2.7x
 - Pip
 - PostgreSQL
 - Virtualenv
 
+
 ## Installation
+
 1. Clone the project
 2. Copy everything except the .git folder and readme.md to your new project
-3. Install a virtualenv in your new project folder (virtualenv venv)
+3. Install a virtualenv in your new project folder (`virtualenv venv`)
 4. Activate the virtualenv: source venv/bin/activate (or on windows: ./venv/Scripts/activate)
 4. Install the requirements from the environment you want (usually local version) with: pip install -r requirements/local.txt
 5. Create a database in postgres and remember the database name and user/password
@@ -22,6 +25,13 @@ This is a basic setup for Django.
 11. Visit your site on: http://localhost:8000
 12. Visit the adminview on: http://localhost:8000/admin
 
+
 ## Example app
 
 To activate the example app, uncomment in it in base.py and it's included urls in urls.py in the core folder.
+
+
+## Versioning
+
+We use [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
+
