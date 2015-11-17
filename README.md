@@ -1,6 +1,7 @@
 # Fröjd Django Boilerplate
 This is a basic setup for Django.
 
+
 ## Requirements
 
 - Python 2.7x
@@ -35,3 +36,23 @@ To activate the example app, uncomment in it in base.py and it's included urls i
 
 This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
 
+
+## Code style guide
+
+All code must follow [PEP8](https://www.python.org/dev/peps/pep-0008).
+
+
+### General Django guidelines
+
+- **Views**
+    - Use class based views
+- **Urls**
+    - Avoid using `patterns` in urls (since its deprecated)
+
+
+## Contributing
+Want to contribute? Awesome. Just send a pull request.
+
+
+## License
+Fröjd Django Boilerplate is released under the [MIT License](http://www.opensource.org/licenses/MIT).
