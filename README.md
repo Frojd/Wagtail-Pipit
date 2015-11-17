@@ -17,7 +17,7 @@ This is a basic setup for Django.
 4. Activate the virtualenv: source venv/bin/activate (or on windows: ./venv/Scripts/activate)
 4. Install the requirements from the environment you want (usually local version) with: pip install -r requirements/local.txt
 5. Create a database in postgres and remember the database name and user/password
-6. Copy the .env.example and rename to .env and change the settings to your projects specific settings (including database etc)
+6. Copy the example.env and rename to .env and change the settings to your projects specific settings (including database etc)
 7. Go into src `cd src`
 8. Run the migrations to get auth system and the example pages app `python manage.py migrate`
 9. Create a superuser for your admin: `python manage.py createsuperuser`
