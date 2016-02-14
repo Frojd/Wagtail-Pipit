@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
-from models import Page
+
+from pages.models import Page
 
 
 # Interested in tests? Awesome! Make sure you read this first:

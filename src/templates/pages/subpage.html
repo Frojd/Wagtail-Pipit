@@ -2,11 +2,7 @@
 {% load i18n %}
 
 {% block main %}
-    <p>{{ content }}</p>
-        <form method="post">
-            {% csrf_token %}
-            {{ page_form.as_p }}
-            <input type="submit">
-        </form>
-    <p><a href="{% url 'startpage'%}">{% trans 'Back to startpage' %}.</a></p>
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.content }}</p>
+    <p>Date: {{ now|date }}</p>
 {% endblock %}
