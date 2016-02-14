@@ -1,11 +1,14 @@
+# -*- coding: utf-8 -*-
+
+'''
+Interested in tests? Awesome! Make sure you read this first:
+    https://docs.djangoproject.com/en/dev/intro/tutorial05/
+'''
+
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
 from pages.models import Page
-
-
-# Interested in tests? Awesome! Make sure you read this first:
-#   https://docs.djangoproject.com/en/dev/intro/tutorial05/
 
 
 class ViewTests(TestCase):
