@@ -1,14 +1,13 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.views.generic import ListView
 from .models import Page
 from pages.forms import PageForm
 
 
-def startpage(request):
-    pages = Page.objects.all()
-    return render_to_response('pages/startpage.html',
-                              {'pages': pages},
-                              context_instance=RequestContext(request))
+class StartView(ListView):
+    model = Page
+    template_name = "pages/startpage.html"
 
 
 def subpage(request, slug_value):
