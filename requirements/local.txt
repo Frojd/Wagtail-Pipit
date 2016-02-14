@@ -3,3 +3,5 @@
 
 # Add local extra requirements here (django-debug etc)
 django-debug-toolbar==1.3.0
+isort
+pipdeptree
