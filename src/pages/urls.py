@@ -1,12 +1,19 @@
-from django.conf.urls import patterns, url
-from views import StartView
+# -*- coding: utf-8 -*-
+
+from django.conf.urls import include, url
+
+from pages.views import PageListView, PageDetailView
 
 
-urlpatterns = patterns('pages.views',
+urlpatterns = [
     # Some basic examples
     # Root startpage eg. http://site.com
-    url(r'^$', StartView.as_view(), name='startpage'),
+    url(r'^$', PageListView.as_view(), name='startpage'),
 
     # Slugged page eg. http://site.com/subpage/
-    url(r'^(?P<slug_value>[\w\-]+)/$', 'subpage', name='subpage'),
-)
+    url(r'^(?P<slug>[-\w]+)/$', PageDetailView.as_view(), name='page-detail'),
+
+    # Api
+    url(r'^api/v1/', include('pages.api.urls', namespace='api',
+                             app_name='pages'))
+]
