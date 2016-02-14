@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import *
+"""
+Write prod settings here, or override base settings
+"""
+
+from base import *  # NOQA
 
 
 # Enable caching of templates in production environment

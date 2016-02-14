@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import *
-
-
 """
 Write local settings here, or override base settings
 """
+
+from base import *  # NOQA
+
 
 # Add django debug toolbar when using local version
 INSTALLED_APPS += (
