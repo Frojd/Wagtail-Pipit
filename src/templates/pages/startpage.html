@@ -3,7 +3,7 @@
 {% block main %}
         <p>Pages:</p>
     <ul>
-    {% for page in pages %}
+    {% for page in objects %}
         <li><a href="{% url 'subpage' page.slug %}">{{ page.title }}</a></li>
     {% empty %}
         <li>

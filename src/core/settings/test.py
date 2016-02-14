@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Write local settings here, or override base settings
+Write test settings here (for ci environment), or override base settings
 """
 
 from base import *  # NOQA
