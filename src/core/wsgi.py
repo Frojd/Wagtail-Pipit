@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 
 import os
 import inspect
+
 import dotenv
+from django.core.wsgi import get_wsgi_application
 
 
 # Load settings from possible .env file
@@ -24,6 +26,5 @@ try:
 except Exception, e:
     pass
 
-from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.prod")
 application = get_wsgi_application()
