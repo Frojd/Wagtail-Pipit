@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 import os
 import inspect
 
-import dotenv
 from django.core.wsgi import get_wsgi_application
+import dotenv
 
 
 # Load settings from possible .env file
