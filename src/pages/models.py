@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -9,4 +11,4 @@ class Page(models.Model):
     content = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        return "%s" % self.title
+        return unicode(self.title)
