@@ -12,3 +12,6 @@ from base import *  # NOQA
 INSTALLED_APPS += (
     'debug_toolbar',
 )
+
+# Allow weak local passwords
+AUTH_PASSWORD_VALIDATORS = []
