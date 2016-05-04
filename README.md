@@ -15,7 +15,7 @@ This is a basic setup for Django.
 1. Clone the project
 2. Install a virtualenv in your new project folder (`virtualenv venv`)
 3. Activate the virtualenv: `source venv/bin/activate` (or on windows: `./venv/Scripts/activate`)
-4. Install the requirements from the environment you want (usually local version) with: `pip install -r requirements/local.txt`
+4. Install the requirements from the environment you want (usually local version) with: `pip install -r src/requirements/local.txt`
 5. Create a database in postgres and remember the database name and user/password
 6. Copy the example.env and rename to .env and change the settings to your projects specific settings (including database etc)
 7. Go into src `cd src`
