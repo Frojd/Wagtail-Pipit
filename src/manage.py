@@ -4,7 +4,9 @@
 import os
 import sys
 import inspect
+
 import dotenv
+from django.core.management import execute_from_command_line
 
 # Fetches all environment variables from your .env file
 try:
@@ -16,5 +18,4 @@ except Exception, e:
 
 if __name__ == "__main__":
     # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
-    from django.core.management import execute_from_command_line
     execute_from_command_line(sys.argv)

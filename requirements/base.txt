@@ -1,4 +1,0 @@
-Django==1.8.6
-psycopg2>=2.6.1
-pycrypto>=2.6.1
-python-dotenv==0.3.0

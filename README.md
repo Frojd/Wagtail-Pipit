@@ -22,8 +22,9 @@ This is a basic setup for Django.
 8. Run the migrations to get auth system and the example pages app `python manage.py migrate`
 9. Create a superuser for your admin: `python manage.py createsuperuser`
 10. Start the development server: `python manage.py runserver`
-11. Visit your site on: [http://localhost:8000](http://localhost:8000)
-12. Visit the adminview on: [http://localhost:8000/admin](http://localhost:8000/admin)
+11. Run `python manage.py collectstatic`
+12. Visit your site on: [http://localhost:8000](http://localhost:8000)
+13. Visit the adminview on: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 
 ## Example app

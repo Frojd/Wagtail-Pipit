@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import include, url
+from django.conf.urls import url
 
 from pages.views import PageListView, PageDetailView
 
@@ -12,8 +12,4 @@ urlpatterns = [
 
     # Slugged page eg. http://site.com/subpage/
     url(r'^(?P<slug>[-\w]+)/$', PageDetailView.as_view(), name='page-detail'),
-
-    # Api
-    url(r'^api/v1/', include('pages.api.urls', namespace='api',
-                             app_name='pages'))
 ]

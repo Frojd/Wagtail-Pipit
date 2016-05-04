@@ -3,7 +3,6 @@
 
 """
 Django settings for Fröjd Django projects.
-
 """
 
 import os
@@ -12,7 +11,6 @@ from . import get_env_variable
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
 
 # Version, be sure to bump this with each release (please follow semver.org)
 APP_VERSION = '0.0.1'
@@ -35,7 +33,7 @@ INTERNAL_IPS = (
 
 
 # Application definition
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,9 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'pages', # Uncomment this to activate the example app
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,9 +52,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 ROOT_URLCONF = 'core.urls'
+APPEND_SLASH = True
 
 TEMPLATES = [
     {
@@ -64,17 +63,17 @@ TEMPLATES = [
         'DIRS': [
             'templates',
         ],
-        'DEBUG': True,
         'APP_DIRS': True,
         'OPTIONS': {
+            'debug': True,
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.core.context_processors.request',
                 'django.core.context_processors.i18n',
                 'django.core.context_processors.media',
                 'django.core.context_processors.static',
                 'django.core.context_processors.tz',
-                'django.core.context_processors.request',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
