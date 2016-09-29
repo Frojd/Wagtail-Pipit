@@ -8,7 +8,18 @@ Write test settings here (for ci environment), or override base settings
 from base import *  # NOQA
 
 
-# Add django debug toolbar when using local version
+logging.disable(logging.CRITICAL)
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
+
 INSTALLED_APPS += (
     'debug_toolbar',
 )
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
