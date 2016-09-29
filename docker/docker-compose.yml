@@ -1,0 +1,25 @@
+version: '2'
+services:
+    db:
+        image: postgres:9.5
+        ports:
+            - "5432:5432"
+        volumes:
+            - "./files/db-dumps/:/docker-entrypoint-initdb.d/"
+            - "./files/shared:/shared:rw"
+        env_file: ./config/db.env
+    web:
+        image: frojd/project_web
+        build: ../src
+        volumes:
+            - "../src:/app"
+            - "./files/shared:/shared:rw"
+            - "./files/var/log:/var/log:rw"
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        environment:
+            RUN_TYPE: "runserver"
+            REQUIREMENTS: "local.txt"
+        env_file: ./config/web.env

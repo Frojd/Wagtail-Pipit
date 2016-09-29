@@ -8,11 +8,12 @@ def settings_context_processor(request):
     """
     Expose django settings to template engine
     """
-    parsed_settings = settings
-    parsed_settings.SECRET_KEY = None
-    parsed_settings.DATABASES = None
-    full_settings = {
-        'SETTINGS': parsed_settings,
+    parsed_settings = {
+        'DEBUG': settings.DEBUG,
+        'MINIFIED': settings.MINIFIED,
+        'APP_VERSION': settings.APP_VERSION,
     }
 
-    return full_settings
+    return {
+        'SETTINGS': parsed_settings,
+    }

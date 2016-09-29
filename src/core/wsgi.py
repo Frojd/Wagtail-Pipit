@@ -13,17 +13,19 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 import os
 import inspect
 
-from django.core.wsgi import get_wsgi_application
 import dotenv
+from django.core.wsgi import get_wsgi_application
 
 
 # Load settings from possible .env file
 try:
     inspect_file = inspect.getfile(inspect.currentframe())
     env_path = os.path.dirname(os.path.abspath(inspect_file))
+    env_file = "%s/../.env" % (env_path,)
 
-    dotenv.load_dotenv("%s/../.env" % (env_path,))
-except Exception, e:
+    if os.path.exists(env_file):
+        dotenv.load_dotenv(env_file)
+except Exception as e:  # NOQA
     pass
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.prod")

@@ -1,5 +1,6 @@
 # Fröjd Django Boilerplate
-This is a basic setup for Django.
+
+This is a Django boilerplate that convers best practices and a docker configuration.
 
 
 ## Requirements
@@ -8,11 +9,66 @@ This is a basic setup for Django.
 - Pip
 - PostgreSQL
 - Virtualenv
+- Docker (optional)
 
 
 ## Installation
 
-1. Clone the project
+- Clone the project
+
+### Docker
+
+1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox))
+    - Minimum requirements are docker `1.11`, docker-compose `1.7`
+
+2. Setup correct .env files and start docker:
+
+    ```
+    cd docker/config
+    cp db.example.env db.env
+    cp web.example.env web.env
+    vim web.env
+    >>> Add the missing params
+    ```
+
+3. Setup machine (if not already present)
+
+    ```
+    docker-machine create --driver virtualbox default
+    docker-machine start default
+    ```
+
+4. Start project
+
+    ```
+    $(docker-machine env default)
+
+    cd docker
+    docker-compose up
+    ```
+
+    Or if you prefer running uwsgi+nginx...
+
+    ```
+    docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
+    ```
+
+
+5. Retrive machine ip: `docker-machine ip default`
+6. Include this on your hosts-file
+
+    ```
+    <your-machine-ip>   myproject.dev
+    ```
+
+7. Retrive the latest data dump from: `./docker/stage_to_local.sh`
+    - (this requires that have setup access to the stage/prod server with your ssh-key)
+
+8. Visit your site on: `http://myproject.dev:8000`
+
+
+### Non docker
+
 2. Install a virtualenv in your new project folder (`virtualenv venv`)
 3. Activate the virtualenv: `source venv/bin/activate` (or on windows: `./venv/Scripts/activate`)
 4. Install the requirements from the environment you want (usually local version) with: `pip install -r src/requirements/local.txt`
@@ -24,7 +80,6 @@ This is a basic setup for Django.
 10. Start the development server: `python manage.py runserver`
 11. Run `python manage.py collectstatic`
 12. Visit your site on: [http://localhost:8000](http://localhost:8000)
-13. Visit the adminview on: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 
 ## Example app
@@ -37,22 +92,16 @@ To activate the example app, uncomment in it in base.py and it's included urls i
 This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
 
 
-## Coding style
+## Style Guide
 
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
 
 
-### General Django guidelines
-
-- **Views**
-    - Use class based views
-- **Urls**
-    - Avoid using `patterns` in urls (since its deprecated)
-
-
 ## Contributing
+
 Want to contribute? Awesome. Just send a pull request.
 
 
 ## License
+
 Fröjd Django Boilerplate is released under the [MIT License](http://www.opensource.org/licenses/MIT).
