@@ -7,7 +7,7 @@ services:
         links:
             - web
         ports:
-            - "83:80"
+            - "80:80"
         volumes:
             - "./files/nginx.conf:/etc/nginx/nginx.conf"
             - "./files/shared:/shared:rw"
