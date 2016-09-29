@@ -18,9 +18,10 @@ This is a Django boilerplate that convers best practices and a docker configurat
 
 ### Docker
 
-- Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox))
+1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox))
     - Minimum requirements are docker `1.11`, docker-compose `1.7`
-- Setup correct .env files and start docker:
+
+2. Setup correct .env files and start docker:
 
     ```
     cd docker/config
@@ -30,14 +31,14 @@ This is a Django boilerplate that convers best practices and a docker configurat
     >>> Add the missing params
     ```
 
-- Setup machine (if not already present)
+3. Setup machine (if not already present)
 
     ```
     docker-machine create --driver virtualbox default
     docker-machine start default
     ```
 
-- Start project
+4. Start project
 
     ```
     $(docker-machine env default)
@@ -53,17 +54,16 @@ This is a Django boilerplate that convers best practices and a docker configurat
     ```
 
 
-- Retrive machine ip: `docker-machine ip default`
-- Include this on your hosts-file
+5. Retrive machine ip: `docker-machine ip default`
+6. Include this on your hosts-file
 
     ```
     <your-machine-ip>   myproject.dev
     ```
 
-- Retrive the latest data dump from: `./docker/stage_to_local.sh`
+7. Retrive the latest data dump from: `./docker/stage_to_local.sh`
     - (this requires that have setup access to the stage/prod server with your ssh-key)
-- Visit your site on: `http://myproject.dev:8000`
-- Done!
+8. Visit your site on: `http://myproject.dev:8000`
 
 
 ### Non docker
@@ -79,7 +79,6 @@ This is a Django boilerplate that convers best practices and a docker configurat
 10. Start the development server: `python manage.py runserver`
 11. Run `python manage.py collectstatic`
 12. Visit your site on: [http://localhost:8000](http://localhost:8000)
-13. Visit the adminview on: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 
 ## Example app
