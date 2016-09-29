@@ -18,6 +18,9 @@ pip-log.txt
 # SQL-Files
 *.sql
 
+# Log files
+*.log
+
 # Tmp folders
 tmp
 temp
@@ -26,8 +29,6 @@ temp
 docker/config/db.env
 docker/config/web.env
 docker/config/db_backup.env
-docker/files/dump-dumps/*
-docker/files/var/log/*
 
 # Environment
 src/.env
