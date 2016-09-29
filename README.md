@@ -63,6 +63,7 @@ This is a Django boilerplate that convers best practices and a docker configurat
 
 7. Retrive the latest data dump from: `./docker/stage_to_local.sh`
     - (this requires that have setup access to the stage/prod server with your ssh-key)
+
 8. Visit your site on: `http://myproject.dev:8000`
 
 
