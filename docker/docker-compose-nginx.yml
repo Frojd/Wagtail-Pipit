@@ -1,0 +1,20 @@
+version: '2'
+services:
+    nginx:
+        image: nginx:1.9
+        depends_on:
+            - web
+        links:
+            - web
+        ports:
+            - "83:80"
+        volumes:
+            - "./files/nginx.conf:/etc/nginx/nginx.conf"
+            - "./files/shared:/shared:rw"
+            - "./files/var/log:/var/log:rw"
+        volumes_from:
+            - web
+
+    web:
+        environment:
+            RUN_TYPE: "wsgi"

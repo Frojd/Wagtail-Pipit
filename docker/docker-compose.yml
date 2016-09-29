@@ -1,0 +1,31 @@
+version: '2'
+services:
+    search:
+        image: elasticsearch:1.7
+        ports:
+            - "9204:9200"
+            - "9304:9300"
+    db:
+        image: postgres:9.5
+        ports:
+            - "5434:5432"
+        volumes:
+            - "./files/db-dumps/:/docker-entrypoint-initdb.d/"
+            - "./files/shared:/shared:rw"
+        env_file: ./config/db.env
+    web:
+        image: frojd/vscom_web
+        build: ../src
+        volumes:
+            - "../src:/app"
+            - "./files/shared:/shared:rw"
+            - "./files/var/log:/var/log:rw"
+        ports:
+            - "8084:8000"
+        depends_on:
+            - db
+            - search
+        environment:
+            RUN_TYPE: "runserver"
+            REQUIREMENTS: "local.txt"
+        env_file: ./config/web.env

@@ -1,9 +1,6 @@
 # Virtualenv
 venv/
 
-# Environment
-.env
-
 # Python specific, Byte-compiled / optimized / DLL files
 *.pyc
 __pycache__/
@@ -14,3 +11,27 @@ __pycache__/
 
 # Installer logs
 pip-log.txt
+
+# OSX
+.DS_Store
+
+# SQL-Files
+*.sql
+
+# Tmp folders
+tmp
+temp
+
+# Docker
+docker/config/db.env
+docker/config/web.env
+docker/config/db_backup.env
+docker/files/dump-dumps/*
+docker/files/var/log/*
+
+# Environment
+src/.env
+
+# Static folder
+src/static
+src/media
