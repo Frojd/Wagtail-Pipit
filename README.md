@@ -1,6 +1,6 @@
 # Fröjd Django Boilerplate
 
-This is a Django boilerplate that convers best practices and a docker configuration.
+This is a Django boilerplate that covers best practices and a docker configuration.
 
 
 ## Requirements
