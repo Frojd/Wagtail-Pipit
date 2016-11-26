@@ -13,12 +13,9 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 ## Installation
 
-- Clone the project
+### With Docker (Recommended)
 
-
-### With Docker
-
-1. Setup correct .env files and start docker:
+1. Setup container .env files
 
     ```
     cd docker/config
@@ -41,12 +38,12 @@ This is a Django boilerplate that covers best practices and a docker configurati
     cd docker && docker-compose up
     ```
 
-5. Visit your site on: `http://myproject.com.dev:8000`
+5. Visit your site on: [http://myproject.com.dev:8000](http://myproject.com.dev:8000)
 
 
-### Without docker (not recommended)
+### Without Docker (Not recommended)
 
-1. Make you have all components installed:
+1. Make you have all individual components installed:
     - PostgreSQL
     - Python 2.7
     - Pip
@@ -67,7 +64,7 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 ## Example app
 
-To activate the example app, uncomment in it in base.py and it's included urls in urls.py in the core folder.
+To activate the example app, uncomment it in base.py and it's included urls in urls.py in the core app.
 
 
 ## Versioning
