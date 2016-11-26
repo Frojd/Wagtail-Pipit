@@ -135,10 +135,15 @@ This app includes a docker-compose config that uses uwsgi and nginx. Just run th
 docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
 ```
 
-### How do I sync data from stage?
+### How do I sync data from stage/prod?
 
-You can rebuild your application with the latest data dump by running: `./docker/stage_to_local.sh`
-    - (this requires that have setup access to the stage/prod server with your ssh-key)
+You can rebuild your application with the latest data dump by running the following
+
+```
+./docker/stage_to_local.sh
+```
+
+Note: This requires that have ssh-key based access to the stage or prod server
 
 ### How do I install Docker on MacOS?
 
