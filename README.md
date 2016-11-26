@@ -34,7 +34,7 @@ This is a Django boilerplate that covers best practices and a docker configurati
     <your-machine-ip>   myproject.dev
     ```
 
-4. Start project with stage data
+4. Start project
 
     ```
     $(docker-machine env default)
@@ -42,23 +42,11 @@ This is a Django boilerplate that covers best practices and a docker configurati
     cd docker && docker-compose up
     ```
 
-
-6. Visit your site on: `http://myproject.com.dev:8000`
+5. Visit your site on: `http://myproject.com.dev:8000`
 
 
 ## Docker
 
-### Install Docker on OSX
-
-1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox)). We use the virtualbox version.
-    - Minimum requirements are docker `1.11`, docker-compose `1.7`
-
-2. Setup machine (if not already present)
-
-    ```
-    docker-machine create --driver virtualbox default
-    docker-machine start default
-    ```
 
 
 ### Without docker (not recommended)
@@ -150,11 +138,22 @@ This app includes a docker-compose config that uses uwsgi and nginx. Just run th
 docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
 ```
 
-### I want to  sync data from stage
+### How do I sync data from stage?
 
 You can rebuild your application with the latest data dump by running: `./docker/stage_to_local.sh`
     - (this requires that have setup access to the stage/prod server with your ssh-key)
 
+### How do I install docker on MacOS?
+
+1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox)). We use the virtualbox version.
+    - Minimum requirements are docker `1.11`, docker-compose `1.7`
+
+2. Setup machine (if not already present)
+
+    ```
+    docker-machine create --driver virtualbox default
+    docker-machine start default
+    ```
 
 
 ## Contributing
