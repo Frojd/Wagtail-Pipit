@@ -92,9 +92,75 @@ To activate the example app, uncomment in it in base.py and it's included urls i
 This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
 
 
+Bump version in:
+
+- src/core/settings/base.py `(APP_VERSION=)`
+- frontend/package.json
+- src/Dockerfile
+
+...or just use the [bump-version](#bump-version) git hook
+
+
 ## Style Guide
 
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
+
+
+## Merge conflicts
+
+The project has `.gitattributes`, but you need to make sure a driver is set up for this, type this is the terminal:
+
+```
+git config --global merge.ours.driver true
+```
+
+
+## Git hooks
+
+### Bump version
+
+These hooks will automatically bump the application version when using `git flow release ...`
+
+```bash
+chmod +x $PWD/git-hooks/bump-version.sh
+ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-release-start
+ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+```
+
+### Run tests pre push
+
+This hook will run the test suite before every push.
+
+```bash
+chmod +x $PWD/git-hooks/pre-push.sh
+ln -nfs $PWD/git-hooks/pre-push.sh .git/hooks/pre-push
+```
+
+### Run pep8 validation on commit
+
+```bash
+chmod +x $PWD/git-hooks/pep8-pre-commit.sh
+ln -nfs $PWD/git-hooks/pep8-pre-commit.sh .git/hooks/pre-commit
+```
+
+Note: This requires the pep8 package (`pip install pep8`)
+
+
+## FAQ
+
+### How do I run the app locally with a production setup?
+
+This app includes a docker-compose config that uses uwsgi and nginx. Just run this command.
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
+```
+
+### I want to  sync data from stage
+
+You can rebuild your application with the latest data dump by running: `./docker/stage_to_local.sh`
+    - (this requires that have setup access to the stage/prod server with your ssh-key)
+
 
 
 ## Contributing
