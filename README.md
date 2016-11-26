@@ -8,7 +8,7 @@ This is a Django boilerplate that covers best practices and a docker configurati
 - Python 2.7x
 - Pip
 - Virtualenv
-- Docker [Install instructions](##how-do-i-install-docker-on-macos)
+- Docker ([Install instructions](#how-do-i-install-docker-on-macos))
 
 
 ## Installation
