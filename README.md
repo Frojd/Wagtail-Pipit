@@ -9,7 +9,7 @@ This is a Django boilerplate that covers best practices and a docker configurati
 - Pip
 - PostgreSQL
 - Virtualenv
-- Docker (optional) [Install instructions](...)
+- Docker [Install instructions](##how-do-i-install-docker-on-macos)
 
 
 ## Installation
@@ -45,10 +45,6 @@ This is a Django boilerplate that covers best practices and a docker configurati
 5. Visit your site on: `http://myproject.com.dev:8000`
 
 
-## Docker
-
-
-
 ### Without docker (not recommended)
 
 2. Install a virtualenv in your new project folder (`virtualenv venv`)
@@ -72,7 +68,6 @@ To activate the example app, uncomment in it in base.py and it's included urls i
 ## Versioning
 
 This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
-
 
 Bump version in:
 
@@ -143,9 +138,9 @@ docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
 You can rebuild your application with the latest data dump by running: `./docker/stage_to_local.sh`
     - (this requires that have setup access to the stage/prod server with your ssh-key)
 
-### How do I install docker on MacOS?
+### How do I install Docker on MacOS?
 
-1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox)). We use the virtualbox version.
+1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox)). Please use the virtualbox version.
     - Minimum requirements are docker `1.11`, docker-compose `1.7`
 
 2. Setup machine (if not already present)
@@ -154,7 +149,6 @@ You can rebuild your application with the latest data dump by running: `./docker
     docker-machine create --driver virtualbox default
     docker-machine start default
     ```
-
 
 ## Contributing
 
