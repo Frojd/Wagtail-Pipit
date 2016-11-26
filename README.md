@@ -7,7 +7,6 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 - Python 2.7x
 - Pip
-- PostgreSQL
 - Virtualenv
 - Docker [Install instructions](##how-do-i-install-docker-on-macos)
 
@@ -46,6 +45,12 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 
 ### Without docker (not recommended)
+
+1. Make you have all components installed:
+    - PostgreSQL
+    - Python 2.7
+    - Pip
+    - Virtualenv
 
 2. Install a virtualenv in your new project folder (`virtualenv venv`)
 3. Activate the virtualenv: `source venv/bin/activate` (or on windows: `./venv/Scripts/activate`)
