@@ -1,8 +1,13 @@
 import os
+
 from django.core.exceptions import ImproperlyConfigured
 
 
 def get_env_variable(var_name, is_bool=False, default=None):
+    return get_env(var_name, is_bool, default)
+
+
+def get_env(var_name, is_bool=False, default=None):
     """ Get the environment variable or return exception """
     try:
         if is_bool:
