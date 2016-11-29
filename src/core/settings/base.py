@@ -6,7 +6,8 @@ Django settings for Fröjd Django projects.
 """
 
 import os
-from . import get_env_variable
+
+from core.settings import get_env, get_env_bool
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -16,16 +17,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 APP_VERSION = '0.0.1'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable('SECRET_KEY')
+SECRET_KEY = get_env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env_variable('DEBUG', is_bool=True)
+DEBUG = get_env_bool('DEBUG')
 
 # Minified, by default it is set to the same as Debug
-MINIFIED = get_env_variable('MINIFIED', is_bool=True, default=not DEBUG)
+MINIFIED = get_env_bool('MINIFIED', default=not DEBUG)
 
 # This is when debug is off, else django wont allow you to visit the site
-ALLOWED_HOSTS = get_env_variable('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = get_env('ALLOWED_HOSTS').split(',')
 
 INTERNAL_IPS = (
     '127.0.0.1',
@@ -92,11 +93,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': get_env_variable('DATABASE_NAME'),
-        'USER': get_env_variable('DATABASE_USER'),
-        'PASSWORD': get_env_variable('DATABASE_PASSWORD'),
-        'HOST': get_env_variable('DATABASE_HOST'),
-        'PORT': get_env_variable('DATABASE_PORT'),
+        'NAME': get_env('DATABASE_NAME'),
+        'USER': get_env('DATABASE_USER'),
+        'PASSWORD': get_env('DATABASE_PASSWORD'),
+        'HOST': get_env('DATABASE_HOST'),
+        'PORT': get_env('DATABASE_PORT'),
     }
 }
 
@@ -131,7 +132,7 @@ USE_TZ = True
 
 # Uploaded media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = get_env_variable('MEDIA_PATH')
+MEDIA_ROOT = get_env('MEDIA_PATH')
 
 
 # Static files, if in production use static root, else use static dirs
@@ -141,7 +142,7 @@ STATIC_URL = '/static/'
 
 # The absolute path to the directory where collectstatic will collect static
 # files for deployment. Example: "/var/www/example.com/static/"I
-STATIC_ROOT = get_env_variable('STATIC_PATH')
+STATIC_ROOT = get_env('STATIC_PATH')
 
 # This setting defines the additional locations the staticfiles will traverse
 STATICFILES_DIRS = (
@@ -151,4 +152,4 @@ STATICFILES_DIRS = (
 
 
 # Example metadata
-GA_ACCOUNT = get_env_variable('GA_ACCOUNT', is_bool=False, default="GA-XXXX")
+GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")
