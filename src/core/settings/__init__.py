@@ -1,22 +1,30 @@
 import os
+import warnings
 
 from django.core.exceptions import ImproperlyConfigured
 
 
-def get_env_variable(var_name, is_bool=False, default=None):
-    return get_env(var_name, is_bool, default)
+def get_env_variable(name, is_bool=False, default=None):
+    warnings.warn("get_env_variable is deprecated, use get_env instead",
+                  DeprecationWarning)
+
+    if is_bool:
+        return get_env_bool(name, default=default)
+
+    return get_env_bool(name, default=default)
 
 
-def get_env(var_name, is_bool=False, default=None):
+def get_env(name, default=None):
     """ Get the environment variable or return exception """
-    try:
-        if is_bool:
-            return os.environ[var_name] == 'True'
+    if name in os.environ:
+        return os.environ[name]
 
-        return os.environ[var_name]
-    except KeyError:
-        if default is not None:
-            return default
+    if default is not None:
+        return default
 
-        error_msg = "Set the %s env variable" % var_name
-        raise ImproperlyConfigured(error_msg)
+    error_msg = "Set the {} env variable".format(name)
+    raise ImproperlyConfigured(error_msg)
+
+
+def get_env_bool(name, default=None):
+    return get_env(name, default=default) == 'True'
