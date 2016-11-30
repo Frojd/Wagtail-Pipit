@@ -28,3 +28,18 @@ def get_env(name, default=None):
 
 def get_env_bool(name, default=None):
     return get_env(name, default=default) == 'True'
+
+
+def get_first_env(*args):
+    """
+    Return the first env var encountered from list.insert.
+
+    Example:
+        get_first_env('DB_NAME', 'DATABASE_NAME')
+    """
+    for name in args:
+        if name in os.environ:
+            return os.environ[name]
+
+    error_msg = "Missing any of these env vars {}".format(args)
+    raise ImproperlyConfigured(error_msg)
