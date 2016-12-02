@@ -27,7 +27,7 @@ This is a Django boilerplate that covers best practices and a docker configurati
 3. Include this ip on your hosts-file
 
     ```
-    <your-machine-ip>   myproject.dev
+    <your-machine-ip>  <project_domain>.dev
     ```
 
 4. Start project
@@ -35,10 +35,10 @@ This is a Django boilerplate that covers best practices and a docker configurati
     ```
     $(docker-machine env default)
 
-    cd docker && docker-compose up
+    docker-compose up
     ```
 
-5. Visit your site on: [http://myproject.com.dev:8000](http://myproject.com.dev:8000)
+5. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
 
 
 ### Without Docker (Not recommended)
@@ -73,7 +73,7 @@ This boilerplate uses [semantic versioning](http://semver.org/) and follow djang
 
 Bump version in:
 
-- src/core/settings/base.py `(APP_VERSION=)`
+- src/core/settings/base.py `(APP_VERSION=0.0.1)`
 - frontend/package.json
 - src/Dockerfile
 
@@ -159,7 +159,7 @@ Note: This requires that have ssh-key based access to the stage or prod server
 
 ### How can I run pdb on the python container?
 
-Start the container with service-ports exposed instead of `docker-compose up`. This will create a container called `*_web_run_1`
+Start the container with service-ports exposed instead of `docker-compose up`. This will create a container called `<project_prefix>_web_run_1`
 
 ```
 docker-compose run --rm --service-ports web

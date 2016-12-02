@@ -2,11 +2,11 @@
 set -e
 
 # Arguments
-local_domain=${1-myproject.com.dev:8080}
+local_domain=${1-<project_domain>.dev:<project_web_port>}
 ssh_host=${2-user@server}
 
-CURRENTDIR=$(dirname `which $0`)
-DOCKERDIR=$(cd ${CURRENTDIR}/../; pwd)
+ROOTDIR=$(git rev-parse --show-toplevel)
+DOCKERDIR=$(cd ${ROOTDIR}/docker/; pwd)
 
 
 echo "Creating database dump from stage..."
@@ -16,7 +16,7 @@ echo "Downloading database dump..."
 scp $ssh_host:/tmp/db-dump.sql $DOCKERDIR/files/db-dumps/db-dump.sql
 ssh $ssh_host "rm /tmp/db-dump.sql"
 
-cd $DOCKERDIR
+cd $ROOTDIR
 echo "Rebuilding docker containers."
 
 eval $(docker-machine env default)
