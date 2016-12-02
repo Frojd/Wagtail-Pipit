@@ -189,6 +189,17 @@ scripts/manage.sh makemigrations
 ```
 
 
+### How do I add new python dependecies?
+
+First update your requirements/base.txt, then rebuild your container:
+
+```
+docker-compose stop
+docker-compose build
+docker-compose up
+```
+
+
 ## Contributing
 
 Want to contribute? Awesome. Just send a pull request.
