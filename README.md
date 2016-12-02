@@ -166,6 +166,29 @@ docker-compose run --rm --service-ports web
 ```
 
 
+### How do I run custom manage.py commands?
+
+To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your web container.
+
+1. Example: Create migrations
+
+```
+docker-compose exec run web python manage.py makemigrations
+```
+
+2. Example: Run migrations
+
+```
+docker-compose exec run web python manage.py migrate
+```
+
+We also have a manage.sh script to make running management commands easier.
+
+```
+scripts/manage.sh makemigrations
+```
+
+
 ## Contributing
 
 Want to contribute? Awesome. Just send a pull request.
