@@ -156,7 +156,7 @@ Note: This requires that have ssh-key based access to the stage or prod server
     docker-machine create --driver virtualbox default
     docker-machine start default
     ```
-    
+
 ### How can I run pdb on the python container?
 
 Start the container with service-ports exposed instead of `docker-compose up`. This will create a container called `*_web_run_1`
