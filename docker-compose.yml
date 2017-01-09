@@ -5,20 +5,20 @@ services:
         # image: mdillon/postgis:9.5
         image: postgres:9.5
         ports:
-            - "5432:5432"
+            - "<project_db_port>:5432"
         volumes:
-            - "./files/db-dumps/:/docker-entrypoint-initdb.d/"
-            - "./files/shared:/shared:rw"
+            - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
+            - "./docker/files/shared:/shared:rw"
         env_file: ./config/db.env
     web:
-        image: frojd/project_web
+        image: frojd/<project>_web
         build: ../src
         volumes:
-            - "../src:/app"
-            - "./files/shared:/shared:rw"
-            - "./files/var/log:/var/log:rw"
+            - "./src:/app"
+            - "./docker/files/shared:/shared:rw"
+            - "./docker/files/var/log:/var/log:rw"
         ports:
-            - "8000:8000"
+            - "<project_web_port>:8000"
         depends_on:
             - db
         environment:
