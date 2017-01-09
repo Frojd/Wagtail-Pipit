@@ -11,10 +11,10 @@
 # Django tests
 eval $(docker-machine env default)
 
-TEST_CONTAINER="<yourproject>_web_1"
+TEST_CONTAINER="<project_prefix>_web_1"
 
 if [ "$(docker ps | grep vscom_web_run_1)" ]; then
-    TEST_CONTAINER="<yourproject>_web_run_1"
+    TEST_CONTAINER="<project_prefix>_web_run_1"
 fi
 
 git diff --cached --name-only | if grep --quiet "src/"

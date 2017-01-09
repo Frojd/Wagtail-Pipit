@@ -12,7 +12,7 @@ class Command(BaseCommand):
     Change site domain and port for wagtail.
 
     Example:
-        manage.py change_site_domain --site_id=2 --new_site_domain=frojd.se:443
+        manage.py wagtail_change_site_domain --site_id=2 --new_site_domain=frojd.se:443
     '''
     def add_arguments(self, parser):
         parser.add_argument('--site_id',
