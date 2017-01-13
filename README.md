@@ -101,9 +101,9 @@ git config --global merge.ours.driver true
 These hooks will automatically bump the application version when using `git flow release ...`
 
 ```bash
-chmod +x $PWD/git-hooks/bump-version.sh
-ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-release-start
-ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+chmod +x $PWD/.githooks/bump-version.sh
+ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-release-start
+ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 ```
 
 ### Run tests pre push
@@ -111,15 +111,15 @@ ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 This hook will run the test suite before every push.
 
 ```bash
-chmod +x $PWD/git-hooks/pre-push.sh
-ln -nfs $PWD/git-hooks/pre-push.sh .git/hooks/pre-push
+chmod +x $PWD/.githooks/pre-push.sh
+ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 ```
 
 ### Run pep8 validation on commit
 
 ```bash
-chmod +x $PWD/git-hooks/pep8-pre-commit.sh
-ln -nfs $PWD/git-hooks/pep8-pre-commit.sh .git/hooks/pre-commit
+chmod +x $PWD/.githooks/pep8-pre-commit.sh
+ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
 ```
 
 Note: This requires the pep8 package (`pip install pep8`)
