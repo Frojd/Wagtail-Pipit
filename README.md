@@ -30,15 +30,23 @@ This is a Django boilerplate that covers best practices and a docker configurati
     <your-machine-ip>  <project_domain>.dev
     ```
 
-4. Start project
+4. Perform a project wide search and replace against these values:
+
+- <project_name>: Your project name as snake case (Example: `client_project`)
+- <project_domain>: Local domain for your project (Example: `client.se.dev`)
+- <project_db_port>: External port for your database, must be unique (Example: `5434`)
+- <project_web_port>: External port for your web container, must be unique (Example: `8086`)
+- <project_prefix>:  Container prefix, as snake case (Example: `client_project`)
+
+5. Start project
 
     ```
-    $(docker-machine env default)
+    eval $(docker-machine env default)
 
     docker-compose up
     ```
 
-5. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
+6. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
 
 
 ### Without Docker (Not recommended)
