@@ -32,11 +32,11 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 4. Perform a project wide search and replace against these values:
 
-- <project_name>: Your project name as snake case (Example: `client_project`)
-- <project_domain>: Local domain for your project (Example: `client.se.dev`)
-- <project_db_port>: External port for your database, must be unique (Example: `5434`)
-- <project_web_port>: External port for your web container, must be unique (Example: `8086`)
-- <project_prefix>:  Container prefix, as snake case (Example: `client_project`)
+- `<project_name>`: Your project name as snake case (Example: `client_project`)
+- `<project_domain>`: Local domain for your project (Example: `client.se.dev`)
+- `<project_db_port>`: External port for your database, must be unique (Example: `5434`)
+- `<project_web_port>`: External port for your web container, must be unique (Example: `8086`)
+- `<project_prefix>`:  Container prefix, as snake case (Example: `client_project`)
 
 5. Start project
 
