@@ -18,9 +18,9 @@ CACHES = {
 }
 
 # Enable caching of templates in production environment
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', [
         'django.template.loaders.filesystem.Loader',
         'django.template.loaders.app_directories.Loader',
-    )),
-)
+    ]),
+]
