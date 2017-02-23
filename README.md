@@ -13,8 +13,6 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 ## Installation
 
-### With Docker (Recommended)
-
 1. Setup container .env files
 
     ```
@@ -47,27 +45,6 @@ This is a Django boilerplate that covers best practices and a docker configurati
     ```
 
 6. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
-
-
-### Without Docker (Not recommended)
-
-1. Make you have all individual components installed:
-    - PostgreSQL
-    - Python 2.7
-    - Pip
-    - Virtualenv
-
-2. Install a virtualenv in your new project folder (`virtualenv venv`)
-3. Activate the virtualenv: `source venv/bin/activate` (or on windows: `./venv/Scripts/activate`)
-4. Install the requirements from the environment you want (usually local version) with: `pip install -r src/requirements/local.txt`
-5. Create a database in postgres and remember the database name and user/password
-6. Copy the example.env and rename to .env and change the settings to your projects specific settings (including database etc)
-7. Go into src `cd src`
-8. Run the migrations to get auth system and the example pages app `python manage.py migrate`
-9. Create a superuser for your admin: `python manage.py createsuperuser`
-10. Start the development server: `python manage.py runserver`
-11. Run `python manage.py collectstatic`
-12. Visit your site on: [http://localhost:8000](http://localhost:8000)
 
 
 ## Example app
