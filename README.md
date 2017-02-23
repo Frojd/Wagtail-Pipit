@@ -13,8 +13,6 @@ This is a Django boilerplate that covers best practices and a docker configurati
 
 ## Installation
 
-### With Docker (Recommended)
-
 1. Setup container .env files
 
     ```
@@ -30,36 +28,23 @@ This is a Django boilerplate that covers best practices and a docker configurati
     <your-machine-ip>  <project_domain>.dev
     ```
 
-4. Start project
+4. Perform a project wide search and replace against these values:
+
+- `<project_name>`: Your project name as snake case (Example: `client_project`)
+- `<project_domain>`: Local domain for your project (Example: `client.se.dev`)
+- `<project_db_port>`: External port for your database, must be unique (Example: `5434`)
+- `<project_web_port>`: External port for your web container, must be unique (Example: `8086`)
+- `<project_prefix>`:  Container prefix, as snake case (Example: `client_project`)
+
+5. Start project
 
     ```
-    $(docker-machine env default)
+    eval $(docker-machine env default)
 
     docker-compose up
     ```
 
-5. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
-
-
-### Without Docker (Not recommended)
-
-1. Make you have all individual components installed:
-    - PostgreSQL
-    - Python 2.7
-    - Pip
-    - Virtualenv
-
-2. Install a virtualenv in your new project folder (`virtualenv venv`)
-3. Activate the virtualenv: `source venv/bin/activate` (or on windows: `./venv/Scripts/activate`)
-4. Install the requirements from the environment you want (usually local version) with: `pip install -r src/requirements/local.txt`
-5. Create a database in postgres and remember the database name and user/password
-6. Copy the example.env and rename to .env and change the settings to your projects specific settings (including database etc)
-7. Go into src `cd src`
-8. Run the migrations to get auth system and the example pages app `python manage.py migrate`
-9. Create a superuser for your admin: `python manage.py createsuperuser`
-10. Start the development server: `python manage.py runserver`
-11. Run `python manage.py collectstatic`
-12. Visit your site on: [http://localhost:8000](http://localhost:8000)
+6. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
 
 
 ## Example app
@@ -101,9 +86,9 @@ git config --global merge.ours.driver true
 These hooks will automatically bump the application version when using `git flow release ...`
 
 ```bash
-chmod +x $PWD/git-hooks/bump-version.sh
-ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-release-start
-ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+chmod +x $PWD/.githooks/bump-version.sh
+ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-release-start
+ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 ```
 
 ### Run tests pre push
@@ -111,15 +96,15 @@ ln -nfs $PWD/git-hooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 This hook will run the test suite before every push.
 
 ```bash
-chmod +x $PWD/git-hooks/pre-push.sh
-ln -nfs $PWD/git-hooks/pre-push.sh .git/hooks/pre-push
+chmod +x $PWD/.githooks/pre-push.sh
+ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 ```
 
 ### Run pep8 validation on commit
 
 ```bash
-chmod +x $PWD/git-hooks/pep8-pre-commit.sh
-ln -nfs $PWD/git-hooks/pep8-pre-commit.sh .git/hooks/pre-commit
+chmod +x $PWD/.githooks/pep8-pre-commit.sh
+ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
 ```
 
 Note: This requires the pep8 package (`pip install pep8`)
