@@ -156,6 +156,10 @@ STATICFILES_DIRS = (
     # "/home/polls.com/polls/static",
 )
 
+# Admin
+
+ADMIN_URL = r'^admin/'
+
 
 # Example metadata
 GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")

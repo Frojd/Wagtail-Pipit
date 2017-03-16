@@ -8,7 +8,8 @@ from django.views import defaults as default_views
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(settings.ADMIN_URL, admin.site.urls),
+
     # Prefered way of including an apps urls
     # url(r'', include('pages.urls'))  # Uncomment this to use the example app
 ]
