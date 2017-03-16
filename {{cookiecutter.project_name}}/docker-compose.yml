@@ -5,7 +5,7 @@ services:
         # image: mdillon/postgis:9.5
         image: postgres:9.5
         ports:
-            - "<project_db_port>:5432"
+            - "{{cookiecutter.docker_db_port}}:5432"
         volumes:
             - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
             - "./docker/files/shared:/shared:rw"
@@ -18,7 +18,7 @@ services:
             - "./docker/files/shared:/shared:rw"
             - "./docker/files/var/log:/var/log:rw"
         ports:
-            - "<project_web_port>:8000"
+            - "{{cookiecutter.docker_web_port}}:8000"
         depends_on:
             - db
         environment:

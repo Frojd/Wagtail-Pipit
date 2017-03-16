@@ -14,7 +14,7 @@ from core.settings import get_env, get_env_bool
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Version, be sure to bump this with each release (please follow semver.org)
-APP_VERSION = '0.0.1'
+APP_VERSION = '{{cookiecutter.version}}'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env('SECRET_KEY')

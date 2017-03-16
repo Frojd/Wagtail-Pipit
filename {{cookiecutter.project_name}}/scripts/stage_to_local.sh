@@ -2,7 +2,7 @@
 set -e
 
 # Arguments
-local_domain=${1-<project_domain>.dev:<project_web_port>}
+local_domain=${1-{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}}}
 ssh_host=${2-user@server}
 
 ROOTDIR=$(git rev-parse --show-toplevel)

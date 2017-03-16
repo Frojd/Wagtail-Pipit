@@ -1,11 +1,11 @@
-# Fröjd Django Boilerplate
+# {{cookiecutter.project_name}}
 
-This is a Django boilerplate that covers best practices and a docker configuration.
+{{cookiecutter.description}}
 
 
 ## Requirements
 
-- Python 2.7x
+- Python 3.6+
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macos))
@@ -25,7 +25,7 @@ This is a Django boilerplate that covers best practices and a docker configurati
 3. Include this ip on your hosts-file
 
     ```
-    <your-machine-ip>  <project_domain>.dev
+    127.0.0.1  {{cookiecutter.domain_name}}.dev
     ```
 
 4. Perform a project wide search and replace against these values:
@@ -34,17 +34,14 @@ This is a Django boilerplate that covers best practices and a docker configurati
 - `<project_domain>`: Local domain for your project (Example: `client.se.dev`)
 - `<project_db_port>`: External port for your database, must be unique (Example: `5434`)
 - `<project_web_port>`: External port for your web container, must be unique (Example: `8086`)
-- `<project_prefix>`:  Container prefix, as snake case (Example: `client_project`)
 
 5. Start project
 
     ```
-    eval $(docker-machine env default)
-
     docker-compose up
     ```
 
-6. Visit your site on: [http://<project_domain>.dev:<project_web_port>](http://<project_domain>.dev:<project_web_port>)
+6. Visit your site on: [http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}}>](http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}})
 
 
 ## Example app
