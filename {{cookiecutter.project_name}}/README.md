@@ -60,6 +60,16 @@ Bump version in:
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
 
 
+### Environment vars
+
+The environment variables are added to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to add the key to Circle-CI environment variables.
+
+#### Commands
+
+- Encrypt `openssl aes-256-cbc -e -in .circlerc -out .circlerc-crypt -k <KEY>`
+- Decrypt `openssl aes-256-cbc -d -in .circlerc-crypt -out .circlerc -k <KEY>`
+
+
 ## Merge conflicts
 
 The project has `.gitattributes`, but you need to make sure a driver is set up for this, type this is the terminal:
