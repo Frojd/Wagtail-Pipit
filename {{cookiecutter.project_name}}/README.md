@@ -120,27 +120,22 @@ This app includes a docker-compose config that uses uwsgi and nginx. Just run th
 docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
 ```
 
+
 ### How do I sync data from stage/prod?
 
 You can rebuild your application with the latest data dump by running the following
 
 ```
-./docker/stage_to_local.sh
+./scripts/stage_to_local.sh
 ```
 
-Note: This requires that have ssh-key based access to the stage or prod server
+Note: This requires that you have ssh-key based access to the server.
+
 
 ### How do I install Docker on MacOS?
 
-1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox)). Please use the virtualbox version.
-    - Minimum requirements are docker `1.11`, docker-compose `1.7`
+You can either use Docker for Mac or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
 
-2. Setup machine (if not already present)
-
-    ```
-    docker-machine create --driver virtualbox default
-    docker-machine start default
-    ```
 
 ### How can I run pdb on the python container?
 
