@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% raw %}{% extends 'base.html' %}
 {% load i18n %}
 
 {% block main %}
@@ -6,3 +6,4 @@
     <p>{{ object.content }}</p>
     <p>Date: {{ now|date }}</p>
 {% endblock %}
+{% endraw %}
