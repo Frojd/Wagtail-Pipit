@@ -33,7 +33,7 @@ type aws >/dev/null 2>&1 || {
 
 # Arguments
 stage_host=${1-{{cookiecutter.ssh_stage}}}
-prod_host=${2-{{cookiecutter.ssh_prod}
+prod_host=${2-{{cookiecutter.ssh_prod}}}
 
 CURRENTDIR=$(dirname `which $0`)
 DOCKERDIR=$(cd ${CURRENTDIR}/../; pwd)
@@ -60,6 +60,6 @@ manage_prefix="source /mnt/persist/www/django/env/bin/activate && cd /mnt/persis
 ssh $stage_host "$manage_prefix python manage.py change_site_domain --site_id=1 --new_site_domain='{{cookiecutter.domain_stage}}'"
 
 echo "Syncing s3 buckets..."
-aws --profile <aws_profile> s3 sync s3://{{cookiecutter.s3_bucket_stage}} s3://{{cookiecutter.s3_bucket_prod}} --acl public-read
+aws --profile {{cookiecutter.aws_devops_profile}} s3 sync s3://{{cookiecutter.s3_bucket_stage}} s3://{{cookiecutter.s3_bucket_prod}} --acl public-read
 
 echo "Done!"

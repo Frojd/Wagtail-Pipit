@@ -8,11 +8,12 @@
     "domain_stage": "stage.example.com",
     "ssh_prod": "user@prod-server",
     "ssh_stage": "user@stage-server",
-    "db_name_prod": "django",
-    "db_name_stage": "django",
+    "db_name_prod": "prod_db",
+    "db_name_stage": "stage_db",
     "s3_bucket_prod": "s3.example.com",
     "s3_bucket_stage": "s3.stage.example.com",
     "docker_web_port": 8081,
     "docker_db_port": 5433,
+    "aws_devops_profile": "client_devops",
     "version": "0.1.0"
 }
