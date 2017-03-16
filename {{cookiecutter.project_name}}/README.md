@@ -25,7 +25,7 @@
 3. Include this ip on your hosts-file
 
     ```
-    127.0.0.1  {{cookiecutter.domain_name}}.dev
+    127.0.0.1  {{cookiecutter.domain_prod}}.dev
     ```
 
 4. Start project
@@ -34,7 +34,7 @@
     docker-compose up
     ```
 
-6. Visit your site on: [http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}})
+6. Visit your site on: [http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}})
 
 
 ## Example app

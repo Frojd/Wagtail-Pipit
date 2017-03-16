@@ -32,14 +32,14 @@ type aws >/dev/null 2>&1 || {
 }
 
 # Arguments
-stage_host=${1-<remote_stage_host>}
-prod_host=${2-<remote_prod_host>}
+stage_host=${1-{{cookiecutter.ssh_stage}}}
+prod_host=${2-{{cookiecutter.ssh_prod}
 
 CURRENTDIR=$(dirname `which $0`)
 DOCKERDIR=$(cd ${CURRENTDIR}/../; pwd)
 
 echo "Creating database dump from stage..."
-ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres <remote_db_name> -x -O"
+ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres {{cookiecutter.db_name_prod}} -x -O"
 
 echo "Downloading database dump..."
 scp $prod_host:/tmp/db-dump.sql /tmp/db-dump.sql
@@ -49,7 +49,7 @@ echo "Uploading database to new server"
 scp /tmp/db-dump.sql $stage_host:/tmp/db-dump.sql
 
 echo "Replacing stage db"
-ssh $stage_host "sudo -u postgres pg_restore --clean -h localhost -d <remote_db_name> -U postgres '/tmp/db-dump.sql'"
+ssh $stage_host "sudo -u postgres pg_restore --clean -h localhost -d {{cookiecutter.db_name_stage}} -U postgres '/tmp/db-dump.sql'"
 ssh $stage_host "rm /tmp/db-dump.sql"
 
 rm /tmp/db-dump.sql
@@ -57,9 +57,9 @@ rm /tmp/db-dump.sql
 echo "Updating database..."
 manage_prefix="source /mnt/persist/www/django/env/bin/activate && cd /mnt/persist/www/django/current &&"
 
-ssh $stage_host "$manage_prefix python manage.py change_site_domain --site_id=1 --new_site_domain='<remote_stage_domain>'"
+ssh $stage_host "$manage_prefix python manage.py change_site_domain --site_id=1 --new_site_domain='{{cookiecutter.domain_stage}}'"
 
 echo "Syncing s3 buckets..."
-aws --profile <aws_profile> s3 sync s3://<s3_stage_bucket> s3://<s3_prod_bucket> --acl public-read
+aws --profile <aws_profile> s3 sync s3://{{cookiecutter.s3_bucket_stage}} s3://{{cookiecutter.s3_bucket_prod}} --acl public-read
 
 echo "Done!"
