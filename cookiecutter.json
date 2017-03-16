@@ -5,5 +5,7 @@
     "email": "you@example.com",
     "description": "A short description of the project.",
     "domain_name": "example.com",
+    "docker_web_port": 8081,
+    "docker_db_port": 5433,
     "version": "0.1.0"
 }
