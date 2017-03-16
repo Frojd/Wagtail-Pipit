@@ -1,0 +1,50 @@
+{% raw %}<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ meta_description }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        {% if SETTINGS.MINIFIED %}
+            <link rel="stylesheet" href="{% static 'css/main-min.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
+        {% else %}
+            <link rel="stylesheet" href="{% static 'css/main.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
+        {% endif %}
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header>
+            {% block header %}
+                {% include 'partials/header.html' %}
+            {% endblock header %}
+        </header>
+
+        <main>
+            {% block main %}
+            {% endblock main %}
+        </main>
+
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+        {% if SETTINGS.MINIFIED %}
+            <script type="text/javascript" src="{% static 'js/main-min.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
+        {% else %}
+            <script type="text/javascript" src="{% static 'js/main.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
+        {% endif %}
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','{{ SETTINGS.GA_ACCOUNT }}','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
+{% endraw %}
