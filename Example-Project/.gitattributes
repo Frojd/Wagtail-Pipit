@@ -1,0 +1,4 @@
+src/core/static/**/* -diff
+src/core/static/**/* merge=ours
+
+src/**/migrations/* -diff
