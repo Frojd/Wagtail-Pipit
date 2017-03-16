@@ -182,4 +182,8 @@ Want to contribute? Awesome. Just send a pull request.
 
 ## License
 
-Fröjd Django Boilerplate is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+{% if cookiecutter.software_license != 'proprietary' %}
+{{cookiecutter.project_name}} is relased under the {{cookiecutter.open_source_license}} license.
+{% else %}
+{{cookiecutter.project_name}} is proprietary software. All rights reserved.
+{% endif %}

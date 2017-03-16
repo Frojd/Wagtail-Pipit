@@ -11,7 +11,7 @@ services:
             - "./docker/files/shared:/shared:rw"
         env_file: ./docker/config/db.env
     web:
-        image: frojd/<project>_web
+        image: frojd/{{cookiecutter.project_slug}}_web
         build: ./src
         volumes:
             - "./src:/app"

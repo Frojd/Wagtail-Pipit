@@ -15,5 +15,6 @@
     "docker_web_port": 8081,
     "docker_db_port": 5433,
     "aws_devops_profile": "client_devops",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "software_license": ["MIT", "proprietary"]
 }
