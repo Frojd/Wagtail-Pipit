@@ -28,20 +28,13 @@
     127.0.0.1  {{cookiecutter.domain_name}}.dev
     ```
 
-4. Perform a project wide search and replace against these values:
-
-- `<project_name>`: Your project name as snake case (Example: `client_project`)
-- `<project_domain>`: Local domain for your project (Example: `client.se.dev`)
-- `<project_db_port>`: External port for your database, must be unique (Example: `5434`)
-- `<project_web_port>`: External port for your web container, must be unique (Example: `8086`)
-
-5. Start project
+4. Start project
 
     ```
     docker-compose up
     ```
 
-6. Visit your site on: [http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}}>](http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}})
+6. Visit your site on: [http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_name}}.dev:{{cookiecutter.docker_web_port}})
 
 
 ## Example app

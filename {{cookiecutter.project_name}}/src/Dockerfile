@@ -1,6 +1,6 @@
 FROM python:2.7
 MAINTAINER Frojd
-LABEL version="v1.0.0"
+LABEL version="v{{cookiecutter.version}}"
 
 RUN apt-get update && apt-get install -y netcat
 
