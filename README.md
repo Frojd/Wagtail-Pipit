@@ -13,6 +13,11 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 - ...and for syncing prod => stage
 
 
+## Example
+
+This repo includes a generated project, you can find it [here](./Example-Project)
+
+
 ## Usage
 
 1. Install cookiecutter, there are several options:
