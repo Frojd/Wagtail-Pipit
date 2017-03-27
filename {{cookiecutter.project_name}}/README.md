@@ -188,7 +188,7 @@ Want to contribute? Awesome. Just send a pull request.
 ## License
 
 {% if cookiecutter.software_license != 'proprietary' %}
-{{cookiecutter.project_name}} is relased under the {{cookiecutter.software_license}} license.
+{{cookiecutter.project_name}} is released under the {{cookiecutter.software_license}} license.
 {% else %}
 {{cookiecutter.project_name}} is proprietary software. All rights reserved.
 {% endif %}
