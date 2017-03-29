@@ -1,0 +1,15 @@
+machine:
+    timezone:
+        Europe/Stockholm
+    services:
+        - postgresql
+    python:
+        version: 2.7.10
+
+dependencies:
+    pre:
+        - pip install cookiecutter
+
+test:
+    pre:
+        - cookiecutter . --no-input --overwrite-if-exists
