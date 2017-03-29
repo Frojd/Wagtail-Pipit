@@ -1,7 +1,8 @@
-general:
-    branches:
-        ignore:
-            - master
+# TODO: Enable this when going live
+#general:
+    #branches:
+        #ignore:
+            #- master
 
 machine:
     timezone:
@@ -16,13 +17,13 @@ checkout:
         - mkdir -p logs
 
 dependencies:
+    pre:
+        - openssl aes-256-cbc -d -in .circlerc-crypt -k $KEY >> ~/.circlerc
     override:
         - pip install -U pip setuptools virtualenv
         - pip install -r src/requirements/test.txt
         - pip install -r deploy/requirements.txt
         - cd frontend && npm install
-    pre:
-        - openssl aes-256-cbc -d -in .circlerc-crypt -k $KEY >> ~/.circlerc
 
 test:
     pre:
@@ -30,18 +31,20 @@ test:
     override:
         - cd src && python manage.py test
         - cd frontend && npm run test
+    post:
+        - cd frontend && npm run build:prod
 
 deployment:
     stage:
         branch: develop
         commands:
-            - cd frontend && npm run build:prod
             - set | grep STAGE_ > "deploy/fabricrc.txt"
             - cd deploy && fabrik stage deploy
 
     prod:
-        tag: /v[0-9]+(\.[0-9]+)*/
+        branch: master
+        # TODO: When going live, run detection on tags instead of master
+        # tag: /v[0-9]+(\.[0-9]+)*/
         commands:
-            - cd frontend && npm run build:prod
             - set | grep PROD_ > "deploy/fabricrc.txt"
             - cd deploy && fabrik prod deploy
