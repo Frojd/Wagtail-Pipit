@@ -54,7 +54,7 @@ Select software_license:
 Choose from 1, 2 [1]: 1
 ```
 
-3. Done! You now have a ready django project.
+4. Done! You now have a ready django project.
 
 
 ## Versioning
