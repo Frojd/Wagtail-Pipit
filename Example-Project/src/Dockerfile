@@ -2,7 +2,7 @@ FROM python:2.7
 MAINTAINER Frojd
 LABEL version="v1.0.0"
 
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get install -y netcat gettext
 
 # Optional: GeoDjango deps
 # RUN apt-get install -y binutils libproj-dev gdal-bin
