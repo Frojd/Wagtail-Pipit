@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -6,7 +7,7 @@
         <title>{{ title }}</title>
         <meta name="description" content="{{ meta_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% load staticfiles %}
+
         {% if SETTINGS.MINIFIED %}
             <link rel="stylesheet" href="{% static 'css/main-min.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
         {% else %}
@@ -25,9 +26,19 @@
 
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <!-- Browser update -->
+        <script type="text/javascript">
+            var $buoop = {vs:{i:10,f:-4,o:-4,s:7,c:-4},c:4};
+            $buoop.ol = window.onload;
+            window.onload=function(){
+                try {if ($buoop.ol) $buoop.ol();}catch (e) {}
+                var e = document.createElement("script");
+                e.setAttribute("type", "text/javascript");
+                e.setAttribute("src", "//browser-update.org/update.js");
+                document.body.appendChild(e);
+            }
+        </script>
+
         <header>
             {% block header %}
                 {% include 'partials/header.html' %}
