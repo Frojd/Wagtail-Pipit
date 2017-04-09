@@ -14,7 +14,7 @@ from core.settings import get_env, get_env_bool
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Version, be sure to bump this with each release (please follow semver.org)
-APP_VERSION = '1.0.0'
+APP_VERSION = '0.1.0'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env('SECRET_KEY')
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
     # Project specific apps
     'core',
-    # 'pages', # Uncomment this to activate the example app
+    'pages',  # TODO: Example app, remove this
 ]
 
 MIDDLEWARE_CLASSES = [

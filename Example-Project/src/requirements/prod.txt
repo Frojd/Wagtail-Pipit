@@ -2,4 +2,3 @@
 -r base.txt
 
 # Add production extra requirements here
-raven==5.27.1

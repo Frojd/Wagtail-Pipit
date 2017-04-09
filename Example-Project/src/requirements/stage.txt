@@ -1,5 +1,0 @@
-# Extend base.txt
--r base.txt
-
-# Add stage extra requirements here
-raven==5.27.1
