@@ -9,6 +9,10 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - Settings primed for production
+- Third part integrations:
+    - Sentry
+    - GTM
+    - Browser Update
 - Scripts for syncing data from prod to local machine
 - ...and for syncing prod => stage
 

@@ -2,7 +2,7 @@
 set -e
 
 # Arguments
-local_domain=${1-{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}}}
+local_domain=${1-{{cookiecutter.domain_stage}}.dev:{{cookiecutter.docker_web_port}}}
 ssh_host=${2-{{cookiecutter.ssh_stage}}}
 
 ROOTDIR=$(git rev-parse --show-toplevel)
@@ -19,14 +19,12 @@ ssh $ssh_host "rm /tmp/db-dump.sql"
 cd $ROOTDIR
 echo "Rebuilding docker containers."
 
-eval $(docker-machine env default)
-
 docker-compose stop
-docker-compose rm -f --all
+docker-compose rm -f
 docker-compose up -d
 
-echo "Waiting for postgres..."
-sleep 10
+echo "Waiting for postgres (60 seconds)..."
+sleep 60
 
 echo "Adjusting database..."
 
@@ -34,5 +32,7 @@ docker-compose exec web python manage.py change_site_domain --site_id=1 --new_si
 
 docker-compose exec web python manage.py change_user_password --user=admin --password=admin
 
+echo "---"
 echo "Done!"
+echo "The application is ready at: $local_domain"
 echo "Username/Password is admin/admin"

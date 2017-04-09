@@ -1,6 +1,6 @@
 # Example-Project
 
-Example description.
+A short description of the project.
 
 
 ## Requirements
@@ -60,6 +60,16 @@ Bump version in:
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
 
 
+### Environment vars
+
+The environment variables are added to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to add the key to Circle-CI environment variables.
+
+#### Commands
+
+- Encrypt `openssl aes-256-cbc -e -in .circlerc -out .circlerc-crypt -k <KEY>`
+- Decrypt `openssl aes-256-cbc -d -in .circlerc-crypt -out .circlerc -k <KEY>`
+
+
 ## Merge conflicts
 
 The project has `.gitattributes`, but you need to make sure a driver is set up for this, type this is the terminal:
@@ -110,27 +120,22 @@ This app includes a docker-compose config that uses uwsgi and nginx. Just run th
 docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
 ```
 
+
 ### How do I sync data from stage/prod?
 
 You can rebuild your application with the latest data dump by running the following
 
 ```
-./docker/stage_to_local.sh
+./scripts/stage_to_local.sh
 ```
 
-Note: This requires that have ssh-key based access to the stage or prod server
+Note: This requires that you have ssh-key based access to the server.
+
 
 ### How do I install Docker on MacOS?
 
-1. Install docker (use the [Docker Toolbox](https://www.docker.com/products/docker-toolbox)). Please use the virtualbox version.
-    - Minimum requirements are docker `1.11`, docker-compose `1.7`
+You can either use Docker for Mac or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
 
-2. Setup machine (if not already present)
-
-    ```
-    docker-machine create --driver virtualbox default
-    docker-machine start default
-    ```
 
 ### How can I run pdb on the python container?
 
@@ -183,5 +188,5 @@ Want to contribute? Awesome. Just send a pull request.
 ## License
 
 
-Example-Project is relased under the MIT license.
+Example-Project is released under the MIT license.
 

@@ -20,7 +20,9 @@ class ViewTests(TestCase):
         page = Page(title='About', slug='about', content='Hello world!')
         page.save()
 
-        response = self.client.get(reverse('startpage'))
+        response = self.client.get(
+            reverse('page_detail', kwargs={'slug': 'about'})
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'About')
