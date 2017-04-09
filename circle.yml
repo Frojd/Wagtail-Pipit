@@ -3,6 +3,7 @@ machine:
         Europe/Stockholm
     services:
         - postgresql
+        - docker
     python:
         version: 2.7.10
 
