@@ -25,7 +25,7 @@ MIDDLEWARE_CLASSES += [
 # Allow weak local passwords
 AUTH_PASSWORD_VALIDATORS = []
 
-INTERNAL_IPS = get_env_variable('INTERNAL_IPS', default="").split(',')
+INTERNAL_IPS = get_env('INTERNAL_IPS', default="").split(',')
 
 
 # Allow django-debug-bar under docker
