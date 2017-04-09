@@ -9,7 +9,14 @@ machine:
 dependencies:
     pre:
         - pip install cookiecutter
+        - pip install docker-compose
 
 test:
     pre:
         - cookiecutter . --no-input --overwrite-if-exists
+        - cp Client-Project/docker/config/db.example.env Client-Project/docker/config/db.env
+        - cp Client-Project/docker/config/web.example.env Client-Project/docker/config/web.env
+        - cd Client-Project && docker-compose build
+    override:
+        - echo "Test"
+        # - cd Client-Project && docker-compose -f docker-compose-test.yml run web
