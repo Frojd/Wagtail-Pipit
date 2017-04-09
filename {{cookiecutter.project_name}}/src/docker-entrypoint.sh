@@ -1,4 +1,8 @@
 #!/bin/bash
+# $0 is a script name, $1, $2, $3 etc are passed arguments
+# $1 is our command
+# Credits: https://rock-it.pl/how-to-write-excellent-dockerfiles/
+CMD=$1
 
 # Wait until postgres is ready
 until nc -z $DATABASE_HOST 5432; do
@@ -22,14 +26,19 @@ python manage.py collectstatic --noinput
 echo Create cache table
 python manage.py createcachetable
 
-if [ "$RUN_TYPE" = "runserver" ]
-then
-    echo Starting using manage.py runserver
-    python manage.py runserver 0.0.0.0:8000
-fi
+case "$CMD" in
+    "runserver" )
+        echo Starting using manage.py runserver
+        exec python manage.py runserver 0.0.0.0:8000
+        ;;
 
-if [ "$RUN_TYPE" = "wsgi" ]
-then
-    echo Starting using uwsg
-    uwsgi --ini uwsgi.ini
-fi
+    "uwsgi" )
+        echo Starting using uwsgi
+        exec uwsgi --ini uwsgi.ini
+        ;;
+    * )
+        # Run custom command. Thanks to this line we can still use
+        # "docker run our_image /bin/bash" and it will work
+        exec $CMD ${@:2}
+        ;;
+esac

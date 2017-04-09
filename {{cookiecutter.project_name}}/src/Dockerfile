@@ -22,5 +22,5 @@ RUN apt-get update \
 
 EXPOSE 8000
 
-COPY ./docker-entrypoint.sh /app/
-CMD ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["runserver"]

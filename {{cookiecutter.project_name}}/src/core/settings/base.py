@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
     # Project specific apps
     'core',
-    # 'pages', # Uncomment this to activate the example app
+    'pages',  # TODO: Example app, remove this
 ]
 
 MIDDLEWARE_CLASSES = [
