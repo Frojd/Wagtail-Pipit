@@ -5,7 +5,7 @@
 Write prod settings here, or override base settings
 """
 
-from base import *  # NOQA
+from core.settings.base import *  # NOQA
 
 
 DEBUG = False
@@ -17,7 +17,7 @@ CACHES = {
     }
 }
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'  # NOQA
 
 # Enable caching of templates in production environment
 TEMPLATES[0]['OPTIONS']['loaders'] = [

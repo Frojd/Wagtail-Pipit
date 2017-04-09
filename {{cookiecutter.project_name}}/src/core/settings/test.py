@@ -7,7 +7,8 @@ Write test settings here (for ci environment), or override base settings
 
 import logging
 
-from base import *  # NOQA
+from core.settings.base import *  # NOQA
+
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG

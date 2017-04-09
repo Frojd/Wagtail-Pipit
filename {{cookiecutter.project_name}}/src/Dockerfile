@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM python:3.6
 MAINTAINER Frojd
 LABEL version="v{{cookiecutter.version}}"
 
