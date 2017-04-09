@@ -5,6 +5,8 @@
 Write test settings here (for ci environment), or override base settings
 """
 
+import logging
+
 from base import *  # NOQA
 
 
