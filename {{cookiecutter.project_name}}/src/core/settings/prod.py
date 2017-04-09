@@ -5,7 +5,7 @@
 Write prod settings here, or override base settings
 """
 
-from base import *  # NOQA
+from core.settings.base import *  # NOQA
 
 
 DEBUG = False
