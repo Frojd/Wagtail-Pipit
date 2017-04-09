@@ -22,5 +22,4 @@ test:
         - cp Client-Project/docker/config/web.example.env Client-Project/docker/config/web.env
         - cd Client-Project && docker-compose build
     override:
-        - echo "Test"
-        # - cd Client-Project && docker-compose -f docker-compose-test.yml run web
+        - cd Client-Project && docker-compose run web python manage.py test --settings=core.settings.test
