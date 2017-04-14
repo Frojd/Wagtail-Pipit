@@ -4,6 +4,7 @@
 """
 Write local settings here, or override base settings
 """
+from __future__ import absolute_import, unicode_literals
 
 from core.settings.base import *  # NOQA
 

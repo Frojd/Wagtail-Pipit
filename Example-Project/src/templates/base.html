@@ -37,6 +37,18 @@
         {% else %}
             <script type="text/javascript" src="{% static 'js/main.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
         {% endif %}
+
+        {% if SETTINGS.SENTRY_PUBLIC_DSN %}
+            <script src="https://cdn.ravenjs.com/3.12.0/raven.min.js" crossorigin="anonymous"></script>
+            <script>
+            Raven.config('{{ SETTINGS.SENTRY_PUBLIC_DSN }}', {
+                whitelistUrls: [
+                    '{{ SETTINGS.STATIC_URL }}',
+                ]
+            }).install();
+            </script>
+        {% endif %}
+
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

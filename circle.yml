@@ -18,8 +18,6 @@ dependencies:
 test:
     pre:
         - cookiecutter . --no-input --overwrite-if-exists
-        - cp Client-Project/docker/config/db.example.env Client-Project/docker/config/db.env
-        - cp Client-Project/docker/config/web.example.env Client-Project/docker/config/web.env
         - cd Client-Project && docker-compose build
     override:
         - cd Client-Project && docker-compose run web python manage.py test --settings=core.settings.test

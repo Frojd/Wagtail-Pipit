@@ -1,9 +1,11 @@
 version: '2'
 services:
     db:
-        # For postgres with postgis use this
-        # image: mdillon/postgis:9.5
-        image: postgres:9.5
+        {%- if cookiecutter.use_geodjango == 1 -%}
+        image: mdillon/postgis:9.6
+        {% else %}
+        image: postgres:9.6
+        {% endif -%}
         ports:
             - "{{cookiecutter.docker_db_port}}:5432"
         volumes:
@@ -22,6 +24,5 @@ services:
         depends_on:
             - db
         environment:
-            RUN_TYPE: "runserver"
             REQUIREMENTS: "local.txt"
         env_file: ./docker/config/web.env

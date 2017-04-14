@@ -4,6 +4,7 @@
 """
 Write test settings here (for ci environment), or override base settings
 """
+from __future__ import absolute_import, unicode_literals
 
 import logging
 
@@ -19,13 +20,10 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
 
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
-
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
     }
 }
 

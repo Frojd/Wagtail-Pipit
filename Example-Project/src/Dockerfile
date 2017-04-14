@@ -4,7 +4,6 @@ LABEL version="v0.1.0"
 
 ENV PYTHONUNBUFFERED=1 \
     APP_LOG_DIR=/var/log/app/ \
-    RUN_TYPE=wsgi \
     REQUIREMENTS=local.txt
 
 WORKDIR /app
@@ -12,13 +11,12 @@ ADD . /app/
 
 RUN apt-get update \
     && apt-get install -y netcat \
-    # Optional: GeoDjango deps
-    # && apt-get install -y binutils libproj-dev gdal-bin \
     && apt-get install -y vim curl \
-    && pip install -r requirements/$REQUIREMENTS --no-cache-dir \
-    && pip install ipython \
-    && curl -L https://raw.githubusercontent.com/marteinn/Notebook/master/vim/vim-server-conf.vimrc > ~/.vimrc \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -L https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/develop/config/.vimrc > ~/.vimrc
+
+RUN pip install -r requirements/$REQUIREMENTS --no-cache-dir \
+    && pip install ipython
 
 EXPOSE 8000
 

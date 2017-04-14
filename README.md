@@ -5,10 +5,11 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 
 ## Features
 
-- Django 1.10
+- Django 1.11
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - Settings primed for production
+- File storage through AWS S3
 - Third part integrations:
     - Sentry
     - GTM
