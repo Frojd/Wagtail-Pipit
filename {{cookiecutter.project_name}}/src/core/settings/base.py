@@ -4,8 +4,11 @@
 """
 Django settings for Fröjd Django projects.
 """
+from __future__ import absolute_import, unicode_literals
 
 import os
+
+from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
 from core.settings import get_env, get_env_bool
 
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party apps
+    'storages',
     # ...
 
     # Project specific apps
@@ -135,6 +139,28 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+
+# File storage
+
+AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = get_env_variable('AWS_BUCKET_NAME')
+
+AWS_AUTO_CREATE_BUCKET = True
+AWS_QUERYSTRING_AUTH = False
+AWS_EXPIRY = 60 * 60 * 24 * 7
+
+AWS_HEADERS = {
+    'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
+}
+AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+
+# Retrieve S3 files using https, with a bucket that contains a dot.
+S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 # Uploaded media
