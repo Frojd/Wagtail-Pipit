@@ -14,6 +14,9 @@ def settings_context_processor(request):
         'APP_VERSION': settings.APP_VERSION,
     }
 
+    if hasattr(settings, 'SENTRY_PUBLIC_DSN'):
+        parsed_settings['SENTRY_PUBLIC_DSN'] = settings.SENTRY_PUBLIC_DSN
+
     return {
         'SETTINGS': parsed_settings,
     }

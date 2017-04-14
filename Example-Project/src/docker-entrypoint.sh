@@ -6,7 +6,7 @@ CMD=$1
 
 # Wait until postgres is ready
 until nc -z $DATABASE_HOST 5432; do
-    echo "$(date) - waiting for postgres..."
+    echo "$(date) - waiting for postgres... ($DATABASE_HOST:5432)"
     sleep 3
 done
 

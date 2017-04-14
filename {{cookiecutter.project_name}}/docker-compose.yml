@@ -1,11 +1,11 @@
 version: '2'
 services:
     db:
-        {% if cookiecutter.use_geodjango == 1 %}
+        {%- if cookiecutter.use_geodjango == 1 -%}
         image: mdillon/postgis:9.6
         {% else %}
         image: postgres:9.6
-        {% endif %}
+        {% endif -%}
         ports:
             - "{{cookiecutter.docker_db_port}}:5432"
         volumes:

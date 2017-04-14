@@ -4,6 +4,7 @@
 """
 Write prod settings here, or override base settings
 """
+from __future__ import absolute_import, unicode_literals
 
 from core.settings.base import *  # NOQA
 
@@ -26,3 +27,15 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
         'django.template.loaders.app_directories.Loader',
     ]),
 ]
+
+# This ensures that Django will be able to detect a secure connection
+# properly on Heroku.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SENTRY_DSN = get_env('SENTRY_DSN')
+SENTRY_PUBLIC_DSN = get_env('SENTRY_PUBLIC_DSN')
+
+RAVEN_CONFIG = {
+    'dsn': 'stage',
+    'release': APP_VERSION,
+}
