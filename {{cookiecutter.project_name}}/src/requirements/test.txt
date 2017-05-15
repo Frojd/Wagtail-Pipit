@@ -1,0 +1,5 @@
+# Extend base.txt
+-r base.txt
+
+# Add extra test requirements here (such as factory-boy)
+factory-boy==2.8.1
