@@ -44,11 +44,11 @@ To activate the example app, uncomment it in base.py and it's included urls in u
 
 ## Versioning
 
-This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
+This project follows [semantic versioning](http://semver.org/).
 
 Bump version in:
 
-- src/core/settings/base.py `(APP_VERSION=0.0.1)`
+- src/core/settings/base.py `(APP_VERSION=)`
 - frontend/package.json
 - src/Dockerfile
 
