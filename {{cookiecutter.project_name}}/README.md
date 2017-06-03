@@ -16,9 +16,8 @@
 1. Setup container .env files
 
     ```
-    cd docker/config
-    cp db.example.env db.env
-    cp web.example.env web.env
+    cp docker/config/db.example.env docker/config/db.env
+    cp docker/config/web.example.env docker/config/web.env
     ```
 
 2. Retrive your machine ip: `docker-machine ip default`
@@ -60,14 +59,44 @@ Bump version in:
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
 
 
-### Environment vars
+## Deployment
 
-The environment variables are added to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to add the key to Circle-CI environment variables.
+This project utilized Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI)will run tests on the application and if successfull, will automatically deploy the application to stage or production.
 
-#### Commands
+Our deploy scripts are based on fabric toolkit called Fabrik.
+
+
+### Working with CI environment vars
+
+The environment for CI variables are added to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to associate your encryption key with repo on Circle.
+
+#### Commands when encrypting/decypting .circlerc
 
 - Encrypt `openssl aes-256-cbc -e -in .circlerc -out .circlerc-crypt -k <KEY>`
 - Decrypt `openssl aes-256-cbc -d -in .circlerc-crypt -out .circlerc -k <KEY>`
+
+
+### Deploying manually
+
+It's possible you deploy manually and is something that you usually do this before CI is configured.
+
+#### Requirements
+- Python 2.7
+
+#### How to
+- Open deployment folder: cd deploy
+- Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
+- Install deps: `pip install -r requirements.txt`
+- Create config for deployscript: `cp fabricrc.example.txt fabricrc.txt`
+- Upådate configuration: `vim fabricrc.txt`
+
+#### Verify ssh configuration
+
+`fabrik <stage|prod> test`
+
+#### Deploy application
+
+`fabrik <stage|prod> deploy`
 
 
 ## Merge conflicts
@@ -81,7 +110,9 @@ git config --global merge.ours.driver true
 
 ## Git hooks
 
-### Bump version
+We use git-hooks to streamline and automate certain functions, such as version bumping and pre hooks for code validation and tests. If you want to bypass any of them append the `--no-verify` flag (example: `git push --no-verify`)
+
+### Hook: Bump version
 
 These hooks will automatically bump the application version when using `git flow release ...`
 
@@ -91,7 +122,7 @@ ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-release-start
 ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 ```
 
-### Run tests pre push
+### Hook: Run tests pre push
 
 This hook will run the test suite before every push.
 
@@ -100,7 +131,7 @@ chmod +x $PWD/.githooks/pre-push.sh
 ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 ```
 
-### Run pep8 validation on commit
+### Hook: Run pep8 validation on commit
 
 ```bash
 chmod +x $PWD/.githooks/pep8-pre-commit.sh
