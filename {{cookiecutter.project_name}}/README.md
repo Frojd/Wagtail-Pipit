@@ -5,10 +5,11 @@
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.6+ 
+- (Python 2.7 for deployscripts)
 - Pip
 - Virtualenv
-- Docker ([Install instructions](#how-do-i-install-docker-on-macos))
+- Docker ([Install instructions](#how-do-i-install-docker-on-macos-windows))
 
 
 ## Installation
@@ -84,7 +85,7 @@ It's possible you deploy manually and is something that you usually do this befo
 - Python 2.7
 
 #### How to
-- Open deployment folder: cd deploy
+- Open deployment folder: `cd deploy`
 - Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
 - Install deps: `pip install -r requirements.txt`
 - Create config for deployscript: `cp fabricrc.example.txt fabricrc.txt`
@@ -163,9 +164,9 @@ You can rebuild your application with the latest data dump by running the follow
 Note: This requires that you have ssh-key based access to the server.
 
 
-### How do I install Docker on MacOS?
+### How do I install Docker on MacOS/Windows?
 
-You can either use Docker for Mac or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
+You can either use Docker for Mac/Windows or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
 
 
 ### How can I run pdb on the python container?
