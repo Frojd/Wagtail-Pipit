@@ -10,7 +10,7 @@ machine:
     services:
         - postgresql
     python:
-        version: 2.7.10
+        version: 3.6.1
 
 checkout:
     post:
