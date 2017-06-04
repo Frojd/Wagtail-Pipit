@@ -9,7 +9,7 @@
 - (Python 2.7 for deployscripts)
 - Pip
 - Virtualenv
-- Docker ([Install instructions](#how-do-i-install-docker-on-macos-windows))
+- Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 
 
 ## Installation
