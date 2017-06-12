@@ -12,7 +12,7 @@ ADD . /app/
 RUN apt-get update \
     && apt-get install -y netcat \
     && apt-get install -y vim curl \
-    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && curl -L https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/develop/config/.vimrc > ~/.vimrc
 
 RUN pip install -r requirements/$REQUIREMENTS --no-cache-dir \
