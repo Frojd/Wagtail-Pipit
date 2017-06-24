@@ -3,10 +3,25 @@
 {{cookiecutter.description}}
 
 
+## Index
+
+- [Requirements](#Requirements)
+- [Installation](#Installation)
+- [Example app](#Example app)
+- [Versioning](#Versioning)
+- [Style Guide](#Style Guide)
+- [Deployment](#Deployment)
+- [Merge conflicts](#Merge conflicts)
+- [Git hooks](#Git hooks)
+- [FAQ](#FAQ)
+- [Contributing](#Contributing)
+- [Licence](#Licence)
+
+
 ## Requirements
 
 - Python 3.6+ 
-- (Python 2.7 for deployscripts)
+- (Python 2.7 for deploy scripts)
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -21,20 +36,19 @@
     cp docker/config/web.example.env docker/config/web.env
     ```
 
-2. Retrive your machine ip: `docker-machine ip default`
-3. Include this ip on your hosts-file
+2. Include this ip on your hosts-file
 
     ```
     127.0.0.1  {{cookiecutter.domain_prod}}.dev
     ```
 
-4. Start project
+3. Start project
 
     ```
     docker-compose up
     ```
 
-6. Visit your site on: [http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}})
+4. Visit your site on: [http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}})
 
 
 ## Example app
@@ -64,7 +78,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 This project utilized Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI)will run tests on the application and if successfull, will automatically deploy the application to stage or production.
 
-Our deploy scripts are based on fabric toolkit called Fabrik.
+Our deploy scripts are based on fabric toolkit called [Fabrik](https://github.com/Frojd/Fabrik).
 
 
 ### Working with CI environment vars
