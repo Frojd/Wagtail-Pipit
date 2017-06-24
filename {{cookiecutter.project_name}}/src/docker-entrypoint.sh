@@ -39,7 +39,7 @@ case "$CMD" in
 
     "test" )
         echo Running tests
-        exec python manage.py test --settings=core.settings.test --noinput
+        exec pytest
         ;;
 
     * )

@@ -20,4 +20,4 @@ test:
         - cookiecutter . --no-input --overwrite-if-exists
         - cd Client-Project && docker-compose build
     override:
-        - cd Client-Project && docker-compose run web python manage.py test --settings=core.settings.test
+        - cd Client-Project && docker-compose run web test

@@ -2,4 +2,5 @@
 -r base.txt
 
 # Add extra test requirements here (such as factory-boy)
+pytest-django==3.1.2
 factory-boy==2.8.1
