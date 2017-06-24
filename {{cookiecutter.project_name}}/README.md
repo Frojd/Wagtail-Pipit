@@ -5,17 +5,17 @@
 
 ## Index
 
-- [Requirements](#Requirements)
-- [Installation](#Installation)
-- [Example app](#Example app)
-- [Versioning](#Versioning)
-- [Style Guide](#Style Guide)
-- [Deployment](#Deployment)
-- [Merge conflicts](#Merge conflicts)
-- [Git hooks](#Git hooks)
-- [FAQ](#FAQ)
-- [Contributing](#Contributing)
-- [Licence](#Licence)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Example app](#example-app)
+- [Versioning](#versioning)
+- [Style Guide](#style-guide)
+- [Deployment](#deployment)
+- [Merge conflicts](#merge-conflicts)
+- [Git hooks](#git-hooks)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [Licence](#licence)
 
 
 ## Requirements
