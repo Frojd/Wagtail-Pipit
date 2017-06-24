@@ -29,7 +29,7 @@ test:
     pre:
         - cp src/circle.test.env src/.env
     override:
-        - cd src && python manage.py test
+        - cd src && pytest
         - cd frontend && npm run test
     post:
         - cd frontend && npm run build:prod
