@@ -1,5 +1,5 @@
 # Extend base.txt
--r base.txt
+-r test.txt
 
 # Add local extra requirements here (django-debug etc)
 django-debug-toolbar

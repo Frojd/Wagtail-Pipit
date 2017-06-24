@@ -15,6 +15,7 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
     - GTM
     - Browser Update
 - Scripts for syncing data from prod to local machine
+- Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
 - ...and for syncing prod => stage
 
 

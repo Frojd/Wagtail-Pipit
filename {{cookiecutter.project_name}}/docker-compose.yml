@@ -1,17 +1,5 @@
 version: '2'
 services:
-    db:
-        {%- if cookiecutter.use_geodjango == 1 -%}
-        image: mdillon/postgis:9.6
-        {% else %}
-        image: postgres:9.6
-        {% endif -%}
-        ports:
-            - "{{cookiecutter.docker_db_port}}:5432"
-        volumes:
-            - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
-            - "./docker/files/shared:/shared:rw"
-        env_file: ./docker/config/db.env
     web:
         image: frojd/{{cookiecutter.project_slug}}_web
         build: ./src
@@ -26,3 +14,15 @@ services:
         environment:
             REQUIREMENTS: "local.txt"
         env_file: ./docker/config/web.env
+    db:
+        {%- if cookiecutter.use_geodjango == 1 -%}
+        image: mdillon/postgis:9.6
+        {% else %}
+        image: postgres:9.6
+        {% endif -%}
+        ports:
+            - "{{cookiecutter.docker_db_port}}:5432"
+        volumes:
+            - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
+            - "./docker/files/shared:/shared:rw"
+        env_file: ./docker/config/db.env

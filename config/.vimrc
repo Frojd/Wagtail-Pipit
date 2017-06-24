@@ -2,7 +2,7 @@
 "" This is a general vim configuration
 ""
 "" From:
-"" https://raw.githubusercontent.com/marteinn/Notebook/master/vim/vim-server-conf.vimrc
+"" https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/master/config/.vimrc
 ""
 "" Installing:
 "" curl -L https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/master/config/.vimrc > ~/.vimrc

@@ -47,4 +47,4 @@ def get_env_variable(name, is_bool=False, default=None):
     if is_bool:
         return get_env_bool(name, default=default)
 
-    return get_env_bool(name, default=default)
+    return get_env(name, default=default)
