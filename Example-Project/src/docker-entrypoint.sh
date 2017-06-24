@@ -36,6 +36,12 @@ case "$CMD" in
         echo Starting using uwsgi
         exec uwsgi --ini uwsgi.ini
         ;;
+
+    "test" )
+        echo Running tests
+        exec pytest --ds=core.settings.test
+        ;;
+
     * )
         # Run custom command. Thanks to this line we can still use
         # "docker run our_image /bin/bash" and it will work

@@ -36,3 +36,6 @@ src/.env
 # Static folder
 src/static
 src/media
+
+# Pytest
+.cache
