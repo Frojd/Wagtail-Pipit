@@ -76,7 +76,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 ## Deployment
 
-This project utilized Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI)will run tests on the application and if successfull, will automatically deploy the application to stage or production.
+This project utilizes Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI) will run tests on the application and if successfull, will automatically deploy the application to stage or production.
 
 Our deploy scripts are based on fabric toolkit called [Fabrik](https://github.com/Frojd/Fabrik).
 
@@ -96,14 +96,16 @@ The environment for CI variables are added to an encrypted file and checked in (
 It's possible you deploy manually and is something that you usually do this before CI is configured.
 
 #### Requirements
+
 - Python 2.7
 
 #### How to
+
 - Open deployment folder: `cd deploy`
 - Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
 - Install deps: `pip install -r requirements.txt`
 - Create config for deployscript: `cp fabricrc.example.txt fabricrc.txt`
-- Upådate configuration: `vim fabricrc.txt`
+- Update configuration: `vim fabricrc.txt`
 
 #### Verify ssh configuration
 
