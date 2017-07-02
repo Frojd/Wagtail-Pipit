@@ -21,7 +21,7 @@
 ## Requirements
 
 - Python 3.6+ 
-- (Python 2.7 for deploy scripts)
+    - Python 2.7 (for deploy scripts) (**Optional**)
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -97,7 +97,8 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Requirements
 
-- Python 2.7
+- Python 2.7 and pip
+- Virtualenv
 
 #### How to
 
