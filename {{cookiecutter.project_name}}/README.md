@@ -217,7 +217,7 @@ scripts/manage.sh makemigrations
 ```
 
 
-### How do I add new python dependecies?
+### How do I add new python dependencies?
 
 First update your requirements/base.txt, then rebuild your container:
 
