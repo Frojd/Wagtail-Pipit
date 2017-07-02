@@ -14,9 +14,9 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
     - Sentry
     - GTM
     - Browser Update
-- Scripts for syncing data from prod to local machine
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
 - Deploy scripts using [fabrik](https://github.com/frojd/Fabrik)
+- Scripts for syncing data from prod to local machine
 - ...and for syncing prod => stage
 
 
