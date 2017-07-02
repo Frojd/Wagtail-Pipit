@@ -16,6 +16,7 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
     - Browser Update
 - Scripts for syncing data from prod to local machine
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
+- Deploy scripts using [fabrik](https://github.com/frojd/Fabrik)
 - ...and for syncing prod => stage
 
 
