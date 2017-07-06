@@ -25,9 +25,6 @@ SECRET_KEY = get_env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_env_bool('DEBUG')
 
-# Minified, by default it is set to the same as Debug
-MINIFIED = get_env_bool('MINIFIED', default=not DEBUG)
-
 # This is when debug is off, else django wont allow you to visit the site
 ALLOWED_HOSTS = get_env('ALLOWED_HOSTS').split(',')
 

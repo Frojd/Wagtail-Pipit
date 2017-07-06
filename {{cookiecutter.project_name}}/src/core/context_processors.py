@@ -10,7 +10,6 @@ def settings_context_processor(request):
     """
     parsed_settings = {
         'DEBUG': settings.DEBUG,
-        'MINIFIED': settings.MINIFIED,
         'APP_VERSION': settings.APP_VERSION,
     }
 

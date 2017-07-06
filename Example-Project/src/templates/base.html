@@ -7,11 +7,7 @@
         <meta name="description" content="{{ meta_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load staticfiles %}
-        {% if SETTINGS.MINIFIED %}
-            <link rel="stylesheet" href="{% static 'css/main-min.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
-        {% else %}
-            <link rel="stylesheet" href="{% static 'css/main.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
-        {% endif %}
+        <link rel="stylesheet" href="{% static 'css/main-min.css' %}" type="text/css" />
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -32,11 +28,7 @@
             {% block footer %}
             {% endblock footer %}
         </footer>
-        {% if SETTINGS.MINIFIED %}
-            <script type="text/javascript" src="{% static 'js/main-min.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
-        {% else %}
-            <script type="text/javascript" src="{% static 'js/main.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
-        {% endif %}
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
         {% if SETTINGS.SENTRY_PUBLIC_DSN %}
             <script src="https://cdn.ravenjs.com/3.12.0/raven.min.js" crossorigin="anonymous"></script>
