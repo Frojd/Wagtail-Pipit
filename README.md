@@ -53,7 +53,7 @@ s3_bucket_prod [s3.example.com]:
 s3_bucket_stage [s3.stage.example.com]:
 docker_web_port [8081]:
 docker_db_port [5433]:
-aws_devops_profile [client_devops]:
+aws_devops_iam_username [client_devops]:
 version [0.1.0]: 1.0.0
 Select software_license:
 1 - MIT
