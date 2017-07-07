@@ -202,7 +202,7 @@ To run manage.py commands in docker is pretty straightforward, instead of target
 - Example: Create migrations
 
 ```
-docker-compose exec run web python manage.py makemigrations
+docker-compose exec web python manage.py makemigrations
 ```
 
 - Example: Run migrations
