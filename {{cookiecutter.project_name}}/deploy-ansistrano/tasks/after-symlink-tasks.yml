@@ -9,12 +9,13 @@
     state: link
   when: public_path is defined
 
-#- name: Restart uWSGI
-  #service:
-    #name: uwsgi
-    #state: restarted
+- name: Restart uWSGI
+  service:
+    name: uwsgi
+    state: restarted
 
 - name: Restart Nginx
   service:
     name: nginx
     state: restarted
+{% endraw %}

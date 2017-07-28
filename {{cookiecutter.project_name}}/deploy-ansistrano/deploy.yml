@@ -14,3 +14,4 @@
     ansistrano_after_symlink_tasks_file: "tasks/after-symlink-tasks.yml"
   roles:
     - { role: carlosbuenosvinos.ansistrano-deploy }
+{% endraw %}

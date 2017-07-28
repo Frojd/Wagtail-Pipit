@@ -1,5 +1,4 @@
 {% raw -%}
-
 - name: Create .env file
   become: yes
   become_method: sudo
@@ -17,3 +16,4 @@
     group: www-data
     state: directory
     mode: 0755
+{% endraw %}
