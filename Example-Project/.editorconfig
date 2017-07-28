@@ -8,9 +8,13 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{py,ini,js,html,scss,css,json,yml}]
+[*.{py,ini,js,html,scss,css,json}]
 indent_style = space
 indent_size = 4
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
