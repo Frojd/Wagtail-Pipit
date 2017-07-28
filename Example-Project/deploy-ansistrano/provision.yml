@@ -1,0 +1,33 @@
+---
+- name: Provision vagrant servers (WIP)
+  hosts: all
+
+  tasks:
+    - name: Install nginx
+      sudo: True
+      apt:
+        name: nginx
+        update_cache: yes
+
+    - name: Install pip
+      sudo: True
+      apt:
+        name: python3-pip
+
+    - name: Install postgresql
+      sudo: True
+      apt:
+        name: postgresql
+
+    - name: Install postgresql-contrib
+      sudo: True
+      apt:
+        name: postgresql-contrib
+
+    - name: Install virtualenv
+      sudo: True
+      raw: pip3 install virtualenv
+
+    - name: Install uwsgi
+      sudo: True
+      raw: pip3 install uwsgi
