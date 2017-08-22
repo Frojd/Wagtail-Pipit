@@ -1,0 +1,19 @@
+{% raw -%}
+- name: Create .env file
+  become: yes
+  become_method: sudo
+  file:
+    path: "{{ansistrano_shared_path}}/.env"
+    state: touch
+    mode: 0755
+
+- name: Create media dir
+  become: yes
+  become_method: sudo
+  file:
+    path: "{{ansistrano_shared_path}}/media"
+    owner: www-data
+    group: www-data
+    state: directory
+    mode: 0755
+{% endraw %}

@@ -34,7 +34,6 @@ case "$CMD" in
 
     "uwsgi" )
         echo Starting using uwsgi
-        pip install uwsgi
         exec uwsgi --ini uwsgi.ini
         ;;
 
