@@ -39,3 +39,7 @@ src/media
 
 # Pytest
 .cache
+
+# Code Coverage
+htmlcov
+.coverage

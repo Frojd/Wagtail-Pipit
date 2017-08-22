@@ -208,7 +208,7 @@ docker-compose exec web python manage.py makemigrations
 - Example: Run migrations
 
 ```
-docker-compose exec run web python manage.py migrate
+docker-compose exec web python manage.py migrate
 ```
 
 We also have a manage.sh script to make running management commands easier.

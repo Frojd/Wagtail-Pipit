@@ -21,7 +21,6 @@ CACHES = {
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'  # NOQA
 
 # Enable caching of templates in production environment
-TEMPLATES[0]['APP_DIRS'] = False
 TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', [
         'django.template.loaders.filesystem.Loader',

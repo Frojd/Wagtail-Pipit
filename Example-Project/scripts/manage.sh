@@ -7,9 +7,9 @@ set -e
 # Example usage `scripts/manage.sh makemigrations`
 # Example usage `scripts/manage.sh migrate`
 
-cd $(git rev-parse --show-toplevel)
+ cd $(git rev-parse --show-toplevel)
 
-COMMAND="python managep.py $@"
-docker-compose run web bash -c "$COMMAND"
+COMMAND="./manage.py $@"
+docker-compose exec web $COMMAND
 
 cd -
