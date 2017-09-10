@@ -29,7 +29,7 @@ python manage.py createcachetable
 case "$CMD" in
     "runserver" )
         echo Starting using manage.py runserver
-        exec python manage.py runserver 0.0.0.0:8000
+        exec python manage.py runserver_plus 0.0.0.0:8000
         ;;
 
     "uwsgi" )

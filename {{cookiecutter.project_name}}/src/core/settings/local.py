@@ -17,6 +17,7 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # Add django debug toolbar when using local version
 INSTALLED_APPS += [
     'debug_toolbar',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES += [
