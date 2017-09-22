@@ -14,8 +14,10 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
     - Sentry
     - GTM
     - Browser Update
-- Scripts for syncing data from prod to local machine
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
+- Deploy scripts using [fabrik](https://github.com/frojd/Fabrik)
+- Scripts for syncing data from prod to local machine
+- Enhanced django runserver with [runserver_plus](http://django-extensions.readthedocs.io/en/latest/runserver_plus.html)
 - ...and for syncing prod => stage
 
 
@@ -52,7 +54,7 @@ s3_bucket_prod [s3.example.com]:
 s3_bucket_stage [s3.stage.example.com]:
 docker_web_port [8081]:
 docker_db_port [5433]:
-aws_devops_profile [client_devops]:
+aws_devops_iam_username [client_devops]:
 version [0.1.0]: 1.0.0
 Select software_license:
 1 - MIT

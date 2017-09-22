@@ -29,7 +29,7 @@ python manage.py createcachetable
 case "$CMD" in
     "runserver" )
         echo Starting using manage.py runserver
-        exec python manage.py runserver 0.0.0.0:8000
+        exec python manage.py runserver_plus 0.0.0.0:8000
         ;;
 
     "uwsgi" )
@@ -44,7 +44,7 @@ case "$CMD" in
 
     * )
         # Run custom command. Thanks to this line we can still use
-        # "docker run our_image /bin/bash" and it will work
+        # "docker run our_container /bin/bash" and it will work
         exec $CMD ${@:2}
         ;;
 esac

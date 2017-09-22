@@ -12,7 +12,7 @@ from core.settings.base import *  # NOQA
 
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+TEMPLATES[0]['OPTIONS']['debug'] = False
 
 logging.disable(logging.CRITICAL)
 
@@ -28,3 +28,10 @@ CACHES = {
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
+
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', [
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    ]),
+]

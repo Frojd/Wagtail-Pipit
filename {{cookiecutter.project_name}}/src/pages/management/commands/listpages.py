@@ -10,5 +10,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         pages = Page.objects.all()
+
+        if len(pages) == 0:
+            self.stdout.write('No pages found')
+            return
+
         for page in pages:
-            print u'%s - %s' % (page.title, page.slug)
+            self.stdout.write(u'%s - %s'.format(page.title, page.slug))

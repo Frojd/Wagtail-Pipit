@@ -1,0 +1,3 @@
+# vagrant hosts
+[webservers]
+web01 ansible_user=vagrant ansible_port=2230 ansible_host=127.0.0.1 ansible_ssh_private_key_file=.vagrant/machines/web01/virtualbox/private_key stage_name=prod

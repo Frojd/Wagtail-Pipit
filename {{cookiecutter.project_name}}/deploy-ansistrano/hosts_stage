@@ -1,0 +1,2 @@
+[webservers]
+stage1 ansible_user=root ansible_port=22 ansible_host={{cookiecutter.domain_stage}} stage_name=stage

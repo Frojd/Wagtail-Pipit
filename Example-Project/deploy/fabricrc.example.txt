@@ -1,0 +1,15 @@
+PROD_HOST=example.com
+PROD_USER=root
+PROD_KEY_FILENAME=
+PROD_APP_NAME=example_project
+PROD_APP_PATH=/mnt/persist/www/django
+PROD_VENV_PATH=/mnt/persist/www/django/env
+PROD_UWSGI_INI_PATH=/mnt/persist/uwsgi/conf.d/django.ini
+
+STAGE_HOST=stage.example.com
+STAGE_USER=root
+STAGE_KEY_FILENAME=
+STAGE_APP_NAME=example_project
+STAGE_APP_PATH=/mnt/persist/www/django
+STAGE_VENV_PATH=/mnt/persist/www/django/env
+STAGE_UWSGI_INI_PATH=/mnt/persist/uwsgi/conf.d/django.ini
