@@ -37,6 +37,7 @@ src/.env
 src/static
 src/media
 src/core/static/core
+!src/core/static/core/.gitkeep
 
 # Pytest
 .cache
