@@ -42,6 +42,12 @@
     127.0.0.1  {{cookiecutter.domain_prod}}.dev
     ```
 
+    On windows you can run this command to append it:
+
+    ```
+    echo 127.0.0.1  beta.medborgarskolan.se.dev >> c:\windows\System32\drivers\etc\hosts
+    ```
+
 3. Start project
 
     ```
