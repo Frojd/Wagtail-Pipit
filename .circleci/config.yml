@@ -18,3 +18,15 @@ version: 2
                 - cd Client-Project && docker-compose build
             run:
                 - cd Client-Project && docker-compose run web test
+
+workflows:
+  version: 2
+  build_and_test:
+      jobs:
+          - build
+          - test:
+              requires:
+                  - build
+              filters:
+                  branches:
+                      only: master
