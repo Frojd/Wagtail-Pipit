@@ -1,0 +1,20 @@
+version: 2
+    jobs:
+        build:
+            timezone:
+                Europe/Stockholm
+            docker:
+                - image: circleci/python:2.7.10
+    test:
+        docker:
+            - image: circleci/python:2.7.10
+            - image: postgresql
+        steps:
+            run:
+                - pip install cookiecutter
+                - pip install docker-compose
+            run:
+                - cookiecutter . --no-input --overwrite-if-exists
+                - cd Client-Project && docker-compose build
+            run:
+                - cd Client-Project && docker-compose run web test
