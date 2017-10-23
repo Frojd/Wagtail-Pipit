@@ -12,6 +12,8 @@
     ansistrano_after_setup_tasks_file: "tasks/after-setup-tasks.yml"
     ansistrano_after_update_code_tasks_file: "tasks/after-update-code-tasks.yml"
     ansistrano_after_symlink_tasks_file: "tasks/after-symlink-tasks.yml"
+
+    ansistrano_allow_anonymous_stats: no
   roles:
     - { role: carlosbuenosvinos.ansistrano-deploy }
 {% endraw %}
