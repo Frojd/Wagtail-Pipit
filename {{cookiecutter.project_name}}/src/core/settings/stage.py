@@ -36,6 +36,6 @@ SENTRY_DSN = get_env('SENTRY_DSN')
 SENTRY_PUBLIC_DSN = get_env('SENTRY_PUBLIC_DSN')
 
 RAVEN_CONFIG = {
-    'dsn': 'stage',
+    'dsn': SENTRY_DSN,
     'release': APP_VERSION,
 }
