@@ -1,4 +1,7 @@
 {% raw -%}
+- name: Create cache table
+  shell: "{{ ansistrano_shared_path }}/venv/bin/python3 {{ ansistrano_release_path.stdout }}/src/manage.py createcachetable"
+
 - name: Collect static
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py collectstatic --noinput"
 
