@@ -15,7 +15,7 @@
 - [Git hooks](#git-hooks)
 - [FAQ](#faq)
 - [Contributing](#contributing)
-- [Licence](#licence)
+- [License](#license)
 
 
 ## Requirements
