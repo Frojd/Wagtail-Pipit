@@ -21,7 +21,6 @@
 ## Requirements
 
 - Python 3.6+ 
-    - Python 2.7 (for deploy scripts) (**Optional**)
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -39,13 +38,13 @@
 2. Include this ip on your hosts-file
 
     ```
-    127.0.0.1  {{cookiecutter.domain_prod}}.dev
+    127.0.0.1 {{cookiecutter.domain_prod}}.dev
     ```
 
     On windows you can run this command to append it:
 
     ```
-    echo 127.0.0.1  beta.medborgarskolan.se.dev >> c:\windows\System32\drivers\etc\hosts
+    echo 127.0.0.1 {{cookiecutter.domain_prod}}.dev >> c:\windows\System32\drivers\etc\hosts
     ```
 
 3. Start project
