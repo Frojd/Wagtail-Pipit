@@ -83,7 +83,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 This project utilizes Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI) will run tests on the application and if successfull, will automatically deploy the application to stage or production.
 
-Our deploy scripts are based on fabric toolkit called [Fabrik](https://github.com/Frojd/Fabrik).
+Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)).
 
 
 ### Working with CI environment vars
@@ -102,24 +102,20 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Requirements
 
-- Python 2.7 and pip
+- Python 3.6 and pip
 - Virtualenv
 
 #### How to
 
 - Open deployment folder: `cd deploy`
 - Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
-- Install deps: `pip install -r requirements.txt`
-- Create config for deployscript: `cp fabricrc.example.txt fabricrc.txt`
-- Update configuration: `vim fabricrc.txt`
-
-#### Verify ssh configuration
-
-`fabrik <stage|prod> test`
+- Install ansible: `pip install -r requirements.txt`
+- Install ansistrano: `ansible-galaxy install -r requirements.yml`
 
 #### Deploy application
 
-`fabrik <stage|prod> deploy`
+- Stage: `ansible-playbook deploy.yml -i hosts_stage`
+- Prod: `ansible-playbook deploy.yml -i hosts_prod`
 
 
 ## Merge conflicts
