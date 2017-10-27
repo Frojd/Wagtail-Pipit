@@ -1,3 +1,4 @@
+{% raw -%}
 version: 2
 jobs:
   checkout_code:
@@ -125,3 +126,4 @@ workflows:
           requires:
             - frontend
             - django
+{% endraw %}
