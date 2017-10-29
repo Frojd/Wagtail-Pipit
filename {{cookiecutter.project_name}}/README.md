@@ -190,7 +190,7 @@ Note: This requires that you have ssh-key based access to the server.
 
 ### How do I install Docker on MacOS/Windows?
 
-You can either use Docker for Mac/Windows or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
+Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com. We no longer recommend using Docker Toolbox.
 
 
 ### How can I run pdb on the python container?
@@ -231,8 +231,7 @@ First update your requirements/base.txt, then rebuild your container:
 
 ```
 docker-compose stop
-docker-compose build
-docker-compose up
+docker-compose up --build
 ```
 
 
