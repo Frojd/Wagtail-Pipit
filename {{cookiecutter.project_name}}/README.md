@@ -58,7 +58,7 @@
 
 ## Example app
 
-To activate the example app, uncomment it in base.py and it's included urls in urls.py in the core app.
+This project includes a the example app `pages` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning
@@ -108,10 +108,10 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### How to
 
-- Open deployment folder: `cd deploy`
-- Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
-- Install ansible: `pip install -r requirements.txt`
-- Install ansistrano: `ansible-galaxy install -r requirements.yml`
+1. Open deployment folder: `cd deploy`
+2. Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
+3. Install ansible: `pip install -r requirements.txt`
+4. Install ansistrano: `ansible-galaxy install -r requirements.yml`
 
 #### Deploy application
 
