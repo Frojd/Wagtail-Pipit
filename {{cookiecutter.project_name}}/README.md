@@ -104,6 +104,7 @@ It's possible you deploy manually and is something that you usually do this befo
 
 - Python 3.6 and pip
 - Virtualenv
+- Mac OS or Linux ([Windows does not currently work](http://docs.ansible.com/ansible/latest/intro_windows.html#windows-how-does-it-work))
 
 #### How to
 
@@ -116,6 +117,11 @@ It's possible you deploy manually and is something that you usually do this befo
 
 - Stage: `ansible-playbook deploy.yml -i hosts_stage`
 - Prod: `ansible-playbook deploy.yml -i hosts_prod`
+
+#### Rollback application
+
+- Stage: `ansible-playbook rollback.yml -i hosts_stage`
+- Prod: `ansible-playbook rollback.yml -i hosts_prod`
 
 
 ## Merge conflicts
