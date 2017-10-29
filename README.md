@@ -44,7 +44,7 @@ project_slug [example_project]:
 author_name [You]:
 email [you@example.com]:
 description [A short description of the project.]: Example description.
-use_geodjango [0]
+use_geodjango [y]
 use_wagtail [y]
 domain_prod [example.com]:
 domain_stage [stage.example.com]:
