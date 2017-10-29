@@ -1,10 +1,5 @@
-import logging
-
 from django.core.management.base import BaseCommand
 from django.contrib.sites.models import Site
-
-
-logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):

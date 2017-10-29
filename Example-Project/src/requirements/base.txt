@@ -1,6 +1,7 @@
-Django==1.11
+Django==1.11.5
 boto==2.46.1
 django-storages==1.5.2
 psycopg2==2.7.1
 pycrypto==2.6.1
 raven==6.0.0
+python-dotenv==0.7.1

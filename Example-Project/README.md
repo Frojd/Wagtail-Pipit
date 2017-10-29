@@ -15,13 +15,12 @@ A short description of the project.
 - [Git hooks](#git-hooks)
 - [FAQ](#faq)
 - [Contributing](#contributing)
-- [Licence](#licence)
+- [License](#license)
 
 
 ## Requirements
 
 - Python 3.6+ 
-    - Python 2.7 (for deploy scripts) (**Optional**)
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -39,7 +38,13 @@ A short description of the project.
 2. Include this ip on your hosts-file
 
     ```
-    127.0.0.1  example.com.dev
+    127.0.0.1 example.com.dev
+    ```
+
+    On windows you can run this command to append it:
+
+    ```
+    echo 127.0.0.1 example.com.dev >> c:\windows\System32\drivers\etc\hosts
     ```
 
 3. Start project
@@ -78,7 +83,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 This project utilizes Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI) will run tests on the application and if successfull, will automatically deploy the application to stage or production.
 
-Our deploy scripts are based on fabric toolkit called [Fabrik](https://github.com/Frojd/Fabrik).
+Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)).
 
 
 ### Working with CI environment vars
@@ -97,24 +102,26 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Requirements
 
-- Python 2.7 and pip
+- Python 3.6 and pip
 - Virtualenv
+- Mac OS or Linux ([Windows does not currently work](http://docs.ansible.com/ansible/latest/intro_windows.html#windows-how-does-it-work))
 
 #### How to
 
 - Open deployment folder: `cd deploy`
 - Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
-- Install deps: `pip install -r requirements.txt`
-- Create config for deployscript: `cp fabricrc.example.txt fabricrc.txt`
-- Update configuration: `vim fabricrc.txt`
-
-#### Verify ssh configuration
-
-`fabrik <stage|prod> test`
+- Install ansible: `pip install -r requirements.txt`
+- Install ansistrano: `ansible-galaxy install -r requirements.yml`
 
 #### Deploy application
 
-`fabrik <stage|prod> deploy`
+- Stage: `ansible-playbook deploy.yml -i hosts_stage`
+- Prod: `ansible-playbook deploy.yml -i hosts_prod`
+
+#### Rollback application
+
+- Stage: `ansible-playbook rollback.yml -i hosts_stage`
+- Prod: `ansible-playbook rollback.yml -i hosts_prod`
 
 
 ## Merge conflicts
@@ -183,7 +190,7 @@ Note: This requires that you have ssh-key based access to the server.
 
 ### How do I install Docker on MacOS/Windows?
 
-You can either use Docker for Mac/Windows or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
+Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com. We no longer recommend using Docker Toolbox.
 
 
 ### How can I run pdb on the python container?
@@ -224,8 +231,7 @@ First update your requirements/base.txt, then rebuild your container:
 
 ```
 docker-compose stop
-docker-compose build
-docker-compose up
+docker-compose up --build
 ```
 
 

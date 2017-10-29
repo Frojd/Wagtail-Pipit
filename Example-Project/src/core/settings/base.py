@@ -44,7 +44,24 @@ INSTALLED_APPS = [
 
     # Third party apps
     'storages',
-    # ...
+
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.wagtailroutablepage',
+    'wagtail.contrib.settings',
+    'modelcluster',
+    'taggit',
+    
 
     # Project specific apps
     'core',
@@ -60,6 +77,10 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -140,9 +161,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Wagtail
+WAGTAIL_SITE_NAME = 'Example-Project'
+
 
 # File storage
-
 AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')

@@ -18,6 +18,10 @@ CACHES = {
     }
 }
 
+INSTALLED_APPS = INSTALLED_APPS + [
+    'raven.contrib.django.raven_compat',
+]
+
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'  # NOQA
 
 # Enable caching of templates in production environment
@@ -36,6 +40,6 @@ SENTRY_DSN = get_env('SENTRY_DSN')
 SENTRY_PUBLIC_DSN = get_env('SENTRY_PUBLIC_DSN')
 
 RAVEN_CONFIG = {
-    'dsn': 'stage',
+    'dsn': SENTRY_DSN,
     'release': APP_VERSION,
 }

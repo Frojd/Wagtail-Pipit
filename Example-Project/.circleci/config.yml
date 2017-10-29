@@ -1,0 +1,128 @@
+version: 2
+jobs:
+  checkout_code:
+    docker:
+      - image: circleci/python:3.6
+      - image: circleci/node:latest
+      - image: circleci/postgres:9.5
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo
+
+  frontend:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-npm-{{ checksum "frontend/package.json" }}
+      - run: cd frontend && npm install
+      - save_cache:
+          key: v1-npm-{{ checksum "frontend/package.json" }}
+          paths:
+            - ~/repo/frontend/node_modules
+      - run: cd frontend && npm test
+      - run: cd frontend && npm run publish:all
+      - run:
+          command: |
+            cd frontend
+            ./node_modules/.bin/babel app/components --out-dir raw --no-babelrc --plugins=transform-class-properties,transform-object-rest-spread,inline-react-svg --presets=react,env
+      - save_cache:
+          key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo/src/core/static/core
+            - ~/repo/frontend/raw
+            - ~/repo/frontend/dist
+
+  django:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/python:3.6
+      - image: circleci/postgres:9.5
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: circle_test
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r src/requirements/test.txt
+      - save_cache:
+          key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
+          paths:
+            - ~/repo/venv
+      - run:
+          command: |
+            . venv/bin/activate
+            cd src
+            pytest -c pytest.circleci.ini
+      - save_cache:
+          key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo/src
+
+  deploy:
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-deploy-{{ checksum "deploy/requirements.txt" }}
+      - run:
+          command: |
+            cd deploy
+            python3 -m venv venv
+            sudo apt-get -y -qq install rsync
+            . venv/bin/activate
+            pip install -r requirements.txt
+            ansible-galaxy install -r requirements.yml
+      - save_cache:
+          key: v1-deploy-{{ checksum "deploy/requirements.txt" }}
+          paths:
+            - deploy/venv
+      - run:
+          command: |
+            cd deploy
+            . venv/bin/activate
+
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              ansible-playbook deploy.yml -i hosts_stage
+            fi
+
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              ansible-playbook deploy.yml -i hosts_prod
+            fi
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - checkout_code
+      - frontend:
+          requires:
+            - checkout_code
+      - django:
+          requires:
+            - checkout_code
+      - deploy:
+          requires:
+            - frontend
+            - django
+
