@@ -17,7 +17,7 @@ copyfile(
 
 
 # Removes wagtail files if not in use
-if '{{ cookiecutter.use_wagtail }}'.lower() == '0':
+if '{{ cookiecutter.use_wagtail }}'.lower() == 'y':
     os.remove(os.path.join(
-        PROJECT_DIRECTORY, 'src/core/management/wagtail_change_site_domain.py'
+        PROJECT_DIRECTORY, 'src/core/management/commands/wagtail_change_site_domain.py'  # NOQA
     ))

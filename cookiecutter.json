@@ -5,6 +5,7 @@
     "email": "you@example.com",
     "description": "A short description of the project.",
     "use_geodjango": 0,
+    "use_wagtail": "y",
     "domain_prod": "example.com",
     "domain_stage": "stage.example.com",
     "ssh_prod": "user@prod-server",
@@ -17,6 +18,5 @@
     "docker_db_port": 5433,
     "aws_devops_iam_username": "client_devops",
     "version": "0.1.0",
-    "software_license": ["MIT", "proprietary"],
-    "use_wagtail": 1
+    "software_license": ["MIT", "proprietary"]
 }

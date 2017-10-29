@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # Third party apps
     'storages',
 
-    {%- if cookiecutter.use_wagtail == 1 -%}
+    {% if cookiecutter.use_wagtail == 'y' -%}
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'modelcluster',
     'taggit',
-    {% endif -%}
+    {% endif %}
 
     # Project specific apps
     'core',
@@ -79,10 +79,10 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    {%- if cookiecutter.use_wagtail == 1 -%}
+    {% if cookiecutter.use_wagtail == 'y' -%}
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
-    {% endif -%}
+    {% endif %}
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -163,10 +163,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-{%- if cookiecutter.use_wagtail == 1 -%}
+{% if cookiecutter.use_wagtail == 'y' -%}
 # Wagtail
-WAGTAIL_SITE_NAME = '{{ project_name }}'
-{% endif -%}
+WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
+{% endif %}
 
 # File storage
 AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
