@@ -5,3 +5,5 @@ psycopg2==2.7.1
 pycrypto==2.6.1
 raven==6.0.0
 python-dotenv==0.7.1
+wagtail==1.13
+

@@ -6,6 +6,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 
+
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
@@ -38,6 +39,7 @@ urlpatterns += [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
     url('^sitemap\.xml$', sitemap, name='sitemap'),
+    
 ]
 
 urlpatterns += [
@@ -45,6 +47,7 @@ urlpatterns += [
     url(r'', include('pages.urls')),  # TODO: Example app, remove this
 
     url(r'', include(wagtail_urls)),
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
