@@ -163,6 +163,46 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024*1024*10,  # 10 MB
+            'backupCount': 7,
+            'formatter': 'standard',
+            'filename': os.path.join(get_env('APP_LOG_DIR'),
+                                     'django-debug.log')
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
 {% if cookiecutter.use_wagtail == 'y' -%}
 # Wagtail
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
