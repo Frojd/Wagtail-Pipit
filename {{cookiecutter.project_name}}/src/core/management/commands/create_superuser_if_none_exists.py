@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 
 class Command(BaseCommand):
     '''
-    Change password for user
-    (Not to be confused with changepass, this allows password as arg in cli)
+    Create superuser if none exist
 
     Example:
-        manage.py change_user_password --user=admin --password=123
+        manage.py create_superuser_if_none_exists --user=admin --password=123
     '''
     def add_arguments(self, parser):
         parser.add_argument('--user', required=True)
