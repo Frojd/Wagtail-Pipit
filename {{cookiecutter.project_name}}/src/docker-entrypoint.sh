@@ -12,6 +12,7 @@ done
 
 echo Creating log dir
 mkdir -p $APP_LOG_DIR
+echo $APP_LOG_DIR
 
 echo Updating app log dir permissions
 touch $APP_LOG_DIR/django-debug.log
@@ -21,7 +22,7 @@ echo Running migrations
 python manage.py migrate --noinput
 
 echo Create dummy user if none exists
-python manage.py create_user_if_none_exists --user=admin --password=admin
+python manage.py create_superuser_if_none_exists --user=admin --password=admin
 
 echo Collecting static-files
 python manage.py collectstatic --noinput
