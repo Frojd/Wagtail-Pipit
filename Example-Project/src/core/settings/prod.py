@@ -32,6 +32,14 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
     ]),
 ]
 
+# Add sentry to logging
+LOGGING['handlers']['sentry'] = {
+    'level': 'ERROR',
+    'class': 'raven.handlers.logging.SentryHandler',
+    'dsn': get_env('SENTRY_DSN'),
+}
+LOGGING['loggers']['']['handlers'].append('sentry')
+
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
