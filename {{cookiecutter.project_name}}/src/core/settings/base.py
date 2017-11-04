@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 
     {% if cookiecutter.use_wagtail == 'y' -%}
     'sitesettings',
+    'customimage',
     {% endif %}
 ]
 
