@@ -214,24 +214,25 @@ WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
 {% endif %}
 
 # File storage
-AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
+if get_env('AWS_ACCESS_KEY_ID'):
+    AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
 
-AWS_AUTO_CREATE_BUCKET = True
-AWS_QUERYSTRING_AUTH = False
-AWS_EXPIRY = 60 * 60 * 24 * 7
+    AWS_AUTO_CREATE_BUCKET = True
+    AWS_QUERYSTRING_AUTH = False
+    AWS_EXPIRY = 60 * 60 * 24 * 7
 
-AWS_HEADERS = {
-    'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
-}
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+    AWS_HEADERS = {
+        'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
+    }
+    AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
-# Retrieve S3 files using https, with a bucket that contains a dot.
-S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
+    # Retrieve S3 files using https, with a bucket that contains a dot.
+    S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 # Uploaded media
