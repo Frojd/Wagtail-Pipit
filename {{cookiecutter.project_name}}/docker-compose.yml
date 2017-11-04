@@ -11,8 +11,6 @@ services:
             - "{{cookiecutter.docker_web_port}}:8000"
         depends_on:
             - db
-        environment:
-            REQUIREMENTS: "local.txt"
         env_file: ./docker/config/web.env
     db:
         {%- if cookiecutter.use_geodjango == 'y' -%}
