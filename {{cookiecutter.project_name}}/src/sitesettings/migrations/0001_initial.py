@@ -24,6 +24,8 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'verbose_name': 'Site setting',
+                'verbose_name_plural': 'Site settings',
             },
         ),
     ]
