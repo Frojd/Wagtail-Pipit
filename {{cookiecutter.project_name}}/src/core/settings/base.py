@@ -210,6 +210,7 @@ LOGGING = {
 {% if cookiecutter.use_wagtail == 'y' -%}
 # Wagtail
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
+WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
 {% endif %}
 
 # File storage

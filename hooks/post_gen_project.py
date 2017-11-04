@@ -32,3 +32,7 @@ if '{{ cookiecutter.use_wagtail }}'.lower() == 'n':
     shutil.rmtree(os.path.join(
         PROJECT_DIRECTORY, 'src/sitesettings'
     ))
+
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, 'src/customimage'
+    ))
