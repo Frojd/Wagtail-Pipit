@@ -4,4 +4,4 @@ you could structure your app.
 
 Do not include it in your project
 '''
-default_app_config = 'pages.apps.PagesConfig'
+default_app_config = 'exampleapp.apps.PagesConfig'

@@ -3,7 +3,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 
-from pages.models import Page
+from exampleapp.models import Page
 
 
 class PageForm(forms.ModelForm):

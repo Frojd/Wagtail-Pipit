@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from pages.models import Page
+from exampleapp.models import Page
 
 
 class PageAdmin(admin.ModelAdmin):

@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 
     # Project specific apps
     'core',
-    'pages',  # TODO: Example app, remove this
+    'exampleapp',  # TODO: Example app, remove this
 
     {% if cookiecutter.use_wagtail == 'y' -%}
     'sitesettings',

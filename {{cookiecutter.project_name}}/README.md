@@ -58,7 +58,7 @@
 
 ## Example app
 
-This project includes a the example app `pages` and it is activated by default, please remove/uncomment it before going into production.
+This project includes a the example app `exampleapp` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning
