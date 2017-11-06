@@ -115,13 +115,13 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Deploy application
 
-- Stage: `ansible-playbook deploy.yml -i hosts_stage`
-- Prod: `ansible-playbook deploy.yml -i hosts_prod`
+- Stage: `ansible-playbook deploy.yml -i stages/stage`
+- Prod: `ansible-playbook deploy.yml -i stages/prod`
 
 #### Rollback application
 
-- Stage: `ansible-playbook rollback.yml -i hosts_stage`
-- Prod: `ansible-playbook rollback.yml -i hosts_prod`
+- Stage: `ansible-playbook rollback.yml -i stages/stage`
+- Prod: `ansible-playbook rollback.yml -i stages/prod`
 
 
 ## Merge conflicts

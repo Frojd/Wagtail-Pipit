@@ -104,11 +104,11 @@ jobs:
             . venv/bin/activate
 
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              ansible-playbook deploy.yml -i hosts_stage
+              ansible-playbook deploy.yml -i stages/stage
             fi
 
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              ansible-playbook deploy.yml -i hosts_prod
+              ansible-playbook deploy.yml -i stages/prod
             fi
 
 workflows:
