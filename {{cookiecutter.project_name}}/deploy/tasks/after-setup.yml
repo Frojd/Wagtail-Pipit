@@ -16,4 +16,14 @@
     group: www-data
     state: directory
     mode: 0755
+
+- name: Create logs dir
+  become: yes
+  become_method: sudo
+  file:
+    path: "{{ ansistrano_deploy_to }}/logs"
+    owner: www-data
+    group: www-data
+    state: directory
+    mode: 0755
 {% endraw %}
