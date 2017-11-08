@@ -13,7 +13,7 @@ services:
             - db
         env_file: ./docker/config/web.env
     db:
-        {%- if cookiecutter.use_geodjango == 'y' -%}
+        {% if cookiecutter.use_geodjango == 'y' %}
         image: mdillon/postgis:9.6
         {% else %}
         image: postgres:9.6

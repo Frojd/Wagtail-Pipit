@@ -14,7 +14,7 @@ RUN apt-get update \
     {# Optional: GeoDjango deps -#}
     {% if cookiecutter.use_geodjango == 'y' -%}
     && apt-get install -y binutils libproj-dev gdal-bin \
-    {%- endif -%}
+    {% endif -%}
     && apt-get install -y vim curl gettext \
     && rm -rf /var/lib/apt/lists/* \
     && curl -L https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/develop/config/.vimrc > ~/.vimrc
