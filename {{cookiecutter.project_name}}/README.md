@@ -163,7 +163,7 @@ chmod +x $PWD/.githooks/pep8-pre-commit.sh
 ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
 ```
 
-Note: This requires the pep8 package (`pip install pep8`)
+Note: This requires the pycodestyle package (`pip install pycodestyle`)
 
 
 ## FAQ
