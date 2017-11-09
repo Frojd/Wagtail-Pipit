@@ -39,6 +39,11 @@
         regexp: 'DATABASE_PASSWORD=(.*)$'
         replace: 'DATABASE_PASSWORD={{ database_password }}'
 
+    - replace:
+        path: "{{ ansistrano_deploy_to }}/shared/.env"
+        regexp: 'DJANGO_SETTINGS_MODULE=(.*)$'
+        replace: 'DJANGO_SETTINGS_MODULE=core.settings.{{ stage_name }}'
+
     - name: Create postgres database
       postgresql_db:
         name: "{{ database_name }}"
