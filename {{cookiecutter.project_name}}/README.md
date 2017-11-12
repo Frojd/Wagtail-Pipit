@@ -202,6 +202,13 @@ docker-compose run --rm --service-ports web
 ```
 
 
+### How do I run the test suite locally?
+
+```
+docker-compose run --rm web test
+```
+
+
 ### How do I run custom manage.py commands?
 
 To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your web container.
