@@ -1,4 +1,7 @@
-{% raw %}<!doctype html>
+{% raw %}
+{% load staticfiles %}
+
+<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -6,7 +9,7 @@
         <title>{{ title }}</title>
         <meta name="description" content="{{ meta_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% load staticfiles %}
+
         <link rel="stylesheet" href="{% static 'core/css/main.css' %}" type="text/css" />
     </head>
     <body>
