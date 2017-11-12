@@ -116,6 +116,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
+                {% if cookiecutter.use_wagtail == 'y' -%}
+                'wagtail.contrib.settings.context_processors.settings',
+                {% endif %}
+
                 # Project specific
                 'core.context_processors.settings_context_processor',
             ],
