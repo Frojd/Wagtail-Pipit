@@ -38,13 +38,13 @@
 2. Include this ip on your hosts-file
 
     ```
-    127.0.0.1 {{cookiecutter.domain_prod}}.dev
+    127.0.0.1 {{cookiecutter.domain_prod}}.local
     ```
 
     On windows you can run this command to append it:
 
     ```
-    echo 127.0.0.1 {{cookiecutter.domain_prod}}.dev >> c:\windows\System32\drivers\etc\hosts
+    echo 127.0.0.1 {{cookiecutter.domain_prod}}.local >> c:\windows\System32\drivers\etc\hosts
     ```
 
 3. Start project
@@ -53,7 +53,7 @@
     docker-compose up
     ```
 
-4. Visit your site on: [http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}})
+4. Visit your site on: [http://{{cookiecutter.domain_prod}}.local:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.local:{{cookiecutter.docker_web_port}})
 
 
 ## Example app
