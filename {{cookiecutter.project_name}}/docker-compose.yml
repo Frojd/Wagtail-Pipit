@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
     web:
         image: frojd/{{cookiecutter.project_slug}}_web
@@ -11,11 +11,9 @@ services:
             - "{{cookiecutter.docker_web_port}}:8000"
         depends_on:
             - db
-        environment:
-            REQUIREMENTS: "local.txt"
         env_file: ./docker/config/web.env
     db:
-        {%- if cookiecutter.use_geodjango == 1 -%}
+        {% if cookiecutter.use_geodjango == 'y' %}
         image: mdillon/postgis:9.6
         {% else %}
         image: postgres:9.6

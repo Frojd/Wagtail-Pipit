@@ -9,7 +9,7 @@ set -e
 
  cd $(git rev-parse --show-toplevel)
 
-COMMAND="./manage.py $@"
+COMMAND="python manage.py $@"
 docker-compose exec web $COMMAND
 
 cd -

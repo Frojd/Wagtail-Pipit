@@ -44,11 +44,32 @@ INSTALLED_APPS = [
 
     # Third party apps
     'storages',
-    # ...
+
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.wagtailroutablepage',
+    'wagtail.contrib.settings',
+    'modelcluster',
+    'taggit',
+    
 
     # Project specific apps
     'core',
     'pages',  # TODO: Example app, remove this
+
+    'sitesettings',
+    'customimage',
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -60,6 +81,10 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -141,26 +166,70 @@ USE_L10N = True
 USE_TZ = True
 
 
-# File storage
-
-AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
-
-AWS_AUTO_CREATE_BUCKET = True
-AWS_QUERYSTRING_AUTH = False
-AWS_EXPIRY = 60 * 60 * 24 * 7
-
-AWS_HEADERS = {
-    'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024*1024*10,  # 10 MB
+            'backupCount': 7,
+            'formatter': 'standard',
+            'filename': os.path.join(get_env('APP_LOG_DIR'),
+                                     'django-debug.log')
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
-# Retrieve S3 files using https, with a bucket that contains a dot.
-S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# Wagtail
+WAGTAIL_SITE_NAME = 'Example-Project'
+WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
+
+
+# File storage
+if get_env('AWS_ACCESS_KEY_ID'):
+    AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
+
+    AWS_AUTO_CREATE_BUCKET = True
+    AWS_QUERYSTRING_AUTH = False
+    AWS_EXPIRY = 60 * 60 * 24 * 7
+
+    AWS_HEADERS = {
+        'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
+    }
+    AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+
+    # Retrieve S3 files using https, with a bucket that contains a dot.
+    S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 # Uploaded media

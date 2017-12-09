@@ -1,10 +1,5 @@
-import logging
-
 from django.core.management.base import BaseCommand
 from wagtail.wagtailcore.models import Site
-
-
-logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -15,11 +10,8 @@ class Command(BaseCommand):
         manage.py wagtail_change_site_domain --site_id=2 --new_site_domain=frojd.se:443
     '''
     def add_arguments(self, parser):
-        parser.add_argument('--site_id',
-                            type=int,
-                            default=1)
-        parser.add_argument('--new_site_domain',
-                            required=True)
+        parser.add_argument('--site_id', type=int, default=1)
+        parser.add_argument('--new_site_domain', required=True)
 
     def handle(self, *args, **options):
         site_id = options['site_id']

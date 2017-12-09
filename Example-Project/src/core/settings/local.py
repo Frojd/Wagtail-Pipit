@@ -32,8 +32,7 @@ INTERNAL_IPS = get_env('INTERNAL_IPS', default="").split(',')
 
 # Allow django-debug-bar under docker
 def show_toolbar(request):
-    # https://gist.github.com/douglasmiranda/9de51aaba14543851ca3
-    return not request.is_ajax()
+    return True
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': 'core.settings.local.show_toolbar',

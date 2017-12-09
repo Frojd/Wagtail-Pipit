@@ -15,8 +15,8 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
     - GTM
     - Browser Update
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
-- Deploy scripts using [fabrik](https://github.com/frojd/Fabrik)
-- Scripts for syncing data from prod to local machine
+- Deploy scripts using [ansistrano](https://github.com/ansistrano)
+- Scripts for syncing data from remote to local machine
 - Enhanced django runserver with [runserver_plus](http://django-extensions.readthedocs.io/en/latest/runserver_plus.html)
 - ...and for syncing prod => stage
 
@@ -44,6 +44,8 @@ project_slug [example_project]:
 author_name [You]:
 email [you@example.com]:
 description [A short description of the project.]: Example description.
+use_geodjango [y]
+use_wagtail [y]
 domain_prod [example.com]:
 domain_stage [stage.example.com]:
 ssh_prod [user@prod-server]:

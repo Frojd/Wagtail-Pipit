@@ -41,14 +41,38 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Third party apps
     'storages',
-    # ...
+
+    {% if cookiecutter.use_wagtail == 'y' -%}
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.wagtailroutablepage',
+    'wagtail.contrib.settings',
+    'modelcluster',
+    'taggit',
+    {% endif %}
 
     # Project specific apps
     'core',
-    'pages',  # TODO: Example app, remove this
+    'exampleapp',  # TODO: Example app, remove this
+
+    {% if cookiecutter.use_wagtail == 'y' -%}
+    'sitesettings',
+    'customimage',
+    {% endif %}
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -60,6 +84,11 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    {% if cookiecutter.use_wagtail == 'y' -%}
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    {% endif %}
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -86,6 +115,10 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                {% if cookiecutter.use_wagtail == 'y' -%}
+                'wagtail.contrib.settings.context_processors.settings',
+                {% endif %}
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
@@ -141,26 +174,71 @@ USE_L10N = True
 USE_TZ = True
 
 
-# File storage
-
-AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
-
-AWS_AUTO_CREATE_BUCKET = True
-AWS_QUERYSTRING_AUTH = False
-AWS_EXPIRY = 60 * 60 * 24 * 7
-
-AWS_HEADERS = {
-    'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024*1024*10,  # 10 MB
+            'backupCount': 7,
+            'formatter': 'standard',
+            'filename': os.path.join(get_env('APP_LOG_DIR'),
+                                     'django-debug.log')
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
-# Retrieve S3 files using https, with a bucket that contains a dot.
-S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+{% if cookiecutter.use_wagtail == 'y' -%}
+# Wagtail
+WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
+WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
+{% endif %}
+
+# File storage
+if get_env('AWS_ACCESS_KEY_ID'):
+    AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
+
+    AWS_AUTO_CREATE_BUCKET = True
+    AWS_QUERYSTRING_AUTH = False
+    AWS_EXPIRY = 60 * 60 * 24 * 7
+
+    AWS_HEADERS = {
+        'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
+    }
+    AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+
+    # Retrieve S3 files using https, with a bucket that contains a dot.
+    S3Connection.DefaultHost = 's3-eu-west-1.amazonaws.com'
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 # Uploaded media

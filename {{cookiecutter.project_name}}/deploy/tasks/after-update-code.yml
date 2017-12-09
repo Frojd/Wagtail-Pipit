@@ -1,0 +1,23 @@
+{% raw -%}
+- name: Symlink .env
+  file:
+    src: "{{ ansistrano_shared_path }}/.env"
+    dest: "{{ ansistrano_release_path.stdout }}/src/.env"
+    state: link
+
+- name: Symlink media
+  file:
+    src: "{{ ansistrano_shared_path }}/media"
+    dest: "{{ ansistrano_release_path.stdout }}/src/media"
+    state: link
+
+- name: Install dependencies in virtualenv
+  pip: virtualenv="{{ ansistrano_shared_path}}/venv"
+       requirements={{ ansistrano_release_path.stdout }}/src/requirements/{{ stage_name }}.txt
+       virtualenv_python={{ python_version }}
+
+- name: Run Migrations
+  shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py migrate --noinput"
+  sudo: yes
+  sudo_user: www-data
+{% endraw %}

@@ -1,0 +1,17 @@
+version: '3'
+services:
+    web:
+        image: frojd/django_boilerplate_web
+        build: ./src
+        ports:
+            - "8081:8000"
+        depends_on:
+            - db
+        environment:
+            REQUIREMENTS: "local.txt"
+        env_file: ./docker/config/web.env
+    db:
+        image: postgres:9.6
+        ports:
+            - "5433:5432"
+        env_file: ./docker/config/db.env

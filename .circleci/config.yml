@@ -1,0 +1,65 @@
+version: 2
+jobs:
+    build:
+        working_directory: ~/frojd-django-boilerplate
+        docker:
+            - image: circleci/python:3.6.1
+            - image: postgres:9.6
+
+        environment:
+            TEST_RESULTS: /tmp/test-results
+
+        steps:
+            - checkout
+
+            - run:
+                name: Install cookiecutter
+                command: |
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install cookiecutter
+
+            - run: mkdir -p $TEST_RESULTS
+
+            - run:
+                name: Install Docker Compose
+                command: |
+                    set -x
+                    . venv/bin/activate
+                    curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+                    chmod +x ~/docker-compose
+                    sudo mv ~/docker-compose /usr/local/bin/docker-compose
+
+            - setup_remote_docker
+
+            - run:
+                name: Run cookiecutter
+                command: |
+                    set -x
+                    . venv/bin/activate
+                    cookiecutter . --no-input --overwrite-if-exists
+
+            - run:
+                name: Create docker-compose config for running boilerplate tests
+                command: |
+                    set -x
+                    cp docker-compose-circleci.yml Client-Project/docker-compose-circleci.yml
+
+            - run:
+                name: Build image
+                command: |
+                    set -x
+                    cd Client-Project && docker-compose -f docker-compose-circleci.yml build
+
+            - run:
+                name: Run tests on container
+                command: |
+                    set -x
+                    cd Client-Project && docker-compose -f docker-compose-circleci.yml run web test 
+
+            - store_artifacts:
+                path: /tmp/test-results
+                destination: raw-test-output
+
+            - store_test_results:
+                path: /tmp/test-results

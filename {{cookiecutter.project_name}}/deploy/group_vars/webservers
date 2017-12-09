@@ -1,0 +1,6 @@
+---
+python_version: python3
+ansistrano_deploy_to: /mnt/persist/www/{{ cookiecutter.project_slug }}
+database_name: {{ cookiecutter.db_name_prod }}
+database_user: {{ cookiecutter.project_slug }}
+public_path: /mnt/persist/www/django

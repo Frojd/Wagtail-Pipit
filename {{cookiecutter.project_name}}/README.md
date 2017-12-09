@@ -15,13 +15,12 @@
 - [Git hooks](#git-hooks)
 - [FAQ](#faq)
 - [Contributing](#contributing)
-- [Licence](#licence)
+- [License](#license)
 
 
 ## Requirements
 
 - Python 3.6+ 
-    - Python 2.7 (for deploy scripts) (**Optional**)
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -39,7 +38,13 @@
 2. Include this ip on your hosts-file
 
     ```
-    127.0.0.1  {{cookiecutter.domain_prod}}.dev
+    127.0.0.1 {{cookiecutter.domain_prod}}.local
+    ```
+
+    On windows you can run this command to append it:
+
+    ```
+    echo 127.0.0.1 {{cookiecutter.domain_prod}}.local >> c:\windows\System32\drivers\etc\hosts
     ```
 
 3. Start project
@@ -48,12 +53,12 @@
     docker-compose up
     ```
 
-4. Visit your site on: [http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.dev:{{cookiecutter.docker_web_port}})
+4. Visit your site on: [http://{{cookiecutter.domain_prod}}.local:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.local:{{cookiecutter.docker_web_port}})
 
 
 ## Example app
 
-To activate the example app, uncomment it in base.py and it's included urls in urls.py in the core app.
+This project includes a the example app `exampleapp` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning
@@ -78,7 +83,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 This project utilizes Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI) will run tests on the application and if successfull, will automatically deploy the application to stage or production.
 
-Our deploy scripts are based on fabric toolkit called [Fabrik](https://github.com/Frojd/Fabrik).
+Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)).
 
 
 ### Working with CI environment vars
@@ -97,24 +102,26 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Requirements
 
-- Python 2.7 and pip
+- Python 3.6 and pip
 - Virtualenv
+- Mac OS or Linux ([Windows does not currently work](http://docs.ansible.com/ansible/latest/intro_windows.html#windows-how-does-it-work))
 
 #### How to
 
-- Open deployment folder: `cd deploy`
-- Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
-- Install deps: `pip install -r requirements.txt`
-- Create config for deployscript: `cp fabricrc.example.txt fabricrc.txt`
-- Update configuration: `vim fabricrc.txt`
-
-#### Verify ssh configuration
-
-`fabrik <stage|prod> test`
+1. Open deployment folder: `cd deploy`
+2. Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
+3. Install ansible: `pip install -r requirements.txt`
+4. Install ansistrano: `ansible-galaxy install -r requirements.yml`
 
 #### Deploy application
 
-`fabrik <stage|prod> deploy`
+- Stage: `ansible-playbook deploy.yml -i stages/stage`
+- Prod: `ansible-playbook deploy.yml -i stages/prod`
+
+#### Rollback application
+
+- Stage: `ansible-playbook rollback.yml -i stages/stage`
+- Prod: `ansible-playbook rollback.yml -i stages/prod`
 
 
 ## Merge conflicts
@@ -156,7 +163,7 @@ chmod +x $PWD/.githooks/pep8-pre-commit.sh
 ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
 ```
 
-Note: This requires the pep8 package (`pip install pep8`)
+Note: This requires the pycodestyle package (`pip install pycodestyle`)
 
 
 ## FAQ
@@ -183,7 +190,7 @@ Note: This requires that you have ssh-key based access to the server.
 
 ### How do I install Docker on MacOS/Windows?
 
-You can either use Docker for Mac/Windows or the [Docker Toolbox](https://www.docker.com/products/docker-toolbox). (Minimum requirements are docker `1.11`, docker-compose `1.7`)
+Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com. We no longer recommend using Docker Toolbox.
 
 
 ### How can I run pdb on the python container?
@@ -192,6 +199,13 @@ Start the container with service-ports exposed instead of `docker-compose up`. T
 
 ```
 docker-compose run --rm --service-ports web
+```
+
+
+### How do I run the test suite locally?
+
+```
+docker-compose run --rm web test
 ```
 
 
@@ -224,8 +238,7 @@ First update your requirements/base.txt, then rebuild your container:
 
 ```
 docker-compose stop
-docker-compose build
-docker-compose up
+docker-compose up --build
 ```
 
 
