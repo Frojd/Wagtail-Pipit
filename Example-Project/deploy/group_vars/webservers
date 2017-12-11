@@ -1,4 +1,3 @@
 ---
 python_version: python3.6
 ansistrano_deploy_to: /mnt/persist/www/example_project
-public_path: /mnt/persist/www/django
