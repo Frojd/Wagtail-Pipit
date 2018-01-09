@@ -1,0 +1,56 @@
+---
+- name: Do nessessary provisioning on server
+  hosts: all
+
+  vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}/../src"
+    ansible_python_interpreter: /mnt/persist/www/django/env/bin/python
+
+  tasks:
+    - set_fact:
+        secret_key: "{{ lookup('password', '/dev/null chars=ascii_letters length=80') }}"
+        database_password: "{{ lookup('password', '/dev/null chars=ascii_letters length=40') }}"
+
+    - name: Creates directory
+      file:
+        path: "{{ ansistrano_deploy_to }}/shared"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0775
+        recurse: yes
+
+    - name: Copy .env config
+      copy:
+        src: "{{ ansistrano_deploy_from }}/example.env"
+        dest: "{{ ansistrano_deploy_to }}/shared/.env"
+        owner: www-data
+        group: www-data
+        mode: 0644
+
+    - replace:
+        path: "{{ ansistrano_deploy_to }}/shared/.env"
+        regexp: 'SECRET_KEY=(.*)$'
+        replace: 'SECRET_KEY={{ secret_key }}'
+
+    - replace:
+        path: "{{ ansistrano_deploy_to }}/shared/.env"
+        regexp: 'DATABASE_PASSWORD=(.*)$'
+        replace: 'DATABASE_PASSWORD={{ database_password }}'
+
+    - replace:
+        path: "{{ ansistrano_deploy_to }}/shared/.env"
+        regexp: 'DJANGO_SETTINGS_MODULE=(.*)$'
+        replace: 'DJANGO_SETTINGS_MODULE=core.settings.{{ stage_name }}'
+
+    - name: Create postgres database
+      postgresql_db:
+        name: "{{ database_name }}"
+
+    - name: Create postgres user
+      postgresql_user:
+        db: "{{ database_name }}"
+        name: "{{ database_user }}"
+        password: "{{ database_password }}"
+        priv: ALL
+

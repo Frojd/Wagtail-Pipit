@@ -18,7 +18,7 @@ from django.core.urlresolvers import reverse
 
 import pytest
 
-from pages.models import Page
+from exampleapp.models import Page
 
 
 class TraditionalDjangoTestCase(TestCase):

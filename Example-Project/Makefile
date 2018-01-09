@@ -7,3 +7,6 @@ setup:
 	ln -nfs .githooks/bump-version.sh .git/hooks/post-flow-release-start
 	ln -nfs .githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 	docker-compose up
+
+fixcode:
+	autopep8 -r --in-place --aggressive src

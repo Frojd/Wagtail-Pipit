@@ -44,7 +44,7 @@ urlpatterns += [
 
 urlpatterns += [
     # Prefered way of including an apps urls
-    url(r'', include('pages.urls')),  # TODO: Example app, remove this
+    url(r'', include('exampleapp.urls')),  # TODO: Example app, remove this
 
     url(r'', include(wagtail_urls)),
     

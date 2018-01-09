@@ -8,14 +8,15 @@ services:
             - "./docker/files/shared:/shared:rw"
             - "./docker/files/var/log:/var/log:rw"
         ports:
-            - "8099:8000"
+            - "8081:8000"
         depends_on:
             - db
         env_file: ./docker/config/web.env
     db:
+        
         image: postgres:9.6
         ports:
-            - "5499:5432"
+            - "5433:5432"
         volumes:
             - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
             - "./docker/files/shared:/shared:rw"

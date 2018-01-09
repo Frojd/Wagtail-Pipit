@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.utils import timezone
 
-from pages.models import Page
+from exampleapp.models import Page
 
 
 class PageListView(ListView):

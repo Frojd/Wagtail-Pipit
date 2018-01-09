@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Third party apps
     'storages',
@@ -65,7 +66,7 @@ INSTALLED_APPS = [
 
     # Project specific apps
     'core',
-    'pages',  # TODO: Example app, remove this
+    'exampleapp',  # TODO: Example app, remove this
 
     'sitesettings',
     'customimage',
@@ -111,6 +112,9 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'wagtail.contrib.settings.context_processors.settings',
+                
 
                 # Project specific
                 'core.context_processors.settings_context_processor',

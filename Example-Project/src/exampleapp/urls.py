@@ -2,7 +2,7 @@
 
 from django.conf.urls import url
 
-from pages.views import PageListView, PageDetailView
+from exampleapp.views import PageListView, PageDetailView
 
 
 urlpatterns = [

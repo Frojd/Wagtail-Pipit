@@ -1,3 +1,5 @@
 ---
-python_version: python3.6
+python_version: python3
 ansistrano_deploy_to: /mnt/persist/www/example_project
+database_name: example_project_db
+database_user: example_project
