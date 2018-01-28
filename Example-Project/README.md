@@ -38,13 +38,13 @@ A short description of the project.
 2. Include this ip on your hosts-file
 
     ```
-    127.0.0.1 example.com.local
+    127.0.0.1 example.com.test
     ```
 
     On windows you can run this command to append it:
 
     ```
-    echo 127.0.0.1 example.com.local >> c:\windows\System32\drivers\etc\hosts
+    echo 127.0.0.1 example.com.test >> c:\windows\System32\drivers\etc\hosts
     ```
 
 3. Start project
@@ -53,7 +53,7 @@ A short description of the project.
     docker-compose up
     ```
 
-4. Visit your site on: [http://example.com.local:8081](http://example.com.local:8081)
+4. Visit your site on: [http://example.com.test:8081](http://example.com.test:8081)
 
 
 ## Example app

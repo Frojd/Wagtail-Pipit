@@ -2,7 +2,7 @@
 set -e
 
 # Arguments
-local_domain=${1-example.com.local:8081}
+local_domain=${1-example.com.test:8081}
 ssh_host=${2-user@prod-server}
 
 ROOTDIR=$(git rev-parse --show-toplevel)
