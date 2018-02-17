@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'modelcluster',
     'taggit',
-    
+
 
     # Project specific apps
     'core',
@@ -70,10 +70,10 @@ INSTALLED_APPS = [
 
     'sitesettings',
     'customimage',
-    
+
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,7 +85,7 @@ MIDDLEWARE_CLASSES = [
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -114,7 +114,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'wagtail.contrib.settings.context_processors.settings',
-                
+
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
