@@ -1,7 +1,7 @@
 Django==2.0.2
 boto==2.48.0
 django-storages==1.6.5
-psycopg2==2.7.4
+psycopg2-binary==2.7.4
 pycrypto==2.6.1
 raven==6.5.0
 python-dotenv==0.7.1
