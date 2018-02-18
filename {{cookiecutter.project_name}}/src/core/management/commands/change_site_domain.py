@@ -11,15 +11,9 @@ class Command(BaseCommand):
     '''
 
     def add_arguments(self, parser):
-        parser.add_argument('--site_id',
-                            type=int,
-                            default=-1)
-
-        parser.add_argument('--site_domain',
-                            default="")
-
-        parser.add_argument('--new_site_domain',
-                            required=True)
+        parser.add_argument('--site_id', type=int, default=-1)
+        parser.add_argument('--site_domain', default="")
+        parser.add_argument('--new_site_domain', required=True)
 
     def handle(self, *args, **options):
         site_id = options['site_id']
