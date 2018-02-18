@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from wagtail.wagtailcore.models import Site
+from wagtail.core.models import Site
 
 
 class Command(BaseCommand):

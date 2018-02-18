@@ -11,10 +11,8 @@ class Command(BaseCommand):
         manage.py change_user_password --user=admin --password=123
     '''
     def add_arguments(self, parser):
-        parser.add_argument('--user',
-                            required=True)
-        parser.add_argument('--password',
-                            required=True)
+        parser.add_argument('--user', required=True)
+        parser.add_argument('--password', required=True)
 
     def handle(self, *args, **options):
         username = options['user']
