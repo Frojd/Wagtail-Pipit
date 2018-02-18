@@ -1,6 +1,6 @@
 from django.db import models
 
-from wagtail.wagtailimages.models import Image, AbstractImage, AbstractRendition
+from wagtail.images.models import Image, AbstractImage, AbstractRendition
 
 
 class CustomImage(AbstractImage):
