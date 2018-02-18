@@ -168,6 +168,8 @@ Note: This requires the pycodestyle package (`pip install pycodestyle`)
 
 ## FAQ
 
+<details>
+
 ### How do I run the app locally with a production setup?
 
 This app includes a docker-compose config that uses uwsgi and nginx. Just run this command.
@@ -240,6 +242,8 @@ First update your requirements/base.txt, then rebuild your container:
 docker-compose stop
 docker-compose up --build
 ```
+
+</details>
 
 
 ## Contributing
