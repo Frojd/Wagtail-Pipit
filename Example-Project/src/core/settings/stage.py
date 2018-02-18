@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Write prod settings here, or override base settings
+Write stage settings here, or override base settings
 """
 from __future__ import absolute_import, unicode_literals
 

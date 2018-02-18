@@ -1,25 +1,34 @@
 version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+
+references:
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+        - v21repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+
 jobs:
   checkout_code:
+    <<: *defaults
     docker:
       - image: circleci/python:3.6
       - image: circleci/node:latest
       - image: circleci/postgres:9.5
-    working_directory: ~/repo
     steps:
       - checkout
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/repo
+            - .
 
   frontend:
+    <<: *defaults
     docker:
       - image: circleci/node:latest
-    working_directory: ~/repo
     steps:
-      - restore_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - *restore_repo
       - restore_cache:
           key: v1-npm-{{ checksum "frontend/package.json" }}
       - run: cd frontend && npm install
@@ -41,7 +50,7 @@ jobs:
             - ~/repo/frontend/dist
 
   django:
-    working_directory: ~/repo
+    <<: *defaults
     docker:
       - image: circleci/python:3.6
       - image: circleci/postgres:9.5
@@ -49,8 +58,7 @@ jobs:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
     steps:
-      - restore_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - *restore_repo
       - restore_cache:
           key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
       - run:
@@ -73,12 +81,11 @@ jobs:
             - ~/repo/src
 
   deploy:
+    <<: *defaults
     docker:
       - image: circleci/python:3.6
-    working_directory: ~/repo
     steps:
-      - restore_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - *restore_repo
       - restore_cache:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
@@ -103,11 +110,11 @@ jobs:
             . venv/bin/activate
 
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              ansible-playbook deploy.yml -i hosts_stage
+              ansible-playbook deploy.yml -i stages/stage
             fi
 
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              ansible-playbook deploy.yml -i hosts_prod
+              ansible-playbook deploy.yml -i stages/prod
             fi
 
 workflows:

@@ -8,13 +8,6 @@
   sudo: yes
   sudo_user: www-data
 
-- name: Symlink app
-  file:
-    src: "{{ ansistrano_release_path.stdout }}/src"
-    dest: "{{ public_path }}"
-    state: link
-  when: public_path is defined
-
 - name: Restart uWSGI
   service:
     name: uwsgi

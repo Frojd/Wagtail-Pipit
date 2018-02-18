@@ -38,13 +38,13 @@ A short description of the project.
 2. Include this ip on your hosts-file
 
     ```
-    127.0.0.1 example.com.dev
+    127.0.0.1 example.com.test
     ```
 
     On windows you can run this command to append it:
 
     ```
-    echo 127.0.0.1 example.com.dev >> c:\windows\System32\drivers\etc\hosts
+    echo 127.0.0.1 example.com.test >> c:\windows\System32\drivers\etc\hosts
     ```
 
 3. Start project
@@ -53,12 +53,12 @@ A short description of the project.
     docker-compose up
     ```
 
-4. Visit your site on: [http://example.com.dev:8099](http://example.com.dev:8099)
+4. Visit your site on: [http://example.com.test:8081](http://example.com.test:8081)
 
 
 ## Example app
 
-This project includes a the example app `pages` and it is activated by default, please remove/uncomment it before going into production.
+This project includes a the example app `exampleapp` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning
@@ -115,13 +115,13 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Deploy application
 
-- Stage: `ansible-playbook deploy.yml -i hosts_stage`
-- Prod: `ansible-playbook deploy.yml -i hosts_prod`
+- Stage: `ansible-playbook deploy.yml -i stages/stage`
+- Prod: `ansible-playbook deploy.yml -i stages/prod`
 
 #### Rollback application
 
-- Stage: `ansible-playbook rollback.yml -i hosts_stage`
-- Prod: `ansible-playbook rollback.yml -i hosts_prod`
+- Stage: `ansible-playbook rollback.yml -i stages/stage`
+- Prod: `ansible-playbook rollback.yml -i stages/prod`
 
 
 ## Merge conflicts
@@ -163,7 +163,7 @@ chmod +x $PWD/.githooks/pep8-pre-commit.sh
 ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
 ```
 
-Note: This requires the pep8 package (`pip install pep8`)
+Note: This requires the pycodestyle package (`pip install pycodestyle`)
 
 
 ## FAQ
@@ -199,6 +199,13 @@ Start the container with service-ports exposed instead of `docker-compose up`. T
 
 ```
 docker-compose run --rm --service-ports web
+```
+
+
+### How do I run the test suite locally?
+
+```
+docker-compose run --rm web test
 ```
 
 

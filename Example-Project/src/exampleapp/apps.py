@@ -5,6 +5,6 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class PagesConfig(AppConfig):
-    name = 'pages'
-    verbose_name = 'Pages'
+class ExampleAppConfig(AppConfig):
+    name = 'exampleapp'
+    verbose_name = 'Exampleapp'

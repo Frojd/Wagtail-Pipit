@@ -1,10 +1,10 @@
-Django==1.11.8
-boto==2.46.1
+Django==2.0.2
+boto==2.48.0
 django-storages==1.6.5
-psycopg2==2.7.3.2
+psycopg2-binary==2.7.4
 pycrypto==2.6.1
-raven==6.3.0
+raven==6.5.0
 python-dotenv==0.7.1
 {% if cookiecutter.use_wagtail == 'y' -%}
-wagtail==1.13.1
+wagtail==2.0rc1
 {% endif %}
