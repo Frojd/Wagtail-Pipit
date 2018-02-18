@@ -4,5 +4,5 @@
 # Add extra test requirements here (such as factory-boy)
 pytest-django==3.1.2
 pytest-cov==2.5.1
-factory-boy==2.8.1
+factory-boy==2.10.0
 pytest-env
