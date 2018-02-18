@@ -4,6 +4,25 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
 
+filter_ignore_master: &filter_ignore_master
+  filters:
+    branches:
+      ignore:
+        - master
+        - /^release.*/
+    tags:
+      only:
+        - /^v.*/
+
+filter_only_develop_or_tag: &filter_only_develop_or_tag
+  filters:
+    branches:
+      only:
+        - develop
+    tags:
+      only:
+        - /^v.*/
+
 references:
   restore_repo: &restore_repo
     restore_cache:
@@ -114,7 +133,7 @@ jobs:
               ansible-playbook deploy.yml -i stages/stage
             fi
 
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod
             fi
 
@@ -123,13 +142,17 @@ workflows:
   build_and_test:
     jobs:
       - checkout_code
+          <<: *filter_ignore_master
       - frontend:
+          <<: *filter_ignore_master
           requires:
             - checkout_code
       - django:
+          <<: *filter_ignore_master
           requires:
             - checkout_code
       - deploy:
+          <<: *filter_only_develop_or_tag
           requires:
             - frontend
             - django
