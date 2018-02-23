@@ -1,7 +1,7 @@
 version: '3'
 services:
     web:
-        image: frojd/example_project_web
+        image: frojd/client_project_web
         build: ./src
         volumes:
             - "./src:/app"

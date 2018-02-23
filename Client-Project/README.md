@@ -1,4 +1,4 @@
-# Example-Project
+# Client-Project
 
 A short description of the project.
 
@@ -168,6 +168,8 @@ Note: This requires the pycodestyle package (`pip install pycodestyle`)
 
 ## FAQ
 
+<details>
+
 ### How do I run the app locally with a production setup?
 
 This app includes a docker-compose config that uses uwsgi and nginx. Just run this command.
@@ -241,6 +243,8 @@ docker-compose stop
 docker-compose up --build
 ```
 
+</details>
+
 
 ## Contributing
 
@@ -250,5 +254,5 @@ Want to contribute? Awesome. Just send a pull request.
 ## License
 
 
-Example-Project is released under the MIT license.
+Client-Project is released under the MIT license.
 

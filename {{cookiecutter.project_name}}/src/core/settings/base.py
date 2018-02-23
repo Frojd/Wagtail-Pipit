@@ -165,7 +165,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
-TIME_ZONE = 'UTC'
+
+TIME_ZONE = 'Europe/Stockholm'
 LANGUAGE_CODE = 'sv-SE'
 SITE_ID = 1
 USE_I18N = True
@@ -260,10 +261,11 @@ STATICFILES_DIRS = (
     # "/home/polls.com/polls/static",
 )
 
+# Prevent content type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 # Admin
-
 ADMIN_URL = r'^admin/'
-
 
 # Example metadata
 GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")

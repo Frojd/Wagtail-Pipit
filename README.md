@@ -23,7 +23,7 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 
 ## Example
 
-This repo includes a generated project, you can find it [here](./Example-Project)
+This repo includes a generated project, you can find it [here](./Client-Project)
 
 
 ## Usage
