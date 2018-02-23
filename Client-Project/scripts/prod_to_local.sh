@@ -10,7 +10,7 @@ DOCKERDIR=$(cd ${ROOTDIR}/docker/; pwd)
 
 
 echo "Creating database dump from prod..."
-ssh $ssh_host "export PGUSER=postgres && pg_dump example_project_db --no-owner > /tmp/db-dump.sql"
+ssh $ssh_host "export PGUSER=postgres && pg_dump client_project_db --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
 scp $ssh_host:/tmp/db-dump.sql $DOCKERDIR/files/db-dumps/db-dump.sql

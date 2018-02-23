@@ -1,4 +1,4 @@
-# Example-Project
+# Client-Project
 
 A short description of the project.
 
@@ -254,5 +254,5 @@ Want to contribute? Awesome. Just send a pull request.
 ## License
 
 
-Example-Project is released under the MIT license.
+Client-Project is released under the MIT license.
 

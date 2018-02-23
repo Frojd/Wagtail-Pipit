@@ -44,6 +44,25 @@ LOGGING['loggers']['']['handlers'].append('sentry')
 # properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# Prevent Man in the middle attacks with HTTP Strict Transport Security
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# Block content that appears to be an XSS attack in certain browsers
+SECURE_BROWSER_XSS_FILTER = True
+
+# Use a secure cookie for the session cookie
+SESSION_COOKIE_SECURE = True
+
+# Use a secure cookie for the CSRF cookie
+CSRF_COOKIE_SECURE = True
+
+# Use HttpOnly flag on the CSRF cookie
+# Note: JavaScript will not to be able to access the CSRF cookie
+CSRF_COOKIE_HTTPONLY = True
+
+# Sentry
 SENTRY_DSN = get_env('SENTRY_DSN')
 SENTRY_PUBLIC_DSN = get_env('SENTRY_PUBLIC_DSN')
 
