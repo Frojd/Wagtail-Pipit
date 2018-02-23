@@ -261,10 +261,11 @@ STATICFILES_DIRS = (
     # "/home/polls.com/polls/static",
 )
 
+# Prevent content type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 # Admin
-
 ADMIN_URL = r'^admin/'
-
 
 # Example metadata
 GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")
