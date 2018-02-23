@@ -141,7 +141,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - checkout_code
+      - checkout_code:
           <<: *filter_ignore_master
       - frontend:
           <<: *filter_ignore_master
