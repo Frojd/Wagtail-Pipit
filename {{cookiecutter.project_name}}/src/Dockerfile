@@ -22,7 +22,8 @@ RUN apt-get update \
 RUN apt-get update && apt-get -y install postgresql
 
 RUN pip install -r requirements/$REQUIREMENTS --no-cache-dir \
-    && pip install ipython
+    && pip install ipython \
+    && pip install pyinotify
 
 EXPOSE 8000
 
