@@ -6,11 +6,6 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 DOCKER_DIR = os.path.join(PROJECT_DIRECTORY, 'docker', 'config')
 
 shutil.copyfile(
-    os.path.join(DOCKER_DIR, 'db.example.env'),
-    os.path.join(DOCKER_DIR, 'db.env')
-)
-
-shutil.copyfile(
     os.path.join(DOCKER_DIR, 'web.example.env'),
     os.path.join(DOCKER_DIR, 'web.env')
 )

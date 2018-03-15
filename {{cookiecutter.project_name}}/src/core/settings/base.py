@@ -23,7 +23,7 @@ APP_VERSION = '{{cookiecutter.version}}'
 SECRET_KEY = get_env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env_bool('DEBUG')
+DEBUG = False
 
 # This is when debug is off, else django wont allow you to visit the site
 ALLOWED_HOSTS = get_env('ALLOWED_HOSTS').split(',')
@@ -139,7 +139,7 @@ DATABASES = {
         'USER': get_env('DATABASE_USER'),
         'PASSWORD': get_env('DATABASE_PASSWORD'),
         'HOST': get_env('DATABASE_HOST'),
-        'PORT': get_env('DATABASE_PORT'),
+        'PORT': get_env('DATABASE_PORT', default=5432),
     }
 }
 
@@ -266,6 +266,3 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
 ADMIN_URL = r'^admin/'
-
-# Example metadata
-GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")

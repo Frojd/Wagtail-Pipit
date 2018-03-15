@@ -31,7 +31,6 @@
 1. Setup container .env files
 
     ```
-    cp docker/config/db.example.env docker/config/db.env
     cp docker/config/web.example.env docker/config/web.env
     ```
 
