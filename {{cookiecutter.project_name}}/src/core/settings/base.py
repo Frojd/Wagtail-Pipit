@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'modelcluster',
     'taggit',
+    'django_react_templatetags',
     {% endif %}
 
     # Project specific apps
@@ -72,6 +73,7 @@ INSTALLED_APPS = [
     {% if cookiecutter.use_wagtail == 'y' -%}
     'sitesettings',
     'customimage',
+    '{{ cookiecutter.project_slug }}',
     {% endif %}
 ]
 
