@@ -7,7 +7,6 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Example app](#example-app)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Deployment](#deployment)
@@ -53,11 +52,6 @@
     ```
 
 4. Visit your site on: [http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
-
-
-## Example app
-
-This project includes a the example app `exampleapp` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning

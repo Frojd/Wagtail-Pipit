@@ -44,9 +44,6 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    # Prefered way of including an apps urls
-    url(r'', include('exampleapp.urls')),  # TODO: Example app, remove this
-
     {% if cookiecutter.use_wagtail == 'y' -%}
     url(r'', include(wagtail_urls)),
     {% endif %}
