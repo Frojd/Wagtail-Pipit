@@ -18,7 +18,6 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
 - Deploy scripts using [ansistrano](https://github.com/ansistrano)
 - Scripts for syncing data from remote to local machine
-- Enhanced django runserver with [runserver_plus](http://django-extensions.readthedocs.io/en/latest/runserver_plus.html)
 - ...and for syncing prod => stage
 
 
