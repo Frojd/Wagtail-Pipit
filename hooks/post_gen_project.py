@@ -13,7 +13,7 @@ shutil.copyfile(
 
 
 # Clone react sass starterkit and use latest tag
-if '{{ cookiecutter.use_wagtail }}'.lower() == 'y':
+if '{{ cookiecutter.use_react_sass_starterkit }}'.lower() == 'y':
     shutil.rmtree(os.path.join(
         PROJECT_DIRECTORY, 'frontend'
     ))
