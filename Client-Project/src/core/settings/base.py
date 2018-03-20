@@ -23,7 +23,7 @@ APP_VERSION = '0.1.0'
 SECRET_KEY = get_env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env_bool('DEBUG')
+DEBUG = False
 
 # This is when debug is off, else django wont allow you to visit the site
 ALLOWED_HOSTS = get_env('ALLOWED_HOSTS').split(',')
@@ -62,15 +62,14 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'modelcluster',
     'taggit',
-    
+    'django_react_templatetags',
 
     # Project specific apps
     'core',
-    'exampleapp',  # TODO: Example app, remove this
 
     'sitesettings',
     'customimage',
-    
+    'client_project',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +83,6 @@ MIDDLEWARE = [
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -113,7 +111,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'wagtail.contrib.settings.context_processors.settings',
-                
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
@@ -135,7 +132,7 @@ DATABASES = {
         'USER': get_env('DATABASE_USER'),
         'PASSWORD': get_env('DATABASE_PASSWORD'),
         'HOST': get_env('DATABASE_HOST'),
-        'PORT': get_env('DATABASE_PORT'),
+        'PORT': get_env('DATABASE_PORT', default=5432),
     }
 }
 
@@ -261,6 +258,3 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
 ADMIN_URL = r'^admin/'
-
-# Example metadata
-GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")

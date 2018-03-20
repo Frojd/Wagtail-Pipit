@@ -1,0 +1,25 @@
+@mixin media($key) {
+    @if $key == 'd' {
+        @content;
+    } @elseif map-has-key($breakpoints, $key) {
+        @media (min-width: map-get($breakpoints, $key)) {
+            @content;
+        }
+    } @else {
+        @error 'Unfortunately, no value could be retrieved from `#{$breakpoints}`. '
+        + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+}
+
+@mixin clearfix() {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin focus() {
+    outline: 1px dotted;
+    outline: -webkit-focus-ring-color auto 5px;
+}

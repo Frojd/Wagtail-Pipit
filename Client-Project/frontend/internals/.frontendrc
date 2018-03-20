@@ -1,0 +1,30 @@
+// All paths are relative to the application root
+{
+    // General
+    "outputPath": "dist/static",
+    "outputPathJsFolder": "js",
+    "outputPathCssFolder": "css",
+    "outputPathHtmlFolder": "dist/html", // from process.cwd(), ie root folder of frontend
+    "webpackConfig": "./webpack.config.js",
+    "rootFolder": "./", // Only used for overriding in tests
+    "appFolder": "app",
+    "componentsFolder": "components",
+    "containersFolder": "containers",
+
+    // Server
+    "port": 7000,
+    "rootServerTemplatePath": "/internals/templates/server/",
+    "publicPath": "/static/",
+
+    // Cli
+    "rootCliTemplatePath": "/internals/templates/cli/",
+    "scssFolder": "scss",
+    "createScss": true,
+    "createClass": true,
+    "createPure": false,
+    "createIndex": true,
+    "createData": true,
+    "createTest": true,
+    "updateIndexScss": true,
+    "updateIndexJs": true,
+}

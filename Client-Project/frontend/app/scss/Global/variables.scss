@@ -1,0 +1,18 @@
+$maxwidths: (
+    site: 1280px,
+);
+
+$breakpoints: (
+    xxs: 400px,
+    xs: 480px,
+    sm: 768px,
+    md: 960px,
+    lg: 1024px,
+    xl: 1280px,
+);
+
+$z-index: (
+    d: 10,
+    behind: -1,
+    front: 100,
+);

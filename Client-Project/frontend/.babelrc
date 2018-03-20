@@ -1,0 +1,65 @@
+{
+    "env": {
+        "test": {
+            "presets": [
+                [
+                    "env"
+                ],
+                "react"
+            ],
+            "plugins": [
+                "transform-class-properties",
+                "transform-object-rest-spread",
+                "inline-react-svg",
+                "babel-plugin-webpack-alias"
+            ]
+        },
+        "development": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "targets": {
+                            "browsers": [
+                                "last 2 versions",
+                                "safari >= 7",
+                                "ie >= 10"
+                            ]
+                        }
+                    }
+                ],
+                "react"
+            ],
+            "plugins": [
+                "transform-class-properties",
+                "transform-object-rest-spread",
+                "inline-react-svg",
+                "babel-plugin-webpack-alias",
+                "react-hot-loader/babel"
+            ]
+        },
+        "production": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "targets": {
+                            "browsers": [
+                                "last 2 versions",
+                                "safari >= 7",
+                                "ie >= 10"
+                            ]
+                        }
+                    }
+                ],
+                "react"
+            ],
+            "plugins": [
+                "transform-class-properties",
+                "transform-object-rest-spread",
+                "inline-react-svg",
+                "babel-plugin-webpack-alias"
+            ]
+        }
+    }
+}

@@ -12,7 +12,6 @@ from core.settings.base import *  # NOQA
 
 
 DEBUG = False
-TEMPLATES[0]['OPTIONS']['debug'] = False
 
 logging.disable(logging.CRITICAL)
 

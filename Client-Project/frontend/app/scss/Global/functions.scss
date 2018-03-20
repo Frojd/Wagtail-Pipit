@@ -1,0 +1,28 @@
+// Returns a key value if it exsists
+@function get-default($map, $key: 'd', $default: '') {
+    $value: $key;
+    @if $default != '' {
+        $value: $default;
+    }
+    @if map-has-key($map, $key) {
+        $value: map-get($map, $key);
+    }
+    @return $value;
+}
+
+// Check if list contains a value
+@function contains($list, $var) {
+    $index: index($list, $var);
+    @if $index != null and $index > 0 {
+        @return true;
+    }
+    @return false;
+}
+
+@function palette($palette, $key: 'd') {
+    @return map-get(map-get($palettes, $palette), $key);
+}
+
+@function z($key: 'd') {
+    @return map-get($z-index, $key);
+}

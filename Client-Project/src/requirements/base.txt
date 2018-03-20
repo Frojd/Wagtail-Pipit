@@ -6,4 +6,4 @@ pycrypto==2.6.1
 raven==6.5.0
 python-dotenv==0.7.1
 wagtail==2.0rc1
-
+django_react_templatetags==4.0.0

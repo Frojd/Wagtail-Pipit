@@ -1,6 +1,5 @@
 setup:
 	git flow init
-	cp docker/config/db.example.env docker/config/db.env
 	cp docker/config/web.example.env docker/config/web.env
 	ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 	ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
