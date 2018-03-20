@@ -36,3 +36,5 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 ]
 
 LOGGING = {}
+
+TEST_RUNNER = 'core.test_runner.PytestTestRunner'
