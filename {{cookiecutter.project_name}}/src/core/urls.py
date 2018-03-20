@@ -33,12 +33,10 @@ if settings.DEBUG:
 urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
     url('^sitemap\.xml$', sitemap, name='sitemap'),
-    {% endif %}
 ]
 
 urlpatterns += [
