@@ -5,7 +5,8 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 
 ## Features
 
-- Django 1.11
+- Django 2
+- Wagtail 2
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - Settings primed for production
@@ -45,7 +46,6 @@ author_name [You]:
 email [you@example.com]:
 description [A short description of the project.]: Example description.
 use_geodjango [y]
-use_wagtail [y]
 domain_prod [example.com]:
 domain_stage [stage.example.com]:
 ssh_prod [user@prod-server]:
