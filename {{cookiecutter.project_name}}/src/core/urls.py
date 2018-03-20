@@ -6,13 +6,11 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 
-{% if cookiecutter.use_wagtail == 'y' %}
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.search import urls as wagtailsearch_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
-{% endif %}
 
 
 urlpatterns = []
@@ -44,9 +42,7 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    {% if cookiecutter.use_wagtail == 'y' -%}
     url(r'', include(wagtail_urls)),
-    {% endif %}
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

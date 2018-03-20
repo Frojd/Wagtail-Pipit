@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # Third party apps
     'storages',
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -64,16 +63,13 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'django_react_templatetags',
-    {% endif %}
 
     # Project specific apps
     'core',
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     'sitesettings',
     'customimage',
     '{{ cookiecutter.project_slug }}',
-    {% endif %}
 ]
 
 MIDDLEWARE = [
@@ -85,10 +81,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    {% endif %}
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -116,9 +110,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                {% if cookiecutter.use_wagtail == 'y' -%}
                 'wagtail.contrib.settings.context_processors.settings',
-                {% endif %}
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
@@ -214,11 +206,10 @@ LOGGING = {
 }
 
 
-{% if cookiecutter.use_wagtail == 'y' -%}
 # Wagtail
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
-{% endif %}
+
 
 # File storage
 if get_env('AWS_ACCESS_KEY_ID'):
