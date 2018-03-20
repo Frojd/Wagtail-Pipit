@@ -2,7 +2,7 @@ from wagtail.core.models import Page
 
 from django_react_templatetags.mixins import RepresentationMixin
 
-from core.mixins import SeoMixin
+from ..mixins import SeoMixin
 
 
 class Base(RepresentationMixin, SeoMixin, Page):
