@@ -5,8 +5,6 @@
     "email": "you@example.com",
     "description": "A short description of the project.",
     "use_geodjango": "n",
-    "use_wagtail": "y",
-    "use_react_sass_starterkit": "y",
     "domain_prod": "example.com",
     "domain_stage": "stage.example.com",
     "ssh_prod": "user@prod-server",
