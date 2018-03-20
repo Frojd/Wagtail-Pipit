@@ -42,11 +42,11 @@ shutil.rmtree(os.path.join(
 ))
 
 shutil.copy2(os.path.join(
-    PROJECT_DIRECTORY, '.frontendrc'
+    PROJECT_DIRECTORY, '.frontendrc-template'
 ), os.path.join(
     PROJECT_DIRECTORY, 'frontend/.frontendrc'
 ))
 
 os.remove(os.path.join(
-    PROJECT_DIRECTORY, '.frontendrc'
+    PROJECT_DIRECTORY, '.frontendrc-template'
 ))
