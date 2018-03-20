@@ -40,3 +40,13 @@ p.communicate()
 shutil.rmtree(os.path.join(
     PROJECT_DIRECTORY, 'frontend/.git'
 ))
+
+shutil.copy2(os.path.join(
+    PROJECT_DIRECTORY, '.frontendrc'
+), os.path.join(
+    PROJECT_DIRECTORY, 'frontend/.frontendrc'
+))
+
+os.remove(os.path.join(
+    PROJECT_DIRECTORY, '.frontendrc'
+))
