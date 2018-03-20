@@ -1,7 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.http import HttpResponseRedirect
+
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.core.models import Page
 
 from sitesettings.models import SiteSetting
 
