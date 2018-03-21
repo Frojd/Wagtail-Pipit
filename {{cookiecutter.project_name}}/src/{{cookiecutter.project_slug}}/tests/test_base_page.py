@@ -5,9 +5,18 @@ from ..factories import BasePageFactory
 
 
 class BasePageTests(WagtailPageTests):
-    def test_creatable(self):
+    def test_base_page(self):
         page = BasePageFactory.create(
             title='Start',
+            parent=None,
         )
 
-        assert page.id is not None
+        self.assertIsNotNone(page.id)
+
+        sub_page = BasePageFactory.create(
+            title='Start',
+            parent=page,
+        )
+
+        self.assertEqual(sub_page.get_parent().id, page.id)
+
