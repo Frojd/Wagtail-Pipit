@@ -4,7 +4,7 @@ from wagtail.tests.utils import WagtailPageTests
 from ..factories import BasePageFactory
 
 
-class BasePageTests(WagtailPageTests):
+class BasePageTest(WagtailPageTests):
     def test_base_page(self):
         page = BasePageFactory.create(
             title='Start',
