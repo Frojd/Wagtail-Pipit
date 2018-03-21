@@ -4,7 +4,6 @@
     "author_name": "You",
     "email": "you@example.com",
     "description": "A short description of the project.",
-    "use_geodjango": "n",
     "domain_prod": "example.com",
     "domain_stage": "stage.example.com",
     "ssh_prod": "user@prod-server",

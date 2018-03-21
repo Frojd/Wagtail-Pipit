@@ -26,11 +26,7 @@ services:
       - HASTUR_JSON_SNAKE_TO_CAMEL=true
       - HASTUR_STRIP_DOT_PREFIX=true
   db:
-    {% if cookiecutter.use_geodjango == 'y' %}
     image: mdillon/postgis:9.6
-    {% else %}
-    image: postgres:9.6
-    {% endif -%}
     ports:
       - "{{cookiecutter.docker_db_port}}:5432"
     volumes:
