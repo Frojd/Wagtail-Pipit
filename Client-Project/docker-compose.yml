@@ -12,9 +12,21 @@ services:
     depends_on:
       - db
     env_file: ./docker/config/web.env
+  ssr:
+    image: frojd/hastur:develop
+    volumes:
+      - "./src/static:/app"
+      - "./frontend/node_modules:/app/raw/node_modules"
+    environment:
+      - HASTUR_PATH=/app/raw/components
+      - HASTUR_PORT=
+      - HASTUR_HOST=
+      - HASTUR_DEBUG=true
+      - HASTUR_SENTRY=
+      - HASTUR_JSON_SNAKE_TO_CAMEL=true
+      - HASTUR_STRIP_DOT_PREFIX=true
   db:
-    
-    image: postgres:9.6
+    image: mdillon/postgis:9.6
     ports:
       - "5433:5432"
     volumes:

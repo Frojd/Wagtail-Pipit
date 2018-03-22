@@ -5,7 +5,7 @@ from django_react_templatetags.mixins import RepresentationMixin
 from ..mixins import SeoMixin
 
 
-class Base(RepresentationMixin, SeoMixin, Page):
+class BasePage(RepresentationMixin, SeoMixin, Page):
     # Basepage is not anything creatable in admin
     is_creatable = False
     show_in_menus_default = True
