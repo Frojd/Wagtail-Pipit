@@ -7,5 +7,8 @@ setup:
 	ln -nfs $WPD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 	docker-compose up
 
+test:
+	docker-compose run --rm web test
+
 fixcode:
 	autopep8 -r --in-place --aggressive src
