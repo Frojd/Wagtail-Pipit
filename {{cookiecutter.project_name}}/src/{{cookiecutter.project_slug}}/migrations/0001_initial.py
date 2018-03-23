@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Base',
+            name='BasePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('og_title', models.CharField(blank=True, help_text='Fallbacks to seo title if empty', max_length=40, null=True, verbose_name='Facebook title')),
