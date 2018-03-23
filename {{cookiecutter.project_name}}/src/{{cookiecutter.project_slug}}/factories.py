@@ -9,4 +9,4 @@ from .pages.base import BasePage
 
 class BasePageFactory(PageFactory):
     class Meta:
-        model = Base
+        model = BasePage
