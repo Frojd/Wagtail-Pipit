@@ -1,0 +1,6 @@
+{% raw %}{% extends 'layouts/base.html' %}
+{% load react %}
+
+{% block main %}
+    {% react_render component=page.component_name props=page %}
+{% endblock %}{% endraw %}

@@ -1,0 +1,5 @@
+You will delete these files in component ${componentName} on this path
+${folderPath}/:\n
+${files.join('\n')}\n
+
+Are you sure? (yes/no):

@@ -1,11 +1,12 @@
-# Frojd-Django-Boilerplate
+# Wagtail-Boilerplate
 
 This is a cookiecutter Django boilerplate that covers best practices and a docker configuration. Inspiration from [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django).
 
 
 ## Features
 
-- Django 1.11
+- Django 2
+- Wagtail 2
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - Settings primed for production
@@ -17,7 +18,6 @@ This is a cookiecutter Django boilerplate that covers best practices and a docke
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
 - Deploy scripts using [ansistrano](https://github.com/ansistrano)
 - Scripts for syncing data from remote to local machine
-- Enhanced django runserver with [runserver_plus](http://django-extensions.readthedocs.io/en/latest/runserver_plus.html)
 - ...and for syncing prod => stage
 
 
@@ -34,7 +34,7 @@ This repo includes a generated project, you can find it [here](./Client-Project)
 
 2. Generate project:
 ```
-cookiecutter https://github.com/Frojd/Frojd-Django-Boilerplate.git
+cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 ```
 
 3. Insert your custom vars:
@@ -44,8 +44,6 @@ project_slug [example_project]:
 author_name [You]:
 email [you@example.com]:
 description [A short description of the project.]: Example description.
-use_geodjango [y]
-use_wagtail [y]
 domain_prod [example.com]:
 domain_stage [stage.example.com]:
 ssh_prod [user@prod-server]:

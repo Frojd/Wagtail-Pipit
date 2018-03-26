@@ -1,0 +1,7 @@
+# Ignore dist folder
+/dist
+/raw
+
+# Ignore build errors and node_modules
+npm-debug*
+node_modules/*

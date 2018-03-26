@@ -5,5 +5,3 @@
 django-debug-toolbar
 isort
 pipdeptree
-django-extensions
-Werkzeug

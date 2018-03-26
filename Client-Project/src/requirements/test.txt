@@ -6,3 +6,4 @@ pytest-django==3.1.2
 pytest-cov==2.5.1
 factory-boy==2.10.0
 pytest-env
+wagtail-factories==1.0.0

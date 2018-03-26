@@ -7,7 +7,6 @@ A short description of the project.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Example app](#example-app)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Deployment](#deployment)
@@ -31,7 +30,6 @@ A short description of the project.
 1. Setup container .env files
 
     ```
-    cp docker/config/db.example.env docker/config/db.env
     cp docker/config/web.example.env docker/config/web.env
     ```
 
@@ -54,11 +52,6 @@ A short description of the project.
     ```
 
 4. Visit your site on: [http://example.com.test:8081](http://example.com.test:8081)
-
-
-## Example app
-
-This project includes a the example app `exampleapp` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning

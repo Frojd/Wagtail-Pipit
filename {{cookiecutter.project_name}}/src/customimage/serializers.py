@@ -1,19 +1,77 @@
 from rest_framework import serializers
+from wagtail.images.shortcuts import get_rendition_or_not_found
 
 from customimage.models import CustomImage
 
 
 class CustomImageSerializer(serializers.ModelSerializer):
-    def to_representation(self, obj):
-        image = {
-            'id': obj.id,
-            'title': obj.title,
-            'url': obj.file.url if obj.file else None,
-            'width': obj.width,
-            'height': obj.height,
+    renditions = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
+    id = serializers.SerializerMethodField()
+    focal = serializers.SerializerMethodField()
+
+    def get_id(self, obj):
+        if hasattr(self, '_mocked_id'):
+            return self._mocked_id
+
+        return obj.pk
+
+    def get_url(self, obj):
+        if hasattr(self, '_mocked_url'):
+            return self._mocked_url
+
+        return obj.file.url if obj.file else None
+
+    def get_renditions(self, obj):
+        if hasattr(self, '_mocked_renditions'):
+            return self._mocked_renditions
+
+        if not hasattr(self, '_renditions'):
+            return None
+
+        renditions = {}
+        for (name, spec) in self._renditions:
+            rendition = get_rendition_or_not_found(obj, spec)
+            renditions[name] = rendition.attrs_dict
+
+        return renditions
+
+    def get_focal(self, obj):
+        # Default focal point values
+        background_x = .5
+        background_y = .5
+
+        if obj.focal_point_width:
+            # Get point relative to image size, make sure it isn't more than 1
+            background_x = min(round(obj.focal_point_x / obj.width, 4), 1)
+            background_y = min(round(obj.focal_point_y / obj.height, 4), 1)
+
+        return {
+            'x': '{:.2%}'.format(background_x),
+            'y': '{:.2%}'.format(background_y),
         }
-        return image
 
     class Meta:
         model = CustomImage
-        fields = ['title', 'file', 'width', 'height', 'file_size']
+        fields = ['title', 'file', 'width', 'height', 'file_size', 'focal']
+
+
+def get_image_serializer(renditions=None):
+    renditions = renditions if renditions else []
+    """
+    :param renditions: [(renditionName, wagtailspec,)]
+    :return: Monkey patched CustomImageSerializer
+    For docs regarding supported rendition-params (wagtailspec), see:
+    http://docs.wagtail.io/en/v1.13.1/topics/images.html#using-images-in-templates
+
+    example:
+    src = get_image_serializer([
+        ('rend1', 'fill-200x200',),
+        ('rend2', 'min-200x1000',),
+    ])(img_instance).data['renditions'].get('rend1')
+
+    """
+    class PatchedSerializer(CustomImageSerializer):
+        _renditions = renditions
+
+    return PatchedSerializer
