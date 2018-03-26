@@ -1,0 +1,48 @@
+
+{% load staticfiles %}
+
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ meta_description }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{% static 'core/css/main.css' %}" type="text/css" />
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header>
+            {% block header %}
+                {% include 'partials/header.html' %}
+            {% endblock header %}
+        </header>
+
+        <main>
+            {% block main %}
+            {% endblock main %}
+        </main>
+
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+        <script type="text/javascript" src="{% static 'core/js/main.js' %}"></script>
+
+        {% if SETTINGS.SENTRY_PUBLIC_DSN %}
+            <script src="https://cdn.ravenjs.com/3.12.0/raven.min.js" crossorigin="anonymous"></script>
+            <script>
+            Raven.config('{{ SETTINGS.SENTRY_PUBLIC_DSN }}', {
+                whitelistUrls: [
+                    '{{ SETTINGS.STATIC_URL }}',
+                ]
+            }).install();
+            </script>
+        {% endif %}
+    </body>
+</html>
+

@@ -1,0 +1,9 @@
+import React from 'react';
+
+const ${componentName} = () => (
+    <div className="${componentName}">
+        ${componentName}
+    </div>
+);
+
+export default ${componentName};

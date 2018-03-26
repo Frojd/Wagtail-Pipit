@@ -1,23 +1,38 @@
 version: '3'
 services:
-    web:
-        image: frojd/client_project_web
-        build: ./src
-        volumes:
-            - "./src:/app"
-            - "./docker/files/shared:/shared:rw"
-            - "./docker/files/var/log:/var/log:rw"
-        ports:
-            - "8081:8000"
-        depends_on:
-            - db
-        env_file: ./docker/config/web.env
-    db:
-        
-        image: postgres:9.6
-        ports:
-            - "5433:5432"
-        volumes:
-            - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
-            - "./docker/files/shared:/shared:rw"
-        env_file: ./docker/config/db.env
+  web:
+    image: frojd/client_project_web
+    build: ./src
+    volumes:
+      - "./src:/app"
+      - "./docker/files/shared:/shared:rw"
+      - "./docker/files/var/log:/var/log:rw"
+    ports:
+      - "8081:8000"
+    depends_on:
+      - db
+    env_file: ./docker/config/web.env
+  ssr:
+    image: frojd/hastur:develop
+    volumes:
+      - "./src/static:/app"
+      - "./frontend/node_modules:/app/raw/node_modules"
+    environment:
+      - HASTUR_PATH=/app/raw/components
+      - HASTUR_PORT=
+      - HASTUR_HOST=
+      - HASTUR_DEBUG=true
+      - HASTUR_SENTRY=
+      - HASTUR_JSON_SNAKE_TO_CAMEL=true
+      - HASTUR_STRIP_DOT_PREFIX=true
+  db:
+    image: mdillon/postgis:9.6
+    ports:
+      - "5433:5432"
+    volumes:
+      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
+      - "./docker/files/shared:/shared:rw"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres

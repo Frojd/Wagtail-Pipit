@@ -23,7 +23,7 @@ APP_VERSION = '{{cookiecutter.version}}'
 SECRET_KEY = get_env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env_bool('DEBUG')
+DEBUG = False
 
 # This is when debug is off, else django wont allow you to visit the site
 ALLOWED_HOSTS = get_env('ALLOWED_HOSTS').split(',')
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # Third party apps
     'storages',
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -63,16 +62,14 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'modelcluster',
     'taggit',
-    {% endif %}
+    'django_react_templatetags',
 
     # Project specific apps
     'core',
-    'exampleapp',  # TODO: Example app, remove this
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     'sitesettings',
     'customimage',
-    {% endif %}
+    '{{ cookiecutter.project_slug }}',
 ]
 
 MIDDLEWARE = [
@@ -84,10 +81,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    {% if cookiecutter.use_wagtail == 'y' -%}
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    {% endif %}
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -115,9 +110,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                {% if cookiecutter.use_wagtail == 'y' -%}
                 'wagtail.contrib.settings.context_processors.settings',
-                {% endif %}
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
@@ -139,7 +132,7 @@ DATABASES = {
         'USER': get_env('DATABASE_USER'),
         'PASSWORD': get_env('DATABASE_PASSWORD'),
         'HOST': get_env('DATABASE_HOST'),
-        'PORT': get_env('DATABASE_PORT'),
+        'PORT': get_env('DATABASE_PORT', default=5432),
     }
 }
 
@@ -213,11 +206,10 @@ LOGGING = {
 }
 
 
-{% if cookiecutter.use_wagtail == 'y' -%}
 # Wagtail
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
-{% endif %}
+
 
 # File storage
 if get_env('AWS_ACCESS_KEY_ID'):
@@ -266,6 +258,3 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
 ADMIN_URL = r'^admin/'
-
-# Example metadata
-GA_ACCOUNT = get_env('GA_ACCOUNT', default="GA-XXXX")

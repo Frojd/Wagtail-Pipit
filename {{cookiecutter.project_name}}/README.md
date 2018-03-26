@@ -7,7 +7,6 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Example app](#example-app)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Deployment](#deployment)
@@ -20,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.6+ 
+- Python 3.5+ 
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -31,7 +30,6 @@
 1. Setup container .env files
 
     ```
-    cp docker/config/db.example.env docker/config/db.env
     cp docker/config/web.example.env docker/config/web.env
     ```
 
@@ -54,11 +52,6 @@
     ```
 
 4. Visit your site on: [http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
-
-
-## Example app
-
-This project includes a the example app `exampleapp` and it is activated by default, please remove/uncomment it before going into production.
 
 
 ## Versioning
