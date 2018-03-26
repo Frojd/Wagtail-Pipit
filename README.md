@@ -1,4 +1,4 @@
-# Frojd-Django-Boilerplate
+# Wagtail-Boilerplate
 
 This is a cookiecutter Django boilerplate that covers best practices and a docker configuration. Inspiration from [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django).
 
@@ -34,7 +34,7 @@ This repo includes a generated project, you can find it [here](./Client-Project)
 
 2. Generate project:
 ```
-cookiecutter https://github.com/Frojd/Frojd-Django-Boilerplate.git
+cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 ```
 
 3. Insert your custom vars:
