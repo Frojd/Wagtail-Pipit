@@ -1,6 +1,6 @@
 # Wagtail-Boilerplate
 
-This is a cookiecutter Django boilerplate that covers best practices and a docker configuration. Inspiration from [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django).
+This is a cookiecutter Django/Wagtail boilerplate that covers best practices and a docker configuration. Inspiration from [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django).
 
 
 ## Features
