@@ -114,6 +114,7 @@ TEMPLATES = [
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
+                'django_react_templatetags.context_processors.react_context_processor',
             ],
         },
     },
