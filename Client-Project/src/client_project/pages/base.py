@@ -12,5 +12,5 @@ class BasePage(RepresentationMixin, SeoMixin, Page):
 
     def __init__(self, *args, **kwargs):
         self.template = 'pages/react.html'
-        self.component_name = 'Page{}'.format(self.__class__.__name__)
+        self.component_name = '{}Page'.format(self.__class__.__name__)
         super().__init__(*args, **kwargs)
