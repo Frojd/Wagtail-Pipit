@@ -220,6 +220,7 @@ if get_env('AWS_ACCESS_KEY_ID'):
     AWS_AUTO_CREATE_BUCKET = True
     AWS_QUERYSTRING_AUTH = False
     AWS_EXPIRY = 60 * 60 * 24 * 7
+    AWS_S3_FILE_OVERWRITE = False
 
     AWS_HEADERS = {
         'Cache-Control': 'max-age={}'.format(AWS_EXPIRY),
