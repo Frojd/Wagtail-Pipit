@@ -114,6 +114,7 @@ TEMPLATES = [
 
                 # Project specific
                 'core.context_processors.settings_context_processor',
+                'django_react_templatetags.context_processors.react_context_processor',
             ],
         },
     },
@@ -212,7 +213,7 @@ WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
 
 
 # File storage
-if get_env('AWS_ACCESS_KEY_ID'):
+if get_env('AWS_ACCESS_KEY_ID', default=None):
     AWS_ACCESS_KEY_ID = get_env('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = get_env('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = get_env('AWS_BUCKET_NAME')
