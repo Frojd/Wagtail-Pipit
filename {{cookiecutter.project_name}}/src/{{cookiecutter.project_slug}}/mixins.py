@@ -108,7 +108,7 @@ class SeoMixin(Page):
         abstract = True
 
 
-class CreateUpdateModelMixin(models.Model):
+class TimestampMixin(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
