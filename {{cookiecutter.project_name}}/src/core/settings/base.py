@@ -210,6 +210,7 @@ LOGGING = {
 # Wagtail
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 WAGTAILIMAGES_IMAGE_MODEL = 'customimage.CustomImage'
+WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 
 # File storage
