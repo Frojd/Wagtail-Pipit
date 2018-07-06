@@ -26,7 +26,7 @@ p.communicate()
 
 # Get the name of the latest tag
 tag = subprocess.check_output(
-    'cd frontend && git tag | tail -1',
+    'cd frontend && git tag -l --sort=version:refname | tail -1',
     shell=True
 )
 
