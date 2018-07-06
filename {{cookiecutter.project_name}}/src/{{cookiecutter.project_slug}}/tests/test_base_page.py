@@ -19,4 +19,3 @@ class BasePageTest(WagtailPageTests):
         )
 
         self.assertEqual(sub_page.get_parent().id, page.id)
-
