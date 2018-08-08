@@ -6,6 +6,8 @@ Write prod settings here, or override base settings
 """
 from __future__ import absolute_import, unicode_literals
 
+import os
+
 from core.settings.base import *  # NOQA
 
 
@@ -69,4 +71,6 @@ SENTRY_PUBLIC_DSN = get_env('SENTRY_PUBLIC_DSN')
 RAVEN_CONFIG = {
     'dsn': SENTRY_DSN,
     'release': APP_VERSION,
+    "environment": "prod",
+    "prefix": os.path.dirname(os.path.abspath(os.path.join(__file__, "..", ".."))),
 }
