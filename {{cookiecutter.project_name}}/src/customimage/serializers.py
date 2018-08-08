@@ -11,22 +11,22 @@ class CustomImageSerializer(serializers.ModelSerializer):
     focal = serializers.SerializerMethodField()
 
     def get_id(self, obj):
-        if hasattr(self, '_mocked_id'):
+        if hasattr(self, "_mocked_id"):
             return self._mocked_id
 
         return obj.pk
 
     def get_url(self, obj):
-        if hasattr(self, '_mocked_url'):
+        if hasattr(self, "_mocked_url"):
             return self._mocked_url
 
         return obj.file.url if obj.file else None
 
     def get_renditions(self, obj):
-        if hasattr(self, '_mocked_renditions'):
+        if hasattr(self, "_mocked_renditions"):
             return self._mocked_renditions
 
-        if not hasattr(self, '_renditions'):
+        if not hasattr(self, "_renditions"):
             return None
 
         renditions = {}
@@ -46,14 +46,11 @@ class CustomImageSerializer(serializers.ModelSerializer):
             background_x = min(round(obj.focal_point_x / obj.width, 4), 1)
             background_y = min(round(obj.focal_point_y / obj.height, 4), 1)
 
-        return {
-            'x': '{:.2%}'.format(background_x),
-            'y': '{:.2%}'.format(background_y),
-        }
+        return {"x": "{:.2%}".format(background_x), "y": "{:.2%}".format(background_y)}
 
     class Meta:
         model = CustomImage
-        fields = ['title', 'file', 'width', 'height', 'file_size', 'focal']
+        fields = ["title", "file", "width", "height", "file_size", "focal"]
 
 
 def get_image_serializer(renditions=None):
@@ -71,6 +68,7 @@ def get_image_serializer(renditions=None):
     ])(img_instance).data['renditions'].get('rend1')
 
     """
+
     class PatchedSerializer(CustomImageSerializer):
         _renditions = renditions
 

@@ -19,7 +19,7 @@ def get_env(name, default=None):
 
 
 def get_env_bool(name, default=None):
-    return get_env(name, default=default) == 'True'
+    return get_env(name, default=default) == "True"
 
 
 def get_first_env(*args):
@@ -41,8 +41,9 @@ def get_first_env(*args):
 
 
 def get_env_variable(name, is_bool=False, default=None):
-    warnings.warn("get_env_variable is deprecated, use get_env instead",
-                  DeprecationWarning)
+    warnings.warn(
+        "get_env_variable is deprecated, use get_env instead", DeprecationWarning
+    )
 
     if is_bool:
         return get_env_bool(name, default=default)

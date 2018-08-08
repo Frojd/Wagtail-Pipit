@@ -11,6 +11,6 @@ class BasePage(RepresentationMixin, SeoMixin, Page):
     show_in_menus_default = True
 
     def __init__(self, *args, **kwargs):
-        self.template = 'pages/react.html'
-        self.component_name = '{}Page'.format(self.__class__.__name__)
+        self.template = "pages/react.html"
+        self.component_name = "{}Page".format(self.__class__.__name__)
         super().__init__(*args, **kwargs)

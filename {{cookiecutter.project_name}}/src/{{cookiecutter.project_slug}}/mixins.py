@@ -8,7 +8,7 @@ from wagtail.core.models import Page
 from sitesettings.models import SiteSetting
 
 
-class RedirectUpMixin():
+class RedirectUpMixin:
     def serve(self, request, *args, **kwargs):
         parent = self.get_parent()
         return HttpResponseRedirect(parent.url)
@@ -19,78 +19,76 @@ class SeoMixin(Page):
         max_length=40,
         blank=True,
         null=True,
-        verbose_name=_('Facebook title'),
-        help_text=_('Fallbacks to seo title if empty')
+        verbose_name=_("Facebook title"),
+        help_text=_("Fallbacks to seo title if empty"),
     )
 
     og_description = models.CharField(
         max_length=300,
         blank=True,
         null=True,
-        verbose_name=_('Facebook description'),
-        help_text=_('Fallbacks to seo description if empty')
+        verbose_name=_("Facebook description"),
+        help_text=_("Fallbacks to seo description if empty"),
     )
 
     og_image = models.ForeignKey(
-        'customimage.CustomImage',
+        "customimage.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text=_('If you want to override the image used on Facebook for \
+        help_text=_(
+            "If you want to override the image used on Facebook for \
                     this item, upload an image here. \
-                    The recommended image size for Facebook is 1200 × 630px'),
-        related_name='+'
+                    The recommended image size for Facebook is 1200 × 630px"
+        ),
+        related_name="+",
     )
 
     twitter_title = models.CharField(
         max_length=40,
         blank=True,
         null=True,
-        verbose_name=_('Twitter title'),
-        help_text=_('Fallbacks to facebook title if empty')
+        verbose_name=_("Twitter title"),
+        help_text=_("Fallbacks to facebook title if empty"),
     )
 
     twitter_description = models.CharField(
         max_length=300,
         blank=True,
         null=True,
-        verbose_name=_('Twitter description'),
-        help_text=_('Fallbacks to facebook description if empty')
+        verbose_name=_("Twitter description"),
+        help_text=_("Fallbacks to facebook description if empty"),
     )
 
     twitter_image = models.ForeignKey(
-        'customimage.CustomImage',
+        "customimage.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name=_('Twitter image'),
-        help_text=_('Fallbacks to facebook image if empty')
+        related_name="+",
+        verbose_name=_("Twitter image"),
+        help_text=_("Fallbacks to facebook image if empty"),
     )
 
     robot_noindex = models.BooleanField(
         default=False,
-        verbose_name=_('No index'),
-        help_text=_('Check to add noindex to robots')
+        verbose_name=_("No index"),
+        help_text=_("Check to add noindex to robots"),
     )
 
     robot_nofollow = models.BooleanField(
         default=False,
-        verbose_name=_('No follow'),
-        help_text=_('Check to add nofollow to robots')
+        verbose_name=_("No follow"),
+        help_text=_("Check to add nofollow to robots"),
     )
 
     canonical_link = models.URLField(
-        blank=True,
-        null=True,
-        verbose_name=_('Canonical link')
+        blank=True, null=True, verbose_name=_("Canonical link")
     )
 
-    promote_panels = [
-        ImageChooserPanel('og_image'),
-    ]
+    promote_panels = [ImageChooserPanel("og_image")]
 
-    og_image_list = ['og_image']
+    og_image_list = ["og_image"]
 
     def get_og_image(self):
         default_og_image = SiteSetting.for_site(self.get_site()).og_image
