@@ -1,11 +1,7 @@
-/**
- * Tests for ${componentName}
- */
-
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ${componentName} from './';
-import data from './${componentName}.json';
+// import data from './${componentName}.json';
 
 describe('<${componentName} />', () => {
     it('Renders an empty ${componentName}', () => {
@@ -15,10 +11,12 @@ describe('<${componentName} />', () => {
         expect(componentJson).toBeTruthy();
     });
 
+    /*
     it('Renders ${componentName} with data', () => {
         const componentJson = renderer
             .create(<${componentName} {...data} />)
             .toJSON();
-        // expect(componentJson).toMatchSnapshot();
+        expect(componentJson).toMatchSnapshot();
     });
+    */
 });

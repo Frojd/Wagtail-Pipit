@@ -36,6 +36,8 @@ describe('Test CLI functions', () => {
         const appIndexJs = path.join(rootFolder, 'index.js');
         const containerIndexJs = path.join(containerFolder, 'index.js');
         const appIndexScss = path.join(scssFolder, 'index.scss');
+        const componentScss = path.join(scssFolder, 'components.scss');
+        const containersScss = path.join(scssFolder, 'containers.scss');
         const indexJsContent = `
 export {
 };`;
@@ -49,6 +51,8 @@ export {
         fs.writeFileSync(appIndexJs, indexJsContent);
         fs.writeFileSync(containerIndexJs, indexJsContent);
         fs.createFileSync(appIndexScss);
+        fs.createFileSync(componentScss);
+        fs.createFileSync(containersScss);
     });
     
     describe('Create a classbased component', () => {
@@ -94,9 +98,9 @@ export {
             expect(template).toMatchSnapshot();
         });
 
-        it('Should have updated app index.scss', () => {
+        it('Should have updated app components.scss', () => {
             const scssFolder = path.join(config.rootFolder, config.appFolder, config.scssFolder);
-            const filePath = path.join(scssFolder, `index.scss`);
+            const filePath = path.join(scssFolder, `components.scss`);
             const template = fs.readFileSync(filePath, 'utf8')
             expect(template).toMatchSnapshot();
         });
@@ -153,9 +157,9 @@ export {
             expect(template).toMatchSnapshot();
         });
 
-        it('Should NOT have updated app index.scss', () => {
+        it('Should NOT have updated app components.scss', () => {
             const scssFolder = path.join(config.rootFolder, config.appFolder, config.scssFolder);
-            const filePath = path.join(scssFolder, `index.scss`);
+            const filePath = path.join(scssFolder, `components.scss`);
             const template = fs.readFileSync(filePath, 'utf8')
             expect(template).toMatchSnapshot();
         });
@@ -180,9 +184,9 @@ export {
             expect(template).toMatchSnapshot();
         });
 
-        it('Should have updated app index.scss', () => {
+        it('Should have updated app containers.scss', () => {
             const scssFolder = path.join(config.rootFolder, config.appFolder, config.scssFolder);
-            const filePath = path.join(scssFolder, `index.scss`);
+            const filePath = path.join(scssFolder, `containers.scss`);
             const template = fs.readFileSync(filePath, 'utf8')
             expect(template).toMatchSnapshot();
         });
@@ -260,7 +264,7 @@ export {
             expect(fs.existsSync(folderPath)).toBe(false);
 
             const scssFolder = path.join(config.rootFolder, config.appFolder, config.scssFolder);
-            let filePath = path.join(scssFolder, `index.scss`);
+            let filePath = path.join(scssFolder, `components.scss`);
             let template = fs.readFileSync(filePath, 'utf8')
             expect(template).toMatchSnapshot();
 

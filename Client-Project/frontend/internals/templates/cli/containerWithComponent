@@ -1,0 +1,19 @@
+import React, { PureComponent } from 'react';
+import ${subComponentName} from 'Components/${subComponentName}';
+
+export default class ${componentName} extends PureComponent {
+    state = {
+    }
+
+    static defaultProps = {
+    }
+
+    render() {
+        return (
+            <div className="${componentName}">
+                <${subComponentName} />
+                ${componentName}
+            </div>
+        );
+    }
+}

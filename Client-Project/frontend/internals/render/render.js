@@ -148,6 +148,10 @@ class Render {
                 reload: true
             }
         ));
+
+        webpackConfig.forEach(config => {
+            config.mode = 'development';
+        });
         
         return webpackConfig;
     }

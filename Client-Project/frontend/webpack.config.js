@@ -55,7 +55,9 @@ module.exports = [{
     resolve: {
         alias: {
             Components: path.resolve(__dirname, 'app/components/'),
+            Containers: path.resolve(__dirname, 'app/containers/'),
             i18n: path.resolve(__dirname, 'app/i18n'),
+            Utils: path.resolve(__dirname, 'app/utils')
         }
     },
 },
@@ -85,15 +87,7 @@ module.exports = [{
     plugins: [
         new CopyWebpackPlugin([
             {
-                from: 'img/**',
-                to: path.posix.join(outputPath)
-            },
-            {
-                from: 'fonts/**',
-                to: path.posix.join(outputPath)
-            },
-            {
-                from: 'favicons/**',
+                from: 'assets/**',
                 to: path.posix.join(outputPath)
             }
         ]),
@@ -143,22 +137,15 @@ module.exports = [{
                 })
             },
             {
-                test: /\.(svg|png|jpe?g|gif)$/,
-                exclude: /fonts/,
+                test: /\.*$/,
+                include: /assets/,
                 loader: 'file-loader?name=[path][name].[ext]',
-            },
-            {
-                test: /\.(woff|woff2|ttf|eot|otf|svg)$/,
-                exclude: /img/,
-                loader: 'file-loader?name=[path][name].[ext]',
-            },
+            }
         ],
     },
     plugins: [
         new ExtractTextPlugin({
             filename: 'index.css',
-            disable: false,
-            allChunks: true,
         })
     ],
     stats: {

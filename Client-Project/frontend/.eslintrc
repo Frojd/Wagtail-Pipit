@@ -31,6 +31,7 @@
         "quotes": [2, "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
         "no-var": 2,
         "eqeqeq": 2,
+        "no-unused-vars": [2, {"args": "none"}],
         "max-len": [1, 120, 4, {"ignoreComments": true, "ignoreUrls": true}]
     }
 }

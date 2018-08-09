@@ -11,15 +11,28 @@
     }
 }
 
+@mixin small {
+    @media (min-width: $smallWidth) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (min-width: $mediumWidth) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media (min-width: $largeWidth) {
+        @content;
+    }
+}
+
 @mixin clearfix() {
     &::after {
         content: '';
         display: table;
         clear: both;
     }
-}
-
-@mixin focus() {
-    outline: 1px dotted;
-    outline: -webkit-focus-ring-color auto 5px;
 }

@@ -8,14 +8,10 @@ export default MainComponent;
 `;
 
 exports[`Test CLI functions Create a classbased component Check content of MainComponent.test.js 1`] = `
-"/**
- * Tests for MainComponent
- */
-
-import React from 'react';
+"import React from 'react';
 import renderer from 'react-test-renderer';
 import MainComponent from './';
-import data from './MainComponent.json';
+// import data from './MainComponent.json';
 
 describe('<MainComponent />', () => {
     it('Renders an empty MainComponent', () => {
@@ -25,20 +21,28 @@ describe('<MainComponent />', () => {
         expect(componentJson).toBeTruthy();
     });
 
+    /*
     it('Renders MainComponent with data', () => {
         const componentJson = renderer
             .create(<MainComponent {...data} />)
             .toJSON();
-        // expect(componentJson).toMatchSnapshot();
+        expect(componentJson).toMatchSnapshot();
     });
+    */
 });
 "
 `;
 
 exports[`Test CLI functions Create a classbased component Check content of class MainComponent.js 1`] = `
-"import React, {PureComponent} from 'react';
+"import React, { PureComponent } from 'react';
 
-class MainComponent extends PureComponent {
+export default class MainComponent extends PureComponent {
+    state = {
+    }
+
+    static defaultProps = {
+    }
+
     render() {
         return (
             <div className=\\"MainComponent\\">
@@ -47,11 +51,6 @@ class MainComponent extends PureComponent {
         );
     }
 }
-
-MainComponent.defaultProps = {
-};
-
-export default MainComponent;
 "
 `;
 
@@ -65,6 +64,11 @@ exports[`Test CLI functions Create a classbased component Check content of class
 }"
 `;
 
+exports[`Test CLI functions Create a classbased component Should have updated app components.scss 1`] = `
+"@import '../components/MainComponent/MainComponent';
+"
+`;
+
 exports[`Test CLI functions Create a classbased component Should have updated app index.js 1`] = `
 "import MainComponent from './MainComponent';
 
@@ -73,15 +77,16 @@ export {
 };"
 `;
 
-exports[`Test CLI functions Create a classbased component Should have updated app index.scss 1`] = `
-"@import '../components/MainComponent/MainComponent';
-"
-`;
-
 exports[`Test CLI functions Create containers Check content of class MyContainer.js 1`] = `
-"import React, {PureComponent} from 'react';
+"import React, { PureComponent } from 'react';
 
-class MyContainer extends PureComponent {
+export default class MyContainer extends PureComponent {
+    state = {
+    }
+
+    static defaultProps = {
+    }
+
     render() {
         return (
             <div className=\\"MyContainer\\">
@@ -90,18 +95,10 @@ class MyContainer extends PureComponent {
         );
     }
 }
-
-MyContainer.defaultProps = {
-};
-
-export default MyContainer;
 "
 `;
 
-exports[`Test CLI functions Create containers Should have updated app index.scss 1`] = `
-"@import '../components/MainComponent/MainComponent';
-"
-`;
+exports[`Test CLI functions Create containers Should have updated app containers.scss 1`] = `""`;
 
 exports[`Test CLI functions Create containers Should have updated container index.js 1`] = `
 "
@@ -250,14 +247,10 @@ exports[`Test CLI functions Test pure based subcomponent Check content of SubCom
 `;
 
 exports[`Test CLI functions Test pure based subcomponent Check content of SubComponent.test.js 1`] = `
-"/**
- * Tests for SubComponent
- */
-
-import React from 'react';
+"import React from 'react';
 import renderer from 'react-test-renderer';
 import SubComponent from './';
-import data from './SubComponent.json';
+// import data from './SubComponent.json';
 
 describe('<SubComponent />', () => {
     it('Renders an empty SubComponent', () => {
@@ -267,20 +260,28 @@ describe('<SubComponent />', () => {
         expect(componentJson).toBeTruthy();
     });
 
+    /*
     it('Renders SubComponent with data', () => {
         const componentJson = renderer
             .create(<SubComponent {...data} />)
             .toJSON();
-        // expect(componentJson).toMatchSnapshot();
+        expect(componentJson).toMatchSnapshot();
     });
+    */
 });
 "
 `;
 
 exports[`Test CLI functions Test pure based subcomponent Check content of pure SubComponent.js 1`] = `
-"import React, {PureComponent} from 'react';
+"import React, { PureComponent } from 'react';
 
-class SubComponent extends PureComponent {
+export default class SubComponent extends PureComponent {
+    state = {
+    }
+
+    static defaultProps = {
+    }
+
     render() {
         return (
             <div className=\\"SubComponent\\">
@@ -289,11 +290,11 @@ class SubComponent extends PureComponent {
         );
     }
 }
+"
+`;
 
-SubComponent.defaultProps = {
-};
-
-export default SubComponent;
+exports[`Test CLI functions Test pure based subcomponent Should NOT have updated app components.scss 1`] = `
+"@import '../components/MainComponent/MainComponent';
 "
 `;
 
@@ -303,9 +304,4 @@ exports[`Test CLI functions Test pure based subcomponent Should NOT have updated
 export {
     MainComponent,
 };"
-`;
-
-exports[`Test CLI functions Test pure based subcomponent Should NOT have updated app index.scss 1`] = `
-"@import '../components/MainComponent/MainComponent';
-"
 `;
