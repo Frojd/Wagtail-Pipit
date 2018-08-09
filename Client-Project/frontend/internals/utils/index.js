@@ -8,7 +8,29 @@ const config = require('../config')();
 const rootFolder = process.cwd();
 const componentPath = path.join(config.appFolder, config.componentsFolder);
 
-const getData = (componentName, components) => {
+const getAllJsonFiles = () => {
+    const componentsFolder = path.join(
+        process.cwd(), 
+        config.appFolder, 
+        config.componentsFolder
+    )
+    const containersFolder = path.join(
+        process.cwd(), 
+        config.appFolder, 
+        config.containersFolder
+    )
+    
+    const jsonFiles = {
+        ...getFilesByExtension(componentsFolder, '.json'), 
+        ...getFilesByExtension(containersFolder, '.json')
+    };
+
+    return jsonFiles;
+}
+
+const getData = (componentName, components = null) => {
+    components = components || getAllJsonFiles();
+    
     let currentProp = componentName;
     let subProp;
     if(componentName.split('.').length) {
@@ -19,7 +41,7 @@ const getData = (componentName, components) => {
     let jsonString = JSON.stringify(components[currentProp])
     
     let data = jsonString.replace(/"###(.*?)###"/g, (org, catched) => {
-        let subData = this.getData(catched);
+        let subData = getData(catched);
         return JSON.stringify(subData);
     })
     

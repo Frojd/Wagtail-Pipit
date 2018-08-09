@@ -14,11 +14,11 @@ It also have support for translations throuh i18next.
 
 1. Clone the project
 2. `npm install`
-3. `npm run new MyComponent`
+3. `npm run scaffold`
 4. `npm start`
 5. Done!
 
-Visit [http://localhost:7001](http://localhost:7001) and look at the component you just created. It should autoopen when running the start command.
+Visit [http://localhost:7001](http://localhost:7001) and look at the container and component you just created. It should autoopen when running the start command.
 
 ## CLI
 
@@ -27,6 +27,12 @@ The cli will scaffold a new component with scss, js, test and automatically add 
 Create a component will both scss and classbase
 
     npm run new ComponentName
+
+Container components:
+
+    npm run new ContainerName -- -C containers
+
+This will add a new component inside the containers folder (and also add the scss file to index.scss)
 
 Delete a component that have been created with the cli
 
@@ -39,12 +45,6 @@ Subcomponents can be created as well:
     npm run new ComponentName SubComponentName
 
 This will create a new component inside the first component. Subcomponents can be added as many levels down as you need.
-
-Container components:
-
-    npm run new ContainerName -- -C containers
-
-This will add a new component inside the containers folder (and also add the scss file to index.scss)
 
 ## Internationalization
 

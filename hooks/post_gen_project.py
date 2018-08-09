@@ -1,4 +1,5 @@
 import os
+import stat
 import shutil
 import subprocess
 
@@ -25,28 +26,24 @@ p.communicate()
 
 # Get the name of the latest tag
 tag = subprocess.check_output(
-    'cd frontend && git describe --tags $(git rev-list --tags --max-count=1)',
+    'cd frontend && git tag -l --sort=version:refname | tail -1',
     shell=True
 )
 
 # Fetch the tags and checkout latest tag
 p = subprocess.Popen(
-    'cd frontend && git fetch --tags && git checkout tags/{}'.format(tag.decode('utf-8')),
+    'cd frontend && git fetch --tags && git checkout tags/{}'
+    .format(tag.decode('utf-8')),
     shell=True
 )
 p.communicate()
 
+
+def remove_readonly(func, path, excinfo):
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
+
 # Remove git repository from frontend
 shutil.rmtree(os.path.join(
-    PROJECT_DIRECTORY, 'frontend/.git'
-))
-
-shutil.copy2(os.path.join(
-    PROJECT_DIRECTORY, '.frontendrc-template'
-), os.path.join(
-    PROJECT_DIRECTORY, 'frontend/.frontendrc'
-))
-
-os.remove(os.path.join(
-    PROJECT_DIRECTORY, '.frontendrc-template'
-))
+    PROJECT_DIRECTORY, 'frontend', '.git'
+), onerror=remove_readonly)

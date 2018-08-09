@@ -10,22 +10,35 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('wagtailcore', '0040_page_draft_title'),
-    ]
+    dependencies = [("wagtailcore", "0040_page_draft_title")]
 
     operations = [
         migrations.CreateModel(
-            name='SiteSetting',
+            name="SiteSetting",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('gtm_id', models.CharField(blank=True, max_length=50)),
-                ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("gtm_id", models.CharField(blank=True, max_length=50)),
+                (
+                    "site",
+                    models.OneToOneField(
+                        editable=False,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="wagtailcore.Site",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'verbose_name': 'Site setting',
-                'verbose_name_plural': 'Site settings',
+                "abstract": False,
+                "verbose_name": "Site setting",
+                "verbose_name_plural": "Site settings",
             },
-        ),
+        )
     ]

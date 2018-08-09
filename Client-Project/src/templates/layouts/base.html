@@ -1,5 +1,7 @@
 
 {% load staticfiles %}
+{% load react %}
+{% load wagtailuserbar %}
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -10,28 +12,18 @@
         <meta name="description" content="{{ meta_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="{% static 'core/css/main.css' %}" type="text/css" />
+        <link rel="stylesheet" href="{% static 'core/css/index.css' %}" type="text/css" />
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <header>
-            {% block header %}
-                {% include 'partials/header.html' %}
-            {% endblock header %}
-        </header>
 
-        <main>
-            {% block main %}
-            {% endblock main %}
-        </main>
+        {% block main %}
+        {% endblock main %}
 
-        <footer>
-            {% block footer %}
-            {% endblock footer %}
-        </footer>
-        <script type="text/javascript" src="{% static 'core/js/main.js' %}"></script>
+        <script type="text/javascript" src="{% static 'core/js/vendor.js' %}"></script>
+        <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
 
         {% if SETTINGS.SENTRY_PUBLIC_DSN %}
             <script src="https://cdn.ravenjs.com/3.12.0/raven.min.js" crossorigin="anonymous"></script>
@@ -43,6 +35,10 @@
             }).install();
             </script>
         {% endif %}
+
+        {% wagtailuserbar %}
+        {% react_print %}
+
     </body>
 </html>
 

@@ -3,7 +3,7 @@ const path = require('path');
 const Render = require('../render/render.js');
 const Log = require('../utils').Log;
 
-/* eslint-disable indent */
+/* eslint-disable indent, no-unused-vars */
 
 class Cli {
     constructor(config = {}) {
@@ -101,6 +101,14 @@ class Cli {
         this._createFile(filePath, componentName, 'componentData', message);
     }
 
+    scaffoldComponent(componentPath, componentName, subComponentName) {
+        const templateString = this._getTemplateString('containerWithComponent');
+        const template = eval('`' + templateString + '`');
+        _writeFile(componentPath, template);
+        const message = `Updated ${componentName}.js at: ${componentPath}`;
+        Log.info(message)
+    }
+
     addToIndexJs(componentName, remove=false) {
         const filePath = path.join(this.componentsFolder, 'index.js');
         let index = fs.readFileSync(filePath, 'utf8');
@@ -128,7 +136,15 @@ class Cli {
             this.config.appFolder, 
             this.config.scssFolder,
         );
-        const filePath = path.join(scssFolder, 'index.scss');
+        let scssFile = 'index.scss';
+        if(componentPath.indexOf(this.config.componentsFolder) !== -1) {
+            scssFile = 'components.scss';
+        }
+        if(componentPath.indexOf(this.config.containersFolder) !== -1) {
+            scssFile = 'containers.scss';
+        }
+        
+        const filePath = path.join(scssFolder, scssFile);
 
         let index = fs.readFileSync(filePath, 'utf8');
         let compPath = path.relative(scssFolder, componentPath);
@@ -246,7 +262,7 @@ const _writeFile = (filePath, content) => {
     try {
         fs.writeFileSync(filePath, content);
     } catch(e) {
-        Log.error(`Failed to write filepath ${filePath} with content ${content}`, e);
+        Log.error(`Failed to write filepath ${filePath} with content\n${content}\n\n${e}`, e);
     }
 }
 

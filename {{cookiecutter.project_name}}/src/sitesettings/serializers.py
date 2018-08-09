@@ -6,4 +6,4 @@ from sitesettings.models import SiteSetting
 class SiteSettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSetting
-        fields = ['gtm_id']
+        fields = ["gtm_id"]

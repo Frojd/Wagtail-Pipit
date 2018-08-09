@@ -8,13 +8,11 @@ from wagtail.admin.edit_handlers import FieldPanel
 class SiteSetting(BaseSetting):
     gtm_id = models.CharField(max_length=50, blank=True)
 
-    panels = [
-        FieldPanel('gtm_id'),
-    ]
+    panels = [FieldPanel("gtm_id")]
 
     def __str__(self):
         return str(self.site)
 
     class Meta:
-        verbose_name = _('Site setting')
-        verbose_name_plural = _('Site settings')
+        verbose_name = _("Site setting")
+        verbose_name_plural = _("Site settings")

@@ -1,5 +1,7 @@
 {% raw %}
 {% load staticfiles %}
+{% load react %}
+{% load wagtailuserbar %}
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -33,6 +35,10 @@
             }).install();
             </script>
         {% endif %}
+
+        {% wagtailuserbar %}
+        {% react_print %}
+
     </body>
 </html>
 {% endraw %}

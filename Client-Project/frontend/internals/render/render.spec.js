@@ -33,6 +33,8 @@ describe('Test render of a component', () => {
         const scssFolder = path.join(config.rootFolder, config.appFolder, config.scssFolder);
         const appIndexJs = path.join(rootFolder, 'index.js');
         const appIndexScss = path.join(scssFolder, 'index.scss');
+        const componentScss = path.join(scssFolder, 'components.scss');
+        const containersScss = path.join(scssFolder, 'containers.scss');
         const indexJsContent = `
     export {
     };`;
@@ -40,6 +42,8 @@ describe('Test render of a component', () => {
         fs.ensureDirSync(containerFolder);
         fs.ensureDirSync(scssFolder);
         fs.writeFileSync(appIndexJs, indexJsContent);
+        fs.createFileSync(componentScss);
+        fs.createFileSync(containersScss);
         fs.createFileSync(appIndexScss);
         const folderPath = path.join(rootFolder, componentName);
         cli.createComponent(folderPath, componentName);
