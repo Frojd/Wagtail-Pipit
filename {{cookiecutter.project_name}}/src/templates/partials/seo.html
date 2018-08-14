@@ -1,4 +1,4 @@
-<title>{% firstof page.seo_title page.title %}</title>
+{% raw %}<title>{% firstof page.seo_title page.title %}</title>
 
 {% with root_url=page.get_site.root_url %}
     {% firstof page.search_description page.list_description page.preamble as desc %}
@@ -62,4 +62,4 @@
     {% elif page.robot_noindex %}
         <meta name="robots" content="noindex,follow">
     {% endif %}
-{% endwith %}
+{% endwith %}{% endraw %}
