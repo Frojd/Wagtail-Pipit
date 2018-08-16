@@ -16,10 +16,14 @@ class BasePage(RepresentationMixin, SeoMixin, Page):
         super().__init__(*args, **kwargs)
 
     def serve(self, request, *args, **kwargs):
-        if request.content_type == "application/json":
+        if self.should_serve_json(request):
             from django.http import JsonResponse
-
             json = self.to_react_representation({"request": request})
             return JsonResponse(json)
 
         return super().serve(request, *args, **kwargs)
+
+    @staticmethod
+    def should_serve_json(request):
+        return request.GET.get("format", None) == "json" or \
+            request.content_type == "application/json"
