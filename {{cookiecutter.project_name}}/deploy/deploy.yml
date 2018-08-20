@@ -13,5 +13,5 @@
 
     ansistrano_allow_anonymous_stats: no
   roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }
+    - { role: ansistrano.deploy }
 {% endraw %}
