@@ -1,7 +1,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.http import HttpResponseRedirect
-
+from wagtail.utils.decorators import cached_classmethod
+from wagtail.admin.edit_handlers import (
+    ObjectList, TabbedInterface,
+)
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
 
@@ -104,6 +107,44 @@ class SeoMixin(Page):
 
     class Meta:
         abstract = True
+
+
+class EnhancedEditHandlerMixin():
+
+    @cached_classmethod
+    def get_edit_handler(cls):
+        """
+        Get the EditHandler to use in the Wagtail admin when editing
+        this page type.
+        """
+
+        if hasattr(cls, "edit_handler"):
+            return cls.edit_handler.bind_to_model(cls)
+
+        # construct a TabbedInterface made up of content_panels, promote_panels
+        # and settings_panels, skipping any which are empty
+        tabs = []
+
+        if cls.content_panels:
+            tabs.append(ObjectList(cls.content_panels, heading=_("Content")))
+
+        if hasattr(cls, "extra_panels"):
+            for panel_id, heading in cls.extra_panels:
+                tabs.append(ObjectList(getattr(cls, panel_id), heading=heading))
+
+        if cls.promote_panels:
+            tabs.append(ObjectList(cls.promote_panels, heading=_("Promote")))
+
+        if cls.settings_panels:
+            tabs.append(
+                ObjectList(
+                    cls.settings_panels, heading=_("Settings"), classname="settings"
+                )
+            )
+
+        EditHandler = TabbedInterface(tabs, base_form_class=cls.base_form_class)
+
+        return EditHandler.bind_to_model(cls)
 
 
 class TimestampMixin(models.Model):

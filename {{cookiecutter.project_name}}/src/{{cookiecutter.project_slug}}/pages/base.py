@@ -2,10 +2,10 @@ from wagtail.core.models import Page
 
 from django_react_templatetags.mixins import RepresentationMixin
 
-from ..mixins import SeoMixin
+from ..mixins import EnhancedEditHandlerMixin, SeoMixin
 
 
-class BasePage(RepresentationMixin, SeoMixin, Page):
+class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
     # Basepage is not anything creatable in admin
     is_creatable = False
     show_in_menus_default = True
