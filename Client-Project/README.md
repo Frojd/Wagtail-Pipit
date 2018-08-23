@@ -149,14 +149,14 @@ chmod +x $PWD/.githooks/pre-push.sh
 ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 ```
 
-### Hook: Run pep8 validation on commit
+### Hook: Run styleguide validation on commit
 
 ```bash
-chmod +x $PWD/.githooks/pep8-pre-commit.sh
-ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
+chmod +x $PWD/.githooks/pre-commit.sh
+ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 ```
 
-Note: This requires the pycodestyle package (`pip install pycodestyle`)
+Note: This requires the black package (`pip install black`)
 
 
 ## FAQ
