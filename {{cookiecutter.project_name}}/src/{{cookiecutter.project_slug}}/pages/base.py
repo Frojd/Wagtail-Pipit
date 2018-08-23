@@ -12,7 +12,7 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
 
     def __init__(self, *args, **kwargs):
         self.template = "pages/react.html"
-        self.component_name = "{}Page".format(self.__class__.__name__)
+        self.component_name = self.__class__.__name__
         super().__init__(*args, **kwargs)
 
     def serve(self, request, *args, **kwargs):
@@ -27,3 +27,14 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
     def should_serve_json(request):
         return request.GET.get("format", None) == "json" or \
             request.content_type == "application/json"
+
+    def to_react_representation(self, context={}):
+        serializer_cls = self.get_serializer_class()
+        serializer = serializer_cls(self, context={
+            'request': context['request'],
+        })
+
+        return {
+            "component_name": self.container_name,
+            "component_props": serializer.data,
+        }
