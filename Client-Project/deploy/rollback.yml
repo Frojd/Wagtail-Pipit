@@ -2,4 +2,4 @@
 - name: Rollback django application
   hosts: all
   roles:
-    - { role: carlosbuenosvinos.ansistrano-rollback }
+    - { role: ansistrano.rollback }

@@ -1,0 +1,65 @@
+{% raw %}<title>{% firstof page.seo_title page.title %}</title>
+
+{% with root_url=page.get_site.root_url %}
+    {% firstof page.search_description page.list_description page.preamble as desc %}
+    {% if desc %}
+        <meta name="description" content="{{ desc }}">
+    {% endif %}
+
+
+    {% firstof page.og_title page.list_title page.title as title %}
+    {% if title %}
+        <meta property="og:title" content="{{ title }}" />
+    {% endif %}
+
+    {% firstof page.og_description page.list_description page.preamble as description %}
+    {% if description %}
+        <meta property="og:description" content="{{ description }}" />
+    {% endif %}
+
+    {% firstof page.canonical_link page.url as url %}
+    {% if url %}
+        <meta property="og:url" content="{{ root_url }}{{ url }}" />
+    {% endif %}
+
+    {% firstof page.list_image page.featured_image as image %}
+    {% firstof page.og_image image as og_image %}
+    {% if og_image %}
+        <meta property="og:image" content="{{ root_url }}{{ og_image }}" />
+    {% endif %}
+
+
+    {% firstof page.twitter_title page.list_title page.title as title %}
+    {% if title %}
+        <meta property="twitter:title" content="{{ title }}" />
+    {% endif %}
+
+    {% firstof page.twitter_description page.list_description page.preamble as description %}
+    {% if description %}
+        <meta property="twitter:description" content="{{ description }}" />
+    {% endif %}
+
+    {% firstof page.twitter_url page.canonical_link page.url as url %}
+    {% if url %}
+        <meta property="twitter:url" content="{{ root_url }}{{ url }}" />
+    {% endif %}
+
+    {% firstof page.twitter_image og_image as twitter_image %}
+    {% if twitter_image %}
+        <meta property="twitter:image" content="{{ root_url }}{{ twitter_image }}" />
+    {% endif %}
+
+
+    {% if page.canonical_link %}
+        <link rel="canonical" href="{{ page.canonical_link }}" />
+    {% endif %}
+
+
+    {% if page.robot_nofollow and page.robot_noindex %}
+        <meta name="robots" content="noindex,nofollow">
+    {% elif page.robot_nofollow %}
+        <meta name="robots" content="index,nofollow">
+    {% elif page.robot_noindex %}
+        <meta name="robots" content="noindex,follow">
+    {% endif %}
+{% endwith %}{% endraw %}

@@ -1,2 +1,2 @@
-- src: carlosbuenosvinos.ansistrano-deploy
-- src: carlosbuenosvinos.ansistrano-rollback
+- src: ansistrano.deploy
+- src: ansistrano.rollback

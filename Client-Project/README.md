@@ -81,7 +81,7 @@ Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (run
 
 ### Working with CI environment vars
 
-The environment for CI variables are added to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to associate your encryption key with repo on Circle.
+Rather then inlining environment variables in Circle CI we recommend that you add them to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to associate your encryption key with repo on Circle.
 
 #### Commands when encrypting/decypting .circlerc
 
@@ -149,14 +149,14 @@ chmod +x $PWD/.githooks/pre-push.sh
 ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 ```
 
-### Hook: Run pep8 validation on commit
+### Hook: Run styleguide validation on commit
 
 ```bash
-chmod +x $PWD/.githooks/pep8-pre-commit.sh
-ln -nfs $PWD/.githooks/pep8-pre-commit.sh .git/hooks/pre-commit
+chmod +x $PWD/.githooks/pre-commit.sh
+ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 ```
 
-Note: This requires the pycodestyle package (`pip install pycodestyle`)
+Note: This requires the black package (`pip install black`)
 
 
 ## FAQ
