@@ -35,6 +35,6 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         })
 
         return {
-            "component_name": self.container_name,
+            "component_name": self.component_name,
             "component_props": serializer.data,
         }
