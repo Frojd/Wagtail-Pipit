@@ -5,6 +5,6 @@ psycopg2-binary==2.7.5
 pycrypto==2.6.1
 raven==6.9.0
 python-dotenv==0.9.1
-wagtail==2.1.2
-django_react_templatetags==5.0.1
+wagtail==2.2.2
+django_react_templatetags==5.2.1
 
