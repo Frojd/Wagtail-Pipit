@@ -28,7 +28,7 @@ sleep 60
 
 echo "Adjusting database..."
 
-docker-compose exec web python manage.py change_site_domain --site_id=1 --new_site_domain=$local_domain
+docker-compose exec web python manage.py wagtail_change_site_domain --site_id=1 --new_site_domain=$local_domain
 
 docker-compose exec web python manage.py change_user_password --user=admin --password=admin
 
