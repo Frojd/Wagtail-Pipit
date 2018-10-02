@@ -10,6 +10,8 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
     is_creatable = False
     show_in_menus_default = True
 
+    extra_panels = []
+
     def __init__(self, *args, **kwargs):
         self.template = "pages/react.html"
         self.component_name = self.__class__.__name__
@@ -35,6 +37,6 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         })
 
         return {
-            "component_name": self.container_name,
+            "component_name": self.component_name,
             "component_props": serializer.data,
         }

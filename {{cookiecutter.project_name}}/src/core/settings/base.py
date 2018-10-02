@@ -62,7 +62,9 @@ INSTALLED_APPS = [
     # Project specific apps
     "core",
     "sitesettings",
+    "customuser",
     "customimage",
+    "customdocument",
     "{{ cookiecutter.project_slug }}",
 ]
 
@@ -175,10 +177,12 @@ LOGGING = {
     "loggers": {"": {"handlers": ["file"], "level": "DEBUG", "propagate": True}},
 }
 
+AUTH_USER_MODEL = 'customuser.User'
 
 # Wagtail
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
+WAGTAILDOCS_DOCUMENT_MODEL = 'customdocument.CustomDocument'
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 

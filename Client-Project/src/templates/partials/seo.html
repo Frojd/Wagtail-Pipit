@@ -6,7 +6,6 @@
         <meta name="description" content="{{ desc }}">
     {% endif %}
 
-
     {% firstof page.og_title page.list_title page.title as title %}
     {% if title %}
         <meta property="og:title" content="{{ title }}" />
@@ -22,12 +21,10 @@
         <meta property="og:url" content="{{ root_url }}{{ url }}" />
     {% endif %}
 
-    {% firstof page.list_image page.featured_image as image %}
-    {% firstof page.og_image image as og_image %}
+    {% with page.get_og_image as og_image %}
     {% if og_image %}
         <meta property="og:image" content="{{ root_url }}{{ og_image }}" />
     {% endif %}
-
 
     {% firstof page.twitter_title page.list_title page.title as title %}
     {% if title %}
@@ -49,11 +46,9 @@
         <meta property="twitter:image" content="{{ root_url }}{{ twitter_image }}" />
     {% endif %}
 
-
     {% if page.canonical_link %}
         <link rel="canonical" href="{{ page.canonical_link }}" />
     {% endif %}
-
 
     {% if page.robot_nofollow and page.robot_noindex %}
         <meta name="robots" content="noindex,nofollow">

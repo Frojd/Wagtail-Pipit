@@ -56,8 +56,13 @@ jobs:
           key: v1-npm-{{ checksum "frontend/package.json" }}
           paths:
             - ~/repo/frontend/node_modules
-      - run: cd frontend && npm test
-      - run: cd frontend && npm run publish:all
+      - run:
+          command: |
+            cd frontend
+            npm test
+            npm run eslint
+            npm run build:prod
+            npm run ssr:prod
       - run:
           command: |
             cd frontend
