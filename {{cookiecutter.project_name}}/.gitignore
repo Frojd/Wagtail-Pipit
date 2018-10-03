@@ -25,6 +25,9 @@ pip-log.txt
 tmp
 temp
 
+# Node
+node_modules
+
 # Docker
 docker/config/db.env
 docker/config/web.env

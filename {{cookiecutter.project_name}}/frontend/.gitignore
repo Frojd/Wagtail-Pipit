@@ -1,0 +1,11 @@
+# Node
+node_modules/
+
+# VS Code
+.vscode
+
+# Temp
+tmp/
+
+# Compiled files
+dist/
