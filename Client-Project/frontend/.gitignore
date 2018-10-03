@@ -1,7 +1,11 @@
-# Ignore dist folder
-/dist
-/raw
+# Node
+node_modules/
 
-# Ignore build errors and node_modules
-npm-debug*
-node_modules/*
+# VS Code
+.vscode
+
+# Temp
+tmp/
+
+# Compiled files
+dist/

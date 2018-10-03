@@ -2,9 +2,9 @@ function camelToSnake (s) {
     return s.replace(/[A-Z]/g, (x) => '_' + x.toLowerCase());
 }
 
-export default function convertObjectKeys (obj) {
+function camelCaseToSnakeCase (obj) {
     if (Array.isArray(obj)) {
-        return obj.map(convertObjectKeys);
+        return obj.map(camelCaseToSnakeCase);
     }
 
     if (typeof obj !== 'object') {
@@ -14,9 +14,14 @@ export default function convertObjectKeys (obj) {
     let r = {};
     for (let key in obj) {
         r[camelToSnake(key)] = obj[key] && typeof obj[key] === 'object'
-            ? convertObjectKeys(obj[key])
+            ? camelCaseToSnakeCase(obj[key])
             : obj[key];
     }
 
     return r;
+}
+
+export default camelCaseToSnakeCase;
+export {
+    camelToSnake,
 }

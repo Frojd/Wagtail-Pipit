@@ -62,7 +62,9 @@ INSTALLED_APPS = [
     # Project specific apps
     "core",
     "sitesettings",
+    "customuser",
     "customimage",
+    "customdocument",
     "client_project",
 ]
 
@@ -175,10 +177,12 @@ LOGGING = {
     "loggers": {"": {"handlers": ["file"], "level": "DEBUG", "propagate": True}},
 }
 
+AUTH_USER_MODEL = 'customuser.User'
 
 # Wagtail
 WAGTAIL_SITE_NAME = "Client-Project"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
+WAGTAILDOCS_DOCUMENT_MODEL = 'customdocument.CustomDocument'
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 
@@ -228,3 +232,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
 ADMIN_URL = r"^admin/"
+
+# React Templatetags
+REACT_COMPONENT_PREFIX = "Components."

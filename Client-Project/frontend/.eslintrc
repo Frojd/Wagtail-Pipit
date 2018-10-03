@@ -12,7 +12,8 @@
         "module": false,
         "expect": false,
         "global": false,
-        "require": false
+        "require": false,
+        "__jsons": false
     },
     "plugins": [
         "react"

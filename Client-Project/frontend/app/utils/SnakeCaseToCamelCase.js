@@ -2,9 +2,9 @@ function snakeToCamel (s) {
     return s.replace(/(_\w)/g, (x) => x[1].toUpperCase());
 }
 
-export default function convertObjectKeys (obj, removeNull = true) {
+function snakeCaseToCamelCase (obj, removeNull = true) {
     if (Array.isArray(obj)) {
-        return obj.map(convertObjectKeys);
+        return obj.map(snakeCaseToCamelCase);
     }
 
     if (typeof obj !== 'object') {
@@ -18,9 +18,14 @@ export default function convertObjectKeys (obj, removeNull = true) {
         }
 
         r[snakeToCamel(key)] = obj[key] && typeof obj[key] === 'object'
-            ? convertObjectKeys(obj[key])
+            ? snakeCaseToCamelCase(obj[key])
             : obj[key];
     }
 
     return r;
+}
+
+export default snakeCaseToCamelCase;
+export {
+    snakeToCamel,
 }

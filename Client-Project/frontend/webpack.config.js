@@ -1,158 +1,90 @@
-/* eslint-disable no-undef */
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+/* global __dirname */
+
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const config = require('./internals/config.js')();
+const configFile = require('./internals/config')();
 
-// Output base directory
-const outputPath = path.join(__dirname, config.outputPath);
-
-// static prefix where the static files will be served on the webserver
-// Eg: /static/ will be: http://localhost:7000/static/js/index.js
-const staticPath = config.publicPath;
-
-// Root app directory
-const context = path.join(__dirname, config.appFolder);
-
-module.exports = [{
-    name: 'js',
+const config = {
     devtool: 'source-map',
-    context: context,
+    context: path.join(__dirname, 'app'),
     entry: {
-        index: [
-            './index.js',
-        ],
+        vendor: './vendor.js',
+        main: './main.js',
     },
+    mode: 'production',
     output: {
-        path: path.join(outputPath, config.outputPathJsFolder),
         filename: '[name].js',
-        publicPath: path.posix.join(staticPath, config.outputPathJsFolder),
-        hotUpdateChunkFilename: 'hot/hot-update.js',
-        hotUpdateMainFilename: 'hot/hot-update.json'
+        path: path.resolve(__dirname, configFile.outputPath),
+        publicPath: configFile.publicPath,
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-            }
-        ],
-    },
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'i18next': 'i18next',
-    },
-    stats: {
-        colors: true,
-        hash: false,
-        modules: false
-    },
-    plugins: [
-    ],
-    resolve: {
-        alias: {
-            Components: path.resolve(__dirname, 'app/components/'),
-            Containers: path.resolve(__dirname, 'app/containers/'),
-            i18n: path.resolve(__dirname, 'app/i18n'),
-            Utils: path.resolve(__dirname, 'app/utils')
-        }
-    },
-},
-{
-    name: 'vendor',
-    context: context,
-    entry: {
-        vendor: [
-            'babel-polyfill',
-            './vendor.js',
-        ]
-    },
-    output: {
-        path: path.join(outputPath, config.outputPathJsFolder),
-        filename: 'vendor.js',
-        publicPath: path.posix.join(staticPath, config.outputPathJsFolder),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
+                exclude: /(node_modules)/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    }
+                ]
             },
-        ],
-    },
-    plugins: [
-        new CopyWebpackPlugin([
             {
-                from: 'assets/**',
-                to: path.posix.join(outputPath)
-            }
-        ]),
-    ],
-    stats: {
-        colors: true,
-        hash: false,
-        modules: false
-    },
-},
-{
-    name: 'style',
-    devtool: 'source-map',
-    context: context,
-    entry: {
-        styles: [
-            './scss/index.scss',
-        ],
-    },
-    output: {
-        path: path.join(outputPath, config.outputPathCssFolder),
-        filename: 'index.css',
-        publicPath: path.posix.join(staticPath, config.outputPathCssFolder),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(css|scss)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: { sourceMap: true, importLoaders: true, }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: 'inline'
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: { sourceMap: true }
-                        },
-                    ]
-                })
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            importLoaders: 1,
+                        }
+                    },
+                    'postcss-loader'
+                ]
             },
             {
                 test: /\.*$/,
                 include: /assets/,
-                loader: 'file-loader?name=[path][name].[ext]',
-            }
-        ],
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                        }
+                    },
+                ]
+            },
+        ]
     },
-    plugins: [
-        new ExtractTextPlugin({
-            filename: 'index.css',
-        })
-    ],
     stats: {
         colors: true,
         hash: false,
         modules: false
     },
-}
-];
-/* eslint-enable */
+    resolve: {
+        alias: {
+            Components: path.resolve(__dirname, 'app/components/'),
+            i18n: path.resolve(__dirname, 'app/i18n'),
+        }
+    },
+    externals: {
+        React: 'react',
+        ReactDOM: 'react-dom',
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css',
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: 'assets/**',
+                to: path.resolve(__dirname, configFile.outputPath),
+            }
+        ]),
+    ]
+};
+
+module.exports = config;
