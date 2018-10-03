@@ -22,9 +22,10 @@
     {% endif %}
 
     {% with page.get_og_image as og_image %}
-    {% if og_image %}
-        <meta property="og:image" content="{{ root_url }}{{ og_image }}" />
-    {% endif %}
+        {% if og_image %}
+            <meta property="og:image" content="{{ root_url }}{{ og_image }}" />
+        {% endif %}
+    {% endwith %}
 
     {% firstof page.twitter_title page.list_title page.title as title %}
     {% if title %}

@@ -8,7 +8,7 @@ from wagtail.admin.edit_handlers import (
 from .base import BasePage
 
 
-class ExamplePage(BasePage):
+class ArticlePage(BasePage):
     author = models.TextField(blank=True, null=True, verbose_name=_("Author"))
     wysiwyg = RichTextField(blank=True, null=True, verbose_name=_("Wysiwyg"))
 
@@ -20,4 +20,4 @@ class ExamplePage(BasePage):
     extra_panels = BasePage.extra_panels
 
     class Meta:
-        verbose_name = _("Example")
+        verbose_name = _("Article")

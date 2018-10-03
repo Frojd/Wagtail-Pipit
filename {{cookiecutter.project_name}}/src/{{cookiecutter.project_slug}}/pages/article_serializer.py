@@ -2,16 +2,16 @@ from rest_framework import serializers
 from wagtail.core.rich_text import expand_db_html
 
 from .base_serializer import BasePageSerializer
-from . import ExamplePage
+from . import ArticlePage
 
 
-class ExamplePageSerializer(BasePageSerializer):
+class ArticlePageSerializer(BasePageSerializer):
     wysiwyg = serializers.SerializerMethodField()
 
     class Meta:
-        model = ExamplePage
+        model = ArticlePage
         fields = BasePageSerializer.Meta.fields + [
-            "authpr",
+            "author",
             "wysiwyg",
         ]
 
