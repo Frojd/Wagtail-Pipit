@@ -232,3 +232,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
 ADMIN_URL = r"^admin/"
+
+# React Templatetags
+REACT_COMPONENT_PREFIX = "Components."
