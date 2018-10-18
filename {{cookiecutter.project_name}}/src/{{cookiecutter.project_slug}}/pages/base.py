@@ -1,5 +1,6 @@
-from wagtail.core.models import Page
+from importlib import import_module
 
+from wagtail.core.models import Page
 from django_react_templatetags.mixins import RepresentationMixin
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
@@ -40,3 +41,19 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
             "component_name": self.component_name,
             "component_props": serializer.data,
         }
+
+    def get_serializer_class(self):
+        class_name = self.__class__.__name__
+        base_name = class_name.lower().replace("page", "")
+
+        base_class_module = self.__module__.split(".")[0]
+        module_path = ".{}_serializer".format(base_name)
+        serializer_name = "{}Serializer".format(class_name)
+
+        module = import_module(
+            module_path, package="{}.pages".format(base_class_module)
+        )
+
+        serializer = getattr(module, serializer_name)
+
+        return serializer

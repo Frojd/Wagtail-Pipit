@@ -44,7 +44,6 @@ urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^documents/", include(wagtaildocs_urls)),
-    url(r"^search/", include(wagtailsearch_urls)),
     url("^sitemap\.xml$", sitemap, name="sitemap"),
 ]
 

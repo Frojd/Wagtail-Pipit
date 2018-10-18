@@ -1,13 +1,17 @@
 {% raw -%}
 - name: Create cache table
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py createcachetable"
-  sudo: yes
-  sudo_user: www-data
 
 - name: Collect static
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py collectstatic --noinput"
-  sudo: yes
-  sudo_user: www-data
+
+- name: Make sure www-data has ownership of current
+  file:
+    path: "{{ ansistrano_deploy_to }}/current"
+    owner: www-data
+    group: www-data
+    state: directory
+    recurse: yes
 
 - name: Restart uWSGI
   service:

@@ -14,6 +14,8 @@ TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Add django debug toolbar when using local version
 INSTALLED_APPS += ["debug_toolbar"]
 

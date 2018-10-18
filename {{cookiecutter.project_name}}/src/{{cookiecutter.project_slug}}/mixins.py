@@ -94,10 +94,7 @@ class SeoMixin(Page):
     og_image_list = ["og_image"]
 
     def get_og_image(self):
-        default_og_image = SiteSetting.for_site(self.get_site()).og_image
-
         images = [getattr(self, x) for x in self.og_image_list]
-        images.append(default_og_image)
         images = list(filter(None.__ne__, images))
 
         if not len(images):
