@@ -47,6 +47,8 @@ case "$CMD" in
         wait_for_db
         setup_django
 
+		pip install uwsgi
+
         echo Starting using uwsgi
         exec uwsgi --ini uwsgi.ini
         ;;
