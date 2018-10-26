@@ -10,7 +10,7 @@ This is a cookiecutter Django/Wagtail boilerplate that covers best practices and
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - Settings primed for production
-- File storage through AWS S3
+- Optional file storage through AWS S3
 - Third part integrations:
     - Sentry
     - GTM
