@@ -10,7 +10,7 @@ def settings_context_processor(request):
     """
     parsed_settings = {"DEBUG": settings.DEBUG, "APP_VERSION": settings.APP_VERSION}
 
-    if hasattr(settings, "SENTRY_PUBLIC_DSN"):
-        parsed_settings["SENTRY_PUBLIC_DSN"] = settings.SENTRY_PUBLIC_DSN
+    if hasattr(settings, "SENTRY_DSN"):
+        parsed_settings["SENTRY_DSN"] = settings.SENTRY_DSN
 
     return {"SETTINGS": parsed_settings}

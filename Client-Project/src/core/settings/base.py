@@ -10,7 +10,7 @@ import os
 
 from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
-from core.settings import get_env, get_env_bool
+from core.settings import get_env
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "django_react_templatetags",
+    "raven.contrib.django.raven_compat",
     # Project specific apps
     "core",
     "sitesettings",
@@ -187,7 +188,7 @@ WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 
 # File storage
-if get_env("AWS_ACCESS_KEY_ID", default=None):
+if get_env("AWS_ACCESS_KEY_ID", ""):
     AWS_ACCESS_KEY_ID = get_env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME")
