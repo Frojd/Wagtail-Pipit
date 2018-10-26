@@ -3,8 +3,13 @@ from django.template.loader import render_to_string
 
 
 def send_templated_email(
-    subject, from_email, to_emails, template_txt, template_html=None, context={}
-):
+    subject: str,
+    from_email: str,
+    to_emails: str,
+    template_txt: str,
+    template_html=None,
+    context={}
+) -> bool:
     """
     Example usage:
 
