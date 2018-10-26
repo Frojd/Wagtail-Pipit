@@ -1,24 +1,24 @@
 {% raw %}<title>{% firstof page.seo_title page.title %}</title>
 
 {% with root_url=page.get_site.root_url %}
-    {% firstof page.search_description page.list_description page.preamble as desc %}
+    {% firstof page.search_description as description %}
     {% if desc %}
-        <meta name="description" content="{{ desc }}">
+        <meta name="description" content="{{ description }}">
     {% endif %}
 
-    {% firstof page.og_title page.list_title page.title as title %}
+    {% firstof page.og_title page.title as title %}
     {% if title %}
         <meta property="og:title" content="{{ title }}" />
     {% endif %}
 
-    {% firstof page.og_description page.list_description page.preamble as description %}
-    {% if description %}
-        <meta property="og:description" content="{{ description }}" />
+    {% firstof page.og_description as og_description %}
+    {% if og_description %}
+        <meta property="og:description" content="{{ og_description }}" />
     {% endif %}
 
-    {% firstof page.canonical_link page.url as url %}
-    {% if url %}
-        <meta property="og:url" content="{{ root_url }}{{ url }}" />
+    {% firstof page.canonical_link page.full_url as og_url %}
+    {% if og_url %}
+        <meta property="og:url" content="{{ og_url }}" />
     {% endif %}
 
     {% with page.get_og_image as og_image %}
@@ -27,19 +27,19 @@
         {% endif %}
     {% endwith %}
 
-    {% firstof page.twitter_title page.list_title page.title as title %}
-    {% if title %}
-        <meta property="twitter:title" content="{{ title }}" />
+    {% firstof page.twitter_title page.title as twitter_title %}
+    {% if twitter_title %}
+        <meta property="twitter:title" content="{{ twitter_title }}" />
     {% endif %}
 
-    {% firstof page.twitter_description page.list_description page.preamble as description %}
-    {% if description %}
-        <meta property="twitter:description" content="{{ description }}" />
+    {% firstof page.twitter_description as twitter_description %}
+    {% if twitter_description %}
+        <meta property="twitter:description" content="{{ twitter_description }}" />
     {% endif %}
 
-    {% firstof page.twitter_url page.canonical_link page.url as url %}
-    {% if url %}
-        <meta property="twitter:url" content="{{ root_url }}{{ url }}" />
+    {% firstof page.canonical_link page.full_url as twitter_url %}
+    {% if twitter_url %}
+        <meta property="twitter:url" content="{{ twitter_url }}" />
     {% endif %}
 
     {% firstof page.twitter_image og_image as twitter_image %}
@@ -51,11 +51,5 @@
         <link rel="canonical" href="{{ page.canonical_link }}" />
     {% endif %}
 
-    {% if page.robot_nofollow and page.robot_noindex %}
-        <meta name="robots" content="noindex,nofollow">
-    {% elif page.robot_nofollow %}
-        <meta name="robots" content="index,nofollow">
-    {% elif page.robot_noindex %}
-        <meta name="robots" content="noindex,follow">
-    {% endif %}
-{% endwith %}{% endraw %}
+    <meta name="robots" content="{{ page.robot_noindex|yesno:"noindex,index" }},{{ page.robot_nofollow|yesno:"nofollow,follow" }}">
+{% endwith %}
