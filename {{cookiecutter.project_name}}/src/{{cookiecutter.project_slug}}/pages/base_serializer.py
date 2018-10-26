@@ -35,6 +35,9 @@ class BasePageSerializer(serializers.ModelSerializer):
             "twitter_image",
             "robot_noindex",
             "robot_nofollow",
+
+            # from external relation
+            "site_setting",
         ]
 
     def get_site_setting(self, page):
