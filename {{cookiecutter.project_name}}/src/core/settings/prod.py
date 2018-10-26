@@ -18,8 +18,6 @@ CACHES = {
     }
 }
 
-INSTALLED_APPS = INSTALLED_APPS + ["raven.contrib.django.raven_compat"]
-
 STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 )  # NOQA
