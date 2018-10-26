@@ -27,6 +27,9 @@ setup_django () {
     echo Create dummy user if none exists
     python manage.py create_superuser_if_none_exists --user=admin --password=admin
 
+    echo Replace possible default site root page
+    python manage.py wagtail_replace_default_site_root_page
+
     echo Collecting static-files
     python manage.py collectstatic --noinput
 
