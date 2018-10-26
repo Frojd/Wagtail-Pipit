@@ -4,11 +4,11 @@ from django.http import HttpResponseRedirect
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
     ObjectList, TabbedInterface,
+    FieldPanel,
+    MultiFieldPanel,
 )
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
-
-from sitesettings.models import SiteSetting
 
 
 class RedirectUpMixin:
@@ -89,7 +89,32 @@ class SeoMixin(Page):
         blank=True, null=True, verbose_name=_("Canonical link")
     )
 
-    promote_panels = [ImageChooserPanel("og_image")]
+    promote_panels = [
+        FieldPanel("slug"),
+        MultiFieldPanel(
+            [FieldPanel("seo_title"), FieldPanel("search_description")],
+            _("SEO settings"),
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("og_title"),
+                FieldPanel("og_description"),
+                ImageChooserPanel("og_image"),
+                FieldPanel("twitter_title"),
+                FieldPanel("twitter_description"),
+                ImageChooserPanel("twitter_image"),
+            ],
+            _("Social settings"),
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("robot_noindex"),
+                FieldPanel("robot_nofollow"),
+                FieldPanel("canonical_link"),
+            ],
+            _("Robot settings"),
+        ),
+    ]
 
     og_image_list = ["og_image"]
 
