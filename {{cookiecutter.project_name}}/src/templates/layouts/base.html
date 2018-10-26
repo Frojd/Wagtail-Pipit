@@ -41,13 +41,10 @@
         <script type="text/javascript" src="{% static 'core/vendor.js' %}"></script>
         <script type="text/javascript" src="{% static 'core/main.js' %}"></script>
 
-        {% if SETTINGS.SENTRY_PUBLIC_DSN %}
+        {% if SETTINGS.SENTRY_DSN %}
+            <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>
             <script>
-            Raven.config('{% sentry_public_dsn %}', {
-                whitelistUrls: [
-                    '{{ SETTINGS.STATIC_URL }}',
-                ]
-            }).install();
+            Raven.config('{% sentry_public_dsn %}').install();
             </script>
         {% endif %}
 
