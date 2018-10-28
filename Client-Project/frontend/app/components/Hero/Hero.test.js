@@ -1,7 +1,7 @@
 import React from 'react';
-import { 
+import {
     shallow,
-    // mount 
+    // mount
 } from 'enzyme';
 
 import Hero from './';

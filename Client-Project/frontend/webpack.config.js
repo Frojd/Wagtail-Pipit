@@ -11,7 +11,7 @@ const config = {
     context: path.join(__dirname, 'app'),
     entry: {
         vendor: './vendor.js',
-        main: './main.js',
+        index: './main.js',
     },
     mode: 'production',
     output: {

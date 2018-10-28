@@ -11,6 +11,11 @@ This will create a base set of containers and components in the app folder that 
 
 ## CLI commands ##
 
+Start the devserver:
+```
+npm start
+```
+
 Create a new component:
 ```
 npm run new ComponentName
@@ -41,7 +46,22 @@ Update test snapshots (if added):
 npm test -- -u
 ```
 
+Scaffold an example project:
+```
+npm run scaffold
+```
+
 Scaffold an empty project:
 ```
 npm run scaffold -- -e
+```
+
+Code formatting via prettier:
+```
+npm run fixcode
+```
+
+To only test that all files are formated correct:
+```
+npm run fixcode:test
 ```

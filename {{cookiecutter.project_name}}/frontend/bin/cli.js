@@ -5,6 +5,8 @@
 const path = require('path');
 const fs = require('fs-extra');
 const program = require('commander');
+const webpack = require('webpack');
+const glob = require('glob');
 const {
     createComponent, 
     deleteComponent, 
@@ -107,20 +109,19 @@ program.command('scaffold')
         console.log(`Scaffolded a new project`);
     });
 
-// program.command('publish [componentName]')
-//     .action(() => {
-//         const overrides = {
-//             rootFolder: process.cwd()
-//         };
-//         require('babel-register');
-//         const config = require('../internals/config.js')(overrides);
-//         const cli = new Cli(config);
-//         const outputPath = path.join(
-//             config.rootFolder,
-//             config.outputPathHtmlFolder
-//         );
-//         cli.publishComponents(outputPath);
-//     })
+program.command('publish')
+    .action(() => {
+        const allComponents = glob.sync('./app/+(components|containers)/**/index.js');
+        console.log(allComponents);
+        // const config = require('../internals/config.js')();
+        // const webpackConfig = require('../webpack.config.js');
+        // webpackConfig.output.path = path.resolve(process.cwd(), config.outputPathPublish);
+        // const compiler = webpack(webpackConfig);
+        // compiler.run((err, stats) => {
+        //     console.log(err, stats.toString());
+        // })
+        // console.log('hej');
+    })
 
 
 program.parse(process.argv);

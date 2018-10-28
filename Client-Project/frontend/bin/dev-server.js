@@ -4,11 +4,12 @@ const webpack = require('webpack');
 const config = require('../webpack.config.js');
 config.devtool = 'eval';
 config.mode = 'development';
-config.entry.main = '../internals/devserver/Components.js';
+config.entry.main = '../internals/devserver/RenderComponent.js';
 config.output['pathinfo'] = false,
 delete(config.entry.vendor)
 config.plugins.push(new webpack.HotModuleReplacementPlugin())
 config.module.rules[1].use[0] = 'style-loader';
+config.module.rules.push({ test: /\.md$/, loader: 'ignore-loader' })
 const options = {
     contentBase: './internals/devserver',
     publicPath: '/static/',

@@ -25,7 +25,6 @@
         "strict": 2,
         "camelcase": 2,
         "curly": 2,
-        // Set to 1 before going live
         "no-console": 0,
         "indent": 2,
         "comma-spacing": 2,

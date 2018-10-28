@@ -1,6 +1,0 @@
-{
-    "outputPath": "../src/core/static/core/",
-    "outputPathPublish": "dist/published/",
-    "publicPath": "/static/",
-    "port": 7000
-}

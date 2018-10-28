@@ -1,10 +1,18 @@
-{% raw -%}
-import React from 'react';
+{% raw -%}import React from 'react';
+import PropTypes from 'prop-types';
 import './Wysiwyg.css';
 
-const Wysiwyg = ({wysiwyg}) => (
-    <div className="Wysiwyg" dangerouslySetInnerHTML={{__html: wysiwyg}} />
+const Wysiwyg = ({ wysiwyg }) => (
+    <div className="Wysiwyg" dangerouslySetInnerHTML={{ __html: wysiwyg }} />
 );
+
+Wysiwyg.propTypes = {
+    wysiwyg: PropTypes.string,
+}
+
+Wysiwyg.defaultProps = {
+    wysiwyg: '',
+}
 
 export default Wysiwyg;
 {%- endraw %}
