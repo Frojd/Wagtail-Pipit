@@ -178,6 +178,10 @@ LOGGING = {
     "loggers": {"": {"handlers": ["file"], "level": "DEBUG", "propagate": True}},
 }
 
+# Email
+DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com")
+
+# Auth
 AUTH_USER_MODEL = 'customuser.User'
 
 # Wagtail
