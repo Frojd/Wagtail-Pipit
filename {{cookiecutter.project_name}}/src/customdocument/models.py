@@ -1,5 +1,6 @@
 from wagtail.documents.models import Document, AbstractDocument
 
+
 class CustomDocument(AbstractDocument):
     # Custom field example:
 

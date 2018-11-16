@@ -25,10 +25,6 @@ class Command(BaseCommand):
         password = options["password"]
         email = options["email"]
 
-        User.objects.create_superuser(
-            username=username,
-            password=password,
-            email=email
-        )
+        User.objects.create_superuser(username=username, password=password, email=email)
 
         self.stdout.write('Local user "{}" was created'.format(username))

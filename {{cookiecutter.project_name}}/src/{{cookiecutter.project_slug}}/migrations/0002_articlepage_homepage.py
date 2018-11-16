@@ -7,31 +7,53 @@ import wagtail.core.fields
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('{{ cookiecutter.project_slug }}', '0001_initial'),
-    ]
+    dependencies = [("{{ cookiecutter.project_slug }}", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='ArticlePage',
+            name="ArticlePage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='{{ cookiecutter.project_slug }}.BasePage')),
-                ('author', models.TextField(blank=True, null=True, verbose_name='Author')),
-                ('wysiwyg', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Wysiwyg')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="{{ cookiecutter.project_slug }}.BasePage",
+                    ),
+                ),
+                (
+                    "author",
+                    models.TextField(blank=True, null=True, verbose_name="Author"),
+                ),
+                (
+                    "wysiwyg",
+                    wagtail.core.fields.RichTextField(
+                        blank=True, null=True, verbose_name="Wysiwyg"
+                    ),
+                ),
             ],
-            options={
-                'verbose_name': 'Article',
-            },
-            bases=('{{ cookiecutter.project_slug }}.basepage',),
+            options={"verbose_name": "Article"},
+            bases=("{{ cookiecutter.project_slug }}.basepage",),
         ),
         migrations.CreateModel(
-            name='HomePage',
+            name="HomePage",
             fields=[
-                ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='{{ cookiecutter.project_slug }}.BasePage')),
+                (
+                    "basepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="{{ cookiecutter.project_slug }}.BasePage",
+                    ),
+                )
             ],
-            options={
-                'verbose_name': 'Home',
-            },
-            bases=('{{ cookiecutter.project_slug }}.basepage',),
+            options={"verbose_name": "Home"},
+            bases=("{{ cookiecutter.project_slug }}.basepage",),
         ),
     ]

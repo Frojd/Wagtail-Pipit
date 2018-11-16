@@ -38,8 +38,8 @@ class CustomImageSerializer(serializers.ModelSerializer):
 
     def get_focal(self, obj):
         # Default focal point values
-        background_x = .5
-        background_y = .5
+        background_x = 0.5
+        background_y = 0.5
 
         if obj.focal_point_width:
             # Get point relative to image size, make sure it isn't more than 1

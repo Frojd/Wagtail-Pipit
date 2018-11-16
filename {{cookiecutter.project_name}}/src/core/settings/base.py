@@ -182,12 +182,12 @@ LOGGING = {
 DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com")
 
 # Auth
-AUTH_USER_MODEL = 'customuser.User'
+AUTH_USER_MODEL = "customuser.User"
 
 # Wagtail
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
-WAGTAILDOCS_DOCUMENT_MODEL = 'customdocument.CustomDocument'
+WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 
