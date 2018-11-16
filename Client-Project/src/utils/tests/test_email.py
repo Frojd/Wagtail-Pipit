@@ -18,5 +18,5 @@ class TestSendTemplatedEmail(TestCase):
 
         self.assertEqual(len(mail.outbox), 1)
 
-        self.assertEqual(mail.outbox[0].subject, "Mail subject")
+        self.assertEqual(mail.outbox[0].subject, "My subject")
         self.assertEqual(mail.outbox[0].from_email, "no-reply@email.com")
