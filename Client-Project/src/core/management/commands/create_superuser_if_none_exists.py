@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class Command(BaseCommand):
@@ -16,6 +16,8 @@ class Command(BaseCommand):
         parser.add_argument("--email", default="admin@example.com")
 
     def handle(self, *args, **options):
+        User = get_user_model()
+
         if User.objects.exists():
             return
 

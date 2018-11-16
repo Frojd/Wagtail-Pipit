@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
-
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.views import defaults as default_views
-
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.search import urls as wagtailsearch_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
+from client_project.views import page_not_found
+
+
+handler404 = page_not_found
 
 urlpatterns = []
 
@@ -44,7 +44,6 @@ urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^documents/", include(wagtaildocs_urls)),
-    url(r"^search/", include(wagtailsearch_urls)),
     url("^sitemap\.xml$", sitemap, name="sitemap"),
 ]
 

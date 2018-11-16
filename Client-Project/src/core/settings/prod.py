@@ -18,8 +18,6 @@ CACHES = {
     }
 }
 
-INSTALLED_APPS = INSTALLED_APPS + ["raven.contrib.django.raven_compat"]
-
 STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 )  # NOQA
@@ -67,7 +65,6 @@ CSRF_COOKIE_HTTPONLY = True
 
 # Sentry
 SENTRY_DSN = get_env("SENTRY_DSN")
-SENTRY_PUBLIC_DSN = get_env("SENTRY_PUBLIC_DSN")
 
 RAVEN_CONFIG = {
     "dsn": SENTRY_DSN,

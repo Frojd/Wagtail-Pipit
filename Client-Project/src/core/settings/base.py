@@ -10,7 +10,7 @@ import os
 
 from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
-from core.settings import get_env, get_env_bool
+from core.settings import get_env
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -59,10 +59,13 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "django_react_templatetags",
+    "raven.contrib.django.raven_compat",
     # Project specific apps
     "core",
     "sitesettings",
+    "customuser",
     "customimage",
+    "customdocument",
     "client_project",
 ]
 
@@ -175,15 +178,21 @@ LOGGING = {
     "loggers": {"": {"handlers": ["file"], "level": "DEBUG", "propagate": True}},
 }
 
+# Email
+DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com")
+
+# Auth
+AUTH_USER_MODEL = "customuser.User"
 
 # Wagtail
 WAGTAIL_SITE_NAME = "Client-Project"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
+WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 
 # File storage
-if get_env("AWS_ACCESS_KEY_ID", default=None):
+if get_env("AWS_ACCESS_KEY_ID", ""):
     AWS_ACCESS_KEY_ID = get_env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME")
@@ -228,3 +237,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
 ADMIN_URL = r"^admin/"
+
+# React Templatetags
+REACT_COMPONENT_PREFIX = "Components."
