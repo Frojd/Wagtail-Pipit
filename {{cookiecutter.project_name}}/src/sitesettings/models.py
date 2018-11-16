@@ -8,6 +8,7 @@ from wagtail.core.fields import RichTextField
 @register_setting
 class SiteSetting(BaseSetting):
     gtm_id = models.CharField(max_length=50, blank=True)
+    google_site_verification = models.CharField(max_length=255, blank=True)
 
     cookie_content = RichTextField(
         blank=True, null=True, verbose_name=_("Cookie bar content"), features=[]
