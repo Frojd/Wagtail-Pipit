@@ -128,6 +128,9 @@ class SeoMixin(Page):
 
         return images[0]
 
+    def get_og_type(self):
+        return None
+
     class Meta:
         abstract = True
 

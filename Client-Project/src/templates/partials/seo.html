@@ -26,6 +26,10 @@
     {% endif %}
 {% endwith %}
 
+{% if page.get_og_type %}
+    <meta property="og:type" content="{{ page.get_og_type }}" />
+{% endif %}
+
 {% firstof page.twitter_title page.title as twitter_title %}
 {% if twitter_title %}
     <meta property="twitter:title" content="{{ twitter_title }}" />
