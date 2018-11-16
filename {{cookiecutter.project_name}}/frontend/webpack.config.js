@@ -21,6 +21,10 @@ const config = {
     },
     module: {
         rules: [
+            { 
+                test: /\.md$/, 
+                loader: 'ignore-loader' 
+            },
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -31,7 +35,7 @@ const config = {
                 ]
             },
             {
-                test: /\.css$/,
+                test: /\.(css|scss)$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
@@ -41,7 +45,8 @@ const config = {
                             importLoaders: 1,
                         }
                     },
-                    'postcss-loader'
+                    'postcss-loader',
+                    'sass-loader',
                 ]
             },
             {
@@ -68,10 +73,6 @@ const config = {
             Components: path.resolve(__dirname, 'app/components/'),
             i18n: path.resolve(__dirname, 'app/i18n'),
         }
-    },
-    externals: {
-        React: 'react',
-        ReactDOM: 'react-dom',
     },
     plugins: [
         new MiniCssExtractPlugin({

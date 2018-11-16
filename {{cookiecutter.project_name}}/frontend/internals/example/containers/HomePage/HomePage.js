@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
-import './HomePage.css';
+import './HomePage.scss';
 
 import Hero from 'Components/Hero';
 

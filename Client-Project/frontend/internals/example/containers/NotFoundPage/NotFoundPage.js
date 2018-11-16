@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import './NotFoundPage.css';
+// import PropTypes from 'prop-types';
+
+import './NotFoundPage.scss';
 
 class NotFoundPage extends PureComponent {
     state = {};

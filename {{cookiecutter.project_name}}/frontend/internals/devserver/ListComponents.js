@@ -20,15 +20,14 @@ function importAll(r, cache) {
         if(keys[key].split('/').length > 3) {
             continue;
         }
-        console.log(keys[key]);
-        cache.push(r(keys[key]).default)
+        
+        const name = keys[key].split('/')[1];
+        cache.push({ 'name': name });
     }
 }
 
 importAll(componentsContext, components);
 importAll(containerContext, containers);
-
-//const containerContext = require.context('../app/containers', true, /index.js$/);
 
 export default class ListComponents extends PureComponent {
     render() {

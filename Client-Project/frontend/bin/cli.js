@@ -109,19 +109,4 @@ program.command('scaffold')
         console.log(`Scaffolded a new project`);
     });
 
-program.command('publish')
-    .action(() => {
-        const allComponents = glob.sync('./app/+(components|containers)/**/index.js');
-        console.log(allComponents);
-        // const config = require('../internals/config.js')();
-        // const webpackConfig = require('../webpack.config.js');
-        // webpackConfig.output.path = path.resolve(process.cwd(), config.outputPathPublish);
-        // const compiler = webpack(webpackConfig);
-        // compiler.run((err, stats) => {
-        //     console.log(err, stats.toString());
-        // })
-        // console.log('hej');
-    })
-
-
 program.parse(process.argv);

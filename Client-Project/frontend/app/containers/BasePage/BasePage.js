@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import './BasePage.css';
+// import PropTypes from 'prop-types';
+import './BasePage.scss';
 
 export default class BasePage extends PureComponent {
     state = {};

@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './__Pure.css';
+// import PropTypes from 'prop-types';
+import './__Pure.scss';
 
 const __Pure = () => (
     <div className="__Pure">

@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import { basePageWrap } from '../BasePage';
-import './ArticlePage.css';
+import './ArticlePage.scss';
 
 import Hero from 'Components/Hero';
 import Wysiwyg from 'Components/Wysiwyg';
