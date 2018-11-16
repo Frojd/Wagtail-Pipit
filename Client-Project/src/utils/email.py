@@ -8,7 +8,7 @@ def send_templated_email(
     to_emails: str,
     template_txt: str,
     template_html=None,
-    context={}
+    context={},
 ) -> bool:
     """
     Example usage:

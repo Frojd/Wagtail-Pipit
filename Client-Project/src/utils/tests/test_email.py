@@ -12,10 +12,8 @@ class TestSendTemplatedEmail(TestCase):
             "My subject",
             "no-reply@email.com",
             ["to@email.com"],
-            "email/test_send.txt", context={
-                "title": "My title",
-                "content": "My content",
-            }
+            "email/test_send.txt",
+            context={"title": "My title", "content": "My content"},
         )
 
         self.assertEqual(len(mail.outbox), 1)

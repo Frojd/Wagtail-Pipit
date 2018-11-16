@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('customdocument', '0001_initial'),
-    ]
+    dependencies = [("customdocument", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='customdocument',
-            name='file_size',
+            model_name="customdocument",
+            name="file_size",
             field=models.PositiveIntegerField(editable=False, null=True),
-        ),
+        )
     ]

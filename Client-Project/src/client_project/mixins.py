@@ -3,7 +3,8 @@ from django.db import models
 from django.http import HttpResponseRedirect
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
-    ObjectList, TabbedInterface,
+    ObjectList,
+    TabbedInterface,
     FieldPanel,
     MultiFieldPanel,
 )
@@ -131,8 +132,7 @@ class SeoMixin(Page):
         abstract = True
 
 
-class EnhancedEditHandlerMixin():
-
+class EnhancedEditHandlerMixin:
     @cached_classmethod
     def get_edit_handler(cls):
         """

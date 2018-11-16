@@ -8,21 +8,17 @@ class CustomDocumentSerializer(serializers.ModelSerializer):
     href = serializers.SerializerMethodField()
 
     def get_id(self, obj):
-        if hasattr(self, '_mocked_id'):
+        if hasattr(self, "_mocked_id"):
             return self._mocked_id
 
         return obj.pk
 
     def get_href(self, obj):
-        if hasattr(self, '_mocked_url'):
+        if hasattr(self, "_mocked_url"):
             return self._mocked_url
 
         return obj.file.url if obj.file else None
 
     class Meta:
         model = CustomDocument
-        fields = [
-            'id',
-            'title',
-            'href',
-        ]
+        fields = ["id", "title", "href"]

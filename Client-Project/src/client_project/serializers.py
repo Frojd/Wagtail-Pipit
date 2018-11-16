@@ -9,7 +9,7 @@ class NotFoundPageSerializer(serializers.Serializer):
     site_setting = serializers.SerializerMethodField()
 
     def get_site_setting(self, page):
-        request = self.context['request']
+        request = self.context["request"]
         site_setting = SiteSetting.for_site(request.site)
         return SiteSettingSerializer(site_setting).data
 
