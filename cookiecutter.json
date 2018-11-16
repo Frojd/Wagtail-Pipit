@@ -16,5 +16,8 @@
     "docker_db_port": 5433,
     "aws_devops_iam_username": "{{ cookiecutter.project_slug }}_devops",
     "version": "0.1.0",
-    "software_license": ["MIT", "proprietary"]
+    "software_license": ["MIT", "proprietary"],
+    "_copy_without_render": [
+        "*.git"
+    ]
 }
