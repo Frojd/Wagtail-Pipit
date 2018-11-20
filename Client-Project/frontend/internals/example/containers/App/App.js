@@ -3,16 +3,22 @@ import { keysToCamelFromSnake } from '../../utils/caseconverters';
 import './App.scss';
 
 class App extends PureComponent {
-    render() {
-        const {
-            component_name,
-            component_props
-        } = this.props;
 
-        const Component = require(`../../containers/${component_name}`).default;
+    render() {
+        const camelProps = {...keysToCamelFromSnake(this.props)};
+        const {
+            componentName,
+            componentProps
+        } = camelProps;
+
+        if(!componentName) {
+            return false;
+        }
+        
+        const Component = require(`../../containers/${componentName}`).default;
         
         return (
-            <Component {...keysToCamelFromSnake(component_props)} />
+            <Component {...keysToCamelFromSnake(componentProps)} />
         );
     }
 }

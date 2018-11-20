@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Wysiwyg.css';
+import './Wysiwyg.scss';
 
 const Wysiwyg = ({ wysiwyg }) => (
     <div className="Wysiwyg" dangerouslySetInnerHTML={{ __html: wysiwyg }} />
