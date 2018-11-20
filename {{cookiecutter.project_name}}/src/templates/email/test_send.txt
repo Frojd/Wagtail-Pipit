@@ -1,3 +1,4 @@
-{{ title }}
+{% raw %}{{ title }}
 ---
 {{ content }}
+{% endraw %}
