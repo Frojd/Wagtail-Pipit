@@ -13,12 +13,12 @@ services:
       - db
     env_file: ./docker/config/web.env
   ssr:
-    image: frojd/hastur:develop
+    image: frojd/hastur:latest
     volumes:
       - "./src/static:/app"
       - "./frontend/node_modules:/app/raw/node_modules"
     environment:
-      - HASTUR_PATH=/app/raw/components
+      - HASTUR_PATH=/app/raw/containers
       - HASTUR_PORT=
       - HASTUR_HOST=
       - HASTUR_DEBUG=true
