@@ -12,6 +12,17 @@ const plugins = [
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-export-default-from',
 ]
+
+if(process.env['BABEL_ENV'] === 'ssr') {
+    // Needed to remove imports of css modules in js files
+    plugins.push(['react-css-modules', {
+        'removeImport': true,
+        'filetypes': {
+            '.scss': {}
+        }
+    }])
+}
+
 module.exports = {
     presets,
     plugins

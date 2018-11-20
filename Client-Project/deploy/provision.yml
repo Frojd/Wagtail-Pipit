@@ -11,6 +11,9 @@
         secret_key: "{{ lookup('password', '/dev/null chars=ascii_letters length=80') }}"
         database_password: "{{ lookup('password', '/dev/null chars=ascii_letters length=40') }}"
 
+    - pip:
+        name: psycopg2-binary
+
     - name: Creates directory
       file:
         path: "{{ ansistrano_deploy_to }}/shared"
@@ -53,4 +56,5 @@
         name: "{{ database_user }}"
         password: "{{ database_password }}"
         priv: ALL
+
 

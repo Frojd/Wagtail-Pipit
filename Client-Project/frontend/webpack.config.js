@@ -21,10 +21,6 @@ const config = {
     },
     module: {
         rules: [
-            { 
-                test: /\.md$/, 
-                loader: 'ignore-loader' 
-            },
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -60,6 +56,10 @@ const config = {
                         }
                     },
                 ]
+            },
+            { 
+                test: /\.md$/, 
+                loader: 'ignore-loader' 
             },
         ]
     },
