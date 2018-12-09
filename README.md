@@ -9,16 +9,16 @@ This is a cookiecutter Django/Wagtail boilerplate that covers best practices and
 - Wagtail 2.3
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
-- React templates with SSR
+- React templates with built in SSR
 - Settings primed for production
 - Optional file storage through AWS S3
 - Third part integrations:
-    - Sentry
+    - [Sentry](https://sentry.io/)
     - GTM
-    - Browser Update
-    - Circle CI
+    - [Circle CI](https://circleci.com/)
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
 - Deploy scripts using [ansistrano](https://github.com/ansistrano)
+- Orchestration using [ansible](https://github.com/ansible/ansible)
 - Scripts for syncing data from remote to local machine
 - ...and for syncing prod => stage
 
