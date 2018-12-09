@@ -3,7 +3,7 @@ set -e
 
 # Arguments
 local_domain=${1-{{cookiecutter.domain_stage}}.test:{{cookiecutter.docker_web_port}}}
-ssh_host=${2-root@{{cookiecutter.ssh_stage}}}
+ssh_host=${2-{{cookiecutter.ssh_stage}}}
 
 ROOTDIR=$(git rev-parse --show-toplevel)
 DOCKERDIR=$(cd ${ROOTDIR}/docker/; pwd)
