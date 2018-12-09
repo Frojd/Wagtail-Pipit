@@ -69,7 +69,7 @@ Choose from 1, 2 [1]: 1
 
 ## Versioning
 
-This boilerplate uses [semantic versioning](http://semver.org/) and follow django's MAJOR and MINOR version numbers, PATCH has no connection to django version, but is something we use to indicate updates.
+This boilerplate uses [semantic versioning](http://semver.org/).
 
 
 ## Contributing
