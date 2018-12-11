@@ -63,10 +63,6 @@ jobs:
             npm run eslint
             npm run build:prod
             npm run ssr:prod
-      - run:
-          command: |
-            cd frontend
-            ./node_modules/.bin/babel app/components --out-dir raw --no-babelrc --plugins=transform-class-properties,transform-object-rest-spread,inline-react-svg --presets=react,env
       - save_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
