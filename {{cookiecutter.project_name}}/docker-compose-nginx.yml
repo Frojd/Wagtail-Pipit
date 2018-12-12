@@ -12,7 +12,6 @@ services:
             - "./docker/files/nginx.conf:/etc/nginx/nginx.conf"
             - "./docker/files/shared:/shared:rw"
             - "./docker/files/var/log:/var/log:rw"
-        volumes_from:
             - web
     web:
         command: uwsgi
