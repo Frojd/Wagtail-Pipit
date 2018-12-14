@@ -128,8 +128,40 @@ class SeoMixin(Page):
 
         return images[0]
 
+    def get_html_title(self):
+        return self.seo_title or self.title
+
+    def get_meta_description(self):
+        return self.search_description
+
+    def get_og_title(self):
+        return self.og_title or self.title
+
+    def get_og_description(self):
+        return self.og_description or self.title
+
+    def get_og_url(self):
+        return self.canonical_link or self.full_url
+
     def get_og_type(self):
         return None
+
+    def get_twitter_title(self):
+        return self.twitter_title or self.title
+
+    def get_twitter_description(self):
+        return self.twitter_description
+
+    def get_twitter_url(self):
+        return self.canonical_link or self.full_url
+
+    def get_twitter_image(self):
+        return self.twitter_image or self.get_og_image()
+
+    def get_meta_robots(self):
+        index = "noindex" if self.robot_noindex else "index"
+        follow = "nofollow" if self.robot_nofollow else "follow"
+        return '{},{}'.format(index, follow)
 
     class Meta:
         abstract = True
