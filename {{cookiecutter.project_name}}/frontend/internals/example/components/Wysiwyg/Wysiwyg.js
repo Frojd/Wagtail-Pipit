@@ -1,4 +1,4 @@
-import React from 'react';
+{% raw -%}import React from 'react';
 import PropTypes from 'prop-types';
 import './Wysiwyg.scss';
 
@@ -15,3 +15,4 @@ Wysiwyg.defaultProps = {
 }
 
 export default Wysiwyg;
+{%- endraw %}
