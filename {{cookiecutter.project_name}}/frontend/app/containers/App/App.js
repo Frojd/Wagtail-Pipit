@@ -5,7 +5,7 @@ import './App.scss';
 const cache = {};
 
 function importAll(r) {
-    r.keys().forEach(key => cache[key] = r(key));
+    r.keys().forEach(key => cache[key.split('/')[1]] = r(key));
 }
 
 importAll(require.context('../../containers', true, /index.js$/));
@@ -23,7 +23,7 @@ class App extends PureComponent {
             return false;
         }
 
-        const Component = cache[componentName];
+        const Component = cache[componentName].default;
 
         return (
             <Component {...keysToCamelFromSnake(componentProps)} />
