@@ -33,7 +33,7 @@
 
     - name: Creates application configuration
       copy:
-        src: "{{ ansistrano_deploy_from }}/example.env"
+        src: "files/example.env"
         dest: "{{ ansistrano_deploy_to }}/shared/.env"
         owner: www-data
         group: www-data
@@ -84,5 +84,6 @@
 
 - name: Run deploy playbook
   import_playbook: deploy.yml
+
 
 

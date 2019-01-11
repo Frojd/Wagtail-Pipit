@@ -57,21 +57,24 @@ const config = {
                     },
                 ]
             },
-            { 
-                test: /\.md$/, 
-                loader: 'ignore-loader' 
+            {
+                test: /\.md$/,
+                loader: 'ignore-loader'
             },
         ]
     },
     stats: {
         colors: true,
         hash: false,
-        modules: false
+        modules: false,
+        children: false,
     },
     resolve: {
         alias: {
             Components: path.resolve(__dirname, 'app/components/'),
             i18n: path.resolve(__dirname, 'app/i18n'),
+            Styles: path.resolve(__dirname, 'app/styles'),
+            Utils: path.resolve(__dirname, 'app/utils')
         }
     },
     plugins: [

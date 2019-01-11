@@ -18,7 +18,9 @@ if(process.env['BABEL_ENV'] === 'ssr') {
     plugins.push(['react-css-modules', {
         'removeImport': true,
         'filetypes': {
-            '.scss': {}
+            '.scss': {
+                'syntax': 'postcss-scss'
+            }
         }
     }])
 }

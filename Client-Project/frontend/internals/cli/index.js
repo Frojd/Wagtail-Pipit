@@ -1,3 +1,5 @@
+/* global process module */
+
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
@@ -45,7 +47,7 @@ const updateIndex = function(componentName, componentPath, remove) {
     } else {
         index = newComponent.concat(index);
         index = index.replace(
-            `const containers = {`,
+            'const containers = {',
             `const containers = {
     ${componentName},`
         );
