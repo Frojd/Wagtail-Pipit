@@ -1,3 +1,5 @@
+require('babel-plugin-require-context-hook/register')();
+
 import React, { PureComponent } from 'react';
 import { keysToCamelFromSnake } from '../../utils/caseconverters';
 import './App.scss';

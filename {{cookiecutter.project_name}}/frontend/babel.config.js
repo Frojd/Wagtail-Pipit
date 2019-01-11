@@ -9,6 +9,7 @@ const presets = [
 const plugins = [
     'react-hot-loader/babel',
     'babel-plugin-webpack-aliases',
+    'require-context-hook',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-export-default-from',
 ]
