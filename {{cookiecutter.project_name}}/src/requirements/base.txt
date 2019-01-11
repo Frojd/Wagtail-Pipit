@@ -1,10 +1,10 @@
-Django==2.1.3
+Django==2.1.5
 boto==2.49.0
 django-storages==1.7.1
 psycopg2-binary==2.7.6.1
 pycrypto==2.6.1
-raven==6.9.0
-python-dotenv==0.9.1
-wagtail==2.3
+raven==6.10.0
+python-dotenv==0.10.1
+wagtail==2.4
 django_react_templatetags==5.2.1
 
