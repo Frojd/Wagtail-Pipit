@@ -1,3 +1,5 @@
+/* global module */
+
 import { hot } from 'react-hot-loader';
 import { importAllJsons } from '../utils';
 

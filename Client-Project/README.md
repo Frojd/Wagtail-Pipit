@@ -239,6 +239,15 @@ docker-compose up --build
 </details>
 
 
+### How do I install the application on the web server?
+
+This project includes a provision script that sets up anything necessary to run the application (install db, add nginx/uwsgi conf).
+
+```
+ansible-playbook provision.yml -i stages/<stage>
+```
+
+
 ## Contributing
 
 Want to contribute? Awesome. Just send a pull request.

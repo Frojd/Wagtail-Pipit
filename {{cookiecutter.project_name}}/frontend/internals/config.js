@@ -1,4 +1,5 @@
-//const fs = require('fs');
+/* global process module */
+
 const path = require('path');
 
 const config = () => {
