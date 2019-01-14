@@ -15,10 +15,10 @@ services:
   ssr:
     image: frojd/hastur:latest
     volumes:
-      - "./src/static:/app"
+      - "./src/core/static/core:/app"
       - "./frontend/node_modules:/app/raw/node_modules"
     environment:
-      - HASTUR_PATH=/app/raw/containers
+      - HASTUR_PATH=/app
       - HASTUR_PORT=
       - HASTUR_HOST=
       - HASTUR_DEBUG=true
