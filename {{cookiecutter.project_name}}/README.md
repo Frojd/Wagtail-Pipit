@@ -19,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.5+ 
+- Python 3.6+ 
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
