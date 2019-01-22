@@ -78,13 +78,20 @@
         regexp: 'UWSGI_STATS_PORT'
         replace: '{{ 9190+(uwsgi_application_count.stdout|int) }}'
 
+    - name: Replaces default uwsgi conf with empty
+      file:
+        path: "/mnt/persist/uwsgi/conf.d/django.ini"
+        state: absent
+
+    - shell: echo "" > /mnt/persist/uwsgi/conf.d/django.ini
+
     - name: Copies nginx config
       copy:
         src: "files/nginx.conf"
         dest: "/mnt/persist/nginx/conf.d/{{ project_slug }}.conf"
         mode: 0644
 
-- name: Run deploy playbook
+- name: Runs deploy playbook
   import_playbook: deploy.yml
 
 
