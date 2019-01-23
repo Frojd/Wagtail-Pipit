@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "django.contrib.gis",
     # Third party apps
     "storages",
     "wagtail.embeds",
@@ -120,7 +121,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Using PostgreSQL
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": get_env("DATABASE_NAME"),
         "USER": get_env("DATABASE_USER"),
         "PASSWORD": get_env("DATABASE_PASSWORD"),
