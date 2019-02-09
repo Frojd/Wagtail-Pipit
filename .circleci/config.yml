@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/frojd-django-boilerplate
     docker:
       - image: circleci/python:3.6.1
-      - image: postgres:9.6
+      - image: mdillon/postgis:10
 
     environment:
       TEST_RESULTS: /tmp/test-results
