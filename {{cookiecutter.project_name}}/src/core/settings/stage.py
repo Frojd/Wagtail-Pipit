@@ -11,6 +11,8 @@ from core.settings.base import *  # NOQA
 
 DEBUG = False
 
+DATABASES['default']['CONN_MAX_AGE'] = get_env("DATABASE_CONN_MAX_AGE", default=60)
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
