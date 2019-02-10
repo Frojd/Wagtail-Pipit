@@ -6,11 +6,14 @@
 
 - name: Make sure www-data has ownership of current
   file:
-    path: "{{ ansistrano_deploy_to }}/current"
+    path: "{{ item }}"
     owner: www-data
     group: www-data
     state: directory
     recurse: yes
+  with_items:
+    - "{{ ansistrano_deploy_to }}/current"
+    - "{{ ansistrano_deploy_to }}/logs"
 
 - name: Restart uWSGI
   service:
