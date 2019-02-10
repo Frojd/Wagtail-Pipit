@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.http import HttpResponseRedirect
+from django.utils.functional import cached_property
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
     ObjectList,
@@ -119,7 +120,8 @@ class SeoMixin(Page):
 
     og_image_list = ["og_image"]
 
-    def get_og_image(self):
+    @cached_property
+    def seo_og_image(self):
         images = [getattr(self, x) for x in self.og_image_list]
         images = list(filter(None.__ne__, images))
 
@@ -128,37 +130,48 @@ class SeoMixin(Page):
 
         return images[0]
 
-    def get_html_title(self):
+    @cached_property
+    def seo_html_title(self):
         return self.seo_title or self.title
 
-    def get_meta_description(self):
+    @cached_property
+    def seo_meta_description(self):
         return self.search_description
 
-    def get_og_title(self):
+    @cached_property
+    def seo_og_title(self):
         return self.og_title or self.title
 
-    def get_og_description(self):
+    @cached_property
+    def seo_og_description(self):
         return self.og_description or self.title
 
-    def get_og_url(self):
+    @cached_property
+    def seo_og_url(self):
         return self.canonical_link or self.full_url
 
-    def get_og_type(self):
+    @cached_property
+    def seo_og_type(self):
         return None
 
-    def get_twitter_title(self):
+    @cached_property
+    def seo_twitter_title(self):
         return self.twitter_title or self.title
 
-    def get_twitter_description(self):
+    @cached_property
+    def seo_twitter_description(self):
         return self.twitter_description
 
-    def get_twitter_url(self):
+    @cached_property
+    def seo_twitter_url(self):
         return self.canonical_link or self.full_url
 
-    def get_twitter_image(self):
-        return self.twitter_image or self.get_og_image()
+    @cached_property
+    def seo_twitter_image(self):
+        return self.twitter_image or self.seo_og_image
 
-    def get_meta_robots(self):
+    @cached_property
+    def seo_meta_robots(self):
         index = "noindex" if self.robot_noindex else "index"
         follow = "nofollow" if self.robot_nofollow else "follow"
         return '{},{}'.format(index, follow)

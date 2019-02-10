@@ -1,51 +1,47 @@
-<title>{{ page.get_html_title }}</title>
+<title>{{ page.seo_html_title }}</title>
 
-{% if page.get_meta_description  %}
-    <meta name="description" content="{{ page.get_meta_description }}">
+{% if page.seo_meta_description  %}
+    <meta name="description" content="{{ page.seo_meta_description }}">
 {% endif %}
 
-{% if page.get_og_title %}
-    <meta property="og:title" content="{{ page.get_og_title }}" />
+{% if page.seo_og_title %}
+    <meta property="og:title" content="{{ page.seo_og_title }}" />
 {% endif %}
 
-{% if page.get_og_description  %}
-    <meta property="og:description" content="{{ page.get_og_description }}" />
+{% if page.seo_og_description  %}
+    <meta property="og:description" content="{{ page.seo_og_description }}" />
 {% endif %}
 
-{% if page.get_og_url %}
-    <meta property="og:url" content="{{ page.get_og_url }}" />
+{% if page.seo_og_url %}
+    <meta property="og:url" content="{{ page.seo_og_url }}" />
 {% endif %}
 
-{% with page.get_og_image as og_image %}
-    {% if og_image %}
-        <meta property="og:image" content="{{ page.get_site.root_url }}{{ og_image }}" />
-    {% endif %}
-{% endwith %}
-
-{% if page.get_og_type %}
-    <meta property="og:type" content="{{ page.get_og_type }}" />
+{% if page.seo_og_image %}
+    <meta property="og:image" content="{{ page.get_site.root_url }}{{ page.seo_og_image.file.url }}" />
 {% endif %}
 
-{% if page.get_twitter_title %}
-    <meta property="twitter:title" content="{{ page.get_twitter_title }}" />
+{% if page.seo_og_type %}
+    <meta property="og:type" content="{{ page.seo_og_type }}" />
 {% endif %}
 
-{% if page.get_twitter_description %}
-    <meta property="twitter:description" content="{{ page.get_twitter_description }}" />
+{% if page.seo_twitter_title %}
+    <meta property="twitter:title" content="{{ page.seo_twitter_title }}" />
 {% endif %}
 
-{% if page.get_twitter_url %}
-    <meta property="twitter:url" content="{{ page.get_twitter_url }}" />
+{% if page.seo_twitter_description %}
+    <meta property="twitter:description" content="{{ page.seo_twitter_description }}" />
 {% endif %}
 
-{% if page.get_twitter_image %}
-    <meta property="twitter:image" content="{{ page.get_site.root_url }}{{ page.get_twitter_image }}" />
+{% if page.seo_twitter_url %}
+    <meta property="twitter:url" content="{{ page.seo_twitter_url }}" />
+{% endif %}
+
+{% if page.seo_twitter_image %}
+    <meta property="twitter:image" content="{{ page.get_site.root_url }}{{ page.seo_twitter_image.file.url }}" />
 {% endif %}
 
 {% if page.canonical_link %}
     <link rel="canonical" href="{{ page.canonical_link }}" />
 {% endif %}
 
-<meta name="robots" content="{{ page.get_meta_robots }}">
-
-
+<meta name="robots" content="{{ page.seo_meta_robots }}">
