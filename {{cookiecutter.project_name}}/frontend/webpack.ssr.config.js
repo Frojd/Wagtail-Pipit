@@ -57,6 +57,7 @@ const config = {
     },
     resolve: {
         alias: {
+            Containers: path.resolve(__dirname, 'app/containers/'),
             Components: path.resolve(__dirname, 'app/components/'),
             i18n: path.resolve(__dirname, 'app/i18n'),
             Styles: path.resolve(__dirname, 'app/styles'),

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './BasePage.scss';
 
 export default class BasePage extends PureComponent {
@@ -7,13 +7,12 @@ export default class BasePage extends PureComponent {
 
     static defaultProps = {};
 
-    static propTypes = {};
+    static propTypes = {
+        children: PropTypes.node,
+    };
 
     render() {
-        return (
-            <div className="BasePage">
-                {this.props.children}
-            </div>
-        );
+        const { children } = this.props;
+        return <div className="BasePage">{children}</div>;
     }
 }

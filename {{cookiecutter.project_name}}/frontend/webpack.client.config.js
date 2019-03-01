@@ -11,7 +11,6 @@ const config = {
     devtool: 'source-map',
     context: path.join(__dirname, 'app'),
     entry: {
-        vendor: './vendor.js',
         index: './main.js',
     },
     mode: 'production',
@@ -64,18 +63,21 @@ const config = {
             },
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            name: 'vendor'
+        }
+    },
     stats: {
         colors: true,
         hash: false,
         modules: false,
         children: false,
     },
-    externals: {
-        React: 'react',
-        ReactDOM: 'react-dom'
-    },
     resolve: {
         alias: {
+            Containers: path.resolve(__dirname, 'app/containers/'),
             Components: path.resolve(__dirname, 'app/components/'),
             i18n: path.resolve(__dirname, 'app/i18n'),
             Styles: path.resolve(__dirname, 'app/styles'),

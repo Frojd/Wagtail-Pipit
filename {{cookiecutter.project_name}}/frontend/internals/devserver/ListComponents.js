@@ -20,7 +20,7 @@ function importAll(r, cache) {
         if(keys[key].split('/').length > 3) {
             continue;
         }
-        
+
         const name = keys[key].split('/')[1];
         cache.push({ 'name': name });
     }
