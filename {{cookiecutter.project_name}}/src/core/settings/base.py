@@ -10,7 +10,7 @@ import os
 
 from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
-from core.settings import get_env
+from core.settings import get_env, get_env_bool
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

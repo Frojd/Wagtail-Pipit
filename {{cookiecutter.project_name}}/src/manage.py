@@ -7,6 +7,7 @@ import inspect
 import dotenv
 
 from django.core.management import execute_from_command_line
+from django.conf import settings
 
 
 try:
@@ -21,4 +22,11 @@ except Exception as e:
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.prod")
+
+    # enable vs code remote debugging
+    # https://github.com/Microsoft/PTVS/issues/1057
+    if settings.DEBUG and settings.VS_CODE_REMOTE_DEBUG and os.environ.get("RUN_MAIN"):
+        import ptvsd
+        ptvsd.enable_attach(address=("0.0.0.0", 5678), redirect_output=True)
+
     execute_from_command_line(sys.argv)

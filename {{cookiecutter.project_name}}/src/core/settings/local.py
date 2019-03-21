@@ -8,7 +8,7 @@ from __future__ import absolute_import, unicode_literals
 
 from core.settings.base import *  # NOQA
 
-
+VS_CODE_REMOTE_DEBUG = get_env_bool("VS_CODE_REMOTE_DEBUG", default=False)
 DEBUG = True
 TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
 
