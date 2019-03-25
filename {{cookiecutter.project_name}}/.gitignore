@@ -10,7 +10,8 @@ __pycache__/
 .idea/
 
 # VS Code
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # Installer logs
 pip-log.txt
