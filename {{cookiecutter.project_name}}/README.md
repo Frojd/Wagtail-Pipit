@@ -13,6 +13,7 @@
 - [Merge conflicts](#merge-conflicts)
 - [Git hooks](#git-hooks)
 - [FAQ](#faq)
+- [Server requirements](#server-requirements)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -146,6 +147,21 @@ ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 ```
 
 Note: This requires the black package (`pip install black`)
+
+
+## Server requirements
+
+You can send this list to your hosting provider
+
+- SSH access (without password)
+- Linux (Ubuntu is preffered)
+- Nginx
+- uWSGI
+- Python 3.6+
+- PostgreSQL 10+
+- PostGIS for PostgreSQL
+- GDAL (required for PostGIS)
+- Node 10+ (for SSR)
 
 
 ## FAQ
