@@ -9,6 +9,7 @@ const presets = [
     '@babel/preset-react'
 ];
 const plugins = [
+    'react-docgen',
     'babel-plugin-webpack-alias',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-export-default-from',

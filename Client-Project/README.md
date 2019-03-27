@@ -78,17 +78,6 @@ This project utilizes Continious Integration (CI) and Continious Deployment (CD)
 
 Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)).
 
-
-### Working with CI environment vars
-
-Rather then inlining environment variables in Circle CI we recommend that you add them to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to associate your encryption key with repo on Circle.
-
-#### Commands when encrypting/decypting .circlerc
-
-- Encrypt `openssl aes-256-cbc -e -in .circlerc -out .circlerc-crypt -k <KEY>`
-- Decrypt `openssl aes-256-cbc -d -in .circlerc-crypt -out .circlerc -k <KEY>`
-
-
 ### Deploying manually
 
 It's possible you deploy manually and is something that you usually do this before CI is configured.

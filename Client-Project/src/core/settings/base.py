@@ -147,22 +147,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
+# https://docs.djangoproject.com/en/2.2/topics/i18n/
 TIME_ZONE = "Europe/Stockholm"
-LANGUAGE_CODE = "sv-SE"
+LANGUAGE_CODE = "sv-se"
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
-
-LANGUAGE_CODE = "sv_SE"
-LANGUAGES = [("se_SV", "Svenska")]
-
-WAGTAILADMIN_PERMITTED_LANGUAGES = LANGUAGES
-
 
 # Logging
 LOGGING = {

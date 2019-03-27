@@ -8,10 +8,10 @@ const Wysiwyg = ({ wysiwyg }) => (
 
 Wysiwyg.propTypes = {
     wysiwyg: PropTypes.string,
-}
+};
 
 Wysiwyg.defaultProps = {
     wysiwyg: '',
-}
+};
 
 export default Wysiwyg;

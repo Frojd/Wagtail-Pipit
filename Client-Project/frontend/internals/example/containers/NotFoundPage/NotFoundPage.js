@@ -11,11 +11,7 @@ class NotFoundPage extends PureComponent {
     static propTypes = {};
 
     render() {
-        return (
-            <div className="NotFoundPage">
-                NotFoundPage
-            </div>
-        );
+        return <div className="NotFoundPage">NotFoundPage</div>;
     }
 }
 

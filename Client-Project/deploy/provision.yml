@@ -89,8 +89,15 @@
         dest: "/mnt/persist/nginx/conf.d/{{ project_slug }}.conf"
         mode: 0644
 
+    - name: Copies robots.txt
+      copy:
+        src: "files/robots.txt"
+        dest: "{{ ansistrano_deploy_to }}/shared/robots.txt"
+        owner: www-data
+        group: www-data
+        mode: 0644
+
 - name: Runs deploy playbook
   import_playbook: deploy.yml
-
 
 

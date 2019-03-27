@@ -10,10 +10,10 @@ const Hero = ({ title }) => (
 
 Hero.propTypes = {
     title: PropTypes.string.isRequired,
-}
+};
 
 Hero.defaultProps = {
     title: '',
-}
+};
 
 export default Hero;

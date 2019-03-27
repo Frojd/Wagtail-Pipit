@@ -8,8 +8,8 @@ const __Pure = () => (
     </div>
 );
 
-__Pure.propTypes = {}
+__Pure.propTypes = {};
 
-__Pure.defaultProps = {}
+__Pure.defaultProps = {};
 
 export default __Pure;
