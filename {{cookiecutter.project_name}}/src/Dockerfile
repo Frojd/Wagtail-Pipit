@@ -31,7 +31,7 @@ RUN apt-get update && apt-get -y install postgresql
 
 RUN pip install -r requirements/$REQUIREMENTS --no-cache-dir \
     && pip install ipython \
-    && pip install pyinotify
+    && pip install pywatchman
 
 EXPOSE 8000
 
