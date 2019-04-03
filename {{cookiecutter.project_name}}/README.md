@@ -9,6 +9,7 @@
 - [Installation](#installation)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
+- [Debugging](#debugging)
 - [Deployment](#deployment)
 - [Merge conflicts](#merge-conflicts)
 - [Git hooks](#git-hooks)
@@ -71,6 +72,14 @@ Bump version in:
 ## Style Guide
 
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
+
+
+## Debugging
+
+This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it. 
+You should now be able to attach to the running Django server instance. 
+
+[PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}. 
 
 
 ## Deployment
