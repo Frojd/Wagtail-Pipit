@@ -25,6 +25,7 @@
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
+- [mkcert](https://github.com/FiloSottile/mkcert)
 
 
 ## Installation
@@ -47,18 +48,23 @@
     echo 127.0.0.1 {{cookiecutter.domain_prod}}.test >> c:\windows\System32\drivers\etc\hosts
     ```
 
-3. Start project
+3. Add root cert: `mkcert -install` (if not already available)
+4. Generate ssl certs for local development:
+    ```
+    mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem {{cookiecutter.domain_prod}}.test
+    ```
+5. Start project
 
     ```
     docker-compose up
     ```
 
-4. Visit your site on: [http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
+6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
 
 
 ## Versioning
 
-This project follows [semantic versioning](http://semver.org/).
+This project follows [semantic versioning](https://semver.org/).
 
 Bump version in:
 
@@ -252,7 +258,10 @@ docker-compose stop
 docker-compose up --build
 ```
 
-</details>
+
+### This boilerplate is https by default, I only want http?
+
+No problem, update your docker-compose file and add `command: runserver` to your `web` container, then restart with `docker-compose stop && docker-compose up`
 
 
 ### How do I install the application on the web server?
@@ -262,6 +271,8 @@ This project includes a provision script that sets up anything necessary to run 
 ```
 ansible-playbook provision.yml -i stages/<stage>
 ```
+
+</details>
 
 
 ## Contributing

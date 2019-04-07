@@ -46,6 +46,14 @@ case "$CMD" in
         exec python manage.py runserver 0.0.0.0:8000
         ;;
 
+    "runserver_ssl" )
+        wait_for_db
+        setup_django
+
+        echo Starting using manage.py runsslserver
+        exec python manage.py runsslserver 0.0.0.0:8000 --certificate /priv/cert/cert.pem --key /priv/cert/cert-key.pem
+        ;;
+
     "uwsgi" )
         wait_for_db
         setup_django

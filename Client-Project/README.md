@@ -13,6 +13,7 @@ A short description of the project.
 - [Merge conflicts](#merge-conflicts)
 - [Git hooks](#git-hooks)
 - [FAQ](#faq)
+- [Server requirements](#server-requirements)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -23,6 +24,7 @@ A short description of the project.
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
+- [mkcert](https://github.com/FiloSottile/mkcert)
 
 
 ## Installation
@@ -45,18 +47,23 @@ A short description of the project.
     echo 127.0.0.1 example.com.test >> c:\windows\System32\drivers\etc\hosts
     ```
 
-3. Start project
+3. Add root cert: `mkcert -install` (if not already available)
+4. Generate ssl certs for local development:
+    ```
+    mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test
+    ```
+5. Start project
 
     ```
     docker-compose up
     ```
 
-4. Visit your site on: [http://example.com.test:8081](http://example.com.test:8081)
+6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
 
 
 ## Versioning
 
-This project follows [semantic versioning](http://semver.org/).
+This project follows [semantic versioning](https://semver.org/).
 
 Bump version in:
 
@@ -148,6 +155,23 @@ ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 Note: This requires the black package (`pip install black`)
 
 
+## Server requirements
+
+You can send this list to your hosting provider:
+
+```
+SSH access (without password)
+Linux (Ubuntu is preffered)
+Nginx
+uWSGI
+Python 3.6+
+PostgreSQL 10+
+PostGIS for PostgreSQL
+GDAL (required for PostGIS)
+Node 10+ (for SSR)
+```
+
+
 ## FAQ
 
 <details>
@@ -225,7 +249,10 @@ docker-compose stop
 docker-compose up --build
 ```
 
-</details>
+
+### This boilerplate is https by default, I only want http?
+
+No problem, update your docker-compose file and add `command: runserver` to your `web` container, then restart with `docker-compose stop && docker-compose up`
 
 
 ### How do I install the application on the web server?
@@ -235,6 +262,8 @@ This project includes a provision script that sets up anything necessary to run 
 ```
 ansible-playbook provision.yml -i stages/<stage>
 ```
+
+</details>
 
 
 ## Contributing

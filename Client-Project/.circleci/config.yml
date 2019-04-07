@@ -50,7 +50,7 @@ jobs:
       - *restore_repo
       - restore_cache:
           key: v1-npm-{{ checksum "frontend/package.json" }}
-      - run: cd frontend && npm install
+      - run: cd frontend && npm ci
       - save_cache:
           key: v1-npm-{{ checksum "frontend/package.json" }}
           paths:
