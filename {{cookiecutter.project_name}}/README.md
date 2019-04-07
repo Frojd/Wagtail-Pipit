@@ -272,6 +272,10 @@ This project includes a provision script that sets up anything necessary to run 
 ansible-playbook provision.yml -i stages/<stage>
 ```
 
+### Is there a api for retriving pages as json?
+
+Sure! Just add `?format=json` to your url and it will return its json representation.
+
 </details>
 
 
