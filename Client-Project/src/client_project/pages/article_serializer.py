@@ -10,7 +10,7 @@ class ArticlePageSerializer(BasePageSerializer):
 
     class Meta:
         model = ArticlePage
-        fields = BasePageSerializer.Meta.fields + ["author", "wysiwyg"]
+        fields = BasePageSerializer.Meta.fields + ["wysiwyg"]
 
     def get_wysiwyg(self, page):
         return expand_db_html(page.wysiwyg)

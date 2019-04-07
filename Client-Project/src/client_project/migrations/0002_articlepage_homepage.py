@@ -25,10 +25,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "author",
-                    models.TextField(blank=True, null=True, verbose_name="Author"),
-                ),
-                (
                     "wysiwyg",
                     wagtail.core.fields.RichTextField(
                         blank=True, null=True, verbose_name="Wysiwyg"

@@ -3,5 +3,7 @@
 
 # Add local extra requirements here (django-debug etc)
 django-debug-toolbar
+django-sslserver
 isort
 pipdeptree
+ptvsd

@@ -1,15 +1,15 @@
 const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 const configFile = require('../internals/config')();
-const config = require('../webpack.config.js');
+const config = require('../webpack.client.config.js');
 config.devtool = 'eval';
 config.mode = 'development';
 config.entry.index = '../internals/devserver/RenderComponent.js';
 config.output['pathinfo'] = false,
-delete(config.entry.vendor);
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 config.module.rules[1].use[0] = 'style-loader';
 config.module.rules.push({ test: /\.md$/, loader: 'ignore-loader' });
+delete(config.optimization);
 const options = {
     contentBase: './internals/devserver',
     publicPath: configFile.publicPath,

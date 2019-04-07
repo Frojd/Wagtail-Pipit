@@ -1,6 +1,6 @@
 /* global module */
 
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import { importAllJsons } from '../utils';
 
 const url = new URL(document.location);
@@ -20,7 +20,7 @@ try {
     }
 }
 
-const Component = hot(module)(component);
+const Component = hot(component);
 const jsonsContext = require.context('../../app', true, /\.json$/);
 const jsons = importAllJsons(jsonsContext);
 const props = jsons[queryJson];

@@ -1,11 +1,17 @@
 version: 2
 
+references:
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+
 jobs:
   build:
     working_directory: ~/frojd-django-boilerplate
     docker:
       - image: circleci/python:3.6.1
-      - image: postgres:9.6
+      - image: mdillon/postgis:10
 
     environment:
       TEST_RESULTS: /tmp/test-results
@@ -23,6 +29,18 @@ jobs:
       - run: mkdir -p $TEST_RESULTS
 
       - run:
+          name: Run cookiecutter
+          command: |
+            set -x
+            . venv/bin/activate
+            cookiecutter . --no-input --overwrite-if-exists
+
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - .
+
+      - run:
           name: Install Docker Compose
           command: |
             set -x
@@ -32,13 +50,6 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
 
       - setup_remote_docker
-
-      - run:
-          name: Run cookiecutter
-          command: |
-            set -x
-            . venv/bin/activate
-            cookiecutter . --no-input --overwrite-if-exists
 
       - run:
           name: Create docker-compose config for running boilerplate tests
@@ -64,3 +75,31 @@ jobs:
 
       - store_test_results:
           path: /tmp/test-results
+
+  frontend:
+    working_directory: ~/frojd-django-boilerplate
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - *restore_repo
+      - run:
+          command: |
+            cd Client-Project/frontend
+
+            npm install
+            npm run build
+
+      - run:
+          command: |
+            cd Client-Project/frontend
+
+            npm run test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - frontend:
+          requires:
+            - build

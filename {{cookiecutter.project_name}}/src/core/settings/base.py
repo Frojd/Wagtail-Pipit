@@ -10,7 +10,7 @@ import os
 
 from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
-from core.settings import get_env
+from core.settings import get_env, get_env_bool
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "django.contrib.gis",
     # Third party apps
     "storages",
     "wagtail.embeds",
@@ -120,7 +121,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Using PostgreSQL
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": get_env("DATABASE_NAME"),
         "USER": get_env("DATABASE_USER"),
         "PASSWORD": get_env("DATABASE_PASSWORD"),
@@ -146,15 +147,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
+# https://docs.djangoproject.com/en/2.2/topics/i18n/
 TIME_ZONE = "Europe/Stockholm"
-LANGUAGE_CODE = "sv-SE"
+LANGUAGE_CODE = "sv-se"
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 # Logging
 LOGGING = {

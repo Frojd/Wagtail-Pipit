@@ -9,20 +9,23 @@
 - [Installation](#installation)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
+- [Debugging](#debugging)
 - [Deployment](#deployment)
 - [Merge conflicts](#merge-conflicts)
 - [Git hooks](#git-hooks)
 - [FAQ](#faq)
+- [Server requirements](#server-requirements)
 - [Contributing](#contributing)
 - [License](#license)
 
 
 ## Requirements
 
-- Python 3.5+ 
+- Python 3.6+ 
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
+- [mkcert](https://github.com/FiloSottile/mkcert)
 
 
 ## Installation
@@ -45,18 +48,24 @@
     echo 127.0.0.1 {{cookiecutter.domain_prod}}.test >> c:\windows\System32\drivers\etc\hosts
     ```
 
-3. Start project
+3. Add root cert: `mkcert -install` (if not already available)
+4. Generate ssl certs for local development:
+    ```
+    mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem {{cookiecutter.domain_prod}}.test
+    ```
+5. Start project
 
     ```
     docker-compose up
     ```
 
-4. Visit your site on: [http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](http://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
+6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}) 
+    - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms) (Username: `admin` and password: `admin`)
 
 
 ## Versioning
 
-This project follows [semantic versioning](http://semver.org/).
+This project follows [semantic versioning](https://semver.org/).
 
 Bump version in:
 
@@ -72,22 +81,27 @@ Bump version in:
 We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
 
 
+## Debugging
+
+### VS Code
+
+This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it.
+You should now be able to attach to the running Django server instance.
+
+[PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
+
+### pdb in Docker
+
+To use pdb you need to start the container with service-ports exposed instead of docker-compose up. This will create a container called `<project_prefix>_web_run_1`
+
+```
+docker-compose run --rm --service-ports web
+```
+
+
 ## Deployment
 
-This project utilizes Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI) will run tests on the application and if successfull, will automatically deploy the application to stage or production.
-
-Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)).
-
-
-### Working with CI environment vars
-
-Rather then inlining environment variables in Circle CI we recommend that you add them to an encrypted file and checked in (`.circlerc-crypt`), the raw file (`.circlerc`) should not be checked in. Circle-CI will use this file automatically and deploy to stages with deploy script. A key should be created for the project and documented. Also make sure to associate your encryption key with repo on Circle.
-
-#### Commands when encrypting/decypting .circlerc
-
-- Encrypt `openssl aes-256-cbc -e -in .circlerc -out .circlerc-crypt -k <KEY>`
-- Decrypt `openssl aes-256-cbc -d -in .circlerc-crypt -out .circlerc -k <KEY>`
-
+This project utilizes Continious Integration (CI) and Continious Deployment (CD) and is based on [Circle CI](https://circleci.com), the config can be find at `.circleci/config.yml`. Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)), the scripts are in the `deploy` directory.
 
 ### Deploying manually
 
@@ -159,6 +173,24 @@ ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 Note: This requires the black package (`pip install black`)
 
 
+## Server requirements
+
+Based on our preffered Django stack you can send this list to your hosting provider:
+
+```
+SSH access (without password)
+Linux (Ubuntu is preffered)
+Nginx
+uWSGI
+Python 3.6+
+PostgreSQL 10+
+PostGIS for PostgreSQL
+GDAL (required for PostGIS)
+Node 10+ (for SSR)
+psycopg2-binary (for provision)
+```
+
+
 ## FAQ
 
 <details>
@@ -185,16 +217,7 @@ Note: This requires that you have ssh-key based access to the server.
 
 ### How do I install Docker on MacOS/Windows?
 
-Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com. We no longer recommend using Docker Toolbox.
-
-
-### How can I run pdb on the python container?
-
-Start the container with service-ports exposed instead of `docker-compose up`. This will create a container called `<project_prefix>_web_run_1`
-
-```
-docker-compose run --rm --service-ports web
-```
+Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com.
 
 
 ### How do I run the test suite locally?
@@ -236,7 +259,10 @@ docker-compose stop
 docker-compose up --build
 ```
 
-</details>
+
+### This boilerplate is https by default, I only want http?
+
+No problem, update your docker-compose file and add `command: runserver` to your `web` container, then restart your project.
 
 
 ### How do I install the application on the web server?
@@ -246,6 +272,12 @@ This project includes a provision script that sets up anything necessary to run 
 ```
 ansible-playbook provision.yml -i stages/<stage>
 ```
+
+### Is there a api for retriving pages as json?
+
+Sure! Just add `?format=json` to your url and it will return its json representation.
+
+</details>
 
 
 ## Contributing

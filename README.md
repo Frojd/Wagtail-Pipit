@@ -5,8 +5,8 @@ This is a cookiecutter Django/Wagtail boilerplate that covers best practices and
 
 ## Features
 
-- Django 2.1
-- Wagtail 2.3
+- Django 2.2
+- Wagtail 2.4
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - React templates with built in SSR
@@ -19,6 +19,7 @@ This is a cookiecutter Django/Wagtail boilerplate that covers best practices and
 - Tests using [pytest-django](http://pytest-django.readthedocs.io/en/latest/)
 - Deploy scripts using [ansistrano](https://github.com/ansistrano)
 - Orchestration using [ansible](https://github.com/ansible/ansible)
+- Local SSL with [mkcert](https://github.com/FiloSottile/mkcert) and [django-sslserver](https://github.com/teddziuba/django-sslserver)
 - Scripts for syncing data from remote to local machine
 - ...and for syncing prod => stage
 
@@ -69,7 +70,7 @@ Choose from 1, 2 [1]: 1
 
 ## Versioning
 
-This boilerplate uses [semantic versioning](http://semver.org/).
+This boilerplate uses [semantic versioning](https://semver.org/).
 
 
 ## Contributing

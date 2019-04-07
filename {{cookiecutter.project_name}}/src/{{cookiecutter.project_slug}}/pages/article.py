@@ -7,11 +7,9 @@ from .base import BasePage
 
 
 class ArticlePage(BasePage):
-    author = models.TextField(blank=True, null=True, verbose_name=_("Author"))
     wysiwyg = RichTextField(blank=True, null=True, verbose_name=_("Wysiwyg"))
 
     content_panels = BasePage.content_panels + [
-        FieldPanel("author"),
         RichTextFieldPanel("wysiwyg"),
     ]
 

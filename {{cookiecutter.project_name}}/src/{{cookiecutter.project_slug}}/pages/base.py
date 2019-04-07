@@ -44,6 +44,10 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         }
 
     def get_serializer_class(self):
+        """
+        Locates and loads page serializer based on page name.
+        Override this method if you would like to supply your own serializer.
+        """
         class_name = self.__class__.__name__
         base_name = class_name.lower().replace("page", "")
 

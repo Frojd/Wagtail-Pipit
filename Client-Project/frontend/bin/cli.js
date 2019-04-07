@@ -10,7 +10,6 @@ const program = require('commander');
 const {
     createComponent,
     deleteComponent,
-    updateIndex
 } = require('../internals/cli');
 
 program
@@ -19,14 +18,11 @@ program
     .option('-c, --container', 'Create container component')
     .option('-C, --class', 'Create class component')
     .option('-f, --folder <folder>', 'Change components folder')
-    .option('-u, --updateIndexJs', 'Update index.js')
     .action((component, subComponents, options) => {
         const componentType = (options.container || options.class) ? '__Class' : '__Pure';
-        let updateIndexJs = options.updateIndexJs;
         let folder = 'components';
         if (options.container) {
             folder = 'containers';
-            updateIndexJs = true;
         }
         if (options.folder) {
             folder = options.folder;
@@ -49,9 +45,6 @@ program
         const componentName = paths[paths.length - 1];
 
         createComponent(componentPath, componentName, componentType);
-        if (updateIndexJs) {
-            updateIndex(componentName, `./${folder}/${componentName}`);
-        }
 
         console.log(`Created new component at ${componentPath}`);
     });
@@ -84,7 +77,6 @@ program.command('delete <componentName> [subComponent...]')
         }
         const componentName = paths[paths.length - 1];
         deleteComponent(componentPath, componentName);
-        updateIndex(componentName, `./${folder}/${componentName}`, true);
 
         console.log(`Deleted component at ${componentPath}`);
     });

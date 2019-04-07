@@ -9,6 +9,10 @@ __pycache__/
 # PyCharm
 .idea/
 
+# VS Code
+.vscode/*
+!.vscode/launch.json
+
 # Installer logs
 pip-log.txt
 
@@ -32,6 +36,8 @@ node_modules
 docker/config/db.env
 docker/config/web.env
 docker/config/db_backup.env
+docker/files/certs/*
+!docker/files/certs/.gitkeep
 
 # Environment
 src/.env

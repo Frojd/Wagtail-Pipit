@@ -4,7 +4,8 @@ setup:
 	ln -nfs $(PWD)/.githooks/pre-push.sh .git/hooks/pre-push
 	ln -nfs $(PWD)/.githooks/pre-commit.sh .git/hooks/pre-commit
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-release-start
-	ln -nfs $(WPD)/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+	mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test
 	cd frontend && npm install && npm run build
 	docker-compose up
 

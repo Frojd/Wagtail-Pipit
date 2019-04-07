@@ -6,7 +6,6 @@
 
   vars:
     ansistrano_deploy_from: "{{ playbook_dir }}/../src"
-    ansible_python_interpreter: /mnt/persist/www/django/env/bin/python
 
   tasks:
     - name: Generates secrets/passwords
@@ -14,15 +13,13 @@
         secret_key: "{{ lookup('password', '/dev/null chars=ascii_letters length=80') }}"
         database_password: "{{ lookup('password', '/dev/null chars=ascii_letters length=40') }}"
 
-    - name: Count previous uwsgi apps
+    - name: Counts previous uwsgi apps
       shell: ls -1 /mnt/persist/uwsgi/conf.d/ | wc -l
       register: uwsgi_application_count
 
     - name: Makes sure python psql lib is available
       pip:
         name: psycopg2-binary
-        virtualenv: /mnt/persist/www/django/env
-        virtualenv_python: python3
 
     - name: Creates directory for shared files
       file:
@@ -78,14 +75,28 @@
         regexp: 'UWSGI_STATS_PORT'
         replace: '{{ 9190+(uwsgi_application_count.stdout|int) }}'
 
+    - name: Replaces default uwsgi conf with empty
+      file:
+        path: "/mnt/persist/uwsgi/conf.d/django.ini"
+        state: absent
+
+    - shell: echo "" > /mnt/persist/uwsgi/conf.d/django.ini
+
     - name: Copies nginx config
       copy:
         src: "files/nginx.conf"
         dest: "/mnt/persist/nginx/conf.d/{{ project_slug }}.conf"
         mode: 0644
 
-- name: Run deploy playbook
-  import_playbook: deploy.yml
+    - name: Copies robots.txt
+      copy:
+        src: "files/robots.txt"
+        dest: "{{ ansistrano_deploy_to }}/shared/robots.txt"
+        owner: www-data
+        group: www-data
+        mode: 0644
 
+- name: Runs deploy playbook
+  import_playbook: deploy.yml
 
 {% endraw %}

@@ -30,31 +30,6 @@ const remapComponents = function(componentPath, componentName, componentType) {
     });
 };
 
-const updateIndex = function(componentName, componentPath, remove) {
-    const indexPath = path.join(process.cwd(), 'app', 'index.js');
-
-    let index = fs.readFileSync(indexPath, 'utf8');
-    let newComponent = `import ${componentName} from '${componentPath}';
-`;
-
-    if (remove) {
-        index = index.replace(newComponent, '');
-        index = index.replace(
-            `
-    ${componentName},`,
-            ''
-        );
-    } else {
-        index = newComponent.concat(index);
-        index = index.replace(
-            'const containers = {',
-            `const containers = {
-    ${componentName},`
-        );
-    }
-
-    fs.writeFileSync(indexPath, index);
-};
 
 const replaceInFile = function(file, replace, replacement) {
     const content = fs.readFileSync(file, 'utf8');
@@ -66,5 +41,4 @@ const replaceInFile = function(file, replace, replacement) {
 module.exports = {
     createComponent,
     deleteComponent,
-    updateIndex,
 };

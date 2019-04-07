@@ -11,7 +11,7 @@ services:
       - REQUIREMENTS=local.txt
     env_file: ./docker/config/web.env
   db:
-    image: postgres:9.6
+    image: mdillon/postgis:10
     ports:
       - "5433:5432"
     environment:
