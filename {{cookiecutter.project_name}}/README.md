@@ -174,7 +174,7 @@ Note: This requires the black package (`pip install black`)
 
 ## Server requirements
 
-You can send this list to your hosting provider:
+Based on our preffered Django stack you can send this list to your hosting provider:
 
 ```
 SSH access (without password)
@@ -186,6 +186,7 @@ PostgreSQL 10+
 PostGIS for PostgreSQL
 GDAL (required for PostGIS)
 Node 10+ (for SSR)
+psycopg2-binary (for provision)
 ```
 
 
