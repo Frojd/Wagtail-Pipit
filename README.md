@@ -5,8 +5,8 @@ This is a cookiecutter Django/Wagtail boilerplate that covers best practices and
 
 ## Features
 
-- Django 2.1
-- Wagtail 2.3
+- Django 2.2
+- Wagtail 2.4
 - Docker and Docker-compose support
 - [12-Factor](https://12factor.net/) based
 - React templates with built in SSR
