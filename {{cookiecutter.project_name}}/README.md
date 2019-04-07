@@ -59,7 +59,8 @@
     docker-compose up
     ```
 
-6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
+6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}) 
+    - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms) (Username: `admin` and password: `admin`)
 
 
 ## Versioning

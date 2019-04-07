@@ -59,7 +59,8 @@ A short description of the project.
     docker-compose up
     ```
 
-6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
+6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081) 
+    - ...or login to [https://example.com.test:8081/cms](https://example.com.test:8081/cms) (Username: `admin` and password: `admin`)
 
 
 ## Versioning
