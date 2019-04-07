@@ -80,4 +80,4 @@ Want to contribute? Awesome. Just send a pull request.
 
 ## License
 
-Fröjd Django Boilerplate is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Wagtail-Boilerplate is released under the [MIT License](http://www.opensource.org/licenses/MIT).
