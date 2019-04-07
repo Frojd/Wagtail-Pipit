@@ -100,9 +100,7 @@ docker-compose run --rm --service-ports web
 
 ## Deployment
 
-This project utilizes Continious Integration (CI) and Continious Deployment (CD), what this means is that everytime a team member runs `git push`, our CI environment (Circle CI) will run tests on the application and if successfull, will automatically deploy the application to stage or production.
-
-Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)).
+This project utilizes Continious Integration (CI) and Continious Deployment (CD) and is based on [Circle CI](https://circleci.com), the config can be find at `.circleci/config.yml`. Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)), the scripts are in the `deploy` directory.
 
 ### Deploying manually
 
