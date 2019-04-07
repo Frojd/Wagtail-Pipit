@@ -10,6 +10,7 @@ services:
       - "./docker/files/certs:/priv/cert"
     ports:
       - "8081:8000"
+      - "5678:5678"
     depends_on:
       - db
     env_file: ./docker/config/web.env

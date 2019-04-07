@@ -6,3 +6,4 @@ django-debug-toolbar
 django-sslserver
 isort
 pipdeptree
+ptvsd
