@@ -82,10 +82,12 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 ## Debugging
 
-This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it. 
-You should now be able to attach to the running Django server instance. 
+### VS Code
 
-[PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}. 
+This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it.
+You should now be able to attach to the running Django server instance.
+
+[PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
 
 
 ## Deployment
