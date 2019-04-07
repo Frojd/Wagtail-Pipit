@@ -89,6 +89,14 @@ You should now be able to attach to the running Django server instance.
 
 [PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
 
+### pdb in Docker
+
+To use pdb you need to start the container with service-ports exposed instead of docker-compose up. This will create a container called `<project_prefix>_web_run_1`
+
+```
+docker-compose run --rm --service-ports web
+```
+
 
 ## Deployment
 
@@ -209,16 +217,7 @@ Note: This requires that you have ssh-key based access to the server.
 
 ### How do I install Docker on MacOS/Windows?
 
-Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com. We no longer recommend using Docker Toolbox.
-
-
-### How can I run pdb on the python container?
-
-Start the container with service-ports exposed instead of `docker-compose up`. This will create a container called `<project_prefix>_web_run_1`
-
-```
-docker-compose run --rm --service-ports web
-```
+Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/install/) or [Windows](https://docs.docker.com/docker-for-windows/install/) on docker.com.
 
 
 ### How do I run the test suite locally?
@@ -263,7 +262,7 @@ docker-compose up --build
 
 ### This boilerplate is https by default, I only want http?
 
-No problem, update your docker-compose file and add `command: runserver` to your `web` container, then restart with `docker-compose stop && docker-compose up`
+No problem, update your docker-compose file and add `command: runserver` to your `web` container, then restart your project.
 
 
 ### How do I install the application on the web server?
