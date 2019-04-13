@@ -34,9 +34,10 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
             or request.content_type == "application/json"
         )
 
-    def to_dict(self, context={}):
+    def to_dict(self, context):
+        context = context or {}
         serializer_cls = self.get_serializer_class()
-        serializer = serializer_cls(self, context={"request": context["request"]})
+        serializer = serializer_cls(self, context=context)
 
         return {
             "component_name": self.component_name,
