@@ -5,9 +5,7 @@ from {{cookiecutter.project_slug}}.serializers import NotFoundPageSerializer
 
 
 def page_not_found(request, exception, template_name='pages/react.html'):
-    serializer_context = {
-        "request": request,
-    }
+    serializer_context = {"request": request}
 
     serializer = NotFoundPageSerializer(
         {"exception": str(exception) }, context=serializer_context

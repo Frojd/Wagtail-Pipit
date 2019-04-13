@@ -27,6 +27,7 @@ if __name__ == "__main__":
     # https://github.com/Microsoft/PTVS/issues/1057
     if settings.DEBUG and settings.VS_CODE_REMOTE_DEBUG and os.environ.get("RUN_MAIN"):
         import ptvsd
+
         ptvsd.enable_attach(address=("0.0.0.0", 5678), redirect_output=True)
 
     execute_from_command_line(sys.argv)
