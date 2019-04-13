@@ -17,7 +17,7 @@ try:
 
     if os.path.exists(env_file):
         dotenv.load_dotenv(env_file)
-except Exception as e:
+except Exception as e:  # NOQA
     pass
 
 if __name__ == "__main__":
