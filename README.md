@@ -41,7 +41,7 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 ## Why not headless?
 The current state of Django in combination with JavaScript frontend technologies is 
 to either go for a headless solution where Django is only used as an admin and data-provider
-via API, or a hybrid approach where the most parts of the site are classic Django in DTL and complex frontend
+via API, or a hybrid approach where the most parts of the site are classic Django in Django Template Language and complex frontend
 components are built in React (or another frontend framework).
 
 
@@ -51,7 +51,7 @@ security middlewares, routing, etc.
 
 The problem we have encountered with the hybrid approach is that as your project grows,
 it gets really hard to keep track of where your views are declared. 
-Is it in the JavaScript or in DTL? Also, the way React is designed makes it really 
+Is it in the JavaScript or in Django Template Language? Also, the way React is designed makes it really 
 hard to share state between different React-instances and you have to rely on technologies such as Redux.
 
 ## Contribute
