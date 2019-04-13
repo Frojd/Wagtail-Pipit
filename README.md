@@ -56,7 +56,7 @@ hard to share state between different React-instances and you have to rely on te
 
 ## Contribute
 
-If you have ideas for improvement, please share your thought through an issue. We also welcome PR's
+If you have ideas for improvement, please share your thoughts through an issue. We also welcome PR's
 
 - Issue Tracker: [https://github.com/Frojd/Wagtail-Boilerplate/issues](https://github.com/Frojd/Wagtail-Boilerplate/issues)
 - Source Code: [https://github.com/Frojd/Wagtail-Boilerplate](https://github.com/Frojd/Wagtail-Boilerplate)
