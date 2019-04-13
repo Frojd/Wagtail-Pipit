@@ -9,7 +9,7 @@ class SeoMixinTest(WagtailPageTests):
     def setUp(self):
         self.site = wagtail_factories.SiteFactory()
         self.factory = RequestFactory(
-            SERVER_NAME='{}:{}'.format(self.site.hostname, self.site.port)
+            SERVER_NAME="{}:{}".format(self.site.hostname, self.site.port)
         )
 
         self.page = BasePageFactory.create(
@@ -18,8 +18,8 @@ class SeoMixinTest(WagtailPageTests):
             og_title="My og start",
             search_description="Search description",
             og_description="My og description",
-            twitter_title='My twitter title',
-            twitter_description='My twitter description',
+            twitter_title="My twitter title",
+            twitter_description="My twitter description",
             parent=self.site.root_page,
         )
 
@@ -30,8 +30,8 @@ class SeoMixinTest(WagtailPageTests):
         self.assertEqual(self.page.seo_og_description, "My og description")
         self.assertEqual(self.page.seo_og_url, self.page.full_url)
         self.assertEqual(self.page.seo_og_type, None)
-        self.assertEqual(self.page.seo_twitter_title, 'My twitter title')
-        self.assertEqual(self.page.seo_twitter_description, 'My twitter description')
+        self.assertEqual(self.page.seo_twitter_title, "My twitter title")
+        self.assertEqual(self.page.seo_twitter_description, "My twitter description")
         self.assertEqual(self.page.seo_twitter_url, self.page.full_url)
         self.assertEqual(self.page.seo_meta_robots, "index,follow")
 
@@ -40,10 +40,10 @@ class SeoMixinTest(WagtailPageTests):
         request.site = self.site
 
         resp = self.page.serve(request)
-        self.assertContains(resp, '<title>My start</title>')
+        self.assertContains(resp, "<title>My start</title>")
         self.assertContains(
             resp,
             '<meta property="og:description" content="{}" />'.format(
                 "My og description"
-            )
+            ),
         )

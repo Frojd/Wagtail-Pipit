@@ -9,12 +9,12 @@ def page_not_found(request, exception, template_name='pages/react.html'):
         "request": request,
     }
 
-    serializer = NotFoundPageSerializer({
-        "exception": str(exception)
-    }, context=serializer_context)
+    serializer = NotFoundPageSerializer(
+        {"exception": str(exception) }, context=serializer_context
+    )
 
     context = {
-        'page': {
+        "page": {
             "component_name": serializer.component_name,
             "component_data": serializer.data,
         }

@@ -9,9 +9,7 @@ from .base import BasePage
 class ArticlePage(BasePage):
     wysiwyg = RichTextField(blank=True, null=True, verbose_name=_("Wysiwyg"))
 
-    content_panels = BasePage.content_panels + [
-        RichTextFieldPanel("wysiwyg"),
-    ]
+    content_panels = BasePage.content_panels + [RichTextFieldPanel("wysiwyg")]
 
     extra_panels = BasePage.extra_panels
 
