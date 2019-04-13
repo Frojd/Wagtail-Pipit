@@ -1,4 +1,4 @@
-from importlib import import_module
+from django.utils.module_loading import import_string
 
 from wagtail.core.models import Page
 
@@ -11,6 +11,7 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     show_in_menus_default = True
 
     extra_panels = []
+    serializer_class = "{{ cookiecutter.project_slug }}.pages.BasePageSerializer"
 
     def __init__(self, *args, **kwargs):
         self.template = "pages/react.html"
@@ -43,21 +44,4 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         }
 
     def get_serializer_class(self):
-        """
-        Locates and loads page serializer based on page name.
-        Override this method if you would like to supply your own serializer.
-        """
-        class_name = self.__class__.__name__
-        base_name = class_name.lower().replace("page", "")
-
-        base_class_module = self.__module__.split(".")[0]
-        module_path = ".{}_serializer".format(base_name)
-        serializer_name = "{}Serializer".format(class_name)
-
-        module = import_module(
-            module_path, package="{}.pages".format(base_class_module)
-        )
-
-        serializer = getattr(module, serializer_name)
-
-        return serializer
+        return import_string(self.serializer_class)

@@ -12,6 +12,7 @@ class ArticlePage(BasePage):
     content_panels = BasePage.content_panels + [RichTextFieldPanel("wysiwyg")]
 
     extra_panels = BasePage.extra_panels
+    serializer_class = "client_project.pages.ArticlePageSerializer"
 
     class Meta:
         verbose_name = _("Article")

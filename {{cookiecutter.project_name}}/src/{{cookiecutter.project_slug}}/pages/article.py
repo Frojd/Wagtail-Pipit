@@ -12,6 +12,7 @@ class ArticlePage(BasePage):
     content_panels = BasePage.content_panels + [RichTextFieldPanel("wysiwyg")]
 
     extra_panels = BasePage.extra_panels
+    serializer_class = "{{ cookiecutter.project_slug }}.pages.ArticlePageSerializer"
 
     class Meta:
         verbose_name = _("Article")
