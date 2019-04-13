@@ -65,7 +65,7 @@ Select software_license:
 Choose from 1, 2 [1]: 1
 ```
 
-4. Done! You now have a ready wagtail project.
+4. Now open up the README.md in the project you just generated and follow the install instructions.
 
 
 ## Versioning
