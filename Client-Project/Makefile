@@ -14,9 +14,7 @@ test:
 	cd frontend && npm run test
 
 fixcode:
-	git diff --name-only --cached "*py" | grep -v /migrations/ | xargs black
-	git status -s "*.py" | cut -c4-  | grep -v /migrations/ | xargs black
-	git diff --name-only --diff-filter=ACM "*.py" | grep -v /migrations/ | xargs black
+	docker-compose exec web black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
 
 translate:
 	docker-compose exec web bash -c "python manage.py makemessages -l sv_SE"

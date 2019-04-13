@@ -2,6 +2,7 @@
 -r test.txt
 
 # Add local extra requirements here (django-debug etc)
+black
 django-debug-toolbar
 django-sslserver
 isort
