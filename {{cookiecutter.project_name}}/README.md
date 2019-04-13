@@ -170,8 +170,6 @@ chmod +x $PWD/.githooks/pre-commit.sh
 ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 ```
 
-Note: This requires the black package (`pip install black`)
-
 
 ## Server requirements
 
