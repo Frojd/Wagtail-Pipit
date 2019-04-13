@@ -30,13 +30,13 @@ cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 3. Fill in the questions and you are done!
 
 ## Where to go from here?
-We recommend you to check out our [Getting Started Guide](@TODO). Otherwise, you can read up any of the following topics:
-- [Frontend developer workflow](@TODO)
-- [Datasync between envrionments](@TODO)
-- [Scaffolding CLI](@TODO)
-- [Server-Side Rendering](@TODO)
-- [Deploying with Ansistrano](@TODO)
-- [Settings up continuous integration on CircleCI](@TODO)
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
+- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md)
+- [Datasync between environments](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/data-sync.md)
+- [Scaffolding](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/scaffolding.md)
+- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/server-side-rendering.md)
+- [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/deployment.md)
+- [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/ci.md)
 
 ## Why not headless?
 The current state of Django in combination with JavaScript frontend technologies is 
