@@ -1,12 +1,11 @@
 from importlib import import_module
 
 from wagtail.core.models import Page
-from django_react_templatetags.mixins import RepresentationMixin
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
 
 
-class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
+class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     # Basepage is not anything creatable in admin
     is_creatable = False
     show_in_menus_default = True
@@ -22,7 +21,7 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         if self.should_serve_json(request):
             from django.http import JsonResponse
 
-            json = self.to_react_representation({"request": request})
+            json = self.to_dict({"request": request})
             return JsonResponse(json)
 
         return super().serve(request, *args, **kwargs)
@@ -34,7 +33,7 @@ class BasePage(RepresentationMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
             or request.content_type == "application/json"
         )
 
-    def to_react_representation(self, context={}):
+    def to_dict(self, context={}):
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(self, context={"request": context["request"]})
 
