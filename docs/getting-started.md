@@ -48,7 +48,7 @@ Choose from 1, 2 (1, 2) [1]: 2
 
 Unlike most Django stacks, our frontend is rendered via React rather than 
 Django Template Language. So we also need to make sure that
-Webpack is running, go to the newly created project folder
+Webpack is running, go to the `./frontend` folder in your newly created project
 (named as `project_name` from the wizard) and get the frontend up and running:
 
 ```
