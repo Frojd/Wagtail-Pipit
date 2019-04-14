@@ -43,8 +43,9 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         )
 
     def to_dict(self, context):
+        context = context or {}
         serializer_cls = self.get_serializer_class()
-        serializer = serializer_cls(self, context={"request": context["request"]})
+        serializer = serializer_cls(self, context=context)
 
         return {
             "component_name": self.component_name,
