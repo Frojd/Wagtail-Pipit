@@ -153,7 +153,7 @@ This will:
 
 ### Set up local SSL certificate
 
-For us to support local certificates you need to install a cool callled [mkcert](https://github.com/FiloSottile/mkcert) a long with a root certficate.
+To add local https support  you need to install a tool callled [mkcert](https://github.com/FiloSottile/mkcert) a long with a root certficate that comes with it.
 
 - Install mkcert
 - Add root cert `mkcert -install`
