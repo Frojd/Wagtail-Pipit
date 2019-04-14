@@ -6,7 +6,7 @@ for you to create the neccessary files for a new page.
 If you run:
 
 ```sh
-docker-compose exec web python manage.py new_page --name=Article
+./scripts/manage.sh new_page --name=Article
 ```
 
 The following files will be created for you with some default code in them:
