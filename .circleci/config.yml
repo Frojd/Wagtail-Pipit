@@ -55,19 +55,19 @@ jobs:
           name: Create docker-compose config for running boilerplate tests
           command: |
             set -x
-            cp docker-compose-circleci.yml Client-Project/docker-compose-circleci.yml
+            cp docker-compose-circleci.yml Company-Project/docker-compose-circleci.yml
 
       - run:
           name: Build image
           command: |
             set -x
-            cd Client-Project && docker-compose -f docker-compose-circleci.yml build
+            cd Company-Project && docker-compose -f docker-compose-circleci.yml build
 
       - run:
           name: Run tests on container
           command: |
             set -x
-            cd Client-Project && docker-compose -f docker-compose-circleci.yml run web test
+            cd Company-Project && docker-compose -f docker-compose-circleci.yml run web test
 
       - store_artifacts:
           path: /tmp/test-results
@@ -84,14 +84,14 @@ jobs:
       - *restore_repo
       - run:
           command: |
-            cd Client-Project/frontend
+            cd Company-Project/frontend
 
             npm install
             npm run build
 
       - run:
           command: |
-            cd Client-Project/frontend
+            cd Company-Project/frontend
 
             npm run test
 
