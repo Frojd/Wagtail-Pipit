@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
-from django.db import models
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import RichTextFieldPanel, FieldPanel
+from wagtail.admin.edit_handlers import RichTextFieldPanel
 
 from .base import BasePage
 
@@ -12,7 +11,7 @@ class ArticlePage(BasePage):
     content_panels = BasePage.content_panels + [RichTextFieldPanel("wysiwyg")]
 
     extra_panels = BasePage.extra_panels
-    serializer_class = "client_project.pages.ArticlePageSerializer"
+    serializer_class = "main.pages.ArticlePageSerializer"
 
     class Meta:
         verbose_name = _("Article")

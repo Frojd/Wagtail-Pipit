@@ -8,7 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
-from client_project.views.page_not_found import PageNotFoundView
+from main.views.page_not_found import PageNotFoundView
 
 
 handler404 = PageNotFoundView.as_view()
@@ -44,7 +44,7 @@ urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^documents/", include(wagtaildocs_urls)),
-    url("^sitemap.xml$", sitemap, name="sitemap"),
+    url("^sitemap\.xml$", sitemap, name="sitemap"),
 ]
 
 urlpatterns += [url(r"", include(wagtail_urls))]

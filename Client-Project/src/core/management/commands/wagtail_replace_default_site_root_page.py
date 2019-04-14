@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Site, Page
 
-from client_project.models import HomePage
+from main.models import HomePage
 
 
 class Command(BaseCommand):

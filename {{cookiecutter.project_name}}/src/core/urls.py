@@ -8,7 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
-from {{cookiecutter.project_slug}}.views.page_not_found import PageNotFoundView
+from main.views.page_not_found import PageNotFoundView
 
 
 handler404 = PageNotFoundView.as_view()

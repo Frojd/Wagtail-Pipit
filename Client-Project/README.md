@@ -62,6 +62,16 @@ A short description of the project.
 6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081) 
     - ...or login to [https://example.com.test:8081/cms](https://example.com.test:8081/cms) (Username: `admin` and password: `admin`)
 
+## Where to go from here?
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
+
+- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md)
+- [Datasync between environments](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/data-sync.md)
+- [Scaffolding](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/scaffolding.md)
+- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/server-side-rendering.md)
+- [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/deployment.md)
+- [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/ci.md)
+
 
 ## Versioning
 
@@ -98,37 +108,6 @@ To use pdb you need to start the container with service-ports exposed instead of
 docker-compose run --rm --service-ports web
 ```
 
-
-## Deployment
-
-This project utilizes Continious Integration (CI) and Continious Deployment (CD) and is based on [Circle CI](https://circleci.com), the config can be find at `.circleci/config.yml`. Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)), the scripts are in the `deploy` directory.
-
-### Deploying manually
-
-It's possible you deploy manually and is something that you usually do this before CI is configured.
-
-#### Requirements
-
-- Python 3.6 and pip
-- Virtualenv
-- Mac OS or Linux ([Windows does not currently work](http://docs.ansible.com/ansible/latest/intro_windows.html#windows-how-does-it-work))
-
-#### How to
-
-1. Open deployment folder: `cd deploy`
-2. Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
-3. Install ansible: `pip install -r requirements.txt`
-4. Install ansistrano: `ansible-galaxy install -r requirements.yml`
-
-#### Deploy application
-
-- Stage: `ansible-playbook deploy.yml -i stages/stage`
-- Prod: `ansible-playbook deploy.yml -i stages/prod`
-
-#### Rollback application
-
-- Stage: `ansible-playbook rollback.yml -i stages/stage`
-- Prod: `ansible-playbook rollback.yml -i stages/prod`
 
 
 ## Merge conflicts

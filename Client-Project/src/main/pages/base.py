@@ -11,7 +11,7 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     show_in_menus_default = True
 
     extra_panels = []
-    serializer_class = "client_project.pages.BasePageSerializer"
+    serializer_class = "main.pages.BasePageSerializer"
 
     def __init__(self, *args, **kwargs):
         self.template = "pages/react.html"

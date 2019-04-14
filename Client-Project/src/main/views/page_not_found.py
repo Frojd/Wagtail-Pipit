@@ -1,8 +1,8 @@
 from django.template.response import TemplateResponse
 from django.views.generic import TemplateView
 
-from {{cookiecutter.project_slug}}.mixins import ReactViewMixin
-from {{cookiecutter.project_slug}}.serializers import NotFoundPageSerializer
+from main.mixins import ReactViewMixin
+from main.serializers import NotFoundPageSerializer
 
 
 class TemplateResponseNotFound(TemplateResponse):

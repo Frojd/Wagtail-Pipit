@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     "customuser",
     "customimage",
     "customdocument",
-    "client_project",
+    "main",
 ]
 
 MIDDLEWARE = [

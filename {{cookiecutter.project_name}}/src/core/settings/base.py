@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     "customuser",
     "customimage",
     "customdocument",
-    "{{ cookiecutter.project_slug }}",
+    "main",
 ]
 
 MIDDLEWARE = [
