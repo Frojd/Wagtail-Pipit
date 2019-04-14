@@ -1,10 +1,13 @@
 # Getting Started Guide
 
+This is a breif guide intended to get you up and running 
+in just a few minutes
+
 ## Requirements
 Make sure you have the following requirement:
 - [Docker Compose](https://docs.docker.com/compose/)
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [node](https://nodejs.org/en/) (v10, the latest LTS version is recommended and also specified in .nvmrc file)
+- [node](https://nodejs.org/en/) (v10, the latest LTS version is recommended and also specified in the `.nvmrc` file)
 
 
 ## Initialize Project
@@ -43,8 +46,9 @@ Choose from 1, 2 (1, 2) [1]: 2
 
 ## Setting up the frontend
 
-Unlike most Django stacks, our frontend is fully rendered via React. So we also need to make sure our
-webpack server is running When finished scaffolding, go to the newly created project folder
+Unlike most Django stacks, our frontend is rendered via React rather than 
+Django Template Language. So we also need to make sure that
+Webpack is running, go to the newly created project folder
 (named as `project_name` from the wizard) and get the frontend up and running:
 
 ```
@@ -56,19 +60,22 @@ npm run multiwatch
 The `multiwatch` command will both serve a frontend development server where you can work with the
 frontend decoupled from Django and built assets to your Django application.
 This is great if you have dedicated frontend developers because they do not need to know
-Django at all to do productive work. Read more about the frontend stack in our
-[Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md) guide.
+Django at all to do productive work.
+
+Read more about the frontend stack in our
+[frontend developer workflow guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md).
 
 
 ## Booting up Docker
 
-The Django application will be served through Docker. To start it run the following from the project root:
+The Django application will be served through Docker. To start it, run the following from the project root:
 ```
 docker-compose up
 ```
 
-When Docker is finished, your app should be up and running on the `docker_web_port`
-specified in the wizard (`http://localhost:8081` in our example).
+When Docker is finished, your app should be up and running on the
+`docker_web_port` specified in the wizard (`http://localhost:8081` in our example).
+
 You can log in to the Wagtail-admin (`http://localhost:8081/cms`) or the
 Django-admin using the following credentials:
 ```
@@ -76,28 +83,29 @@ username: admin
 password: admin
 ```
 
-If you are not used to working in a docker environment here are a few tips to get you started
+If you are not used to working in a docker environment here are a few tip
+ to get you started:
 
 ### You want to run management commands from `within` the docker environment
 
 For convenience we are providing a script for that, so instead of running the usual
-`python manage.py` from the project root, you can run "./scripts/manage.sh". i.e.:
+`python manage.py` from the project root, you can run `./scripts/manage.sh`. i.e.:
 ```
 ./scripts/manage.sh makemigrations
 ./scripts/manage.sh migrate
 ```
-If you rather want to work within a shell in the docker container, you can do so like:
+If you rather want to work within a shell in the docker container, you can do so:
 ```
 docker-compose exec web bash
 ```
 
 ### Installing requirements need to happen `within` the docker environment
 
-Like for management commands, we provide a script to help you out. When adding requirement you can install them like:
+Like for management commands, we provide a script to for this. When adding requirement you can install them like this:
 ```
 ./scripts/pip.sh install -r requirements/local.txt
 ```
-Or if you prefer, you can start a shell in the container and go on as ususal:
+If you prefer, you can start a shell in the container and go on as you are used to:
 
 ```
 docker-compose exec web bash
@@ -106,12 +114,12 @@ docker-compose exec web bash
 
 ## Other recommendations
 
-### Git hooks, git flow and semantic versioning
+### Git hooks, GitFlow and semantic versioning
 
-We at Fröjd like [git flow](https://github.com/petervanderdoes/gitflow-avh) and [semantic versioning](https://semver.org/) a lot.
+We at Fröjd like [GitFlow](https://github.com/petervanderdoes/gitflow-avh) and [semantic versioning](https://semver.org/) a lot.
 
-While this is optional, we do provide some nice git hooks and have tailored the bundled CI-chain for this and
-recommend you to install [git flow](https://github.com/petervanderdoes/gitflow-avh) set it up like this:
+While this is optional, we do provide some nice git hooks and have tailored the bundled CI-chain for this.
+Therefore, we recommend you to install [git flow](https://github.com/petervanderdoes/gitflow-avh) set it up like this:
 ```
 $ git flow init
 Initialized empty Git repository in /Users/roger/www/Acme-Blog/.git/
@@ -152,4 +160,5 @@ This will:
 
 If you have any problem getting your project up and running.
 Please let us know by filing an issue and we will help you out.
-It also gives us valuable insights on how we can improve the stack and documentation.
+
+Reported issues gives us valuable insights on how we can improve the stack and documentation.
