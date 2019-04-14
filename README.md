@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Frojd/Wagtail-Boilerplate.svg?style=svg)](https://circleci.com/gh/Frojd/Wagtail-Boilerplate)
+
 # Kaja
 
 Kaja is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide an easy and modern developer workflow with a React-rendered frontend.
