@@ -77,7 +77,7 @@ When Docker is finished, your app should be up and running on the
 `docker_web_port` specified in the wizard (`http://localhost:8081` in our example).
 
 You can log in to the Wagtail-admin (`http://localhost:8081/cms`) or the
-Django-admin using the following credentials:
+Django-admin (`http://localhost:8081/admin`) using the following credentials:
 ```
 username: admin
 password: admin
