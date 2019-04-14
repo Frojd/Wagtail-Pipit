@@ -8,10 +8,10 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
-from {{cookiecutter.project_slug}}.views import page_not_found
+from {{cookiecutter.project_slug}}.views.page_not_found import PageNotFoundView
 
 
-handler404 = page_not_found
+handler404 = PageNotFoundView.as_view()
 
 urlpatterns = []
 
@@ -29,7 +29,7 @@ if settings.DEBUG:
         ),  # NOQA
         url(
             r"^404/$",
-            default_views.page_not_found,
+            handler404,
             kwargs={"exception": Exception("Page not Found")},
         ),  # NOQA
         url(r"^500/$", default_views.server_error),

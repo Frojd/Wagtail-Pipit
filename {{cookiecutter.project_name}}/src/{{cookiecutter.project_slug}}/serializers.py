@@ -12,7 +12,3 @@ class NotFoundPageSerializer(serializers.Serializer):
         request = self.context["request"]
         site_setting = SiteSetting.for_site(request.site)
         return SiteSettingSerializer(site_setting).data
-
-    @property
-    def component_name(self):
-        return "NotFoundPage"

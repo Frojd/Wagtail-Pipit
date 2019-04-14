@@ -1,3 +1,4 @@
+from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.http import HttpResponseRedirect
@@ -223,3 +224,57 @@ class TimestampMixin(models.Model):
 
     class Meta:
         abstract = True
+
+
+class ReactViewMixin(object):
+    template_name = "pages/react.html"
+
+    def render_to_response(self, context, **response_kwargs):
+        if self.should_serve_json(self.request):
+            from django.http import JsonResponse
+
+            props = self.to_dict({"request": self.request})
+            return JsonResponse(props)
+
+        return super().render_to_response(context, **response_kwargs)
+
+    @staticmethod
+    def should_serve_json(request):
+        return (
+            request.GET.get("format", None) == "json"
+            or request.content_type == "application/json"
+        )
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        return {
+            **context,
+            "props": self.to_dict({"request": self.request}),
+        }
+
+    def to_dict(self, context):
+        serializer_cls = self.get_serializer_class()
+        serializer = serializer_cls(
+            self.get_component_props(), context={"request": context["request"]}
+        )
+
+        return {
+            "component_name": self.component_name,
+            "component_props": serializer.data,
+        }
+
+    def get_serializer_class(self):
+        if isinstance(self.serializer_class, str):
+            return import_string(self.serializer_class)
+
+        return self.serializer_class
+
+    def get_component_name(self):
+        if hasattr(self, "component_name"):
+            return self.component_name
+
+        return self.__class__.__name__
+
+    def get_component_props(self):
+        return {}

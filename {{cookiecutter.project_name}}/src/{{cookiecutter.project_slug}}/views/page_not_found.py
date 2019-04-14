@@ -1,23 +1,18 @@
-from django.http import HttpResponseNotFound
-from django.template import loader
+from django.template.response import TemplateResponse
+from django.views.generic import TemplateView
 
+from {{cookiecutter.project_slug}}.mixins import ReactViewMixin
 from {{cookiecutter.project_slug}}.serializers import NotFoundPageSerializer
 
 
-def page_not_found(request, exception, template_name='pages/react.html'):
-    serializer_context = {"request": request}
+class TemplateResponseNotFound(TemplateResponse):
+    status_code = 404
 
-    serializer = NotFoundPageSerializer(
-        {"exception": str(exception) }, context=serializer_context
-    )
 
-    context = {
-        "page": {
-            "component_name": serializer.component_name,
-            "component_data": serializer.data,
-        }
-    }
+class PageNotFoundView(ReactViewMixin, TemplateView):
+    component_name = "NotFoundPage"
+    response_class = TemplateResponseNotFound
+    serializer_class = NotFoundPageSerializer
 
-    template = loader.get_template(template_name)
-    body = template.render(context, request)
-    return HttpResponseNotFound(body, content_type=None)
+    def get_component_props(self):
+        return {"exception": "Page not found"}

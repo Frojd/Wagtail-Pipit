@@ -8,10 +8,10 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
-from client_project.views import page_not_found
+from client_project.views.page_not_found import PageNotFoundView
 
 
-handler404 = page_not_found
+handler404 = PageNotFoundView.as_view()
 
 urlpatterns = []
 
@@ -29,7 +29,7 @@ if settings.DEBUG:
         ),  # NOQA
         url(
             r"^404/$",
-            default_views.page_not_found,
+            handler404,
             kwargs={"exception": Exception("Page not Found")},
         ),  # NOQA
         url(r"^500/$", default_views.server_error),
@@ -44,7 +44,7 @@ urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^documents/", include(wagtaildocs_urls)),
-    url("^sitemap\.xml$", sitemap, name="sitemap"),
+    url("^sitemap.xml$", sitemap, name="sitemap"),
 ]
 
 urlpatterns += [url(r"", include(wagtail_urls))]

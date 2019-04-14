@@ -18,6 +18,14 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         self.component_name = self.__class__.__name__
         super().__init__(*args, **kwargs)
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        return {
+            **context,
+            "props": self.to_dict({"request": request}),
+        }
+
     def serve(self, request, *args, **kwargs):
         if self.should_serve_json(request):
             from django.http import JsonResponse
@@ -35,9 +43,8 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         )
 
     def to_dict(self, context):
-        context = context or {}
         serializer_cls = self.get_serializer_class()
-        serializer = serializer_cls(self, context=context)
+        serializer = serializer_cls(self, context={"request": context["request"]})
 
         return {
             "component_name": self.component_name,
@@ -45,4 +52,7 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         }
 
     def get_serializer_class(self):
+        if isinstance(self.serializer_class, str):
+            return import_string(self.serializer_class)
+
         return import_string(self.serializer_class)
