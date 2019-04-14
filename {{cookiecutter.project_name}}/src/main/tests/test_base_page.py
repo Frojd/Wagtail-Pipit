@@ -1,7 +1,7 @@
 from django.test.client import RequestFactory
 from wagtail.tests.utils import WagtailPageTests
 
-from ..factories import BasePageFactory
+from ..factories.base_page import BasePageFactory
 
 
 class BasePageTest(WagtailPageTests):

@@ -1,8 +1,9 @@
 {% raw %}from wagtail.tests.utils import WagtailPageTests
 from wagtail_factories import SiteFactory
 
-from ..factories import BasePageFactory, {{ name }}PageFactory
-from ..pages.{{ name|lower }}_serializer import {{ name }}PageSerializer
+from ..factories.base_page import BasePageFactory
+from ..factories.{{ name|lower }}_page import {{ name }}PageFactory
+from ..pages import {{ name }}PageSerializer
 
 
 class {{ name }}PageTest(WagtailPageTests):
@@ -17,7 +18,8 @@ class {{ name }}PageTest(WagtailPageTests):
     def test_to_react_representation(self):
         page = {{ name }}PageFactory.create(title="{{ name }}", parent=self.root_page)
 
-        data = page.to_react_representation()
+        data = page.to_dict({})
 
-        self.assertTrue("title" in data)
-        self.assertEqual("{{ name }}", data["title"]){% endraw %}
+        self.assertTrue("component_props" in data)
+        self.assertTrue("title" in data["component_props"])
+        self.assertEqual("School", data["component_props"]["title"]){% endraw %}

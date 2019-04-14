@@ -2,7 +2,7 @@ from django.test.client import RequestFactory
 from wagtail.tests.utils import WagtailPageTests
 import wagtail_factories
 
-from ..factories import BasePageFactory
+from ..factories.base_page import BasePageFactory
 
 
 class SeoMixinTest(WagtailPageTests):
