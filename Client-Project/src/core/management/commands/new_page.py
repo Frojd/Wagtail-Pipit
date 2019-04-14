@@ -12,8 +12,8 @@ class Command(BaseCommand):
         manage.py new_page --name=News
 
     Outcome:
-        + src/project_name/pages/news.py
-        + src/project_name/pages/news_serializer.py
+        + src/main/pages/news.py
+        + src/main/pages/news_serializer.py
     """
 
     def add_arguments(self, parser):
