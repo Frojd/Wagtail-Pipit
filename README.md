@@ -30,7 +30,7 @@ cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 3. Fill in the questions and you are done!
 
 ## Where to go from here?
-We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/getting-started.md). Otherwise, you can read up any of the following topics:
 - [Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md)
 - [Datasync between environments](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/data-sync.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/scaffolding.md)
