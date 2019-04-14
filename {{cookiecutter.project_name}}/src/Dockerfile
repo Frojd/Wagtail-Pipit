@@ -36,4 +36,4 @@ RUN pip install -r requirements/$REQUIREMENTS --no-cache-dir \
 EXPOSE 8000
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["runserver_ssl"]
+CMD ["runserver"]
