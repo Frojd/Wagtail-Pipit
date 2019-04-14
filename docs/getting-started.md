@@ -153,7 +153,22 @@ This will:
 
 ### Set up local SSL certificate
 
-@TODO
+For us to support local certificates you need to install a cool callled [mkcert](https://github.com/FiloSottile/mkcert) a long with a root certficate.
+
+- Install mkcert
+- Add root cert `mkcert -install`
+- Create a cert for your poject `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test`
+- Add the command `runserver_ssl` to your docker container
+Example:
+```yml
+services
+  web:
+    ...
+    command: runserver_ssl
+    ...
+```
+- Restart docker
+
 
 
 ## Troubleshooting
