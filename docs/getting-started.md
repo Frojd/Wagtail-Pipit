@@ -1,6 +1,6 @@
 # Getting Started Guide
 
-This is a breif guide intended to get you up and running 
+This is a brief guide intended to get you up and running 
 in just a few minutes
 
 ## Requirements
@@ -153,11 +153,11 @@ This will:
 
 ### Set up local SSL certificate
 
-For us to support local certificates you need to install a cool callled [mkcert](https://github.com/FiloSottile/mkcert) a long with a root certficate.
+For us to support local certificates you need to install a tool called [mkcert](https://github.com/FiloSottile/mkcert) a long with a root certificate.
 
 - Install mkcert
 - Add root cert `mkcert -install`
-- Create a cert for your poject `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test`
+- Create a cert for your project `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test`
 - Add the command `runserver_ssl` to your docker container
 Example:
 ```yml
