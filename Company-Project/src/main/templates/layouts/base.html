@@ -29,13 +29,14 @@
         <meta name="description" content="{{ meta_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {% include 'partials/seo.html' %}
+        {% block seo_meta %}
+        {% endblock %}
 
         <link rel="stylesheet" href="{% static 'core/index.css' %}" type="text/css" />
     </head>
     <body>
         {% block main %}
-        {% endblock main %}
+        {% endblock %}
 
         <script type="text/javascript" src="{% static 'core/vendor.js' %}"></script>
         <script type="text/javascript" src="{% static 'core/index.js' %}"></script>

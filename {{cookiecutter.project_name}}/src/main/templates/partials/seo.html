@@ -1,49 +1,53 @@
-{% raw %}<title>{{ page.seo_html_title }}</title>
+{% raw %}<title>{{ seo.seo_html_title }}</title>
 
-{% if page.seo_meta_description  %}
-    <meta name="description" content="{{ page.seo_meta_description }}">
+{% if seo.seo_meta_description  %}
+    <meta name="description" content="{{ seo.seo_meta_description }}">
 {% endif %}
 
-{% if page.seo_og_title %}
-    <meta property="og:title" content="{{ page.seo_og_title }}" />
+{% if seo.seo_og_title %}
+    <meta property="og:title" content="{{ seo.seo_og_title }}" />
 {% endif %}
 
-{% if page.seo_og_description  %}
-    <meta property="og:description" content="{{ page.seo_og_description }}" />
+{% if seo.seo_og_description  %}
+    <meta property="og:description" content="{{ seo.seo_og_description }}" />
 {% endif %}
 
-{% if page.seo_og_url %}
-    <meta property="og:url" content="{{ page.seo_og_url }}" />
+{% if seo.seo_og_url %}
+    <meta property="og:url" content="{{ seo.seo_og_url }}" />
 {% endif %}
 
-{% if page.seo_og_image %}
-    <meta property="og:image" content="{{ page.get_site.root_url }}{{ page.seo_og_image.file.url }}" />
+{% if seo.seo_og_image %}
+    <meta property="og:image" content="{{ seo.seo_og_image }}" />
 {% endif %}
 
-{% if page.seo_og_type %}
-    <meta property="og:type" content="{{ page.seo_og_type }}" />
+{% if seo.seo_og_type %}
+    <meta property="og:type" content="{{ seo.seo_og_type }}" />
 {% endif %}
 
-{% if page.seo_twitter_title %}
-    <meta property="twitter:title" content="{{ page.seo_twitter_title }}" />
+{% if seo.seo_twitter_title %}
+    <meta property="twitter:title" content="{{ seo.seo_twitter_title }}" />
 {% endif %}
 
-{% if page.seo_twitter_description %}
-    <meta property="twitter:description" content="{{ page.seo_twitter_description }}" />
+{% if seo.seo_twitter_description %}
+    <meta property="twitter:description" content="{{ seo.seo_twitter_description }}" />
 {% endif %}
 
-{% if page.seo_twitter_url %}
-    <meta property="twitter:url" content="{{ page.seo_twitter_url }}" />
+{% if seo.seo_twitter_url %}
+    <meta property="twitter:url" content="{{ seo.seo_twitter_url }}" />
 {% endif %}
 
-{% if page.seo_twitter_image %}
-    <meta property="twitter:image" content="{{ page.get_site.root_url }}{{ page.seo_twitter_image.file.url }}" />
+{% if seo.seo_og_image %}
+    <meta property="og:image" content="{{ seo.seo_og_image }}" />
+{% endif %}
+
+{% if seo.seo_twitter_image %}
+    <meta property="twitter:image" content="{{ seo.seo_twitter_image }}" />
 {% endif %}
 
 {% if page.canonical_link %}
     <link rel="canonical" href="{{ page.canonical_link }}" />
 {% endif %}
 
-<meta name="robots" content="{{ page.seo_meta_robots }}">
+<meta name="robots" content="{{ seo.seo_meta_robots }}">
 
 {% endraw %}
