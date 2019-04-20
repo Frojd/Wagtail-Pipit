@@ -32,14 +32,14 @@ type aws >/dev/null 2>&1 || {
 }
 
 # Arguments
-stage_host=${1-user@stage-server}
-prod_host=${2-user@prod-server}
+stage_host=${1-devops@stage.example.com}
+prod_host=${2-devops@example.com}
 
 CURRENTDIR=$(dirname `which $0`)
 DOCKERDIR=$(cd ${CURRENTDIR}/../; pwd)
 
 echo "Creating database dump from stage..."
-ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres client_project_db -x -O"
+ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres company_project -x -O"
 
 echo "Downloading database dump..."
 scp $prod_host:/tmp/db-dump.sql /tmp/db-dump.sql
@@ -49,7 +49,7 @@ echo "Uploading database to new server"
 scp /tmp/db-dump.sql $stage_host:/tmp/db-dump.sql
 
 echo "Replacing stage db"
-ssh $stage_host "sudo -u postgres pg_restore --clean -h localhost -d client_project_db -U postgres '/tmp/db-dump.sql'"
+ssh $stage_host "sudo -u postgres pg_restore --clean -h localhost -d company_project -U postgres '/tmp/db-dump.sql'"
 ssh $stage_host "rm /tmp/db-dump.sql"
 
 rm /tmp/db-dump.sql
@@ -60,6 +60,6 @@ manage_prefix="source /mnt/persist/www/django/env/bin/activate && cd /mnt/persis
 ssh $stage_host "$manage_prefix python manage.py change_site_domain --site_id=1 --new_site_domain='stage.example.com'"
 
 echo "Syncing s3 buckets..."
-aws --profile client_project_devops s3 sync s3://s3.stage.example.com s3://s3.example.com --acl public-read
+aws --profile company_project_devops s3 sync s3://s3.stage.example.com s3://s3.example.com --acl public-read
 
 echo "Done!"

@@ -29,11 +29,12 @@ RUN apt-get update \
 
 RUN apt-get update && apt-get -y install postgresql
 
-RUN pip install -r requirements/$REQUIREMENTS --no-cache-dir \
+RUN pip install --upgrade pip \
+    && pip install -r requirements/$REQUIREMENTS --no-cache-dir \
     && pip install ipython \
     && pip install pywatchman
 
 EXPOSE 8000
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["runserver_ssl"]
+CMD ["runserver"]

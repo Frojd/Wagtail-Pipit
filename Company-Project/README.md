@@ -1,6 +1,4 @@
-# Client-Project
-
-A short description of the project.
+# Company-Project
 
 
 ## Index
@@ -265,5 +263,5 @@ Want to contribute? Awesome. Just send a pull request.
 ## License
 
 
-Client-Project is released under the MIT license.
+Company-Project is released under the MIT license.
 

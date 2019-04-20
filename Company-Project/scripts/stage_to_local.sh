@@ -2,15 +2,15 @@
 set -e
 
 # Arguments
-local_domain=${1-example.com.test:8081}
-ssh_host=${2-user@prod-server}
+local_domain=${1-stage.example.com.test:8081}
+ssh_host=${2-devops@stage.example.com}
 
 ROOTDIR=$(git rev-parse --show-toplevel)
 DOCKERDIR=$(cd ${ROOTDIR}/docker/; pwd)
 
 
-echo "Creating database dump from prod..."
-ssh $ssh_host "export PGUSER=postgres && pg_dump client_project_db --no-owner > /tmp/db-dump.sql"
+echo "Creating database dump from stage..."
+ssh $ssh_host "export PGUSER=postgres && pg_dump company_project --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
 scp $ssh_host:/tmp/db-dump.sql $DOCKERDIR/files/db-dumps/db-dump.sql

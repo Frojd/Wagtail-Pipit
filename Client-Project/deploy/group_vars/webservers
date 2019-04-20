@@ -1,6 +1,0 @@
----
-python_version: python3
-ansistrano_deploy_to: /mnt/persist/www/client_project
-database_name: client_project_db
-database_user: client_project
-project_slug: client_project
