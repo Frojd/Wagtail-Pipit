@@ -31,14 +31,14 @@ cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 
 3. Fill in the questions and you are done!
 
-## Where to go from here?
-We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/getting-started.md). Otherwise, you can read up any of the following topics:
-- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md)
-- [Datasync between environments](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/data-sync.md)
-- [Scaffolding](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/scaffolding.md)
-- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/server-side-rendering.md)
-- [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/deployment.md)
-- [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/ci.md)
+## Documentation – Where to go from here?
+We recommend you to start by checking out the [Getting Started Guide](/docs/getting-started.md). Otherwise, you can read up any of the following topics:
+- [Frontend developer workflow](/docs/frontend.md)
+- [Datasync between environments](/docs/data-sync.md)
+- [Scaffolding](/docs/scaffolding.md)
+- [Server-Side Rendering](/docs/server-side-rendering.md)
+- [Deploying with Ansistrano](/docs/deployment.md)
+- [Settings up continuous integration on CircleCI](/docs/ci.md)
 
 ## Why not headless?
 The current state of Django in combination with JavaScript frontend technologies is 
@@ -49,7 +49,7 @@ components are built in React (or another frontend framework).
 
 The cost of going for the headless approach is that you lose basically everything
 that Django provides for HTTP-requests. Including session management, CSRF, 
-security middlewares, routing, etc.
+security middlewares, routing, previews, etc.
 
 The problem we have encountered with the hybrid approach is that as your project grows,
 it gets really hard to keep track of where your views are declared. 
