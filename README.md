@@ -1,10 +1,10 @@
 [![CircleCI](https://circleci.com/gh/Frojd/Wagtail-Boilerplate.svg?style=svg)](https://circleci.com/gh/Frojd/Wagtail-Boilerplate)
 
-# Kaja
+# Pipit
 
-Kaja is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide an easy and modern developer workflow with a React-rendered frontend.
+Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide an easy and modern developer workflow with a React-rendered frontend.
 
-The benefit of using Kaja is that we can cherry-pick the best JavaScript tools and have a 
+The benefit of using Pipit is that we can cherry-pick the best JavaScript tools and have a 
 modern frontend stack while still not making the trade-off normally would by running our application completely headless.
 
 ## Features

@@ -16,13 +16,13 @@ const containers = [];
 function importAll(r, cache) {
     const keys = r.keys();
 
-    for(const key in keys) {
-        if(keys[key].split('/').length > 3) {
+    for (const key in keys) {
+        if (keys[key].split('/').length > 3) {
             continue;
         }
 
         const name = keys[key].split('/')[1];
-        cache.push({ 'name': name });
+        cache.push({ name: name });
     }
 }
 

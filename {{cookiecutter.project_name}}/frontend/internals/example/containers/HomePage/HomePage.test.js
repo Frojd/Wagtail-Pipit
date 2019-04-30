@@ -5,7 +5,7 @@ import {
 } from 'enzyme';
 
 import HomePage from './';
-// const data = __jsons['HomePage'];
+// import data from './HomePage.data';
 
 describe('<HomePage />', () => {
     it('Renders an empty HomePage', () => {

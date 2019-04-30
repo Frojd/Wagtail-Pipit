@@ -53,7 +53,4 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         }
 
     def get_serializer_class(self):
-        if isinstance(self.serializer_class, str):
-            return import_string(self.serializer_class)
-
         return import_string(self.serializer_class)

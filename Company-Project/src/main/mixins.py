@@ -204,7 +204,7 @@ class EnhancedEditHandlerMixin:
                 tabs.append(ObjectList(getattr(cls, panel_id), heading=heading))
 
         if cls.promote_panels:
-            tabs.append(ObjectList(cls.promote_panels, heading=_("Promote")))
+            tabs.append(ObjectList(cls.promote_panels, heading=_("SEO"), classname="seo"))
 
         if cls.settings_panels:
             tabs.append(

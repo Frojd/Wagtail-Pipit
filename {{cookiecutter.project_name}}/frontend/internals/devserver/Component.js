@@ -1,7 +1,6 @@
-/* global module */
+/* global */
 
 import { hot } from 'react-hot-loader/root';
-import { importAllJsons } from '../utils';
 
 const url = new URL(document.location);
 const params = url.searchParams;
@@ -20,9 +19,19 @@ try {
     }
 }
 
+let props = {};
+try {
+    props = require(`../../app/components/${queryJson}/${queryJson}.data`)
+        .default;
+} catch (e) {
+    try {
+        props = require(`../../app/containers/${queryJson}/${queryJson}.data`)
+            .default;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 const Component = hot(component);
-const jsonsContext = require.context('../../app', true, /\.json$/);
-const jsons = importAllJsons(jsonsContext);
-const props = jsons[queryJson];
 
 export { Component, props };

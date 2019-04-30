@@ -5,28 +5,28 @@ import { basePageWrap } from '../BasePage';
 import './ArticlePage.scss';
 
 import Hero from 'Components/Hero';
-import Wysiwyg from 'Components/Wysiwyg';
+import RawHtml from 'Components/RawHtml';
 
 class ArticlePage extends PureComponent {
     state = {};
 
     static defaultProps = {
         title: '',
-        wysiwyg: '',
+        richText: '',
     };
 
     static propTypes = {
         title: PropTypes.string.isRequired,
-        wysiwyg: PropTypes.string,
+        richText: PropTypes.string,
     };
 
     render() {
-        const { title, wysiwyg } = this.props;
+        const { title, richText } = this.props;
 
         return (
             <div className="ArticlePage">
                 <Hero title={title} />
-                <Wysiwyg wysiwyg={wysiwyg} />
+                <RawHtml html={richText} />
             </div>
         );
     }
