@@ -32,14 +32,14 @@
         {% block seo_meta %}
         {% endblock %}
 
-        <link rel="stylesheet" href="{% static 'core/index.css' %}" type="text/css" />
+        <link rel="stylesheet" href="{% static 'pipit/index.css' %}" type="text/css" />
     </head>
     <body>
         {% block main %}
         {% endblock main %}
 
-        <script type="text/javascript" src="{% static 'core/vendor.js' %}"></script>
-        <script type="text/javascript" src="{% static 'core/index.js' %}"></script>
+        <script type="text/javascript" src="{% static 'pipit/vendor.js' %}"></script>
+        <script type="text/javascript" src="{% static 'pipit/index.js' %}"></script>
 
         {% if SETTINGS.SENTRY_DSN %}
             <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>

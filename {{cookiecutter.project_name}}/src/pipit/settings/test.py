@@ -8,7 +8,7 @@ from __future__ import absolute_import, unicode_literals
 
 import logging
 
-from core.settings.base import *  # NOQA
+from pipit.settings.base import *  # NOQA
 
 
 DEBUG = False
@@ -38,4 +38,4 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [
 
 LOGGING = {}
 
-TEST_RUNNER = "core.test_runner.PytestTestRunner"
+TEST_RUNNER = "pipit.test_runner.PytestTestRunner"

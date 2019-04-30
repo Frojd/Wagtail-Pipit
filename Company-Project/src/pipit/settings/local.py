@@ -6,7 +6,7 @@ Write local settings here, or override base settings
 """
 from __future__ import absolute_import, unicode_literals
 
-from core.settings.base import *  # NOQA
+from pipit.settings.base import *  # NOQA
 
 VS_CODE_REMOTE_DEBUG = get_env_bool("VS_CODE_REMOTE_DEBUG", default=False)
 DEBUG = True
@@ -32,4 +32,4 @@ def show_toolbar(request):
     return True
 
 
-DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": "core.settings.local.show_toolbar"}
+DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": "pipit.settings.local.show_toolbar"}

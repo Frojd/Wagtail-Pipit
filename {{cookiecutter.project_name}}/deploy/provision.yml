@@ -51,7 +51,7 @@
     - replace:
         path: "{{ ansistrano_deploy_to }}/shared/.env"
         regexp: 'DJANGO_SETTINGS_MODULE=(.*)$'
-        replace: 'DJANGO_SETTINGS_MODULE=core.settings.{{ stage_name }}'
+        replace: 'DJANGO_SETTINGS_MODULE=pipit.settings.{{ stage_name }}'
 
     - name: Creates postgres database
       postgresql_db:

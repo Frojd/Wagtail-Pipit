@@ -19,7 +19,7 @@ def if_exists_load_env():
 
 
 def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.prod")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pipit.settings.prod")
 
     if_exists_load_env()
 

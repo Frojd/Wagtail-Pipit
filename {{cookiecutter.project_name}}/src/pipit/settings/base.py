@@ -10,14 +10,14 @@ import os
 
 from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
-from core.settings import get_env, get_env_bool
+from pipit.settings import get_env, get_env_bool
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Version, be sure to bump this with each release (please follow semver.org)
-APP_VERSION = "0.1.0"
+APP_VERSION = "{{cookiecutter.version}}"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env("SECRET_KEY")
@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     "django_react_templatetags",
     "raven.contrib.django.raven_compat",
     # Project specific apps
-    "core",
+    "pipit",
     "sitesettings",
     "customuser",
     "customimage",
@@ -82,7 +82,7 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-ROOT_URLCONF = "core.urls"
+ROOT_URLCONF = "pipit.urls"
 APPEND_SLASH = True
 
 TEMPLATES = [
@@ -106,14 +106,14 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "wagtail.contrib.settings.context_processors.settings",
                 # Project specific
-                "core.context_processors.settings_context_processor",
+                "pipit.context_processors.settings_context_processor",
                 "django_react_templatetags.context_processors.react_context_processor",
             ],
         },
     }
 ]
 
-WSGI_APPLICATION = "core.wsgi.application"
+WSGI_APPLICATION = "pipit.wsgi.application"
 
 
 # Database
@@ -185,7 +185,7 @@ DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com"
 AUTH_USER_MODEL = "customuser.User"
 
 # Wagtail
-WAGTAIL_SITE_NAME = "Company-Project"
+WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False

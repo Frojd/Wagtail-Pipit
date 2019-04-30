@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """
-Write stage settings here, or override base settings
+Write prod settings here, or override base settings
 """
 from __future__ import absolute_import, unicode_literals
 
-from core.settings.base import *  # NOQA
+from pipit.settings.base import *  # NOQA
 
 
 DEBUG = False
@@ -71,6 +71,6 @@ SENTRY_DSN = get_env("SENTRY_DSN")
 RAVEN_CONFIG = {
     "dsn": SENTRY_DSN,
     "release": APP_VERSION,
-    "environment": "stage",
+    "environment": "prod",
     "prefix": os.path.dirname(os.path.abspath(os.path.join(__file__, "..", ".."))),
 }

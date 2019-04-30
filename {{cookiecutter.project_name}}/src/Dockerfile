@@ -3,7 +3,7 @@ MAINTAINER Frojd
 LABEL version="v{{cookiecutter.version}}"
 
 ENV PYTHONUNBUFFERED=1 \
-    DJANGO_SETTINGS_MODULE=core.settings.local \
+    DJANGO_SETTINGS_MODULE=pipit.settings.local \
     ALLOWED_HOSTS=* \
     INTERNAL_IPS=0.0.0.0 \
     SECRET_KEY=generatesecretkeyhere \

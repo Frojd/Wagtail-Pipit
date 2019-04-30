@@ -77,7 +77,7 @@ This project follows [semantic versioning](https://semver.org/).
 
 Bump version in:
 
-- src/core/settings/base.py `(APP_VERSION=)`
+- src/pipit/settings/base.py `(APP_VERSION=)`
 - frontend/package.json
 - src/Dockerfile
 
