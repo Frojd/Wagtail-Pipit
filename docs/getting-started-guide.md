@@ -63,7 +63,7 @@ This is great if you have dedicated frontend developers because they do not need
 Django at all to do productive work.
 
 Read more about the frontend stack in our
-[frontend developer workflow guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md).
+[frontend developer workflow guide](./frontend-developer-guide.md).
 
 
 ## Booting up Docker

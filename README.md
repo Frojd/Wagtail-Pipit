@@ -32,13 +32,13 @@ cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 3. Fill in the questions and you are done!
 
 ## Documentation – Where to go from here?
-We recommend you to start by checking out the [Getting Started Guide](/docs/getting-started.md). Otherwise, you can read up any of the following topics:
-- [Frontend developer workflow](/docs/frontend.md)
+We recommend you to start by checking out the [Getting Started Guide](/docs/getting-started-guide.md). Otherwise, you can read up any of the following topics:
+- [Frontend developer workflow](/docs/frontend-developer-guide.md)
 - [Datasync between environments](/docs/data-sync.md)
 - [Scaffolding](/docs/scaffolding.md)
 - [Server-Side Rendering](/docs/server-side-rendering.md)
 - [Deploying with Ansistrano](/docs/deployment.md)
-- [Settings up continuous integration on CircleCI](/docs/ci.md)
+- [Setting up continuous integration on CircleCI](/docs/ci.md)
 
 ## Why not headless?
 The current state of Django in combination with JavaScript frontend technologies is 
