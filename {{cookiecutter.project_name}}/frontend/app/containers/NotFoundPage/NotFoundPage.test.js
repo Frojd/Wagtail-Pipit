@@ -5,7 +5,7 @@ import {
 } from 'enzyme';
 
 import NotFoundPage from './';
-// const data = __jsons['NotFoundPage'];
+// import data from './NotFoundPage.data';
 
 describe('<NotFoundPage />', () => {
     it('Renders an empty NotFoundPage', () => {

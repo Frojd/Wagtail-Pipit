@@ -5,7 +5,7 @@ import {
 } from 'enzyme';
 
 import __Pure from './';
-// const data = __jsons['__Pure'];
+// import data from './__Pure.data';
 
 describe('<__Pure />', () => {
     it('Renders an empty __Pure', () => {
