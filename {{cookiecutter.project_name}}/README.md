@@ -121,6 +121,13 @@ ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-release-start
 ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 ```
 
+On windows
+
+```
+ln -nfs %cd%/.githooks/bump-version.sh .git/hooks/post-flow-release-start
+ln -nfs %cd%/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+```
+
 ### Hook: Run tests pre push
 
 This hook will run the test suite before every push.
