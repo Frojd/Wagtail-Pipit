@@ -6,4 +6,4 @@ raven==6.10.0
 python-dotenv==0.10.1
 wagtail==2.5
 django_react_templatetags==5.4.0
-
+wagtailfontawesome==1.1.4

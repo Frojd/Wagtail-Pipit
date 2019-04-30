@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "taggit",
     "django_react_templatetags",
     "raven.contrib.django.raven_compat",
+    "wagtailfontawesome",
     # Project specific apps
     "pipit",
     "sitesettings",
