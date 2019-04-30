@@ -79,24 +79,24 @@ This will create the following files:
 ./app/components/Button/Button.test.js
 ```
 
-*Button.scss*
+####Button.scss
 The stylesheet for the component. We encouraged that all styling in this file has no reference outside of the
 `.Button` context, according to [BEM Methodology](https://en.bem.info/methodology/quick-start/)
 
-*index.js*
+####index.js
 Decides what the module exports. It defaults to the component `Button` and you can almost always ignore this file.
 
-*Button.data.js*
+####Button.data.js
 Exporting a JS-object representing the `props` the component will use in the dev-server, 
 which will be passed down from higher order components/containers in the actual app
 
-*Buttons.stories.js*
+####Buttons.stories.js
 Declares the stories for the (Storybook integration)[https://storybook.js.org/]. You can ignore this for now.
 
-*Button.js*
+####Button.js
 The javascript code for the react component.
 
-*Button.test.js*
+####Button.test.js
 Tests for the component. It will run when you run "npm run test"
 
 
@@ -266,7 +266,7 @@ As with the component, we need to provide dev-server data. This should look as y
 In our case, we only care about the `richtext`-field. Add to `WordCountPage.data.js` like:
 ```
 export default {
-    'richtext': '<p>paragraph one</p><p>Another paragraph</p>',
+    'richtext': '<p>paragraph one</p><p>Another paragraph</p>'
 };
 ```
 
@@ -276,8 +276,8 @@ When styling the container-level, we mostly do the layout. Add some margins and 
 
 
 ```scss
-@import 'Styles/includes.scss';¬
-¬
+@import 'Styles/includes.scss';
+
 .WordCountPage {
     max-width: 600px;
     
