@@ -1,5 +1,5 @@
 module.exports = {
-    "outputPath": "../src/pipit/static/core/",
+    "outputPath": "../src/pipit/static/pipit/",
     "publicPath": "/static/pipit/",
     "port": 7000
 }
