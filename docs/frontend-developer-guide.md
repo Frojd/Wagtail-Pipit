@@ -24,17 +24,17 @@ The whole frontend of the project is located in `/frontend/`. Here is an overvie
 the contents (Some files omitted for brevity):
 ```bash
 .
-├── app¬    # The source root folder of your frontend app
-│__ ├── assets¬     # Contains all statical assets, such as fonts, images, etc.
-│__ ├── components¬ # Contains all Components
-│__ ├── containers¬ # Contains all Containers
-│__ ├── i18n¬       # Contains internationalization strings and module for handeling those
-│__ ├── index.js¬   # Entry point for your frontend application
-│__ ├── main.js¬    # What will be exposed to client via webpack, exposing React and your frontend app
-│__ ├── styles¬     # Global styling (h1, h2, resets, etc)
-│__ └── utils¬      # Where you should place your utility functions
-├── bin¬        # Root folder for scripts called in npm
-└── internals¬  # Contains templates for scaffolding and code for the dev-server
+├── app     # The source root folder of your frontend app
+│__ ├── assets      # Contains all statical assets, such as fonts, images, etc.
+│__ ├── components  # Contains all Components
+│__ ├── containers  # Contains all Containers
+│__ ├── i18n        # Contains internationalization strings and module for handeling those
+│__ ├── index.js    # Entry point for your frontend application
+│__ ├── main.js     # What will be exposed to client via webpack, exposing React and your frontend app
+│__ ├── styles      # Global styling (h1, h2, resets, etc)
+│__ └── utils       # Where you should place your utility functions
+├── bin         # Root folder for scripts called in npm
+└── internals   # Contains templates for scaffolding and code for the dev-server
 ```
 
 To get up and running we first need to install the npm dependencies from the frontend directory:
@@ -104,20 +104,20 @@ Tests for the component. It will run when you run "npm run test"
 
 Let’s start coding the javascript, modify the `Button.js` so that it looks like this:
 ```js
-import React from 'react';¬
-import './Button.scss';¬
-¬
-const Button = ({onClick, text}) => (¬
-    <button className="Button" onClick={onClick}>¬
-        {text}¬
-    </button>¬
-);¬
-¬
-Button.propTypes = {};¬
-¬
-Button.defaultProps = {};¬
-¬
-export default Button;¬
+import React from 'react';
+import './Button.scss';
+
+const Button = ({onClick, text}) => (
+    <button className="Button" onClick={onClick}>
+        {text}
+    </button>
+);
+
+Button.propTypes = {};
+
+Button.defaultProps = {};
+
+export default Button;
 ```
 
 This allows us to render a Button container with the props `onClick` and `text`. In a real-life scenario,
@@ -148,14 +148,14 @@ setting you can have different members of your team working on the frontend and 
 To style the component, we simply add some scss-rules to `Button.scss`:
 
 ```scss
-@import 'Styles/includes.scss';¬
-¬
-.Button {¬
-    background: #ff4040;¬
-    color: white;¬
-    border: none;¬
-    padding: 10px 15px;¬
-}¬
+@import 'Styles/includes.scss';
+
+.Button {
+    background: #ff4040;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+}
 ```
 
 We recommend that all styling in this file have no reference outside of the `.Button` context, 
