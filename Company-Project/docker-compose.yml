@@ -1,0 +1,40 @@
+version: '3'
+services:
+  web:
+    image: frojd/company_project_web
+    build: ./src
+    volumes:
+      - "./src:/app"
+      - "./docker/files/shared:/shared:rw"
+      - "./docker/files/var/log:/var/log:rw"
+      - "./docker/files/certs:/priv/cert"
+    ports:
+      - "8081:8000"
+      - "5678:5678"
+    depends_on:
+      - db
+    env_file: ./docker/config/web.env
+  ssr:
+    image: frojd/hastur:latest
+    volumes:
+      - "./src/pipit/static/pipit:/app"
+      - "./frontend/node_modules:/app/raw/node_modules"
+    environment:
+      - HASTUR_PATH=/app
+      - HASTUR_PORT=
+      - HASTUR_HOST=
+      - HASTUR_DEBUG=true
+      - HASTUR_SENTRY=
+      - HASTUR_JSON_SNAKE_TO_CAMEL=true
+      - HASTUR_STRIP_DOT_PREFIX=true
+  db:
+    image: mdillon/postgis:9.6
+    ports:
+      - "5433:5432"
+    volumes:
+      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
+      - "./docker/files/shared:/shared:rw"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres

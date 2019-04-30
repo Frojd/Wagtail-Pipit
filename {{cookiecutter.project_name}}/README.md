@@ -1,7 +1,5 @@
 # {{cookiecutter.project_name}}
 
-{{cookiecutter.description}}
-
 
 ## Index
 
@@ -21,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.6+ 
+- Python 3.6+
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -59,8 +57,18 @@
     docker-compose up
     ```
 
-6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}) 
+6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
     - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms) (Username: `admin` and password: `admin`)
+
+## Where to go from here?
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
+
+- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md)
+- [Datasync between environments](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/data-sync.md)
+- [Scaffolding](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/scaffolding.md)
+- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/server-side-rendering.md)
+- [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/deployment.md)
+- [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/ci.md)
 
 
 ## Versioning
@@ -69,7 +77,7 @@ This project follows [semantic versioning](https://semver.org/).
 
 Bump version in:
 
-- src/core/settings/base.py `(APP_VERSION=)`
+- src/pipit/settings/base.py `(APP_VERSION=)`
 - frontend/package.json
 - src/Dockerfile
 
@@ -99,47 +107,6 @@ docker-compose run --rm --service-ports web
 ```
 
 
-## Deployment
-
-This project utilizes Continious Integration (CI) and Continious Deployment (CD) and is based on [Circle CI](https://circleci.com), the config can be find at `.circleci/config.yml`. Our deploy scripts are based on [ansistrano](https://github.com/ansistrano) (running [ansible](https://github.com/ansible/ansible)), the scripts are in the `deploy` directory.
-
-### Deploying manually
-
-It's possible you deploy manually and is something that you usually do this before CI is configured.
-
-#### Requirements
-
-- Python 3.6 and pip
-- Virtualenv
-- Mac OS or Linux ([Windows does not currently work](http://docs.ansible.com/ansible/latest/intro_windows.html#windows-how-does-it-work))
-
-#### How to
-
-1. Open deployment folder: `cd deploy`
-2. Setup and activate virtualenv: `virtualenv venv && venv/bin/activate`
-3. Install ansible: `pip install -r requirements.txt`
-4. Install ansistrano: `ansible-galaxy install -r requirements.yml`
-
-#### Deploy application
-
-- Stage: `ansible-playbook deploy.yml -i stages/stage`
-- Prod: `ansible-playbook deploy.yml -i stages/prod`
-
-#### Rollback application
-
-- Stage: `ansible-playbook rollback.yml -i stages/stage`
-- Prod: `ansible-playbook rollback.yml -i stages/prod`
-
-
-## Merge conflicts
-
-The project has `.gitattributes`, but you need to make sure a driver is set up for this, type this is the terminal:
-
-```
-git config --global merge.ours.driver true
-```
-
-
 ## Git hooks
 
 We use git-hooks to streamline and automate certain functions, such as version bumping and pre hooks for code validation and tests. If you want to bypass any of them append the `--no-verify` flag (example: `git push --no-verify`)
@@ -152,6 +119,13 @@ These hooks will automatically bump the application version when using `git flow
 chmod +x $PWD/.githooks/bump-version.sh
 ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-release-start
 ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+```
+
+On windows
+
+```
+ln -nfs %cd%/.githooks/bump-version.sh .git/hooks/post-flow-release-start
+ln -nfs %cd%/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 ```
 
 ### Hook: Run tests pre push
@@ -169,8 +143,6 @@ ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 chmod +x $PWD/.githooks/pre-commit.sh
 ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 ```
-
-Note: This requires the black package (`pip install black`)
 
 
 ## Server requirements

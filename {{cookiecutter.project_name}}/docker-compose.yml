@@ -17,7 +17,7 @@ services:
   ssr:
     image: frojd/hastur:latest
     volumes:
-      - "./src/core/static/core:/app"
+      - "./src/pipit/static/pipit:/app"
       - "./frontend/node_modules:/app/raw/node_modules"
     environment:
       - HASTUR_PATH=/app

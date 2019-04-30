@@ -5,7 +5,7 @@ import {
 } from 'enzyme';
 
 import __Class from './';
-// const data = __jsons['__Class'];
+// import data from './__Class.data';
 
 describe('<__Class />', () => {
     it('Renders an empty __Class', () => {
