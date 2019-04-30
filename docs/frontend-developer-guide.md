@@ -210,18 +210,18 @@ class WordCountPage extends PureComponent {
     static propTypes = {};
 
     handleWordCountClick = () => {
-        const quickAndDirtyWordCount = this.props.richtext.replace(/<[^>]+>/g, ' ')
+        const quickAndDirtyWordCount = this.props.richText.replace(/<[^>]+>/g, ' ')
             .split(' ').filter(x => x).length;
 
         alert(`This article contains ${quickAndDirtyWordCount} words`);
     }
 
     render() {
-        const {richtext} = this.props;
+        const {richText} = this.props;
         return (
             <div className="WordCountPage">
                 <div className="WordCountPage__Section WordCountPage__Section--body">
-                    <RawHtml html={richtext} />
+                    <RawHtml html={richText} />
                 </div>
                 <div className="WordCountPage__Section WordCountPage__Section--button">
                     <Button text={i18n.t('wordcountpage.buttonText')} onClick={this.handleWordCountClick} />
@@ -240,7 +240,7 @@ you try to import the component.
 
 Now we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (`=>`) functions here
 to make sure that the `this` keyword refers to the `WordCountPage` instance inside of that function scope.  In this
-particular case, we just do a very quick and dirty wordcount of the component prop "richtext" which will be provided
+particular case, we just do a very quick and dirty wordcount of the component prop "richText" which will be provided
 by Wagtail (from `WordCountPage.data.js` in the dev-server).
 
 In the render-function, we simply wrap our components in div-elements because we want to put some margins on
@@ -265,10 +265,10 @@ Open the file `./app/i18n/translations/en.json` and replace it with this:
 
 As with the component, we need to provide dev-server data. This should look as your Wagtail Page-serialization. 
 
-In our case, we only care about the `richtext`-field. Add to `WordCountPage.data.js` like:
+In our case, we only care about the `richText`-field. Add to `WordCountPage.data.js` like:
 ```
 export default {
-    'richtext': '<p>paragraph one</p><p>Another paragraph</p>'
+    'richText': '<p>paragraph one</p><p>Another paragraph</p>'
 };
 ```
 

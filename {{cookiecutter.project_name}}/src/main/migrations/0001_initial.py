@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             name='ArticlePage',
             fields=[
                 ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='main.BasePage')),
-                ('wysiwyg', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Wysiwyg')),
+                ('rich_text', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Rich text')),
             ],
             options={
                 'verbose_name': 'Article',
