@@ -33,7 +33,8 @@ cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
 
 ## Documentation – Where to go from here?
 We recommend you to start by checking out the [Getting Started Guide](/docs/getting-started-guide.md). Otherwise, you can read up any of the following topics:
-- [Frontend developer workflow](/docs/frontend-developer-guide.md)
+- [Frontend Developer Guide](/docs/frontend-developer-guide.md)
+- [Backend Developer Guide](/docs/backend-developer-guide.md)
 - [Datasync between environments](/docs/data-sync.md)
 - [Scaffolding](/docs/scaffolding.md)
 - [Server-Side Rendering](/docs/server-side-rendering.md)

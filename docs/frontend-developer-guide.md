@@ -48,9 +48,9 @@ Next, we start the frontend dev-server:
 npm start
 ```
 
-A browser tab should now open running on `http://localhost:7000`, if not, access that URL from your preferred browser.
-You should see a list of all components and containers that exist in the application. If not, look in your terminal
-the window for any webpack errors and try to resolve those.
+From here, start your preferred browser and navigate to `http://localhost:7000`.  You should see a list of all
+components and containers that exist in the application. If not, look in your terminal the window for any
+webpack errors and try to resolve those.
 
 You can run any component or container in your browser by clicking on it.
 If you do any change in your code the browser will automatically refresh and display your changes. 
@@ -71,13 +71,17 @@ npm run new Button
 
 This will create the following files:
 ```
+./app/components/Button/Button.data.js
 ./app/components/Button/Button.scss
 ./app/components/Button/index.js
-./app/components/Button/Button.data.js
 ./app/components/Button/Buttons.stories.js
 ./app/components/Button/Button.js
 ./app/components/Button/Button.test.js
 ```
+
+#### Button.data.js
+Exporting a JS-object representing the `props` the component will use in the dev-server,
+which will be passed down from higher order components/containers in the actual app
 
 #### Button.scss
 The stylesheet for the component. We encouraged that all styling in this file has no reference outside of the
@@ -85,10 +89,6 @@ The stylesheet for the component. We encouraged that all styling in this file ha
 
 #### index.js
 Decides what the module exports. It defaults to the component `Button` and you can almost always ignore this file.
-
-#### Button.data.js
-Exporting a JS-object representing the `props` the component will use in the dev-server, 
-which will be passed down from higher order components/containers in the actual app
 
 #### Buttons.stories.js
 Declares the stories for the [Storybook integration](https://storybook.js.org/). You can ignore this for now.
@@ -120,7 +120,7 @@ Button.defaultProps = {};
 export default Button;
 ```
 
-This allows us to render a Button container with the props `onClick` and `text`. In a real-life scenario,
+This allows us to render a Button which accepts the props `onClick` and `text`. In a real-life scenario,
 you would also want to specify [`propTypes`](https://reactjs.org/docs/typechecking-with-proptypes.html) and
 [`defaultProps`](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values) but that is 
 outside the scope for this tutorial.
@@ -137,7 +137,8 @@ export default {
 ```
 
 Now if you look at the component in the browser on [http://localhost:7000/Button](http://localhost:7000/Button) you
-should see the text "Button text" and if you click it you should see "clicked" in the console.
+should see the text "Button text" and if you click it you should see "clicked" in the browser console.  *Note:* You
+need to refresh the browser.
 
 To be able to mock the props like this is very handy since you can develop the whole frontend without
 the actual Wagtail implementation in place. It helps you to test the frontend in an isolated context and in a team
@@ -168,16 +169,16 @@ enforce anything.
 
 ## Building your first `Container`
 
-Now we have the components we need for building our container. We will call this container _WordCountPage_ if we were
+Now we have the components we need for building our container. We will call this container _WordCountPage_.  If we were
 building a backend for this as well, it would be represented by a Wagtail-model with the same name. 
 
 The received props this container will handle will be a camelCased version of that model's serialization,
-read more about that in our [Backend Developer Guide](./backend-developer-guide.md)
+read more about models and serialization in our [Backend Developer Guide](./backend-developer-guide.md)
 
-From a React-point of view, a container is the same thing as a component. We keep them separated only to make our
-code nice and tidy. From our point of view a container differs from a component in the following ways:
+From a React-point of view, a container is the same thing as a component.  We keep them separated only to make our
+code nice and tidy.  From our point of view a container differs from a component in the following ways:
 - The container handles the state and pass it down to its components
-- The container is responsible for the layout of the components it uses, the component stylings should be unaware of its placement 
+- The container is responsible for the layout of the components it uses, the component styling should not affect the component's placement
 - The container handles javascript bindings and pass it down to its components. i.e. a click handler should be defined in the container and be passed down via props
 
 
@@ -223,7 +224,7 @@ class WordCountPage extends PureComponent {
                     <RawHtml html={richtext} />
                 </div>
                 <div className="WordCountPage__Section WordCountPage__Section--button">
-                    <Button text={i18n.t('wordcountpage.buttonText'} onClick={this.handleWordCountclick} />
+                    <Button text={i18n.t('wordcountpage.buttonText')} onClick={this.handleWordCountClick} />
                 </div>
             </div>
         );
@@ -233,22 +234,23 @@ class WordCountPage extends PureComponent {
 export default basePageWrap(WordCountPage);
 ```
 
-Let’s break it down. First we import our components, note that we have aliases for the components folder, 
-so you can import "Components/ComponentName" instead of "../Components/ComponentName". This works no matter where
+First we import our components, note that we have aliases for the components folder,
+so you can import `Components/ComponentName` instead of `../Components/ComponentName`. This works no matter where
 you try to import the component.
 
-Then we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (=>) functions here
-to make sure that the `this` keyword refers to the WordCountPage instance inside of that function scope. In this
+Now we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (`=>`) functions here
+to make sure that the `this` keyword refers to the `WordCountPage` instance inside of that function scope.  In this
 particular case, we just do a very quick and dirty wordcount of the component prop "richtext" which will be provided
-by Wagtail (and from WordCountPage.data.js in the dev-server).
+by Wagtail (from `WordCountPage.data.js` in the dev-server).
 
-In the render-function, we simply wrap our components in divs because we want to put some margins on them, and the
-container is responsible for the layout, so we should not target the component directly from our stylesheet.
-We pass along the props our components need and we are done!
+In the render-function, we simply wrap our components in div-elements because we want to put some margins on
+them.
 
-Please note that we are using the function `i18n.t` for string, that is because our app might be internationalized. 
-You could simply write the string "Count words" if you only target one language. 
-But for now, add an English translation for our button text.
+Finally we pass along the required `props` to our components and we are done!
+
+Please note that we are using the function `i18n.t` for the Button text.  This is because our app
+will be internationalized.  You could simply write the string "Count words" if you only target one language,
+but for now, add an English translation for our button text.
 
 Open the file `./app/i18n/translations/en.json` and replace it with this:
 ```json
@@ -272,8 +274,7 @@ export default {
 
 ### Add styling
 
-When styling the container-level, we mostly do the layout. Add some margins and push the button to the right:
-
+When styling the container-level, we mostly do the layout. Add some margins:
 
 ```scss
 @import 'Styles/includes.scss';
@@ -283,10 +284,6 @@ When styling the container-level, we mostly do the layout. Add some margins and 
     
     &__Section {
         margin-bottom: 20px;
-        
-        &--Button {
-            text-align: right;
-        }
     }
 }
 ```
