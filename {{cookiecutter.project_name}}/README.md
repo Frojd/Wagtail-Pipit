@@ -19,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.6+ 
+- Python 3.6+
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -57,7 +57,7 @@
     docker-compose up
     ```
 
-6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}) 
+6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
     - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms) (Username: `admin` and password: `admin`)
 
 ## Where to go from here?
@@ -104,16 +104,6 @@ To use pdb you need to start the container with service-ports exposed instead of
 
 ```
 docker-compose run --rm --service-ports web
-```
-
-
-
-## Merge conflicts
-
-The project has `.gitattributes`, but you need to make sure a driver is set up for this, type this is the terminal:
-
-```
-git config --global merge.ours.driver true
 ```
 
 
