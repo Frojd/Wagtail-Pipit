@@ -91,7 +91,7 @@ Exporting a JS-object representing the `props` the component will use in the dev
 which will be passed down from higher order components/containers in the actual app
 
 #### Buttons.stories.js
-Declares the stories for the (Storybook integration)[https://storybook.js.org/]. You can ignore this for now.
+Declares the stories for the [Storybook integration](https://storybook.js.org/). You can ignore this for now.
 
 #### Button.js
 The javascript code for the react component.
@@ -121,8 +121,8 @@ export default Button;
 ```
 
 This allows us to render a Button container with the props `onClick` and `text`. In a real-life scenario,
-you would also want to specify (`propTypes`)[https://reactjs.org/docs/typechecking-with-proptypes.html] and
-(`defaultProps`)[https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values] but that is 
+you would also want to specify [`propTypes`](https://reactjs.org/docs/typechecking-with-proptypes.html) and
+[`defaultProps`](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values) but that is 
 outside the scope for this tutorial.
 
 ### Providing data for the dev-server
@@ -172,7 +172,7 @@ Now we have the components we need for building our container. We will call this
 building a backend for this as well, it would be represented by a Wagtail-model with the same name. 
 
 The received props this container will handle will be a camelCased version of that model's serialization,
-read more about that in our (Backend Developer Guide)[./backend-developer-guide.md]
+read more about that in our [Backend Developer Guide](./backend-developer-guide.md)
 
 From a React-point of view, a container is the same thing as a component. We keep them separated only to make our
 code nice and tidy. From our point of view a container differs from a component in the following ways:
