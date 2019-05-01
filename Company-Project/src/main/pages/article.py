@@ -6,9 +6,9 @@ from .base import BasePage
 
 
 class ArticlePage(BasePage):
-    wysiwyg = RichTextField(blank=True, null=True, verbose_name=_("Wysiwyg"))
+    rich_text = RichTextField(blank=True, null=True, verbose_name=_("Rich text"))
 
-    content_panels = BasePage.content_panels + [RichTextFieldPanel("wysiwyg")]
+    content_panels = BasePage.content_panels + [RichTextFieldPanel("rich_text")]
 
     extra_panels = BasePage.extra_panels
     serializer_class = "main.pages.ArticlePageSerializer"

@@ -28,7 +28,7 @@ services:
       - HASTUR_JSON_SNAKE_TO_CAMEL=true
       - HASTUR_STRIP_DOT_PREFIX=true
   db:
-    image: mdillon/postgis:9.6
+    image: mdillon/postgis:10
     ports:
       - "5433:5432"
     volumes:

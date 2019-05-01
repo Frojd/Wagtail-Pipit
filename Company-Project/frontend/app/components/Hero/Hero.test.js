@@ -5,7 +5,7 @@ import {
 } from 'enzyme';
 
 import Hero from './';
-// const data = __jsons['Hero'];
+// import data from './Hero.data';
 
 describe('<Hero />', () => {
     it('Renders an empty Hero', () => {

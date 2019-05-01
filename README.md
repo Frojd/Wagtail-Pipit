@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Frojd/Wagtail-Boilerplate.svg?style=svg)](https://circleci.com/gh/Frojd/Wagtail-Boilerplate)
+[![CircleCI](https://circleci.com/gh/Frojd/Wagtail-Pipit.svg?style=svg)](https://circleci.com/gh/Frojd/Wagtail-Pipit)
 
 # Pipit
 
@@ -26,7 +26,7 @@ modern frontend stack while still not making the trade-off normally would by run
 1. Make sure you have [cookiecutter](https://github.com/audreyr/cookiecutter/blob/master/docs/index.rst) installed. If not run `pip install cookiecutter` (or via brew)
 2. Run cookiecutter:
 ```
-cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
+cookiecutter https://github.com/Frojd/Wagtail-Pipit.git
 ```
 
 3. Fill in the questions and you are done!
@@ -61,8 +61,8 @@ hard to share state between different React-instances and you have to rely on te
 
 If you have ideas for improvement, please share your thoughts through an issue. We also welcome PR's
 
-- Issue Tracker: [https://github.com/Frojd/Wagtail-Boilerplate/issues](https://github.com/Frojd/Wagtail-Boilerplate/issues)
-- Source Code: [https://github.com/Frojd/Wagtail-Boilerplate](https://github.com/Frojd/Wagtail-Boilerplate)
+- Issue Tracker: [https://github.com/Frojd/Wagtail-Pipit/issues](https://github.com/Frojd/Wagtail-Pipit/issues)
+- Source Code: [https://github.com/Frojd/Wagtail-Pipit](https://github.com/Frojd/Wagtail-Pipit)
 
 ## Support
 

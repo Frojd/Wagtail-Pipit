@@ -19,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.6+ 
+- Python 3.6+
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -57,7 +57,7 @@
     docker-compose up
     ```
 
-6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081) 
+6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
     - ...or login to [https://example.com.test:8081/cms](https://example.com.test:8081/cms) (Username: `admin` and password: `admin`)
 
 ## Where to go from here?
@@ -107,16 +107,6 @@ docker-compose run --rm --service-ports web
 ```
 
 
-
-## Merge conflicts
-
-The project has `.gitattributes`, but you need to make sure a driver is set up for this, type this is the terminal:
-
-```
-git config --global merge.ours.driver true
-```
-
-
 ## Git hooks
 
 We use git-hooks to streamline and automate certain functions, such as version bumping and pre hooks for code validation and tests. If you want to bypass any of them append the `--no-verify` flag (example: `git push --no-verify`)
@@ -129,6 +119,13 @@ These hooks will automatically bump the application version when using `git flow
 chmod +x $PWD/.githooks/bump-version.sh
 ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-release-start
 ln -nfs $PWD/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+```
+
+On windows
+
+```
+ln -nfs %cd%/.githooks/bump-version.sh .git/hooks/post-flow-release-start
+ln -nfs %cd%/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 ```
 
 ### Hook: Run tests pre push

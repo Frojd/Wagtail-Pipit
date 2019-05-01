@@ -30,7 +30,6 @@ const remapComponents = function(componentPath, componentName, componentType) {
     });
 };
 
-
 const replaceInFile = function(file, replace, replacement) {
     const content = fs.readFileSync(file, 'utf8');
     const re = new RegExp(replace, 'g');

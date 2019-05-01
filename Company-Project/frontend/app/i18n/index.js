@@ -11,20 +11,24 @@
 import i18next from 'i18next';
 
 import sv from './translations/sv.json';
+import en from './translations/en.json';
 
 i18next.init({
-    languages: ['sv'],
-    fallbackLng: ['sv'],
+    languages: ['en', 'sv'],
+    fallbackLng: ['en'],
     resources: {
         sv: {
             translation: sv,
+        },
+        en: {
+            translation: en,
         },
     },
 });
 
 // Update this to reflect what language your page should use
 const lang = () => {
-    return 'sv';
+    return 'en';
 };
 
 i18next.changeLanguage(lang());
