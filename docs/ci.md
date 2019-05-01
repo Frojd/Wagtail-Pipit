@@ -10,4 +10,4 @@ Push to develop-branch is deployed to stage.
 
 When pushing a tag prefixed with 'v.' it will be deployed to production. 
 
-Read more about deployment in the [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/deployment.md) section.
+Read more about deployment in the [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/deployment.md) section.

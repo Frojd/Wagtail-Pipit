@@ -61,14 +61,14 @@
     - ...or login to [https://example.com.test:8081/cms](https://example.com.test:8081/cms) (Username: `admin` and password: `admin`)
 
 ## Where to go from here?
-We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
 
-- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/frontend.md)
-- [Datasync between environments](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/data-sync.md)
-- [Scaffolding](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/scaffolding.md)
-- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/server-side-rendering.md)
-- [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/deployment.md)
-- [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Boilerplate/blob/master/docs/ci.md)
+- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend.md)
+- [Datasync between environments](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/data-sync.md)
+- [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/scaffolding.md)
+- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/server-side-rendering.md)
+- [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/deployment.md)
+- [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/ci.md)
 
 
 ## Versioning

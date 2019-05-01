@@ -25,7 +25,7 @@ RUN apt-get update \
     && apt-get install -y binutils libproj-dev gdal-bin \
     && apt-get install -y vim curl gettext \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -L https://raw.githubusercontent.com/Frojd/Wagtail-Boilerplate/develop/config/.vimrc > ~/.vimrc
+    && curl -L https://raw.githubusercontent.com/Frojd/Wagtail-Pipit/develop/config/.vimrc > ~/.vimrc
 
 RUN apt-get update && apt-get -y install postgresql
 
