@@ -2,10 +2,10 @@
 "" This is a general vim configuration
 ""
 "" From:
-"" https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/master/config/.vimrc
+"" https://raw.githubusercontent.com/Frojd/Wagtail-Pipit/master/config/.vimrc
 ""
 "" Installing:
-"" curl -L https://raw.githubusercontent.com/Frojd/Frojd-Django-Boilerplate/master/config/.vimrc > ~/.vimrc
+"" curl -L https://raw.githubusercontent.com/Frojd/Wagtail-Pipit/master/config/.vimrc > ~/.vimrc
 
 
 " Basic Setup {{{
