@@ -1,5 +1,4 @@
 from django.utils.module_loading import import_string
-
 from wagtail.core.models import Page
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
