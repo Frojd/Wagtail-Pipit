@@ -6,11 +6,11 @@ from . import ArticlePage
 
 
 class ArticlePageSerializer(BasePageSerializer):
-    wysiwyg = serializers.SerializerMethodField()
+    rich_text = serializers.SerializerMethodField()
 
     class Meta:
         model = ArticlePage
-        fields = BasePageSerializer.Meta.fields + ["wysiwyg"]
+        fields = BasePageSerializer.Meta.fields + ["rich_text"]
 
-    def get_wysiwyg(self, page):
-        return expand_db_html(page.wysiwyg)
+    def get_rich_text(self, page):
+        return expand_db_html(page.rich_text)

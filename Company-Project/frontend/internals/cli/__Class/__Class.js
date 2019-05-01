@@ -11,11 +11,7 @@ class __Class extends PureComponent {
     static propTypes = {};
 
     render() {
-        return (
-            <div className="__Class">
-                __Class
-            </div>
-        );
+        return <div className="__Class">__Class</div>;
     }
 }
 

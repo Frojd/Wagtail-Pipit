@@ -1,4 +1,4 @@
-/* global __dirname module */
+/* global __dirname module process */
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -82,7 +82,7 @@ const config = {
             i18n: path.resolve(__dirname, 'app/i18n'),
             Styles: path.resolve(__dirname, 'app/styles'),
             Utils: path.resolve(__dirname, 'app/utils'),
-            'react-dom': '@hot-loader/react-dom',
+            'react-dom': '@hot-loader/react-dom'
         }
     },
     plugins: [

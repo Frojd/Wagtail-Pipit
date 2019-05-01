@@ -149,6 +149,10 @@ class SeoMixin(Page):
 
     @cached_property
     def seo_og_url(self):
+        return self.seo_canonical_link
+
+    @cached_property
+    def seo_canonical_link(self):
         return self.canonical_link or self.full_url
 
     @cached_property
@@ -165,7 +169,7 @@ class SeoMixin(Page):
 
     @cached_property
     def seo_twitter_url(self):
-        return self.canonical_link or self.full_url
+        return self.seo_canonical_link
 
     @cached_property
     def seo_twitter_image(self):
