@@ -254,10 +254,7 @@ class ReactViewMixin(object):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        return {
-            **context,
-            "props": self.to_dict({"request": self.request}),
-        }
+        return {**context, "props": self.to_dict({"request": self.request})}
 
     def to_dict(self, context):
         serializer_cls = self.get_serializer_class()

@@ -21,10 +21,7 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        return {
-            **context,
-            "props": self.to_dict({"request": request}),
-        }
+        return {**context, "props": self.to_dict({"request": request})}
 
     def serve(self, request, *args, **kwargs):
         if self.should_serve_json(request):

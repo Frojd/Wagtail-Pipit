@@ -28,9 +28,7 @@ if settings.DEBUG:
             kwargs={"exception": Exception("Permission Denied")},
         ),  # NOQA
         url(
-            r"^404/$",
-            handler404,
-            kwargs={"exception": Exception("Page not Found")},
+            r"^404/$", handler404, kwargs={"exception": Exception("Page not Found")}
         ),  # NOQA
         url(r"^500/$", default_views.server_error),
     ]
