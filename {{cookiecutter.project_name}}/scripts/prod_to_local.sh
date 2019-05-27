@@ -5,18 +5,16 @@ set -e
 local_domain=${1-{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}}
 ssh_host=${2-{{cookiecutter.ssh_prod}}}
 
-ROOTDIR=$(git rev-parse --show-toplevel)
-DOCKERDIR=$(cd ${ROOTDIR}/docker/; pwd)
-
+SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DOCKER_DIR=${SCRIPTS_DIR}/../docker/
 
 echo "Creating database dump from prod..."
 ssh $ssh_host "export PGUSER=postgres && pg_dump {{ cookiecutter.db_name_prod }} --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
-scp $ssh_host:/tmp/db-dump.sql $DOCKERDIR/files/db-dumps/db-dump.sql
+scp $ssh_host:/tmp/db-dump.sql $DOCKER_DIR/files/db-dumps/db-dump.sql
 ssh $ssh_host "rm /tmp/db-dump.sql"
 
-cd $ROOTDIR
 echo "Rebuilding docker containers."
 
 docker-compose stop

@@ -35,9 +35,6 @@ type aws >/dev/null 2>&1 || {
 stage_host=${1-{{cookiecutter.ssh_stage}}}
 prod_host=${2-{{cookiecutter.ssh_prod}}}
 
-CURRENTDIR=$(dirname `which $0`)
-DOCKERDIR=$(cd ${CURRENTDIR}/../; pwd)
-
 echo "Creating database dump from stage..."
 ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres {{cookiecutter.db_name_prod}} -x -O"
 

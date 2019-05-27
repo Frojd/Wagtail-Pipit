@@ -4,10 +4,6 @@ set -e
 # Arguments
 local_domain=${1-{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}}
 
-ROOTDIR=$(git rev-parse --show-toplevel)
-DOCKERDIR=$(cd ${ROOTDIR}/docker/; pwd)
-
-cd $ROOTDIR
 echo "Rebuilding docker containers."
 
 docker-compose stop
