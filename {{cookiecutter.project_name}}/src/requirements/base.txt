@@ -4,6 +4,6 @@ django-storages==1.7.1
 psycopg2-binary==2.8.2
 raven==6.10.0
 python-dotenv==0.10.2
-wagtail==2.5
+wagtail==2.5.1
 django_react_templatetags==5.4.0
 wagtailfontawesome==1.1.4
