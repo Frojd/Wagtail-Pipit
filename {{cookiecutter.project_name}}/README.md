@@ -5,6 +5,7 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Where to go from here?](#where-to-get-from-here)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Debugging](#debugging)
@@ -60,7 +61,9 @@
 6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
     - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/cms) (Username: `admin` and password: `admin`)
 
+
 ## Where to go from here?
+
 We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
 
 - [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend.md)
@@ -150,7 +153,7 @@ ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 Based on our preffered Django stack you can send this list to your hosting provider:
 
 ```
-SSH access (without password)
+SSH access (passwordless with RSA keys)
 Linux (Ubuntu is preffered)
 Nginx
 uWSGI
@@ -159,7 +162,7 @@ PostgreSQL 10+
 PostGIS for PostgreSQL
 GDAL (required for PostGIS)
 Node 10+ (for SSR)
-psycopg2-binary (for provision)
+psycopg2-binary (for the provision script that will create db and users)
 ```
 
 
