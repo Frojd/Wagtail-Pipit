@@ -24,7 +24,7 @@ AUTH_PASSWORD_VALIDATORS = []
 INTERNAL_IPS = get_env("INTERNAL_IPS", default="").split(",")
 
 # Add django debug toolbar when using local version
-if get_env_bool("DEBUG_TOOLBAR", default=False):
+if get_env_bool("DEBUG_TOOLBAR", default=True):
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
     INSTALLED_APPS += ["debug_toolbar"]
