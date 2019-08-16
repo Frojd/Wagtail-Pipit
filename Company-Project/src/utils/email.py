@@ -1,3 +1,4 @@
+from typing import List, Optional, Dict
 from django.core import mail
 from django.template.loader import render_to_string
 
@@ -5,10 +6,10 @@ from django.template.loader import render_to_string
 def send_templated_email(
     subject: str,
     from_email: str,
-    to_emails: str,
+    to_emails: List[str],
     template_txt: str,
-    template_html=None,
-    context={},
+    template_html: Optional[str] = None,
+    context: Optional[Dict] = None,
 ) -> bool:
     """
     Example usage:
@@ -24,10 +25,13 @@ def send_templated_email(
         },
     )
     """
+    context = context or {}
+
     assert isinstance(to_emails, list)
 
     message = render_to_string(template_txt, context)
 
+    html_message: Optional[str]
     if template_html:
         html_message = render_to_string(template_html, context)
     else:
