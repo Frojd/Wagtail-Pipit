@@ -1,0 +1,4 @@
+# Extend local.txt
+-r test.txt
+
+django-stubs==0.12.1
