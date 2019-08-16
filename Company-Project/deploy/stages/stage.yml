@@ -1,0 +1,7 @@
+webservers:
+  hosts:
+    stage1:
+      ansible_user: root
+      ansible_port: 2222
+      ansible_host: localhost
+      stage_name: stage
