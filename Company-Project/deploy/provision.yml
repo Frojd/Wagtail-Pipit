@@ -28,28 +28,13 @@
         mode: 0775
         recurse: yes
 
-    - name: Creates application configuration
-      copy:
-        src: "files/example.env"
+    - name: Create .env file
+      template:
+        src: files/.env.j2
         dest: "{{ ansistrano_deploy_to }}/shared/.env"
         owner: www-data
         group: www-data
         mode: 0644
-
-    - replace:
-        path: "{{ ansistrano_deploy_to }}/shared/.env"
-        regexp: 'SECRET_KEY=(.*)$'
-        replace: 'SECRET_KEY={{ secret_key }}'
-
-    - replace:
-        path: "{{ ansistrano_deploy_to }}/shared/.env"
-        regexp: 'DATABASE_PASSWORD=(.*)$'
-        replace: 'DATABASE_PASSWORD={{ database_password }}'
-
-    - replace:
-        path: "{{ ansistrano_deploy_to }}/shared/.env"
-        regexp: 'DJANGO_SETTINGS_MODULE=(.*)$'
-        replace: 'DJANGO_SETTINGS_MODULE=pipit.settings.{{ stage_name }}'
 
     - name: Creates postgres database
       postgresql_db:
@@ -62,16 +47,11 @@
         password: "{{ database_password }}"
         priv: ALL
 
-    - name: Copies uWSGI config
-      copy:
-        src: "files/uwsgi.ini"
+    - name: Creates uWSGI config
+      template:
+        src: files/uwsgi.ini.j2
         dest: "/mnt/persist/uwsgi/conf.d/{{ project_slug }}.ini"
         mode: 0644
-
-    - replace:
-        path: "/mnt/persist/uwsgi/conf.d/{{ project_slug }}.ini"
-        regexp: 'UWSGI_STATS_PORT'
-        replace: '{{ 9190+(uwsgi_application_count.stdout|int) }}'
 
     - name: Replaces default uwsgi conf with empty
       file:
