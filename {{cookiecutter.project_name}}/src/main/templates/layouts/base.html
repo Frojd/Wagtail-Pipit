@@ -42,9 +42,9 @@
         <script type="text/javascript" src="{% static 'pipit/index.js' %}"></script>
 
         {% if SETTINGS.SENTRY_DSN %}
-            <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>
+            <script src="https://browser.sentry-cdn.com/5.6.1/bundle.min.js" integrity="sha384-pGTFmbQfua2KiaV2+ZLlfowPdd5VMT2xU4zCBcuJr7TVQozMO+I1FmPuVHY3u8KB" crossorigin="anonymous"></script>
             <script>
-            Raven.config('{% sentry_public_dsn %}').install();
+            Sentry.init({ dsn: '{{ SETTINGS.SENTRY_DSN }}' })
             </script>
         {% endif %}
 
