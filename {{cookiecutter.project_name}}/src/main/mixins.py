@@ -194,7 +194,7 @@ class EnhancedEditHandlerMixin:
         """
 
         if hasattr(cls, "edit_handler"):
-            return cls.edit_handler.bind_to_model(cls)
+            return cls.edit_handler.bind_to(model=cls)
 
         # construct a TabbedInterface made up of content_panels, promote_panels
         # and settings_panels, skipping any which are empty
@@ -221,7 +221,7 @@ class EnhancedEditHandlerMixin:
 
         EditHandler = TabbedInterface(tabs, base_form_class=cls.base_form_class)
 
-        return EditHandler.bind_to_model(cls)
+        return EditHandler.bind_to(model=cls)
 
 
 class TimestampMixin(models.Model):
