@@ -25,11 +25,11 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     def get_context(self, request: HttpRequest, *args, **kwargs) -> Dict[str, Any]:
         context = super().get_context(request, *args, **kwargs)
 
-        return {**context, "props": self.to_dict({"request": request})}
+        return {**context, "props": self.get_component_data({"request": request})}
 
     def serve(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         if self.should_serve_json(request):
-            json = self.to_dict({"request": request})
+            json = self.get_component_data({"request": request})
             return JsonResponse(json)
 
         return super().serve(request, *args, **kwargs)
@@ -41,15 +41,17 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
             or request.content_type == "application/json"
         )
 
+    def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
+        return {
+            "component_name": self.component_name,
+            "component_props": self.to_dict(context),
+        }
+
     def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
         context = context or {}
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(self, context=context)
-
-        return {
-            "component_name": self.component_name,
-            "component_props": serializer.data,
-        }
+        return serializer.data
 
     def get_serializer_class(self) -> Serializer:
         return import_string(self.serializer_class)

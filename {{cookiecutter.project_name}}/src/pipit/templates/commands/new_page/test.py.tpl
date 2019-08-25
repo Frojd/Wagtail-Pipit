@@ -18,7 +18,7 @@ class {{ name }}PageTest(WagtailPageTests):
     def test_to_react_representation(self):
         page = {{ name }}PageFactory.create(title="{{ name }}", parent=self.root_page)
 
-        data = page.to_dict({})
+        data = page.get_component_data({})
 
         self.assertTrue("component_props" in data)
         self.assertTrue("title" in data["component_props"])
