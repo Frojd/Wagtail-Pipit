@@ -42,7 +42,8 @@ const options = {
     disableHostCheck: true,
     headers: {
         'x-disable-ssr': true
-    }
+    },
+    liveReload: false
 };
 
 webpackDevServer.addDevServerEntrypoints(config, options);

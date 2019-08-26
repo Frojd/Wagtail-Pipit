@@ -64,6 +64,10 @@ const config = {
             Utils: path.resolve(__dirname, 'app/utils'),
             'react-dom': '@hot-loader/react-dom'
         }
+    },
+    externals: {
+        react: 'react',
+        'react-dom': 'react-dom'
     }
 };
 

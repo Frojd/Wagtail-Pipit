@@ -9,11 +9,11 @@ addDecorator(
     })
 );
 addDecorator(
-    withKnobs
+    withSmartKnobs
 );
 addDecorator(
-    withSmartKnobs
-)
+    withKnobs
+);
 
 const reqComponents = require.context('../app/components', true, /\.stories\.js$/);
 const reqContainers = require.context('../app/containers', true, /\.stories\.js$/);
@@ -24,3 +24,4 @@ function loadStories() {
 }
 
 configure(loadStories, module);
+
