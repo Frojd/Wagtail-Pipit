@@ -15,7 +15,7 @@ services:
       - db
     env_file: ./docker/config/web.env
   ssr:
-    image: frojd/hastur:latest
+    image: frojd/hastur:1.2.1
     volumes:
       - "./src/pipit/static/pipit:/app"
       - "./frontend/node_modules:/app/node_modules"
