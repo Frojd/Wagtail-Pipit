@@ -3,6 +3,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = process.argv.indexOf('--analyze') !== -1 ? require('webpack-bundle-analyzer').BundleAnalyzerPlugin : false;
 
 const configFile = require('./internals/config')();
 
@@ -98,5 +99,9 @@ const config = {
         ]),
     ]
 };
+
+if(BundleAnalyzerPlugin) {
+    config.plugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = config;

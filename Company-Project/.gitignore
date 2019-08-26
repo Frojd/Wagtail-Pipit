@@ -12,6 +12,7 @@ __pycache__/
 # VS Code
 .vscode/*
 !.vscode/launch.json
+!.vscode/settings.json
 
 # Installer logs
 pip-log.txt

@@ -15,6 +15,7 @@ try {
     try {
         component = require(`../../app/containers/${queryComponent}`).default;
     } catch (e) {
+        console.error(e);
         component = require('./ListComponents.js').default;
     }
 }
@@ -28,7 +29,7 @@ try {
         props = require(`../../app/containers/${queryJson}/${queryJson}.data`)
             .default;
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 

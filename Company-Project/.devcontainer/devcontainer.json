@@ -1,0 +1,18 @@
+{
+	"name": "Company-Project",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"docker-compose.extend.yml"
+	],
+	"service": "web",
+	"workspaceFolder": "/app",
+	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+	// "shutdownAction": "none",
+
+	"extensions": [
+		"ms-python.python"
+	],
+	"settings": {
+		"python.pythonPath": "/usr/local/bin/python"
+	}
+}
