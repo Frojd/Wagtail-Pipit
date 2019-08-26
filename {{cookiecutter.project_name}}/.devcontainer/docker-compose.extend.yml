@@ -1,0 +1,8 @@
+version: '3'
+services:
+    web:
+        volumes:
+            - "./frontend:/app/_frontend"
+            - "./.vscode:/app/.vscode"
+        ports:
+            - "8001:8001"
