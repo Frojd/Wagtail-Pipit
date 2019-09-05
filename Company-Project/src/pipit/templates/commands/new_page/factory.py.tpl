@@ -1,8 +1,7 @@
-from wagtail_factories import PageFactory
-
+from .base_page import BasePageFactory
 from ..pages.{{ name|lower }} import {{ name }}Page
 
 
-class {{ name }}PageFactory(PageFactory):
+class {{ name }}PageFactory(BasePageFactory):
     class Meta:
         model = {{ name }}Page
