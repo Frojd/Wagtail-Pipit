@@ -17,6 +17,8 @@ ENV PYTHONUNBUFFERED=1 \
     DATABASE_HOST=db \
     REACT_HOST=http://ssr:3000
 
+ENV PYTHONPATH "${PYTHONPATH}:/app"
+
 WORKDIR /app
 ADD . /app/
 

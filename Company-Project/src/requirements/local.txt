@@ -8,3 +8,4 @@ django-sslserver
 isort
 pipdeptree
 ptvsd
+django-stubs==1.1.0
