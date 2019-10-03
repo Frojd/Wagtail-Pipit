@@ -15,9 +15,8 @@ ENV PYTHONUNBUFFERED=1 \
     DATABASE_PASSWORD=postgres \
     DATABASE_NAME=postgres \
     DATABASE_HOST=db \
-    REACT_HOST=http://ssr:3000
-
-ENV PYTHONPATH "${PYTHONPATH}:/app"
+    REACT_HOST=http://ssr:3000 \
+    PYTHONPATH="${PYTHONPATH}:/app"
 
 WORKDIR /app
 ADD . /app/
