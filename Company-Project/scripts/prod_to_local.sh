@@ -32,5 +32,5 @@ docker-compose exec web python manage.py change_user_password --user=admin --pas
 
 echo "---"
 echo "Done!"
-echo "The application is ready at: $local_domain"
+echo "The application is ready at: http://$local_domain"
 echo "Username/Password is admin/admin"
