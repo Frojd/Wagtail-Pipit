@@ -45,7 +45,7 @@
             <script>
             // Ignore list based off: https://gist.github.com/1878283
             var sentryOptions = {
-                dns: '{% sentry_public_dsn %}',
+                dns: '{{ SENTRY_DSN }}',
                 // Will cause a deprecation warning, but the demise of `ignoreErrors` is still under discussion.
                 // See: https://github.com/getsentry/raven-js/issues/73
                 ignoreErrors: [
