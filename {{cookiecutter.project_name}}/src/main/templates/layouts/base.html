@@ -44,7 +44,8 @@
             <script src="https://browser.sentry-cdn.com/5.6.1/bundle.min.js" integrity="sha384-pGTFmbQfua2KiaV2+ZLlfowPdd5VMT2xU4zCBcuJr7TVQozMO+I1FmPuVHY3u8KB" crossorigin="anonymous"></script>
             <script>
             // Ignore list based off: https://gist.github.com/1878283
-            var ravenOptions = {
+            var sentryOptions = {
+                dns: '{% sentry_public_dsn %}',
                 // Will cause a deprecation warning, but the demise of `ignoreErrors` is still under discussion.
                 // See: https://github.com/getsentry/raven-js/issues/73
                 ignoreErrors: [
@@ -72,7 +73,7 @@
                     // You can delete this if using raven.js > 1.0, which ignores these automatically.
                     'Script error.'
                 ],
-                ignoreUrls: [
+                blacklistUrls: [
                     // Facebook flakiness
                     /graph\.facebook\.com/i,
                     // Facebook blocked
@@ -89,8 +90,8 @@
                     /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
                 ]
             };
-            // Configure Raven and install default handler to capture uncaught exceptions
-            Raven.config('{% sentry_public_dsn %}', ravenOptions).install();
+
+            Sentry.init(sentryOptions);
             </script>
         {% endif %}
 
