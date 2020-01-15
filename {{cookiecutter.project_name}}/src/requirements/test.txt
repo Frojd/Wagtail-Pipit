@@ -2,7 +2,7 @@
 -r base.txt
 
 # Add extra test requirements here (such as factory-boy)
-pytest-django==3.7.0
+pytest-django==3.8.0
 pytest-cov==2.8.1
 factory-boy==2.12.0
 pytest-env
