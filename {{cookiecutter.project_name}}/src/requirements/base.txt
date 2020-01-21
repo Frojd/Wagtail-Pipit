@@ -6,4 +6,4 @@ sentry_sdk==0.13.5
 python-dotenv==0.10.3
 wagtail==2.7
 django_react_templatetags==5.4.0
-wagtailfontawesome==1.1.4
+wagtailfontawesome==1.2.1
