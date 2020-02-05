@@ -2,7 +2,7 @@ Django==2.2.8
 boto==2.49.0
 django-storages==1.8
 psycopg2-binary==2.8.4
-sentry_sdk==0.13.5
+sentry_sdk==0.14.1
 python-dotenv==0.10.5
 wagtail==2.7
 django_react_templatetags==5.4.0
