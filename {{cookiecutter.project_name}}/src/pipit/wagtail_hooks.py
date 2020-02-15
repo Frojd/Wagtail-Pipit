@@ -1,6 +1,6 @@
 from wagtail.core import hooks
 from django.utils.html import format_html
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 
 
 @hooks.register("insert_global_admin_css")
