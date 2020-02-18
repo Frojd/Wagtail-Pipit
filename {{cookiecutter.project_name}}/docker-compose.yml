@@ -1,13 +1,13 @@
-version: '3'
+version: '3.1'
 services:
   web:
     image: frojd/{{cookiecutter.project_slug}}_web
     build: ./src
     volumes:
-      - "./src:/app"
+      - "./src:/app:cached"
       - "./docker/files/shared:/shared:rw"
       - "./docker/files/var/log:/var/log:rw"
-      - "./docker/files/certs:/priv/cert"
+      - "./docker/files/certs:/priv/cert:cached"
     ports:
       - "{{cookiecutter.docker_web_port}}:8000"
       - "{{cookiecutter.docker_vscode_debug_port}}:5678"
@@ -17,8 +17,8 @@ services:
   ssr:
     image: frojd/hastur:1.2.1
     volumes:
-      - "./src/pipit/static/pipit:/app"
-      - "./frontend/node_modules:/app/node_modules"
+      - "./src/pipit/static/pipit:/app:cached"
+      - "./frontend/node_modules:/app/node_modules:cached"
     environment:
       - HASTUR_PATH=/app
       - HASTUR_PORT=
@@ -33,7 +33,7 @@ services:
     ports:
       - "{{cookiecutter.docker_db_port}}:5432"
     volumes:
-      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
+      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/:cached"
       - "./docker/files/shared:/shared:rw"
     environment:
       - POSTGRES_USER=postgres
