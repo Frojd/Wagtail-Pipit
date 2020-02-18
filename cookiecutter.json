@@ -14,7 +14,7 @@
     "docker_vscode_debug_port": 5678,
     "aws_devops_iam_username": "{{ cookiecutter.project_slug }}_devops",
     "version": "0.1.0",
-    "software_license": ["MIT", "proprietary"],
+    "software_license": ["proprietary", "MIT"],
     "_copy_without_render": [
         "*.git"
     ]
