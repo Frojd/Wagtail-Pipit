@@ -1,4 +1,4 @@
-setup:
+init:
 	git flow init
 	cp docker/config/web.example.env docker/config/web.env
 	ln -nfs $(PWD)/.githooks/pre-push.sh .git/hooks/pre-push
