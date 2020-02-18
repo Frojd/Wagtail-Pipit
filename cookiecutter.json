@@ -2,7 +2,7 @@
     "project_name": "Company-Project",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
     "domain_prod": "example.com",
-    "domain_stage": "stage.example.com",
+    "domain_stage": "stage.{{ cookiecutter.domain_prod }}",
     "ssh_prod": "devops@{{ cookiecutter.domain_prod }}",
     "ssh_stage": "devops@{{ cookiecutter.domain_stage }}",
     "db_name_prod": "{{ cookiecutter.project_slug }}",
