@@ -4,6 +4,7 @@ set -e
 # Arguments
 local_domain=${1-example.com.test:8081}
 ssh_host=${2-devops@example.com}
+db_wait_time=20
 
 SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 DOCKER_DIR=${SCRIPTS_DIR}/../docker/
@@ -21,8 +22,8 @@ docker-compose stop
 docker-compose rm -f
 docker-compose up -d
 
-echo "Waiting for postgres (60 seconds)..."
-sleep 60
+echo "Waiting for postgres ($db_wait_time seconds)..."
+sleep $db_wait_time
 
 echo "Adjusting database..."
 
