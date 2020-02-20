@@ -12,6 +12,7 @@ __pycache__/
 # VS Code
 .vscode/*
 !.vscode/launch.json
+!.vscode/settings.json
 
 # Installer logs
 pip-log.txt
@@ -45,8 +46,8 @@ src/.env
 # Static folder
 src/static
 src/media
-src/pipit/static/pipit/
-!src/pipit/static/pipit/.gitkeep
+src/pipit/static/pipit/**
+!src/pipit/static/pipit/admin-overrides.css
 
 # Pytest
 .cache

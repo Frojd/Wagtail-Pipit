@@ -6,6 +6,10 @@ Write prod settings here, or override base settings
 """
 from __future__ import absolute_import, unicode_literals
 
+import sentry_sdk
+from sentry_sdk import configure_scope
+from sentry_sdk.integrations.django import DjangoIntegration
+
 from pipit.settings.base import *  # NOQA
 
 
@@ -35,14 +39,6 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [
     )
 ]
 
-# Add sentry to logging
-LOGGING["handlers"]["sentry"] = {
-    "level": "ERROR",
-    "class": "raven.handlers.logging.SentryHandler",
-    "dsn": get_env("SENTRY_DSN"),
-}
-LOGGING["loggers"][""]["handlers"].append("sentry")
-
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -66,11 +62,15 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 
 # Sentry
-SENTRY_DSN = get_env("SENTRY_DSN")
+SENTRY_DSN = get_env('SENTRY_DSN')
 
-RAVEN_CONFIG = {
-    "dsn": SENTRY_DSN,
-    "release": APP_VERSION,
-    "environment": "prod",
-    "prefix": os.path.dirname(os.path.abspath(os.path.join(__file__, "..", ".."))),
-}
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    release=APP_VERSION,
+    environment="prod",
+    integrations=[DjangoIntegration()],
+)
+
+# Add sentry to logging
+with configure_scope() as scope:
+    scope.level = 'error'

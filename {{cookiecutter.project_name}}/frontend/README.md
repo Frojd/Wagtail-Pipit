@@ -6,7 +6,7 @@ It includes a small scaffolder for react components and is exporting a bundle wi
 ## Installation ##
 
 1. npm install
-2. npm scaffold
+2. npm run scaffold
 3. npm start
 
 This will create a base set of containers and components in the app folder that you can work with and start the devserver at [http://localhost:7000](http://localhost:7000).
@@ -95,4 +95,13 @@ npm run eslint
 Autofix via eslint:
 ```
 npm run eslint:fix
+```
+
+### Additional commands and troubleshooting ###
+
+To run webpack analyzer to check your bundle and packagesizes you can append --analyze to a command
+```
+npm start -- --analyze
+npm run build -- --analyze
+npm run build:prod -- --analyze
 ```

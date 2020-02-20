@@ -5,25 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Remote Attach Django",
-            "type": "python",
-            "request": "attach",
-            "port": {{ cookiecutter.docker_vscode_debug_port }},
-            "host": "localhost",
-            "django": true,
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceFolder}/src",
-                    "remoteRoot": "/app"
-                }
-            ]
-        },
-        {
-            "name": "Python: Current File (Integrated Terminal)",
+            "name": "Debug pipit (only when open in container)",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8001",
+                "--noreload",
+                "--nothreading"
+            ],
+            "django": true
         }
     ]
 }

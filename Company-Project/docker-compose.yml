@@ -1,13 +1,13 @@
-version: '3'
+version: '3.1'
 services:
   web:
     image: frojd/company_project_web
     build: ./src
     volumes:
-      - "./src:/app"
+      - "./src:/app:cached"
       - "./docker/files/shared:/shared:rw"
       - "./docker/files/var/log:/var/log:rw"
-      - "./docker/files/certs:/priv/cert"
+      - "./docker/files/certs:/priv/cert:cached"
     ports:
       - "8081:8000"
       - "5678:5678"
@@ -15,24 +15,25 @@ services:
       - db
     env_file: ./docker/config/web.env
   ssr:
-    image: frojd/hastur:latest
+    image: frojd/hastur:1.2.1
     volumes:
-      - "./src/pipit/static/pipit:/app"
-      - "./frontend/node_modules:/app/raw/node_modules"
+      - "./src/pipit/static/pipit:/app:cached"
+      - "./frontend/node_modules:/app/node_modules:cached"
     environment:
       - HASTUR_PATH=/app
       - HASTUR_PORT=
-      - HASTUR_HOST=
+      - HASTUR_HOST=0.0.0.0
       - HASTUR_DEBUG=true
       - HASTUR_SENTRY=
       - HASTUR_JSON_SNAKE_TO_CAMEL=true
       - HASTUR_STRIP_DOT_PREFIX=true
+      - HASTUR_MODULES_PATH=/app/node_modules
   db:
     image: mdillon/postgis:10
     ports:
-      - "5433:5432"
+      - "8082:5432"
     volumes:
-      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
+      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/:cached"
       - "./docker/files/shared:/shared:rw"
     environment:
       - POSTGRES_USER=postgres

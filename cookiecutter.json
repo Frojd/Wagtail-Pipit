@@ -2,7 +2,7 @@
     "project_name": "Company-Project",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
     "domain_prod": "example.com",
-    "domain_stage": "stage.example.com",
+    "domain_stage": "stage.{{ cookiecutter.domain_prod }}",
     "ssh_prod": "devops@{{ cookiecutter.domain_prod }}",
     "ssh_stage": "devops@{{ cookiecutter.domain_stage }}",
     "db_name_prod": "{{ cookiecutter.project_slug }}",
@@ -10,11 +10,11 @@
     "s3_bucket_prod": "s3.{{ cookiecutter.domain_prod }}",
     "s3_bucket_stage": "s3.{{ cookiecutter.domain_stage }}",
     "docker_web_port": 8081,
-    "docker_db_port": 5433,
+    "docker_db_port": "{{ cookiecutter.docker_web_port| int() + 1 }}",
     "docker_vscode_debug_port": 5678,
     "aws_devops_iam_username": "{{ cookiecutter.project_slug }}_devops",
     "version": "0.1.0",
-    "software_license": ["MIT", "proprietary"],
+    "software_license": ["proprietary", "MIT"],
     "_copy_without_render": [
         "*.git"
     ]

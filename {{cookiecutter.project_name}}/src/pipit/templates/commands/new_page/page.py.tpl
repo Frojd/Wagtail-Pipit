@@ -1,4 +1,4 @@
-{% raw %}from django.utils.translation import ugettext_lazy as _
+{% raw %}from django.utils.translation import gettext_lazy as _
 
 from .base import BasePage
 

@@ -1,6 +1,9 @@
+from typing import Dict, Any, Optional
+
 from django.utils.module_loading import import_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.db import models
+from django.http.request import HttpRequest
 from django.http import HttpResponseRedirect
 from django.utils.functional import cached_property
 from wagtail.utils.decorators import cached_classmethod
@@ -12,6 +15,7 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
+from rest_framework.serializers import Serializer
 
 
 class RedirectUpMixin:
@@ -194,7 +198,7 @@ class EnhancedEditHandlerMixin:
         """
 
         if hasattr(cls, "edit_handler"):
-            return cls.edit_handler.bind_to_model(cls)
+            return cls.edit_handler.bind_to(model=cls)
 
         # construct a TabbedInterface made up of content_panels, promote_panels
         # and settings_panels, skipping any which are empty
@@ -221,7 +225,7 @@ class EnhancedEditHandlerMixin:
 
         EditHandler = TabbedInterface(tabs, base_form_class=cls.base_form_class)
 
-        return EditHandler.bind_to_model(cls)
+        return EditHandler.bind_to(model=cls)
 
 
 class TimestampMixin(models.Model):
@@ -239,48 +243,48 @@ class ReactViewMixin(object):
         if self.should_serve_json(self.request):
             from django.http import JsonResponse
 
-            props = self.to_dict({"request": self.request})
+            props = self.get_component_data({"request": self.request})
             return JsonResponse(props)
 
         return super().render_to_response(context, **response_kwargs)
 
     @staticmethod
-    def should_serve_json(request):
+    def should_serve_json(request: HttpRequest) -> bool:
         return (
             request.GET.get("format", None) == "json"
             or request.content_type == "application/json"
         )
 
-    def get_context_data(self, *args, **kwargs):
+    def get_context_data(self, *args, **kwargs) -> Dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
 
+        return {**context, "props": self.get_component_data({"request": self.request})}
+
+    def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
         return {
-            **context,
-            "props": self.to_dict({"request": self.request}),
+            "component_name": self.component_name,
+            "component_props": self.to_dict(context),
         }
 
-    def to_dict(self, context):
+    def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
             self.get_component_props(), context={"request": context["request"]}
         )
 
-        return {
-            "component_name": self.component_name,
-            "component_props": serializer.data,
-        }
+        return serializer.data
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Serializer:
         if isinstance(self.serializer_class, str):
             return import_string(self.serializer_class)
 
         return self.serializer_class
 
-    def get_component_name(self):
+    def get_component_name(self) -> str:
         if hasattr(self, "component_name"):
             return self.component_name
 
         return self.__class__.__name__
 
-    def get_component_props(self):
+    def get_component_props(self) -> Dict[str, Any]:
         return {}

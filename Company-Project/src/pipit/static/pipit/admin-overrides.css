@@ -1,0 +1,11 @@
+.tab-nav li.seo a::before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "FontAwesome";
+    font-weight: 700;
+
+    vertical-align: middle;
+    text-transform: none;
+    content: "\f201";
+    margin-right: 0.7em;
+}

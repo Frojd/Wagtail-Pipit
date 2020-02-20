@@ -35,9 +35,6 @@ type aws >/dev/null 2>&1 || {
 stage_host=${1-devops@stage.example.com}
 prod_host=${2-devops@example.com}
 
-CURRENTDIR=$(dirname `which $0`)
-DOCKERDIR=$(cd ${CURRENTDIR}/../; pwd)
-
 echo "Creating database dump from stage..."
 ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres company_project -x -O"
 

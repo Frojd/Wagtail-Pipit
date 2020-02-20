@@ -14,7 +14,7 @@ Make sure you have the following requirement:
 
 Run the cookiecutter and fill out the questions asked by the interface:
 ```
-cookiecutter https://github.com/Frojd/Wagtail-Boilerplate.git
+cookiecutter https://github.com/Frojd/Wagtail-Pipit.git
 ```
 
 Cookiecutter will ask for credentials which you may not have or need:
