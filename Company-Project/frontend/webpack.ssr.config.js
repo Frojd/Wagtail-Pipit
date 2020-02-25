@@ -61,7 +61,7 @@ const config = {
             Components: path.resolve(__dirname, 'app/components/'),
             i18n: path.resolve(__dirname, 'app/i18n'),
             Styles: path.resolve(__dirname, 'app/styles'),
-            Utils: path.resolve(__dirname, 'app/utils'),
+            utils: path.resolve(__dirname, 'app/utils'),
             'react-dom': '@hot-loader/react-dom'
         }
     },

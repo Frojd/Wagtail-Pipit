@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { keysToCamelFromSnake } from 'Utils/caseconverters';
+import { keysToCamelFromSnake } from 'utils/caseconverters';
 import './App.scss';
 
 const cache = {};
