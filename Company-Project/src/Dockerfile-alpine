@@ -1,0 +1,76 @@
+FROM python:3.6-alpine
+MAINTAINER Frojd
+LABEL version="v0.1.0"
+
+ENV PYTHONUNBUFFERED=1 \
+    DJANGO_SETTINGS_MODULE=pipit.settings.local \
+    ALLOWED_HOSTS=* \
+    INTERNAL_IPS=0.0.0.0 \
+    SECRET_KEY=generatesecretkeyhere \
+    MEDIA_PATH=/app/media \
+    STATIC_PATH=/app/static \
+    APP_LOG_DIR=/var/log/ \
+    REQUIREMENTS=local.txt \
+    DATABASE_USER=postgres \
+    DATABASE_PASSWORD=postgres \
+    DATABASE_NAME=postgres \
+    DATABASE_HOST=db \
+    REACT_HOST=http://ssr:3000 \
+    PYTHONPATH="${PYTHONPATH}:/app"
+
+WORKDIR /app
+ADD . /app/
+
+RUN apk update && apk add --no-cache --upgrade \
+		build-base \
+		gettext \
+		netcat-openbsd \
+        bash \
+        python3-dev \
+        gcc \
+        cmake \
+		musl-dev \
+		linux-headers \
+		musl-dev \
+		postgresql-dev
+
+# GeoDjango Dependencies
+ENV PACKAGES="\
+    alpine-sdk \
+    libffi-dev \
+    jpeg-dev \
+    python-dev \
+    zlib-dev \
+    musl-dev \
+    libffi \
+"
+
+RUN \
+	apk add --virtual .build-deps --no-cache --upgrade $PACKAGES \
+   	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories \
+   	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+   	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories  \
+        \
+        && apk add \
+            gdal-dev \
+            geos-dev  \
+        \
+        && apk add --virtual .build-deps postgresql-libs \
+    \
+    && pip install --upgrade pip \
+    && pip install -r requirements/$REQUIREMENTS --no-cache-dir \
+    && pip install ipython --no-cache-dir \
+    && pip install pywatchman --no-cache-dir \
+    && apk --purge del .build-deps
+
+# RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main openssl \
+#     build-base cmake musl-dev linux-headers
+# RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+#     gdal-dev geos-dev
+
+
+
+EXPOSE 8000
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["runserver"]
