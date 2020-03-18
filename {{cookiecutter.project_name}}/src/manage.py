@@ -29,7 +29,7 @@ def main():
     if settings.DEBUG and settings.VS_CODE_REMOTE_DEBUG and os.environ.get("RUN_MAIN"):
         import ptvsd
 
-        ptvsd.enable_attach(address=("0.0.0.0", 5678), redirect_output=True)
+        ptvsd.enable_attach(address=("0.0.0.0", 5678))
 
     execute_from_command_line(sys.argv)
 
