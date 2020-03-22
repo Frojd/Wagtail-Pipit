@@ -1,10 +1,8 @@
 version: '3.1'
 services:
   web:
-    image: frojd/company_project_web_alpine
-    build:
-      context: ./src
-      dockerfile: Dockerfile-alpine
+    image: frojd/company_project_web
+    build: ./src
     volumes:
       - "./src:/app:cached"
       - "./docker/files/shared:/shared:rw"
