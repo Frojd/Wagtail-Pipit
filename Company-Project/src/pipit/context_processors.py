@@ -13,4 +13,7 @@ def settings_context_processor(request):
     if hasattr(settings, "SENTRY_DSN"):
         parsed_settings["SENTRY_DSN"] = settings.SENTRY_DSN
 
+    if hasattr(settings, "SENTRY_ENVIRONMENT"):
+        parsed_settings["SENTRY_ENVIRONMENT"] = settings.SENTRY_ENVIRONMENT
+
     return {"SETTINGS": parsed_settings}

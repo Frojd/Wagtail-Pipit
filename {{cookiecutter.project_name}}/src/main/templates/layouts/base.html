@@ -46,6 +46,8 @@
             // Ignore list based off: https://gist.github.com/1878283
             var sentryOptions = {
                 dns: '{{ SENTRY_DSN }}',
+                release: '{{ SETTINGS.APP_VERSION }}',
+                environment: '{{ SETTINGS.SENTRY_ENVIRONMENT }}',
                 // Will cause a deprecation warning, but the demise of `ignoreErrors` is still under discussion.
                 // See: https://github.com/getsentry/raven-js/issues/73
                 ignoreErrors: [
