@@ -41,7 +41,10 @@
         <script type="text/javascript" src="{% static 'pipit/index.js' %}"></script>
 
         {% if SETTINGS.SENTRY_DSN %}
-            <script src="https://browser.sentry-cdn.com/5.6.1/bundle.min.js" integrity="sha384-pGTFmbQfua2KiaV2+ZLlfowPdd5VMT2xU4zCBcuJr7TVQozMO+I1FmPuVHY3u8KB" crossorigin="anonymous"></script>
+            <script
+                src="https://browser.sentry-cdn.com/5.15.0/bundle.min.js"
+                integrity="sha384-+ysfQckQvwCB5SppH41IScIz/Iynt2pePnJNMl+D7ZOzDJ+VYhQEuwB0pA60IDM0"
+                crossorigin="anonymous"></script>
             <script>
             // Ignore list based off: https://gist.github.com/1878283
             var sentryOptions = {
