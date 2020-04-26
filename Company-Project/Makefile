@@ -18,3 +18,7 @@ fixcode:
 
 translate:
 	docker-compose exec web bash -c "python manage.py makemessages -l sv_SE"
+
+coverage:
+	docker-compose exec web coverage run -m pytest --ds=pipit.settings.test
+	docker-compose exec web coverage html

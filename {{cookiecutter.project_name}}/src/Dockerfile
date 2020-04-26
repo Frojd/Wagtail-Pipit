@@ -1,6 +1,6 @@
-FROM python:3.6
+FROM python:3.6-slim-buster
 MAINTAINER Frojd
-LABEL version="v{{cookiecutter.version}}"
+LABEL version="v0.1.0"
 
 ENV PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=pipit.settings.local \
@@ -23,12 +23,11 @@ ADD . /app/
 
 RUN apt-get update \
     && apt-get install -y netcat \
-    && apt-get install -y binutils libproj-dev gdal-bin \
-    && apt-get install -y vim curl gettext \
-    && rm -rf /var/lib/apt/lists/* \
-    && curl -L https://raw.githubusercontent.com/Frojd/Wagtail-Pipit/develop/config/.vimrc > ~/.vimrc
-
-RUN apt-get update && apt-get -y install postgresql
+		binutils libproj-dev gdal-bin \
+		gettext \
+		libpq-dev build-essential \
+		--no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip \
     && pip install -r requirements/$REQUIREMENTS --no-cache-dir \

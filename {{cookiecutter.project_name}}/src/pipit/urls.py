@@ -9,9 +9,11 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
 from main.views.page_not_found import PageNotFoundView
+from main.views.error_500 import error_500_view
 
 
 handler404 = PageNotFoundView.as_view()
+handler500 = error_500_view
 
 urlpatterns = []
 
@@ -30,7 +32,9 @@ if settings.DEBUG:
         url(
             r"^404/$", handler404, kwargs={"exception": Exception("Page not Found")}
         ),  # NOQA
-        url(r"^500/$", default_views.server_error),
+        url(
+            r"^500/$", handler500, kwargs={"exception": Exception("Internal error")}
+        ),  # NOQA
     ]
 
     if "debug_toolbar" in settings.INSTALLED_APPS:

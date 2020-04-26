@@ -63,11 +63,12 @@ CSRF_COOKIE_HTTPONLY = True
 
 # Sentry
 SENTRY_DSN = get_env('SENTRY_DSN')
+SENTRY_ENVIRONMENT = "prod"
 
 sentry_sdk.init(
     dsn=SENTRY_DSN,
     release=APP_VERSION,
-    environment="prod",
+    environment=SENTRY_ENVIRONMENT,
     integrations=[DjangoIntegration()],
 )
 

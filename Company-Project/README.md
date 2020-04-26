@@ -263,5 +263,5 @@ Want to contribute? Awesome. Just send a pull request.
 ## License
 
 
-Company-Project is released under the MIT license.
+Company-Project is proprietary software. All rights reserved.
 
