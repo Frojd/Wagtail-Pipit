@@ -1,4 +1,4 @@
-Django==3.0.5
+Django==3.0.6
 boto==2.49.0
 django-storages==1.9.1
 psycopg2==2.8.5
