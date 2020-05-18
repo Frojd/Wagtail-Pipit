@@ -35,7 +35,7 @@ jobs:
     docker:
       - image: circleci/python:3.6
       - image: circleci/node:latest
-      - image: circleci/postgres:10
+      - image: mdillon/postgis:10
     steps:
       - checkout
       - save_cache:
@@ -91,6 +91,10 @@ jobs:
           key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
           paths:
             - ~/repo/venv
+      - run:
+          name: Install additional geodjango deps
+          command: |
+            sudo apt-get install -y libproj-dev gdal-bin
       - run:
           command: |
             . venv/bin/activate
