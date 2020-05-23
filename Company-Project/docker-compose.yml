@@ -14,20 +14,40 @@ services:
     depends_on:
       - db
     env_file: ./docker/config/web.env
-  ssr:
-    image: frojd/hastur:1.2.1
+  frontend:
+    image: frojd/company_project_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     volumes:
-      - "./src/pipit/static/pipit:/app:cached"
-      - "./frontend/node_modules:/app/node_modules:cached"
+      - "./frontend:/app:cached"
+      - "./src:/webapp:cached"
+    ports:
+      - "3000:3000"
+  storybook:
+    image: frojd/company_project_frontend
+    volumes:
+      - "./frontend:/app:cached"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - frontend
     environment:
-      - HASTUR_PATH=/app
-      - HASTUR_PORT=
-      - HASTUR_HOST=0.0.0.0
-      - HASTUR_DEBUG=true
-      - HASTUR_SENTRY=
-      - HASTUR_JSON_SNAKE_TO_CAMEL=true
-      - HASTUR_STRIP_DOT_PREFIX=true
-      - HASTUR_MODULES_PATH=/app/node_modules
+      - CRA_PUBLIC_URL=/proxy
+    command: storybook
+  ssr:
+    image: frojd/company_project_frontend
+    volumes:
+      - "./frontend:/app:cached"
+    ports:
+      - "3030:3030"
+    depends_on:
+      - frontend
+    environment:
+      - HYPERNOVA_DISABLE_MODULE_CACHE=1
+      - CRA_PUBLIC_URL=/proxy
+      - HYPERNOVA_DEV_MODE=1
+    command: hypernova
   db:
     image: mdillon/postgis:10
     ports:

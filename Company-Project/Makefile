@@ -6,12 +6,11 @@ init:
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-release-start
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 	mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test
-	cd frontend && npm install && npm run build
 	docker-compose up
 
 test:
 	docker-compose run --rm web test
-	cd frontend && npm run test
+	docker-compose run --rm frontend test
 
 fixcode:
 	docker-compose exec web black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./

@@ -13,7 +13,20 @@ def settings_context_processor(request):
     if hasattr(settings, "SENTRY_DSN"):
         parsed_settings["SENTRY_DSN"] = settings.SENTRY_DSN
 
-    if hasattr(settings, "SENTRY_ENVIRONMENT"):
-        parsed_settings["SENTRY_ENVIRONMENT"] = settings.SENTRY_ENVIRONMENT
+    if hasattr(settings, "REACT_DEVSERVER"):
+        parsed_settings["REACT_DEVSERVER"] = settings.REACT_DEVSERVER
+
+    if hasattr(settings, "REACT_DEVSERVER_PUBLIC_URL"):
+        parsed_settings["REACT_DEVSERVER_PUBLIC_URL"] = settings.REACT_DEVSERVER_PUBLIC_URL
+
 
     return {"SETTINGS": parsed_settings}
+
+
+def request_meta_context_processor(request):
+    domain = request.get_host().split(":")[0]
+
+    return {
+        "REQUEST_DOMAIN": domain,
+    }
+

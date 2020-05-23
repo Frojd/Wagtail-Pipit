@@ -51,7 +51,14 @@
 4. Generate ssl certs for local development:
     ```
     mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test
+    cat docker/files/certs/cert-key.pem docker/files/certs//cert.pem > docker/files/certs/server.pem
     ```
+
+    To make it work for create react app (make sure `node_module` has been built first):
+    ```
+    cp -f docker/files/certs/server.pem frontend/node_modules/webpack-dev-server/ssl/server.pem
+    ```
+
 5. Start project
 
     ```
