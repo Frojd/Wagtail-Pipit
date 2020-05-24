@@ -24,17 +24,19 @@ services:
       - "./src:/webapp:cached"
     ports:
       - "3000:3000"
-  storybook:
-    image: frojd/company_project_frontend
-    volumes:
-      - "./frontend:/app:cached"
-    ports:
-      - "3001:3001"
-    depends_on:
-      - frontend
     environment:
-      - CRA_PUBLIC_URL=/proxy
-    command: storybook
+      - CHOKIDAR_USEPOLLING=true
+    storybook:
+      image: frojd/company_project_frontend
+      volumes:
+        - "./frontend:/app:cached"
+      ports:
+        - "3001:3001"
+      depends_on:
+        - frontend
+      environment:
+        - CRA_PUBLIC_URL=/proxy
+      command: storybook
   ssr:
     image: frojd/company_project_frontend
     volumes:
@@ -44,8 +46,8 @@ services:
     depends_on:
       - frontend
     environment:
-      - HYPERNOVA_DISABLE_MODULE_CACHE=1
       - CRA_PUBLIC_URL=/proxy
+      - HYPERNOVA_DISABLE_MODULE_CACHE=1
       - HYPERNOVA_DEV_MODE=1
     command: hypernova
   db:
