@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
 import './ArticlePage.scss';
 
-import Hero from 'components/Hero';
-import RawHtml from 'components/RawHtml';
+import Hero from '../../components/Hero';
+import RawHtml from '../../components/RawHtml';
 
 class ArticlePage extends PureComponent {
     state = {};

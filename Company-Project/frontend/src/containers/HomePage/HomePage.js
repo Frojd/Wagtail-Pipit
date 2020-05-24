@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
 import './HomePage.scss';
 
-import Hero from 'components/Hero';
+import Hero from '../../components/Hero';
 
 class HomePage extends PureComponent {
     state = {};
