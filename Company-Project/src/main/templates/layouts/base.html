@@ -45,7 +45,7 @@
 
         {% if SETTINGS.REACT_DEVSERVER  %}
             <script>document.domain = '{{ REQUEST_DOMAIN }}';</script>
-            <iframe src="{{ SETTINGS.REACT_DEVSERVER_PUBLIC_URL }}?devserver=1&devserver_domain={{ REQUEST_DOMAIN }}" id="frontend-devserver" style="height: 0; width: 0; border: 0; visibility: hidden;"></iframe>
+            <iframe src="//{{ REQUEST_DOMAIN }}:{{ SETTINGS.REACT_DEVSERVER_PORT }}/proxy?devserver=1&devserver_domain={{ REQUEST_DOMAIN }}" id="frontend-devserver" style="height: 0; width: 0; border: 0; visibility: hidden;"></iframe>
         {% endif %}
 
         {% if not SETTINGS.REACT_DEVSERVER  %}

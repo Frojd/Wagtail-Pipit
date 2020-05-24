@@ -16,9 +16,8 @@ def settings_context_processor(request):
     if hasattr(settings, "REACT_DEVSERVER"):
         parsed_settings["REACT_DEVSERVER"] = settings.REACT_DEVSERVER
 
-    if hasattr(settings, "REACT_DEVSERVER_PUBLIC_URL"):
-        parsed_settings["REACT_DEVSERVER_PUBLIC_URL"] = settings.REACT_DEVSERVER_PUBLIC_URL
-
+    if hasattr(settings, "REACT_DEVSERVER_PORT"):
+        parsed_settings["REACT_DEVSERVER_PORT"] = settings.REACT_DEVSERVER_PORT
 
     return {"SETTINGS": parsed_settings}
 

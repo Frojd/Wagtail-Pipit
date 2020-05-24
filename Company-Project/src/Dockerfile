@@ -16,8 +16,8 @@ ENV PYTHONUNBUFFERED=1 \
     DATABASE_NAME=postgres \
     DATABASE_HOST=db \
     REACT_HOST=http://ssr:3030/batch \
-    REACT_DEVSERVER_URL=http://frontend:3000/proxy \
-    REACT_DEVSERVER_PUBLIC_URL=http://localhost:3000/proxy \
+    REACT_DEVSERVER_REVPROXY_DOMAIN=frontend \
+    REACT_DEVSERVER_PORT=3000 \
     PYTHONPATH="${PYTHONPATH}:/app"
 
 WORKDIR /app
