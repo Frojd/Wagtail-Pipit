@@ -1,17 +1,8 @@
 const hypernova = require('hypernova/server');
 const renderReact = require('hypernova-react').renderReact;
 const Sentry = require('@sentry/node');
-// const path = require("path");
 
 require = require("esm")(module/*, options*/)
-
-const moduleAlias = require('module-alias')
-moduleAlias.addAliases({
-  'utils': __dirname + '/utils',
-  'styles': __dirname + '/styles',
-  'components': __dirname + '/components',
-})
-
 
 const throwErrorOnFiletype = (_module, file) => {
     throw Error(

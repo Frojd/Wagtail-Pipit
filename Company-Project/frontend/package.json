@@ -55,8 +55,6 @@
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^3.0.0",
-    "@storybook/react": "^5.3.18",
-    "module-alias": "^2.2.2",
-    "rewire": "^4.0.1"
+    "@storybook/react": "^5.3.18"
   }
 }
