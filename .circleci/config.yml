@@ -82,6 +82,8 @@ jobs:
       - image: circleci/node:latest
     steps:
       - *restore_repo
+      - run: sudo mkdir -p /webapp/pipit/static/pipit/
+      - run: sudo chown -R $USER:$USER /webapp/pipit/static/pipit/
       - run:
           command: |
             cd Company-Project/frontend
