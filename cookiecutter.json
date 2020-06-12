@@ -11,6 +11,8 @@
     "s3_bucket_stage": "s3.{{ cookiecutter.domain_stage }}",
     "docker_web_port": 8081,
     "docker_db_port": "{{ cookiecutter.docker_web_port| int() + 1 }}",
+    "docker_frontend_port": "{{ cookiecutter.docker_web_port| int() + 2 }}",
+    "docker_storybook_port": "{{ cookiecutter.docker_web_port| int() + 3 }}",
     "docker_vscode_debug_port": 5678,
     "aws_devops_iam_username": "{{ cookiecutter.project_slug }}_devops",
     "version": "0.1.0",
