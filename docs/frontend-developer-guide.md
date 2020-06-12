@@ -24,17 +24,17 @@ The whole frontend of the project is located in `/frontend/`. Here is an overvie
 the contents (Some files omitted for brevity):
 ```bash
 .
-├── app     # The source root folder of your frontend app
+├── src     # The source root folder of your frontend app
 │__ ├── assets      # Contains all statical assets, such as fonts, images, etc.
 │__ ├── components  # Contains all Components
 │__ ├── containers  # Contains all Containers
 │__ ├── i18n        # Contains internationalization strings and module for handeling those
 │__ ├── index.js    # Entry point for your frontend application
-│__ ├── main.js     # What will be exposed to client via webpack, exposing React and your frontend app
 │__ ├── styles      # Global styling (h1, h2, resets, etc)
 │__ └── utils       # Where you should place your utility functions
-├── bin         # Root folder for scripts called in npm
-└── internals   # Contains templates for scaffolding and code for the dev-server
+│__ └── serviceWorker.js # Service worker file shipping with Create React App, disabled by default
+├── cli # Contains the cli tool for generating new components
+└── public # Contains templates for Create React App
 ```
 
 To get up and running we first need to install the npm dependencies from the frontend directory:
@@ -45,7 +45,7 @@ npm i
 
 Next, we start the frontend dev-server:
 ```bash
-npm start
+npm run storybook
 ```
 
 From here, start your preferred browser and navigate to `http://localhost:7000`.  You should see a list of all
@@ -71,12 +71,12 @@ npm run new Button
 
 This will create the following files:
 ```
-./app/components/Button/Button.data.js
-./app/components/Button/Button.scss
-./app/components/Button/index.js
-./app/components/Button/Buttons.stories.js
-./app/components/Button/Button.js
-./app/components/Button/Button.test.js
+./src/components/Button/Button.data.js
+./src/components/Button/Button.scss
+./src/components/Button/index.js
+./src/components/Button/Buttons.stories.js
+./src/components/Button/Button.js
+./src/components/Button/Button.test.js
 ```
 
 #### Button.data.js
@@ -277,7 +277,7 @@ export default {
 When styling the container-level, we mostly do the layout. Add some margins:
 
 ```scss
-@import 'Styles/includes.scss';
+@import 'styles/includes.scss';
 
 .WordCountPage {
     max-width: 600px;

@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     "wagtail.contrib.settings",
     "modelcluster",
     "taggit",
-    "django_react_templatetags",
     "wagtailfontawesome",
     # Project specific apps
     "pipit",
@@ -68,6 +67,8 @@ INSTALLED_APPS = [
     "customimage",
     "customdocument",
     "main",
+    # Placed last so we can override templates
+    "django_react_templatetags",
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,7 @@ TEMPLATES = [
                 "wagtail.contrib.settings.context_processors.settings",
                 # Project specific
                 "pipit.context_processors.settings_context_processor",
+                "pipit.context_processors.request_meta_context_processor",
                 "django_react_templatetags.context_processors.react_context_processor",
             ],
         },
@@ -241,3 +243,12 @@ ADMIN_URL = r"^admin/"
 # React Templatetags
 REACT_COMPONENT_PREFIX = "Components."
 REACT_RENDER_HOST = get_env("REACT_HOST")
+REACT_SSR_SERVICE = "django_react_templatetags.ssr.hypernova.HypernovaService"
+
+# CRA
+REACT_DEVSERVER = False
+REACT_DEVSERVER_PORT = get_env("REACT_DEVSERVER_PORT", 3000)
+REACT_DEVSERVER_REVPROXY_DOMAIN = get_env(
+    "REACT_DEVSERVER_REVPROXY_DOMAIN", "frontend:3000"
+)
+REACT_DEVSERVER_HTTPS = get_env_bool("REACT_DEVSERVER_HTTPS", False)

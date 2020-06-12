@@ -4,7 +4,7 @@ services:
     image: frojd/{{cookiecutter.project_slug}}_web
     build: ./src
     volumes:
-      - "./src:/app:cached"
+      - "./src:/app"
       - "./docker/files/shared:/shared:rw"
       - "./docker/files/var/log:/var/log:rw"
       - "./docker/files/certs:/priv/cert:cached"
@@ -14,20 +14,46 @@ services:
     depends_on:
       - db
     env_file: ./docker/config/web.env
-  ssr:
-    image: frojd/hastur:1.2.1
-    volumes:
-      - "./src/pipit/static/pipit:/app:cached"
-      - "./frontend/node_modules:/app/node_modules:cached"
     environment:
-      - HASTUR_PATH=/app
-      - HASTUR_PORT=
-      - HASTUR_HOST=0.0.0.0
-      - HASTUR_DEBUG=true
-      - HASTUR_SENTRY=
-      - HASTUR_JSON_SNAKE_TO_CAMEL=true
-      - HASTUR_STRIP_DOT_PREFIX=true
-      - HASTUR_MODULES_PATH=/app/node_modules
+      - REACT_DEVSERVER_PORT={{cookiecutter.docker_frontend_port}}
+  frontend:
+    image: frojd/{{cookiecutter.project_slug}}_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./frontend:/app"
+      - "./src:/webapp:cached"
+    ports:
+      - "{{cookiecutter.docker_frontend_port}}:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT={{cookiecutter.docker_frontend_port}}
+  storybook:
+    image: frojd/company_project_frontend
+    volumes:
+      - "./frontend:/app:cached"
+    ports:
+      - "{{cookiecutter.docker_storybook_port}}:3001"
+    depends_on:
+      - frontend
+    environment:
+      - CRA_PUBLIC_URL=/proxy
+    command: storybook
+  ssr:
+    image: frojd/{{cookiecutter.project_slug}}_frontend
+    volumes:
+       - "./frontend:/app:cached"
+    ports:
+      - "3030"
+    depends_on:
+      - frontend
+    environment:
+    environment:
+      - CRA_PUBLIC_URL=/proxy
+      - HYPERNOVA_DISABLE_MODULE_CACHE=1
+      - HYPERNOVA_DEV_MODE=1
+    command: hypernova
   db:
     image: mdillon/postgis:10
     ports:
