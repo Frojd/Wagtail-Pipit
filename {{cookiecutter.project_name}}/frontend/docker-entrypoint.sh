@@ -3,11 +3,17 @@ CMD=$1
 
 case "$CMD" in
     "start" )
-        [ ! -d "./node_modules/" ] && npm install
+        if [ ! -d "./node_modules/" ]; then
+            echo "Installing node packages, this will take a couple of minutes..."
+            npm install
+        fi
         exec npm start
         ;;
     "start_ssl" )
-        [ ! -d "./node_modules/" ] && npm install
+        if [ ! -d "./node_modules/" ]; then
+            echo "Installing node packages, this will take a couple of minutes..."
+            npm install
+        fi
         exec npm run start-ssl
         ;;
     "build" )
