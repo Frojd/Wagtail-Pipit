@@ -1,135 +1,62 @@
 {
-  "name": "react-sass-starterkit",
-  "version": "4.3.0",
-  "description": "An opinionated react starterkit",
-  "main": "index.js",
-  "engines": {
-    "node": ">=10"
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "@sentry/node": "^5.15.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "babel-preset-react-app": "9.1.2",
+    "blueimp-md5": "^2.13.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "esm": "^3.2.25",
+    "hypernova": "^2.5.0",
+    "hypernova-react": "^2.1.0",
+    "sass": "^1.25.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.4.0",
+    "react-test-renderer": "^16.12.0"
   },
   "scripts": {
-    "build": "webpack --mode=development",
-    "build:prod": "cross-env NODE_ENV=production webpack --mode=production -p",
-    "delete": "node bin/cli.js delete",
-    "eslint": "eslint app",
-    "eslint:fix": "eslint app --fix",
-    "fixcode": "prettier \"app/**/*(*.css|*.js|*.json|*.md|*.scss)\" --write",
-    "fixcode:test": "prettier \"app/**/*(*.css|*.js|*.json|*.md|*.scss)\" --list-different",
-    "multiwatch": "concurrently \"npm run watch\" \"npm run start\"",
-    "new": "node bin/cli.js new",
-    "scaffold": "node bin/cli.js scaffold",
-    "ssr": "cross-env webpack --mode=development --config ./webpack.ssr.config.js",
-    "ssr:prod": "cross-env NODE_ENV=production webpack --mode=production --config ./webpack.ssr.config.js -p",
-    "ssr:watch": "cross-env NODE_ENV=production webpack --mode=development --config ./webpack.ssr.config.js --watch",
-    "start": "node ./bin/dev-server",
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "storybook:out": "build-storybook -c .storybook -o dist/storybook",
-    "test": "jest",
-    "watch": "webpack --mode=development --watch"
+    "start": "PUBLIC_URL=/proxy npx react-scripts start",
+    "start-ssl": "HTTPS=true PUBLIC_URL=/proxy npx react-scripts start",
+    "build": "PUBLIC_URL=/static/pipit/build npx react-scripts build",
+    "test": "npx react-scripts test",
+    "test:nowatch": "cross-env CI=true npx react-scripts test",
+    "eject": "npx react-scripts eject",
+    "postbuild": "rm -rf /webapp/pipit/static/pipit/build/ || true && cp -r build/ /webapp/pipit/static/pipit/build/",
+    "hypernova": "node src/hypernovaBootstrap.js",
+    "storybook": "npx start-storybook -h 0.0.0.0 -p 3001 -s public",
+    "build-storybook": "npx build-storybook -s public",
+    "new": "node cli/bin.js new"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com:frojd/react-sass-starterkit.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "keywords": [
-    "webpack",
-    "sass",
-    "scss",
-    "hmr",
-    "react",
-    "frontend",
-    "boilerplate",
-    "starterkit",
-    "cli",
-    "scaffold",
-    "storybook"
-  ],
-  "author": "Daniel Karlsson",
-  "license": "MIT",
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "not dead",
-    "ie>=11"
-  ],
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less|scss)$": "identity-obj-proxy"
-    },
-    "setupFiles": [
-      "./.setup-test.js"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "testMatch": [
-      "**/?(*.)(test).js?(x)"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/",
-      "/internals/"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "testURL": "http://localhost"
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-export-default-from": "^7.5.2",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "@hot-loader/react-dom": "^16.9.0",
-    "@storybook/addon-actions": "^5.1.11",
-    "@storybook/addon-info": "^5.1.11",
-    "@storybook/addon-knobs": "^5.1.11",
-    "@storybook/react": "^5.1.11",
-    "autoprefixer": "^9.6.1",
-    "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-react-docgen": "^3.1.0",
-    "babel-plugin-webpack-alias": "^2.1.2",
-    "commander": "^3.0.0",
-    "concurrently": "^4.1.2",
-    "copy-webpack-plugin": "^5.0.4",
-    "cross-env": "^5.2.0",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.4.0",
-    "eslint": "^6.2.1",
-    "eslint-plugin-react": "^7.14.3",
-    "expose-loader": "^0.7.5",
-    "file-loader": "^4.2.0",
-    "fs-extra": "^8.1.0",
-    "identity-obj-proxy": "^3.0.0",
-    "ignore-loader": "^0.1.2",
-    "jest": "^24.9.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.12.0",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.7.0",
-    "postcss-scss": "^2.0.0",
-    "precss": "^4.0.0",
-    "prettier": "^1.18.2",
-    "prop-types": "^15.7.2",
-    "react-hot-loader": "^4.12.11",
-    "react-styleguidist": "^9.1.16",
-    "sass-loader": "^7.2.0",
-    "storybook-addon-smart-knobs": "^5.0.0",
-    "style-loader": "^1.0.0",
-    "webpack": "^4.39.2",
-    "webpack-bundle-analyzer": "^3.4.1",
-    "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.0"
-  },
-  "dependencies": {
-    "core-js": "^3.2.1",
-    "i18next": "^17.0.11",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "cross-env": "^7.0.2",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^3.0.0",
+    "@storybook/react": "^5.3.18"
   }
 }

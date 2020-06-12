@@ -1,107 +1,68 @@
-# React sass starterkit #
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is an opinionated frontend development kit.
-It includes a small scaffolder for react components and is exporting a bundle with a global variable named Components
+## Available Scripts
 
-## Installation ##
+In the project directory, you can run:
 
-1. npm install
-2. npm run scaffold
-3. npm start
+### `yarn start`
 
-This will create a base set of containers and components in the app folder that you can work with and start the devserver at [http://localhost:7000](http://localhost:7000).
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Alternativly you can use storybook instead for developing by running:
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-`npm run storybook`
+### `yarn test`
 
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## CLI commands ##
+### `yarn build`
 
-### Devserver ###
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Start the devserver:
-```
-npm start
-```
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-Start the devserver with a different port:
-```
-npm start -- --port 7777
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Start the devserver as a hot proxy:
-```
-npm start -- --proxy http://proxydomain.com
-```
+### `yarn eject`
 
-### Creation commands ###
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Create a new component:
-```
-npm run new ComponentName
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Create a container component:
-```
-npm run new ComponentName -- -c
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Delete a component:
-```
-npm run delete ComponentName
-```
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Delete a container component:
-```
-npm run delete ComponentName -- c
-```
+## Learn More
 
-Run tests:
-```
-npm test
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Update test snapshots (if added):
-```
-npm test -- -u
-```
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Scaffold an example project:
-```
-npm run scaffold
-```
+### Code Splitting
 
-Scaffold an empty project:
-```
-npm run scaffold -- -e
-```
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-Code formatting via prettier:
-```
-npm run fixcode
-```
+### Analyzing the Bundle Size
 
-To only test that all files are formated correct:
-```
-npm run fixcode:test
-```
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-Codechecking via eslint:
-```
-npm run eslint
-```
+### Making a Progressive Web App
 
-Autofix via eslint:
-```
-npm run eslint:fix
-```
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Additional commands and troubleshooting ###
+### Advanced Configuration
 
-To run webpack analyzer to check your bundle and packagesizes you can append --analyze to a command
-```
-npm start -- --analyze
-npm run build -- --analyze
-npm run build:prod -- --analyze
-```
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

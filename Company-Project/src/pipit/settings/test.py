@@ -39,3 +39,7 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [
 LOGGING = {}
 
 TEST_RUNNER = "pipit.test_runner.PytestTestRunner"
+
+# This is needed to avoid using "extract_elements" in base.html
+# which will fail because the test-server doesn't have any static files
+REACT_DEVSERVER = True

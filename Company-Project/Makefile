@@ -11,7 +11,7 @@ init:
 
 test:
 	docker-compose run --rm web test
-	cd frontend && npm run test
+	docker-compose run --rm frontend test
 
 fixcode:
 	docker-compose exec web black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./

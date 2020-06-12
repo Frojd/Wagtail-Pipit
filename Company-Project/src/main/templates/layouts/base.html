@@ -1,7 +1,9 @@
 
 {% load static %}
+{% load cache %}
 {% load react %}
 {% load wagtailuserbar %}
+{% load create_react_app %}
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -31,14 +33,28 @@
         {% block seo_meta %}
         {% endblock %}
 
+        {% if not SETTINGS.REACT_DEVSERVER  %}
+            {% cache None assets_css 'pipit/build/index.html'|hashed_name %}
+                {% extract_elements 'pipit/build/index.html' 'stylesheet' %}
+            {% endcache %}
+        {% endif %}
+
         <link rel="stylesheet" href="{% static 'pipit/index.css' %}" type="text/css" />
     </head>
     <body>
         {% block main %}
         {% endblock main %}
 
-        <script type="text/javascript" src="{% static 'pipit/vendor.js' %}"></script>
-        <script type="text/javascript" src="{% static 'pipit/index.js' %}"></script>
+        {% if SETTINGS.REACT_DEVSERVER  %}
+            <script>document.domain = '{{ REQUEST_DOMAIN }}';</script>
+            <iframe src="//{{ REQUEST_DOMAIN }}:{{ SETTINGS.REACT_DEVSERVER_PORT }}/proxy?devserver=1&devserver_domain={{ REQUEST_DOMAIN }}" id="frontend-devserver" style="height: 0; width: 0; border: 0; visibility: hidden;"></iframe>
+        {% endif %}
+
+        {% if not SETTINGS.REACT_DEVSERVER  %}
+            {% cache None assets_js 'pipit/build/index.html'|hashed_name %}
+                {% extract_elements 'pipit/build/index.html' 'script' %}
+            {% endcache %}
+        {% endif %}
 
         {% block error_reporting %}
         {% endblock %}
