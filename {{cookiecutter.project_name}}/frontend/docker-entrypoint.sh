@@ -14,7 +14,7 @@ case "$CMD" in
         exec npm run build
         ;;
     "test" )
-        exec npm run test
+        exec npm run test:nowatch
         ;;
     "hypernova" )
         exec ./wait-for-it.sh -t 0 frontend:3000 -- npm run hypernova
