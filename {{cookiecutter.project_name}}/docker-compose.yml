@@ -4,7 +4,7 @@ services:
     image: frojd/{{cookiecutter.project_slug}}_web
     build: ./src
     volumes:
-      - "./src:/app:cached"
+      - "./src:/app"
       - "./docker/files/shared:/shared:rw"
       - "./docker/files/var/log:/var/log:rw"
       - "./docker/files/certs:/priv/cert:cached"
@@ -22,7 +22,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - "./frontend:/app:cached"
+      - "./frontend:/app"
       - "./src:/webapp:cached"
     ports:
       - "{{cookiecutter.docker_frontend_port}}:3000"
