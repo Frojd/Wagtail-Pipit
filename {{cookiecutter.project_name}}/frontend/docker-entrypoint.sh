@@ -4,14 +4,20 @@ CMD=$1
 case "$CMD" in
     "start" )
         if [ ! -d "./node_modules/" ]; then
-            echo "Installing node packages, this will take a couple of minutes..."
+            echo "************************************************************"
+            echo "Installing node packages"
+            echo "Gathering facts (no logs will show for a couple of minutes)"
+            echo "************************************************************"
             npm install
         fi
         exec npm start
         ;;
     "start_ssl" )
         if [ ! -d "./node_modules/" ]; then
-            echo "Installing node packages, this will take a couple of minutes..."
+            echo "***********************************************************"
+            echo "Installing node packages"
+            echo "Gathering facts (no logs will show for a couple of minutes)"
+            echo "***********************************************************"
             npm install
         fi
         exec npm run start-ssl
