@@ -9,7 +9,7 @@ modern frontend stack while still not making the trade-off normally would by run
 
 ## Features
 
-- Hot reloading
+- Hot reloading using [Create React App](https://create-react-app.dev/)
 - Server-Side Rendering
 - Page scaffolding
 - [12-Factor App](https://12factor.net/) compliant
