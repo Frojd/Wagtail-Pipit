@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.conf import settings
-from django.conf.urls import url, include
+from django.urls import path, include
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 from wagtail.admin import urls as wagtailadmin_urls
@@ -19,28 +20,28 @@ urlpatterns = []
 
 if settings.DEBUG:
     urlpatterns += [
-        url(
-            r"^400/$",
+        path(
+            "400/",
             default_views.bad_request,
             kwargs={"exception": Exception("Bad Request!")},
         ),  # NOQA
-        url(
-            r"^403/$",
+        path(
+            "403/",
             default_views.permission_denied,
             kwargs={"exception": Exception("Permission Denied")},
         ),  # NOQA
-        url(
-            r"^404/$", handler404, kwargs={"exception": Exception("Page not Found")}
+        path(
+            "404/", handler404, kwargs={"exception": Exception("Page not Found")}
         ),  # NOQA
-        url(
-            r"^500/$", handler500, kwargs={"exception": Exception("Internal error")}
+        path(
+            "500/", handler500, kwargs={"exception": Exception("Internal error")}
         ),  # NOQA
     ]
 
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
-        urlpatterns += [url(r"^__debug__/", include(debug_toolbar.urls))]
+        urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
 
     if "revproxy" in settings.INSTALLED_APPS:
         from revproxy.views import ProxyView
@@ -71,9 +72,9 @@ if settings.DEBUG:
 
 urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
-    url(r"^cms/", include(wagtailadmin_urls)),
-    url(r"^documents/", include(wagtaildocs_urls)),
-    url("^sitemap\.xml$", sitemap, name="sitemap"),
+    path("cms/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
+    path("sitemap.xml", sitemap, name="sitemap"),
 ]
 
 urlpatterns += [url(r"", include(wagtail_urls))]
