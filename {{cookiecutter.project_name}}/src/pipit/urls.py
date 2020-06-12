@@ -59,10 +59,9 @@ if settings.DEBUG:
 
             CustomProxyView = NoSSLVerifyProxyView
 
-        proxy_upstream_url = "{}://{}:{}/proxy".format(
+        proxy_upstream_url = "{}://{}/proxy".format(
             "https" if settings.REACT_DEVSERVER_HTTPS else "http",
-            settings.REACT_DEVSERVER_REVPROXY_DOMAIN,
-            settings.REACT_DEVSERVER_PORT,
+            settings.REACT_DEVSERVER_REVPROXY_DOMAIN
         )
         urlpatterns += [
             url(r'^proxy/(?P<path>.*)$',
