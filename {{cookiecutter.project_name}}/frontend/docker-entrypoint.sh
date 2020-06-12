@@ -8,7 +8,7 @@ case "$CMD" in
             echo "Installing node packages"
             echo "Gathering facts (no logs will show for a couple of minutes)"
             echo "************************************************************"
-            npm install
+            npm install --verbose
         fi
         exec npm start
         ;;
@@ -18,7 +18,7 @@ case "$CMD" in
             echo "Installing node packages"
             echo "Gathering facts (no logs will show for a couple of minutes)"
             echo "***********************************************************"
-            npm install
+            npm install --verbose
         fi
         exec npm run start-ssl
         ;;
