@@ -1,4 +1,3 @@
-{% raw -%}
 import React from 'react';
 import PropTypes from 'prop-types';
 import './RawHtml.scss';
@@ -16,4 +15,3 @@ RawHtml.defaultProps = {
 };
 
 export default RawHtml;
-{% endraw %}

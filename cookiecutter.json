@@ -18,6 +18,7 @@
     "version": "0.1.0",
     "software_license": ["proprietary", "MIT"],
     "_copy_without_render": [
-        "*.git"
+        "*.git",
+        "frontend"
     ]
 }
