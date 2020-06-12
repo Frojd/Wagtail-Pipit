@@ -10,6 +10,16 @@ services:
     environment:
       - REQUIREMENTS=local.txt
     env_file: ./docker/config/web.env
+  frontend:
+    image: frojd/django_boilerplate_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./frontend:/app:cached"
+      - "./src:/webapp:cached"
+    ports:
+      - "8082:3000"
   db:
     image: mdillon/postgis:10
     ports:

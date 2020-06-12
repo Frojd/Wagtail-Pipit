@@ -68,7 +68,10 @@ jobs:
           name: Run tests on container
           command: |
             set -x
-            cd Company-Project && docker-compose -f docker-compose-circleci.yml run web test
+            cd Company-Project
+            docker-compose -f docker-compose-circleci.yml run web test
+            docker-compose -f docker-compose-circleci.yml run frontend test
+            docker-compose -f docker-compose-circleci.yml run frontend build
 
       - store_artifacts:
           path: /tmp/test-results
@@ -77,30 +80,8 @@ jobs:
       - store_test_results:
           path: /tmp/test-results
 
-  frontend:
-    working_directory: ~/frojd-django-boilerplate
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - *restore_repo
-      - run:
-          command: |
-            cd Company-Project/frontend
-
-            npm install
-            npm run build
-
-      - run:
-          command: |
-            cd Company-Project/frontend
-
-            npm run test
-
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - frontend:
-          requires:
-            - build

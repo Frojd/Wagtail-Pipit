@@ -26,6 +26,10 @@ case "$CMD" in
         exec npm run build
         ;;
     "test" )
+        if [ ! -d "./node_modules/" ]; then
+            echo "Installing node packages, this will take a couple of minutes..."
+            npm install
+        fi
         exec npm run test:nowatch
         ;;
     "hypernova" )
