@@ -12,11 +12,11 @@ from pipit.settings.base import *  # NOQA
 VS_CODE_REMOTE_DEBUG = get_env_bool("VS_CODE_REMOTE_DEBUG", default=False)
 DEBUG = True
 TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
+REACT_DEVSERVER = True
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Replace built in runserver with a ssl enabled
-INSTALLED_APPS += ["sslserver"]
+INSTALLED_APPS += ["sslserver", "revproxy"]
 
 # Allow weak local passwords
 AUTH_PASSWORD_VALIDATORS = []

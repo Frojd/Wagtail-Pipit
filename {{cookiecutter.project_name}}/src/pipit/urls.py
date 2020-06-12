@@ -42,6 +42,33 @@ if settings.DEBUG:
 
         urlpatterns += [url(r"^__debug__/", include(debug_toolbar.urls))]
 
+    if "revproxy" in settings.INSTALLED_APPS:
+        from revproxy.views import ProxyView
+        from urllib3 import PoolManager
+
+        CustomProxyView = ProxyView
+
+        if settings.REACT_DEVSERVER_HTTPS:
+            class NoSSLVerifyProxyView(ProxyView):
+                def __init__(self, *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+                    self.http = PoolManager(
+                        cert_reqs='CERT_NONE', assert_hostname=False
+                    )
+
+            CustomProxyView = NoSSLVerifyProxyView
+
+        proxy_upstream_url = "{}://{}:{}/proxy".format(
+            "https" if settings.REACT_DEVSERVER_HTTPS else "http",
+            settings.REACT_DEVSERVER_REVPROXY_DOMAIN,
+            settings.REACT_DEVSERVER_PORT,
+        )
+        urlpatterns += [
+            url(r'^proxy/(?P<path>.*)$',
+                CustomProxyView.as_view(upstream=proxy_upstream_url)
+            ),
+        ]
+
 urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r"^cms/", include(wagtailadmin_urls)),

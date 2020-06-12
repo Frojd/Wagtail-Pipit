@@ -15,7 +15,8 @@ ENV PYTHONUNBUFFERED=1 \
     DATABASE_PASSWORD=postgres \
     DATABASE_NAME=postgres \
     DATABASE_HOST=db \
-    REACT_HOST=http://ssr:3000 \
+    REACT_HOST=http://ssr:3030 \
+    REACT_DEVSERVER_PORT=3001 \
     PYTHONPATH="${PYTHONPATH}:/app"
 
 WORKDIR /app

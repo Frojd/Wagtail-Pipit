@@ -58,6 +58,7 @@ case "$CMD" in
         fi
 
         echo Starting using manage.py runsslserver
+        export REACT_DEVSERVER_HTTPS="True"
         exec python manage.py runsslserver 0.0.0.0:8000 --certificate /priv/cert/cert.pem --key /priv/cert/cert-key.pem
         ;;
 

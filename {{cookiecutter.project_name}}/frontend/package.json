@@ -1,0 +1,60 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "@sentry/node": "^5.15.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "babel-preset-react-app": "9.1.2",
+    "blueimp-md5": "^2.13.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "esm": "^3.2.25",
+    "hypernova": "^2.5.0",
+    "hypernova-react": "^2.1.0",
+    "node-sass": "^4.13.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.4.0",
+    "react-test-renderer": "^16.12.0"
+  },
+  "scripts": {
+    "start": "PUBLIC_URL=/proxy react-scripts start",
+    "start-ssl": "HTTPS=true PUBLIC_URL=/proxy react-scripts start",
+    "build": "PUBLIC_URL=/static/pipit/build react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postbuild": "rm -rf /webapp/pipit/static/pipit/build/ || true && cp -r build/ /webapp/pipit/static/pipit/build/",
+    "hypernova": "node src/hypernovaBootstrap.js",
+    "storybook": "start-storybook -h 0.0.0.0 -p 3001 -s public",
+    "build-storybook": "build-storybook -s public",
+    "new": "node cli/bin.js new"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^3.0.0",
+    "@storybook/react": "^5.3.18"
+  }
+}

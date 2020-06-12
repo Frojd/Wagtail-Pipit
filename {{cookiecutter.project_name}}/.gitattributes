@@ -9,3 +9,9 @@
 *.ttf binary
 *.woff binary
 *.woff2 binary
+
+# Preserve img files
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
