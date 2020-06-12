@@ -70,9 +70,8 @@ jobs:
             set -x
             cd Company-Project
             docker-compose -f docker-compose-circleci.yml run web test
-            docker cp ./frontend/docker-entrypoint.sh frontend:/app
-            docker-compose -f docker-compose-circleci.yml run frontend test
-            docker-compose -f docker-compose-circleci.yml run frontend build
+            # docker-compose -f docker-compose-circleci.yml run frontend test
+            # docker-compose -f docker-compose-circleci.yml run frontend build
 
       - store_artifacts:
           path: /tmp/test-results
