@@ -30,7 +30,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT={{cookiecutter.docker_frontend_port}}
   storybook:
-    image: frojd/company_project_frontend
+    image: frojd/{{cookiecutter.project_slug}}_frontend
     volumes:
       - "./frontend:/app:cached"
     ports:
