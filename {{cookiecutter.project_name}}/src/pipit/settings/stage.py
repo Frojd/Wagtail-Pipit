@@ -25,8 +25,8 @@ CACHES = {
 }
 
 STATICFILES_STORAGE = (
-    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-)  # NOQA
+    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"  # NOQA
+)
 
 # Enable caching of templates in production environment
 TEMPLATES[0]["OPTIONS"]["loaders"] = [
@@ -62,7 +62,7 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 
 # Sentry
-SENTRY_DSN = get_env('SENTRY_DSN')
+SENTRY_DSN = get_env("SENTRY_DSN")
 SENTRY_ENVIRONMENT = "stage"
 
 sentry_sdk.init(
@@ -75,4 +75,4 @@ sentry_sdk.init(
 
 # Add sentry to logging
 with configure_scope() as scope:
-    scope.level = 'error'
+    scope.level = "error"
