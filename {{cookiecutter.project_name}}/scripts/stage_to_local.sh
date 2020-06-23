@@ -13,7 +13,7 @@ echo "Creating database dump from stage..."
 ssh $ssh_host "export PGUSER=postgres && pg_dump {{ cookiecutter.db_name_stage }} --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
-scp $ssh_host:/tmp/db-dump.sql $DOCKERDIR/files/db-dumps/db-dump.sql
+scp $ssh_host:/tmp/db-dump.sql $DOCKER_DIR/files/db-dumps/db-dump.sql
 ssh $ssh_host "rm /tmp/db-dump.sql"
 
 echo "Rebuilding docker containers."
