@@ -55,7 +55,7 @@ services:
       - HYPERNOVA_DEV_MODE=1
     command: hypernova
   db:
-    image: mdillon/postgis:10
+    image: postgis/postgis:12-2.5
     ports:
       - "{{cookiecutter.docker_db_port}}:5432"
     volumes:
