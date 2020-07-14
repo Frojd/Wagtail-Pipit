@@ -49,7 +49,6 @@ services:
     depends_on:
       - frontend
     environment:
-    environment:
       - CRA_PUBLIC_URL=/proxy
       - HYPERNOVA_DISABLE_MODULE_CACHE=1
       - HYPERNOVA_DEV_MODE=1
