@@ -16,7 +16,9 @@ ENV PYTHONUNBUFFERED=1 \
     DATABASE_NAME=postgres \
     DATABASE_HOST=db \
     REACT_HOST=http://ssr:3030/batch \
-    PYTHONPATH="${PYTHONPATH}:/app"
+    PYTHONPATH="${PYTHONPATH}:/app" \
+    PIP_USE_FEATURE=2020-resolver
+
 
 WORKDIR /app
 ADD . /app/
