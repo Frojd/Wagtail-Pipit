@@ -1,9 +1,9 @@
-Django==3.0.7
+Django==3.0.8
 boto==2.49.0
 django-storages==1.9.1
 psycopg2==2.8.5
-sentry_sdk==0.14.4
-python-dotenv==0.13.0
+sentry_sdk==0.16.2
+python-dotenv==0.14.0
 wagtail==2.10rc1
 django_react_templatetags[hypernova]==6.0.0
 wagtailfontawesome==1.2.1

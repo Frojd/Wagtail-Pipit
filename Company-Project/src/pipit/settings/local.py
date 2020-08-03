@@ -31,7 +31,9 @@ if get_env_bool("DEBUG_TOOLBAR", default=True):
 
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
-    DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": "pipit.settings.local.show_toolbar"}
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": "pipit.settings.local.show_toolbar"
+    }
 
 # Allow django-debug-bar under docker
 def show_toolbar(request):
