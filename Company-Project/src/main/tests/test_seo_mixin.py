@@ -37,7 +37,6 @@ class SeoMixinTest(WagtailPageTests):
 
     def test_partial_print(self):
         request = self.factory.get(self.page.url)
-        request.site = self.site
 
         resp = self.page.serve(request)
         self.assertContains(resp, "<title>My start</title>")

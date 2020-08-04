@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from wagtail.core.models import Site
 from wagtail.images.shortcuts import get_rendition_or_not_found
 
 from sitesettings.models import SiteSetting
@@ -12,7 +13,8 @@ class NotFoundPageSerializer(serializers.Serializer):
 
     def get_site_setting(self, page):
         request = self.context["request"]
-        site_setting = SiteSetting.for_site(request.site)
+        site = Site.find_for_request(request)
+        site_setting = SiteSetting.for_site(site)
         return SiteSettingSerializer(site_setting).data
 
 
