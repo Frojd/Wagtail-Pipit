@@ -16,10 +16,9 @@ program
     .command('new <component> [subComponent...]')
     .description('Creates a new component')
     .option('-c, --container', 'Create container component')
-    .option('-C, --class', 'Create class component')
     .option('-f, --folder <folder>', 'Change components folder')
     .action((component, subComponents, options) => {
-        const componentType = (options.container || options.class) ? '__Class' : '__Pure';
+        const componentType = options.container ? '__Container' : '__Component';
         let folder = 'components';
         if (options.container) {
             folder = 'containers';
