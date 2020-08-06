@@ -40,8 +40,8 @@
     <meta property="twitter:image" content="{{ seo.seo_twitter_image }}" />
 {% endif %}
 
-{% if page.seo_canonical_link %}
-    <link rel="canonical" href="{{ page.seo_canonical_link }}" />
+{% if seo.canonical_link %}
+    <link rel="canonical" href="{{ seo.canonical_link }}" />
 {% endif %}
 
 <meta name="robots" content="{{ seo.seo_meta_robots }}">
