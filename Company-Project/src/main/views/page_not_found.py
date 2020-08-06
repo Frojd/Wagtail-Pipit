@@ -1,4 +1,5 @@
 from django.template.response import TemplateResponse
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView
 
 from main.mixins import ReactViewMixin
@@ -15,4 +16,4 @@ class PageNotFoundView(ReactViewMixin, TemplateView):
     serializer_class = NotFoundPageSerializer
 
     def get_component_props(self):
-        return {"exception": "Page not found"}
+        return {"exception": _("Page not found")}
