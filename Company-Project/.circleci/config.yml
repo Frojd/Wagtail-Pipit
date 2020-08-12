@@ -98,7 +98,7 @@ jobs:
           command: |
             . venv/bin/activate
             cd src
-            pytest -c pytest.circleci.ini
+            pytest -c pytest.circleci.ini --duration 10
       - save_cache:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
