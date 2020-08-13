@@ -1,35 +1,29 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 
-import { basePageWrap } from '../BasePage';
-import './ArticlePage.scss';
+import { basePageWrap } from "../BasePage";
+import "./ArticlePage.scss";
 
-import Hero from '../../components/Hero';
-import RawHtml from '../../components/RawHtml';
+import Hero from "../../components/Hero";
+import RawHtml from "../../components/RawHtml";
 
-class ArticlePage extends PureComponent {
-    state = {};
+const ArticlePage = ({ title, richText }) => {
+    return (
+        <div className="ArticlePage">
+            <Hero title={title} />
+            <RawHtml html={richText} />
+        </div>
+    );
+};
 
-    static defaultProps = {
-        title: '',
-        richText: '',
-    };
+ArticlePage.defaultProps = {
+    title: "",
+    richText: "",
+};
 
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-        richText: PropTypes.string,
-    };
-
-    render() {
-        const { title, richText } = this.props;
-
-        return (
-            <div className="ArticlePage">
-                <Hero title={title} />
-                <RawHtml html={richText} />
-            </div>
-        );
-    }
-}
+ArticlePage.propTypes = {
+    title: PropTypes.string.isRequired,
+    richText: PropTypes.string,
+};
 
 export default basePageWrap(ArticlePage);
