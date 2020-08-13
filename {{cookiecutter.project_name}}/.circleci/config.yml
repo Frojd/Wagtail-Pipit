@@ -97,6 +97,7 @@ jobs:
           key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
           paths:
             - ~/repo/venv
+            - ~/.cache/pip
       - run:
           name: Install additional geodjango deps
           command: |
