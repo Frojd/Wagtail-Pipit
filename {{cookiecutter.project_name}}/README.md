@@ -20,7 +20,7 @@
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.8+
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -157,7 +157,7 @@ SSH access (passwordless with RSA keys)
 Linux (Ubuntu is preffered)
 Nginx
 uWSGI
-Python 3.6+
+Python 3.8+
 PostgreSQL 10+
 PostGIS for PostgreSQL
 GDAL (required for PostGIS)

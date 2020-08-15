@@ -36,7 +36,7 @@ jobs:
   checkout_code:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6
+      - image: circleci/python:3.8
       - image: circleci/node:latest
       - image: mdillon/postgis:10
     steps:
@@ -79,7 +79,7 @@ jobs:
   django:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6
+      - image: circleci/python:3.8
       - image: circleci/postgres:10
         environment:
           POSTGRES_USER: ubuntu
@@ -118,7 +118,7 @@ jobs:
   deploy:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6
+      - image: circleci/python:3.8
     steps:
       - *restore_repo
       - restore_cache:

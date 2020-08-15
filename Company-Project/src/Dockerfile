@@ -1,4 +1,4 @@
-FROM python:3.6-slim-buster
+FROM python:3.8-slim-buster
 MAINTAINER Frojd
 LABEL version="v0.1.0"
 

@@ -11,7 +11,7 @@ It's possible you deploy manually and is something that you usually do this befo
 
 #### Requirements
 
-- Python 3.6 and pip
+- Python 3.8 and pip
 - Virtualenv
 - Mac OS or Linux ([Windows does not currently work](http://docs.ansible.com/ansible/latest/intro_windows.html#windows-how-does-it-work))
 
