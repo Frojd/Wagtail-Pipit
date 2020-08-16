@@ -76,6 +76,23 @@
         group: www-data
         mode: 0644
 
+    - name: Creates directory for ssr files
+      file:
+        path: "{{ ansistrano_shared_path }}/ssr"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0775
+        recurse: yes
+
+    - name: Create ssr_config.yml file
+      template:
+        src: files/ssr_config.yml.j2
+        dest: "{{ ansistrano_shared_path }}/ssr/{{ project_slug }}.yml"
+        owner: www-data
+        group: www-data
+        mode: 0644
+
 - name: Runs deploy playbook
   import_playbook: deploy.yml
 

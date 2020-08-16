@@ -24,9 +24,11 @@
     "react-test-renderer": "^16.12.0"
   },
   "scripts": {
+    "change-sass-to-prod": "sed -i 's/assetPath: $assetPathLocal/assetPath: $assetPathProd/g' src/styles/variables.scss",
+    "change-sass-to-local": "sed -i 's/assetPath: $assetPathProd/assetPath: $assetPathLocal/g' $PWD/src/styles/variables.scss",
     "start": "PUBLIC_URL=/proxy npx react-scripts start",
     "start-ssl": "HTTPS=true PUBLIC_URL=/proxy npx react-scripts start",
-    "build": "PUBLIC_URL=/static/pipit/build npx react-scripts build",
+    "build": "npm run change-sass-to-prod && PUBLIC_URL=/static/pipit/build npx react-scripts build && npm run change-sass-to-local",
     "test": "npx react-scripts test",
     "test:nowatch": "cross-env CI=true npx react-scripts test",
     "eject": "npx react-scripts eject",
