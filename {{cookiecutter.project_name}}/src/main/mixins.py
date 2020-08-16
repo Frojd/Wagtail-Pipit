@@ -15,6 +15,16 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
+from wagtail_meta_preview.panels import (
+    FacebookFieldPreviewPanel,
+    GoogleFieldPreviewPanel,
+    TwitterFieldPreviewPanel,
+)
+from wagtail_meta_preview.utils import (
+    TwitterSettings,
+    FacebookSettings,
+    GoogleSettings,
+)
 from rest_framework.serializers import Serializer
 
 
@@ -98,21 +108,20 @@ class SeoMixin(Page):
 
     promote_panels = [
         FieldPanel("slug"),
-        MultiFieldPanel(
-            [FieldPanel("seo_title"), FieldPanel("search_description")],
-            _("SEO settings"),
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("og_title"),
-                FieldPanel("og_description"),
-                ImageChooserPanel("og_image"),
-                FieldPanel("twitter_title"),
-                FieldPanel("twitter_description"),
-                ImageChooserPanel("twitter_image"),
-            ],
-            _("Social settings"),
-        ),
+        GoogleFieldPreviewPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+        ], heading=_("Google")),
+        FacebookFieldPreviewPanel([
+            FieldPanel("og_title"),
+            FieldPanel("og_description"),
+            ImageChooserPanel("og_image"),
+        ], heading=_("Facebook")),
+        TwitterFieldPreviewPanel([
+            FieldPanel("twitter_title"),
+            FieldPanel("twitter_description"),
+            ImageChooserPanel("twitter_image"),
+        ], heading=_("Twitter")),
         MultiFieldPanel(
             [
                 FieldPanel("robot_noindex"),
@@ -123,53 +132,57 @@ class SeoMixin(Page):
         ),
     ]
 
-    og_image_list = ["og_image"]
-
     @cached_property
-    def seo_og_image(self):
-        images = [getattr(self, x) for x in self.og_image_list]
-        images = list(filter(None.__ne__, images))
-
-        if not len(images):
-            return None
-
-        return images[0]
+    def google_setting(self):
+        return GoogleSettings(self)
 
     @cached_property
     def seo_html_title(self):
-        return self.seo_title or self.title
+        return self.google_setting.get_title()
 
     @cached_property
     def seo_meta_description(self):
-        return self.search_description
-
-    @cached_property
-    def seo_og_title(self):
-        return self.og_title or self.title
-
-    @cached_property
-    def seo_og_description(self):
-        return self.og_description or self.title
-
-    @cached_property
-    def seo_og_url(self):
-        return self.seo_canonical_link
+        return self.google_setting.get_description()
 
     @cached_property
     def seo_canonical_link(self):
         return self.canonical_link or self.full_url
 
     @cached_property
+    def facebook_setting(self):
+        return FacebookSettings(self)
+
+    @cached_property
+    def seo_og_image(self):
+        return self.facebook_setting.get_image()
+
+    @cached_property
+    def seo_og_title(self):
+        return self.facebook_setting.get_title()
+
+    @cached_property
+    def seo_og_description(self):
+        return self.facebook_setting.get_description()
+
+    @cached_property
+    def seo_og_url(self):
+        return self.seo_canonical_link
+
+    @cached_property
     def seo_og_type(self):
         return None
 
     @cached_property
+    def twitter_setting(self):
+        return TwitterSettings(self)
+
+    @cached_property
     def seo_twitter_title(self):
-        return self.twitter_title or self.title
+        return self.twitter_setting.get_title()
 
     @cached_property
     def seo_twitter_description(self):
-        return self.twitter_description
+        return self.twitter_setting.get_description()
 
     @cached_property
     def seo_twitter_url(self):
@@ -177,7 +190,7 @@ class SeoMixin(Page):
 
     @cached_property
     def seo_twitter_image(self):
-        return self.twitter_image or self.seo_og_image
+        return self.twitter_setting.get_image()
 
     @cached_property
     def seo_meta_robots(self):

@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "wagtailfontawesome",
+    "wagtail_meta_preview",
     # Project specific apps
     "pipit",
     "sitesettings",
