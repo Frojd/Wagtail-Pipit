@@ -46,12 +46,7 @@ class SeoSerializer(serializers.ModelSerializer):
         if not image:
             return None
 
-        rendition = get_rendition_or_not_found(image, "max-1200x630")
-
-        if not rendition:
-            return None
-
-        return f"{root_url}{rendition.url}"
+        return f"{root_url}{image}"
 
     def get_seo_twitter_image(self, page):
         root_url = page.get_site().root_url
@@ -60,9 +55,4 @@ class SeoSerializer(serializers.ModelSerializer):
         if not image:
             return None
 
-        rendition = get_rendition_or_not_found(image, "max-1200x630")
-
-        if not rendition:
-            return None
-
-        return f"{root_url}{rendition.url}"
+        return f"{root_url}{image}"
