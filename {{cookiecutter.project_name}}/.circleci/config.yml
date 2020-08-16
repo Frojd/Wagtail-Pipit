@@ -61,15 +61,16 @@ jobs:
             - ~/repo/frontend/node_modules
       - run:
           command: |
+            cp -r frontend/ ~/repo/src/pipit/static/pipit/frontend/
             cd frontend
             npm test
-            npm run eslint
-            npm run build:prod
-            npm run ssr:prod
+            npm run build
+            # So we don't copy the gigantic node_modules on each deploy
+            rm -rf node_modules
       - save_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/repo/src/core/static/core
+            - ~/repo/src/pipit/static/pipit
             - ~/repo/frontend/raw
             - ~/repo/frontend/dist
       # - slack/status:
