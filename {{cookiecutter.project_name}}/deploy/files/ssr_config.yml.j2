@@ -1,7 +1,7 @@
 apps:
-  - script: /mnt/persist/www/{{ project_slug }}/shared/frontend/src/hypernovaBootstrap.js
+  - script: /mnt/persist/www/{{ cookiecutter.project_slug }}/shared/frontend/src/hypernovaBootstrap.js
     name: {{ project_slug }}
-    cwd: /mnt/persist/www/{{ project_slug }}/shared/frontend/src/
+    cwd: /mnt/persist/www/{{ cookiecutter.project_slug }}/shared/frontend/src/
     exec_mode: cluster
     instances: 0
     max_memory_restart : "300M"
