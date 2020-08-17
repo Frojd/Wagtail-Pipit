@@ -22,20 +22,25 @@ This document also provides info regarding the following topics:
 
 The whole frontend of the project is located in `/frontend/`. Here is an overview of 
 the contents (Some files omitted for brevity):
+
 ```bash
-.
-├── src     # The source root folder of your frontend app
-│__ ├── assets      # Contains all statical assets, such as fonts, images, etc.
-│__ ├── components  # Contains all Components
-│__ ├── containers  # Contains all Containers
-│__ ├── i18n        # Contains internationalization strings and module for handeling those
-│__ ├── index.js    # Entry point for your frontend application
-│__ ├── styles      # Global styling (h1, h2, resets, etc)
-│__ └── utils       # Where you should place your utility functions
-│__ └── serviceWorker.js # Service worker file shipping with Create React App, disabled by default
-├── cli # Contains the cli tool for generating new components
+├── src  # The source root folder for your frontend app
+│   ├── components             # Contains all Components
+│   ├── containers             # Contains all Containers
+│   ├── hypernovaBootstrap.js  # SSR service entrypoint
+│   ├── hypernova.js           # SSR service configuration
+│   ├── i18n                   # Contains internationalization strings and module for handling those
+│   ├── index.js               # Entry point for your frontend applications
+│   ├── index.scss             # Entry point for styling your frontend application
+│   ├── serviceWorker.js       # Service worker file shipping with Create React App, disabled by default
+│   ├── setupTests.js          # Test suite configurations
+│   ├── stories                # Default storybook directory
+│   ├── styles                 # Global styling (h1, h2, resets etc)
+│   └── utils                  # Where you should place your utility functions
+├── cli  # Contains the cli tool for generating new components
 └── public # Contains templates for Create React App
 ```
+
 
 To get up and running we first need to install the npm dependencies from the frontend directory:
 ```bash
@@ -48,7 +53,7 @@ Next, we start the frontend dev-server:
 npm run storybook
 ```
 
-From here, start your preferred browser and navigate to `http://localhost:7000`.  You should see a list of all
+From here, start your preferred browser and navigate to `http://localhost:3001`.  You should see a list of all
 components and containers that exist in the application. If not, look in your terminal the window for any
 webpack errors and try to resolve those.
 
@@ -136,7 +141,7 @@ export default {
 };
 ```
 
-Now if you look at the component in the browser on [http://localhost:7000/Button](http://localhost:7000/Button) you
+Now if you look at the component in the browser on [http://localhost:3001/Button](http://localhost:3001/Button) you
 should see the text "Button text" and if you click it you should see "clicked" in the browser console.  *Note:* You
 need to refresh the browser.
 
@@ -149,7 +154,7 @@ setting you can have different members of your team working on the frontend and 
 To style the component, we simply add some scss-rules to `Button.scss`:
 
 ```scss
-@import 'Styles/includes.scss';
+@import "styles/includes.scss";
 
 .Button {
     background: #ff4040;
@@ -162,7 +167,7 @@ To style the component, we simply add some scss-rules to `Button.scss`:
 We recommend that all styling in this file have no reference outside of the `.Button` context, 
 since we follow the [BEM Methodology](https://en.bem.info/methodology/quick-start/).
 
-In a real-life scenario, you would probably want to add your colors to `./app/styles/variables.scss` and use them
+In a real-life scenario, you would probably want to add your colors to `./src/styles/variables.scss` and use them
 in your stylesheet rather than using hex-colors. But you can work however you like and this boilerplate does not
 enforce anything.
 
@@ -186,7 +191,7 @@ To build our container, launch the scaffolder again, this time using the flag `-
 ```bash
 npm run new WordCountPage -- -c
 ```
-Now you should see your newly created container in `./app/containers/WordCountPage`
+Now you should see your newly created container in `./src/containers/WordCountPage`
 
 ### Building the container javascript/jsx
 
@@ -199,8 +204,8 @@ import './WordCountPage.scss';
 
 import i18n from '../../i18n';
 
-import Button from 'Components/Button';
-import RawHtml from 'Components/RawHtml';
+import Button from '../components/Button';
+import RawHtml from '../components/RawHtml';
 
 class WordCountPage extends PureComponent {
     state = {};
@@ -234,11 +239,7 @@ class WordCountPage extends PureComponent {
 export default basePageWrap(WordCountPage);
 ```
 
-First we import our components, note that we have aliases for the components folder,
-so you can import `Components/ComponentName` instead of `../Components/ComponentName`. This works no matter where
-you try to import the component.
-
-Now we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (`=>`) functions here
+First we import our components then we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (`=>`) functions here
 to make sure that the `this` keyword refers to the `WordCountPage` instance inside of that function scope.  In this
 particular case, we just do a very quick and dirty wordcount of the component prop "richText" which will be provided
 by Wagtail (from `WordCountPage.data.js` in the dev-server).
@@ -252,7 +253,7 @@ Please note that we are using the function `i18n.t` for the Button text.  This i
 will be internationalized.  You could simply write the string "Count words" if you only target one language,
 but for now, add an English translation for our button text.
 
-Open the file `./app/i18n/translations/en.json` and replace it with this:
+Open the file `./src/i18n/translations/en.json` and replace it with this:
 ```json
 {
     "wordcountpage": {
@@ -288,7 +289,7 @@ When styling the container-level, we mostly do the layout. Add some margins:
 }
 ```
 
-Now you should have a working page Container on `http://localhost:7000/WordCountPage`.
+Now you should have a working page Container on `http://localhost:3001/WordCountPage`.
 
 ## Customizing the scaffolder
 @todo
