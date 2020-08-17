@@ -17,11 +17,13 @@
     "esm": "^3.2.25",
     "hypernova": "^2.5.0",
     "hypernova-react": "^2.1.0",
-    "sass": "^1.25.0",
+    "i18next": "^19.6.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-i18next": "^11.7.0",
     "react-scripts": "3.4.0",
-    "react-test-renderer": "^16.12.0"
+    "react-test-renderer": "^16.12.0",
+    "sass": "^1.25.0"
   },
   "scripts": {
     "change-sass-to-prod": "sed -i 's/assetPath: $assetPathLocal/assetPath: $assetPathProd/g' src/styles/variables.scss",
@@ -56,6 +58,7 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-a11y": "^6.0.12",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^3.0.0",
