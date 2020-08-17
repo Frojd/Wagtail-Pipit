@@ -1,6 +1,6 @@
 apps:
   - script: /mnt/persist/www/{{ cookiecutter.project_slug }}/shared/frontend/src/hypernovaBootstrap.js
-    name: {{ project_slug }}
+    name: {{ cookiecutter.project_slug }}
     cwd: /mnt/persist/www/{{ cookiecutter.project_slug }}/shared/frontend/src/
     exec_mode: cluster
     instances: 0
