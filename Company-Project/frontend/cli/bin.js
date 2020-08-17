@@ -9,7 +9,6 @@ const fs = require('fs-extra');
 const program = require('commander');
 const {
     createComponent,
-    deleteComponent,
 } = require('./cli');
 
 program

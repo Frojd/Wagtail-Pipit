@@ -108,26 +108,20 @@ class SeoMixin(Page):
 
     promote_panels = [
         FieldPanel("slug"),
-        GoogleFieldPreviewPanel(
-            [FieldPanel("seo_title"), FieldPanel("search_description"),],
-            heading=_("Google"),
-        ),
-        FacebookFieldPreviewPanel(
-            [
-                FieldPanel("og_title"),
-                FieldPanel("og_description"),
-                ImageChooserPanel("og_image"),
-            ],
-            heading=_("Facebook"),
-        ),
-        TwitterFieldPreviewPanel(
-            [
-                FieldPanel("twitter_title"),
-                FieldPanel("twitter_description"),
-                ImageChooserPanel("twitter_image"),
-            ],
-            heading=_("Twitter"),
-        ),
+        GoogleFieldPreviewPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+        ], heading=_("Google")),
+        FacebookFieldPreviewPanel([
+            FieldPanel("og_title"),
+            FieldPanel("og_description"),
+            ImageChooserPanel("og_image"),
+        ], heading=_("Facebook")),
+        TwitterFieldPreviewPanel([
+            FieldPanel("twitter_title"),
+            FieldPanel("twitter_description"),
+            ImageChooserPanel("twitter_image"),
+        ], heading=_("Twitter")),
         MultiFieldPanel(
             [
                 FieldPanel("robot_noindex"),

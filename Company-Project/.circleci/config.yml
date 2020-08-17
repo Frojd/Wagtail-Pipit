@@ -1,4 +1,7 @@
-version: 2
+# orbs:
+#   slack: circleci/slack@3.4.2
+
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/repo
@@ -57,17 +60,21 @@ jobs:
             - ~/repo/frontend/node_modules
       - run:
           command: |
+            cp -r frontend/ ~/repo/src/pipit/static/pipit/frontend/
             cd frontend
             npm test
-            npm run eslint
-            npm run build:prod
-            npm run ssr:prod
+            npm run build
+            # So we don't copy the gigantic node_modules on each deploy
+            rm -rf node_modules
       - save_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/repo/src/core/static/core
+            - ~/repo/src/pipit/static/pipit
             - ~/repo/frontend/raw
             - ~/repo/frontend/dist
+      # - slack/status:
+      #     fail_only: true
+      #     webhook: ${SLACK_WEBHOOK}
 
   django:
     <<: *defaults
@@ -104,6 +111,9 @@ jobs:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/repo/src
+      # - slack/status:
+      #     fail_only: true
+      #     webhook: ${SLACK_WEBHOOK}
 
   deploy:
     <<: *defaults
@@ -141,6 +151,9 @@ jobs:
             if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
+      # - slack/status:
+      #     fail_only: true
+      #     webhook: ${SLACK_WEBHOOK}
 
 workflows:
   version: 2
