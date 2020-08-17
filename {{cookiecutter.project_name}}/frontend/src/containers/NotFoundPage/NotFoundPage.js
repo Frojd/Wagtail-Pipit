@@ -1,18 +1,12 @@
-import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
+import React from "react";
+import "./NotFoundPage.scss";
 
-import './NotFoundPage.scss';
+const NotFoundPage = () => {
+    return <div className="NotFoundPage">NotFoundPage</div>;
+};
 
-class NotFoundPage extends PureComponent {
-    state = {};
+NotFoundPage.propTypes = {};
 
-    static defaultProps = {};
-
-    static propTypes = {};
-
-    render() {
-        return <div className="NotFoundPage">NotFoundPage</div>;
-    }
-}
+NotFoundPage.defaultProps = {};
 
 export default NotFoundPage;
