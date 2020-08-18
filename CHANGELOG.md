@@ -18,6 +18,7 @@
 - Fix: Fix broken canonical value in template (Martin Sandström)
 - Fix: Drop deprecated SiteMiddleware. Fixes #189 (Martin Sandström)
 - Fix: Use the new pip resolver when installing packages (Martin Sandström)
+- Fix: Ignore tests marked as slow in dev (Martin Sandström)
 - Fix: Upgrade Wagtail to 2.10
 - Fix: Upgrade Python to 3.8
 - Fix: Upgrade Sentry SDK
