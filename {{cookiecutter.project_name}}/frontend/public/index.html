@@ -24,6 +24,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script>
+        let params = new URLSearchParams(window.location.search);
+        document.domain = params.get('devserver_domain')
+        window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
+    </script>
     <title>React App</title>
   </head>
   <body>
