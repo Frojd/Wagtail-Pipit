@@ -1,6 +1,6 @@
 {% raw -%}
 - name: Copy frontend directory to shared/frontend/
-  shell: "cp -r -u {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/frontend/ {{ ansistrano_shared_path }}/frontend/"
+  shell: "cp -r -u {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/frontend/ {{ ansistrano_shared_path }}/"
 
 - name: Move build directory to static/pipit/build
   shell: "mv {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/frontend/build/ {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/build/"
