@@ -64,6 +64,12 @@ If you have ideas for improvement, please share your thoughts through an issue. 
 - Issue Tracker: [https://github.com/Frojd/Wagtail-Pipit/issues](https://github.com/Frojd/Wagtail-Pipit/issues)
 - Source Code: [https://github.com/Frojd/Wagtail-Pipit](https://github.com/Frojd/Wagtail-Pipit)
 
+
+## Security
+
+If you believe you have found a security issue with any of our projects please email us at [security@frojd.se](security@frojd.se).
+
+
 ## Support
 
 If you have any issues, please submit an issue and we will do our best to help you out.
