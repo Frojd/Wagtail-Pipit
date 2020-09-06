@@ -1,14 +1,23 @@
-/* global module */
-
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import __Component from './__Component';
 import '../../i18n';
-import { withA11y } from'@storybook/addon-a11y';
+import { withA11y } from '@storybook/addon-a11y';
 
 import data from './__Component.data.js';
 
-storiesOf('Components|__Component', module)
-    .addDecorator(withA11y)
-    .add('with data', () => <__Component {...data} />)
-    .add('without data', () => <__Component />);
+export default {
+  title: 'Components/__Component',
+  decorators: [withA11y],
+};
+
+export const WithData = () => <__Component {...data} />;
+
+WithData.story = {
+  name: 'with data',
+};
+
+export const WithoutData = () => <__Component />;
+
+WithoutData.story = {
+  name: 'without data',
+};

@@ -1,11 +1,20 @@
-/* global module */
-
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import ArticlePage from './ArticlePage';
 
 import data from './ArticlePage.data';
 
-storiesOf('Containers|ArticlePage', module)
-    .add('without data', () => <ArticlePage />)
-    .add('with data', () => <ArticlePage {...data} />);
+export default {
+  title: 'Containers/ArticlePage',
+};
+
+export const WithoutData = () => <ArticlePage />;
+
+WithoutData.story = {
+  name: 'without data',
+};
+
+export const WithData = () => <ArticlePage {...data} />;
+
+WithData.story = {
+  name: 'with data',
+};

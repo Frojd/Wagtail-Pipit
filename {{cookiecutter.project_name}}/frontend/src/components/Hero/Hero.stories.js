@@ -1,11 +1,20 @@
-/* global module */
-
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Hero from './Hero';
 
 import data from './Hero.data';
 
-storiesOf('Components|Hero', module)
-    .add('without data', () => <Hero />)
-    .add('with data', () => <Hero {...data} />);
+export default {
+  title: 'Components/Hero',
+};
+
+export const WithoutData = () => <Hero />;
+
+WithoutData.story = {
+  name: 'without data',
+};
+
+export const WithData = () => <Hero {...data} />;
+
+WithData.story = {
+  name: 'with data',
+};
