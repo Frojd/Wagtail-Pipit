@@ -26,8 +26,11 @@
     -->
     <script>
         let params = new URLSearchParams(window.location.search);
-        document.domain = params.get('devserver_domain')
-        window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
+        let devDomain = params.get('devserver_domain')
+        if (devDomain) {
+            document.domain = devDomain
+            window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
+        }
     </script>
     <title>React App</title>
   </head>
