@@ -15,14 +15,14 @@ let params = new URLSearchParams(window.location.search)
 const DEVSERVER = params.get('devserver') === '1';
 let DEVSERVER_DOMAIN = "localhost";
 
-function isLocalDoamain(url) {
+function isLocalDomain(url) {
     let hostname = new URL("http://"+url).hostname;
     return hostname.indexOf(".test") === hostname.length - 5;
 }
 
 if (
     params.get('devserver_domain')
-    && isLocalDoamain(params.get('devserver_domain'))
+    && isLocalDomain(params.get('devserver_domain'))
 ) {
     DEVSERVER_DOMAIN = params.get('devserver_domain')
 }
