@@ -37,8 +37,6 @@
                 {% extract_elements 'pipit/build/index.html' 'stylesheet' %}
             {% endcache %}
         {% endif %}
-
-        <link rel="stylesheet" href="{% static 'pipit/index.css' %}" type="text/css" />
     </head>
     <body>
         {% block main %}
