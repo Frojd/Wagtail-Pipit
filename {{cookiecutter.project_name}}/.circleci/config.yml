@@ -37,8 +37,8 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/python:3.8
-      - image: circleci/node:latest
-      - image: mdillon/postgis:10
+      - image: circleci/node:12
+      - image: circleci/postgres:12-postgis
     steps:
       - checkout
       - save_cache:
@@ -49,7 +49,7 @@ jobs:
   frontend:
     <<: *defaults
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12
     steps:
       - *restore_repo
       - restore_cache:
@@ -81,10 +81,11 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/python:3.8
-      - image: circleci/postgres:10
+      - image: circleci/postgres:12-postgis
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - *restore_repo
       - restore_cache:
