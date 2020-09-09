@@ -21,7 +21,7 @@ services:
     ports:
       - "8082:3000"
   db:
-    image: mdillon/postgis:10
+    image: postgis/postgis:12-2.5
     ports:
       - "5433:5432"
     environment:
