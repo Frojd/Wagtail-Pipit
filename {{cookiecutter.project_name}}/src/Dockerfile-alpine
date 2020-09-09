@@ -40,6 +40,7 @@ RUN \
    	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories  \
 	&& apk add \
 		gcc \
+        git \
 		gdal-dev \
 		geos-dev  \
 		gettext \

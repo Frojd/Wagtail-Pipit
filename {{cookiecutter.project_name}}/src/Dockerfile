@@ -26,7 +26,7 @@ ADD . /app/
 RUN apt-get update \
     && apt-get install -y netcat \
 		binutils libproj-dev gdal-bin \
-		gettext \
+		gettext git \
 		libpq-dev build-essential \
 		--no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
