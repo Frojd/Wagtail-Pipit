@@ -1,18 +1,15 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./BasePage.scss";
 
-export default class BasePage extends PureComponent {
-    state = {};
+const BasePage = ({ children }) => {
+    return <div className="BasePage">{children}</div>;
+};
 
-    static defaultProps = {};
+BasePage.defaultProps = {};
 
-    static propTypes = {
-        children: PropTypes.node,
-    };
+BasePage.propTypes = {
+    children: PropTypes.node,
+};
 
-    render() {
-        const { children } = this.props;
-        return <div className="BasePage">{children}</div>;
-    }
-}
+export default BasePage;
