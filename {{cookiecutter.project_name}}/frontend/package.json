@@ -38,7 +38,8 @@
     "hypernova": "node src/hypernovaBootstrap.js",
     "storybook": "npx start-storybook -h 0.0.0.0 -p 3001 -s public",
     "build-storybook": "npx build-storybook -s public",
-    "new": "node cli/bin.js new"
+    "new": "node cli/bin.js new",
+    "new:container": "node cli/bin.js new --container"
   },
   "eslintConfig": {
     "extends": "react-app"
