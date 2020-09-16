@@ -189,7 +189,7 @@ code nice and tidy.  From our point of view a container differs from a component
 
 To build our container, launch the scaffolder again, this time using the flag `-c` for `Container`
 ```bash
-npm run new WordCountPage -- -c
+npm run new:container WordCountPage
 ```
 Now you should see your newly created container in `./src/containers/WordCountPage`
 
