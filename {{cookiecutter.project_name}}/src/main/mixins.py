@@ -250,7 +250,7 @@ class TimestampMixin(models.Model):
 
 
 class ReactViewMixin(object):
-    template_name = "pages/react.html"
+    template_name = "pages/empty.html"
 
     def render_to_response(self, context, **response_kwargs):
         if self.should_serve_json(self.request):

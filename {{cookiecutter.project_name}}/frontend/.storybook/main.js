@@ -1,8 +1,21 @@
+const path = require('path');
+
 module.exports = {
-  stories: ['../src/**/*.stories.js'],
-  addons: [
-    '@storybook/preset-create-react-app',
-    '@storybook/addon-actions',
-    '@storybook/addon-links',
-  ],
+    stories: [
+        '../stories/**/*.stories.js',
+        '../components/**/*.stories.js',
+        '../containers/**/*.stories.js',
+    ],
+    addons: [
+        '@storybook/addon-actions',
+        '@storybook/addon-links',
+        '@storybook/addon-viewport',
+        '@storybook/addon-a11y',
+    ],
+    presets: [path.resolve(__dirname, 'next-preset.js')],
+    // webpackFinal: async (baseConfig) => {
+    //   //const nextConfig = require('../next.config.js');
+    //   // merge whatever from nextConfig into the webpack config storybook will use
+    //   return { ...baseConfig };
+    // },
 };

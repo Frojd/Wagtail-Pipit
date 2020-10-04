@@ -11,6 +11,7 @@ from wagtail.contrib.sitemaps.views import sitemap
 
 from main.views.page_not_found import PageNotFoundView
 from main.views.error_500 import error_500_view
+from nextjs.api import api_router
 
 
 handler404 = PageNotFoundView.as_view()
@@ -21,20 +22,20 @@ urlpatterns = []
 if settings.DEBUG:
     urlpatterns += [
         path(
-            "400/",
+            "errorpagetest/400/",
             default_views.bad_request,
             kwargs={"exception": Exception("Bad Request!")},
         ),  # NOQA
         path(
-            "403/",
+            "errorpagetest/403/",
             default_views.permission_denied,
             kwargs={"exception": Exception("Permission Denied")},
         ),  # NOQA
         path(
-            "404/", handler404, kwargs={"exception": Exception("Page not Found")}
+            "errorpagetest/404/", handler404, kwargs={"exception": Exception("Page not Found")}
         ),  # NOQA
         path(
-            "500/", handler500, kwargs={"exception": Exception("Internal error")}
+            "errorpagetest/500/", handler500, kwargs={"exception": Exception("Internal error")}
         ),  # NOQA
     ]
 
@@ -43,36 +44,9 @@ if settings.DEBUG:
 
         urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
 
-    if "revproxy" in settings.INSTALLED_APPS:
-        from revproxy.views import ProxyView
-        from urllib3 import PoolManager
-
-        CustomProxyView = ProxyView
-
-        if settings.REACT_DEVSERVER_HTTPS:
-
-            class NoSSLVerifyProxyView(ProxyView):
-                def __init__(self, *args, **kwargs):
-                    super().__init__(*args, **kwargs)
-                    self.http = PoolManager(
-                        cert_reqs="CERT_NONE", assert_hostname=False
-                    )
-
-            CustomProxyView = NoSSLVerifyProxyView
-
-        proxy_upstream_url = "{}://{}/proxy".format(
-            "https" if settings.REACT_DEVSERVER_HTTPS else "http",
-            settings.REACT_DEVSERVER_REVPROXY_DOMAIN,
-        )
-        urlpatterns += [
-            url(
-                r"^proxy/(?P<path>.*)$",
-                CustomProxyView.as_view(upstream=proxy_upstream_url),
-            ),
-        ]
-
 urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
+    path("api/nextjs/v1/", api_router.urls),
     path("cms/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("sitemap.xml", sitemap, name="sitemap"),

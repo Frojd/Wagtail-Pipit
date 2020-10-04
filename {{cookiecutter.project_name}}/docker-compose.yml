@@ -1,64 +1,32 @@
-version: '3.1'
+version: "3.1"
 services:
-  web:
+  python:
     image: frojd/{{cookiecutter.project_slug}}_web
     build: ./src
     volumes:
       - "./src:/app"
-      - "./docker/files/shared:/shared:rw"
-      - "./docker/files/var/log:/var/log:rw"
-      - "./docker/files/certs:/priv/cert:cached"
-    ports:
-      - "{{cookiecutter.docker_web_port}}:8000"
-      - "{{cookiecutter.docker_vscode_debug_port}}:5678"
     depends_on:
       - db
     env_file: ./docker/config/web.env
-    environment:
-      - REACT_DEVSERVER_PORT={{cookiecutter.docker_frontend_port}}
-  frontend:
-    image: frojd/{{cookiecutter.project_slug}}_frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
-      - "./frontend:/app"
-      - "./src:/webapp:cached"
+
+  web:
+    image: nginx:alpine
+    working_dir: /app
     ports:
-      - "{{cookiecutter.docker_frontend_port}}:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-      - WDS_SOCKET_PORT={{cookiecutter.docker_frontend_port}}
-  storybook:
-    image: frojd/{{cookiecutter.project_slug}}_frontend
+      - "{{cookiecutter.docker_web_port}}:80"
+    links:
+      - python
     volumes:
-      - "./frontend:/app:cached"
-    ports:
-      - "{{cookiecutter.docker_storybook_port}}:3001"
-    depends_on:
-      - frontend
-    environment:
-      - CRA_PUBLIC_URL=/proxy
-    command: storybook
-  ssr:
-    image: frojd/{{cookiecutter.project_slug}}_frontend
-    volumes:
-       - "./frontend:/app:cached"
-    ports:
-      - "3030"
-    depends_on:
-      - frontend
-    environment:
-      - CRA_PUBLIC_URL=/proxy
-      - HYPERNOVA_DISABLE_MODULE_CACHE=1
-      - HYPERNOVA_DEV_MODE=1
-    command: hypernova
+      - "./docker/files/config/nginx.conf:/etc/nginx/conf.d/default.conf:cached"
+      - "./src/media:/app/media"
+      - "./src/static:/app/static"
+
   db:
     image: postgis/postgis:12-2.5
     ports:
       - "{{cookiecutter.docker_db_port}}:5432"
     volumes:
-      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/:cached"
+      - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
       - "./docker/files/shared:/shared:rw"
     environment:
       - POSTGRES_USER=postgres

@@ -158,10 +158,10 @@ Linux (Ubuntu is preffered)
 Nginx
 uWSGI
 Python 3.8+
-PostgreSQL 10+
+PostgreSQL 12+
 PostGIS for PostgreSQL
 GDAL (required for PostGIS)
-Node 10+ (for SSR)
+Node 12+ (for SSR)
 psycopg2-binary (for the provision script that will create db and users)
 ```
 

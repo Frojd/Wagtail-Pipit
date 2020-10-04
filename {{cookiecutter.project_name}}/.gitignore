@@ -58,3 +58,6 @@ htmlcov
 
 # Mypy
 .mypy_cache
+
+# Nextjs
+frontend/.next

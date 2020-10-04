@@ -15,7 +15,7 @@ def if_exists_load_env(name):
     env_file = "{env_path}/{name}".format(env_path=env_path, name=name)
 
     if os.path.exists(env_file):
-        dotenv.load_dotenv(env_file)
+        dotenv.load_dotenv(env_file, override=True)
 
 
 def main():

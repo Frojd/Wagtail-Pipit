@@ -10,7 +10,7 @@ class PageNotFoundTest(TestCase):
     def test_that_404_uses_react_template(self):
         response = self.client.get("/a-404-url/")
 
-        self.assertTemplateUsed(response, "pages/react.html")
+        self.assertTemplateUsed(response, "pages/empty.html")
 
     def test_that_404_view_uses_proper_serializer(self):
         response = self.client.get("/a-404-url/")

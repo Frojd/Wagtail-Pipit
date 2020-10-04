@@ -1,0 +1,13 @@
+.Container {
+    padding: 24px;
+    background-color: #250154;
+}
+
+.Title {
+    color: white;
+}
+
+.TitleIcon {
+    width: 32px;
+    margin-right: 10px;
+}

@@ -46,22 +46,6 @@ case "$CMD" in
         exec python manage.py runserver 0.0.0.0:8000
         ;;
 
-    "runserver_ssl" )
-        wait_for_db
-        setup_django
-
-        if [ ! -f "/priv/cert/cert-key.pem" ]; then
-            echo "Error! You are missing the required SSL certificates"
-            echo "To solve it, make sure you have mkcert installed with a root cert, then run:"
-            echo "mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem {{cookiecutter.domain_prod}}.test"
-            exit 1
-        fi
-
-        echo Starting using manage.py runsslserver
-        export REACT_DEVSERVER_HTTPS="True"
-        exec python manage.py runsslserver 0.0.0.0:8000 --certificate /priv/cert/cert.pem --key /priv/cert/cert-key.pem
-        ;;
-
     "uwsgi" )
         wait_for_db
         setup_django
