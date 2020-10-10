@@ -22,34 +22,34 @@ urlpatterns = []
 if settings.DEBUG:
     urlpatterns += [
         path(
-            "errorpagetest/400/",
+            "wt/400/",
             default_views.bad_request,
             kwargs={"exception": Exception("Bad Request!")},
         ),  # NOQA
         path(
-            "errorpagetest/403/",
+            "wt/403/",
             default_views.permission_denied,
             kwargs={"exception": Exception("Permission Denied")},
         ),  # NOQA
         path(
-            "errorpagetest/404/", handler404, kwargs={"exception": Exception("Page not Found")}
+            "wt/404/", handler404, kwargs={"exception": Exception("Page not Found")}
         ),  # NOQA
         path(
-            "errorpagetest/500/", handler500, kwargs={"exception": Exception("Internal error")}
+            "wt/500/", handler500, kwargs={"exception": Exception("Internal error")}
         ),  # NOQA
     ]
 
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
-        urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+        urlpatterns += [path("wt/__debug__/", include(debug_toolbar.urls))]
 
 urlpatterns += [
     url(settings.ADMIN_URL, admin.site.urls),
-    path("api/nextjs/v1/", api_router.urls),
-    path("cms/", include(wagtailadmin_urls)),
-    path("documents/", include(wagtaildocs_urls)),
-    path("sitemap.xml", sitemap, name="sitemap"),
+    path("wt/api/nextjs/v1/", api_router.urls),
+    path("wt/cms/", include(wagtailadmin_urls)),
+    path("wt/documents/", include(wagtaildocs_urls)),
+    path("wt/sitemap.xml", sitemap, name="sitemap"),
 ]
 
 urlpatterns += [url(r"", include(wagtail_urls))]

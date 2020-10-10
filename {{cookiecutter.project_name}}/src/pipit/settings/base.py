@@ -214,14 +214,14 @@ if get_env("AWS_ACCESS_KEY_ID", ""):
 
 
 # Uploaded media
-MEDIA_URL = "/media/"
+MEDIA_URL = "/wt/media/"
 MEDIA_ROOT = get_env("MEDIA_PATH")
 
 
 # Static files, if in production use static root, else use static dirs
 
 # Static URL to use when referring to static files located in STATIC_ROOT.
-STATIC_URL = "/static/"
+STATIC_URL = "/wt/static/"
 
 # The absolute path to the directory where collectstatic will collect static
 # files for deployment. Example: "/var/www/example.com/static/"I
@@ -237,7 +237,7 @@ STATICFILES_DIRS = (
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
-ADMIN_URL = r"^admin/"
+ADMIN_URL = r"^wt/admin/"
 
 # NextJS
 HEADLESS_PREVIEW_CLIENT_URLS = {
