@@ -52,12 +52,7 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
 
     def listing_view(self, request):
         page = self.get_object()
-        data = page.get_component_data(
-            {
-                "request": request,
-            }
-        )
-        return Response(data)
+        return page.serve(request)
 
     def get_object(self):
         content_type = self.request.GET.get("content_type")
