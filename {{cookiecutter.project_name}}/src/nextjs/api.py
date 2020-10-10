@@ -135,7 +135,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
     known_query_parameters = BaseAPIViewSet.known_query_parameters.union(["html_path"])
 
     def listing_view(self, request):
-        page = self.get_object()
+        page, args, kwargs = self.get_object()
 
         for restriction in page.get_view_restrictions():
             if not restriction.accept_request(request):
@@ -164,12 +164,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                     }
                     return Response(data)
 
-        data = page.get_component_data(
-            {
-                "request": request,
-            }
-        )
-        return Response(data)
+        return page.serve(request, *args, **kwargs)
 
     def get_object(self):
         path = self.request.GET.get("html_path", None)
@@ -177,9 +172,12 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
             raise ValidationError("Missing html_path")
 
         site = Site.find_for_request(self.request)
-        path_components = [component for component in path.split("/") if component]
-        page, _, _ = site.root_page.specific.route(self.request, path_components)
-        return page
+        if not site:
+            raise Http404
+
+        path_components = [component for component in path.split('/') if component]
+        page, args, kwargs = site.root_page.specific.route(self.request, path_components)
+        return page, args, kwargs
 
     @classmethod
     def get_urlpatterns(cls):
