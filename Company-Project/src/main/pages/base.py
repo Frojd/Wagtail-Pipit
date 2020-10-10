@@ -1,10 +1,11 @@
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Union
 
 from django.utils.module_loading import import_string
 from django.http import HttpResponse, JsonResponse
 from django.http.request import HttpRequest
 from rest_framework.serializers import Serializer
 from wagtail.core.models import Page
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
@@ -23,34 +24,31 @@ class BasePage(HeadlessPreviewMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         self.component_name = self.__class__.__name__
         super().__init__(*args, **kwargs)
 
-    def get_context(self, request: HttpRequest, *args, **kwargs) -> Dict[str, Any]:
-        context = super().get_context(request, *args, **kwargs)
-
-        return {**context, "props": self.get_component_data({"request": request})}
-
     def serve(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        if self.should_serve_json(request):
-            json = self.get_component_data({"request": request})
-            return JsonResponse(json)
+        request.is_preview = getattr(request, 'is_preview', False)
+        json = self.get_component_data({"request": request})
+        return JsonResponse(json)
 
-        return super().serve(request, *args, **kwargs)
-
-    @staticmethod
-    def should_serve_json(request: HttpRequest) -> bool:
-        return (
-            request.GET.get("format", None) == "json"
-            or request.content_type == "application/json"
-        )
-
-    def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
+    def get_component_data(
+        self,
+        context: Optional[Dict],
+        component_name: Optional[str] = None,
+        serializer_cls: Optional[Union[str, Serializer]] = None,
+    ) -> Dict[str, Any]:
         return {
-            "component_name": self.component_name,
-            "component_props": self.to_dict(context),
+            "component_name": component_name or self.component_name,
+            "component_props": self.to_dict(context, serializer_cls=serializer_cls),
         }
 
-    def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
+    def to_dict(
+        self,
+        context: Optional[Dict],
+        serializer_cls: Optional[Union[str, Serializer]] = None,
+    ) -> Dict[str, Any]:
         context = context or {}
-        serializer_cls = self.get_serializer_class()
+        if isinstance(serializer_cls, str):
+            serializer_cls = import_string(self.serializer_class)
+        serializer_cls = serializer_cls or self.get_serializer_class()
         serializer = serializer_cls(self, context=context)
         return serializer.data
 

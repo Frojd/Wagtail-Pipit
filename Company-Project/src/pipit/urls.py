@@ -50,7 +50,6 @@ urlpatterns += [
     path("wt/cms/", include(wagtailadmin_urls)),
     path("wt/documents/", include(wagtaildocs_urls)),
     path("wt/sitemap.xml", sitemap, name="sitemap"),
-    # url(r'wt/', include(wagtail_urls)),
 ]
 
 urlpatterns += [url(r"", include(wagtail_urls))]
