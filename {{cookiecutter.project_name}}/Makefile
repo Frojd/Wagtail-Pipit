@@ -14,11 +14,11 @@ test:
 	docker-compose run --rm frontend test
 
 fixcode:
-	docker-compose exec web black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
+	docker-compose exec python black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
 
 translate:
-	docker-compose exec web bash -c "python manage.py makemessages -l sv_SE"
+	docker-compose exec python bash -c "python manage.py makemessages -l sv_SE"
 
 coverage:
-	docker-compose exec web coverage run -m pytest --ds=pipit.settings.test
-	docker-compose exec web coverage html
+	docker-compose exec python coverage run -m pytest --ds=pipit.settings.test
+	docker-compose exec python coverage html
