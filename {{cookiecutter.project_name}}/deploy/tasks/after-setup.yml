@@ -3,21 +3,21 @@
   file:
     path: "{{ansistrano_shared_path}}/.env"
     state: touch
-    mode: 0755
+    mode: 0775
 
 - name: Create media dir
   file:
     path: "{{ansistrano_shared_path}}/media"
-    owner: www-data
+    owner: deploy
     group: www-data
     state: directory
-    mode: 0755
+    mode: 0775
 
 - name: Create logs dir
   file:
     path: "{{ ansistrano_deploy_to }}/logs"
-    owner: www-data
+    owner: deploy
     group: www-data
     state: directory
-    mode: 0755
+    mode: 0775
 {% endraw %}
