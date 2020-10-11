@@ -170,8 +170,10 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         if not site:
             raise Http404
 
-        path_components = [component for component in path.split('/') if component]
-        page, args, kwargs = site.root_page.specific.route(self.request, path_components)
+        path_components = [component for component in path.split("/") if component]
+        page, args, kwargs = site.root_page.specific.route(
+            self.request, path_components
+        )
         return page, args, kwargs
 
     @classmethod

@@ -25,7 +25,7 @@ class BasePage(HeadlessPreviewMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         super().__init__(*args, **kwargs)
 
     def serve(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        request.is_preview = getattr(request, 'is_preview', False)
+        request.is_preview = getattr(request, "is_preview", False)
         json = self.get_component_data({"request": request})
         return JsonResponse(json)
 
