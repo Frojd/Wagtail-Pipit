@@ -93,6 +93,10 @@
         group: www-data
         mode: 0644
 
+    - name: Add wagtail cronjobs
+      shell: |
+        echo '0 * * * *  www-data /mnt/persist/www/{{ project_slug }}/shared/venv/bin/python /mnt/persist/www/{{ project_slug }}/current/src/manage.py publish_scheduled_pages' >> /mnt/persist/etc/crontab
+
 - name: Runs deploy playbook
   import_playbook: deploy.yml
 
