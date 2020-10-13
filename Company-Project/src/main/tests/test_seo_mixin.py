@@ -34,15 +34,3 @@ class SeoMixinTest(WagtailPageTests):
         self.assertEqual(self.page.seo_twitter_description, "My twitter description")
         self.assertEqual(self.page.seo_twitter_url, self.page.full_url)
         self.assertEqual(self.page.seo_meta_robots, "index,follow")
-
-    def test_partial_print(self):
-        request = self.factory.get(self.page.url)
-
-        resp = self.page.serve(request)
-        self.assertContains(resp, "<title>My start</title>")
-        self.assertContains(
-            resp,
-            '<meta property="og:description" content="{}" />'.format(
-                "My og description"
-            ),
-        )
