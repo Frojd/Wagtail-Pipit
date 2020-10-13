@@ -4,7 +4,7 @@ from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.http.request import HttpRequest
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.utils.functional import cached_property
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
@@ -250,28 +250,9 @@ class TimestampMixin(models.Model):
 
 
 class ReactViewMixin(object):
-    template_name = "pages/empty.html"
-
     def render_to_response(self, context, **response_kwargs):
-        if self.should_serve_json(self.request):
-            from django.http import JsonResponse
-
-            props = self.get_component_data({"request": self.request})
-            return JsonResponse(props)
-
-        return super().render_to_response(context, **response_kwargs)
-
-    @staticmethod
-    def should_serve_json(request: HttpRequest) -> bool:
-        return (
-            request.GET.get("format", None) == "json"
-            or request.content_type == "application/json"
-        )
-
-    def get_context_data(self, *args, **kwargs) -> Dict[str, Any]:
-        context = super().get_context_data(*args, **kwargs)
-
-        return {**context, "props": self.get_component_data({"request": self.request})}
+        props = self.get_component_data({"request": self.request})
+        return JsonResponse(props)
 
     def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
         return {
