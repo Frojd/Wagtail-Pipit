@@ -49,6 +49,9 @@ export async function getServerSideProps({ req, params, res }) {
     path = path.join('/');
 
     let queryParams = new URL(req.url, `https://${req.headers.host}`).search;
+    if (queryParams.indexOf("?") === 0) {
+        queryParams = queryParams.substr(1);
+    }
     queryParams = querystring.parse(queryParams);
 
     // Try to serve page
