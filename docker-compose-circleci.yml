@@ -3,8 +3,6 @@ services:
   python:
     image: frojd/wagtail_pipit_web
     build: ./src
-    volumes:
-      - "./src:/app"
     depends_on:
       - db
     env_file: ./docker/config/web.env
