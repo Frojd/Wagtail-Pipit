@@ -10,7 +10,7 @@ jobs:
   build:
     working_directory: ~/frojd-django-boilerplate
     docker:
-      - image: circleci/python:3.6.1
+      - image: circleci/python:3.8
       - image: mdillon/postgis:10
 
     environment:
