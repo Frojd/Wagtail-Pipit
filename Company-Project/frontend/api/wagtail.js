@@ -81,7 +81,6 @@ export async function getRequest(url, params, options) {
         ...headers,
     };
     const queryString = querystring.stringify(params);
-    console.log(`${url}?${queryString}`);
     const res = await fetch(`${url}?${queryString}`, { headers });
 
     if (res.status < 200 || res.status >= 300) {
