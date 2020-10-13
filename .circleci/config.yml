@@ -69,7 +69,7 @@ jobs:
           command: |
             set -x
             cd Company-Project
-            docker-compose -f docker-compose-circleci.yml run web test
+            docker-compose -f docker-compose-circleci.yml run python test
             # docker-compose -f docker-compose-circleci.yml run frontend test
             # docker-compose -f docker-compose-circleci.yml run frontend build
 
