@@ -27,9 +27,9 @@ sleep $db_wait_time
 
 echo "Adjusting database..."
 
-docker-compose exec web python manage.py wagtail_change_site_domain --site_id=1 --new_site_domain=$local_domain
+docker-compose exec python ./manage.py wagtail_change_site_domain --site_id=1 --new_site_domain=$local_domain
 
-docker-compose exec web python manage.py change_user_password --user=admin --password=admin
+docker-compose exec python ./manage.py change_user_password --user=admin --password=admin
 
 echo "---"
 echo "Done!"

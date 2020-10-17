@@ -8,4 +8,4 @@ set -e
 # Example usage `scripts/pip.sh install requests`
 
 COMMAND="pip $@"
-docker-compose exec web $COMMAND
+docker-compose exec python $COMMAND

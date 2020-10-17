@@ -198,24 +198,24 @@ Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/instal
 ### How do I run the test suite locally?
 
 ```
-docker-compose run --rm web test
+docker-compose run --rm python test
 ```
 
 
 ### How do I run custom manage.py commands?
 
-To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your web container.
+To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your python container.
 
 - Example: Create migrations
 
 ```
-docker-compose exec web python manage.py makemigrations
+docker-compose exec python ./manage.py makemigrations
 ```
 
 - Example: Run migrations
 
 ```
-docker-compose exec web python manage.py migrate
+docker-compose exec python ./manage.py migrate
 ```
 
 We also have a manage.sh script to make running management commands easier.

@@ -10,7 +10,7 @@ init:
 	docker-compose up
 
 test:
-	docker-compose run --rm web test
+	docker-compose run --rm python test
 	docker-compose run --rm frontend test
 
 fixcode:
