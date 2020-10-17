@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getViewData, getPublicViewData } from '../api/wagtail';
-import cache from '../containers';
+import LazyContainers from '../containers/LazyContainers';
 
 export default function DynamicNotFoundPage() {
     // 404 does not support getServerSideProps, must fetch client side data
@@ -22,7 +22,7 @@ export default function DynamicNotFoundPage() {
 }
 
 function NotFoundPage({ componentName, componentProps }) {
-    const Component = cache[componentName];
+    const Component = LazyContainers[componentName];
     if (!Component) {
         return <h1>Component {componentName} not found</h1>;
     }

@@ -1,11 +1,11 @@
 import querystring from 'querystring';
 import { getPage, getViewData, getRedirect, getAllPages } from '../api/wagtail';
-import cache from '../containers';
+import LazyContainers from '../containers/LazyContainers';
 
 const isProd = process.env.NODE_ENV === 'production';
 
 export default function CatchAllPage({ componentName, componentProps }) {
-    const Component = cache[componentName];
+    const Component = LazyContainers[componentName];
     if (!Component) {
         return <h1>Component {componentName} not found</h1>;
     }
