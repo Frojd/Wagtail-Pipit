@@ -9,8 +9,7 @@ modern frontend stack while still not making the trade-off normally would by run
 
 ## Features
 
-- Hot reloading using [Create React App](https://create-react-app.dev/)
-- Server-Side Rendering
+- Hybrid static and server rendered React using [Next.js](https://nextjs.org/)
 - Page scaffolding
 - [12-Factor App](https://12factor.net/) compliant
 - Docker development environment
