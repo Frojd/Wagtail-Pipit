@@ -2,7 +2,7 @@ Django==3.1.2
 boto==2.49.0
 django-storages==1.10
 psycopg2==2.8.6
-sentry_sdk==0.18.0
+sentry_sdk==0.19.1
 python-dotenv==0.14.0
 wagtail==2.10.2
 wagtail-meta-preview
