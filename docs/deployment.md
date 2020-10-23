@@ -18,7 +18,7 @@ It's possible you deploy manually and is something that you usually do this befo
 #### How to
 
 1. Open deployment folder: `cd deploy`
-2. Setup and activate virtualenv: `python3 -m venv venv && venv/bin/activate`
+2. Setup and activate virtualenv: `python3 -m venv venv && . venv/bin/activate`
 3. Install ansible: `pip install -r requirements.txt`
 4. Install ansistrano: `ansible-galaxy install -r requirements.yml`
 
