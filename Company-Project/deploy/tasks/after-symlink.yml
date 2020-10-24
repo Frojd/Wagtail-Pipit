@@ -10,17 +10,6 @@
 - name: Collect static
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py collectstatic --noinput"
 
-- name: Make sure www-data has ownership of current
-  file:
-    path: "{{ item }}"
-    owner: www-data
-    group: www-data
-    state: directory
-    recurse: yes
-  with_items:
-    - "{{ ansistrano_deploy_to }}/current"
-    - "{{ ansistrano_deploy_to }}/logs"
-
 - name: Restart uWSGI
   service:
     name: uwsgi
