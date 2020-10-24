@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { getPasswordProtectedPage } from '../../api/wagtail';
-import cache from '../../containers';
+import LazyContainers from '../LazyContainers';
 
 const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
     const [values, setValues] = useState({ password: '' });
@@ -33,7 +33,7 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
 
     if (pageData) {
         const { componentName, componentProps } = pageData;
-        const Component = cache[componentName];
+        const Component = LazyContainers[componentName];
         if (!Component) {
             return <h1>Component {componentName} not found</h1>;
         }
@@ -62,6 +62,7 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
 PasswordProtectedPage.propTypes = {
     restrictionId: PropTypes.number.isRequired,
     pageId: PropTypes.number.isRequired,
+    csrfToken: PropTypes.string.isRequired,
 };
 
 export default PasswordProtectedPage;

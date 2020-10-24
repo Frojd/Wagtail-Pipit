@@ -1,30 +1,23 @@
-import React, { PureComponent } from 'react';
-import { basePageWrap } from '../BasePage';
+import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './HomePage.module.css'
-
+import { basePageWrap } from '../BasePage';
 import Hero from '../../components/Hero';
+import s from './HomePage.module.css'
 
-class HomePage extends PureComponent {
-    state = {};
-
-    static defaultProps = {
-        title: '',
-    };
-
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-    };
-
-    render() {
-        const { title } = this.props;
-
-        return (
-            <div className={styles.Container}>
-                <Hero title={title} />
-            </div>
-        );
-    }
+const HomePage = ({ title }) => {
+    return (
+        <div className={s.Container}>
+            <Hero title={title} />
+        </div>
+    );
 }
+
+HomePage.defaultProps = {
+    title: '',
+};
+
+HomePage.propTypes = {
+    title: PropTypes.string.isRequired,
+};
 
 export default basePageWrap(HomePage);

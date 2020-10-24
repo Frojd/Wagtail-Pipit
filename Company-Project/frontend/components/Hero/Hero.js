@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Hero.module.css';
+import s from './Hero.module.css';
 
 const Hero = ({ title }) => (
-    <div className={styles.Container}>
-        <h1 className={styles.Title}>
+    <div className={s.Container}>
+        <h1 className={s.Title}>
             <img
                 src={'img/white_circle.png'}
                 alt="Logo"
-                className={styles.TitleIcon}
+                className={s.TitleIcon}
             />
             {title}</h1>
     </div>
