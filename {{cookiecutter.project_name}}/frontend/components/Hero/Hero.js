@@ -10,7 +10,8 @@ const Hero = ({ title }) => (
                 alt="Logo"
                 className={s.TitleIcon}
             />
-            {title}</h1>
+            {title}
+        </h1>
     </div>
 );
 

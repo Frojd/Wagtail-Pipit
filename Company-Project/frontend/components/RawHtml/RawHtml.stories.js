@@ -9,4 +9,3 @@ import data from './RawHtml.data';
 storiesOf('Components|RawHtml', module)
     .add('without data', () => <RawHtml />)
     .add('with data', () => <RawHtml {...data} />);
-

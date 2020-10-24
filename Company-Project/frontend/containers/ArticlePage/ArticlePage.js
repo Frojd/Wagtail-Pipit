@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
-import Hero from "../../components/Hero";
-import RawHtml from "../../components/RawHtml";
-import s from './ArticlePage.module.css'
+import Hero from '../../components/Hero';
+import RawHtml from '../../components/RawHtml';
+import s from './ArticlePage.module.css';
 
 const ArticlePage = ({ title, richText }) => {
     return (
@@ -15,8 +15,8 @@ const ArticlePage = ({ title, richText }) => {
 };
 
 ArticlePage.defaultProps = {
-    title: "",
-    richText: "",
+    title: '',
+    richText: '',
 };
 
 ArticlePage.propTypes = {

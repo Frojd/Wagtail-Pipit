@@ -3,7 +3,7 @@ import s from './NotFoundPage.module.css';
 
 const NotFoundPage = () => {
     return <div className={s.Container}>NotFoundPage</div>;
-}
+};
 
 NotFoundPage.propTypes = {};
 

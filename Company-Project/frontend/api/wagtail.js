@@ -17,12 +17,17 @@ export async function getPage(path, params, options) {
     return await getRequest(`${API_URL}/v1/page_by_path/`, params, options);
 }
 
-export async function getPasswordProtectedPage(restrictionId, pageId, params, options) {
+export async function getPasswordProtectedPage(
+    restrictionId,
+    pageId,
+    params,
+    options
+) {
     params = params || {};
     return await postRequest(
         `${NEXT_PUBLIC_API_URL}/v1/password_protected_page/${restrictionId}/${pageId}/`,
         params,
-        options,
+        options
     );
 }
 

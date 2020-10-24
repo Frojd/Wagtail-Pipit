@@ -17,11 +17,12 @@ const WagtailUserbar = ({ html }) => {
 
             // Bind to touchend event, preventDefault to prevent DELAY and CLICK
             // in accordance with: https://hacks.mozilla.org/2013/04/detecting-touch-its-the-why-not-the-how/
-            trigger.addEventListener('touchend', function preventSimulatedClick(e) {
+            trigger.addEventListener('touchend', function preventSimulatedClick(
+                e
+            ) {
                 e.preventDefault();
                 toggleUserbar(e);
             });
-
         } else {
             userbar.classList.add('no-touch');
         }
@@ -62,11 +63,9 @@ const WagtailUserbar = ({ html }) => {
     });
 
     // Strip away the scrip tag since we use our own
-    html = html.replace(/<script[^\0]*<\/script>/g, "");
+    html = html.replace(/<script[^\0]*<\/script>/g, '');
 
-    return (
-        <div dangerouslySetInnerHTML={{ __html: html }} />
-    );
+    return <div dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 WagtailUserbar.propTypes = {

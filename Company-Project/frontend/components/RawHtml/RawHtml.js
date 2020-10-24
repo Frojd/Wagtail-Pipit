@@ -15,4 +15,3 @@ RawHtml.defaultProps = {
 };
 
 export default RawHtml;
-

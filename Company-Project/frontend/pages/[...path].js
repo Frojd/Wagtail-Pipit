@@ -49,27 +49,31 @@ export async function getServerSideProps({ req, params, res }) {
     path = path.join('/');
 
     let queryParams = new URL(req.url, `https://${req.headers.host}`).search;
-    if (queryParams.indexOf("?") === 0) {
+    if (queryParams.indexOf('?') === 0) {
         queryParams = queryParams.substr(1);
     }
     queryParams = querystring.parse(queryParams);
 
     // Try to serve page
     try {
-        const { componentName, componentProps }= await getPage(path, queryParams, {
-            headers: {
-                cookie: req.headers.cookie,
-            },
-        });
+        const { componentName, componentProps } = await getPage(
+            path,
+            queryParams,
+            {
+                headers: {
+                    cookie: req.headers.cookie,
+                },
+            }
+        );
 
-        if (componentName === "RedirectPage") {
+        if (componentName === 'RedirectPage') {
             const { location, isPermanent } = componentProps;
             res.statusCode = isPermanent ? 301 : 302;
             res.setHeader('location', location);
             res.end();
         }
 
-        return { props: { componentName, componentProps }};
+        return { props: { componentName, componentProps } };
     } catch (err) {
         // When in development, show django error page on error
         if (!isProd && err.response.status >= 500) {

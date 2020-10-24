@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head'
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 const BasePage = ({ children, seo, wagtailUserbar }) => {
@@ -16,53 +16,55 @@ const BasePage = ({ children, seo, wagtailUserbar }) => {
         seoTwitterUrl,
         seoTwitterImage,
         seoMetaRobots,
-        canonicalLink
+        canonicalLink,
     } = seo;
     return (
         <>
             <Head>
                 <title>{seoHtmlTitle}</title>
                 <link rel="icon" href="/favicon.ico" />
-                {!!seoMetaDescription &&
+                {!!seoMetaDescription && (
                     <meta name="description" content={seoMetaDescription} />
-                }
-                {!!seoOgTitle &&
+                )}
+                {!!seoOgTitle && (
                     <meta property="og:title" content={seoOgTitle} />
-                }
-                {!!seoOgDescription &&
-                    <meta property="og:description" content={seoOgDescription} />
-                }
-                {!!seoOgUrl &&
-                    <meta property="og:url" content={seoOgUrl} />
-                }
-                {!!seoOgImage &&
+                )}
+                {!!seoOgDescription && (
+                    <meta
+                        property="og:description"
+                        content={seoOgDescription}
+                    />
+                )}
+                {!!seoOgUrl && <meta property="og:url" content={seoOgUrl} />}
+                {!!seoOgImage && (
                     <meta property="og:image" content={seoOgImage} />
-                }
-                {!!seoOgType &&
-                    <meta property="og:type" content={seoOgType} />
-                }
-                {!!seoTwitterTitle &&
+                )}
+                {!!seoOgType && <meta property="og:type" content={seoOgType} />}
+                {!!seoTwitterTitle && (
                     <meta property="twitter:title" content={seoTwitterTitle} />
-                }
-                {!!seoTwitterDescription &&
-                    <meta property="twitter:description" content={seoTwitterDescription} />
-                }
-                {!!seoTwitterUrl &&
+                )}
+                {!!seoTwitterDescription && (
+                    <meta
+                        property="twitter:description"
+                        content={seoTwitterDescription}
+                    />
+                )}
+                {!!seoTwitterUrl && (
                     <meta property="twitter:url" content={seoTwitterUrl} />
-                }
-                {!!seoTwitterImage &&
+                )}
+                {!!seoTwitterImage && (
                     <meta property="twitter:image" content={seoTwitterImage} />
-                }
+                )}
                 <meta name="robots" content={seoMetaRobots} />
-                {!!canonicalLink &&
+                {!!canonicalLink && (
                     <link rel="canonical" href={canonicalLink} />
-                }
+                )}
             </Head>
             <div className="BasePage">{children}</div>
             {!!wagtailUserbar && <WagtailUserbar {...wagtailUserbar} />}
         </>
-    )
-}
+    );
+};
 
 BasePage.defaultProps = {
     seo: {},

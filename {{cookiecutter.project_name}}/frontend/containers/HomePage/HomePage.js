@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
 import Hero from '../../components/Hero';
-import s from './HomePage.module.css'
+import s from './HomePage.module.css';
 
 const HomePage = ({ title }) => {
     return (
@@ -10,7 +10,7 @@ const HomePage = ({ title }) => {
             <Hero title={title} />
         </div>
     );
-}
+};
 
 HomePage.defaultProps = {
     title: '',

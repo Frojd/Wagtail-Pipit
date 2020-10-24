@@ -12,24 +12,29 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
         e.preventDefault();
 
         try {
-            const resp = await getPasswordProtectedPage(restrictionId, pageId, {
-                ...values,
-            }, {
-                headers: {
-                    'X-CSRFToken': csrfToken,
+            const resp = await getPasswordProtectedPage(
+                restrictionId,
+                pageId,
+                {
+                    ...values,
+                },
+                {
+                    headers: {
+                        'X-CSRFToken': csrfToken,
+                    },
                 }
-            });
+            );
 
             setPageData(resp);
         } catch (e) {
-            setError("Invalid password");
+            setError('Invalid password');
         }
-    }
+    };
 
     const handlePasswordChange = (e) => {
-        const {name, value} = e.target
-        setValues({...values, [name]: value})
-    }
+        const { name, value } = e.target;
+        setValues({ ...values, [name]: value });
+    };
 
     if (pageData) {
         const { componentName, componentProps } = pageData;
@@ -56,8 +61,8 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
             </p>
             <button onClick={handleFormChange}>Continue</button>
         </div>
-    )
-}
+    );
+};
 
 PasswordProtectedPage.propTypes = {
     restrictionId: PropTypes.number.isRequired,

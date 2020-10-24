@@ -9,7 +9,7 @@
         "export": "next export",
         "storybook": "start-storybook -p 3001 -s ./public",
         "build-storybook": "npx build-storybook -s public",
-        "fixcode": "npx prettier \"src/**/*(*.css|*.js|*.json|*.md|*.scss)\" --write",
+        "fixcode": "npx prettier \"**/*(*.css|*.js|*.json|*.md|*.scss)\" --write",
         "new": "node cli/bin.js new",
         "new:container": "node cli/bin.js new --container",
         "test": "jest --watch",

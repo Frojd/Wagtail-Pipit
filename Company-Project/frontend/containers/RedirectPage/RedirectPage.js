@@ -7,7 +7,7 @@ const RedirectPage = ({ location }) => {
     });
 
     return null;
-}
+};
 
 RedirectPage.propTypes = {
     redirectUrl: PropTypes.string.isRequired,

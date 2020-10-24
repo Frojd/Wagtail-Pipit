@@ -18,4 +18,3 @@ describe('<RawHtml />', () => {
     //     expect(component).toMatchSnapshot();
     // });
 });
-
