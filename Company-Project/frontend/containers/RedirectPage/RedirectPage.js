@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const RedirectPage = ({ redirectUrl }) => {
+const RedirectPage = ({ location }) => {
     useEffect(() => {
-        window.location = redirectUrl;
+        window.location = location;
     });
 
     return null;

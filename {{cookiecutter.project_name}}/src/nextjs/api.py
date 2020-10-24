@@ -154,7 +154,8 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                     data = {
                         "component_name": "RedirectPage",
                         "component_props": {
-                            "redirect_url": resp.url,
+                            "location": resp.url,
+                            "is_permanent": False,
                         },
                     }
                     return Response(data)

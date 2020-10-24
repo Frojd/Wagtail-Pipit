@@ -56,12 +56,20 @@ export async function getServerSideProps({ req, params, res }) {
 
     // Try to serve page
     try {
-        let pageData = await getPage(path, queryParams, {
+        const { componentName, componentProps }= await getPage(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
             },
         });
-        return { props: pageData };
+
+        if (componentName === "RedirectPage") {
+            const { location, isPermanent } = componentProps;
+            res.statusCode = isPermanent ? 301 : 302;
+            res.setHeader('location', location);
+            res.end();
+        }
+
+        return { props: { componentName, componentProps }};
     } catch (err) {
         // When in development, show django error page on error
         if (!isProd && err.response.status >= 500) {

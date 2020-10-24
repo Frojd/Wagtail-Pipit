@@ -154,7 +154,8 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                     data = {
                         "component_name": "RedirectPage",
                         "component_props": {
-                            "redirect_url": resp.url,
+                            "location": resp.url,
+                            "is_permanent": False,
                         },
                     }
                     return Response(data)
@@ -170,8 +171,10 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         if not site:
             raise Http404
 
-        path_components = [component for component in path.split('/') if component]
-        page, args, kwargs = site.root_page.specific.route(self.request, path_components)
+        path_components = [component for component in path.split("/") if component]
+        page, args, kwargs = site.root_page.specific.route(
+            self.request, path_components
+        )
         return page, args, kwargs
 
     @classmethod
