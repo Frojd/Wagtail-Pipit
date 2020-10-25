@@ -204,7 +204,7 @@ docker-compose run --rm python test
 
 ### How do I run custom manage.py commands?
 
-To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your python container.
+To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your `python` container.
 
 - Example: Create migrations
 

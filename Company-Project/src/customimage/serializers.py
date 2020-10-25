@@ -50,7 +50,15 @@ class CustomImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomImage
-        fields = ["title", "file", "width", "height", "file_size", "focal", "renditions"]
+        fields = [
+            "title",
+            "file",
+            "width",
+            "height",
+            "file_size",
+            "focal",
+            "renditions",
+        ]
 
 
 def get_image_serializer(renditions=None):

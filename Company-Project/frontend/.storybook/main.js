@@ -6,6 +6,12 @@ module.exports = {
         '../components/**/*.stories.js',
         '../containers/**/*.stories.js',
     ],
+    babel: async (options) => {
+        options.presets = ['next/babel'];
+        return {
+            ...options,
+        };
+    },
     addons: [
         '@storybook/addon-actions',
         '@storybook/addon-links',

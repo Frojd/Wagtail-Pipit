@@ -219,5 +219,5 @@ ADMIN_URL = r"^wt/admin/"
 
 # NextJS
 HEADLESS_PREVIEW_CLIENT_URLS = {
-    'default': '/api/preview/',
+    "default": "/api/preview/",
 }

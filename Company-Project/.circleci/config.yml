@@ -49,6 +49,10 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/node:12
+    # environment:
+    #   NEXT_PUBLIC_SENTRY_DSN: "https://xxx@xxx.ingest.sentry.io/1234"
+    #   SENTRY_ORG: my-org-ab
+    #   SENTRY_PROJECT: my-sentry-project
     steps:
       - *restore_repo
       - restore_cache:
@@ -60,20 +64,19 @@ jobs:
             - ~/repo/frontend/node_modules
       - run:
           command: |
-            cp -r frontend/ ~/repo/src/pipit/static/pipit/frontend/
             cd frontend
             npm test
             npm run build
+            npm run build-storybook
             # So we don't copy the gigantic node_modules on each deploy
             rm -rf node_modules
       - save_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/repo/src/pipit/static/pipit
-            - ~/repo/frontend/raw
-            - ~/repo/frontend/dist
+            - ~/repo/frontend/
       # - slack/status:
       #     fail_only: true
+      #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
       #     webhook: ${SLACK_WEBHOOK}
 
   django:
@@ -120,6 +123,9 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/python:3.8
+    # environment:
+    #   SENTRY_ORG: my-org-ab
+    #   SENTRY_PROJECT: my-sentry-project
     steps:
       - *restore_repo
       - restore_cache:
@@ -142,6 +148,9 @@ jobs:
             - deploy/venv
       - run:
           command: |
+            mv frontend src
+      - run:
+          command: |
             cd deploy
             . venv/bin/activate
 
@@ -152,8 +161,21 @@ jobs:
             if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
+      # - run: |
+      #     curl -sL https://sentry.io/get-cli/ | bash
+      #     if [ "${CIRCLE_TAG}" ]; then
+      #       export SENTRY_RELEASE=${CIRCLE_TAG}
+      #     fi
+      #     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+      #       export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+      #     fi
+      #     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+      #     sentry-cli releases finalize $SENTRY_RELEASE
+      #     sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
+
       # - slack/status:
       #     fail_only: true
+      #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
       #     webhook: ${SLACK_WEBHOOK}
 
 workflows:
