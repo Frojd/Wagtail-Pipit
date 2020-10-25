@@ -108,6 +108,12 @@ jobs:
           command: |
             sudo apt-get install -y libproj-dev gdal-bin
       - run:
+          name: Make sure black has been applied to .py files
+          command: |
+            . venv/bin/activate
+            pip install black
+            black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" --check src
+      - run:
           command: |
             . venv/bin/activate
             cd src
