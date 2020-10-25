@@ -10,12 +10,11 @@
     name: uwsgi
     state: restarted
 
-- name: Restart pm2
-  shell: "pm2 stop {{ ansistrano_shared_path }}/pm2/{{ project_slug }}.yml || true && pm2 start {{ ansistrano_shared_path }}/pm2/{{ project_slug }}.yml"
+- name: Restart PM2 app
+  shell: "pm2 restart {{ project_slug }}"
 
 - name: Restart Nginx
   service:
     name: nginx
     state: restarted
-
 {% endraw %}

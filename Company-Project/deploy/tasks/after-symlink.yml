@@ -1,9 +1,3 @@
-- name: Copy frontend directory to shared/frontend/
-  shell: "cp -r -u {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/frontend/ {{ ansistrano_shared_path }}/"
-
-- name: Move build directory to static/pipit/build
-  shell: "mv {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/frontend/build/ {{ ansistrano_release_path.stdout }}/src/pipit/static/pipit/build/"
-
 - name: Create cache table
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py createcachetable"
 
@@ -15,14 +9,11 @@
     name: uwsgi
     state: restarted
 
+- name: Restart PM2 app
+  shell: "pm2 restart {{ project_slug }}"
+
 - name: Restart Nginx
   service:
     name: nginx
     state: restarted
-
-- name: Stop and start pm2
-  shell: "pm2 stop {{ ansistrano_shared_path }}/ssr/{{ project_slug }}.yml || true && pm2 start {{ ansistrano_shared_path }}/ssr/{{ project_slug }}.yml"
-
-- name: Build storybook
-  shell: "cd {{ ansistrano_shared_path }}/frontend/ && npm ci && npm run build-storybook"
 
