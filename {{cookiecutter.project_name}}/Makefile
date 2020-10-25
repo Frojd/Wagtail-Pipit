@@ -11,7 +11,7 @@ init:
 
 test:
 	docker-compose run --rm python test
-	docker-compose run --rm frontend test
+	cd frontend && npm run test
 
 fixcode:
 	docker-compose exec python black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
@@ -22,3 +22,6 @@ translate:
 coverage:
 	docker-compose exec python coverage run -m pytest --ds=pipit.settings.test
 	docker-compose exec python coverage html
+
+typecheck:
+	docker-compose run --rm python typecheck

@@ -63,6 +63,11 @@ case "$CMD" in
         exec pytest --ds=pipit.settings.test
         ;;
 
+    "typecheck" )
+        echo Running typecheck
+        exec mypy .
+        ;;
+
     * )
         # Run custom command. Thanks to this line we can still use
         # "docker run our_container /bin/bash" and it will work
