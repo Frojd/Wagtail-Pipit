@@ -9,8 +9,12 @@ from django.core.management import execute_from_command_line
 from django.conf import settings
 
 
-def if_exists_load_env(name):
-    inspect_file = inspect.getfile(inspect.currentframe())
+def if_exists_load_env(name: str) -> None:
+    current_frame = inspect.currentframe()
+    if not current_frame:
+        return
+
+    inspect_file = inspect.getfile(current_frame)
     env_path = os.path.dirname(os.path.abspath(inspect_file))
     env_file = "{env_path}/{name}".format(env_path=env_path, name=name)
 

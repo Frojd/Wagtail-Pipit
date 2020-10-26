@@ -1,4 +1,4 @@
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any, Optional, Union, Tuple
 
 from django.utils.module_loading import import_string
 from django.http import HttpResponse, JsonResponse
@@ -16,7 +16,7 @@ class BasePage(HeadlessPreviewMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
     is_creatable = False
     show_in_menus_default = True
 
-    extra_panels: List = []
+    extra_panels: List[Tuple[str, str]] = []
     serializer_class = "main.pages.BasePageSerializer"
 
     def __init__(self, *args, **kwargs):
@@ -25,7 +25,9 @@ class BasePage(HeadlessPreviewMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         super().__init__(*args, **kwargs)
 
     def serve(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        request.is_preview = getattr(request, "is_preview", False)
+        is_preview = getattr(request, "is_preview", False)
+        setattr(request, "is_preview", is_preview)
+
         json = self.get_component_data({"request": request})
         return JsonResponse(json)
 

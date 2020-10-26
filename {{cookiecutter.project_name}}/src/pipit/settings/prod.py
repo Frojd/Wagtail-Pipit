@@ -1,11 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Write prod settings here, or override base settings
 """
-from __future__ import absolute_import, unicode_literals
-
 import sentry_sdk
 from sentry_sdk import configure_scope
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -29,7 +24,7 @@ STATICFILES_STORAGE = (
 )
 
 # Enable caching of templates in production environment
-TEMPLATES[0]["OPTIONS"]["loaders"] = [
+TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore[index]
     (
         "django.template.loaders.cached.Loader",
         [

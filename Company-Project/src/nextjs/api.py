@@ -1,3 +1,5 @@
+from typing import Dict, Union, cast
+
 from django.contrib.contenttypes.models import ContentType
 from django.http import Http404
 from django.middleware import csrf as csrf_middleware
@@ -5,6 +7,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.urls import path, reverse
 from django.utils.module_loading import import_string
+from django.views import View
 from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -188,17 +191,20 @@ api_router.register_endpoint("page_by_path", PageByPathAPIViewSet)
 
 
 class ExternalViewDataAPIViewSet(BaseAPIViewSet):
-    view_register = {
+    view_register: Dict[str, Union[View, str]] = {
         "404": "main.views.page_not_found.PageNotFoundView",
     }
 
     def detail_view(self, request, pk):
         try:
-            view_cls = self.view_register[pk]
+            view_resource = self.view_register[pk]
         except:
             raise Http404
-        if isinstance(view_cls, str):
-            view_cls = import_string(view_cls)
+
+        if isinstance(view_resource, str):
+            view_resource = import_string(view_resource)
+
+        view_cls: View = cast(View, view_cls)
 
         view = view_cls.as_view()
         resp = view(request)

@@ -34,7 +34,7 @@ class Command(BaseCommand):
             pages_path=pages_path, name=name.lower()
         )
         init_file = "{pages_path}__init__.py".format(
-            pages_path=pages_path, name=name.lower()
+            pages_path=pages_path,
         )
 
         if os.path.exists(page_file):

@@ -1,12 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""
-Django settings for Fröjd Django projects.
-"""
-from __future__ import absolute_import, unicode_literals
-
 import os
+from typing import Optional
 
 from boto.s3.connection import OrdinaryCallingFormat, S3Connection
 
@@ -222,5 +215,6 @@ HEADLESS_PREVIEW_CLIENT_URLS = {
     "default": "/api/preview/",
 }
 
-SENTRY_DSN = None
-SENTRY_ENVIRONMENT = None
+# Sentry
+SENTRY_DSN: Optional[str] = None
+SENTRY_ENVIRONMENT: Optional[str]= None

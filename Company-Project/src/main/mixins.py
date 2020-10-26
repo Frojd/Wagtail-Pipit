@@ -1,4 +1,4 @@
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Callable, List, Tuple, Union
 
 from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
@@ -25,10 +25,17 @@ from wagtail_meta_preview.utils import (
     FacebookSettings,
     GoogleSettings,
 )
+from wagtail.admin.edit_handlers import (
+    BaseFormEditHandler,
+    EditHandler,
+    WagtailAdminPageForm,
+)
 from rest_framework.serializers import Serializer
 
 
 class RedirectUpMixin:
+    get_parent: Callable
+
     def serve(self, request, *args, **kwargs):
         parent = self.get_parent()
         return JsonResponse(
@@ -220,8 +227,15 @@ class SeoMixin(Page):
 
 
 class EnhancedEditHandlerMixin:
+    edit_handler: BaseFormEditHandler
+    content_panels: List[EditHandler]
+    promote_panels: List[EditHandler]
+    settings_panels: List[EditHandler]
+    extra_panels: List[Tuple[str, str]]
+    base_form_class: WagtailAdminPageForm
+
     @cached_classmethod
-    def get_edit_handler(cls):
+    def get_edit_handler(cls) -> EditHandler:
         """
         Get the EditHandler to use in the Wagtail admin when editing
         this page type.
@@ -267,6 +281,10 @@ class TimestampMixin(models.Model):
 
 
 class ReactViewMixin(object):
+    request: HttpRequest
+    component_name: str
+    serializer_class: Union[str, Serializer]
+
     def render_to_response(self, context, **response_kwargs):
         props = self.get_component_data({"request": self.request})
         return JsonResponse(props)
@@ -280,7 +298,7 @@ class ReactViewMixin(object):
     def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
-            self.get_component_props(), context={"request": context["request"]}
+            self.get_component_props(), context=context,
         )
 
         return serializer.data
@@ -292,7 +310,7 @@ class ReactViewMixin(object):
         return self.serializer_class
 
     def get_component_name(self) -> str:
-        if hasattr(self, "component_name"):
+        if getattr(self, "component_name", None):
             return self.component_name
 
         return self.__class__.__name__
