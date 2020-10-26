@@ -221,3 +221,6 @@ ADMIN_URL = r"^wt/admin/"
 HEADLESS_PREVIEW_CLIENT_URLS = {
     "default": "/api/preview/",
 }
+
+SENTRY_DSN = None
+SENTRY_ENVIRONMENT = None
