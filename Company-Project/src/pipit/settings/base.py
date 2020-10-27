@@ -208,7 +208,7 @@ STATICFILES_DIRS = (
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
-ADMIN_URL = r"^wt/admin/"
+ADMIN_URL = "wt/admin/"
 
 # NextJS
 HEADLESS_PREVIEW_CLIENT_URLS = {
@@ -217,4 +217,4 @@ HEADLESS_PREVIEW_CLIENT_URLS = {
 
 # Sentry
 SENTRY_DSN: Optional[str] = None
-SENTRY_ENVIRONMENT: Optional[str]= None
+SENTRY_ENVIRONMENT: Optional[str] = None
