@@ -21,9 +21,9 @@ VERSION=${VERSION#"v"}
 ROOTDIR=$(git rev-parse --show-toplevel)
 
 # Bump django version
-sed -i.bak 's/^APP_VERSION.=.*/APP_VERSION = "'$VERSION'"/' $ROOTDIR/src/core/settings/base.py
+sed -i.bak 's/^APP_VERSION.=.*/APP_VERSION = "'$VERSION'"/' $ROOTDIR/src/pipit/settings/base.py
 
-rm src/core/settings/base.py.bak
+rm src/pipit/settings/base.py.bak
 
 # Bump package.version
 sed -i.bak 's/^\( *\)"version": .*/\1"version": "'$VERSION'",/' $ROOTDIR/frontend/package.json
