@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.conf import settings
-from django.urls import path, include
-from django.conf.urls import url
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 from wagtail.admin import urls as wagtailadmin_urls
@@ -42,16 +41,16 @@ if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
-        urlpatterns += [path("wt/__debug__/", include(debug_toolbar.urls))]
+        urlpatterns += [path("wt/__debug__/", include(debug_toolbar.urls))]  # type: ignore
 
 urlpatterns += [
-    url(settings.ADMIN_URL, admin.site.urls),
+    path(settings.ADMIN_URL, admin.site.urls),
     path("wt/api/nextjs/v1/", api_router.urls),
-    path("wt/cms/", include(wagtailadmin_urls)),
-    path("wt/documents/", include(wagtaildocs_urls)),
+    path("wt/cms/", include(wagtailadmin_urls)),  # type: ignore
+    path("wt/documents/", include(wagtaildocs_urls)),  # type: ignore
     path("wt/sitemap.xml", sitemap, name="sitemap"),
 ]
 
-urlpatterns += [url(r"", include(wagtail_urls))]
+urlpatterns += [re_path(r"", include(wagtail_urls))]  # type: ignore
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
