@@ -24,7 +24,7 @@ STATICFILES_STORAGE = (
 )
 
 # Enable caching of templates in production environment
-TEMPLATES[0]["OPTIONS"]["loaders"] = [
+TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore[index]
     (
         "django.template.loaders.cached.Loader",
         [
