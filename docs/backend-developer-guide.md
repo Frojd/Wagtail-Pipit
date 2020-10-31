@@ -25,9 +25,9 @@ The project backend is located in `/src`, here's an overview of its content:
 │   ├── tests                   # Put your tests here
 │   └── views                   # Put your Django and DRF views here
 ├── manage.py                   # Django admin tool with addons for loading .env files
-├── pipit                       # This is a bootstrap app that contains settings, translations and routing
 ├── nextjs                      # Enables communication between Next.js and Wagtail
-│   ├── context_processors.py   # Application
+├── pipit                       # This is a bootstrap app that contains settings, translations and routing
+│   ├── context_processors.py   # Provides templates with values
 │   ├── locale                  # Translation files
 │   ├── management              # Contains Pipit specific management commands
 │   ├── settings                # Contains all app settings
