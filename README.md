@@ -39,7 +39,7 @@ If you have ideas for improvement, please share your thoughts through an issue. 
 
 - Issue Tracker: [https://github.com/Frojd/Wagtail-Pipit/issues](https://github.com/Frojd/Wagtail-Pipit/issues)
 - Source Code: [https://github.com/Frojd/Wagtail-Pipit](https://github.com/Frojd/Wagtail-Pipit)
-
+- Discussions: You can find us on the [Wagtail slack](https://wagtail.io/slack/) under the channel `#pipit`
 
 ## Security
 If you believe you have found a security issue with any of our projects please email us at [security@frojd.se](security@frojd.se).
