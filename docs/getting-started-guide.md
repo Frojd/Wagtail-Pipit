@@ -157,18 +157,16 @@ For us to support local certificates you need to install a tool called [mkcert](
 
 - Install mkcert
 - Add root cert `mkcert -install`
-- Create a cert for your project `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test`
-- Add the command `runserver_ssl` to your docker container
-Example:
-```yml
-services
-  web:
-    ...
-    command: runserver_ssl
-    ...
-```
+- Create a cert for your project `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem blog.acme.com.test`
+
+- Drop `#mkcert ` from `docker/files/config/nginx.conf` to activate SSL
+
+    sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf && rm -f docker/files/config/nginx.conf.bak
+
+- Remove your docker container `web` (`docker-compose stop && docker-compose rm -f web`)
 - Restart docker
 
+...there is also a alternative way by running `./scripts/enable_ssl.sh`
 
 
 ## Troubleshooting
