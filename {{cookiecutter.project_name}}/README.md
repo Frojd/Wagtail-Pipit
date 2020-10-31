@@ -69,7 +69,6 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend.md)
 - [Datasync between environments](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/data-sync.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/scaffolding.md)
-- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/server-side-rendering.md)
 - [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/deployment.md)
 - [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/ci.md)
 

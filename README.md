@@ -14,6 +14,7 @@ Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide 
 - Error reporting with [Sentry](https://sentry.io/)
 - CI integration via [Circle CI](https://circleci.com/)
 - Data-sync between environments
+- [Storybook](https://storybook.js.org/) for rapid component development
 
 ## Installation
 1. Make sure you have [cookiecutter](https://github.com/audreyr/cookiecutter/blob/master/docs/index.rst) installed. If not run `pip install cookiecutter` (or via brew)
@@ -30,7 +31,6 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Backend Developer Guide](/docs/backend-developer-guide.md)
 - [Datasync between environments](/docs/data-sync.md)
 - [Scaffolding](/docs/scaffolding.md)
-- [Server-Side Rendering](/docs/server-side-rendering.md)
 - [Deploying with Ansistrano](/docs/deployment.md)
 - [Setting up continuous integration on CircleCI](/docs/ci.md)
 

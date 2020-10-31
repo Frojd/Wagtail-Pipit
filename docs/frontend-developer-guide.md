@@ -24,21 +24,23 @@ The whole frontend of the project is located in `/frontend/`. Here is an overvie
 the contents (Some files omitted for brevity):
 
 ```bash
-├── src  # The source root folder for your frontend app
-│   ├── components             # Contains all Components
-│   ├── containers             # Contains all Containers
-│   ├── hypernovaBootstrap.js  # SSR service entrypoint
-│   ├── hypernova.js           # SSR service configuration
-│   ├── i18n                   # Contains internationalization strings and module for handling those
-│   ├── index.js               # Entry point for your frontend applications
-│   ├── index.scss             # Entry point for styling your frontend application
-│   ├── serviceWorker.js       # Service worker file shipping with Create React App, disabled by default
-│   ├── setupTests.js          # Test suite configurations
-│   ├── stories                # Default storybook directory
-│   ├── styles                 # Global styling (h1, h2, resets etc)
-│   └── utils                  # Where you should place your utility functions
-├── cli  # Contains the cli tool for generating new components
-└── public # Contains templates for Create React App
+├── .storybook      # Configuration for storybook
+├── api             # Contains api libraries for communicating with Wagtail
+├── cli             # Contains the cli tool for generating new components
+├── components      # Contains all Components
+├── config          # Contains various configurations, ex for jest
+├── containers      # Contains all Containers
+├── data            # Hold fixtures and factories for storybook and tests
+├── i18n            # Contains internationalization strings and module for handling those
+├── index.css       # Entrypoing for global css from styles
+├── jest.config.js  # Configuration for jest
+├── next.config.js  # Configuration for Bext.js
+├── pages           # Contains Next.js [pages](https://nextjs.org/docs/basic-features/pages)
+├── public          # Static files to be served by Next.js
+├── setupTests.js   # Test suite configurations
+├── stories         # Default storybook directory
+├── styles          # Global styling (h1, h2, resets etc)
+└── utils           # Where you should place your utility functions
 ```
 
 
@@ -48,7 +50,7 @@ cd frontend     # if not there already
 npm i
 ```
 
-Next, we start the frontend dev-server:
+Next, we start [Storybook](https://storybook.js.org/)
 ```bash
 npm run storybook
 ```
@@ -76,21 +78,22 @@ npm run new Button
 
 This will create the following files:
 ```
-./src/components/Button/Button.data.js
-./src/components/Button/Button.scss
-./src/components/Button/index.js
-./src/components/Button/Buttons.stories.js
-./src/components/Button/Button.js
-./src/components/Button/Button.test.js
+├── components
+│   ├── Button
+│   │   ├── Button.data.js
+│   │   ├── Button.js
+│   │   ├── Button.module.css
+│   │   ├── Button.test.js
+│   │   ├── Buttons.stories.js
+│   │   └── index.js
 ```
 
 #### Button.data.js
 Exporting a JS-object representing the `props` the component will use in the dev-server,
 which will be passed down from higher order components/containers in the actual app
 
-#### Button.scss
-The stylesheet for the component. We encouraged that all styling in this file has no reference outside of the
-`.Button` context, according to [BEM Methodology](https://en.bem.info/methodology/quick-start/)
+#### Button.module.css
+The stylesheet for the component. It uses [CSS Modules](https://github.com/css-modules/css-modules) where class names are scoped locally.
 
 #### index.js
 Decides what the module exports. It defaults to the component `Button` and you can almost always ignore this file.
@@ -110,10 +113,10 @@ Tests for the component. It will run when you run "npm run test"
 Let’s start coding the javascript, modify the `Button.js` so that it looks like this:
 ```js
 import React from 'react';
-import './Button.scss';
+import s from './Button.module.css';
 
 const Button = ({onClick, text}) => (
-    <button className="Button" onClick={onClick}>
+    <button className={s.Button} onClick={onClick}>
         {text}
     </button>
 );
@@ -130,7 +133,7 @@ you would also want to specify [`propTypes`](https://reactjs.org/docs/typechecki
 [`defaultProps`](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values) but that is 
 outside the scope for this tutorial.
 
-### Providing data for the dev-server
+### Providing data for storybook
 
 We need to provide the props `text` and `onClick` to our component to be able to work with it in the dev server.
 Add the following to `Button.data.js`:
@@ -141,9 +144,8 @@ export default {
 };
 ```
 
-Now if you look at the component in the browser on [http://localhost:3001/Button](http://localhost:3001/Button) you
-should see the text "Button text" and if you click it you should see "clicked" in the browser console.  *Note:* You
-need to refresh the browser.
+Now if you look at the component in the browser on [http://localhost:3001/?path=/story/components-button--with-data](http://localhost:3001/?path=/story/components-button--with-data) you
+should see the text "Button text" and if you click it you should see "clicked" in the browser console.
 
 To be able to mock the props like this is very handy since you can develop the whole frontend without
 the actual Wagtail implementation in place. It helps you to test the frontend in an isolated context and in a team
@@ -151,11 +153,9 @@ setting you can have different members of your team working on the frontend and 
 
 ### Add styling
 
-To style the component, we simply add some scss-rules to `Button.scss`:
+To style the component, we simply add some css-rules to `Button.module.css`:
 
-```scss
-@import "styles/includes.scss";
-
+```css
 .Button {
     background: #ff4040;
     color: white;
@@ -164,10 +164,9 @@ To style the component, we simply add some scss-rules to `Button.scss`:
 }
 ```
 
-We recommend that all styling in this file have no reference outside of the `.Button` context, 
-since we follow the [BEM Methodology](https://en.bem.info/methodology/quick-start/).
+Please note that since [CSS modules](https://github.com/css-modules/css-modules) are beeing used here, you can only apply styling on your component context.
 
-In a real-life scenario, you would probably want to add your colors to `./src/styles/variables.scss` and use them
+In a real-life scenario, you would probably want to add your colors to file such `./styles/variables.css` and use them
 in your stylesheet rather than using hex-colors. But you can work however you like and this boilerplate does not
 enforce anything.
 
@@ -180,7 +179,7 @@ building a backend for this as well, it would be represented by a Wagtail-model 
 The received props this container will handle will be a camelCased version of that model's serialization,
 read more about models and serialization in our [Backend Developer Guide](./backend-developer-guide.md)
 
-From a React-point of view, a container is the same thing as a component.  We keep them separated only to make our
+From a React-point of view, a container is the same thing as a component. We keep them separated only to make our
 code nice and tidy.  From our point of view a container differs from a component in the following ways:
 - The container handles the state and pass it down to its components
 - The container is responsible for the layout of the components it uses, the component styling should not affect the component's placement
@@ -191,7 +190,7 @@ To build our container, launch the scaffolder again, this time using the flag `-
 ```bash
 npm run new:container WordCountPage
 ```
-Now you should see your newly created container in `./src/containers/WordCountPage`
+Now you should see your newly created container in `./containers/WordCountPage`
 
 ### Building the container javascript/jsx
 
@@ -200,12 +199,12 @@ We now need to import our components and place them in our container:
 ```js
 import React, { PureComponent } from 'react';
 import { basePageWrap } from '../BasePage';
-import './WordCountPage.scss';
+import s from './WordCountPage.module.css';
 
 import i18n from '../../i18n';
 
-import Button from '../components/Button';
-import RawHtml from '../components/RawHtml';
+import Button from '../../components/Button';
+import RawHtml from '../../components/RawHtml';
 
 class WordCountPage extends PureComponent {
     state = {};
@@ -224,11 +223,11 @@ class WordCountPage extends PureComponent {
     render() {
         const {richText} = this.props;
         return (
-            <div className="WordCountPage">
-                <div className="WordCountPage__Section WordCountPage__Section--body">
+            <div className={s.WordCountPage}>
+                <div className={[s.Section, s.SectionBody]}>
                     <RawHtml html={richText} />
                 </div>
-                <div className="WordCountPage__Section WordCountPage__Section--button">
+                <div className={[s.Section, s.SectionButton]}>
                     <Button text={i18n.t('wordcountpage.buttonText')} onClick={this.handleWordCountClick} />
                 </div>
             </div>
@@ -250,10 +249,10 @@ them.
 Finally we pass along the required `props` to our components and we are done!
 
 Please note that we are using the function `i18n.t` for the Button text.  This is because our app
-will be internationalized.  You could simply write the string "Count words" if you only target one language,
+will be internationalized. You could simply write the string "Count words" if you only target one language,
 but for now, add an English translation for our button text.
 
-Open the file `./src/i18n/translations/en.json` and replace it with this:
+Open the file `./i18n/translations/en.json` and replace it with this:
 ```json
 {
     "wordcountpage": {
@@ -262,9 +261,9 @@ Open the file `./src/i18n/translations/en.json` and replace it with this:
 }
 ```
 
-### Providing data for the dev-server
+### Providing data for the storybook
 
-As with the component, we need to provide dev-server data. This should look as your Wagtail Page-serialization. 
+As with the component, we need to provide storybook data. This should look as your Wagtail Page-serialization. 
 
 In our case, we only care about the `richText`-field. Add to `WordCountPage.data.js` like:
 ```
@@ -277,15 +276,13 @@ export default {
 
 When styling the container-level, we mostly do the layout. Add some margins:
 
-```scss
-@import 'styles/includes.scss';
-
+```css
 .WordCountPage {
     max-width: 600px;
-    
-    &__Section {
-        margin-bottom: 20px;
-    }
+}
+
+.Section {
+    margin-bottom: 20px;
 }
 ```
 

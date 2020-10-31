@@ -7,7 +7,7 @@ in just a few minutes
 Make sure you have the following requirement:
 - [Docker Compose](https://docs.docker.com/compose/)
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [node](https://nodejs.org/en/) (v10, the latest LTS version is recommended and also specified in the `.nvmrc` file)
+- [node](https://nodejs.org/en/) (v10 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
 
 
 ## Initialize Project
@@ -26,22 +26,23 @@ It could look like this:
 project_name [Company-Project]: Acme-Blog
 project_slug [acme_blog]:
 domain_prod [example.com]: blog.acme.com
-domain_stage [stage.example.com]: stage-blog.acme.com
+domain_stage [stage.blog.acme.com]: stage-blog.acme.com
 ssh_prod [devops@blog.acme.com]:
 ssh_stage [devops@stage-blog.acme.com]:
 db_name_prod [acme_blog]:
 db_name_stage [acme_blog]:
-s3_bucket_prod [s3.blog.acme.co]:
+s3_bucket_prod [s3.blog.acme.com]:
 s3_bucket_stage [s3.stage-blog.acme.com]:
 docker_web_port [8081]:
-docker_db_port [5433]:
+docker_web_ssl_port [8083]:
+docker_db_port [8083]:
 docker_vscode_debug_port [5678]:
 aws_devops_iam_username [acme_blog_devops]:
 version [0.1.0]:
 Select software_license:
-1 - MIT
-2 - proprietary
-Choose from 1, 2 (1, 2) [1]: 2
+1 - proprietary
+2 - MIT
+Choose from 1, 2 [1]: 1
 ```
 
 ## Setting up the frontend
@@ -54,13 +55,20 @@ Webpack is running, go to the `./frontend` folder in your newly created project
 ```
 cd Acme-Blog/frontend
 npm i
-npm run multiwatch
+npm run dev
+
+> frontend_nextjs@0.1.0 dev /Users/roger/www/Acme-Blog/frontend
+> next dev
+
+ready - started server on http://localhost:3000
+info  - Loaded env from /Users/roger/www/Acme-Blog/frontend/.env
+info  - Using external babel configuration from /Users/roger/www/Acme-Blog/frontend/.babelrc
+event - compiled successfully
 ```
 
-The `multiwatch` command will both serve a frontend development server where you can work with the
-frontend decoupled from Django and built assets to your Django application.
-This is great if you have dedicated frontend developers because they do not need to know
-Django at all to do productive work.
+`npm run dev` is a Next.js command that will start a frontend development server that supports both hot reloading and error reporting,
+it will later on communicate against our Wagtail api.
+You can read more about `npm run dev` in the [Next.js documentation](https://nextjs.org/docs/api-reference/cli#development)
 
 Read more about the frontend stack in our
 [frontend developer workflow guide](./frontend-developer-guide.md).
@@ -73,11 +81,12 @@ The Django application will be served through Docker. To start it, run the follo
 docker-compose up
 ```
 
-When Docker is finished, your app should be up and running on the
-`docker_web_port` specified in the wizard (`http://localhost:8081` in our example).
+When Docker is finished, your app should be up and running on the `docker_web_port` specified in the wizard (`http://localhost:8081` in our example).
+This is actually the frontend app, beeing loaded through a Nginx proxy, fetching data from our Wagtail api.
 
-You can log in to the Wagtail-admin (`http://localhost:8081/wt/cms`) or the
-Django-admin (`http://localhost:8081/admin`) using the following credentials:
+The Django app is hosted under `http://localhost:8081/wt/` and you can log in to the Wagtail-admin (`http://localhost:8081/wt/cms`) or the
+Django-admin (`http://localhost:8081/wt/admin`) using the following credentials:
+
 ```
 username: admin
 password: admin
@@ -96,7 +105,7 @@ For convenience we are providing a script for that, so instead of running the us
 ```
 If you rather want to work within a shell in the docker container, you can do so:
 ```
-docker-compose exec web bash
+docker-compose exec python bash
 ```
 
 ### Installing requirements need to happen `within` the docker environment
@@ -108,7 +117,7 @@ Like for management commands, we provide a script to for this. When adding requi
 If you prefer, you can start a shell in the container and go on as you are used to:
 
 ```
-docker-compose exec web bash
+docker-compose exec python bash
 ```
 
 
@@ -157,18 +166,16 @@ For us to support local certificates you need to install a tool called [mkcert](
 
 - Install mkcert
 - Add root cert `mkcert -install`
-- Create a cert for your project `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test`
-- Add the command `runserver_ssl` to your docker container
-Example:
-```yml
-services
-  web:
-    ...
-    command: runserver_ssl
-    ...
-```
+- Create a cert for your project `mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem blog.acme.com.test`
+
+- Drop `#mkcert ` from `docker/files/config/nginx.conf` to activate SSL
+
+    sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf && rm -f docker/files/config/nginx.conf.bak
+
+- Remove your docker container `web` (`docker-compose stop && docker-compose rm -f web`)
 - Restart docker
 
+...there is also a alternative way by running `./scripts/enable_ssl.sh`
 
 
 ## Troubleshooting
