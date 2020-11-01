@@ -14,6 +14,8 @@ class Command(BaseCommand):
     Outcome:
         + src/main/pages/news.py
         + src/main/pages/news_serializer.py
+        + src/main/factories/news.py
+        + src/main/tests/test_news.py
     """
 
     def add_arguments(self, parser):
