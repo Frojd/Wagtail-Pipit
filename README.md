@@ -33,6 +33,7 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Scaffolding](/docs/scaffolding.md)
 - [Deploying with Ansistrano](/docs/deployment.md)
 - [Setting up continuous integration on CircleCI](/docs/ci.md)
+- [Running python locally](/docs/running-python-locally.md)
 
 ## Contribute
 If you have ideas for improvement, please share your thoughts through an issue. We also welcome PR's
