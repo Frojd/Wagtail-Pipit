@@ -1,6 +1,30 @@
 # Changelog
 
-## 7.0. (XXX.XX.XX) - IN DEVELOPMENT
+## 8.0. (XXX.XX.XX) - IN DEVELOPMENT
+
+- Replace Create React App with Next.js (Martin Sandströn, Mikael Engström)
+- Replace Hypernova with Next.js (Martin Sandström, Mikael Engström)
+- Update deploy scripts to support Next.js (Mikael Engström)
+- Add new "backend-developer-guide" (Martin Sandström)
+- Improve docker performance and refactor docker-compose structure (Mikael Engström)
+- Add npm shortcut for creating new containers (Martin Lindvall)
+- Drop external file logging (Martin Sandström)
+- Replace class components with functional components (morrme)
+- Fix: Improve mypy coverage (Andreas Bernacca, Martin Sandström)
+- Fix: Rebuild customuser migrations (Martin Sandström)
+- Fix: Change so `serve()` always return json data
+- Fix: Drop `django-sslserver` in favor of Nginx ssl handling
+- Fix: Use /wt/ namespace for wagtail app
+- Fix: Add wagtail background job to provisioning (Martin Lindvall)
+- Fix: Update deployment docs (Mikael Lindvall)
+- Fix: Change default deploy user to "deploy" (Mikael Engström)
+- Fix: Override environment variables if they exist (Martin Lindvall)
+- Fix: Update Wagtail to 2.11
+- Fix: Update Django to 3.1.2
+- Fix: Update DRF
+
+
+## 7.0. (XXX.XX.XX) - SKIPPED
 
 - Replace React-Sass-Starterkit with Create React App (Martin Sandström)
 - Replace Hastur SSR service with Hypernova (Martin Sandström)
