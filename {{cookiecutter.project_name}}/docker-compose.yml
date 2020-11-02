@@ -18,10 +18,12 @@ services:
     links:
       - python
     volumes:
-      - "./docker/files/config/nginx.conf:/etc/nginx/conf.d/default.conf:cached"
+      - "./docker/files/config/nginx.conf.template:/etc/nginx/templates/default.conf.template:cached"
       - "./docker/files/certs:/etc/nginx/certs"
       - "./src/media:/app/media"
       - "./src/static:/app/static"
+    environment:
+      - PYTHON_HOST=http://python:8000
 
   db:
     image: postgis/postgis:12-2.5
