@@ -6,7 +6,7 @@ Lets start with us saying that docker is a great tool. But in all this greatness
 
 ## Tutorial
 
-- Begin with changing the `PYTHON_HOST` environemnt variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version.
+- Begin with changing the `PYTHON_HOST` environment variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version.
 
 ```
 web:
@@ -51,7 +51,7 @@ source venv/bin/activate
 pip install -r requirements/local.txt
 ```
 
-Tip: If you are having issues installing `psycopg2` becase your are lacking postgres, replace `psycopg2` with `psycopg2-binary`
+Tip: If you are having issues installing `psycopg2` because your are lacking postgres, replace `psycopg2` with `psycopg2-binary`
 
 - Start docker
 
@@ -66,4 +66,4 @@ cd src
 python manage.py runserver 8000
 ```
 
-- Now open `http://blog.acme.com.test:8081/wt/cms` in your favorite broser and you should see the Wagtail CMS login page
+- Now open `http://blog.acme.com.test:8081/wt/cms` in your favorite browser and you should see the Wagtail CMS login page
