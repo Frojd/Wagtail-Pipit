@@ -20,7 +20,7 @@ web:
 - Create a custom .env file for your local db instance
 
 ```
-touch local.env
+touch src/.env.local
 ```
 
 - And supply proper env configuration so we can connect to docker db from our local python interpreter
