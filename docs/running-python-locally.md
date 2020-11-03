@@ -15,6 +15,8 @@ web:
         - PYTHON_HOST=http://host.docker.internal
 ```
 
+- If you have a existing web container, remove it `docker-compose rm web`
+
 - Create a custom .env file for your local db instance
 
 ```
