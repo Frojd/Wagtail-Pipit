@@ -6,7 +6,7 @@ Lets start with us saying that docker is a great tool. But in all this greatness
 
 ## Tutorial
 
-- Begin with changing the `PYTHON_HOST` environment variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version.
+Begin with changing the `PYTHON_HOST` environment variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version.
 
 ```
 web:
@@ -15,15 +15,15 @@ web:
         - PYTHON_HOST=http://host.docker.internal
 ```
 
-- If you have a existing web container, remove it `docker-compose rm web`
+If you have a existing web container, remove it `docker-compose rm web`
 
-- Create a custom .env file for your local db instance
+Create a custom .env file for your local db instance
 
 ```
 touch src/.env.local
 ```
 
-- And supply proper env configuration so we can connect to docker db from our local python interpreter
+And supply your env configuration, you can usually just copy paste the values you would have from `/docker/config/web.env` and only replace `DATABASE_HOST`.
 
 ```
 DJANGO_SETTINGS_MODULE=pipit.settings.local
@@ -36,10 +36,9 @@ DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 DATABASE_NAME=postgres
 DATABASE_HOST=localhost
-
 ```
 
-- Setup virtualenv
+Setup virtualenv (but please note that there are many different ways of doing package management in python (pyenv, poetry etc), if you have a preffered way of doing things - do it :)
 
 ```
 cd src
@@ -47,7 +46,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-- Install local packages
+Install local packages. We use test.txt here because it include both requirements for running the app with dev tools and testing requirements.
 
 ```
 pip install -r requirements/test.txt
@@ -55,17 +54,17 @@ pip install -r requirements/test.txt
 
 Tip: If you are having issues installing `psycopg2` because your are lacking postgres, replace `psycopg2` with `psycopg2-binary`
 
-- Start docker
+Start docker (without the `python` container)
 
 ```
 docker-compose up db web
 ```
 
-- And then finally start your python server
+And then finally start your python server
 
 ```
 cd src
 python manage.py runserver 8000
 ```
 
-- Now open `http://blog.acme.com.test:8081/wt/cms` in your favorite browser and you should see the Wagtail CMS login page
+Now open `http://blog.acme.com.test:8081/wt/cms` in your favorite browser and you should see the Wagtail CMS login page.
