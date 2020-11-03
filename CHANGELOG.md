@@ -2,7 +2,7 @@
 
 ## 8.0. (XXX.XX.XX) - IN DEVELOPMENT
 
-- Replace Create React App with Next.js (Martin Sandströn, Mikael Engström)
+- Replace Create React App with Next.js (Martin Sandström, Mikael Engström)
 - Replace Hypernova with Next.js (Martin Sandström, Mikael Engström)
 - Update deploy scripts to support Next.js (Mikael Engström)
 - Add new "backend-developer-guide" (Martin Sandström)
@@ -16,7 +16,7 @@
 - Fix: Drop `django-sslserver` in favor of Nginx ssl handling
 - Fix: Use /wt/ namespace for wagtail app
 - Fix: Add wagtail background job to provisioning (Martin Lindvall)
-- Fix: Update deployment docs (Mikael Lindvall)
+- Fix: Update deployment docs (Martin Lindvall)
 - Fix: Change default deploy user to "deploy" (Mikael Engström)
 - Fix: Override environment variables if they exist (Martin Lindvall)
 - Fix: Update Wagtail to 2.11
