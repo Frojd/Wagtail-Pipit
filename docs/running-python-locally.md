@@ -48,7 +48,7 @@ source venv/bin/activate
 - Install local packages
 
 ```
-pip install -r requirements/local.txt
+pip install -r requirements/test.txt
 ```
 
 Tip: If you are having issues installing `psycopg2` because your are lacking postgres, replace `psycopg2` with `psycopg2-binary`
