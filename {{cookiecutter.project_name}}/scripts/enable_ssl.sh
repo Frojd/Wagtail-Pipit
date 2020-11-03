@@ -4,6 +4,9 @@ set -e
 # Generate development ssl certificates using mkcert
 # NOTE: you need mkcert installed locally for this to work!
 
+readonly DOMAIN="{{cookiecutter.domain_prod}}.test"
+readonly HTTPS_PORT={{cookiecutter.docker_web_ssl_port}}
+
 if ! [ -d .git ]; then
     echo "Please initialize a git repo in this project before running this command"
     exit -1;
@@ -27,9 +30,6 @@ Continue (y/n)?" CONT
 if ! [ "$CONT" = "y" ]; then
     exit -1;
 fi
-
-DOMAIN="{{cookiecutter.domain_prod}}.test"
-HTTPS_PORT={{cookiecutter.docker_web_ssl_port}}
 
 mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem $DOMAIN
 
