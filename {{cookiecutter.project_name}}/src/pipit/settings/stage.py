@@ -16,7 +16,15 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
         "LOCATION": "cache_table",
-    }
+    },
+    "renditions": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "cache_table_rendition",
+        "TIMEOUT": 600,
+        "OPTIONS": {
+            "MAX_ENTRIES": 1000,
+        }
+    },
 }
 
 STATICFILES_STORAGE = (
