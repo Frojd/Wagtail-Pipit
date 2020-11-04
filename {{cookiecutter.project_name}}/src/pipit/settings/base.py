@@ -174,14 +174,14 @@ if get_env("AWS_ACCESS_KEY_ID", ""):
     AWS_EXPIRY = 60 * 60 * 24 * 7
     AWS_S3_FILE_OVERWRITE = False
 
-    AWS_HEADERS = {"Cache-Control": "max-age={}".format(AWS_EXPIRY)}
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age={}".format(AWS_EXPIRY)}
     AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
     # Retrieve S3 files using https, with a bucket that contains a dot.
     S3Connection.DefaultHost = "s3-eu-west-1.amazonaws.com"
 
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
-    THUMBNAIL_DEFAULT_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    THUMBNAIL_DEFAULT_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 
 # Uploaded media
