@@ -22,6 +22,7 @@
 - Fix: Update Wagtail to 2.11
 - Fix: Update Django to 3.1.2
 - Fix: Update DRF
+- Fix: Replace Boto with Boto3 (Martin Lindvall)
 
 
 ## 7.0. (XXX.XX.XX) - SKIPPED
