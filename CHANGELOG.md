@@ -10,6 +10,8 @@
 - Add npm shortcut for creating new containers (Martin Lindvall)
 - Drop external file logging (Martin Sandström)
 - Replace class components with functional components (morrme)
+- Add doumentation for running python locally (Martin Sandström)
+- Add support for locally running python in syncscripts (Martin Sandström)
 - Fix: Improve mypy coverage (Andreas Bernacca, Martin Sandström)
 - Fix: Rebuild customuser migrations (Martin Sandström)
 - Fix: Change so `serve()` always return json data
