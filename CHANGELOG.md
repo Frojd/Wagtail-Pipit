@@ -26,6 +26,7 @@
 - Fix: Update DRF
 - Fix: Replace Boto with Boto3 (Martin Lindvall)
 - Fix: Add optional slack notification on release (Martin Sandström)
+- Fix: Add default cache for renditions (Martin Sandström)
 
 
 ## 7.0. (XXX.XX.XX) - SKIPPED
