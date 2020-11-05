@@ -26,7 +26,7 @@ def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pipit.settings.prod")
 
     if_exists_load_env(".env")
-    if_exists_load_env("../local.env")
+    if_exists_load_env(".env.local")
 
     # enable vs code remote debugging
     # https://github.com/Microsoft/PTVS/issues/1057

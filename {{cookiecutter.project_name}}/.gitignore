@@ -42,6 +42,7 @@ docker/files/certs/*
 
 # Environment
 src/.env
+src/.env.local
 
 # Static folder
 src/static
