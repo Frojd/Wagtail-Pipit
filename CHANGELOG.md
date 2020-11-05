@@ -25,6 +25,7 @@
 - Fix: Update Django to 3.1.2
 - Fix: Update DRF
 - Fix: Replace Boto with Boto3 (Martin Lindvall)
+- Fix: Add optional slack notification on release (Martin Sandström)
 
 
 ## 7.0. (XXX.XX.XX) - SKIPPED
