@@ -5,7 +5,7 @@ services:
     build: ./src
     depends_on:
       - db
-    env_file: ./docker/config/web.env
+    env_file: ./docker/config/python.env
 
   db:
     image: postgis/postgis:12-2.5

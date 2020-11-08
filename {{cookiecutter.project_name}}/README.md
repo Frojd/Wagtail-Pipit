@@ -32,7 +32,7 @@
 1. Setup container .env files
 
     ```
-    cp docker/config/web.example.env docker/config/web.env
+    cp docker/config/python.example.env docker/config/python.env
     ```
 
 2. Include this ip on your hosts-file
@@ -95,7 +95,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 ### VS Code
 
-This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it.
+This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/python.env` and restart your container to enable it.
 You should now be able to attach to the running Django server instance.
 
 [PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.

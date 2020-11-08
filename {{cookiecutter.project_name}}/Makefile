@@ -1,6 +1,6 @@
 init:
 	git flow init
-	cp docker/config/web.example.env docker/config/web.env
+	cp docker/config/python.example.env docker/config/python.env
 	ln -nfs $(PWD)/.githooks/pre-push.sh .git/hooks/pre-push
 	ln -nfs $(PWD)/.githooks/pre-commit.sh .git/hooks/pre-commit
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-release-start

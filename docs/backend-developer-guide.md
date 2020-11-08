@@ -66,7 +66,7 @@ The project backend, based on Wagtail and the CMS Wagtail is located in `/src`, 
 
 Make sure you follow the install instructions in the project README.md, in short, it boils down to this:
 
-1. Set up env vars: `cp docker/config/web.example.env docker/config/web.env`
+1. Set up env vars: `cp docker/config/python.example.env docker/config/python.env`
 2. Include the domain in your hosts file. `127.0.0.1 blog.acme.com.test`
 
 

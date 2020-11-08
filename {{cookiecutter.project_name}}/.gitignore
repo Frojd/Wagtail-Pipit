@@ -35,7 +35,7 @@ node_modules
 
 # Docker
 docker/config/db.env
-docker/config/web.env
+docker/config/python.env
 docker/config/db_backup.env
 docker/files/certs/*
 !docker/files/certs/.gitkeep
