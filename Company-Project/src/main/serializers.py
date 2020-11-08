@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from wagtail.core.models import Site
 from wagtail.images.shortcuts import get_rendition_or_not_found
 
 from sitesettings.models import SiteSetting
@@ -12,7 +13,8 @@ class NotFoundPageSerializer(serializers.Serializer):
 
     def get_site_setting(self, page):
         request = self.context["request"]
-        site_setting = SiteSetting.for_site(request.site)
+        site = Site.find_for_request(request)
+        site_setting = SiteSetting.for_site(site)
         return SiteSettingSerializer(site_setting).data
 
 
@@ -44,12 +46,7 @@ class SeoSerializer(serializers.ModelSerializer):
         if not image:
             return None
 
-        rendition = get_rendition_or_not_found(image, "max-1200x630")
-
-        if not rendition:
-            return None
-
-        return f"{root_url}{rendition.url}"
+        return f"{root_url}{image}"
 
     def get_seo_twitter_image(self, page):
         root_url = page.get_site().root_url
@@ -58,9 +55,4 @@ class SeoSerializer(serializers.ModelSerializer):
         if not image:
             return None
 
-        rendition = get_rendition_or_not_found(image, "max-1200x630")
-
-        if not rendition:
-            return None
-
-        return f"{root_url}{rendition.url}"
+        return f"{root_url}{image}"

@@ -20,7 +20,7 @@
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.8+
 - Pip
 - Virtualenv
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
@@ -32,7 +32,7 @@
 1. Setup container .env files
 
     ```
-    cp docker/config/web.example.env docker/config/web.env
+    cp docker/config/python.example.env docker/config/python.env
     ```
 
 2. Include this ip on your hosts-file
@@ -59,7 +59,7 @@
     ```
 
 6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
-    - ...or login to [https://example.com.test:8081/cms](https://example.com.test:8081/cms) (Username: `admin` and password: `admin`)
+    - ...or login to [https://example.com.test:8081/wt/cms](https://example.com.test:8081/wt/cms) (Username: `admin` and password: `admin`)
 
 
 ## Where to go from here?
@@ -69,7 +69,6 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend.md)
 - [Datasync between environments](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/data-sync.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/scaffolding.md)
-- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/server-side-rendering.md)
 - [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/deployment.md)
 - [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/ci.md)
 
@@ -96,7 +95,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 ### VS Code
 
-This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it.
+This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/python.env` and restart your container to enable it.
 You should now be able to attach to the running Django server instance.
 
 [PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port 5678.
@@ -157,11 +156,11 @@ SSH access (passwordless with RSA keys)
 Linux (Ubuntu is preffered)
 Nginx
 uWSGI
-Python 3.6+
-PostgreSQL 10+
+Python 3.8+
+PostgreSQL 12+
 PostGIS for PostgreSQL
 GDAL (required for PostGIS)
-Node 10+ (for SSR)
+Node 12+ (for SSR)
 psycopg2-binary (for the provision script that will create db and users)
 ```
 
@@ -198,24 +197,24 @@ Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/instal
 ### How do I run the test suite locally?
 
 ```
-docker-compose run --rm web test
+docker-compose run --rm python test
 ```
 
 
 ### How do I run custom manage.py commands?
 
-To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your web container.
+To run manage.py commands in docker is pretty straightforward, instead of targetting you local machine you just target your `python` container.
 
 - Example: Create migrations
 
 ```
-docker-compose exec web python manage.py makemigrations
+docker-compose exec python ./manage.py makemigrations
 ```
 
 - Example: Run migrations
 
 ```
-docker-compose exec web python manage.py migrate
+docker-compose exec python ./manage.py migrate
 ```
 
 We also have a manage.sh script to make running management commands easier.

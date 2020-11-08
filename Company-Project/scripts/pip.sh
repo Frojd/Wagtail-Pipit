@@ -7,5 +7,5 @@ set -e
 # Example usage `scripts/pip.sh install -r requirements/local.txt`
 # Example usage `scripts/pip.sh install requests`
 
-COMMAND="pip $@"
-docker-compose exec web $COMMAND
+pip_command="pip $@"
+docker-compose exec python $pip_command

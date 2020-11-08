@@ -1,8 +1,14 @@
 {% raw -%}
-- name: Symlink .env
+- name: Symlink Django .env
   file:
     src: "{{ ansistrano_shared_path }}/.env"
     dest: "{{ ansistrano_release_path.stdout }}/src/.env"
+    state: link
+
+- name: Symlink Next .env
+  file:
+    src: "{{ ansistrano_shared_path }}/.env.next"
+    dest: "{{ ansistrano_release_path.stdout }}/src/frontend/.env.local"
     state: link
 
 - name: Symlink media
@@ -15,6 +21,11 @@
   pip: virtualenv="{{ ansistrano_shared_path}}/venv"
        requirements={{ ansistrano_release_path.stdout }}/src/requirements/{{ stage_name }}.txt
        virtualenv_python={{ python_version }}
+
+- name: Install node modules
+  npm:
+    path="{{ ansistrano_release_path.stdout }}/src/frontend/"
+    production=yes
 
 - name: Run Migrations
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py migrate --noinput"

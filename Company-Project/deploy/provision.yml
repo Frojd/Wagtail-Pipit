@@ -23,7 +23,7 @@
       file:
         path: "{{ ansistrano_deploy_to }}/shared"
         state: directory
-        owner: www-data
+        owner: deploy
         group: www-data
         mode: 0775
         recurse: yes
@@ -32,9 +32,17 @@
       template:
         src: files/.env.j2
         dest: "{{ ansistrano_deploy_to }}/shared/.env"
-        owner: www-data
+        owner: deploy
         group: www-data
-        mode: 0644
+        mode: 0664
+
+    - name: Create .env.next file
+      template:
+        src: files/.env.next.j2
+        dest: "{{ ansistrano_deploy_to }}/shared/.env.next"
+        owner: deploy
+        group: www-data
+        mode: 0664
 
     - name: Creates postgres database
       postgresql_db:
@@ -51,7 +59,7 @@
       template:
         src: files/uwsgi.ini.j2
         dest: "/mnt/persist/uwsgi/conf.d/{{ project_slug }}.ini"
-        mode: 0644
+        mode: 0664
 
     - name: Replaces default uwsgi conf with empty
       file:
@@ -64,15 +72,37 @@
       copy:
         src: "files/nginx.conf"
         dest: "/mnt/persist/nginx/conf.d/{{ project_slug }}.conf"
-        mode: 0644
+        mode: 0664
 
     - name: Copies robots.txt
       copy:
         src: "files/robots.txt"
         dest: "{{ ansistrano_deploy_to }}/shared/robots.txt"
-        owner: www-data
+        owner: deploy
         group: www-data
-        mode: 0644
+        mode: 0664
+
+    - name: Creates directory for pm2 config
+      file:
+        path: "{{ ansistrano_deploy_to }}/shared/pm2"
+        state: directory
+        owner: deploy
+        group: www-data
+        mode: 0775
+        recurse: yes
+
+    - name: Create pm2 .yml file for next.js
+      template:
+        src: files/ssr_config.yml.j2
+        dest: "{{ ansistrano_deploy_to }}/shared/pm2/{{ project_slug }}.yml"
+        owner: deploy
+        group: www-data
+        mode: 0664
+
+    - name: Add wagtail cronjobs
+      lineinfile:
+        path: /mnt/persist/etc/crontab
+        line: "0 * * * *  www-data /mnt/persist/www/{{ project_slug }}/shared/venv/bin/python /mnt/persist/www/{{ project_slug }}/current/src/manage.py publish_scheduled_pages"
 
 - name: Runs deploy playbook
   import_playbook: deploy.yml

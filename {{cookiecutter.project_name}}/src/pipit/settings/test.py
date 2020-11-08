@@ -1,12 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Write test settings here (for ci environment), or override base settings
 """
-from __future__ import absolute_import, unicode_literals
-
 import logging
+from typing import Dict, Any
 
 from pipit.settings.base import *  # NOQA
 
@@ -26,7 +22,7 @@ CACHES = {
 
 EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
-TEMPLATES[0]["OPTIONS"]["loaders"] = [
+TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore[index]
     (
         "django.template.loaders.cached.Loader",
         [
@@ -36,6 +32,6 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [
     )
 ]
 
-LOGGING = {}
+LOGGING: Dict[str, Any] = {}
 
 TEST_RUNNER = "pipit.test_runner.PytestTestRunner"

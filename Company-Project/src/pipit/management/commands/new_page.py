@@ -14,6 +14,8 @@ class Command(BaseCommand):
     Outcome:
         + src/main/pages/news.py
         + src/main/pages/news_serializer.py
+        + src/main/factories/news.py
+        + src/main/tests/test_news.py
     """
 
     def add_arguments(self, parser):
@@ -34,7 +36,7 @@ class Command(BaseCommand):
             pages_path=pages_path, name=name.lower()
         )
         init_file = "{pages_path}__init__.py".format(
-            pages_path=pages_path, name=name.lower()
+            pages_path=pages_path,
         )
 
         if os.path.exists(page_file):

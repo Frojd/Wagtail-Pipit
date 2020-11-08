@@ -10,8 +10,7 @@ jobs:
   build:
     working_directory: ~/frojd-django-boilerplate
     docker:
-      - image: circleci/python:3.6.1
-      - image: mdillon/postgis:10
+      - image: circleci/python:3.8
 
     environment:
       TEST_RESULTS: /tmp/test-results
@@ -33,7 +32,8 @@ jobs:
           command: |
             set -x
             . venv/bin/activate
-            cookiecutter . --no-input --overwrite-if-exists
+            rm -rf Company-Project
+            cookiecutter . --no-input
 
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -43,9 +43,7 @@ jobs:
       - run:
           name: Install Docker Compose
           command: |
-            set -x
-            . venv/bin/activate
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
 
@@ -67,7 +65,11 @@ jobs:
           name: Run tests on container
           command: |
             set -x
-            cd Company-Project && docker-compose -f docker-compose-circleci.yml run web test
+            cd Company-Project
+            docker-compose -f docker-compose-circleci.yml run --rm python test
+            docker-compose -f docker-compose-circleci.yml run --rm python typecheck
+            # docker-compose -f docker-compose-circleci.yml run frontend test
+            # docker-compose -f docker-compose-circleci.yml run frontend build
 
       - store_artifacts:
           path: /tmp/test-results
@@ -76,30 +78,8 @@ jobs:
       - store_test_results:
           path: /tmp/test-results
 
-  frontend:
-    working_directory: ~/frojd-django-boilerplate
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - *restore_repo
-      - run:
-          command: |
-            cd Company-Project/frontend
-
-            npm install
-            npm run build
-
-      - run:
-          command: |
-            cd Company-Project/frontend
-
-            npm run test
-
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - frontend:
-          requires:
-            - build

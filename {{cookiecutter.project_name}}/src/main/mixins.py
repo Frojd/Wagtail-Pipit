@@ -1,10 +1,10 @@
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Callable, List, Tuple, Union
 
 from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.http.request import HttpRequest
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.utils.functional import cached_property
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
@@ -15,13 +15,38 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
+from wagtail_meta_preview.panels import (
+    FacebookFieldPreviewPanel,
+    GoogleFieldPreviewPanel,
+    TwitterFieldPreviewPanel,
+)
+from wagtail_meta_preview.utils import (
+    TwitterSettings,
+    FacebookSettings,
+    GoogleSettings,
+)
+from wagtail.admin.edit_handlers import (
+    BaseFormEditHandler,
+    EditHandler,
+    WagtailAdminPageForm,
+)
 from rest_framework.serializers import Serializer
 
 
 class RedirectUpMixin:
+    get_parent: Callable
+
     def serve(self, request, *args, **kwargs):
         parent = self.get_parent()
-        return HttpResponseRedirect(parent.url)
+        return JsonResponse(
+            {
+                "component_name": "RedirectPage",
+                "component_props": {
+                    "location": parent.url,
+                    "is_permanent": False,
+                },
+            }
+        )
 
 
 class SeoMixin(Page):
@@ -98,20 +123,28 @@ class SeoMixin(Page):
 
     promote_panels = [
         FieldPanel("slug"),
-        MultiFieldPanel(
-            [FieldPanel("seo_title"), FieldPanel("search_description")],
-            _("SEO settings"),
+        GoogleFieldPreviewPanel(
+            [
+                FieldPanel("seo_title"),
+                FieldPanel("search_description"),
+            ],
+            heading=_("Google"),
         ),
-        MultiFieldPanel(
+        FacebookFieldPreviewPanel(
             [
                 FieldPanel("og_title"),
                 FieldPanel("og_description"),
                 ImageChooserPanel("og_image"),
+            ],
+            heading=_("Facebook"),
+        ),
+        TwitterFieldPreviewPanel(
+            [
                 FieldPanel("twitter_title"),
                 FieldPanel("twitter_description"),
                 ImageChooserPanel("twitter_image"),
             ],
-            _("Social settings"),
+            heading=_("Twitter"),
         ),
         MultiFieldPanel(
             [
@@ -123,53 +156,57 @@ class SeoMixin(Page):
         ),
     ]
 
-    og_image_list = ["og_image"]
-
     @cached_property
-    def seo_og_image(self):
-        images = [getattr(self, x) for x in self.og_image_list]
-        images = list(filter(None.__ne__, images))
-
-        if not len(images):
-            return None
-
-        return images[0]
+    def google_setting(self):
+        return GoogleSettings(self)
 
     @cached_property
     def seo_html_title(self):
-        return self.seo_title or self.title
+        return self.google_setting.get_title()
 
     @cached_property
     def seo_meta_description(self):
-        return self.search_description
-
-    @cached_property
-    def seo_og_title(self):
-        return self.og_title or self.title
-
-    @cached_property
-    def seo_og_description(self):
-        return self.og_description or self.title
-
-    @cached_property
-    def seo_og_url(self):
-        return self.seo_canonical_link
+        return self.google_setting.get_description()
 
     @cached_property
     def seo_canonical_link(self):
         return self.canonical_link or self.full_url
 
     @cached_property
+    def facebook_setting(self):
+        return FacebookSettings(self)
+
+    @cached_property
+    def seo_og_image(self):
+        return self.facebook_setting.get_image()
+
+    @cached_property
+    def seo_og_title(self):
+        return self.facebook_setting.get_title()
+
+    @cached_property
+    def seo_og_description(self):
+        return self.facebook_setting.get_description()
+
+    @cached_property
+    def seo_og_url(self):
+        return self.seo_canonical_link
+
+    @cached_property
     def seo_og_type(self):
         return None
 
     @cached_property
+    def twitter_setting(self):
+        return TwitterSettings(self)
+
+    @cached_property
     def seo_twitter_title(self):
-        return self.twitter_title or self.title
+        return self.twitter_setting.get_title()
 
     @cached_property
     def seo_twitter_description(self):
-        return self.twitter_description
+        return self.twitter_setting.get_description()
 
     @cached_property
     def seo_twitter_url(self):
@@ -177,7 +214,7 @@ class SeoMixin(Page):
 
     @cached_property
     def seo_twitter_image(self):
-        return self.twitter_image or self.seo_og_image
+        return self.twitter_setting.get_image()
 
     @cached_property
     def seo_meta_robots(self):
@@ -190,8 +227,15 @@ class SeoMixin(Page):
 
 
 class EnhancedEditHandlerMixin:
+    edit_handler: BaseFormEditHandler
+    content_panels: List[EditHandler]
+    promote_panels: List[EditHandler]
+    settings_panels: List[EditHandler]
+    extra_panels: List[Tuple[str, str]]
+    base_form_class: WagtailAdminPageForm
+
     @cached_classmethod
-    def get_edit_handler(cls):
+    def get_edit_handler(cls) -> EditHandler:
         """
         Get the EditHandler to use in the Wagtail admin when editing
         this page type.
@@ -237,28 +281,13 @@ class TimestampMixin(models.Model):
 
 
 class ReactViewMixin(object):
-    template_name = "pages/react.html"
+    request: HttpRequest
+    component_name: str
+    serializer_class: Union[str, Serializer]
 
     def render_to_response(self, context, **response_kwargs):
-        if self.should_serve_json(self.request):
-            from django.http import JsonResponse
-
-            props = self.get_component_data({"request": self.request})
-            return JsonResponse(props)
-
-        return super().render_to_response(context, **response_kwargs)
-
-    @staticmethod
-    def should_serve_json(request: HttpRequest) -> bool:
-        return (
-            request.GET.get("format", None) == "json"
-            or request.content_type == "application/json"
-        )
-
-    def get_context_data(self, *args, **kwargs) -> Dict[str, Any]:
-        context = super().get_context_data(*args, **kwargs)
-
-        return {**context, "props": self.get_component_data({"request": self.request})}
+        props = self.get_component_data({"request": self.request})
+        return JsonResponse(props)
 
     def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
         return {
@@ -269,7 +298,7 @@ class ReactViewMixin(object):
     def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
-            self.get_component_props(), context={"request": context["request"]}
+            self.get_component_props(), context=context,
         )
 
         return serializer.data
@@ -281,7 +310,7 @@ class ReactViewMixin(object):
         return self.serializer_class
 
     def get_component_name(self) -> str:
-        if hasattr(self, "component_name"):
+        if getattr(self, "component_name", None):
             return self.component_name
 
         return self.__class__.__name__

@@ -1,14 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""
-Django settings for Fröjd Django projects.
-"""
-from __future__ import absolute_import, unicode_literals
-
 import os
-
-from boto.s3.connection import OrdinaryCallingFormat, S3Connection
+from typing import Optional
 
 from pipit.settings import get_env, get_env_bool
 
@@ -59,8 +50,10 @@ INSTALLED_APPS = [
     "wagtail.contrib.settings",
     "modelcluster",
     "taggit",
-    "django_react_templatetags",
     "wagtailfontawesome",
+    "wagtail_meta_preview",
+    "wagtail_headless_preview",
+    "rest_framework",
     # Project specific apps
     "pipit",
     "sitesettings",
@@ -68,6 +61,7 @@ INSTALLED_APPS = [
     "customimage",
     "customdocument",
     "main",
+    "nextjs",
 ]
 
 MIDDLEWARE = [
@@ -78,7 +72,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
@@ -107,7 +100,6 @@ TEMPLATES = [
                 "wagtail.contrib.settings.context_processors.settings",
                 # Project specific
                 "pipit.context_processors.settings_context_processor",
-                "django_react_templatetags.context_processors.react_context_processor",
             ],
         },
     }
@@ -156,28 +148,6 @@ USE_L10N = True
 USE_TZ = True
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
-# Logging
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "standard": {"format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"}
-    },
-    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
-    "handlers": {
-        "null": {"level": "DEBUG", "class": "logging.NullHandler"},
-        "file": {
-            "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "maxBytes": 1024 * 1024 * 10,  # 10 MB
-            "backupCount": 7,
-            "formatter": "standard",
-            "filename": os.path.join(get_env("APP_LOG_DIR"), "django-debug.log"),
-        },
-    },
-    "loggers": {"": {"handlers": ["file"], "level": "DEBUG", "propagate": True}},
-}
-
 # Email
 DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com")
 
@@ -197,30 +167,25 @@ if get_env("AWS_ACCESS_KEY_ID", ""):
     AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME")
 
-    AWS_AUTO_CREATE_BUCKET = True
     AWS_QUERYSTRING_AUTH = False
-    AWS_EXPIRY = 60 * 60 * 24 * 7
     AWS_S3_FILE_OVERWRITE = False
 
-    AWS_HEADERS = {"Cache-Control": "max-age={}".format(AWS_EXPIRY)}
-    AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+    AWS_EXPIRY = 60 * 60 * 24 * 7  # One week
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age={}".format(AWS_EXPIRY)}
 
-    # Retrieve S3 files using https, with a bucket that contains a dot.
-    S3Connection.DefaultHost = "s3-eu-west-1.amazonaws.com"
-
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
-    THUMBNAIL_DEFAULT_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    THUMBNAIL_DEFAULT_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 
 # Uploaded media
-MEDIA_URL = "/media/"
+MEDIA_URL = "/wt/media/"
 MEDIA_ROOT = get_env("MEDIA_PATH")
 
 
 # Static files, if in production use static root, else use static dirs
 
 # Static URL to use when referring to static files located in STATIC_ROOT.
-STATIC_URL = "/static/"
+STATIC_URL = "/wt/static/"
 
 # The absolute path to the directory where collectstatic will collect static
 # files for deployment. Example: "/var/www/example.com/static/"I
@@ -236,8 +201,13 @@ STATICFILES_DIRS = (
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Admin
-ADMIN_URL = r"^admin/"
+ADMIN_URL = "wt/admin/"
 
-# React Templatetags
-REACT_COMPONENT_PREFIX = "Components."
-REACT_RENDER_HOST = get_env("REACT_HOST")
+# NextJS
+HEADLESS_PREVIEW_CLIENT_URLS = {
+    "default": "/api/preview/",
+}
+
+# Sentry
+SENTRY_DSN: Optional[str] = None
+SENTRY_ENVIRONMENT: Optional[str]= None

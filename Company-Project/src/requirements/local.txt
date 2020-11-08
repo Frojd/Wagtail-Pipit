@@ -4,8 +4,7 @@
 # Add local extra requirements here (django-debug etc)
 black
 django-debug-toolbar
-django-sslserver
 isort
 pipdeptree
 ptvsd
-django-stubs==1.5.0
+django-stubs==1.7.0

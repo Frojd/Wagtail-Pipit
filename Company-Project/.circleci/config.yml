@@ -1,4 +1,7 @@
-version: 2
+# orbs:
+#   slack: circleci/slack@3.4.2
+
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/repo
@@ -32,9 +35,9 @@ jobs:
   checkout_code:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6
-      - image: circleci/node:latest
-      - image: mdillon/postgis:10
+      - image: circleci/python:3.8
+      - image: circleci/node:12
+      - image: circleci/postgres:12-postgis
     steps:
       - checkout
       - save_cache:
@@ -45,7 +48,11 @@ jobs:
   frontend:
     <<: *defaults
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12
+    # environment:
+    #   NEXT_PUBLIC_SENTRY_DSN: "https://xxx@xxx.ingest.sentry.io/1234"
+    #   SENTRY_ORG: my-org-ab
+    #   SENTRY_PROJECT: my-sentry-project
     steps:
       - *restore_repo
       - restore_cache:
@@ -59,24 +66,28 @@ jobs:
           command: |
             cd frontend
             npm test
-            npm run eslint
-            npm run build:prod
-            npm run ssr:prod
+            npm run build
+            npm run build-storybook
+            # So we don't copy the gigantic node_modules on each deploy
+            rm -rf node_modules
       - save_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/repo/src/core/static/core
-            - ~/repo/frontend/raw
-            - ~/repo/frontend/dist
+            - ~/repo/frontend/
+      # - slack/status:
+      #     fail_only: true
+      #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
+      #     webhook: ${SLACK_WEBHOOK}
 
   django:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6
-      - image: circleci/postgres:10
+      - image: circleci/python:3.8
+      - image: circleci/postgres:12-postgis
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - *restore_repo
       - restore_cache:
@@ -90,24 +101,37 @@ jobs:
           key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
           paths:
             - ~/repo/venv
+            - ~/.cache/pip
       - run:
           name: Install additional geodjango deps
           command: |
             sudo apt-get install -y libproj-dev gdal-bin
       - run:
+          name: Make sure black has been applied to .py files
+          command: |
+            . venv/bin/activate
+            pip install black
+            black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" --check src
+      - run:
           command: |
             . venv/bin/activate
             cd src
-            pytest -c pytest.circleci.ini
+            pytest -c pytest.circleci.ini --duration 10
       - save_cache:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/repo/src
+      # - slack/status:
+      #     fail_only: true
+      #     webhook: ${SLACK_WEBHOOK}
 
   deploy:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6
+      - image: circleci/python:3.8
+    # environment:
+    #   SENTRY_ORG: my-org-ab
+    #   SENTRY_PROJECT: my-sentry-project
     steps:
       - *restore_repo
       - restore_cache:
@@ -130,6 +154,9 @@ jobs:
             - deploy/venv
       - run:
           command: |
+            mv frontend src
+      - run:
+          command: |
             cd deploy
             . venv/bin/activate
 
@@ -140,6 +167,29 @@ jobs:
             if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
+
+      # - run: |
+      #     curl -sL https://sentry.io/get-cli/ | bash
+      #     if [ "${CIRCLE_TAG}" ]; then
+      #       export SENTRY_RELEASE=${CIRCLE_TAG}
+      #     fi
+      #     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+      #       export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+      #     fi
+      #     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+      #     sentry-cli releases finalize $SENTRY_RELEASE
+      #     sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
+
+      # - slack/status:
+      #     fail_only: true
+      #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
+      #     webhook: ${SLACK_WEBHOOK}
+
+      #- slack/notify:
+      #  color: "#049B4A"
+      #  message: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_TAG} has been successfully deployed by ${CIRCLE_USERNAME}.
+      #  tag_pattern: /^v.*/
+      #  event: pass
 
 workflows:
   version: 2

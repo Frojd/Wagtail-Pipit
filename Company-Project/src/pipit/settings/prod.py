@@ -1,11 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Write prod settings here, or override base settings
 """
-from __future__ import absolute_import, unicode_literals
-
 import sentry_sdk
 from sentry_sdk import configure_scope
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -21,15 +16,23 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
         "LOCATION": "cache_table",
-    }
+    },
+    "renditions": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "cache_table_rendition",
+        "TIMEOUT": 600,
+        "OPTIONS": {
+            "MAX_ENTRIES": 1000,
+        }
+    },
 }
 
 STATICFILES_STORAGE = (
-    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-)  # NOQA
+    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"  # NOQA
+)
 
 # Enable caching of templates in production environment
-TEMPLATES[0]["OPTIONS"]["loaders"] = [
+TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore[index]
     (
         "django.template.loaders.cached.Loader",
         [
@@ -62,7 +65,7 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 
 # Sentry
-SENTRY_DSN = get_env('SENTRY_DSN')
+SENTRY_DSN = get_env("SENTRY_DSN")
 SENTRY_ENVIRONMENT = "prod"
 
 sentry_sdk.init(
@@ -74,4 +77,4 @@ sentry_sdk.init(
 
 # Add sentry to logging
 with configure_scope() as scope:
-    scope.level = 'error'
+    scope.level = "error"

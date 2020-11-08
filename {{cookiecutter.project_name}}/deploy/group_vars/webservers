@@ -4,3 +4,5 @@ ansistrano_deploy_to: /mnt/persist/www/{{ cookiecutter.project_slug }}
 database_name: {{ cookiecutter.db_name_prod }}
 database_user: {{ cookiecutter.project_slug }}
 project_slug: {{ cookiecutter.project_slug }}
+domain_stage: {{cookiecutter.domain_stage}}
+domain_prod: {{cookiecutter.domain_prod}}

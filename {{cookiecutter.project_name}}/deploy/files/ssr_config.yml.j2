@@ -1,0 +1,15 @@
+apps:
+  - script: /mnt/persist/www/{{ cookiecutter.project_slug }}/shared/frontend/src/hypernovaBootstrap.js
+    name: {{ cookiecutter.project_slug }}
+    cwd: /mnt/persist/www/{{ cookiecutter.project_slug }}/shared/frontend/src/
+    exec_mode: cluster
+    instances: 0
+    max_memory_restart : "300M"
+    env:
+      HYPERNOVA_DEV_MODE: 0
+      HYPERNOVA_PORT: 3030
+      HYPERNOVA_HOST: 0.0.0.0
+      HYPERNOVA_DISABLE_MODULE_CACHE: 0
+      SENTRY_DSN:
+      SENTRY_ENV:
+      SENTRY_RELEASE:

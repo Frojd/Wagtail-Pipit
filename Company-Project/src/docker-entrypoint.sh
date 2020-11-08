@@ -13,14 +13,6 @@ wait_for_db () {
 }
 
 setup_django () {
-    echo Creating log dir
-    mkdir -p $APP_LOG_DIR
-    echo $APP_LOG_DIR
-
-    echo Updating app log dir permissions
-    touch $APP_LOG_DIR/django-debug.log
-    chown www-data:www-data $APP_LOG_DIR/django-debug.log
-
     echo Running migrations
     python manage.py migrate --noinput
 
@@ -46,21 +38,6 @@ case "$CMD" in
         exec python manage.py runserver 0.0.0.0:8000
         ;;
 
-    "runserver_ssl" )
-        wait_for_db
-        setup_django
-
-        if [ ! -f "/priv/cert/cert-key.pem" ]; then
-            echo "Error! You are missing the required SSL certificates"
-            echo "To solve it, make sure you have mkcert installed with a root cert, then run:"
-            echo "mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test"
-            exit 1
-        fi
-
-        echo Starting using manage.py runsslserver
-        exec python manage.py runsslserver 0.0.0.0:8000 --certificate /priv/cert/cert.pem --key /priv/cert/cert-key.pem
-        ;;
-
     "uwsgi" )
         wait_for_db
         setup_django
@@ -76,6 +53,11 @@ case "$CMD" in
 
         echo Running tests
         exec pytest --ds=pipit.settings.test
+        ;;
+
+    "typecheck" )
+        echo Running typecheck
+        exec mypy .
         ;;
 
     * )

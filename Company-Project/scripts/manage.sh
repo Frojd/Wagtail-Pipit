@@ -7,5 +7,5 @@ set -e
 # Example usage `scripts/manage.sh makemigrations`
 # Example usage `scripts/manage.sh migrate`
 
-COMMAND="python manage.py $@"
-docker-compose exec web $COMMAND
+manage_command="./manage.py $@"
+docker-compose exec python $manage_command

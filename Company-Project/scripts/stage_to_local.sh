@@ -1,37 +1,57 @@
 #!/bin/bash
+#
+# Syncs database and media files from remote server
 set -e
 
-# Arguments
-local_domain=${1-stage.example.com.test:8081}
-ssh_host=${2-devops@stage.example.com}
-db_wait_time=20
+readonly DB_WAIT_TIME=20  # Arbitrary timeout value for making sure the db is ready
+readonly LOCAL_DOMAIN=example.com.test:8081
+readonly SSH_HOST=devops@stage.example.com
+readonly REMOTE_MEDIA_PATH=/mnt/persist/www/company_project/shared/media
 
-SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-DOCKER_DIR=${SCRIPTS_DIR}/../docker/
+scripts_dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+docker_dir=${scripts_dir}/../docker
 
-echo "Creating database dump from stage..."
-ssh $ssh_host "export PGUSER=postgres && pg_dump company_project --no-owner > /tmp/db-dump.sql"
+echo "Creating database dump from prod..."
+ssh $SSH_HOST "export PGUSER=postgres && pg_dump brf_db --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
-scp $ssh_host:/tmp/db-dump.sql $DOCKERDIR/files/db-dumps/db-dump.sql
-ssh $ssh_host "rm /tmp/db-dump.sql"
+scp $SSH_HOST:/tmp/db-dump.sql $docker_dir/files/db-dumps/db-dump.sql
+ssh $SSH_HOST "rm /tmp/db-dump.sql"
 
-echo "Rebuilding docker containers."
+echo "Rebuilding database..."
+docker-compose stop db
+docker-compose rm -f db
+docker-compose up -d db
 
-docker-compose stop
-docker-compose rm -f
-docker-compose up -d
+echo "Waiting for database ($DB_WAIT_TIME seconds)..."
+sleep $DB_WAIT_TIME
 
-echo "Waiting for postgres ($db_wait_time seconds)..."
-sleep $db_wait_time
+src_dir=${scripts_dir}/../src
+use_local_python=$(test -f "$src_dir/.env" || test -f "$src_dir/.env.local")
+
+if $use_local_python && [[ "$VIRTUAL_ENV" == "" ]]
+then
+    echo "Warning: No active virtualenv found"
+fi
+
+if $use_local_python;
+then
+    manage_command="$src_dir/manage.py"
+else
+    manage_command="docker-compose exec python ./manage.py"
+fi
 
 echo "Adjusting database..."
+$manage_command wagtail_change_site_domain --site_id=1 --new_site_domain=$LOCAL_DOMAIN
+$manage_command change_user_password --user=admin --password=admin
 
-docker-compose exec web python manage.py wagtail_change_site_domain --site_id=1 --new_site_domain=$local_domain
-
-docker-compose exec web python manage.py change_user_password --user=admin --password=admin
-
-echo "---"
-echo "Done!"
-echo "The application is ready at: http://$local_domain"
+echo "The application is ready at: $LOCAL_DOMAIN"
 echo "Username/Password is admin/admin"
+
+read -p "Sync images? [y/n]" -n 1 -r
+echo # nl
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+fi
+rsync -re ssh $ssh_host:$REMOTE_MEDIA_PATH/* ${src_dir}/media

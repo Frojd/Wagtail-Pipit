@@ -1,3 +1,4 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /cms/
+Sitemap: http://{{cookiecutter.domain_prod}}/wt/sitemap.xml
+Disallow: /wt/admin/
+Disallow: /wt//cms/

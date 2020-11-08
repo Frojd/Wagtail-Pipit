@@ -1,20 +1,18 @@
 version: '3'
 services:
-  web:
-    image: frojd/django_boilerplate_web
+  python:
+    image: frojd/wagtail_pipit_python
     build: ./src
-    ports:
-      - "8081:8000"
     depends_on:
       - db
-    environment:
-      - REQUIREMENTS=local.txt
-    env_file: ./docker/config/web.env
+    env_file: ./docker/config/python.env
+
   db:
-    image: mdillon/postgis:10
+    image: postgis/postgis:12-2.5
     ports:
       - "5433:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust

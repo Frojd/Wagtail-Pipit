@@ -1,22 +1,14 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Write local settings here, or override base settings
 """
-from __future__ import absolute_import, unicode_literals
-
 from pipit.settings.base import *  # NOQA
 
 
 VS_CODE_REMOTE_DEBUG = get_env_bool("VS_CODE_REMOTE_DEBUG", default=False)
 DEBUG = True
-TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
+TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # type: ignore[index]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-# Replace built in runserver with a ssl enabled
-INSTALLED_APPS += ["sslserver"]
 
 # Allow weak local passwords
 AUTH_PASSWORD_VALIDATORS = []
@@ -31,7 +23,9 @@ if get_env_bool("DEBUG_TOOLBAR", default=True):
 
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
-    DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": "pipit.settings.local.show_toolbar"}
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": "pipit.settings.local.show_toolbar"
+    }
 
 # Allow django-debug-bar under docker
 def show_toolbar(request):

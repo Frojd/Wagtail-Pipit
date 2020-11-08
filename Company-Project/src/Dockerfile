@@ -1,6 +1,6 @@
-FROM python:3.6-slim-buster
+FROM python:3.8-alpine
 MAINTAINER Frojd
-LABEL version="v0.1.0"
+LABEL version="v0.0.0"
 
 ENV PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=pipit.settings.local \
@@ -9,30 +9,44 @@ ENV PYTHONUNBUFFERED=1 \
     SECRET_KEY=generatesecretkeyhere \
     MEDIA_PATH=/app/media \
     STATIC_PATH=/app/static \
-    APP_LOG_DIR=/var/log/ \
     REQUIREMENTS=local.txt \
     DATABASE_USER=postgres \
     DATABASE_PASSWORD=postgres \
     DATABASE_NAME=postgres \
     DATABASE_HOST=db \
-    REACT_HOST=http://ssr:3000 \
     PYTHONPATH="${PYTHONPATH}:/app"
 
 WORKDIR /app
 ADD . /app/
 
-RUN apt-get update \
-    && apt-get install -y netcat \
-		binutils libproj-dev gdal-bin \
-		gettext \
-		libpq-dev build-essential \
-		--no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+ENV PACKAGES="\
+    alpine-sdk \
+    libffi-dev \
+    musl-dev \
+	postgresql-dev \
+	postgresql-libs \
+	linux-headers \
+	zlib-dev \
+	jpeg-dev \
+"
 
-RUN pip install --upgrade pip \
-    && pip install -r requirements/$REQUIREMENTS --no-cache-dir \
-    && pip install ipython \
-    && pip install pywatchman
+RUN \
+	apk add --virtual .build-deps --no-cache --upgrade $PACKAGES \
+	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories \
+	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories  \
+	&& apk add \
+		gcc \
+        git \
+		gdal-dev \
+		geos-dev  \
+		gettext \
+		netcat-openbsd \
+		bash \
+    && pip install --upgrade pip \
+    && pip install ipython --no-cache-dir \
+    && pip install -r requirements/$REQUIREMENTS --no-cache-dir&& pip install pywatchman --no-cache-dir \
+    && apk --purge del .build-deps
 
 EXPOSE 8000
 
