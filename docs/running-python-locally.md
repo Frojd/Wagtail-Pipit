@@ -4,7 +4,7 @@
 
 Lets start with us saying that docker is a great tool. But in all this greatness there is a performance penalty. In some cases the penalty is big enough that you want to eject docker and use a local python interpreter instead - this tutorial will show you how.
 
-## Tutorial
+## Setup
 
 Begin with changing the `PYTHON_HOST` environment variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version.
 
@@ -30,12 +30,13 @@ DJANGO_SETTINGS_MODULE=pipit.settings.local
 ALLOWED_HOSTS=*
 INTERNAL_IPS=0.0.0.0
 SECRET_KEY=generatesecretkeyhere
-MEDIA_PATH=/app/media
-STATIC_PATH=/app/static
+MEDIA_PATH=./media
+STATIC_PATH=./static
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 DATABASE_NAME=postgres
 DATABASE_HOST=localhost
+DATABASE_PORT=8083
 ```
 
 Setup virtualenv (but please note that there are many different ways of doing package management in python (pyenv, poetry etc), if you have a preffered way of doing things - do it :)
@@ -54,6 +55,8 @@ pip install -r requirements/test.txt
 
 Tip: If you are having issues installing `psycopg2` because your are lacking postgres, replace `psycopg2` with `psycopg2-binary`
 
+## Running website
+
 Start docker (without the `python` container)
 
 ```
@@ -68,3 +71,12 @@ python manage.py runserver 8000
 ```
 
 Now open `http://blog.acme.com.test:8081/wt/cms` in your favorite browser and you should see the Wagtail CMS login page.
+
+## Running tests
+
+Because we use a different set of configuration while connecting to the db, we keep a custom pytest config around for running python locally.
+
+```
+cd src
+pytest -c pytest.local.ini
+```
