@@ -1,14 +1,5 @@
 version: "3.1"
 services:
-  python:
-    image: frojd/{{cookiecutter.project_slug}}_web
-    build: ./src
-    volumes:
-      - "./src:/app"
-    depends_on:
-      - db
-    env_file: ./docker/config/python.env
-
   web:
     image: nginx:alpine
     working_dir: /app
@@ -23,7 +14,16 @@ services:
       - "./src/media:/app/media"
       - "./src/static:/app/static"
     environment:
-      - PYTHON_HOST=http://python:8000
+      - PYTHON_HOST=http://python
+
+  python:
+    image: frojd/{{cookiecutter.project_slug}}_web
+    build: ./src
+    volumes:
+      - "./src:/app"
+    depends_on:
+      - db
+    env_file: ./docker/config/python.env
 
   db:
     image: postgis/postgis:12-2.5
