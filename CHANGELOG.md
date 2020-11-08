@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.0. (XXX.XX.XX) - IN DEVELOPMENT
+## 8.0. (XXXX.XX.XX) - IN DEVELOPMENT
 
 - Replace Create React App with Next.js (Martin Sandström, Mikael Engström)
 - Replace Hypernova with Next.js (Martin Sandström, Mikael Engström)
@@ -27,9 +27,10 @@
 - Fix: Replace Boto with Boto3 (Martin Lindvall)
 - Fix: Add optional slack notification on release (Martin Sandström)
 - Fix: Add default cache for renditions (Martin Sandström)
+- Fix: Rename web.env to python.env
 
 
-## 7.0. (XXX.XX.XX) - SKIPPED
+## 7.0. (XXXX.XX.XX) - SKIPPED
 
 - Replace React-Sass-Starterkit with Create React App (Martin Sandström)
 - Replace Hastur SSR service with Hypernova (Martin Sandström)
