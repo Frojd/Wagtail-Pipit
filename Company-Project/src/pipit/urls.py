@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.conf import settings
-from django.urls import path, include, re_path
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 from wagtail.admin import urls as wagtailadmin_urls

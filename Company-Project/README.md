@@ -32,7 +32,7 @@
 1. Setup container .env files
 
     ```
-    cp docker/config/web.example.env docker/config/web.env
+    cp docker/config/python.example.env docker/config/python.env
     ```
 
 2. Include this ip on your hosts-file
@@ -69,7 +69,6 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend.md)
 - [Datasync between environments](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/data-sync.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/scaffolding.md)
-- [Server-Side Rendering](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/server-side-rendering.md)
 - [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/deployment.md)
 - [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/ci.md)
 
@@ -96,7 +95,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/1.9/intern
 
 ### VS Code
 
-This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/web.env` and restart your container to enable it.
+This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/python.env` and restart your container to enable it.
 You should now be able to attach to the running Django server instance.
 
 [PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port 5678.

@@ -167,6 +167,7 @@ jobs:
             if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
+
       # - run: |
       #     curl -sL https://sentry.io/get-cli/ | bash
       #     if [ "${CIRCLE_TAG}" ]; then
@@ -183,6 +184,12 @@ jobs:
       #     fail_only: true
       #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
       #     webhook: ${SLACK_WEBHOOK}
+
+      #- slack/notify:
+      #  color: "#049B4A"
+      #  message: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_TAG} has been successfully deployed by ${CIRCLE_USERNAME}.
+      #  tag_pattern: /^v.*/
+      #  event: pass
 
 workflows:
   version: 2

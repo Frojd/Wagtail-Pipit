@@ -6,8 +6,8 @@ server {
 
   # do not touch - uncommented when enable_ssl.sh is used
   #mkcert listen 443 ssl;
-  #mkcert ssl_certificate /etc/nginx/certs/dev-cert.pem;
-  #mkcert ssl_certificate_key /etc/nginx/certs/dev-key.pem;
+  #mkcert ssl_certificate /etc/nginx/certs/cert.pem;
+  #mkcert ssl_certificate_key /etc/nginx/certs/cert-key.pem;
 
   client_max_body_size 128M;
 
@@ -45,13 +45,14 @@ server {
       proxy_set_header Host $host:8081;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_pass http://python:8000/_util;
+      proxy_pass ${PYTHON_HOST}:8000/wt;
   }
 
   location /wt {
       proxy_set_header Host $host:8081;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_pass http://python:8000/wt;
+      proxy_pass ${PYTHON_HOST}:8000/wt;
   }
 }
+

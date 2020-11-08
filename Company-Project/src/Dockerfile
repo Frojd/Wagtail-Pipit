@@ -9,7 +9,6 @@ ENV PYTHONUNBUFFERED=1 \
     SECRET_KEY=generatesecretkeyhere \
     MEDIA_PATH=/app/media \
     STATIC_PATH=/app/static \
-    APP_LOG_DIR=/var/log/ \
     REQUIREMENTS=local.txt \
     DATABASE_USER=postgres \
     DATABASE_PASSWORD=postgres \

@@ -13,14 +13,6 @@ wait_for_db () {
 }
 
 setup_django () {
-    echo Creating log dir
-    mkdir -p $APP_LOG_DIR
-    echo $APP_LOG_DIR
-
-    echo Updating app log dir permissions
-    touch $APP_LOG_DIR/django-debug.log
-    chown www-data:www-data $APP_LOG_DIR/django-debug.log
-
     echo Running migrations
     python manage.py migrate --noinput
 
