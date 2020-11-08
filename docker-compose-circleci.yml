@@ -1,7 +1,7 @@
 version: '3'
 services:
   python:
-    image: frojd/wagtail_pipit_web
+    image: frojd/wagtail_pipit_python
     build: ./src
     depends_on:
       - db

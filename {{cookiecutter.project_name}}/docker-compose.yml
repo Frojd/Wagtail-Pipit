@@ -17,7 +17,7 @@ services:
       - PYTHON_HOST=http://python
 
   python:
-    image: frojd/{{cookiecutter.project_slug}}_web
+    image: frojd/{{cookiecutter.project_slug}}_python
     build: ./src
     volumes:
       - "./src:/app"
