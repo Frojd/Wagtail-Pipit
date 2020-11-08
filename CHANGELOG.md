@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.0. (XXXX.XX.XX) - IN DEVELOPMENT
+## 8.0. (2020.11.08)
 
 - Replace Create React App with Next.js (Martin Sandström, Mikael Engström)
 - Replace Hypernova with Next.js (Martin Sandström, Mikael Engström)
@@ -21,7 +21,7 @@
 - Fix: Update deployment docs (Martin Lindvall)
 - Fix: Change default deploy user to "deploy" (Mikael Engström)
 - Fix: Override environment variables if they exist (Martin Lindvall)
-- Fix: Update Wagtail to 2.11
+- Fix: Update Wagtail to 2.11.1
 - Fix: Update Django to 3.1.2
 - Fix: Update DRF
 - Fix: Replace Boto with Boto3 (Martin Lindvall)
