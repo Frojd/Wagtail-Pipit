@@ -3,6 +3,8 @@
 ## 8.0.1 (XXXX.XX.XX) - IN PROGRESS
 
 - Fix issue where syncscripts where nog working in docker mode (Martin Sandström)
+- Add guide on how to use static site generation (Martin Sandström)
+- Fix issue where `api/wagtail.js` `getAllPages` did not work (Martin Sandström)
 
 
 ## 8.0.0 (2020.11.08)
