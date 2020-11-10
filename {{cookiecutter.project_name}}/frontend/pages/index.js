@@ -1,5 +1,5 @@
-// For static routing
-// export { default, getStaticProps } from './[...path]'
-
-// For dynamic routing
+// For SSR
 export { default, getServerSideProps } from './[...path]';
+
+// For SSG
+// export { default, getStaticProps } from './[...path]';
