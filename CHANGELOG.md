@@ -1,6 +1,11 @@
 # Changelog
 
-## 8.0. (2020.11.08)
+## 8.0.1 (XXXX.XX.XX) - IN PROGRESS
+
+- Fix issue where syncscripts where nog working in docker mode (Martin Sandström)
+
+
+## 8.0.0 (2020.11.08)
 
 - Replace Create React App with Next.js (Martin Sandström, Mikael Engström)
 - Replace Hypernova with Next.js (Martin Sandström, Mikael Engström)
@@ -30,7 +35,7 @@
 - Fix: Rename web.env to python.env
 
 
-## 7.0. (XXXX.XX.XX) - SKIPPED
+## 7.0.0 (XXXX.XX.XX) - SKIPPED
 
 - Replace React-Sass-Starterkit with Create React App (Martin Sandström)
 - Replace Hastur SSR service with Hypernova (Martin Sandström)
