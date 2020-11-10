@@ -12,7 +12,7 @@ scripts_dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 docker_dir=${scripts_dir}/../docker
 
 echo "Creating database dump from prod..."
-ssh $SSH_HOST "export PGUSER=postgres && pg_dump brf_db --no-owner > /tmp/db-dump.sql"
+ssh $SSH_HOST "export PGUSER=postgres && pg_dump {{ cookiecutter.db_name_prod }} --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
 scp $SSH_HOST:/tmp/db-dump.sql $docker_dir/files/db-dumps/db-dump.sql
