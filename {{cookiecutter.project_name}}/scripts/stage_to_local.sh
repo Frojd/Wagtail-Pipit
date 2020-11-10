@@ -11,7 +11,7 @@ readonly REMOTE_MEDIA_PATH=/mnt/persist/www/{{cookiecutter.project_slug}}/shared
 scripts_dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 docker_dir=${scripts_dir}/../docker
 
-echo "Creating database dump from prod..."
+echo "Creating database dump from stage..."
 ssh $SSH_HOST "export PGUSER=postgres && pg_dump {{ cookiecutter.db_name_stage }} --no-owner > /tmp/db-dump.sql"
 
 echo "Downloading database dump..."
@@ -27,14 +27,22 @@ echo "Waiting for database ($DB_WAIT_TIME seconds)..."
 sleep $DB_WAIT_TIME
 
 src_dir=${scripts_dir}/../src
-use_local_python=$(test -f "$src_dir/.env" || test -f "$src_dir/.env.local")
 
-if $use_local_python && [[ "$VIRTUAL_ENV" == "" ]]
+if test -f "$src_dir/.env" || test -f "$src_dir/.env.local"
+then
+    echo "Info: Using local python"
+    use_local_python=1
+else
+    echo "Info: Using docker python"
+    use_local_python=0
+fi
+
+if [[ $use_local_python == 1 ]] && [[ "$VIRTUAL_ENV" == "" ]]
 then
     echo "Warning: No active virtualenv found"
 fi
 
-if $use_local_python;
+if [[ $use_local_python == 1 ]]
 then
     manage_command="$src_dir/manage.py"
 else
