@@ -3,6 +3,7 @@ export { default } from './[...path]';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+// For SSR
 export async function getServerSideProps({ req, preview, previewData }) {
     if (!preview) {
         // TODO: Serve 404 component
@@ -35,3 +36,15 @@ export async function getServerSideProps({ req, preview, previewData }) {
         throw err;
     }
 }
+
+// For SSG (will disable route)
+/*
+export async function getStaticProps({ params, preview, previewData }) {
+    return {
+        props: {
+            componentName: '',
+            componentProps: {},
+        }
+    }
+}
+*/

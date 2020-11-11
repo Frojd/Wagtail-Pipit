@@ -34,8 +34,6 @@ export async function getPasswordProtectedPage(
 export async function getAllPages() {
     return await getRequest(
         `${API_URL}/v1/page_relative_urls/`,
-        params,
-        options
     );
 }
 
