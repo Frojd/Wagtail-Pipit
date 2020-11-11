@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.0.1 (XXXX.XX.XX) - IN PROGRESS
+## 8.0.1 (2020.11.11)
 
 - Fix issue where syncscripts where nog working in docker mode (Martin Sandström)
 - Add guide on how to use static site generation (Martin Sandström)
