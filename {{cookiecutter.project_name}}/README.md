@@ -12,8 +12,8 @@
 - [Deployment](#deployment)
 - [Merge conflicts](#merge-conflicts)
 - [Git hooks](#git-hooks)
-- [FAQ](#faq)
 - [Server requirements](#server-requirements)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -22,7 +22,7 @@
 
 - Python 3.8+
 - Pip
-- Virtualenv
+- Virtualenv (or the package manage of your chocie)
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
 
@@ -66,11 +66,14 @@
 
 We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
 
-- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend.md)
+- [Frontend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend-developer-guide.md)
+- [Baclend developer workflow](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/backend-developer-guide.md)
 - [Datasync between environments](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/data-sync.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/scaffolding.md)
 - [Deploying with Ansistrano](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/deployment.md)
 - [Settings up continuous integration on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/ci.md)
+- [Running python locally](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/running-python-locally.md)
+- [Using static site generation](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/using-static-site-generation.md)
 
 
 ## Versioning
@@ -153,7 +156,7 @@ Based on our preffered Django stack you can send this list to your hosting provi
 
 ```
 SSH access (passwordless with RSA keys)
-Linux (Ubuntu is preffered)
+Linux (Ubuntu 20.04+ is preffered)
 Nginx
 uWSGI
 Python 3.8+
