@@ -138,15 +138,14 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         for restriction in page.get_view_restrictions():
             if not restriction.accept_request(request):
                 if restriction.restriction_type == PageViewRestriction.PASSWORD:
-                    data = {
+                    return Response({
                         "component_name": "PasswordProtectedPage",
                         "component_props": {
                             "restriction_id": restriction.id,
                             "page_id": page.id,
                             "csrf_token": csrf_middleware.get_token(request),
                         },
-                    }
-                    return Response(data)
+                    })
 
                 elif restriction.restriction_type in [
                     PageViewRestriction.LOGIN,
@@ -154,14 +153,12 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                 ]:
                     site = Site.find_for_request(self.request)
                     resp = require_wagtail_login(next=page.relative_url(site, request))
-                    data = {
-                        "component_name": "RedirectPage",
-                        "component_props": {
+                    return Response({
+                        "redirect": {
                             "location": resp.url,
                             "is_permanent": False,
-                        },
-                    }
-                    return Response(data)
+                        }
+                    })
 
         return page.serve(request, *args, **kwargs)
 
@@ -222,9 +219,11 @@ api_router.register_endpoint("external_view_data", ExternalViewDataAPIViewSet)
 
 
 class RedirectSerializer(serializers.ModelSerializer):
+    destination = serializers.CharField(source="link")
+
     class Meta:
         model = Redirect
-        fields = ["old_path", "link", "is_permanent"]
+        fields = ["old_path", "destination", "is_permanent"]
 
 
 class RedirectByPathAPIViewSet(BaseAPIViewSet):
