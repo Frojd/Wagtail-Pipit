@@ -6,7 +6,7 @@ const Hero = ({ title }) => (
     <div className={s.Container}>
         <h1 className={s.Title}>
             <img
-                src={'img/white_circle.png'}
+                src={'/img/white_circle.png'}
                 alt="Logo"
                 className={s.TitleIcon}
             />
