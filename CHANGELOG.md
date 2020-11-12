@@ -1,5 +1,12 @@
 # Changelog
 
+## 8.0.2 (XXXX.XX.XX)
+
+- Fix: Simplify redirects using new Next.js 10 redirect (Martin Sandström)
+- Fix: Move django setting env to config root (Martin Sandström)
+- Fix: Use pinned wagtail-factories version (Martin Sandström)
+
+
 ## 8.0.1 (2020.11.11)
 
 - Fix issue where syncscripts where nog working in docker mode (Martin Sandström)
