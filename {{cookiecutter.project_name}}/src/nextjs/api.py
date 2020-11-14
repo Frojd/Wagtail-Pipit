@@ -155,7 +155,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                     resp = require_wagtail_login(next=page.relative_url(site, request))
                     return Response({
                         "redirect": {
-                            "location": resp.url,
+                            "destination": resp.url,
                             "is_permanent": False,
                         }
                     })
