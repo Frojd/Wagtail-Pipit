@@ -60,14 +60,14 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
     def get_object(self):
         content_type = self.request.GET.get("content_type")
         if not content_type:
-            raise ValidationError("Missing content_type")
+            raise ValidationError({"content_type": "Missing value"})
 
         app_label, model = content_type.split(".")
         content_type = ContentType.objects.get(app_label=app_label, model=model)
 
         token = self.request.GET.get("token")
         if not token:
-            raise ValidationError("Missing token")
+            raise ValidationError({"token": "Missing value"})
 
         page_preview = PagePreview.objects.get(
             content_type=content_type,
@@ -155,7 +155,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                     resp = require_wagtail_login(next=page.relative_url(site, request))
                     return Response({
                         "redirect": {
-                            "location": resp.url,
+                            "destination": resp.url,
                             "is_permanent": False,
                         }
                     })
@@ -165,7 +165,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
     def get_object(self):
         path = self.request.GET.get("html_path", None)
         if path is None:
-            raise ValidationError("Missing html_path")
+            raise ValidationError({"html_path": "Missing value"})
 
         site = Site.find_for_request(self.request)
         if not site:
@@ -237,7 +237,7 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
     def get_object(self):
         path = self.request.GET.get("html_path", None)
         if path == None:
-            raise ValidationError("Missing html_path")
+            raise ValidationError({"html_path": "Missing value"})
 
         site = Site.find_for_request(self.request)
         path = Redirect.normalise_path(path)
