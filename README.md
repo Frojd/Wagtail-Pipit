@@ -35,6 +35,7 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Setting up continuous integration on CircleCI](/docs/ci.md)
 - [Running python locally](/docs/running-python-locally.md)
 - [Using static site generation](/docs/using-static-site-generation.md)
+- [Working with Wagtail's routable pages](/docs/working-with-wagtails-routable-pages.md)
 
 ## Contribute
 If you have ideas for improvement, please share your thoughts through an issue. We also welcome PR's
