@@ -5,7 +5,8 @@
 - Fix: Simplify redirects using new Next.js 10 redirect (Martin Sandström)
 - Fix: Move django setting env to config root (Martin Sandström)
 - Fix: Use pinned wagtail-factories version (Martin Sandström)
-- Fix: Add guide on how to build routable pages (Martin Sandström)
+- Fix: Solve issue where DDT where not detected on api (Martin Lindvall, Martin Sandström)
+- Add guide on how to build routable pages (Martin Sandström)
 
 
 ## 8.0.1 (2020.11.11)
