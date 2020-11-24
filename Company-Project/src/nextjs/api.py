@@ -201,7 +201,7 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
         if isinstance(view_resource, str):
             view_resource = import_string(view_resource)
 
-        view_cls: View = cast(View, view_cls)
+        view_cls: View = cast(View, view_resource)
 
         view = view_cls.as_view()
         resp = view(request)
