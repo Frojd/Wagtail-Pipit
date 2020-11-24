@@ -14,7 +14,7 @@ export async function getServerSideProps({ req, preview, previewData }) {
 
     // TODO: Add proper token verification and error message
     try {
-        const pagePreviewData = await getPagePreview(contentType, token, {
+        const pagePreviewData = await getPagePreview(contentType, token, {}, {
             headers: {
                 cookie: req.headers.cookie,
             },
