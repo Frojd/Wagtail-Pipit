@@ -17,7 +17,8 @@ export async function getServerSideProps({ req, params, res }) {
     let path = params?.path || [];
     path = path.join('/');
 
-    let queryParams = new URL(req.url, `https://${req.headers.host}`).search;
+    const { host } = req.headers;
+    let queryParams = new URL(req.url, `https://${host}`).search;
     if (queryParams.indexOf('?') === 0) {
         queryParams = queryParams.substr(1);
     }
@@ -35,6 +36,7 @@ export async function getServerSideProps({ req, params, res }) {
             queryParams, {
                 headers: {
                     cookie: req.headers.cookie,
+                    host,
                 },
             }
         );
@@ -84,6 +86,7 @@ export async function getServerSideProps({ req, params, res }) {
         const redirect = await getRedirect(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
+                host,
             },
         });
         const { destination, isPermanent } = redirect;
