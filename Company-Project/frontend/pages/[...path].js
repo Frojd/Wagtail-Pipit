@@ -25,7 +25,12 @@ export async function getServerSideProps({ req, params, res }) {
 
     // Try to serve page
     try {
-        const { componentName, componentProps, redirect } = await getPage(
+        const {
+            componentName,
+            componentProps,
+            redirect,
+            customResponse,
+        } = await getPage(
             path,
             queryParams, {
                 headers: {
@@ -33,6 +38,18 @@ export async function getServerSideProps({ req, params, res }) {
                 },
             }
         );
+
+        if (customResponse) {
+            const { body, body64, contentType } = customResponse;
+            res.setHeader('Content-Type', contentType);
+            res.statusCode = 200;
+            res.write(
+                body64 ? Buffer.from(body64, 'base64') : body
+            );
+            res.end();
+
+            return { props: {} };
+        }
 
         if (redirect) {
             const { destination, isPermanent } = redirect;

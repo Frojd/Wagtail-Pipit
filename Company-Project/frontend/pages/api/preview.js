@@ -14,7 +14,7 @@ export default async (req, res) => {
     //   return res.status(401).json({ message: 'Invalid slug' })
     // }
 
-    res.setPreviewData({ contentType, token, host});
+    res.setPreviewData({ contentType, token, host });
     res.redirect('/_preview');
     res.end();
 };
