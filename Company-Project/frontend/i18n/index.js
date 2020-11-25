@@ -12,9 +12,10 @@ import i18next from 'i18next';
 
 import en from './translations/en.json';
 import sv from './translations/sv.json';
+import de from './translations/de.json';
 
 i18next.init({
-    languages: ['en', 'sv'],
+    languages: ['en', 'sv', 'de'],
     fallbackLng: ['en'],
     resources: {
         en: {
@@ -22,6 +23,9 @@ i18next.init({
         },
         sv: {
             translation: sv,
+        },
+        de: {
+            translation: de,
         },
     },
 });

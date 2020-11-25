@@ -1,6 +1,16 @@
+import i18next from 'i18next';
 import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+
+const withLanguageDetection = (Component) => (props) => {
+    const { language } = props.siteSetting || {};
+    if (language) {
+        i18next.changeLanguage(language);
+    }
+
+    return <Component {...props} />;
+}
 
 const BasePage = ({ children, seo, wagtailUserbar }) => {
     const {
@@ -18,6 +28,7 @@ const BasePage = ({ children, seo, wagtailUserbar }) => {
         seoMetaRobots,
         canonicalLink,
     } = seo;
+
     return (
         <>
             <Head>
@@ -86,4 +97,4 @@ BasePage.propTypes = {
     }),
 };
 
-export default BasePage;
+export default withLanguageDetection(BasePage);
