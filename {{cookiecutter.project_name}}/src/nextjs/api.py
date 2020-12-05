@@ -167,6 +167,9 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         if path is None:
             raise ValidationError({"html_path": "Missing value"})
 
+        if not path.startswith("/"):
+            path = "/" + path
+
         site = Site.find_for_request(self.request)
         if not site:
             raise Http404
@@ -238,6 +241,9 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
         path = self.request.GET.get("html_path", None)
         if path == None:
             raise ValidationError({"html_path": "Missing value"})
+
+        if not path.startswith("/"):
+            path = "/" + path
 
         site = Site.find_for_request(self.request)
         path = Redirect.normalise_path(path)
