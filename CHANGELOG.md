@@ -1,11 +1,11 @@
 # Changelog
 
-## 8.0.2 (XXXX.XX.XX)
+## 8.0.2 (2020.12.14)
 
 - Add guide on how to build routable pages (Martin Sandström)
 - Make it possible to serve custom content types through Next.js (Martin Lindvall, Martin Sandström)
 - Convert png to jpg and add support for webp (Martin Lindvall)
-- Adding multi language support (Martin Sandström)
+- Add multi language support (Martin Sandström)
 - Fix: Simplify redirects using new Next.js 10 redirect (Martin Sandström)
 - Fix: Move django setting env to config root (Martin Sandström)
 - Fix: Use pinned wagtail-factories version (Martin Sandström)
