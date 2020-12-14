@@ -60,6 +60,10 @@ SESSION_COOKIE_SECURE = True
 # Use a secure cookie for the CSRF cookie
 CSRF_COOKIE_SECURE = True
 
+# Use HttpOnly flag on the CSRF cookie
+# Note: JavaScript will not to be able to access the CSRF cookie
+CSRF_COOKIE_HTTPONLY = True
+
 # Sentry
 SENTRY_DSN = get_env("SENTRY_DSN")
 SENTRY_ENVIRONMENT = "prod"

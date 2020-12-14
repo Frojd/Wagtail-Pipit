@@ -6,6 +6,7 @@ from django.middleware import csrf as csrf_middleware
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.urls import path, reverse
+from django.utils import translation
 from django.utils.module_loading import import_string
 from django.views import View
 from rest_framework import serializers, status
@@ -167,12 +168,34 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         if path is None:
             raise ValidationError({"html_path": "Missing value"})
 
+        if not path.startswith("/"):
+            path = "/" + path
+
         site = Site.find_for_request(self.request)
         if not site:
             raise Http404
 
+        root_page = site.root_page
+
         path_components = [component for component in path.split("/") if component]
-        page, args, kwargs = site.root_page.specific.route(
+
+        if getattr(settings, 'WAGTAIL_I18N_ENABLED', False):
+            language_from_path = translation.get_language_from_path(path)
+
+            if language_from_path:
+                path_components.remove(language_from_path)
+                translated_root_page = (
+                    root_page
+                    .get_translations(inclusive=True)
+                    .filter(locale__language_code=language_from_path)
+                    .first()
+                )
+                if not translated_root_page:
+                    raise Http404
+
+                root_page = translated_root_page
+
+        page, args, kwargs = root_page.specific.route(
             self.request, path_components
         )
         return page, args, kwargs
@@ -238,6 +261,9 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
         path = self.request.GET.get("html_path", None)
         if path == None:
             raise ValidationError({"html_path": "Missing value"})
+
+        if not path.startswith("/"):
+            path = "/" + path
 
         site = Site.find_for_request(self.request)
         path = Redirect.normalise_path(path)

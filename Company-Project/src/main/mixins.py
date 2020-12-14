@@ -4,7 +4,7 @@ from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.http.request import HttpRequest
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse
 from django.utils.functional import cached_property
 from rest_framework.serializers import Serializer
 from wagtail.utils.decorators import cached_classmethod
