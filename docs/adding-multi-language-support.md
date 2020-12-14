@@ -29,6 +29,28 @@ urlpatterns += i18n_patterns(
 )
 ```
 
-This will make sure languages are served as `example.com/en/about-is.`
+This will make sure languages are served as `example.com/en/about/` and `example.com/sv/om-oss/`
 
-5. Done!
+5. Next step is to provide the frontend with both current language for pages and any translations, open `src/main/pages/base_serializer.py` and extend the BaseSerializer like this:
+
+```python
+...
+class BasePageSerializer(serializers.ModelSerializer):
+    ...
+    language_code = serializers.SerializerMethodField()
+    translations = serializers.SerializerMethodField()
+    ...
+
+    def get_language_code(self, page):
+        return self.locale.language_code
+
+    def get_translations(self, page):
+        translations = page.get_translations(inclusive=False)
+        return [{
+            "title": x.title,
+            "url": x.full_url,
+            "language_code": x.locale.language_code,
+        } for x in translations]
+```
+
+6. Done!
