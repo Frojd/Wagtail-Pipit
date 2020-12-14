@@ -1,5 +1,19 @@
 # Changelog
 
+## 8.0.2 (2020.12.14)
+
+- Add guide on how to build routable pages (Martin Sandström)
+- Make it possible to serve custom content types through Next.js (Martin Lindvall, Martin Sandström)
+- Convert png to jpg and add support for webp (Martin Lindvall)
+- Add multi language support (Martin Sandström)
+- Fix: Simplify redirects using new Next.js 10 redirect (Martin Sandström)
+- Fix: Move django setting env to config root (Martin Sandström)
+- Fix: Use pinned wagtail-factories version (Martin Sandström)
+- Fix: Solve issue where DDT where not detected on api (Martin Lindvall, Martin Sandström)
+- Fix: Pass host in request to api to make it site aware (Martin Sandström)
+- Fix: Enable javascript to access csrf token  (Martin Lindvall)
+
+
 ## 8.0.1 (2020.11.11)
 
 - Fix issue where syncscripts where nog working in docker mode (Martin Sandström)

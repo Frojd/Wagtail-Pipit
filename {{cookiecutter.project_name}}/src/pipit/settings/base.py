@@ -160,6 +160,11 @@ WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
+WAGTAILIMAGES_FORMAT_CONVERSIONS = {
+    "png": "jpeg",
+    "webp": "webp",
+}
+
 
 # File storage
 if get_env("AWS_ACCESS_KEY_ID", ""):

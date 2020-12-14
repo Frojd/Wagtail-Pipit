@@ -5,5 +5,4 @@
 pytest-django==4.1.0
 coverage
 pytest-env
-#wagtail-factories==2.0.0
-git+git://github.com/wagtail/wagtail-factories.git#egg=wagtail_factories
+wagtail-factories==2.0.1

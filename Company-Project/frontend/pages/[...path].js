@@ -1,5 +1,5 @@
 import querystring from 'querystring';
-import { getPage, getViewData, getRedirect, getAllPages } from '../api/wagtail';
+import { getPage, getRedirect, getAllPages } from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -17,7 +17,8 @@ export async function getServerSideProps({ req, params, res }) {
     let path = params?.path || [];
     path = path.join('/');
 
-    let queryParams = new URL(req.url, `https://${req.headers.host}`).search;
+    const { host } = req.headers;
+    let queryParams = new URL(req.url, `https://${host}`).search;
     if (queryParams.indexOf('?') === 0) {
         queryParams = queryParams.substr(1);
     }
@@ -25,21 +26,41 @@ export async function getServerSideProps({ req, params, res }) {
 
     // Try to serve page
     try {
-        const { componentName, componentProps } = await getPage(
+        const {
+            componentName,
+            componentProps,
+            redirect,
+            customResponse,
+        } = await getPage(
             path,
-            queryParams,
-            {
+            queryParams, {
                 headers: {
                     cookie: req.headers.cookie,
+                    host,
                 },
             }
         );
 
-        if (componentName === 'RedirectPage') {
-            const { location, isPermanent } = componentProps;
-            res.statusCode = isPermanent ? 301 : 302;
-            res.setHeader('location', location);
+        if (customResponse) {
+            const { body, body64, contentType } = customResponse;
+            res.setHeader('Content-Type', contentType);
+            res.statusCode = 200;
+            res.write(
+                body64 ? Buffer.from(body64, 'base64') : body
+            );
             res.end();
+
+            return { props: {} };
+        }
+
+        if (redirect) {
+            const { destination, isPermanent } = redirect;
+            return {
+                redirect: {
+                    destination: destination,
+                    permanent: isPermanent,
+                }
+            }
         }
 
         return { props: { componentName, componentProps } };
@@ -65,12 +86,16 @@ export async function getServerSideProps({ req, params, res }) {
         const redirect = await getRedirect(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
+                host,
             },
         });
-        const { link, isPermanent } = redirect;
-        res.statusCode = isPermanent ? 301 : 302;
-        res.setHeader('location', link);
-        res.end();
+        const { destination, isPermanent } = redirect;
+        return {
+            redirect: {
+                destination: destination,
+                permanent: isPermanent,
+            }
+        }
     } catch (err) {
         if (err.response.status >= 500) {
             throw err;
@@ -78,13 +103,7 @@ export async function getServerSideProps({ req, params, res }) {
     }
 
     // Serve 404 page
-    const pageNotFoundData = await getViewData('404', queryParams, {
-        headers: {
-            cookie: req.headers.cookie,
-        },
-    });
-    res.statusCode = 404;
-    return { props: pageNotFoundData };
+    return { notFound: true };
 }
 
 // For SSG

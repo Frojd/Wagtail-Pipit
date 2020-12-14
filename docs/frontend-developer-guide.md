@@ -34,7 +34,7 @@ the contents (Some files omitted for brevity):
 ├── i18n            # Contains internationalization strings and module for handling those
 ├── index.css       # Entrypoing for global css from styles
 ├── jest.config.js  # Configuration for jest
-├── next.config.js  # Configuration for Bext.js
+├── next.config.js  # Configuration for Next.js
 ├── pages           # Contains Next.js [pages](https://nextjs.org/docs/basic-features/pages)
 ├── public          # Static files to be served by Next.js
 ├── setupTests.js   # Test suite configurations

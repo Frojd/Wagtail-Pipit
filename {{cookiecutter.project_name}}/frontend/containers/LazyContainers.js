@@ -7,5 +7,4 @@ export default {
     NotFoundPage: dynamic(() => import('./NotFoundPage')),
     PasswordProtectedPage: dynamic(() => import('./PasswordProtectedPage')),
     PureHtmlPage: dynamic(() => import('./PureHtmlPage')),
-    RedirectPage: dynamic(() => import('./RedirectPage')),
 };

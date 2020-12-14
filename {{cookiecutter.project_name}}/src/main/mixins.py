@@ -4,8 +4,9 @@ from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.http.request import HttpRequest
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse
 from django.utils.functional import cached_property
+from rest_framework.serializers import Serializer
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
     ObjectList,
@@ -30,7 +31,6 @@ from wagtail.admin.edit_handlers import (
     EditHandler,
     WagtailAdminPageForm,
 )
-from rest_framework.serializers import Serializer
 
 
 class RedirectUpMixin:
@@ -38,15 +38,12 @@ class RedirectUpMixin:
 
     def serve(self, request, *args, **kwargs):
         parent = self.get_parent()
-        return JsonResponse(
-            {
-                "component_name": "RedirectPage",
-                "component_props": {
-                    "location": parent.url,
-                    "is_permanent": False,
-                },
+        return JsonResponse({
+            "redirect": {
+                "destination": parent.url,
+                "is_permanent": False,
             }
-        )
+        })
 
 
 class SeoMixin(Page):

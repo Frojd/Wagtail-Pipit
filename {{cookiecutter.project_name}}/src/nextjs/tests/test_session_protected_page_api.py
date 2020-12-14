@@ -31,7 +31,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         )
         self.assertEqual(response.status_code, 200)
         data = response.json()
-        self.assertEqual(data["component_name"], "RedirectPage")
+        self.assertTrue("redirect" in data)
 
     def test_proper_pag_if_user_is_logged_in(self):
         self.login()

@@ -2,6 +2,7 @@ from typing import List
 
 from rest_framework import serializers
 from wagtail.core import fields
+from wagtail.core.models import Locale
 from wagtail.api.v2 import serializers as wagtail_serializers
 
 from sitesettings.models import SiteSetting

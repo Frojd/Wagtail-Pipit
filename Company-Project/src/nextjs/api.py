@@ -6,6 +6,7 @@ from django.middleware import csrf as csrf_middleware
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.urls import path, reverse
+from django.utils import translation
 from django.utils.module_loading import import_string
 from django.views import View
 from rest_framework import serializers, status
@@ -60,14 +61,14 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
     def get_object(self):
         content_type = self.request.GET.get("content_type")
         if not content_type:
-            raise ValidationError("Missing content_type")
+            raise ValidationError({"content_type": "Missing value"})
 
         app_label, model = content_type.split(".")
         content_type = ContentType.objects.get(app_label=app_label, model=model)
 
         token = self.request.GET.get("token")
         if not token:
-            raise ValidationError("Missing token")
+            raise ValidationError({"token": "Missing value"})
 
         page_preview = PagePreview.objects.get(
             content_type=content_type,
@@ -138,15 +139,14 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         for restriction in page.get_view_restrictions():
             if not restriction.accept_request(request):
                 if restriction.restriction_type == PageViewRestriction.PASSWORD:
-                    data = {
+                    return Response({
                         "component_name": "PasswordProtectedPage",
                         "component_props": {
                             "restriction_id": restriction.id,
                             "page_id": page.id,
                             "csrf_token": csrf_middleware.get_token(request),
                         },
-                    }
-                    return Response(data)
+                    })
 
                 elif restriction.restriction_type in [
                     PageViewRestriction.LOGIN,
@@ -154,28 +154,48 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                 ]:
                     site = Site.find_for_request(self.request)
                     resp = require_wagtail_login(next=page.relative_url(site, request))
-                    data = {
-                        "component_name": "RedirectPage",
-                        "component_props": {
-                            "location": resp.url,
+                    return Response({
+                        "redirect": {
+                            "destination": resp.url,
                             "is_permanent": False,
-                        },
-                    }
-                    return Response(data)
+                        }
+                    })
 
         return page.serve(request, *args, **kwargs)
 
     def get_object(self):
         path = self.request.GET.get("html_path", None)
         if path is None:
-            raise ValidationError("Missing html_path")
+            raise ValidationError({"html_path": "Missing value"})
+
+        if not path.startswith("/"):
+            path = "/" + path
 
         site = Site.find_for_request(self.request)
         if not site:
             raise Http404
 
+        root_page = site.root_page
+
         path_components = [component for component in path.split("/") if component]
-        page, args, kwargs = site.root_page.specific.route(
+
+        if getattr(settings, 'WAGTAIL_I18N_ENABLED', False):
+            language_from_path = translation.get_language_from_path(path)
+
+            if language_from_path:
+                path_components.remove(language_from_path)
+                translated_root_page = (
+                    root_page
+                    .get_translations(inclusive=True)
+                    .filter(locale__language_code=language_from_path)
+                    .first()
+                )
+                if not translated_root_page:
+                    raise Http404
+
+                root_page = translated_root_page
+
+        page, args, kwargs = root_page.specific.route(
             self.request, path_components
         )
         return page, args, kwargs
@@ -204,7 +224,7 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
         if isinstance(view_resource, str):
             view_resource = import_string(view_resource)
 
-        view_cls: View = cast(View, view_cls)
+        view_cls: View = cast(View, view_resource)
 
         view = view_cls.as_view()
         resp = view(request)
@@ -222,9 +242,11 @@ api_router.register_endpoint("external_view_data", ExternalViewDataAPIViewSet)
 
 
 class RedirectSerializer(serializers.ModelSerializer):
+    destination = serializers.CharField(source="link")
+
     class Meta:
         model = Redirect
-        fields = ["old_path", "link", "is_permanent"]
+        fields = ["old_path", "destination", "is_permanent"]
 
 
 class RedirectByPathAPIViewSet(BaseAPIViewSet):
@@ -238,7 +260,10 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
     def get_object(self):
         path = self.request.GET.get("html_path", None)
         if path == None:
-            raise ValidationError("Missing html_path")
+            raise ValidationError({"html_path": "Missing value"})
+
+        if not path.startswith("/"):
+            path = "/" + path
 
         site = Site.find_for_request(self.request)
         path = Redirect.normalise_path(path)

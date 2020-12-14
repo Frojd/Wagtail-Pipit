@@ -30,4 +30,4 @@ class RedirectByPathApiTest(WagtailPageTests):
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
-        self.assertEqual(data["link"], "https://wagtail.io")
+        self.assertEqual(data["destination"], "https://wagtail.io")
