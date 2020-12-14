@@ -11,6 +11,7 @@
 - Fix: Use pinned wagtail-factories version (Martin Sandström)
 - Fix: Solve issue where DDT where not detected on api (Martin Lindvall, Martin Sandström)
 - Fix: Pass host in request to api to make it site aware (Martin Sandström)
+- Fix: Enable javascript to access csrf token  (Martin Lindvall)
 
 
 ## 8.0.1 (2020.11.11)
