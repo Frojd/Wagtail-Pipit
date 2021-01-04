@@ -1,5 +1,12 @@
 # Changelog
 
+## 8.0.3 (2020.01.04)
+
+- Fix: Update Next.js to 10.0.4
+- Fix: Update storybook to v6
+- Fix: Upgrade frontend test packages and prettier
+
+
 ## 8.0.2 (2020.12.14)
 
 - Add guide on how to build routable pages (Martin Sandström)
