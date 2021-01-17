@@ -159,7 +159,11 @@ class SeoMixin(Page):
 
     @cached_property
     def seo_html_title(self):
-        return self.google_setting.get_title()
+        title = self.google_setting.get_title()
+        site = self.get_site()
+        if not site.site_name:
+            return title
+        return f"{title} | {site.site_name}"
 
     @cached_property
     def seo_meta_description(self):
