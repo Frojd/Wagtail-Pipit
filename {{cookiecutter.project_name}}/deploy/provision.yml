@@ -1,7 +1,7 @@
 {% raw -%}
 
 ---
-- name: Installs python application on server (secret gen, db setup, nginx and uwsgi config)
+- name: Installs python application on server (secret gen, db setup, nginx, uwsgi and pm2 config)
   hosts: all
 
   vars:
@@ -30,7 +30,7 @@
         mode: 0775
         recurse: yes
 
-    - name: Create .env file
+    - name: Creates .env file for Django
       template:
         src: files/.env.j2
         dest: "{{ ansistrano_deploy_to }}/shared/.env"
@@ -38,7 +38,7 @@
         group: www-data
         mode: 0664
 
-    - name: Create .env.next file
+    - name: Creates .env.next file for Next.js
       template:
         src: files/.env.next.j2
         dest: "{{ ansistrano_deploy_to }}/shared/.env.next"
@@ -93,11 +93,10 @@
         mode: 0775
         recurse: yes
 
-    - name: Create pm2 .yml file for next.js
+    - name: Creates pm2 .yml file for next.js
       template:
-        src: files/ssr_config.yml.j2
-        dest: "{{ ansistrano_deploy_to }}/shared/pm2/{{ project_slug }}.yml"
-        owner: deploy
+        src: files/pm2_config.yml.j2
+        dest: "/mnt/persist/nodejs/{{ project_slug }}.yml"
         group: www-data
         mode: 0664
 
