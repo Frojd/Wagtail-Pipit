@@ -152,10 +152,10 @@ ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 
 ## Server requirements
 
-Based on our preffered Django stack you can send this list to your hosting provider:
+If you want to setup this boilerplate on a server using our preffered stack and keep compatibility with our provisioning script, make sure it contains the following components:
 
 ```
-SSH access (passwordless with RSA keys)
+SSH access (passwordless login with RSA keys must be allowed)
 Linux (Ubuntu 20.04+ is preffered)
 Nginx
 uWSGI
@@ -163,8 +163,9 @@ Python 3.8+
 PostgreSQL 12+
 PostGIS for PostgreSQL
 GDAL (required for PostGIS)
-Node 12+ (for SSR)
-psycopg2-binary (for the provision script that will create db and users)
+psycopg2-binary (this is required for the provision script that will create db and users)
+Node 12+
+PM2
 ```
 
 
