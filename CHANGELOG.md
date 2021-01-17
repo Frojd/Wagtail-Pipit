@@ -1,5 +1,19 @@
 # Changelog
 
+## 8.0.4 (2020.01.17)
+
+- Fix: Replace ssr pm2 config in provision with next.js pm2 config
+- Fix: Include `site.site_name` in `seo_html_title`
+- Fix: Add missing `wagtail_userbar` data from backend api
+- Fix: Drop redundant assert in email.py
+- Fix: Include Next.js process in provision nginx configuration
+- Fix: Correct invalid paths in next.js provision env template
+- Fix: Include pm2 in server requirements
+- Fix: Upgrade django to 1.3.5
+- Fix: Upgrade django-storages to 1.11.1
+- Fix: Upgrade boto3 to 1.16.56
+
+
 ## 8.0.3 (2020.01.04)
 
 - Fix: Update Next.js to 10.0.4
