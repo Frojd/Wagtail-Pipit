@@ -1,6 +1,7 @@
 from typing import List
 
 from rest_framework import serializers
+from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
 from wagtail.core import fields
 from wagtail.core.models import Locale
 from wagtail.api.v2 import serializers as wagtail_serializers
@@ -21,6 +22,7 @@ class BasePageSerializer(serializers.ModelSerializer):
 
     seo = serializers.SerializerMethodField()
     site_setting = serializers.SerializerMethodField()
+    wagtail_userbar = serializers.SerializerMethodField()
 
     class Meta:
         model = BasePage
@@ -39,3 +41,19 @@ class BasePageSerializer(serializers.ModelSerializer):
     def get_site_setting(self, page):
         site_setting = SiteSetting.for_site(page.get_site())
         return SiteSettingSerializer(site_setting).data
+
+    def get_wagtail_userbar(self, page):
+        request = self.context.get("request", None)
+        if not request:
+            return None
+
+        if not hasattr(request, "user"):
+            return None
+
+        html = wagtailuserbar({"request": request, "self": page})
+        if not html:
+            return None
+
+        return {
+            "html": html,
+        }

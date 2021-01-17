@@ -27,9 +27,6 @@ def send_templated_email(
     )
     """
     context = context or {}
-
-    assert isinstance(to_emails, list)
-
     message = render_to_string(template_txt, context)
 
     html_message: Optional[str]
