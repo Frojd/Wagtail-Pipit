@@ -2,7 +2,7 @@
 
 Wagtail has a feature called routable pages which lets you serve different type of content from one page, it does this by letting you add custom routes onto a page.
 
-We won't go into detail on how routable pages work since the [Wagtails documentation on routable pages](https://docs.wagtail.io/en/v2.11.1/reference/contrib/routablepage.html) already does a excellent job, this guide will rather show you how to implement them in Pipit.
+We won't go into detail on how routable pages work since the [Wagtail documentation on routable pages](https://docs.wagtail.io/en/v2.11.1/reference/contrib/routablepage.html) already does a excellent job, this guide will rather show you how to implement them in Pipit.
 
 
 ## Guide
