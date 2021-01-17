@@ -24,7 +24,7 @@ class SeoMixinTest(WagtailPageTests):
         )
 
     def test_common_fields(self):
-        self.assertEqual(self.page.seo_html_title, "My start")
+        self.assertEqual(self.page.seo_html_title, "My start | Test site")
         self.assertEqual(self.page.seo_meta_description, "Search description")
         self.assertEqual(self.page.seo_og_title, "My og start")
         self.assertEqual(self.page.seo_og_description, "My og description")
