@@ -165,7 +165,6 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
     "webp": "webp",
 }
 
-
 # File storage
 if get_env("AWS_ACCESS_KEY_ID", ""):
     AWS_ACCESS_KEY_ID = get_env("AWS_ACCESS_KEY_ID")
