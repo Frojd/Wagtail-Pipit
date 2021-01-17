@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.0.5 (2020.01.17)
+
+- Fix: Solve issue with broken tests
+- Fix: Fix issue with missing `wagtail_userbar` field
+
+
 ## 8.0.4 (2020.01.17)
 
 - Fix: Replace ssr pm2 config in provision with next.js pm2 config
