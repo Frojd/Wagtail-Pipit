@@ -32,8 +32,8 @@ type aws >/dev/null 2>&1 || {
 }
 
 # Arguments
-stage_host=${1-{{cookiecutter.ssh_stage}}}
-prod_host=${2-{{cookiecutter.ssh_prod}}}
+stage_host=deploy@${1-{{ cookiecutter.ssh_host_stage }}}
+prod_host=deploy@${2-{{ cookiecutter.ssh_host_prod }}}
 
 echo "Creating database dump from stage..."
 ssh $prod_host "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres {{cookiecutter.db_name_prod}} -x -O"

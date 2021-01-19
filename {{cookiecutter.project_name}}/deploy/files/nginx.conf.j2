@@ -1,9 +1,10 @@
+{% raw -%}
 # Uncomment this to rewrite other sites to your actual web URL:
 #server {
 #  listen 80;
 #  listen [::]:80;
-#  server_name {{domain_stage}};
-#  return 301 https://{{domain_stage}}$request_uri;
+#  server_name {{ domain }};
+#  return 301 https://{{ domain }}$request_uri;
 #}
 
 server {
@@ -17,7 +18,7 @@ server {
   #include /etc/nginx/ssl_config.conf;
   #include /etc/nginx/acme-challenges.conf;
 
-  server_name {{ domain_stage }} {{ domain_prod }};
+  server_name {{ domain }}
 
   root /mnt/persist/www/{{ project_slug }}/current/src;
 
@@ -101,3 +102,4 @@ server {
   error_page 500 502 503 504 /static/50x.html;
 }
 # Don't forget to restart nginx: "service nginx restart" if you change this file.
+{% endraw %}
