@@ -13,7 +13,7 @@ class SeoMixinTest(WagtailPageTests):
         )
 
         self.page = BasePageFactory.create(
-            title="Start",
+            title="Start | Test site",
             seo_title="My start",
             og_title="My og start",
             search_description="Search description",

@@ -5,7 +5,7 @@ set -e
 
 readonly DB_WAIT_TIME=20  # Arbitrary timeout value for making sure the db is ready
 readonly LOCAL_DOMAIN=example.com.test:8081
-readonly SSH_HOST=devops@stage.example.com
+readonly SSH_HOST=deploy@stage.example.com
 readonly REMOTE_MEDIA_PATH=/mnt/persist/www/company_project/shared/media
 
 scripts_dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
