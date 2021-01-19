@@ -3,5 +3,5 @@ webservers:
     prod1:
       ansible_user: deploy
       ansible_port: 22
-      ansible_host: {{cookiecutter.domain_prod}}
+      ansible_host: {{cookiecutter.ssh_prod}}
       stage_name: prod
