@@ -15,7 +15,7 @@
 - Fix: Include Next.js process in provision nginx configuration
 - Fix: Correct invalid paths in next.js provision env template
 - Fix: Include pm2 in server requirements
-- Fix: Upgrade django to 1.3.5
+- Fix: Upgrade django to 3.1.3
 - Fix: Upgrade django-storages to 1.11.1
 - Fix: Upgrade boto3 to 1.16.56
 
