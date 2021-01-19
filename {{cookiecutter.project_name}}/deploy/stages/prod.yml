@@ -4,4 +4,4 @@ webservers:
       ansible_user: deploy
       ansible_port: 22
       ansible_host: {{cookiecutter.domain_prod}}
-      stage_name: stage
+      stage_name: prod
