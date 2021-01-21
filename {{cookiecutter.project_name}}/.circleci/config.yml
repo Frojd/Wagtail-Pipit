@@ -50,6 +50,8 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/node:12
+    environment:
+      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
     steps:
       - *restore_repo
       - restore_cache:
@@ -72,7 +74,7 @@ jobs:
           paths:
             - ~/repo/frontend/
       - when:
-          condition: $SENTRY_AUTH_TOKEN
+          condition: $SLACK_WEBHOOK
           steps:
             - slack/status:
                 fail_only: true
@@ -124,7 +126,7 @@ jobs:
           paths:
             - ~/repo/src
       - when:
-          condition: $SENTRY_AUTH_TOKEN
+          condition: $SLACK_WEBHOOK
           steps:
           - slack/status:
               fail_only: true
@@ -135,6 +137,8 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/python:3.8
+    environment:
+      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
     steps:
       - *restore_repo
       - restore_cache:
