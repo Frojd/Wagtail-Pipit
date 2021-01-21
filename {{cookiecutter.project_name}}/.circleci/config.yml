@@ -126,7 +126,7 @@ jobs:
           paths:
             - ~/repo/src
       - when:
-          condition: $SLACK_WEBHOOK
+          condition: ${SLACK_WEBHOOK}
           steps:
           - slack/status:
               fail_only: true
@@ -139,6 +139,7 @@ jobs:
       - image: circleci/python:3.8
     environment:
       SLACK_WEBHOOK: ${SLACK_WEBHOOK}
+      SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
     steps:
       - *restore_repo
       - restore_cache:
@@ -176,7 +177,7 @@ jobs:
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
       - when:
-          condition: $SENTRY_AUTH_TOKEN
+          condition: ${SENTRY_AUTH_TOKEN}
           steps:
             - run:
                 name: Upload sourcemaps to sentry
@@ -192,7 +193,7 @@ jobs:
                   sentry-cli releases finalize $SENTRY_RELEASE
                   sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
       - when:
-          condition: $SENTRY_AUTH_TOKEN
+          condition: ${SENTRY_AUTH_TOKEN}
           steps:
             - slack/status:
                 fail_only: true
