@@ -1,8 +1,8 @@
 {% raw -%}
-# orbs:
-#   slack: circleci/slack@3.4.2
-
 version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.2
 
 defaults: &defaults
   working_directory: ~/repo
@@ -50,10 +50,6 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/node:12
-    # environment:
-    #   NEXT_PUBLIC_SENTRY_DSN: "https://xxx@xxx.ingest.sentry.io/1234"
-    #   SENTRY_ORG: my-org-ab
-    #   SENTRY_PROJECT: my-sentry-project
     steps:
       - *restore_repo
       - restore_cache:
@@ -75,11 +71,13 @@ jobs:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/repo/frontend/
-      # - slack/status:
-      #     fail_only: true
-      #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
-      #     webhook: ${SLACK_WEBHOOK}
-
+      - when:
+          condition: $SENTRY_AUTH_TOKEN
+          steps:
+            - slack/status:
+                fail_only: true
+                failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
+                webhook: ${SLACK_WEBHOOK}
   django:
     <<: *defaults
     docker:
@@ -89,6 +87,8 @@ jobs:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
           POSTGRES_HOST_AUTH_METHOD: trust
+    environment:
+      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
     steps:
       - *restore_repo
       - restore_cache:
@@ -114,6 +114,7 @@ jobs:
             pip install black
             black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" --check src
       - run:
+          name: Run tests and show the 10 slowest cases
           command: |
             . venv/bin/activate
             cd src
@@ -122,17 +123,18 @@ jobs:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/repo/src
-      # - slack/status:
-      #     fail_only: true
-      #     webhook: ${SLACK_WEBHOOK}
+      - when:
+          condition: $SENTRY_AUTH_TOKEN
+          steps:
+          - slack/status:
+              fail_only: true
+              failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
+              webhook: ${SLACK_WEBHOOK}
 
   deploy:
     <<: *defaults
     docker:
       - image: circleci/python:3.8
-    # environment:
-    #   SENTRY_ORG: my-org-ab
-    #   SENTRY_PROJECT: my-sentry-project
     steps:
       - *restore_repo
       - restore_cache:
@@ -142,6 +144,7 @@ jobs:
       - restore_cache:
           key: v1-deploy-{{ checksum "deploy/requirements.txt" }}
       - run:
+          name: Install ansible and ansistrano
           command: |
             cd deploy
             python3 -m venv venv
@@ -168,29 +171,29 @@ jobs:
             if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
-
-      # - run: |
-      #     curl -sL https://sentry.io/get-cli/ | bash
-      #     if [ "${CIRCLE_TAG}" ]; then
-      #       export SENTRY_RELEASE=${CIRCLE_TAG}
-      #     fi
-      #     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-      #       export SENTRY_RELEASE=$(sentry-cli releases propose-version)
-      #     fi
-      #     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
-      #     sentry-cli releases finalize $SENTRY_RELEASE
-      #     sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
-
-      # - slack/status:
-      #     fail_only: true
-      #     failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
-      #     webhook: ${SLACK_WEBHOOK}
-
-      #- slack/notify:
-      #  color: "#049B4A"
-      #  message: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_TAG} has been successfully deployed by ${CIRCLE_USERNAME}.
-      #  tag_pattern: /^v.*/
-      #  event: pass
+      - when:
+          condition: $SENTRY_AUTH_TOKEN
+          steps:
+            - run:
+                name: Upload sourcemaps to sentry
+                command: |
+                  curl -sL https://sentry.io/get-cli/ | bash
+                  if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+                    export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+                  fi
+                  if [ "${CIRCLE_TAG}" ]; then
+                    export SENTRY_RELEASE=${CIRCLE_TAG}
+                  fi
+                  sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+                  sentry-cli releases finalize $SENTRY_RELEASE
+                  sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
+      - when:
+          condition: $SENTRY_AUTH_TOKEN
+          steps:
+            - slack/status:
+                fail_only: true
+                failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
+                webhook: ${SLACK_WEBHOOK}
 
 workflows:
   version: 2
