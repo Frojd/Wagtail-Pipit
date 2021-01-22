@@ -55,7 +55,7 @@ module.exports = {
         newConfig.module.rules = newConfig.module.rules.filter((x) => {
             return (
                 x.test.toString() !==
-                /\.(svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/.toString()
+                /\.(svg|ico|jpg|jpeg|png|apng|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/.toString()
             );
         });
 
