@@ -51,25 +51,8 @@ module.exports = {
             use: ['style-loader', 'css-loader'],
         });
 
-        // Override config and drop svg
-        newConfig.module.rules = newConfig.module.rules.filter((x) => {
-            return (
-                x.test.toString() !==
-                /\.(svg|ico|jpg|jpeg|png|apng|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/.toString()
-            );
-        });
-
-        newConfig.module.rules.push({
-            test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/,
-            loaders: ['file-loader'],
-            include: [
-                path.resolve(__dirname, '../'),
-                path.resolve(__dirname, '../public/'),
-            ],
-        });
-
         // Enable inline svg
-        newConfig.module.rules.push({
+        newConfig.module.rules.unshift({
             test: /\.svg$/,
             loaders: [
                 '@svgr/webpack?-svgo,+titleProp,+ref![path]',
