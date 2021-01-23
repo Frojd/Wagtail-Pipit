@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.0.7 (IN PROGRESS)
+## 8.0.6 (IN PROGRESS)
 
 - Fix: Improve Storbybook 6 support (Andreas Bernacca)
 - Fix: Solve issue with wrong path in `example_prod_to_stage.sh` (Martin Sandström)
@@ -10,12 +10,6 @@
 - Fix: Drop username from ssh host and hard code it to ssh user `deploy` (Martin Sandström)
 - Fix: Minimize circleci changes by adding conditions to sentry sourcemap upload (Martin Sandström)
 - Fix: Make slack orb conditional in circleci (Martin Sandström)
-
-
-## 8.0.6 (2020.01.17)
-
-- Fix: Solve issue in CI build for project
-- Fix: Address issue with field `wagtail_userbar` not exposed in serializer
 
 
 ## 8.0.5 (2020.01.17)
