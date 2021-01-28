@@ -107,7 +107,4 @@
         path: /mnt/persist/etc/crontab
         line: "0 * * * *  www-data /mnt/persist/www/{{ project_slug }}/shared/venv/bin/python /mnt/persist/www/{{ project_slug }}/current/src/manage.py publish_scheduled_pages"
 
-- name: Runs deploy playbook
-  import_playbook: deploy.yml
-
 
