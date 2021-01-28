@@ -4,6 +4,7 @@
 
   vars:
     ansistrano_deploy_from: "{{ playbook_dir }}/../src"
+    ansible_user: root
 
   tasks:
     - name: Generates secrets/passwords
