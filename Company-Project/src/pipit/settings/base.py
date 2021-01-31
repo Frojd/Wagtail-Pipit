@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "customdocument",
     "main",
     "nextjs",
+    "wagtail_cookie_notice",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "wagtail_cookie_notice.middleware.cookie_notice_middleware",
 ]
 
 ROOT_URLCONF = "pipit.urls"

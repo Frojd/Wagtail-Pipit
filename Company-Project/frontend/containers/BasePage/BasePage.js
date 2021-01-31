@@ -1,9 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import WagtailUserbar from '../../components/WagtailUserbar';
+import dynamic from 'next/dynamic';
+const WagtailUserbar = dynamic(() => import('../../components/WagtailUserbar'));
+const CookieNotice = dynamic(() => import('../../components/CookieNotice'), {
+    ssr: false
+});
 
-const BasePage = ({ children, seo, wagtailUserbar }) => {
+
+const BasePage = ({ children, seo, wagtailUserbar, cookieNotice }) => {
     const {
         seoHtmlTitle,
         seoMetaDescription,
@@ -63,12 +68,14 @@ const BasePage = ({ children, seo, wagtailUserbar }) => {
             </Head>
             <div className="BasePage">{children}</div>
             {!!wagtailUserbar && <WagtailUserbar {...wagtailUserbar} />}
+            {!!cookieNotice && <CookieNotice {...cookieNotice} />}
         </>
     );
 };
 
 BasePage.defaultProps = {
     seo: {},
+    cookieNotice: null,
 };
 
 BasePage.propTypes = {
@@ -85,6 +92,7 @@ BasePage.propTypes = {
     wagtailUserbar: PropTypes.shape({
         html: PropTypes.string,
     }),
+    cookieNotice: PropTypes.object,
 };
 
 export default BasePage;

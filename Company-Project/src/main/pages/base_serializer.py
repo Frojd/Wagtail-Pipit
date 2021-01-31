@@ -6,6 +6,15 @@ from wagtail.core import fields
 from wagtail.core.models import Locale
 from wagtail.api.v2 import serializers as wagtail_serializers
 
+from wagtail_cookie_notice.models import (
+    CookieNoticeSetting,
+    Cookie,
+    CookieCategory,
+)
+from wagtail_cookie_notice.serializers import (
+    CookieSerializer,
+    CookieCategorySerializer,
+)
 from sitesettings.models import SiteSetting
 from sitesettings.serializers import SiteSettingSerializer
 from ..serializers import SeoSerializer
@@ -23,6 +32,7 @@ class BasePageSerializer(serializers.ModelSerializer):
     seo = serializers.SerializerMethodField()
     site_setting = serializers.SerializerMethodField()
     wagtail_userbar = serializers.SerializerMethodField()
+    cookie_notice = serializers.SerializerMethodField()
 
     class Meta:
         model = BasePage
@@ -34,6 +44,7 @@ class BasePageSerializer(serializers.ModelSerializer):
             "seo",
             "site_setting",
             "wagtail_userbar",
+            "cookie_notice",
         ]
 
     def get_seo(self, page):
@@ -58,3 +69,19 @@ class BasePageSerializer(serializers.ModelSerializer):
         return {
             "html": html,
         }
+
+    def get_cookie_notice(self, page):
+        site = page.get_site()
+        setting = CookieNoticeSetting.for_site(site)
+        cookies = Cookie.objects.filter(site=site).select_related('category')
+        cookie_categories = (
+            CookieCategory.objects.all()
+        )
+
+        return {
+            "title": setting.title,
+            "content": setting.content,
+            "cookies": CookieSerializer(cookies, many=True).data,
+            "categories": CookieCategorySerializer(cookie_categories, many=True).data,
+        }
+

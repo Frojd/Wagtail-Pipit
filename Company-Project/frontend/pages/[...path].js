@@ -17,7 +17,7 @@ export async function getServerSideProps({ req, params, res }) {
     let path = params?.path || [];
     path = path.join('/');
 
-    const { host } = req.headers;
+    const { host, cookie } = req.headers;
     let queryParams = new URL(req.url, `https://${host}`).search;
     if (queryParams.indexOf('?') === 0) {
         queryParams = queryParams.substr(1);
@@ -63,7 +63,7 @@ export async function getServerSideProps({ req, params, res }) {
             }
         }
 
-        return { props: { componentName, componentProps } };
+        return { props: { componentName, componentProps, cookie } };
     } catch (err) {
         // When in development, show django error page on error
         if (!isProd && err.response.status >= 500) {

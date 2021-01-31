@@ -21,15 +21,17 @@
         "@sentry/node": "^5.29.2",
         "@sentry/webpack-plugin": "^1.14.0",
         "@svgr/webpack": "^5.5.0",
+        "@types/react": "^17.0.0",
         "@zeit/next-source-maps": "0.0.4-canary.1",
+        "classnames": "^2.2.6",
+        "cookie": "^0.4.1",
         "i18next": "^19.8.4",
+        "js-cookie": "^2.2.1",
         "next": "10.0.4",
         "next-compose-plugins": "^2.2.1",
+        "prop-types": "^15.7.2",
         "react": "17.0.1",
-        "react-dom": "17.0.1",
-        "@types/react": "^17.0.0",
-        "classnames": "^2.2.6",
-        "prop-types": "^15.7.2"
+        "react-dom": "17.0.1"
     },
     "browserslist": {
         "production": [

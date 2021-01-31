@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import cookie from 'cookie';
 
 class CustomDocument extends Document {
     static async getInitialProps(ctx) {
@@ -29,6 +30,12 @@ class CustomDocument extends Document {
     render() {
         const { pageProps } = this.props;
         const gtmId = pageProps?.componentProps?.siteSetting?.gtmId;
+        const cookies = cookie.parse(pageProps.cookie);
+
+        let cookieApprovals = null;
+        if (cookies.cookieNoticeApprovals) {
+            cookieApprovals = JSON.parse(cookies.cookieNoticeApprovals);
+        }
 
         return (
             <Html>
