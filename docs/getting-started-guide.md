@@ -27,8 +27,8 @@ project_name [Company-Project]: Acme-Blog
 project_slug [acme_blog]:
 domain_prod [example.com]: blog.acme.com
 domain_stage [stage.blog.acme.com]: stage-blog.acme.com
-ssh_prod [devops@blog.acme.com]:
-ssh_stage [devops@stage-blog.acme.com]:
+ssh_host_prod [blog.acme.com]:
+ssh_host_stage [stage-blog.acme.com]:
 db_name_prod [acme_blog]:
 db_name_stage [acme_blog]:
 s3_bucket_prod [s3.blog.acme.com]:

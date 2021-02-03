@@ -1,7 +1,12 @@
+{% raw -%}
 apps:
-  - name: {{ cookiecutter.project_slug }}
+  - name: {{ project_slug }}
     script: npm
     args: start
-    cwd: /mnt/persist/www/{{ cookiecutter.project_slug }}/current/src/frontend/
+    cwd: /mnt/persist/www/{{ project_slug }}/current/src/frontend/
     exec_mode: cluster
     instances: 0
+    env:
+      NODE_PORT: {{ 3000+(pm2_application_count.stdout|int) }}
+      NODE_ENV: production
+{% endraw %}

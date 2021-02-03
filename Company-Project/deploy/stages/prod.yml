@@ -4,4 +4,5 @@ webservers:
       ansible_user: deploy
       ansible_port: 22
       ansible_host: example.com
-      stage_name: stage
+      domain: example.com
+      stage_name: prod

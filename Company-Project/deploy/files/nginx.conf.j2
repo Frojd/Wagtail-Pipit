@@ -2,8 +2,8 @@
 #server {
 #  listen 80;
 #  listen [::]:80;
-#  server_name stage.example.com;
-#  return 301 https://stage.example.com$request_uri;
+#  server_name {{ domain }};
+#  return 301 https://{{ domain }}$request_uri;
 #}
 
 server {
@@ -17,9 +17,9 @@ server {
   #include /etc/nginx/ssl_config.conf;
   #include /etc/nginx/acme-challenges.conf;
 
-  server_name stage.example.com example.com;
+  server_name {{ domain }}
 
-  root /mnt/persist/www/company_project/current/src;
+  root /mnt/persist/www/{{ project_slug }}/current/src;
 
   #include /mnt/persist/nginx/frojd-protection.conf;
 
@@ -27,23 +27,23 @@ server {
   #   auth_basic "Restricted";
   #   auth_basic_user_file /mnt/persist/nginx/conf.d/.htpasswd;
 
-  #   alias /mnt/persist/www/company_project/shared/frontend/storybook/;
+  #   alias /mnt/persist/www/{{ project_slug }}/shared/frontend/storybook/;
   # }
 
   location /wt/static/ {
     expires 30d;
     access_log off;
-    alias /mnt/persist/www/company_project/current/src/static/;
+    alias /mnt/persist/www/{{ project_slug }}/current/src/static/;
   }
 
   location /wt/media/ {
     expires 30d;
     access_log off;
-    alias /mnt/persist/www/company_project/current/src/media/;
+    alias /mnt/persist/www/{{ project_slug }}/current/src/media/;
   }
 
   location /robots.txt {
-    alias /mnt/persist/www/company_project/shared/robots.txt;
+    alias /mnt/persist/www/{{ project_slug }}/shared/robots.txt;
   }
 
   location /wt/ {
@@ -54,7 +54,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header REMOTE_USER $remote_user;
     proxy_set_header AUTH_TYPE Basic;
-    uwsgi_pass  unix:///run/uwsgi/app/company_project/socket;
+    uwsgi_pass  unix:///run/uwsgi/app/{{ project_slug }}/socket;
     uwsgi_param UWSGI_SETENV ENVIRONMENT=production;
     include     uwsgi_params;
   }
@@ -67,7 +67,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header REMOTE_USER $remote_user;
     proxy_set_header AUTH_TYPE Basic;
-    uwsgi_pass  unix:///run/uwsgi/app/company_project/socket;
+    uwsgi_pass  unix:///run/uwsgi/app/{{ project_slug }}/socket;
     uwsgi_param UWSGI_SETENV ENVIRONMENT=production;
     include     uwsgi_params;
   }
@@ -80,7 +80,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header REMOTE_USER $remote_user;
     proxy_set_header AUTH_TYPE Basic;
-    uwsgi_pass  unix:///run/uwsgi/app/company_project/socket;
+    uwsgi_pass  unix:///run/uwsgi/app/{{ project_slug }}/socket;
     uwsgi_param UWSGI_SETENV ENVIRONMENT=production;
     include     uwsgi_params;
   }
@@ -94,10 +94,11 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_ignore_headers Cache-Control Set-Cookie Expires Vary;
     add_header X-Proxy-Cache $upstream_cache_status;
-    proxy_pass http://localhost:3000;
+    proxy_pass http://localhost:{{ pm2_application_count }};
   }
 
   # what to serve if upstream is not available or crashes
   error_page 500 502 503 504 /static/50x.html;
 }
 # Don't forget to restart nginx: "service nginx restart" if you change this file.
+

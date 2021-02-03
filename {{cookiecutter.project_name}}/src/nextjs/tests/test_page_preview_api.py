@@ -28,12 +28,12 @@ class PagePreviewApiTest(WagtailPageTests):
         content_type = ContentType.objects.get_for_model(sub_page.__class__)
 
         token = preview.token
-        content_type = f"{content_type.app_label}.{content_type.model}"
+        content_type_str = f"{content_type.app_label}.{content_type.model}"
 
         response = self.client.get(
             reverse("nextjs:page_preview:listing"),
             {
-                "content_type": content_type,
+                "content_type": content_type_str,
                 "token": token,
             },
         )

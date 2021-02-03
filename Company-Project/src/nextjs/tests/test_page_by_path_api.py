@@ -22,7 +22,7 @@ class PageByPathApiTest(WagtailPageTests):
         response = self.client.get(f"{url}?html_path=")
         self.assertEqual(response.status_code, 200)
 
-    def test_root_page_retreaval(self):
+    def test_child_page_retreaval(self):
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
 
         url = reverse("nextjs:page_by_path:listing")

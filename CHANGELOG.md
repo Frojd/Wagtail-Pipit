@@ -1,21 +1,39 @@
 # Changelog
 
+## 8.0.6 (2020.02.03)
+
+- Fix: Improve Storbybook 6 support (Andreas Bernacca)
+- Fix: Solve issue with wrong path in `example_prod_to_stage.sh` (Martin Sandström)
+- Fix: Improve `example_prod_to_stage` documentation (Martin Sandström)
+- Fix: Add support for multiple pm2 applications in provisioning (Martin Sandström)
+- Fix: Add new cookiecutter variables to separate application domain and ssh host (Martin Sandström)
+- Fix: Drop username from ssh host and hard code it to ssh user `deploy` (Martin Sandström)
+- Fix: Make SVG handling a bit more robust (Andreas Bernacca)
+- Fix: Minimize circleci changes by adding conditions to sentry sourcemap upload (Martin Sandström)
+- Fix: Make slack orb conditional in circleci (Martin Sandström)
+- Fix: Solve issue with missing WagtailUserbar component import (Martin Sandström)
+- Fix: Use root user when running provison playbook (Martin Sandström)
+- Fix: Lazy load WagtailUserbar (Martin Sandström)
+- Fix: Upgrade Wagtail to 2.12
+- Fix: Upgrade Django to 3.1.6
+
+
 ## 8.0.5 (2020.01.17)
 
-- Fix: Solve issue with broken tests
-- Fix: Fix issue with missing `wagtail_userbar` field
+- Fix: Solve issue with broken tests (Martin Sandström)
+- Fix: Fix issue with missing `wagtail_userbar` field (Martin Sandström)
 
 
 ## 8.0.4 (2020.01.17)
 
-- Fix: Replace ssr pm2 config in provision with next.js pm2 config
-- Fix: Include `site.site_name` in `seo_html_title`
-- Fix: Add missing `wagtail_userbar` data from backend api
-- Fix: Drop redundant assert in email.py
-- Fix: Include Next.js process in provision nginx configuration
-- Fix: Correct invalid paths in next.js provision env template
-- Fix: Include pm2 in server requirements
-- Fix: Upgrade django to 1.3.5
+- Fix: Replace ssr pm2 config in provision with next.js pm2 config (Martin Sandström)
+- Fix: Include `site.site_name` in `seo_html_title` (Martin Sandström)
+- Fix: Add missing `wagtail_userbar` data from backend api (Martin Sandström)
+- Fix: Drop redundant assert in email.py (Martin Sandström)
+- Fix: Include Next.js process in provision nginx configuration (Martin Sandström)
+- Fix: Correct invalid paths in next.js provision env template (Martin Sandström)
+- Fix: Include pm2 in server requirements (Martin Sandström)
+- Fix: Upgrade django to 3.1.3
 - Fix: Upgrade django-storages to 1.11.1
 - Fix: Upgrade boto3 to 1.16.56
 

@@ -6,6 +6,7 @@
 
   vars:
     ansistrano_deploy_from: "{{ playbook_dir }}/../src"
+    ansible_user: root
 
   tasks:
     - name: Generates secrets/passwords
@@ -16,6 +17,10 @@
     - name: Counts previous uwsgi apps
       shell: ls -1 /mnt/persist/uwsgi/conf.d/ | wc -l
       register: uwsgi_application_count
+
+    - name: Counts previous pm2 apps
+      shell: ls -1 /mnt/persist/nodejs/ | wc -l
+      register: pm2_application_count
 
     - name: Makes sure python psql lib is available
       pip:
@@ -72,7 +77,7 @@
 
     - name: Copies nginx config
       copy:
-        src: "files/nginx.conf"
+        src: "files/nginx.conf.j2"
         dest: "/mnt/persist/nginx/conf.d/{{ project_slug }}.conf"
         mode: 0664
 
@@ -104,8 +109,5 @@
       lineinfile:
         path: /mnt/persist/etc/crontab
         line: "0 * * * *  www-data /mnt/persist/www/{{ project_slug }}/shared/venv/bin/python /mnt/persist/www/{{ project_slug }}/current/src/manage.py publish_scheduled_pages"
-
-- name: Runs deploy playbook
-  import_playbook: deploy.yml
 
 {% endraw %}
