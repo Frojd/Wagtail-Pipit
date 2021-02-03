@@ -42,10 +42,11 @@ RUN \
 		geos-dev  \
 		gettext \
 		netcat-openbsd \
-		bash \
+		bash
+RUN --mount=type=cache,target=/root/.cache/pip \
     && pip install --upgrade pip \
-    && pip install ipython --no-cache-dir \
-    && pip install -r requirements/$REQUIREMENTS --no-cache-dir&& pip install pywatchman --no-cache-dir \
+    && pip install ipython \
+    && pip install -r requirements/$REQUIREMENTS && pip install pywatchman \
     && apk --purge del .build-deps
 
 EXPOSE 8000
