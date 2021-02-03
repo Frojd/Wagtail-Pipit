@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.0.6 (IN PROGRESS)
+## 8.0.6 (2020.02.03)
 
 - Fix: Improve Storbybook 6 support (Andreas Bernacca)
 - Fix: Solve issue with wrong path in `example_prod_to_stage.sh` (Martin Sandström)
@@ -8,8 +8,14 @@
 - Fix: Add support for multiple pm2 applications in provisioning (Martin Sandström)
 - Fix: Add new cookiecutter variables to separate application domain and ssh host (Martin Sandström)
 - Fix: Drop username from ssh host and hard code it to ssh user `deploy` (Martin Sandström)
+- Fix: Make SVG handling a bit more robust (Andreas Bernacca)
 - Fix: Minimize circleci changes by adding conditions to sentry sourcemap upload (Martin Sandström)
 - Fix: Make slack orb conditional in circleci (Martin Sandström)
+- Fix: Solve issue with missing WagtailUserbar component import (Martin Sandström)
+- Fix: Use root user when running provison playbook (Martin Sandström)
+- Fix: Lazy load WagtailUserbar (Martin Sandström)
+- Fix: Upgrade Wagtail to 2.12
+- Fix: Upgrade Django to 3.1.6
 
 
 ## 8.0.5 (2020.01.17)
