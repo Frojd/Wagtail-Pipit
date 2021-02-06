@@ -5,6 +5,7 @@
 - Fix: Improve documentation for deployment using CI (Martin Sandström)
 - Fix: Add documentation for server provision (Martin Sandström)
 - Fix: Improve scaffolding documentation (Martin Sandström)
+- Fix: Solve issue with dynamic imports not recognized in jest (Martin Sandström)
 
 
 ## 8.0.6 (2020.02.03)
