@@ -4,6 +4,7 @@
 
 - Fix: Improve documentation for deployment using CI (Martin Sandström)
 - Fix: Add documentation for server provision (Martin Sandström)
+- Fix: Improve scaffolding documentation (Martin Sandström)
 
 
 ## 8.0.6 (2020.02.03)
