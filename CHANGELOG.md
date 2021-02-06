@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.7 (XXXX.XX.XX)
+
+- Fix: Improve documentation for deployment using CI (Martin Sandström)
+
+
 ## 8.0.6 (2020.02.03)
 
 - Fix: Improve Storbybook 6 support (Andreas Bernacca)
