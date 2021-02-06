@@ -6,6 +6,8 @@
 - Fix: Add documentation for server provision (Martin Sandström)
 - Fix: Improve scaffolding documentation (Martin Sandström)
 - Fix: Solve issue with dynamic imports not recognized in jest (Martin Sandström)
+- Fix: Improve documentation for datasync scripts (Martin Sandström)
+- Fix: Add guide on how to implement wagtail-2fa (Martin Lindvall, Martin Sandström)
 
 
 ## 8.0.6 (2020.02.03)
