@@ -104,10 +104,10 @@ You should now be able to attach to the running Django server instance.
 
 ### pdb in Docker
 
-To use pdb you need to start the container with service-ports exposed instead of docker-compose up. This will create a container called `<project_prefix>_web_run_1`
+To use pdb you need to start the container with service-ports exposed instead of docker-compose up. This will create a container called `<project_prefix>_python_run_1`
 
 ```
-docker-compose run --rm --service-ports web
+docker-compose run --rm --service-ports python
 ```
 
 
@@ -153,15 +153,6 @@ ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
 
 <details>
 
-### How do I run the app locally with a production setup?
-
-This app includes a docker-compose config that uses uwsgi and nginx. Just run this command.
-
-```
-docker-compose -f docker-compose.yml -f docker-compose-nginx.yml up
-```
-
-
 ### How do I sync data from stage/prod?
 
 You can rebuild your application with the latest data dump by running the following
@@ -204,7 +195,7 @@ docker-compose exec python ./manage.py migrate
 We also have a manage.sh script to make running management commands easier.
 
 ```
-scripts/manage.sh makemigrations
+./scripts/manage.sh makemigrations
 ```
 
 
@@ -218,22 +209,13 @@ docker-compose up --build
 ```
 
 
-### This boilerplate is https by default, I only want http?
-
-No problem, update your docker-compose file and add `command: runserver` to your `web` container, then restart your project.
-
-
 ### How do I install the application on the web server?
 
 This project includes a provision script that sets up anything necessary to run the application (install db, add nginx/uwsgi conf).
 
 ```
-ansible-playbook provision.yml -i stages/<stage>
+ansible-playbook provision.yml -i stages/<stage>.yml
 ```
-
-### Is there a api for retriving pages as json?
-
-Sure! Just add `?format=json` to your url and it will return its json representation.
 
 </details>
 
