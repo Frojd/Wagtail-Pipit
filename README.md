@@ -31,7 +31,7 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Backend Developer Guide](/docs/backend-developer-guide.md)
 - [Provision and configure a webserver for hosting](/docs/provisioning-servers-for-hosting.md)
 - [Setting up deployment on CircleCI](/docs/setting-up-deployment-with-circleci.md)
-- [Datasync between environments](/docs/data-sync.md)
+- [Sync data between environments](/docs/sync-data-between-environments.md)
 - [Running python locally](/docs/running-python-locally.md)
 - [Using static site generation](/docs/using-static-site-generation.md)
 - [Working with Wagtail's routable pages](/docs/working-with-wagtails-routable-pages.md)
