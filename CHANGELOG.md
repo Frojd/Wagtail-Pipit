@@ -8,6 +8,7 @@
 - Fix: Solve issue with dynamic imports not recognized in jest (Martin Sandström)
 - Fix: Improve documentation for datasync scripts (Martin Sandström)
 - Fix: Add guide on how to implement wagtail-2fa (Martin Lindvall, Martin Sandström)
+- Fix: Make it possible to serve remote media locally (Martin Sandström)
 
 
 ## 8.0.6 (2020.02.03)

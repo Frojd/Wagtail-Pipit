@@ -24,10 +24,19 @@ server {
 
   access_log off;
 
-  # Your Django project's media files - amend as required
   location /wt/media  {
       alias /app/media;
   }
+
+  # If you instead want to use images from a remote domain - uncomment this
+  # location /wt/media {
+  #     try_files $uri @fallback;
+  # }
+  #
+  # location @fallback {
+  #     resolver 1.1.1.1;
+  #     rewrite "^/media/(.*)$" "${MEDIA_REMOTE_DOMAIN}/wt/media/$1" redirect;
+  # }
 
   location /wt/static/ {
       expires 30d;
