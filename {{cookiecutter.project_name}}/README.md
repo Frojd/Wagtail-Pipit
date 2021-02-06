@@ -12,7 +12,6 @@
 - [Deployment](#deployment)
 - [Merge conflicts](#merge-conflicts)
 - [Git hooks](#git-hooks)
-- [Server requirements](#server-requirements)
 - [FAQ](#faq)
 - [Contributing](#contributing)
 - [License](#license)
@@ -147,25 +146,6 @@ ln -nfs $PWD/.githooks/pre-push.sh .git/hooks/pre-push
 ```bash
 chmod +x $PWD/.githooks/pre-commit.sh
 ln -nfs $PWD/.githooks/pre-commit.sh .git/hooks/pre-commit
-```
-
-
-## Server requirements
-
-If you want to setup this boilerplate on a server using our preffered stack and keep compatibility with our provisioning script, make sure it contains the following components:
-
-```
-SSH access (passwordless login with RSA keys must be allowed)
-Linux (Ubuntu 20.04+ is preffered)
-Nginx
-uWSGI
-Python 3.8+
-PostgreSQL 12+
-PostGIS for PostgreSQL
-GDAL (required for PostGIS)
-psycopg2-binary (this is required for the provision script that will create db and users)
-Node 12+
-PM2
 ```
 
 

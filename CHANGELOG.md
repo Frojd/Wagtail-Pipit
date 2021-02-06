@@ -3,6 +3,7 @@
 ## 8.0.7 (XXXX.XX.XX)
 
 - Fix: Improve documentation for deployment using CI (Martin Sandström)
+- Fix: Add documentation for server provision (Martin Sandström)
 
 
 ## 8.0.6 (2020.02.03)
