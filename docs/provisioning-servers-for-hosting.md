@@ -3,7 +3,7 @@
 In this guide we'll explain how to use the included provisioning script to install a Pipit generated application on a server.
 
 
-## Requirements (webserver)
+## Requirements (webserver, aka ansible host)
 
 The server should have these applications/packages installed:
 - Linux (Ubuntu 20.04+ is preffered)
@@ -28,7 +28,7 @@ Configuration:
 - Your web applications are stored at `/mnt/persist/www/*`
 - The root user can access the psql shell without password
 
-## Requirements (your computer)
+## Requirements (your computer, aka control node)
 
 - A fully generated Pipit project
 - Rsync installed
