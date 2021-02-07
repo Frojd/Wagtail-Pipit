@@ -1,6 +1,6 @@
-# Adding wagtail2-fa support
+# Adding wagtail-2fa support
 
-[wagtail2-fa](https://github.com/labd/wagtail-2fa) is a great library that works almost out of the box in Pipit, one thing though is that, since we replace the entire frontend, we need to modify the middleware to properly redirect the user for verification.
+[wagtail-2fa](https://github.com/labd/wagtail-2fa) is a great library that works almost out of the box in Pipit, one thing though is that, since we replace the entire frontend, we need to modify the middleware to properly redirect the user for verification.
 
 ## Guide
 
