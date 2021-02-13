@@ -1,14 +1,24 @@
 # Changelog
 
-## 8.0.7 (XXXX.XX.XX)
+## 8.1.0 (2020.02.13)
 
-- Fix: Improve documentation for deployment using CI (Martin Sandström)
-- Fix: Add documentation for server provision (Martin Sandström)
-- Fix: Improve scaffolding documentation (Martin Sandström)
-- Fix: Solve issue with dynamic imports not recognized in jest (Martin Sandström)
-- Fix: Improve documentation for datasync scripts (Martin Sandström)
-- Fix: Add guide on how to implement wagtail-2fa (Martin Lindvall, Martin Sandström)
-- Fix: Make it possible to serve remote media locally (Martin Sandström)
+- New: Make it possible to serve remote media locally (Martin Sandström)
+- New: Rewrite guide for syncing data (Martin Sandström)
+- New: Rewrite scaffolding documentation (Martin Sandström)
+- New: Add documentation for server provision (Martin Sandström)
+- New: Add guide for implementing wagtail-2fa (Martin Lindvall, Martin Sandström)
+- New: Rewrite CI deployment guide (Martin Sandström)
+- Fix: Clean up outdated documentation (Martin Sandström)
+- Fix: Fix issue with dynamic imports not recogized in jest (Martin Sandström)
+- Fix: Ignore main branch as well as master in ci (Martin Sandström)
+- Fix: Fix mypy typecheck issues (Martin Sandström)
+- Fix: Lazy load WagtailUserbar component (Martin Sandström)
+- Fix: Fix issue with missing WagtailUserbar component import (Martin Sandström)
+- Fix: Use root user when running provison playbook (Martin Sandström)
+- Fix: Make sure deploy does not run after provision (Martin Sandström)
+- Fix: Upgrade Wagtail to 2.12
+- Fix: Upgrade Django to 3.1.6
+- Fix: Upgrade Next.js to 10.0.6
 
 
 ## 8.0.6 (2020.02.03)
