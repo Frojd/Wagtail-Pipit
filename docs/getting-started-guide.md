@@ -170,7 +170,9 @@ For us to support local certificates you need to install a tool called [mkcert](
 
 - Drop `#mkcert ` from `docker/files/config/nginx.conf` to activate SSL
 
+    ```
     sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf && rm -f docker/files/config/nginx.conf.bak
+    ```
 
 - Remove your docker container `web` (`docker-compose stop && docker-compose rm -f web`)
 - Restart docker

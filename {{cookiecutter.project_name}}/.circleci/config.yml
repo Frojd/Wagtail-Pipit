@@ -7,10 +7,11 @@ orbs:
 defaults: &defaults
   working_directory: ~/repo
 
-filter_ignore_master: &filter_ignore_master
+filter_ignore_main: &filter_ignore_main
   filters:
     branches:
       ignore:
+        - main
         - master
         - /^release.*/
     tags:
@@ -205,13 +206,13 @@ workflows:
   build_and_test:
     jobs:
       - checkout_code:
-          <<: *filter_ignore_master
+          <<: *filter_ignore_main
       - frontend:
-          <<: *filter_ignore_master
+          <<: *filter_ignore_main
           requires:
             - checkout_code
       - django:
-          <<: *filter_ignore_master
+          <<: *filter_ignore_main
           requires:
             - checkout_code
       - deploy:

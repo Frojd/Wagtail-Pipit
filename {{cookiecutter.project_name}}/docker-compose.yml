@@ -15,6 +15,7 @@ services:
       - "./src/static:/app/static"
     environment:
       - PYTHON_HOST=http://python
+      - MEDIA_REMOTE_DOMAIN={{cookiecutter.domain_prod}}
 
   python:
     image: frojd/{{cookiecutter.project_slug}}_python
