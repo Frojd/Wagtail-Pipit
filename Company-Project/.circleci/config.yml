@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@3.4.2
+  slack: circleci/slack@4.2.1
 
 defaults: &defaults
   working_directory: ~/repo
@@ -50,8 +50,6 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/node:12
-    environment:
-      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
     steps:
       - *restore_repo
       - restore_cache:
@@ -74,12 +72,11 @@ jobs:
           paths:
             - ~/repo/frontend/
       - when:
-          condition: $SLACK_WEBHOOK
+          condition: ${SLACK_ACCESS_TOKEN}
           steps:
-            - slack/status:
-                fail_only: true
-                failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
-                webhook: ${SLACK_WEBHOOK}
+            - slack/notify:
+                event: fail
+                template: basic_fail_1
   django:
     <<: *defaults
     docker:
@@ -89,8 +86,6 @@ jobs:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
           POSTGRES_HOST_AUTH_METHOD: trust
-    environment:
-      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
     steps:
       - *restore_repo
       - restore_cache:
@@ -126,19 +121,17 @@ jobs:
           paths:
             - ~/repo/src
       - when:
-          condition: ${SLACK_WEBHOOK}
+          condition: ${SLACK_ACCESS_TOKEN}
           steps:
-          - slack/status:
-              fail_only: true
-              failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
-              webhook: ${SLACK_WEBHOOK}
+            - slack/notify:
+                event: fail
+                template: basic_fail_1
 
   deploy:
     <<: *defaults
     docker:
       - image: circleci/python:3.8
     environment:
-      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
       SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
     steps:
       - *restore_repo
@@ -193,12 +186,11 @@ jobs:
                   sentry-cli releases finalize $SENTRY_RELEASE
                   sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
       - when:
-          condition: ${SENTRY_AUTH_TOKEN}
+          condition: ${SLACK_ACCESS_TOKEN}
           steps:
-            - slack/status:
-                fail_only: true
-                failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
-                webhook: ${SLACK_WEBHOOK}
+            - slack/notify:
+                event: fail
+                template: basic_fail_1
 
 workflows:
   version: 2
@@ -206,16 +198,24 @@ workflows:
     jobs:
       - checkout_code:
           <<: *filter_ignore_main
+          context:
+            - CIRCLECI_BOT
       - frontend:
           <<: *filter_ignore_main
+          context:
+            - CIRCLECI_BOT
           requires:
             - checkout_code
       - django:
           <<: *filter_ignore_main
+          context:
+            - CIRCLECI_BOT
           requires:
             - checkout_code
       - deploy:
           <<: *filter_only_develop_or_tag
+          context:
+            - CIRCLECI_BOT
           requires:
             - frontend
             - django
