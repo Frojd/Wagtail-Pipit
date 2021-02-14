@@ -1,7 +1,12 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@3.4.2
+  slack: circleci/slack@4.2.1
+
+defaults: &defaults
+  working_directory: ~/repo
+  environment:
+    TEST_RESULTS: /tmp/test-results
 
 references:
   restore_repo: &restore_repo
@@ -9,14 +14,30 @@ references:
       keys:
         - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
 
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build:
+          context:
+            - CIRCLECI_BOT
+      - backend:
+          context:
+            - CIRCLECI_BOT
+          requires:
+            - build
+      - frontend:
+          context:
+            - CIRCLECI_BOT
+          requires:
+            - build
+
 jobs:
   build:
-    working_directory: ~/frojd-django-boilerplate
+    <<: *defaults
     docker:
       - image: circleci/python:3.8
-    environment:
-      TEST_RESULTS: /tmp/test-results
-      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
+      - image: circleci/node:12
     steps:
       - checkout
       - run:
@@ -37,6 +58,15 @@ jobs:
           key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - .
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  backend:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - *restore_repo
       - run:
           name: Install Docker Compose
           command: |
@@ -61,20 +91,21 @@ jobs:
             cd Company-Project
             docker-compose -f docker-compose-circleci.yml run --rm python test
             docker-compose -f docker-compose-circleci.yml run --rm python typecheck
-            # docker-compose -f docker-compose-circleci.yml run frontend test
-            # docker-compose -f docker-compose-circleci.yml run frontend build
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: raw-test-output
-      - store_test_results:
-          path: /tmp/test-results
-      - slack/status:
-          fail_only: true
-          failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
-          webhook: ${SLACK_WEBHOOK}
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  frontend:
+    <<: *defaults
+    docker:
+      - image: circleci/node:12
+    steps:
+      - *restore_repo
+      - run:
+          name: Run frontend tests
+          command: |
+            cd Company-Project/frontend
+            npm ci
+            npm run test:ci
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
