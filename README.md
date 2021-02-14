@@ -12,7 +12,7 @@ Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide 
 - Orchestration using [Ansible](https://github.com/ansible/ansible)
 - Local SSL for development
 - Error reporting with [Sentry](https://sentry.io/)
-- CI integration via [Circle CI](https://circleci.com/)
+- CI integration via [Circle CI](https://circleci.com/) with Slack notifications
 - Data-sync between environments
 - [Storybook](https://storybook.js.org/) for rapid component development
 
