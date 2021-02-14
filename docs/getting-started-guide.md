@@ -7,7 +7,7 @@ in just a few minutes
 Make sure you have the following requirement:
 - [Docker Compose](https://docs.docker.com/compose/)
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [node](https://nodejs.org/en/) (v10 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
+- [Node](https://nodejs.org/en/) (v12 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
 
 
 ## Initialize Project
