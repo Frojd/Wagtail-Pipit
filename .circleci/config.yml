@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.2
 
 references:
   restore_repo: &restore_repo
@@ -11,22 +14,18 @@ jobs:
     working_directory: ~/frojd-django-boilerplate
     docker:
       - image: circleci/python:3.8
-
     environment:
       TEST_RESULTS: /tmp/test-results
-
+      SLACK_WEBHOOK: ${SLACK_WEBHOOK}
     steps:
       - checkout
-
       - run:
           name: Install cookiecutter
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install cookiecutter
-
       - run: mkdir -p $TEST_RESULTS
-
       - run:
           name: Run cookiecutter
           command: |
@@ -34,33 +33,27 @@ jobs:
             . venv/bin/activate
             rm -rf Company-Project
             cookiecutter . --no-input
-
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - .
-
       - run:
           name: Install Docker Compose
           command: |
             curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
       - setup_remote_docker
-
       - run:
           name: Create docker-compose config for running boilerplate tests
           command: |
             set -x
             cp docker-compose-circleci.yml Company-Project/docker-compose-circleci.yml
-
       - run:
           name: Build image
           command: |
             set -x
             cd Company-Project && docker-compose -f docker-compose-circleci.yml build
-
       - run:
           name: Run tests on container
           command: |
@@ -70,13 +63,15 @@ jobs:
             docker-compose -f docker-compose-circleci.yml run --rm python typecheck
             # docker-compose -f docker-compose-circleci.yml run frontend test
             # docker-compose -f docker-compose-circleci.yml run frontend build
-
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output
-
       - store_test_results:
           path: /tmp/test-results
+      - slack/status:
+          fail_only: true
+          failure_message: '${CIRCLE_JOB} Failed! Branch: ${CIRCLE_BRANCH}, Message: ${GIT_COMMIT_DESC}'
+          webhook: ${SLACK_WEBHOOK}
 
 workflows:
   version: 2
