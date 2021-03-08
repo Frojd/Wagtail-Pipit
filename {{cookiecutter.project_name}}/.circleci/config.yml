@@ -63,7 +63,7 @@ jobs:
       - run:
           command: |
             cd frontend
-            npm test
+            npm test:ci
             npm run build
             npm run build-storybook
             # So we don't copy the gigantic node_modules on each deploy
