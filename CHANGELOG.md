@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Fix: Ignore virtualenv dir when generating translations (Martin Sandström)
+
+
 ## 8.1.0 (2020.02.13)
 
 - New: Make it possible to serve remote media locally (Martin Sandström)
