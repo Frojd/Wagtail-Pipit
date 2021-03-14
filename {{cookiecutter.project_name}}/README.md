@@ -21,7 +21,7 @@
 
 - Python 3.8+
 - Pip
-- Virtualenv (or the package manage of your chocie)
+- Virtualenv (or the package manage of your choice)
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
 
@@ -56,8 +56,14 @@
     ```
     docker-compose up
     ```
-
-6. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
+6. Install and start frontend
+    ```
+    cd frontend
+    nvm use
+    npm i
+    npm run dev
+    ```
+7. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
     - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/wt/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/wt/cms) (Username: `admin` and password: `admin`)
 
 

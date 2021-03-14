@@ -21,7 +21,7 @@
 
 - Python 3.8+
 - Pip
-- Virtualenv (or the package manage of your chocie)
+- Virtualenv (or the package manage of your choice)
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
 
@@ -33,7 +33,6 @@
     ```
     cp docker/config/python.example.env docker/config/python.env
     ```
-
 2. Include this ip on your hosts-file
 
     ```
@@ -45,7 +44,6 @@
     ```
     echo 127.0.0.1 example.com.test >> c:\windows\System32\drivers\etc\hosts
     ```
-
 3. Add root cert: `mkcert -install` (if not already available)
 4. Generate ssl certs for local development:
     ```
@@ -56,8 +54,14 @@
     ```
     docker-compose up
     ```
-
-6. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
+6. Install and start frontend
+    ```
+    cd frontend
+    nvm use
+    npm i
+    npm run dev
+    ```
+7. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
     - ...or login to [https://example.com.test:8081/wt/cms](https://example.com.test:8081/wt/cms) (Username: `admin` and password: `admin`)
 
 
