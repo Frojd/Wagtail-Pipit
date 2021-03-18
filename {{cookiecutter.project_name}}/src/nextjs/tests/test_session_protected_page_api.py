@@ -33,7 +33,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         data = response.json()
         self.assertTrue("redirect" in data)
 
-    def test_proper_pag_if_user_is_logged_in(self):
+    def test_proper_page_if_user_is_logged_in(self):
         self.login()
 
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
