@@ -30,11 +30,7 @@ class BasePage(HeadlessPreviewMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
         setattr(request, "is_preview", is_preview)
 
         json = self.get_component_data({"request": request})
-
-        response_cls = JsonResponse
-        if isinstance(request, Request):
-            response_cls = Response
-
+        response_cls = Response if isinstance(request, Request) else JsonResponse
         return response_cls(json)
 
     def get_component_data(
