@@ -7,13 +7,12 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from wagtail.core.models import Page
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
 
 
-class BasePage(HeadlessPreviewMixin, EnhancedEditHandlerMixin, SeoMixin, Page):
+class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     is_creatable = False
     show_in_menus_default = True
 

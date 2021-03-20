@@ -132,11 +132,12 @@ Modify `main/pages/about.py` and include `company_name` both as a model field an
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel
+from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 from .base import BasePage
 
 
-class AboutPage(BasePage):
+class AboutPage(HeadlessPreviewMixin, BasePage):
     company_name = models.CharField(
         max_length=250,
         blank=True,
