@@ -22,7 +22,7 @@
         "@sentry/webpack-plugin": "^1.14.0",
         "@svgr/webpack": "^5.5.0",
         "@zeit/next-source-maps": "0.0.4-canary.1",
-        "i18next": "^19.8.7",
+        "i18next": "^19.9.2",
         "next": "10.0.6",
         "next-compose-plugins": "^2.2.1",
         "react": "17.0.1",
