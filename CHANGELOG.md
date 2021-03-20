@@ -2,7 +2,21 @@
 
 ## Unreleased
 
+- New: Add guide for adding slack notifications to circleci (Martin Sandström)
+- Fix: Improve flexibility by moving headless mixin from base page to each page model (Martin Sandström)
+- Fix: Rename fields in timestamp mixin to indicate date (Andreas Bernacca)
+- Fix: Fix typo in test method name (Martin Lindvall)
+- Fix: Pin boto3 more loosely since the minor is auto updated very frequently (Andreas Bernacca)
+- Fix: Implement circleci slack orb 4+ (Martin Sandström)
 - Fix: Ignore virtualenv dir when generating translations (Martin Sandström)
+- Fix: Add quick info in readme on running Next.js (Martin Sandström)
+- Fix: Raise proxy timeout to avoid next.js first load beeing timed out (Martin Sandström)
+- Fix: Drop unused redirect middleware (Martin Lindvall)
+- Fix: Add automatic transform of redirect in nextjs api external view (Martin Sandström)
+- Fix: Upgrade Next.js to 10.0.9
+- Fix: Upgrade Wagtail to 2.13.3
+- Fix: Upgrade Djangp to 3.1.7
+- Fix: Storybook, Husky, i18next and sentry to latest version
 
 
 ## 8.1.0 (2020.02.13)
