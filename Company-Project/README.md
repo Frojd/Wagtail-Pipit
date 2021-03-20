@@ -33,6 +33,7 @@
     ```
     cp docker/config/python.example.env docker/config/python.env
     ```
+
 2. Include this ip on your hosts-file
 
     ```
@@ -44,6 +45,7 @@
     ```
     echo 127.0.0.1 example.com.test >> c:\windows\System32\drivers\etc\hosts
     ```
+
 3. Add root cert: `mkcert -install` (if not already available)
 4. Generate ssl certs for local development:
     ```
