@@ -3,6 +3,8 @@
 ## Unreleased
 
 - New: Add guide for adding slack notifications to circleci (Martin Sandström)
+- New: Add guide for adding Sentry (Martin Sandström)
+- Fix: Solve issue with Sentry not activated in Next.js (Martin Sandström, Martin Lindvall)
 - Fix: Improve flexibility by moving headless mixin from base page to each page model (Martin Sandström)
 - Fix: Rename fields in timestamp mixin to indicate date (Andreas Bernacca)
 - Fix: Fix typo in test method name (Martin Lindvall)
@@ -13,6 +15,7 @@
 - Fix: Raise proxy timeout to avoid next.js first load beeing timed out (Martin Sandström)
 - Fix: Drop unused redirect middleware (Martin Lindvall)
 - Fix: Add automatic transform of redirect in nextjs api external view (Martin Sandström)
+- Fix: Cleanup unused env vars from frontend .env (Martin Sandström)
 - Fix: Upgrade Next.js to 10.0.9
 - Fix: Upgrade Wagtail to 2.13.3
 - Fix: Upgrade Djangp to 3.1.7
