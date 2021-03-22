@@ -76,6 +76,17 @@ Read more about the frontend stack in our
 
 ## Booting up Docker
 
+**Are you on Linux?**
+Add the following in your docker-compose.yml for the `web` container to get the reverse proxy working. You also need to use Docker 20.04+
+
+```yml
+services:
+  web:
+    ...
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
+```
+
 The Django application will be served through Docker. To start it, run the following from the project root:
 ```
 docker-compose up

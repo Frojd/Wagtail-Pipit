@@ -16,6 +16,7 @@
 - Fix: Drop unused redirect middleware (Martin Lindvall)
 - Fix: Add automatic transform of redirect in nextjs api external view (Martin Sandström)
 - Fix: Cleanup unused env vars from frontend .env (Martin Sandström)
+- Fix: Add note on getting reverse proxy working in Linux (@remiBoudreau)
 - Fix: Upgrade Next.js to 10.0.9
 - Fix: Upgrade Wagtail to 2.13.3
 - Fix: Upgrade Djangp to 3.1.7
