@@ -7,7 +7,7 @@ in just a few minutes
 Make sure you have the following requirement:
 - [Docker Compose](https://docs.docker.com/compose/)
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [node](https://nodejs.org/en/) (v10 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
+- [Node](https://nodejs.org/en/) (v12 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
 
 
 ## Initialize Project
@@ -75,6 +75,17 @@ Read more about the frontend stack in our
 
 
 ## Booting up Docker
+
+**Are you on Linux?**
+Add the following in your docker-compose.yml for the `web` container to get the reverse proxy working. You also need to use Docker 20.04+
+
+```yml
+services:
+  web:
+    ...
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
+```
 
 The Django application will be served through Docker. To start it, run the following from the project root:
 ```

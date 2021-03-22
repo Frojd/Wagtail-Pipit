@@ -228,6 +228,15 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
 
         view = view_cls.as_view()
         resp = view(request)
+
+        if resp.status_code in [301, 302, 307]:
+            return Response({
+                "redirect": {
+                    "destination": resp.url,
+                    "is_permanent": resp.status_code == 301,
+                }
+            })
+
         resp.status_code = 200
         return resp
 

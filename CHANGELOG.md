@@ -1,6 +1,29 @@
 # Changelog
 
-## 8.1.0 (2020.02.13)
+## 8.2.0 (2021.03.22)
+
+- New: Add guide for adding slack notifications to circleci (Martin Sandström)
+- New: Add guide for adding Sentry (Martin Sandström)
+- Fix: Solve issue with Sentry not activated in Next.js (Martin Sandström, Martin Lindvall)
+- Fix: Improve flexibility by moving headless mixin from base page to each page model (Martin Sandström)
+- Fix: Rename fields in timestamp mixin to indicate date (Andreas Bernacca)
+- Fix: Fix typo in test method name (Martin Lindvall)
+- Fix: Pin boto3 more loosely since the minor is auto updated very frequently (Andreas Bernacca)
+- Fix: Implement circleci slack orb 4+ (Martin Sandström)
+- Fix: Ignore virtualenv dir when generating translations (Martin Sandström)
+- Fix: Add quick info in readme on running Next.js (Martin Sandström)
+- Fix: Raise proxy timeout to avoid next.js first load beeing timed out (Martin Sandström)
+- Fix: Drop unused redirect middleware (Martin Lindvall)
+- Fix: Add automatic transform of redirect in nextjs api external view (Martin Sandström)
+- Fix: Cleanup unused env vars from frontend .env (Martin Sandström)
+- Fix: Add note on getting reverse proxy working in Linux (@remiBoudreau)
+- Fix: Upgrade Next.js to 10.0.9
+- Fix: Upgrade Wagtail to 2.13.3
+- Fix: Upgrade Djangp to 3.1.7
+- Fix: Storybook, Husky, i18next and sentry to latest version
+
+
+## 8.1.0 (2021.02.13)
 
 - New: Make it possible to serve remote media locally (Martin Sandström)
 - New: Rewrite guide for syncing data (Martin Sandström)
@@ -21,7 +44,7 @@
 - Fix: Upgrade Next.js to 10.0.6
 
 
-## 8.0.6 (2020.02.03)
+## 8.0.6 (2021.02.03)
 
 - Fix: Improve Storbybook 6 support (Andreas Bernacca)
 - Fix: Solve issue with wrong path in `example_prod_to_stage.sh` (Martin Sandström)
@@ -39,13 +62,13 @@
 - Fix: Upgrade Django to 3.1.6
 
 
-## 8.0.5 (2020.01.17)
+## 8.0.5 (2021.01.17)
 
 - Fix: Solve issue with broken tests (Martin Sandström)
 - Fix: Fix issue with missing `wagtail_userbar` field (Martin Sandström)
 
 
-## 8.0.4 (2020.01.17)
+## 8.0.4 (2021.01.17)
 
 - Fix: Replace ssr pm2 config in provision with next.js pm2 config (Martin Sandström)
 - Fix: Include `site.site_name` in `seo_html_title` (Martin Sandström)
@@ -59,7 +82,7 @@
 - Fix: Upgrade boto3 to 1.16.56
 
 
-## 8.0.3 (2020.01.04)
+## 8.0.3 (2021.01.04)
 
 - Fix: Update Next.js to 10.0.4
 - Fix: Update storybook to v6

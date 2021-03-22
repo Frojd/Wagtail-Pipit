@@ -13,18 +13,19 @@ We won't go into detail on how routable pages work since the [Wagtail documentat
 from rest_framework.request import Request
 from rest_framework.response import Response
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 from main.base import BasePage
 
 
-class ProductListPage(RoutablePageMixin, BasePage):
+class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
     pass
 ```
 
 2. Proceed to include a "index" route to our page.
 
 ```python
-class ProductListPage(RoutablePageMixin, BasePage):
+class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
 
     @route(r'^$')
     def index_route(self, request, *args, **kwargs):
@@ -47,7 +48,7 @@ from example_app.models import Product  # You will need to create this
 ...
 
 
-class ProductListPage(RoutablePageMixin, BasePage):
+class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
     ...
 
     @route(r'^products/(?P<slug>.+)/$')
@@ -99,12 +100,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework.request import Request
 from rest_framework.response import Response
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 from example_app.models import Product
 from main.base import BasePage
 
 
-class ProductListPage(RoutablePageMixin, BasePage):
+class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
     @route(r'^$')
     def index_route(self, request, *args, **kwargs):
         data = self.get_component_data({"request": request})

@@ -1,6 +1,7 @@
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
+  proxy_read_timeout 120s;
 
   server_name example.com.test _;
 
@@ -64,4 +65,3 @@ server {
       proxy_pass ${PYTHON_HOST}:8000/wt;
   }
 }
-

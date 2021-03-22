@@ -1,4 +1,12 @@
-version: 2
+version: 2.1
+
+orbs:
+  slack: circleci/slack@4.2.1
+
+defaults: &defaults
+  working_directory: ~/repo
+  environment:
+    TEST_RESULTS: /tmp/test-results
 
 references:
   restore_repo: &restore_repo
@@ -6,27 +14,39 @@ references:
       keys:
         - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
 
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build:
+          context:
+            - CIRCLECI_BOT
+      - backend:
+          context:
+            - CIRCLECI_BOT
+          requires:
+            - build
+      - frontend:
+          context:
+            - CIRCLECI_BOT
+          requires:
+            - build
+
 jobs:
   build:
-    working_directory: ~/frojd-django-boilerplate
+    <<: *defaults
     docker:
       - image: circleci/python:3.8
-
-    environment:
-      TEST_RESULTS: /tmp/test-results
-
+      - image: circleci/node:12
     steps:
       - checkout
-
       - run:
           name: Install cookiecutter
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install cookiecutter
-
       - run: mkdir -p $TEST_RESULTS
-
       - run:
           name: Run cookiecutter
           command: |
@@ -34,33 +54,36 @@ jobs:
             . venv/bin/activate
             rm -rf Company-Project
             cookiecutter . --no-input
-
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - .
-
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  backend:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - *restore_repo
       - run:
           name: Install Docker Compose
           command: |
             curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
       - setup_remote_docker
-
       - run:
           name: Create docker-compose config for running boilerplate tests
           command: |
             set -x
             cp docker-compose-circleci.yml Company-Project/docker-compose-circleci.yml
-
       - run:
           name: Build image
           command: |
             set -x
             cd Company-Project && docker-compose -f docker-compose-circleci.yml build
-
       - run:
           name: Run tests on container
           command: |
@@ -68,18 +91,21 @@ jobs:
             cd Company-Project
             docker-compose -f docker-compose-circleci.yml run --rm python test
             docker-compose -f docker-compose-circleci.yml run --rm python typecheck
-            # docker-compose -f docker-compose-circleci.yml run frontend test
-            # docker-compose -f docker-compose-circleci.yml run frontend build
-
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: raw-test-output
-
-      - store_test_results:
-          path: /tmp/test-results
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  frontend:
+    <<: *defaults
+    docker:
+      - image: circleci/node:12
+    steps:
+      - *restore_repo
+      - run:
+          name: Run frontend tests
+          command: |
+            cd Company-Project/frontend
+            npm ci
+            npm run test:ci
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
