@@ -5,14 +5,14 @@ from wagtail.core.models import Site
 import wagtail_factories
 from wagtail_headless_preview.models import PagePreview
 
-from main.factories.base_page import BasePageFactory
+from main.factories.home_page import HomePageFactory
 
 
 class PagePreviewApiTest(WagtailPageTests):
     def setUp(self):
         self.site = Site.objects.first()
 
-        self.root_page = BasePageFactory.create(title="Start", parent=None)
+        self.root_page = HomePageFactory.create(title="Start", parent=None)
         self.site.root_page = self.root_page
         self.site.save()
 
@@ -23,7 +23,7 @@ class PagePreviewApiTest(WagtailPageTests):
         self.assertEqual(response.status_code, 400)
 
     def test_preview_retrieval(self):
-        sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
+        sub_page = HomePageFactory.create(title="Child page", parent=self.root_page)
         preview = sub_page.create_page_preview()
         content_type = ContentType.objects.get_for_model(sub_page.__class__)
 
