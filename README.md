@@ -39,6 +39,7 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Serving custom content type data through Next.js](/docs/serving-custom-content-type-data-through-nextjs.md)
 - [Adding multi language support](/docs/adding-multi-language-support.md)
 - [Adding wagtail-2fa support](/docs/adding-wagtail-2fa-support.md)
+- [Adding Sentry](/docs/adding-sentry.md)
 
 ## Contribute
 If you have ideas for improvement, please share your thoughts through an issue. We also welcome PR's
