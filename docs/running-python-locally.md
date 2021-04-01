@@ -67,6 +67,7 @@ And then finally start your python server
 
 ```
 cd src
+python manage.py collectstatic
 python manage.py runserver 8000
 ```
 
