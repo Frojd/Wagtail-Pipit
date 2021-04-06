@@ -84,6 +84,7 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Adding multi language support](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-multi-language-support.md)
 - [Adding wagtail-2fa support](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-wagtail-2fa-support.md)
 - [Adding Sentry](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-sentry.md)
+- [Handling CSRF Tokens](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/handling-csrf-tokens.md)
 
 
 ## Versioning
