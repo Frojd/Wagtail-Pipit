@@ -106,6 +106,7 @@ jobs:
             cd Company-Project/frontend
             npm ci
             npm run test:ci
+            npm run build
       - slack/notify:
           event: fail
           template: basic_fail_1

@@ -1,5 +1,32 @@
 # Changelog
 
+## 8.3.0 (2021.04.06)
+
+- New: Add guide for handling CSRF Tokens (Martin Sandström)
+- Fix: Update Next.js to 10.1.3 (Martin Sandström)
+- Fix: Replace withSourceMaps with productionBrowserSourceMaps (Martin Sandström)
+- Fix: Add collectstatic instruction to local python setup (Martin Sandström)
+- Fix: Move node ignores to frontend gitignore (Martin Sandström)
+- Fix: Fix issue with inconsitent indentation in nginx template (Martin Sandström)
+- Fix: Fix wrong nginx conf path in `enable_ssl.sh` script (Martin Sandström)
+- Fix: Run npm run build in project ci
+- Fix: Update testing-library
+- Fix: Update babel core
+- Fix: Update sentry
+- Fix: Update jest-dom
+- Fix: Update classnames
+- Fix: Update i18next
+- Fix: Update storybook
+- Fix: Update css-loader
+- Fix: Update react+react-dom
+- Fix: Update react-test-renderer
+- Fix: Update python-dotenv
+- Fix: Update husky to 6.0
+- Fix: Update @testing-library/user-event
+- Fix: Include all guides in the generated project readme
+- Fix: Fix broken link to django styleguide
+
+
 ## 8.2.0 (2021.03.22)
 
 - New: Add guide for adding slack notifications to circleci (Martin Sandström)

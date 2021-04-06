@@ -17,8 +17,16 @@
 .env.test.local
 .env.production.local
 
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-build
+# npm
+node_modules
+
+# storybook
+storybook-static
+
+# nextjs
+.next
