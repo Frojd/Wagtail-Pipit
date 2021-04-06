@@ -16,9 +16,9 @@
         "test:ci": "jest -w 1 --ci"
     },
     "dependencies": {
-        "@sentry/browser": "^6.2.3",
-        "@sentry/integrations": "^6.2.3",
-        "@sentry/node": "^6.2.3",
+        "@sentry/browser": "^6.2.5",
+        "@sentry/integrations": "^6.2.5",
+        "@sentry/node": "^6.2.5",
         "@sentry/webpack-plugin": "^1.14.2",
         "@svgr/webpack": "^5.5.0",
         "i18next": "^20.1.0",
