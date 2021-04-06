@@ -101,7 +101,7 @@ Bump version in:
 
 ## Style Guide
 
-We follow the [django coding style](https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
+We follow the [django coding style](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/), which is based on [PEP8](https://www.python.org/dev/peps/pep-0008).
 
 
 ## Debugging
