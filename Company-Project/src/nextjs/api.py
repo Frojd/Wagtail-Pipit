@@ -109,6 +109,8 @@ class PasswordProtectedPageViewSet(BaseAPIViewSet):
         if not form.is_valid():
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
+        restriction.mark_as_passed(request)
+
         data = page.get_component_data(
             {
                 "request": request,
