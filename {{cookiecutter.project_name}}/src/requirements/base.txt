@@ -4,7 +4,7 @@ django-storages==1.11.1
 psycopg2==2.8.6
 sentry_sdk==1.0.0
 python-dotenv==0.17.0
-wagtail==2.12.3
+wagtail==2.12.4
 wagtail-meta-preview
 wagtailfontawesome==1.2.1
 wagtail_headless_preview==0.1.4
