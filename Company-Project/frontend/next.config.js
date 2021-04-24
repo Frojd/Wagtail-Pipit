@@ -23,6 +23,9 @@ process.env.SENTRY_DSN = SENTRY_DSN
 const basePath = ''
 
 const nextConfig = {
+    future: {
+        webpack5: true,
+    },
     trailingSlash: true,
     productionBrowserSourceMaps: true,
     env: {
