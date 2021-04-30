@@ -62,9 +62,6 @@ const WagtailUserbar = ({ html }) => {
         }
     });
 
-    // Strip away the scrip tag since we use our own
-    html = html.replace(/<script[^\0]*<\/script>/g, '');
-
     return <div dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
