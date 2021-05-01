@@ -1,5 +1,23 @@
 # Changelog
 
+## 8.4.0 (2021.05.01)
+
+- Fix: Update Wagtail to 2.13 (Martin Sandström)
+- Fix: Update Django to 3.2 (Martin Sandström)
+- Fix: Update Nextjs to 10.2 (Martin Sandström)
+- Fix: Use webpack 5 (Martin Sandström)
+- Fix: Add support for Circle CI test insights (Martin Sandström)
+- Fix: Drop type ignores in urls by adding custom urlpattern type alias (Martin Sandström)
+- Fix: Make sure Next.js uses trailing slash (Martin Sandström)
+- Fix: Drop js from wagtail userbar to make it cross platform. Fixes #457 (Andreas Bernacca)
+- Fix: Serve Next.js static files from Nginx in production (Martin Sandström)
+- Fix: Make sure restricted page access is persisted. Fixes #426 (Martin Sandström)
+- Fix: Update all frontend packages
+- Fix: Update python-dotenv
+- Fix: Update pytest-django
+- Fix: Update django-stubs
+
+
 ## 8.3.0 (2021.04.06)
 
 - New: Add guide for handling CSRF Tokens (Martin Sandström)
