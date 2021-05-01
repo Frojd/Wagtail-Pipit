@@ -1,0 +1,186 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/{{cookiecutter.project_name}}/src/requirements"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  target-branch: develop
+  ignore:
+  - dependency-name: wagtail
+    versions:
+    - "2.12"
+    - 2.12.1
+    - 2.12.2
+    - 2.12.4
+  - dependency-name: django-stubs
+    versions:
+    - 1.8.0
+  - dependency-name: pytest-django
+    versions:
+    - 4.2.0
+  - dependency-name: python-dotenv
+    versions:
+    - 0.16.0
+    - 0.17.0
+  - dependency-name: django
+    versions:
+    - 3.1.6
+    - 3.1.7
+  - dependency-name: boto3
+    versions:
+    - 1.16.62
+    - 1.16.63
+    - 1.17.0
+    - 1.17.1
+    - 1.17.10
+    - 1.17.11
+    - 1.17.12
+    - 1.17.13
+    - 1.17.14
+    - 1.17.15
+    - 1.17.16
+    - 1.17.17
+    - 1.17.18
+    - 1.17.19
+    - 1.17.2
+    - 1.17.20
+    - 1.17.3
+    - 1.17.4
+    - 1.17.5
+    - 1.17.6
+    - 1.17.7
+    - 1.17.8
+    - 1.17.9
+  - dependency-name: sentry-sdk
+    versions:
+    - 0.20.0
+    - 0.20.1
+    - 0.20.2
+    - 0.20.3
+    - 1.0.0
+- package-ecosystem: npm
+  directory: "/{{cookiecutter.project_name}}/frontend"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  target-branch: develop
+  ignore:
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.13.10
+    - 7.13.13
+    - 7.13.15
+    - 7.13.16
+  - dependency-name: i18next
+    versions:
+    - 19.9.2
+    - 20.0.0
+    - 20.1.0
+    - 20.2.0
+    - 20.2.1
+  - dependency-name: "@storybook/addon-viewport"
+    versions:
+    - 6.1.21
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+    - 6.2.7
+    - 6.2.8
+    - 6.2.9
+  - dependency-name: "@storybook/addon-a11y"
+    versions:
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+    - 6.2.7
+    - 6.2.8
+    - 6.2.9
+  - dependency-name: "@storybook/addons"
+    versions:
+    - 6.1.21
+    - 6.2.1
+    - 6.2.2
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+    - 6.2.7
+    - 6.2.8
+    - 6.2.9
+  - dependency-name: "@storybook/addon-links"
+    versions:
+    - 6.1.21
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+    - 6.2.7
+    - 6.2.8
+    - 6.2.9
+  - dependency-name: "@storybook/addon-actions"
+    versions:
+    - 6.2.1
+    - 6.2.2
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+    - 6.2.7
+    - 6.2.8
+    - 6.2.9
+  - dependency-name: "@storybook/react"
+    versions:
+    - 6.2.1
+    - 6.2.2
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+    - 6.2.7
+    - 6.2.8
+    - 6.2.9
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: "@testing-library/jest-dom"
+    versions:
+    - 5.11.10
+  - dependency-name: classnames
+    versions:
+    - 2.3.1
+  - dependency-name: react-dom
+    versions:
+    - 17.0.2
+  - dependency-name: react
+    versions:
+    - 17.0.2
+  - dependency-name: css-loader
+    versions:
+    - 5.2.0
+  - dependency-name: "@testing-library/user-event"
+    versions:
+    - 13.0.10
+    - 13.0.13
+    - 13.0.16
+    - 13.0.6
+    - 13.0.7
+    - 13.1.1
+  - dependency-name: husky
+    versions:
+    - 5.1.3
+    - 5.2.0
+    - 6.0.0
+  - dependency-name: react-test-renderer
+    versions:
+    - 17.0.2
+  - dependency-name: "@sentry/integrations"
+    versions:
+    - 6.2.3
+  - dependency-name: "@sentry/node"
+    versions:
+    - 6.2.3
