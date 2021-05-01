@@ -30,6 +30,12 @@ server {
   #   alias /mnt/persist/www/{{ project_slug }}/shared/frontend/storybook/;
   # }
 
+  location /_next/static/ {
+    expires 30d;
+    access_log off;
+    alias /mnt/persist/www/{{ project_slug }}/current/src/frontend/.next/static/;
+  }
+
   location /wt/static/ {
     expires 30d;
     access_log off;

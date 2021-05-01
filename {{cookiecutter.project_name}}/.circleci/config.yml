@@ -62,6 +62,7 @@ jobs:
             - ~/repo/frontend/node_modules
       - run:
           command: |
+            mkdir -p test-results/jest
             cd frontend
             npm test:ci
             echo "NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN" >> .env
@@ -69,6 +70,12 @@ jobs:
             npm run build-storybook
             # So we don't copy the gigantic node_modules on each deploy
             rm -rf node_modules
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ../test-results/jest/
+      - store_test_results:
+          path: test-results/jest
+      - store_artifacts:
+          path: test-results/jest
       - save_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -116,8 +123,13 @@ jobs:
           name: Run tests and show the 10 slowest cases
           command: |
             . venv/bin/activate
+            mkdir -p test-results/pytest
             cd src
-            pytest -c pytest.circleci.ini --duration 10
+            pytest -c pytest.circleci.ini --durations 10 --junitxml=../test-results/pytest/junit.xml
+      - store_test_results:
+          path: test-results/pytest
+      - store_artifacts:
+          path: test-results/pytest
       - save_cache:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -221,4 +233,4 @@ workflows:
           requires:
             - frontend
             - django
-{% endraw %}
+ {% endraw %}

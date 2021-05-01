@@ -33,8 +33,8 @@ fi
 
 mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem $DOMAIN
 
-sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf
-rm -f docker/files/config/nginx.conf.bak
+sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf.template
+rm -f docker/files/config/nginx.conf.template.bak
 
 docker-compose stop
 docker-compose rm -f web
