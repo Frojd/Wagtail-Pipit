@@ -16,9 +16,9 @@
         "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
-        "@sentry/browser": "^6.3.4",
-        "@sentry/integrations": "^6.3.4",
-        "@sentry/node": "^6.3.4",
+        "@sentry/browser": "^6.3.5",
+        "@sentry/integrations": "^6.3.5",
+        "@sentry/node": "^6.3.5",
         "@sentry/webpack-plugin": "^1.15.1",
         "@svgr/webpack": "^5.5.0",
         "@types/react": "^17.0.4",
