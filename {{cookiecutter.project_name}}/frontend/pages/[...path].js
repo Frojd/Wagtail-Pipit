@@ -1,4 +1,5 @@
 import querystring from 'querystring';
+
 import { getPage, getRedirect, getAllPages } from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
@@ -42,6 +43,12 @@ export async function getServerSideProps({ req, params, res }) {
                 },
             }
         );
+
+        // Forward any cookie we encounter
+        const cookies = headers.get('set-cookie');
+        if (cookies) {
+            res.setHeader('Set-Cookie', cookies);
+        }
 
         if (customResponse) {
             const { body, body64, contentType } = customResponse;
