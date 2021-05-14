@@ -1,6 +1,7 @@
 import querystring from 'querystring';
-
-import { getPage, getRedirect, getAllPages } from '../api/wagtail';
+import {
+    getPage, getRedirect, getAllPages, WagtailApiResponseError
+} from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -34,6 +35,7 @@ export async function getServerSideProps({ req, params, res }) {
                 redirect,
                 customResponse,
             },
+            headers,
         } = await getPage(
             path,
             queryParams, {
@@ -74,6 +76,10 @@ export async function getServerSideProps({ req, params, res }) {
 
         return { props: { componentName, componentProps } };
     } catch (err) {
+        if (!(err instanceof WagtailApiResponseError)) {
+            throw err;
+        }
+
         // When in development, show django error page on error
         if (!isProd && err.response.status >= 500) {
             const html = await err.response.text();
@@ -106,6 +112,10 @@ export async function getServerSideProps({ req, params, res }) {
             }
         }
     } catch (err) {
+        if (!(err instanceof WagtailApiResponseError)) {
+            throw err;
+        }
+
         if (err.response.status >= 500) {
             throw err;
         }

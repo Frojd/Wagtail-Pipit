@@ -1,4 +1,4 @@
-import { getPagePreview } from '../api/wagtail';
+import { getPagePreview, WagtailApiResponseError } from '../api/wagtail';
 export { default } from './[...path]';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -26,6 +26,10 @@ export async function getServerSideProps({ req, preview, previewData }) {
             props: pagePreviewData,
         };
     } catch (err) {
+        if (!(err instanceof WagtailApiResponseError)) {
+            throw err;
+        }
+
         if (!isProd && err.response.status >= 500) {
             const html = await err.response.text();
             return {
