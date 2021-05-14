@@ -93,7 +93,10 @@ export async function getRequest(url, params, options) {
     }
 
     const json = await res.json();
-    return keysToCamelFromSnake(json);
+    return {
+        headers: res.headers,
+        json: keysToCamelFromSnake(json),
+    };
 }
 
 export async function postRequest(url, params, options) {
@@ -118,5 +121,8 @@ export async function postRequest(url, params, options) {
     }
 
     const json = await res.json();
-    return keysToCamelFromSnake(json);
+    return {
+        headers: res.headers,
+        json: keysToCamelFromSnake(json),
+    };
 }

@@ -27,10 +27,12 @@ export async function getServerSideProps({ req, params, res }) {
     // Try to serve page
     try {
         const {
-            componentName,
-            componentProps,
-            redirect,
-            customResponse,
+            json: {
+                componentName,
+                componentProps,
+                redirect,
+                customResponse,
+            },
         } = await getPage(
             path,
             queryParams, {
@@ -83,7 +85,7 @@ export async function getServerSideProps({ req, params, res }) {
 
     // Try to serve redirect
     try {
-        const redirect = await getRedirect(path, queryParams, {
+        const { json: redirect } = await getRedirect(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
                 host,
@@ -113,12 +115,12 @@ export async function getStaticProps({ params, preview, previewData }) {
     let path = params.path || [];
     path = path.join("/");
 
-    const pageData = await getPage(path);
+    const { json: pageData } = await getPage(path);
     return { props: pageData }
 }
 
 export async function getStaticPaths() {
-    const data = await getAllPages();
+    const { json: data } = await getAllPages();
 
     let htmlUrls = data.items.map(x => x.relativeUrl);
     htmlUrls = htmlUrls.filter(x => x);

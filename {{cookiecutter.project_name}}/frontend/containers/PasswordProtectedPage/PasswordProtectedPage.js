@@ -12,7 +12,7 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
         e.preventDefault();
 
         try {
-            const resp = await getPasswordProtectedPage(
+            const { json } = await getPasswordProtectedPage(
                 restrictionId,
                 pageId,
                 {
@@ -25,7 +25,7 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
                 }
             );
 
-            setPageData(resp);
+            setPageData(json);
         } catch (e) {
             setError('Invalid password');
         }
