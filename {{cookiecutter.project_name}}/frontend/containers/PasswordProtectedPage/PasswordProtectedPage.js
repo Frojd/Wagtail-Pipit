@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getPasswordProtectedPage } from '../../api/wagtail';
+import {
+    getPasswordProtectedPage,
+    WagtailApiResponseError,
+} from '../../api/wagtail';
 import LazyContainers from '../LazyContainers';
 
 const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
@@ -27,7 +30,21 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
 
             setPageData(json);
         } catch (e) {
-            setError('Invalid password');
+            if (!(e instanceof WagtailApiResponseError)) {
+                throw e;
+            }
+
+            switch (e.response.status) {
+                case 403:
+                    setError('Forbidden');
+                    break;
+                case 401:
+                    setError('Invalid password');
+                    break;
+                default:
+                    setError('Technical issues');
+                    break;
+            }
         }
     };
 
