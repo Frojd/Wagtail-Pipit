@@ -87,13 +87,16 @@ export async function getRequest(url, params, options) {
     const res = await fetch(`${url}?${queryString}`, { headers });
 
     if (res.status < 200 || res.status >= 300) {
-        const error = new Error(res.statusText);
+        const error = new WagtailApiResponseError(res.statusText);
         error.response = res;
         throw error;
     }
 
     const json = await res.json();
-    return keysToCamelFromSnake(json);
+    return {
+        headers: res.headers,
+        json: keysToCamelFromSnake(json),
+    };
 }
 
 export async function postRequest(url, params, options) {
@@ -112,11 +115,23 @@ export async function postRequest(url, params, options) {
     });
 
     if (res.status < 200 || res.status >= 300) {
-        const error = new Error(res.statusText);
+        const error = new WagtailApiResponseError(res.statusText);
         error.response = res;
         throw error;
     }
 
     const json = await res.json();
-    return keysToCamelFromSnake(json);
+    return {
+        headers: res.headers,
+        json: keysToCamelFromSnake(json),
+    };
+}
+
+export class WagtailApiResponseError extends Error {
+    constructor(res, url, params) {
+        super(
+            `${res.statusText}. Url: ${url}. Params: ${JSON.stringify(params)}`
+        );
+        this.name = 'WagtailApiResponseError';
+    }
 }

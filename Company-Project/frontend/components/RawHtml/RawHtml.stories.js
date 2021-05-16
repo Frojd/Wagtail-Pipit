@@ -1,11 +1,14 @@
 /* global module */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import RawHtml from './RawHtml';
 
 import data from './RawHtml.data';
 
-storiesOf('Components|RawHtml', module)
-    .add('without data', () => <RawHtml />)
-    .add('with data', () => <RawHtml {...data} />);
+export default {
+    title: 'Components/RawHtml',
+    component: RawHtml,
+};
+
+export const RawHtmlWithoutData = () => <RawHtml />;
+export const RawHtmlWithData = () => <RawHtml {...data} />;

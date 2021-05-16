@@ -98,7 +98,6 @@ const withSvgr = (nextConfig = {}, nextComposePlugins = {}) => {
                 test: /\.svg$/,
                 use: [
                     '@svgr/webpack?-svgo,+titleProp,+ref![path]',
-                    'url-loader',
                 ],
             });
 

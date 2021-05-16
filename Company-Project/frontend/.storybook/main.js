@@ -6,6 +6,9 @@ module.exports = {
         '../components/**/*.stories.js',
         '../containers/**/*.stories.js',
     ],
+    core: {
+        builder: "webpack5",
+    },
     babel: async (options) => {
         options.presets = ['next/babel'];
         return {

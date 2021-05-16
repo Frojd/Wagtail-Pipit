@@ -8,7 +8,7 @@ export default function DynamicNotFoundPage() {
     const [data, setData] = useState(null);
     useEffect(() => {
         async function fetchData() {
-            const pageData = await getPublicViewData('404');
+            const { json: pageData } = await getPublicViewData('404');
             setData(pageData);
         }
         fetchData();

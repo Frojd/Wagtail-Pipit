@@ -1,5 +1,7 @@
 import querystring from 'querystring';
-import { getPage, getRedirect, getAllPages } from '../api/wagtail';
+import {
+    getPage, getRedirect, getAllPages, WagtailApiResponseError
+} from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -27,10 +29,13 @@ export async function getServerSideProps({ req, params, res }) {
     // Try to serve page
     try {
         const {
-            componentName,
-            componentProps,
-            redirect,
-            customResponse,
+            json: {
+                componentName,
+                componentProps,
+                redirect,
+                customResponse,
+            },
+            headers,
         } = await getPage(
             path,
             queryParams, {
@@ -40,6 +45,12 @@ export async function getServerSideProps({ req, params, res }) {
                 },
             }
         );
+
+        // Forward any cookie we encounter
+        const cookies = headers.get('set-cookie');
+        if (cookies) {
+            res.setHeader('Set-Cookie', cookies);
+        }
 
         if (customResponse) {
             const { body, body64, contentType } = customResponse;
@@ -65,6 +76,10 @@ export async function getServerSideProps({ req, params, res }) {
 
         return { props: { componentName, componentProps } };
     } catch (err) {
+        if (!(err instanceof WagtailApiResponseError)) {
+            throw err;
+        }
+
         // When in development, show django error page on error
         if (!isProd && err.response.status >= 500) {
             const html = await err.response.text();
@@ -83,7 +98,7 @@ export async function getServerSideProps({ req, params, res }) {
 
     // Try to serve redirect
     try {
-        const redirect = await getRedirect(path, queryParams, {
+        const { json: redirect } = await getRedirect(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
                 host,
@@ -97,6 +112,10 @@ export async function getServerSideProps({ req, params, res }) {
             }
         }
     } catch (err) {
+        if (!(err instanceof WagtailApiResponseError)) {
+            throw err;
+        }
+
         if (err.response.status >= 500) {
             throw err;
         }
@@ -113,12 +132,12 @@ export async function getStaticProps({ params, preview, previewData }) {
     let path = params.path || [];
     path = path.join("/");
 
-    const pageData = await getPage(path);
+    const { json: pageData } = await getPage(path);
     return { props: pageData }
 }
 
 export async function getStaticPaths() {
-    const data = await getAllPages();
+    const { json: data } = await getAllPages();
 
     let htmlUrls = data.items.map(x => x.relativeUrl);
     htmlUrls = htmlUrls.filter(x => x);
