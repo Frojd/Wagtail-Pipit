@@ -1,0 +1,14 @@
+# docker-compose override for running python with a local interpreter
+version: "3.1"
+services:
+  web:
+    links: []
+    environment:
+      - PYTHON_HOST=http://host.docker.internal
+
+  python:
+    build:
+      context: ./src
+      dockerfile: Dockerfile_noop
+    volumes: []
+    depends_on: []
