@@ -4,5 +4,8 @@
         "test": {
             "plugins": ["transform-dynamic-import"]
         }
-    }
+    },
+    "plugins": [
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+    ]
 }
