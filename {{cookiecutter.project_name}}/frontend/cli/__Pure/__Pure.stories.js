@@ -1,11 +1,13 @@
 /* global module */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import __Pure from './__Pure';
+import data from './__Pure.data';
 
-import data from './__Pure.data.js';
+export default {
+    title: 'Components/__Pure',
+    component: __Pure,
+};
 
-storiesOf('Components|__Pure', module)
-    .add('with data', () => <__Pure {...data} />)
-    .add('without data', () => <__Pure />);
+export const __PureWithoutData = () => <__Pure />;
+export const __PureWithData = () => <__Pure {...data} />;
