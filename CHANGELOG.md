@@ -1,5 +1,25 @@
 # Changelog
 
+## 8.5.0 (2021.05.16)
+
+- Fix: Forward cookies from api to Next.js (Martin Lindvall, Martin Sandström)
+- Fix: Add headers in js api response (Martin Lindvall, Martin Sandström)
+- Fix: Include custom docker-compose to simplify running local python (Andreas Bernacca, Martin Sandström)
+- Fix: Use CSF format when defining Storybook stories (Martin Sandström)
+- Fix: Solve issue with muted errors in api calls (Martin Sandström, Martin Lindvall)
+- Fix: Enforce CSRF protection on password protected page (Martin Sandström)
+- Fix: Fix models.W042 warning by adding default auto field (Martin Sandström)
+- Fix: Downgrade to Next.js 10.1 to dynamic import issue in Storybook (Martin Sandström)
+- Fix: Activate webpack 5 in Storybook (Martin Sandström)
+- Fix: Fix issue serving svg in Storybook (Martin Sandström)
+- Fix: Fix bug in scaffolder when generating stories for function component (Martin Sandström)
+- Fix: Run Storybook build in CI
+- Fix: Update Wagtail to 2.13
+- Fix: Update Django to 3.2
+- Fix: Update python Sentry
+- Fix: Update frontend packages
+
+
 ## 8.4.0 (2021.05.01)
 
 - Fix: Update Wagtail to 2.13 (Martin Sandström)
@@ -34,7 +54,7 @@
 - Fix: Update jest-dom
 - Fix: Update classnames
 - Fix: Update i18next
-- Fix: Update storybook
+- Fix: Update Storybook
 - Fix: Update css-loader
 - Fix: Update react+react-dom
 - Fix: Update react-test-renderer
@@ -130,7 +150,7 @@
 ## 8.0.3 (2021.01.04)
 
 - Fix: Update Next.js to 10.0.4
-- Fix: Update storybook to v6
+- Fix: Update Storybook to v6
 - Fix: Upgrade frontend test packages and prettier
 
 
