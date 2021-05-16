@@ -36,6 +36,7 @@ docker/config/python.env
 docker/config/db_backup.env
 docker/files/certs/*
 !docker/files/certs/.gitkeep
+docker-compose.override.yml
 
 # Environment
 src/.env

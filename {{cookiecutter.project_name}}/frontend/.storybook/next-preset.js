@@ -13,7 +13,8 @@ module.exports = {
             },
         };
 
-        // First we prevent webpack from using Storybook CSS rules to process CSS modules
+        // Prevent webpack from using Storybook CSS rules to process
+        // CSS modules
         newConfig.module.rules.find(
             (rule) => rule.test.toString() === '/\\.css$/'
         ).exclude = /\.module\.(sa|c)ss$/;
@@ -40,27 +41,16 @@ module.exports = {
             ],
         });
 
-        // SCSS (globals)
-        newConfig.module.rules.push({
-            test: /\.scss$/,
-            include: [
-                path.resolve(__dirname, '../styles'),
-                path.resolve(__dirname, '../node_modules'),
-                path.resolve(__dirname, '../stories'),
-            ],
-            use: ['style-loader', 'css-loader'],
-        });
+        // Prevent storybook from handling svg
+        newConfig.module.rules.find(
+            rule => rule.test.test('.svg')
+        ).exclude = /\.svg$/;
 
-        // Enable inline svg
-        newConfig.module.rules.unshift({
+        // Apply our own svg processing
+        newConfig.module.rules.push({
             test: /\.svg$/,
-            loaders: [
+            use: [
                 '@svgr/webpack?-svgo,+titleProp,+ref![path]',
-                'url-loader',
-            ],
-            include: [
-                path.resolve(__dirname, '../'),
-                path.resolve(__dirname, '../public/'),
             ],
         });
 

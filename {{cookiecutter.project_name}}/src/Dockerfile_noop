@@ -1,0 +1,2 @@
+# This is a no-operation image
+FROM hello-world

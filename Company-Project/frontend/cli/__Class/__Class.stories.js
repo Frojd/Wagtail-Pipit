@@ -1,11 +1,13 @@
 /* global module */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import __Class from './__Class';
+import data from './__Class.data';
 
-import data from './__Class.data.js';
+export default {
+    title: 'Components/__Class',
+    component: __Class,
+};
 
-storiesOf('Containers|__Class', module)
-    .add('without data', () => <__Class />)
-    .add('with data', () => <__Class {...data} />);
+export const __ClassWithoutData = () => <__Class />;
+export const __ClassWithData = () => <__Class {...data} />;
