@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev -p 3000",
         "build": "next build",
-        "start": "next start",
+        "start": "next start -p 3000",
         "export": "next export",
         "storybook": "start-storybook -p 3001 -s ./public",
         "build-storybook": "npx build-storybook -s public",
