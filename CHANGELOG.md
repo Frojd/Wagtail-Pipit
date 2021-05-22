@@ -1,5 +1,10 @@
 # Changelog
 
+## X.X.X (XXXX.XX.XX)
+
+- Fix: Rename master branch to main
+
+
 ## 8.5.0 (2021.05.16)
 
 - Fix: Forward cookies from api to Next.js (Martin Lindvall, Martin Sandström)

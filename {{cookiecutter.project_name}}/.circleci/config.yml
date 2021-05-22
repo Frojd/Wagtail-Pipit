@@ -12,7 +12,6 @@ filter_ignore_main: &filter_ignore_main
     branches:
       ignore:
         - main
-        - master
         - /^release.*/
     tags:
       only:
