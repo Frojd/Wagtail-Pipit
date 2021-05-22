@@ -16,12 +16,12 @@
         "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
-        "@sentry/browser": "^6.3.5",
-        "@sentry/integrations": "^6.3.5",
-        "@sentry/node": "^6.3.5",
+        "@sentry/browser": "^6.4.1",
+        "@sentry/integrations": "^6.4.1",
+        "@sentry/node": "^6.4.1",
         "@sentry/webpack-plugin": "^1.15.1",
         "@svgr/webpack": "^5.5.0",
-        "@types/react": "^17.0.4",
+        "@types/react": "^17.0.6",
         "classnames": "^2.3.1",
         "i18next": "^20.2.2",
         "next": "10.1.3",
