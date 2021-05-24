@@ -2,6 +2,7 @@
 
 ## X.X.X (XXXX.XX.XX)
 
+- New: Add guide for publishing storybook (Martin Sandström)
 - New: Make it possible to configure Next.js and Storybook ports (Martin Sandström)
 - Fix: Rename master branch to main
 - Fix: Update Next.js to 10.2.2
