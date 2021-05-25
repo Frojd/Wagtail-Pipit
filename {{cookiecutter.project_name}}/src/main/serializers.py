@@ -11,7 +11,7 @@ class NotFoundPageSerializer(serializers.Serializer):
     exception = serializers.CharField()
     site_setting = serializers.SerializerMethodField()
 
-    def get_site_setting(self, page):
+    def get_site_setting(self, _page):
         request = self.context["request"]
         site = Site.find_for_request(request)
         site_setting = SiteSetting.for_site(site)
