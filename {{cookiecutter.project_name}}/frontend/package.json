@@ -18,7 +18,7 @@
     "dependencies": {
         "@sentry/browser": "^6.4.1",
         "@sentry/integrations": "^6.4.1",
-        "@sentry/node": "^6.4.1",
+        "@sentry/node": "^6.7.0",
         "@sentry/webpack-plugin": "^1.15.1",
         "@svgr/webpack": "^5.5.0",
         "@types/react": "^17.0.8",
