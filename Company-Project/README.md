@@ -47,23 +47,32 @@
     ```
 
 3. Add root cert: `mkcert -install` (if not already available)
-4. Generate ssl certs for local development:
+
+4. Generate ssl certs for local development
     ```
     mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cert-key.pem example.com.test
     ```
-5. Start project
+
+5. Enable SSL in Nginx
+    ```
+    sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf.template
+    rm -f docker/files/config/nginx.conf.template.bak
+    ```
+
+6. Start project
 
     ```
     docker-compose up
     ```
-6. Install and start frontend
+
+7. Install and start frontend
     ```
     cd frontend
     nvm use
     npm i
     npm run dev
     ```
-7. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
+8. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
     - ...or login to [https://example.com.test:8081/wt/cms](https://example.com.test:8081/wt/cms) (Username: `admin` and password: `admin`)
 
 
