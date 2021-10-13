@@ -58,7 +58,7 @@ export async function getPublicViewData(slug, params, options) {
 
 export async function getViewData(slug, params, options) {
     return await getRequest(
-        `${API_URL}/v1/external_view_data/${slug}`,
+        `${API_URL}/v1/external_view_data/${slug}/`,
         params,
         options
     );
