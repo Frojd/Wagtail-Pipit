@@ -10,7 +10,7 @@ module.exports = {
     transform: {
         '^.+\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
         '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
-        '^.+\\.svg$': 'jest-svg-transformer',
+        '^.+\\.svg$': '<rootDir>/config/jest/svgTransform.js',
     },
     transformIgnorePatterns: [
         '/node_modules/',
