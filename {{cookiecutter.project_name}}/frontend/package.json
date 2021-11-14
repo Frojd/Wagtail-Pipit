@@ -19,7 +19,7 @@
         "@sentry/browser": "^6.4.1",
         "@sentry/integrations": "^6.4.1",
         "@sentry/node": "^6.4.1",
-        "@sentry/webpack-plugin": "^1.15.1",
+        "@sentry/webpack-plugin": "^1.18.3",
         "@svgr/webpack": "^5.5.0",
         "@types/react": "^17.0.34",
         "classnames": "^2.3.1",
