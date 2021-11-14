@@ -24,7 +24,7 @@
         "@types/react": "^17.0.8",
         "classnames": "^2.3.1",
         "i18next": "^20.3.0",
-        "next": "10.2.2",
+        "next": "12.0.3",
         "next-compose-plugins": "^2.2.1",
         "prop-types": "^15.7.2",
         "react": "17.0.2",
@@ -49,7 +49,7 @@
         }
     },
     "devDependencies": {
-        "@babel/core": "^7.14.3",
+        "@babel/core": "^7.15.8",
         "@storybook/addon-a11y": "^6.2.9",
         "@storybook/addon-actions": "^6.2.9",
         "@storybook/addon-links": "^6.2.9",
