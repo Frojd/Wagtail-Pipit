@@ -16,7 +16,7 @@
         "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
-        "@sentry/nextjs": "^6.14.3",
+        "@sentry/nextjs": "^6.15.0",
         "@svgr/webpack": "^5.5.0",
         "@types/react": "^17.0.34",
         "classnames": "^2.3.1",
