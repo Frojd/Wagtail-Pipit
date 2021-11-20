@@ -18,9 +18,9 @@
     "dependencies": {
         "@sentry/nextjs": "^6.15.0",
         "@svgr/webpack": "^5.5.0",
-        "@types/react": "^17.0.34",
+        "@types/react": "^17.0.35",
         "classnames": "^2.3.1",
-        "i18next": "^21.4.2",
+        "i18next": "^21.5.2",
         "next": "12.0.3",
         "next-compose-plugins": "^2.2.1",
         "prop-types": "^15.7.2",
@@ -70,7 +70,7 @@
         "jest-junit": "^13.0.0",
         "jest-next-dynamic": "^1.0.1",
         "prettier": "^2.4.1",
-        "pretty-quick": "^3.1.1",
+        "pretty-quick": "^3.1.2",
         "react-test-renderer": "^17.0.2",
         "style-loader": "^3.3.1"
     }
