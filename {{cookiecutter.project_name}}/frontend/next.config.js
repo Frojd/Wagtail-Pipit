@@ -39,7 +39,8 @@ const SentryWebpackPluginOptions = {
     //   release, url, org, project, authToken, configFile, stripPrefix,
     //   urlPrefix, include, ignore
 
-    silent: true, // Suppresses all logs
+    silent: true,
+    dryRun: process.env.IGNORE_SENTRY ? true : false,
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
