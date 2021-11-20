@@ -5,13 +5,11 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const basePath = ''
 
 let nextConfig = {
-    future: {
-        webpack5: true,
-    },
+    webpack5: true,
     trailingSlash: true,
     productionBrowserSourceMaps: true,
     basePath,
-}
+};
 
 const withSvgr = (nextConfig = {}, nextComposePlugins = {}) => {
     return Object.assign({}, nextConfig, {
