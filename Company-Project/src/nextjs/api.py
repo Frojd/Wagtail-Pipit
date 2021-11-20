@@ -2,7 +2,7 @@ from typing import Dict, Union, cast
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.middleware import csrf as csrf_middleware
 from django.shortcuts import get_object_or_404
 from django.urls import path
@@ -235,11 +235,12 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
         resp = view(request)
 
         if resp.status_code in [301, 302, 307]:
+            redirect_resp = cast(HttpResponseRedirect, resp)
             return Response(
                 {
                     "redirect": {
-                        "destination": resp.url,
-                        "is_permanent": resp.status_code == 301,
+                        "destination": redirect_resp.url,
+                        "is_permanent": redirect_resp.status_code == 301,
                     }
                 }
             )

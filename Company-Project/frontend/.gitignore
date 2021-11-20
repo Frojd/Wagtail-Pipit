@@ -30,3 +30,6 @@ storybook-static
 
 # nextjs
 .next
+
+# Sentry
+.sentryclirc

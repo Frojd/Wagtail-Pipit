@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "wagtail.snippets",
     "wagtail.documents",
     "wagtail.images",
-    "wagtail.search",
     "wagtail.admin",
     "wagtail.core",
     "wagtail.contrib.forms",
@@ -160,6 +159,12 @@ WAGTAIL_SITE_NAME = "Company-Project"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}
 
 WAGTAILIMAGES_FORMAT_CONVERSIONS = {
     "png": "jpeg",
