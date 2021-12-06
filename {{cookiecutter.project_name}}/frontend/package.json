@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@sentry/nextjs": "^6.15.0",
-        "@svgr/webpack": "^5.5.0",
+        "@svgr/webpack": "^6.1.1",
         "@types/react": "^17.0.35",
         "classnames": "^2.3.1",
         "i18next": "^21.5.2",
