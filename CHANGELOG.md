@@ -5,9 +5,8 @@
 - New: Add guide for publishing storybook (Martin Sandström)
 - New: Make it possible to configure Next.js and Storybook ports (Martin Sandström)
 - Fix: Rename master branch to main
-- Fix: Update Next.js to 10.2.2
-- Fix: Update babel, sentry frontend, i18next
-- Fix: Update pytest-django
+- Fix: Update frontend dependencies
+- Fix: Update python dependencies
 
 
 ## 8.5.0 (2021.05.16)
