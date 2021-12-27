@@ -1,6 +1,7 @@
 module.exports = {
+    moduleFileExtensions: ['js'],
     collectCoverageFrom: [
-        '**/*.{js,jsx}',
+        '**/*.js',
         '!**/*.d.ts',
         '!**/node_modules/**',
         '!**/cli/**',
@@ -8,7 +9,7 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/', '/cli/'],
     transform: {
-        '^.+\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
+        '^.+\\.(t|j)sx?$': '@swc/jest',
         '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
         '^.+\\.svg$': '<rootDir>/config/jest/svgTransform.js',
     },
