@@ -22,10 +22,8 @@ ADD . /app/
 RUN apt-get update \
     && apt-get install -y netcat gcc libpq-dev \
     && apt-get install -y binutils libproj-dev gdal-bin \
-    && apt-get install -y vim curl gettext \
+    && apt-get install -y vim curl gettext postgresql \
     && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get -y install postgresql-dev postgresql-libs
 
 RUN pip install --upgrade pip \
     && pip install -r requirements/$REQUIREMENTS --no-cache-dir \

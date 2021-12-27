@@ -5,7 +5,9 @@
 - New: Add guide for publishing storybook (Martin Sandström)
 - New: Make it possible to configure Next.js and Storybook ports (Martin Sandström)
 - New: Add SVG to example Hero component, to make sure the SVG importing works (Andreas Bernacca)
+- Fix: Switch from alpine to slim for the Dockerfile, for easier maintenance (Andreas Bernacca)
 - Fix: Remove .babelrc so Next.js uses SWC as compiler
+- Fix: Make jest use SWC
 - Fix: Rename master branch to main
 - Fix: Changed SVGR-handling to be more inline with their current documentation
 - Fix: Update frontend dependencies
