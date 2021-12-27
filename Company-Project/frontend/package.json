@@ -14,7 +14,7 @@
         "new": "node cli/bin.js new",
         "new:container": "node cli/bin.js new --container",
         "test": "jest --watch",
-        "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
+        "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
         "@sentry/nextjs": "^6.16.1",
@@ -56,6 +56,8 @@
         "@storybook/manager-webpack5": "^6.4.9",
         "@storybook/react": "^6.4.9",
         "@svgr/webpack": "^6.1.2",
+        "@swc/core": "^1.2.123",
+        "@swc/jest": "^0.2.15",
         "@testing-library/jest-dom": "^5.16.1",
         "@testing-library/react": "^12.1.2",
         "@testing-library/user-event": "^13.5.0",
