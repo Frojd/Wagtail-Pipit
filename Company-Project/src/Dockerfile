@@ -25,8 +25,6 @@ RUN apt-get update \
     && apt-get install -y vim curl gettext \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get -y install postgresql
-
 RUN pip install --upgrade pip \
     && pip install -r requirements/$REQUIREMENTS --no-cache-dir \
     && pip install ipython ipdb
