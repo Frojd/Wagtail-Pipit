@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim
 MAINTAINER Frojd
 LABEL version="v0.0.0"
 
@@ -19,34 +19,17 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 ADD . /app/
 
-ENV PACKAGES="\
-    alpine-sdk \
-    libffi-dev \
-    musl-dev \
-	postgresql-dev \
-	postgresql-libs \
-	linux-headers \
-	zlib-dev \
-	jpeg-dev \
-"
+RUN apt-get update \
+    && apt-get install -y netcat gcc libpq-dev \
+    && apt-get install -y binutils libproj-dev gdal-bin \
+    && apt-get install -y vim curl gettext \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN \
-	apk add --virtual .build-deps --no-cache --upgrade $PACKAGES \
-	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories \
-	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories  \
-	&& apk add \
-		gcc \
-        git \
-		gdal-dev \
-		geos-dev  \
-		gettext \
-		netcat-openbsd \
-		bash \
-    && pip install --upgrade pip \
-    && pip install ipython --no-cache-dir \
-    && pip install -r requirements/$REQUIREMENTS --no-cache-dir&& pip install pywatchman --no-cache-dir \
-    && apk --purge del .build-deps
+RUN apt-get update && apt-get -y install postgresql
+
+RUN pip install --upgrade pip \
+    && pip install -r requirements/$REQUIREMENTS --no-cache-dir \
+    && pip install ipython ipdb
 
 EXPOSE 8000
 
