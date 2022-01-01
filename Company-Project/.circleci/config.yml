@@ -11,7 +11,6 @@ filter_ignore_main: &filter_ignore_main
     branches:
       ignore:
         - main
-        - master
         - /^release.*/
     tags:
       only:
@@ -50,6 +49,8 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/node:12
+    environment:
+      SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
     steps:
       - *restore_repo
       - restore_cache:
@@ -85,6 +86,7 @@ jobs:
             - slack/notify:
                 event: fail
                 template: basic_fail_1
+
   django:
     <<: *defaults
     docker:
@@ -182,22 +184,6 @@ jobs:
             if [ "${CIRCLE_TAG}" ]; then
               ansible-playbook deploy.yml -i stages/prod.yml
             fi
-      - when:
-          condition: ${SENTRY_AUTH_TOKEN}
-          steps:
-            - run:
-                name: Upload sourcemaps to sentry
-                command: |
-                  curl -sL https://sentry.io/get-cli/ | bash
-                  if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                    export SENTRY_RELEASE=$(sentry-cli releases propose-version)
-                  fi
-                  if [ "${CIRCLE_TAG}" ]; then
-                    export SENTRY_RELEASE=${CIRCLE_TAG}
-                  fi
-                  sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
-                  sentry-cli releases finalize $SENTRY_RELEASE
-                  sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps  ~/repo/src/frontend/.next --rewrite
       - when:
           condition: ${SLACK_ACCESS_TOKEN}
           steps:

@@ -5,8 +5,10 @@ init:
 	ln -nfs $(PWD)/.githooks/pre-commit.sh .git/hooks/pre-commit
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-release-start
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
+	mkdir -p src/media
+	mkdir -p src/static
+	docker-compose up -d
 	cd frontend && npm install && npm run dev
-	docker-compose up
 
 test:
 	docker-compose run --rm python test

@@ -6,6 +6,7 @@
 
 # testing
 /coverage
+junit.xml
 
 # production
 /build
@@ -30,3 +31,6 @@ storybook-static
 
 # nextjs
 .next
+
+# Sentry
+.sentryclirc

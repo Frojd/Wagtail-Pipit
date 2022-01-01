@@ -12,6 +12,8 @@
     "docker_web_port": 8081,
     "docker_web_ssl_port": "{{ cookiecutter.docker_web_port | int() + 1 }}",
     "docker_db_port": "{{ cookiecutter.docker_web_ssl_port | int() + 1 }}",
+    "nextjs_port": "3000",
+    "storybook_port": "3001",
     "docker_vscode_debug_port": 5678,
     "aws_devops_iam_username": "{{ cookiecutter.project_slug }}_devops",
     "version": "0.1.0",

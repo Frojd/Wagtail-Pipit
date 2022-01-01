@@ -1,21 +1,24 @@
 from typing import Dict, Any, Optional, Callable, List, Tuple, Union
 
+from django.db import models
+from django.http import JsonResponse
+from django.http.request import HttpRequest
 from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
-from django.db import models
-from django.http.request import HttpRequest
-from django.http import JsonResponse
 from django.utils.functional import cached_property
 from rest_framework.serializers import Serializer
-from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import (
-    ObjectList,
-    TabbedInterface,
+    BaseFormEditHandler,
+    EditHandler,
     FieldPanel,
     MultiFieldPanel,
+    ObjectList,
+    TabbedInterface,
+    WagtailAdminPageForm,
 )
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.utils.decorators import cached_classmethod
 from wagtail_meta_preview.panels import (
     FacebookFieldPreviewPanel,
     GoogleFieldPreviewPanel,
@@ -25,11 +28,6 @@ from wagtail_meta_preview.utils import (
     TwitterSettings,
     FacebookSettings,
     GoogleSettings,
-)
-from wagtail.admin.edit_handlers import (
-    BaseFormEditHandler,
-    EditHandler,
-    WagtailAdminPageForm,
 )
 
 

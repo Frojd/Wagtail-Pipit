@@ -1,6 +1,7 @@
 .Container {
     padding: 24px;
     background-color: #250154;
+    position: relative;
 }
 
 .Title {
@@ -10,4 +11,13 @@
 .TitleIcon {
     width: 32px;
     margin-right: 10px;
+}
+
+.Logo {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
 }

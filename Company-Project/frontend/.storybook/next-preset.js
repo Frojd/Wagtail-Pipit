@@ -41,18 +41,16 @@ module.exports = {
             ],
         });
 
-        // Prevent storybook from handling svg
+        // // Prevent storybook from handling svg
         newConfig.module.rules.find(
             rule => rule.test.test('.svg')
         ).exclude = /\.svg$/;
 
-        // Apply our own svg processing
         newConfig.module.rules.push({
-            test: /\.svg$/,
-            use: [
-                '@svgr/webpack?-svgo,+titleProp,+ref![path]',
-            ],
-        });
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/,
+          use: [{loader: '@svgr/webpack', options: { ref: true }}],
+        })
 
         newConfig.resolve.alias['/fonts'] = path.resolve(
             __dirname,

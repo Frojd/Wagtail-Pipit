@@ -58,7 +58,7 @@ export async function getPublicViewData(slug, params, options) {
 
 export async function getViewData(slug, params, options) {
     return await getRequest(
-        `${API_URL}/v1/external_view_data/${slug}`,
+        `${API_URL}/v1/external_view_data/${slug}/`,
         params,
         options
     );
@@ -87,7 +87,7 @@ export async function getRequest(url, params, options) {
     const res = await fetch(`${url}?${queryString}`, { headers });
 
     if (res.status < 200 || res.status >= 300) {
-        const error = new WagtailApiResponseError(res.statusText);
+        const error = new WagtailApiResponseError(res, url, params);
         error.response = res;
         throw error;
     }
@@ -115,7 +115,7 @@ export async function postRequest(url, params, options) {
     });
 
     if (res.status < 200 || res.status >= 300) {
-        const error = new WagtailApiResponseError(res.statusText);
+        const error = new WagtailApiResponseError(res, url, params);
         error.response = res;
         throw error;
     }

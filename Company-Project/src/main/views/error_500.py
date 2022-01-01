@@ -1,5 +1,5 @@
-from sentry_sdk import last_event_id
 from django.shortcuts import render
+from sentry_sdk import last_event_id
 
 
 def error_500_view(request, *args, **argv):

@@ -22,6 +22,9 @@ module.exports = {
         '@storybook/addon-a11y',
     ],
     presets: [path.resolve(__dirname, 'next-preset.js')],
+    features: {
+        babelModeV7: true
+    }
     // webpackFinal: async (baseConfig) => {
     //   //const nextConfig = require('../next.config.js');
     //   // merge whatever from nextConfig into the webpack config storybook will use

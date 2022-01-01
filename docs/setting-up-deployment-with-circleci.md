@@ -34,7 +34,7 @@ In this tutorial we'll explain how to successfully set up a Continious Integrati
 - In the second field called "Private key", copy and paste the content within your private key here
     - (For Mac) Copy file content to clipboard: `cat stage.myserver.com | pbcopy`
 - Press Add SSH Key to save and finialize the CI configuration
-- Send the public part of your key (`stage.myserver.com.pub`) to your posting partner
+- Send the public part of your key (`stage.myserver.com.pub`) to your hosting partner
     - Or if you manage the server yourself, add it to `~/.ssh/authorized_users` on your server
     
 - When this is done, run your Circle CI build by either doing a new commit to your repository or trigger a build from the Circle CI interface

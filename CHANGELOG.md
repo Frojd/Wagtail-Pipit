@@ -1,5 +1,25 @@
 # Changelog
 
+## 8.6.0 (2022.01.01)
+
+- New: Add guide for publishing storybook (Martin Sandström)
+- New: Make it possible to configure Next.js and Storybook ports (Martin Sandström)
+- New: Add SVG to example Hero component, to make sure the SVG importing works (Andreas Bernacca)
+- Fix: Switch from alpine to slim for the Dockerfile, for easier maintenance (Andreas Bernacca)
+- Fix: Remove .babelrc so Next.js uses SWC as compiler (Andreas Bernacca)
+- Fix: Make jest use SWC (Andreas Bernacca)
+- Fix: Rename master branch to main
+- Fix: Changed SVGR-handling to be more inline with their current documentation
+- Fix: Upgrade Sentry integration (Martin Sandström)
+- Fix: Drop postgresql from Dockerfile
+- Fix: Update Wagtail to 2.15.1
+- Fix: Update Django to 3.2.10
+- Fix: Update frontend dependencies
+- Fix: Update python dependencies
+- Fix: Update Next.js to 12.0.7
+- Fix: Add missing trailing slash to getViewData
+
+
 ## 8.5.0 (2021.05.16)
 
 - Fix: Forward cookies from api to Next.js (Martin Lindvall, Martin Sandström)

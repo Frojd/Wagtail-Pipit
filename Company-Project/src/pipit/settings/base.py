@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "wagtail.snippets",
     "wagtail.documents",
     "wagtail.images",
-    "wagtail.search",
     "wagtail.admin",
     "wagtail.core",
     "wagtail.contrib.forms",
@@ -161,6 +160,12 @@ WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}
+
 WAGTAILIMAGES_FORMAT_CONVERSIONS = {
     "png": "jpeg",
     "webp": "webp",
@@ -171,6 +176,8 @@ if get_env("AWS_ACCESS_KEY_ID", ""):
     AWS_ACCESS_KEY_ID = get_env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME")
+    if get_env("AWS_S3_ENDPOINT_URL", ""):
+        AWS_S3_ENDPOINT_URL = get_env("AWS_S3_ENDPOINT_URL")
 
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_FILE_OVERWRITE = False
