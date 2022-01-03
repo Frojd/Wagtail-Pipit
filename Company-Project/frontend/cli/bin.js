@@ -16,8 +16,7 @@ program
     .option('-C, --class', 'Create class component')
     .option('-f, --folder <folder>', 'Change components folder')
     .action((component, subComponents, options) => {
-        const componentType =
-            options.container || options.class ? '__Class' : '__Pure';
+        const componentType = options.class ? '__Class' : '__Pure';
         let folder = 'components';
         if (options.container) {
             folder = 'containers';
