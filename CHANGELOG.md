@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix: Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
+
 ## 8.6.0 (2022.01.01)
 
 - New: Add guide for publishing storybook (Martin Sandström)
