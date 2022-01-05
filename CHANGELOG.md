@@ -3,6 +3,9 @@
 ## Unreleased
 
 - Fix: Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
+- Fix: Move boilerplate testing to Github Actions (Martin Sandström)
+- Fix: Default to always creating function components (Andreas Bernacca)
+
 
 ## 8.6.0 (2022.01.01)
 
