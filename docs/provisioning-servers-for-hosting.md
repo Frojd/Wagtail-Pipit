@@ -57,7 +57,7 @@ Configuration:
     }
     ```
 
-- After this, we install [Ansistrano](https://ansistrano.com/): 
+- After this, we install [Ansistrano](https://ansistrano.com/):
     ```
     >>> ansible-galaxy install -r requirements.yml
     ```

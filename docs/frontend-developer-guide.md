@@ -84,7 +84,7 @@ This will create the following files:
 │   │   ├── Button.js
 │   │   ├── Button.module.css
 │   │   ├── Button.test.js
-│   │   ├── Buttons.stories.js
+│   │   ├── Button.stories.js
 │   │   └── index.js
 ```
 
