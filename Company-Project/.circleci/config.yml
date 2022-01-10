@@ -64,7 +64,7 @@ jobs:
           command: |
             mkdir -p test-results/jest
             cd frontend
-            npm test:ci
+            npm run test:ci
             echo "NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN" >> .env
             npm run build
             npm run build-storybook
