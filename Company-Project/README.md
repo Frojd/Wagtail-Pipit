@@ -78,7 +78,7 @@
 
 ## Where to go from here?
 
-We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/bash-helper-scripts.md). Otherwise, you can read up any of the following topics:
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/getting-started-guide.md). Otherwise, you can read up any of the following topics:
 
 - [Frontend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend-developer-guide.md)
 - [Backend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/backend-developer-guide.md)
