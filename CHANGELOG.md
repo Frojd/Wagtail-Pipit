@@ -11,6 +11,7 @@
 - Fix: Add missing scaffolding documentation link (Martin Sandström)
 - Fix: Update Wagtail to 2.15.2
 - Fix: Update Django to 3.2.11
+- Fix: Update sentry_sdk to 1.5.3
 
 
 ## 8.6.0 (2022.01.01)
