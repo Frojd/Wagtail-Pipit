@@ -78,22 +78,23 @@
 
 ## Where to go from here?
 
-We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/getting-started-guide.md). Otherwise, you can read up any of the following topics:
+We recommend you to check out our [Getting Started Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/getting-started-guide.md). Otherwise, you can read up any of the following topics:
 
-- [Frontend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/frontend-developer-guide.md)
-- [Backend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/backend-developer-guide.md)
-- [Provision and configure a webserver for hosting](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/provisioning-servers-for-hosting.md)
-- [Setting up deployment on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/setting-up-deployment-with-circleci.md)
-- [Adding Slack notifications to CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-slack-notifications-to-circleci.md)
-- [Sync data between environments](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/sync-data-between-environments.md)
-- [Running python locally](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/running-python-locally.md)
-- [Using static site generation](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/using-static-site-generation.md)
-- [Working with Wagtail's routable pages](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/working-with-wagtails-routable-pages.md)
-- [Serving custom content type data through Next.js](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/serving-custom-content-type-data-through-nextjs.md)
-- [Adding multi language support](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-multi-language-support.md)
-- [Adding wagtail-2fa support](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-wagtail-2fa-support.md)
-- [Adding Sentry](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/adding-sentry.md)
-- [Handling CSRF Tokens](https://github.com/Frojd/Wagtail-Pipit/blob/master/docs/handling-csrf-tokens.md)
+- [Frontend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/frontend-developer-guide.md)
+- [Backend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/backend-developer-guide.md)
+- [Provision and configure a webserver for hosting](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/provisioning-servers-for-hosting.md)
+- [Setting up deployment on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/setting-up-deployment-with-circleci.md)
+- [Adding Slack notifications to CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-slack-notifications-to-circleci.md)
+- [Sync data between environments](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/sync-data-between-environments.md)
+- [Running python locally](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/running-python-locally.md)
+- [Using static site generation](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/using-static-site-generation.md)
+- [Working with Wagtail's routable pages](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/working-with-wagtails-routable-pages.md)
+- [Serving custom content type data through Next.js](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/serving-custom-content-type-data-through-nextjs.md)
+- [Adding multi language support](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-multi-language-support.md)
+- [Adding wagtail-2fa support](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-wagtail-2fa-support.md)
+- [Adding Sentry](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-sentry.md)
+- [Handling CSRF Tokens](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/handling-csrf-tokens.md)
+- [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/scaffolding.md)
 
 
 ## Versioning
