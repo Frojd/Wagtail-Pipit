@@ -7,6 +7,10 @@
 - Fix: Default to always creating function components (Andreas Bernacca)
 - Fix: Add custom 502 page to Nginx (Andreas Bernacca)
 - Fix: Fix broken getting started link (@joshuadavidthomas)
+- Fix: Fix incorrect sync data between environment docs (Martin Sandström)
+- Fix: Add missing scaffolding documentation link (Martin Sandström)
+- Fix: Update Wagtail to 2.15.2
+- Fix: Update Django to 3.2.11
 
 
 ## 8.6.0 (2022.01.01)
