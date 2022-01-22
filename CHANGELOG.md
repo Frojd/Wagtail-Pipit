@@ -6,6 +6,7 @@
 - Fix: Move boilerplate testing to Github Actions (Martin Sandström)
 - Fix: Default to always creating function components (Andreas Bernacca)
 - Fix: Add custom 502 page to Nginx (Andreas Bernacca)
+- Fix: Fix broken getting started link (@joshuadavidthomas)
 
 
 ## 8.6.0 (2022.01.01)
