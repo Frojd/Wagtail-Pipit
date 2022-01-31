@@ -7,4 +7,4 @@ python-dotenv==0.19.2
 wagtail==2.15.2
 wagtail-meta-preview
 wagtailfontawesome==1.2.1
-wagtail_headless_preview==0.1.4
+wagtail_headless_preview==0.2.0
