@@ -49,7 +49,7 @@
         "@babel/core": "^7.16.7",
         "@storybook/addon-a11y": "^6.4.13",
         "@storybook/addon-viewport": "^6.4.13",
-        "@storybook/addons": "^6.4.13",
+        "@storybook/addons": "^6.4.21",
         "@storybook/builder-webpack5": "^6.4.13",
         "@storybook/manager-webpack5": "^6.4.13",
         "@storybook/react": "^6.4.13",
