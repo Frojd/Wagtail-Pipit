@@ -216,8 +216,10 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 ADMIN_URL = "wt/admin/"
 
 # NextJS
-HEADLESS_PREVIEW_CLIENT_URLS = {
-    "default": "/api/preview/",
+WAGTAIL_HEADLESS_PREVIEW = {
+    "CLIENT_URLS": {
+        "default": "/api/preview/",
+    }
 }
 
 # Sentry

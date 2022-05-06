@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update sentry_sdk to 1.5.11
 - Update python-dotenv to 0.20.0
 - Update django-stubs to 1.10.1
+- Update wagtail_headless_preview to 0.2.1
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
