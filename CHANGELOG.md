@@ -1,19 +1,23 @@
 # Changelog
+All notable changes to this project will be documented in this file.
 
-## Unreleased
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-- Fix: Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
-- Fix: Move boilerplate testing to Github Actions (Martin Sandström)
-- Fix: Default to always creating function components (Andreas Bernacca)
-- Fix: Add custom 502 page to Nginx (Andreas Bernacca)
-- Fix: Fix broken getting started link (@joshuadavidthomas)
-- Fix: Fix incorrect sync data between environment docs (Martin Sandström)
-- Fix: Add missing scaffolding documentation link (Martin Sandström)
-- Fix: Update Wagtail to 2.15.2
-- Fix: Update Django to 3.2.11
-- Fix: Update sentry_sdk to 1.5.3
-- Fix: Ignore Next.js SSG output from version control
+## [Unreleased]
 
+### Fixed
+- Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
+- Move boilerplate testing to Github Actions (Martin Sandström)
+- Default to always creating function components (Andreas Bernacca)
+- Add custom 502 page to Nginx (Andreas Bernacca)
+- Fix broken getting started link (@joshuadavidthomas)
+- Fix incorrect sync data between environment docs (Martin Sandström)
+- Add missing scaffolding documentation link (Martin Sandström)
+- Update Wagtail to 2.15.2
+- Update Django to 3.2.11
+- Update sentry_sdk to 1.5.3
+- Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
 
