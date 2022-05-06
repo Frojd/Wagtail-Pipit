@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add missing scaffolding documentation link (Martin Sandström)
 - Update Wagtail to 2.15.2
 - Update Django to 3.2.11
-- Update sentry_sdk to 1.5.3
+- Update sentry_sdk to 1.5.11
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
