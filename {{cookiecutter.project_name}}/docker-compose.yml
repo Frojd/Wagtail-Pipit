@@ -6,7 +6,7 @@ services:
     ports:
       - "{{cookiecutter.docker_web_port}}:80"
       - "{{cookiecutter.docker_web_ssl_port}}:443"
-    links:
+    depends_on:
       - python
     volumes:
       - "./docker/files/static/502.html:/app/502.html:cached"
