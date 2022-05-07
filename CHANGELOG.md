@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update python-dotenv to 0.20.0
 - Update django-stubs to 1.10.1
 - Update wagtail_headless_preview to 0.2.1
+- Update @svgr/webpack to 6.2.1
+- Update prettier to to 2.6.2
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
