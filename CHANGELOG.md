@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [8.7.0] - 2022-05-07
 ### Added
 - Add custom 502 page to Nginx (Andreas Bernacca)
 
@@ -46,6 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update testing-library/react to 12.1.5
 - Update testing-library/user-event to 14.1.1
 - Ignore Next.js SSG output from version control
+
+-
 
 ## 8.6.0 (2022.01.01)
 
