@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ignore any mypy error from migrations (Martin Sandström)
 - Require Node 16 when running Next.js (Martin Sandström)
 - Upgrade to python 3.8.13 in .python-version (Martin Sandström)
+- Drop deprecated USE_L10N=True setting as it is default True in Django 4+ (Martin Sandström)
 
 ### Fixed
 - Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
@@ -24,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add missing scaffolding documentation link (Martin Sandström)
 - Update Next.js to 12.1.6
 - Update Wagtail to 2.16.2
-- Update Django to 3.2.13
+- Update Django to 4.0.4
 - Update sentry_sdk to 1.5.11
 - Update python-dotenv to 0.20.0
 - Update django-stubs to 1.10.1
