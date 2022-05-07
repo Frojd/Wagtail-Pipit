@@ -5,14 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add custom 502 page to Nginx (Andreas Bernacca)
+
 ### Changed
-- Change from links to depends_on to fix error with missing python host in web
+- Default to always creating function components (Andreas Bernacca)
+- Change from links to depends_on to fix error with missing python host in web (Martin Sandström)
+- Update WagtailUserbar implementation according to latest Wagtail version (Martin Sandström)
 
 ### Fixed
 - Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
 - Move boilerplate testing to Github Actions (Martin Sandström)
-- Default to always creating function components (Andreas Bernacca)
-- Add custom 502 page to Nginx (Andreas Bernacca)
 - Fix broken getting started link (@joshuadavidthomas)
 - Fix incorrect sync data between environment docs (Martin Sandström)
 - Add missing scaffolding documentation link (Martin Sandström)
