@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Default to always creating function components (Andreas Bernacca)
 - Change from links to depends_on to fix error with missing python host in web (Martin Sandström)
 - Update WagtailUserbar implementation according to latest Wagtail version (Martin Sandström)
+- Ignore any mypy error from migrations (Martin Sandström)
 
 ### Fixed
 - Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
