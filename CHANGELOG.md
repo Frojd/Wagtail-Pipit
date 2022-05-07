@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change from links to depends_on to fix error with missing python host in web (Martin Sandström)
 - Update WagtailUserbar implementation according to latest Wagtail version (Martin Sandström)
 - Ignore any mypy error from migrations (Martin Sandström)
+- Require Node 16 when running Next.js (Martin Sandström)
 
 ### Fixed
 - Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
