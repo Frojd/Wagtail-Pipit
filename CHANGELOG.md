@@ -33,6 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update babel/core to 7.17.10
 - Update babel-loader to 8.2.5
 - Update css-loader to 6.7.1
+- Update jest to 28.1.0
+- Update jest-junit to 13.2.0
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
