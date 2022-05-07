@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Frojd/Wagtail-Pipit.svg?style=svg)](https://circleci.com/gh/Frojd/Wagtail-Pipit)
+[![Test cookiecutter scaffolder](https://github.com/Frojd/Wagtail-Pipit/actions/workflows/main.yml/badge.svg)](https://github.com/Frojd/Wagtail-Pipit/actions/workflows/main.yml)
 
 # Pipit
 Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide an easy and modern developer workflow with a React-rendered frontend.
@@ -42,6 +42,8 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Adding Sentry](/docs/adding-sentry.md)
 - [Handling CSRF Tokens](/docs/handling-csrf-tokens.md)
 - [Publish storybook](/docs/publish-storybook.md)
+- [Scaffolding](/docs/scaffolding.md)
+
 
 ## Contribute
 If you have ideas for improvement, please share your thoughts through an issue. We also welcome PR's

@@ -32,13 +32,29 @@ references:
       keys:
         - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
 
+executors:
+  base:
+    docker:
+      - image: cimg/base:stable-20.04
+  node:
+    docker:
+      - image: cimg/node:16.15
+  python:
+    docker:
+      - image: cimg/python:3.8.13
+  python_with_postgres:
+    docker:
+      - image: cimg/python:3.8.13
+      - image: cimg/postgres:12.10-postgis
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: circle_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+
 jobs:
   checkout_code:
     <<: *defaults
-    docker:
-      - image: circleci/python:3.8
-      - image: circleci/node:12
-      - image: circleci/postgres:12-postgis
+    executor: base
     steps:
       - checkout
       - save_cache:
@@ -48,8 +64,7 @@ jobs:
 
   frontend:
     <<: *defaults
-    docker:
-      - image: circleci/node:12
+    executor: node
     environment:
       SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
     steps:
@@ -90,13 +105,7 @@ jobs:
 
   django:
     <<: *defaults
-    docker:
-      - image: circleci/python:3.8
-      - image: circleci/postgres:12-postgis
-        environment:
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: circle_test
-          POSTGRES_HOST_AUTH_METHOD: trust
+    executor: python_with_postgres
     steps:
       - *restore_repo
       - restore_cache:
@@ -145,8 +154,7 @@ jobs:
 
   deploy:
     <<: *defaults
-    docker:
-      - image: circleci/python:3.8
+    executor: python
     environment:
       SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
     steps:
@@ -158,11 +166,14 @@ jobs:
       - restore_cache:
           key: v1-deploy-{{ checksum "deploy/requirements.txt" }}
       - run:
+          name: Install rsync
+          command: |
+            sudo apt-get update && sudo apt-get install -y rsync
+      - run:
           name: Install ansible and ansistrano
           command: |
             cd deploy
-            python3 -m venv venv
-            sudo apt-get -y -qq install rsync
+            python -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
             ansible-galaxy install -r requirements.yml

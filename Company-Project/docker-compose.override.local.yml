@@ -2,7 +2,7 @@
 version: "3.1"
 services:
   web:
-    links: []
+    depends_on: []
     environment:
       - PYTHON_HOST=http://host.docker.internal
 

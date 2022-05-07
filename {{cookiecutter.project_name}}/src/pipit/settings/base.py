@@ -144,7 +144,6 @@ TIME_ZONE = "Europe/Stockholm"
 LANGUAGE_CODE = "sv-se"
 SITE_ID = 1
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
@@ -216,8 +215,10 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 ADMIN_URL = "wt/admin/"
 
 # NextJS
-HEADLESS_PREVIEW_CLIENT_URLS = {
-    "default": "/api/preview/",
+WAGTAIL_HEADLESS_PREVIEW = {
+    "CLIENT_URLS": {
+        "default": "/api/preview/",
+    }
 }
 
 # Sentry

@@ -60,12 +60,10 @@ npm i
 npm run dev
 
 > frontend_nextjs@0.1.0 dev /Users/roger/www/Acme-Blog/frontend
-> next dev
+> next dev -p 3000
 
-ready - started server on http://localhost:3000
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
 info  - Loaded env from /Users/roger/www/Acme-Blog/frontend/.env
-info  - Using external babel configuration from /Users/roger/www/Acme-Blog/frontend/.babelrc
-event - compiled successfully
 ```
 
 `npm run dev` is a Next.js command that will start a frontend development server that supports both hot reloading and error reporting,

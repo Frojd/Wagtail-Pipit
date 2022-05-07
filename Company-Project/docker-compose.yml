@@ -6,9 +6,10 @@ services:
     ports:
       - "8081:80"
       - "8082:443"
-    links:
+    depends_on:
       - python
     volumes:
+      - "./docker/files/static/502.html:/app/502.html:cached"
       - "./docker/files/config/nginx.conf.template:/etc/nginx/templates/default.conf.template:cached"
       - "./docker/files/certs:/etc/nginx/certs"
       - "./src/media:/app/media"

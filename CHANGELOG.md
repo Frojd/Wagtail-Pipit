@@ -1,4 +1,53 @@
 # Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [8.7.0] - 2022-05-07
+### Added
+- Add custom 502 page to Nginx (Andreas Bernacca)
+
+### Changed
+- Default to always creating function components (Andreas Bernacca)
+- Change from links to depends_on to fix error with missing python host in web (Martin Sandström)
+- Update WagtailUserbar implementation according to latest Wagtail version (Martin Sandström)
+- Ignore any mypy error from migrations (Martin Sandström)
+- Require Node 16 when running Next.js (Martin Sandström)
+- Upgrade to python 3.8.13 in .python-version (Martin Sandström)
+- Drop deprecated USE_L10N=True setting as it is default True in Django 4+ (Martin Sandström)
+
+### Fixed
+- Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
+- Move boilerplate testing to Github Actions (Martin Sandström)
+- Fix broken getting started link (@joshuadavidthomas)
+- Fix incorrect sync data between environment docs (Martin Sandström)
+- Add missing scaffolding documentation link (Martin Sandström)
+- Update Next.js to 12.1.6
+- Update Wagtail to 2.16.2
+- Update Django to 4.0.4
+- Update sentry_sdk to 1.5.11
+- Update python-dotenv to 0.20.0
+- Update django-stubs to 1.10.1
+- Update wagtail_headless_preview to 0.2.1
+- Update @svgr/webpack to 6.2.1
+- Update prettier to to 2.6.2
+- Update @sentry/nextjs to to 6.19.7
+- Update storybook to 6.4.22
+- Update i18next to 21.7.1
+- Update swc/core to 1.2.177
+- Update swc/jest to 0.2.20
+- Update babel/core to 7.17.10
+- Update babel-loader to 8.2.5
+- Update css-loader to 6.7.1
+- Update jest to 28.1.0
+- Update jest-junit to 13.2.0
+- Update testing-library/jest-dom to 5.16.4
+- Update testing-library/react to 12.1.5
+- Update testing-library/user-event to 14.1.1
+- Ignore Next.js SSG output from version control
+
+-
 
 ## 8.6.0 (2022.01.01)
 
