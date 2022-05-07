@@ -35,6 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update css-loader to 6.7.1
 - Update jest to 28.1.0
 - Update jest-junit to 13.2.0
+- Update testing-library/jest-dom to 5.16.4
+- Update testing-library/react to 12.1.5
+- Update testing-library/user-event to 14.1.1
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
