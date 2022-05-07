@@ -28,6 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update @sentry/nextjs to to 6.19.7
 - Update storybook to 6.4.22
 - Update i18next to 21.7.1
+- Update swc/core to 1.2.177
+- Update swc/jest to 0.2.20
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
