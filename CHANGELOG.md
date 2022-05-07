@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update WagtailUserbar implementation according to latest Wagtail version (Martin Sandström)
 - Ignore any mypy error from migrations (Martin Sandström)
 - Require Node 16 when running Next.js (Martin Sandström)
+- Upgrade to python 3.8.13 in .python-version (Martin Sandström)
 
 ### Fixed
 - Make Next.js hmr work again, it broke in Next 12 (Andreas Bernacca)
