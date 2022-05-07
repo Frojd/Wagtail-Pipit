@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update @svgr/webpack to 6.2.1
 - Update prettier to to 2.6.2
 - Update @sentry/nextjs to to 6.19.7
+- Update storybook to 6.4.22
 - Ignore Next.js SSG output from version control
 
 ## 8.6.0 (2022.01.01)
