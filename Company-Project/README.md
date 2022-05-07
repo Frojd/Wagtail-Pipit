@@ -22,6 +22,7 @@
 - Python 3.8+
 - Pip
 - Virtualenv (or the package manage of your choice)
+- Node 16
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
 

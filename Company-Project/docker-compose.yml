@@ -6,7 +6,7 @@ services:
     ports:
       - "8081:80"
       - "8082:443"
-    links:
+    depends_on:
       - python
     volumes:
       - "./docker/files/static/502.html:/app/502.html:cached"
