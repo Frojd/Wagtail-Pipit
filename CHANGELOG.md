@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Clarify SLACK_DEFAULT_CHANNEL value when setting up circle ci integration with slack
+
 ## [8.7.0] - 2022-05-07
 ### Added
 - Add custom 502 page to Nginx (Andreas Bernacca)
