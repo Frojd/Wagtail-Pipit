@@ -43,6 +43,11 @@ jobs:
           cd Company-Project
           chmod +x src/docker-entrypoint.sh
           docker-compose -f docker-compose-circleci.yml build
+      - name: Verify backend scaffolder
+        run: |
+          cd Company-Project
+          set -x
+          docker-compose -f docker-compose-circleci.yml run --rm python python manage.py new_page --name=Article
       - name: Run tests on container
         run: |
           cd Company-Project
