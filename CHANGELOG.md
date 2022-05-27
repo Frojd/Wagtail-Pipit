@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 - Improve page not found test by using proper json to detect component name (@marteinn)
 - Cleanup unused imports and variable declarations (@marteinn)
+- Run `manage.py new_page` on CI (@marteinn)
 - Update django-stubs to 1.11.0
 - Update sentry_sdk to 1.5.12
 
