@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 from rest_framework import serializers
 from wagtail.images.shortcuts import get_rendition_or_not_found
 
@@ -10,13 +12,18 @@ class CustomImageSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     focal = serializers.SerializerMethodField()
 
-    def get_id(self, obj):
+    _mocked_id: int
+    _mocked_url: str
+    _mocked_renditions: List
+    _renditions: List
+
+    def get_id(self, obj) -> int:
         if hasattr(self, "_mocked_id"):
             return self._mocked_id
 
         return obj.pk
 
-    def get_url(self, obj):
+    def get_url(self, obj) -> Optional[str]:
         if hasattr(self, "_mocked_url"):
             return self._mocked_url
 

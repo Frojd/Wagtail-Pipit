@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Upgrade to Wagtail 3 (@marteinn)
 - Clarify SLACK_DEFAULT_CHANNEL value when setting up circle ci integration with slack (@marteinn)
+- Add mypy linting for django-rest-framework parts (@marteinn)
 
 ## Fixed
 - Improve page not found test by using proper json to detect component name (@marteinn)

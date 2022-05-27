@@ -1,4 +1,4 @@
-from typing import Dict, Any, Optional, Callable, List, Tuple, Union
+from typing import Any, Callable, Dict, List, Tuple, Type, Union
 
 from django.db import models
 from django.http import JsonResponse
@@ -281,19 +281,19 @@ class TimestampMixin(models.Model):
 class ReactViewMixin(object):
     request: HttpRequest
     component_name: str
-    serializer_class: Union[str, Serializer]
+    serializer_class: Union[str, Type[Serializer]]
 
     def render_to_response(self, context, **response_kwargs):
         props = self.get_component_data({"request": self.request})
         return JsonResponse(props)
 
-    def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
+    def get_component_data(self, context: Dict) -> Dict[str, Any]:
         return {
             "component_name": self.component_name,
             "component_props": self.to_dict(context),
         }
 
-    def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
+    def to_dict(self, context: Dict[Any, Any]) -> Dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
             self.get_component_props(), context=context,
@@ -301,7 +301,7 @@ class ReactViewMixin(object):
 
         return serializer.data
 
-    def get_serializer_class(self) -> Serializer:
+    def get_serializer_class(self) -> Type[Serializer]:
         if isinstance(self.serializer_class, str):
             return import_string(self.serializer_class)
 
