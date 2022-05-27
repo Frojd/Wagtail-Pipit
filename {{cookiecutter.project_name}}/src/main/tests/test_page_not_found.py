@@ -9,6 +9,6 @@ class PageNotFoundTest(TestCase):
 
     def test_that_404_view_uses_proper_serializer(self):
         response = self.client.get("/a-404-url/")
+        response_json = response.json()
 
-        content = response.content.decode("utf-8")
-        self.assertTrue("component_name" in content)
+        self.assertTrue(response_json["component_name"], "NotFoundPage")
