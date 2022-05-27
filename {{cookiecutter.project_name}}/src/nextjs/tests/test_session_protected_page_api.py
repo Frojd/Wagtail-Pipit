@@ -1,8 +1,8 @@
 import json
 
 from django.urls import reverse
-from wagtail.tests.utils import WagtailPageTests
-from wagtail.core.models import Site, PageViewRestriction, BaseViewRestriction
+from wagtail.test.utils import WagtailPageTests
+from wagtail.models import Site, PageViewRestriction, BaseViewRestriction
 import wagtail_factories
 
 from main.factories.base_page import BasePageFactory

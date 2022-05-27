@@ -1,4 +1,4 @@
-from wagtail.core import hooks
+from wagtail import hooks
 from django.utils.html import format_html
 from django.templatetags.static import static
 

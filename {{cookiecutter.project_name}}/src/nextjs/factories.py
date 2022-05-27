@@ -1,5 +1,5 @@
 import factory
-from wagtail.core.models import PageViewRestriction, BaseViewRestriction
+from wagtail.models import PageViewRestriction, BaseViewRestriction
 from wagtail_factories import PageFactory
 
 

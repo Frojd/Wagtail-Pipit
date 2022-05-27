@@ -3,7 +3,7 @@
 import main.mixins
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             name='ArticlePage',
             fields=[
                 ('basepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='main.BasePage')),
-                ('rich_text', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Rich text')),
+                ('rich_text', wagtail.fields.RichTextField(blank=True, null=True, verbose_name='Rich text')),
             ],
             options={
                 'verbose_name': 'Article',

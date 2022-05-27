@@ -1,8 +1,9 @@
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
-from wagtail.tests.utils import WagtailPageTests
-from wagtail.core.models import Site
-import wagtail_factories
+from wagtail.test.utils import WagtailPageTests
+from wagtail.models import Site
+# Redundant
+# import wagtail_factories
 from wagtail_headless_preview.models import PagePreview
 
 from main.factories.home_page import HomePageFactory

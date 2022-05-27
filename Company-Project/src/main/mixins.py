@@ -7,17 +7,16 @@ from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django.utils.functional import cached_property
 from rest_framework.serializers import Serializer
-from wagtail.admin.edit_handlers import (
-    BaseFormEditHandler,
+from wagtail.admin.panels import (
     EditHandler,
     FieldPanel,
     MultiFieldPanel,
     ObjectList,
+    PanelGroup,
     TabbedInterface,
     WagtailAdminPageForm,
 )
-from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.models import Page
 from wagtail.utils.decorators import cached_classmethod
 from wagtail_meta_preview.panels import (
     FacebookFieldPreviewPanel,
@@ -129,7 +128,7 @@ class SeoMixin(Page):
             [
                 FieldPanel("og_title"),
                 FieldPanel("og_description"),
-                ImageChooserPanel("og_image"),
+                FieldPanel("og_image"),
             ],
             heading=_("Facebook"),
         ),
@@ -137,7 +136,7 @@ class SeoMixin(Page):
             [
                 FieldPanel("twitter_title"),
                 FieldPanel("twitter_description"),
-                ImageChooserPanel("twitter_image"),
+                FieldPanel("twitter_image"),
             ],
             heading=_("Twitter"),
         ),
@@ -226,7 +225,7 @@ class SeoMixin(Page):
 
 
 class EnhancedEditHandlerMixin:
-    edit_handler: BaseFormEditHandler
+    edit_handler: PanelGroup
     content_panels: List[EditHandler]
     promote_panels: List[EditHandler]
     settings_panels: List[EditHandler]
@@ -241,7 +240,7 @@ class EnhancedEditHandlerMixin:
         """
 
         if hasattr(cls, "edit_handler"):
-            return cls.edit_handler.bind_to(model=cls)
+            return cls.edit_handler.bind_to_model(cls)
 
         # construct a TabbedInterface made up of content_panels, promote_panels
         # and settings_panels, skipping any which are empty
@@ -268,7 +267,7 @@ class EnhancedEditHandlerMixin:
 
         EditHandler = TabbedInterface(tabs, base_form_class=cls.base_form_class)
 
-        return EditHandler.bind_to(model=cls)
+        return EditHandler.bind_to_model(cls)
 
 
 class TimestampMixin(models.Model):

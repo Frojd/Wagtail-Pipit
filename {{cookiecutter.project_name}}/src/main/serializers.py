@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from wagtail.core.models import Site
+from wagtail.models import Site
 from wagtail.images.shortcuts import get_rendition_or_not_found
 
 from sitesettings.models import SiteSetting

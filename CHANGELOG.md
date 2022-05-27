@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- Upgrade to Wagtail 3
+
+### Changed
 - Clarify SLACK_DEFAULT_CHANNEL value when setting up circle ci integration with slack
 
 ## [8.7.0] - 2022-05-07

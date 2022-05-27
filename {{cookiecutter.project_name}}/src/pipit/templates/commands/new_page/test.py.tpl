@@ -1,4 +1,4 @@
-{% raw %}from wagtail.tests.utils import WagtailPageTests
+{% raw %}from wagtail.test.utils import WagtailPageTests
 from wagtail_factories import SiteFactory
 
 from ..factories.base_page import BasePageFactory

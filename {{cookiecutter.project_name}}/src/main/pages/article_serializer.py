@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from wagtail.core.rich_text import expand_db_html
+from wagtail.rich_text import expand_db_html
 
 from .base_serializer import BasePageSerializer
 from . import ArticlePage
