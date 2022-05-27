@@ -1,9 +1,6 @@
-import json
-
 from django.urls import reverse
 from wagtail.test.utils import WagtailPageTests
-from wagtail.models import Site, PageViewRestriction, BaseViewRestriction
-import wagtail_factories
+from wagtail.models import Site, BaseViewRestriction
 
 from main.factories.base_page import BasePageFactory
 from nextjs.factories import PageViewRestrictionFactory
@@ -19,7 +16,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
 
     def test_redirect_page_if_user_is_not_logged_in(self):
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
-        page_view_restriction = PageViewRestrictionFactory.create(
+        PageViewRestrictionFactory.create(
             page=sub_page,
             restriction_type=BaseViewRestriction.LOGIN,
         )
@@ -37,7 +34,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         self.login()
 
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
-        page_view_restriction = PageViewRestrictionFactory.create(
+        PageViewRestrictionFactory.create(
             page=sub_page,
             restriction_type=BaseViewRestriction.LOGIN,
         )

@@ -3,7 +3,6 @@ import json
 from django.urls import reverse
 from wagtail.test.utils import WagtailPageTests
 from wagtail.models import Site
-import wagtail_factories
 
 from main.factories.base_page import BasePageFactory
 from nextjs.factories import PageViewRestrictionFactory

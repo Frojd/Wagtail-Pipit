@@ -7,7 +7,6 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from wagtail.models import Page
-from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
 

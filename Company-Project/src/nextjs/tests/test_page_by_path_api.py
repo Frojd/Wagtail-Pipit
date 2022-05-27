@@ -1,8 +1,6 @@
 from django.urls import reverse
 from wagtail.test.utils import WagtailPageTests
 from wagtail.models import Site
-# TODO: Redundant import
-import wagtail_factories
 
 from main.factories.base_page import BasePageFactory
 
@@ -16,7 +14,7 @@ class PageByPathApiTest(WagtailPageTests):
         self.site.save()
 
     def test_root_page_retreaval(self):
-        sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
+        BasePageFactory.create(title="Child page", parent=self.root_page)
 
         url = reverse("nextjs:page_by_path:listing")
 
