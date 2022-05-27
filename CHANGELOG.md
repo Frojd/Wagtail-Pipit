@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- Upgrade to Wagtail 3
-- Clarify SLACK_DEFAULT_CHANNEL value when setting up circle ci integration with slack
+- Upgrade to Wagtail 3 (@marteinn)
+- Clarify SLACK_DEFAULT_CHANNEL value when setting up circle ci integration with slack (@marteinn)
 
 ## Fixed
-- Improve page not found test by using proper json to detect component name
+- Improve page not found test by using proper json to detect component name (@marteinn)
 - Update django-stubs to 1.11.0
+- Update sentry_sdk to 1.5.12
 
 ## [8.7.0] - 2022-05-07
 ### Added
