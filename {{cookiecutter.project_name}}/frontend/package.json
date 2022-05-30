@@ -58,7 +58,7 @@
         "@swc/jest": "^0.2.21",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^12.1.5",
-        "@testing-library/user-event": "^14.1.1",
+        "@testing-library/user-event": "^14.2.0",
         "babel-loader": "^8.2.5",
         "babel-plugin-transform-dynamic-import": "^2.1.0",
         "cross-env": "^7.0.3",
