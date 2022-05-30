@@ -61,7 +61,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: "actions/setup-node@v2"
         with:
-          node-version: "12"
+          node-version: "16"
       - run: rm -rf Company-Project
       - name: Restore generated-project
         uses: actions/download-artifact@v2
