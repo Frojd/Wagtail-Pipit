@@ -7,6 +7,9 @@ class CustomDocumentSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     href = serializers.SerializerMethodField()
 
+    _mocked_id: int
+    _mocked_url: str
+
     def get_id(self, obj):
         if hasattr(self, "_mocked_id"):
             return self._mocked_id

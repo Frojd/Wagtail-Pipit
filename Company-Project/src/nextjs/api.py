@@ -18,9 +18,9 @@ from wagtail.api.v2.router import WagtailAPIRouter
 from wagtail.api.v2.views import BaseAPIViewSet, PagesAPIViewSet
 from wagtail.contrib.redirects.middleware import get_redirect
 from wagtail.contrib.redirects.models import Redirect
-from wagtail.core.forms import PasswordViewRestrictionForm
-from wagtail.core.models import Page, PageViewRestriction, Site
-from wagtail.core.wagtail_hooks import require_wagtail_login
+from wagtail.forms import PasswordViewRestrictionForm
+from wagtail.models import Page, PageViewRestriction, Site
+from wagtail.wagtail_hooks import require_wagtail_login
 from wagtail_headless_preview.models import PagePreview
 
 api_router = WagtailAPIRouter("nextjs")

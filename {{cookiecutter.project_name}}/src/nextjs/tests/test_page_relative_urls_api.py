@@ -1,7 +1,6 @@
 from django.urls import reverse
-from wagtail.tests.utils import WagtailPageTests
-from wagtail.core.models import Site
-import wagtail_factories
+from wagtail.test.utils import WagtailPageTests
+from wagtail.models import Site
 
 from main.factories.base_page import BasePageFactory
 
@@ -15,7 +14,7 @@ class PageRelativeUrlsTest(WagtailPageTests):
         self.site.save()
 
     def test_list_generation(self):
-        sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
+        BasePageFactory.create(title="Child page", parent=self.root_page)
 
         url = reverse("nextjs:page_relative_urls:listing")
         response = self.client.get(url)

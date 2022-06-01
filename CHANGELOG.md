@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.0] - 2022-06-01
+
+### Changed
+- Upgrade to Wagtail 3 (@marteinn)
+- Clarify SLACK_DEFAULT_CHANNEL value when setting up circle ci integration with slack (@marteinn)
+- Add mypy linting for django-rest-framework parts (@marteinn)
+
+## Fixed
+- Improve page not found test by using proper json to detect component name (@marteinn)
+- Cleanup unused imports and variable declarations (@marteinn)
+- Run `manage.py new_page` on CI (@marteinn)
+- Update django-stubs to 1.11.0
+- Update sentry_sdk to 1.5.12
+- Update @babel/core to 7.17.10
+- Update @swc/core to 1.2.196
+- Update @swc/jest to 0.2.21
+- Update i18next to 21.8.5
+- Update @sentry/nextjs to 7.0.0
+- Update @testing-library/user-event to 14.2.0
+- Update husky to 8.0.1
+
 ## [8.7.0] - 2022-05-07
 ### Added
 - Add custom 502 page to Nginx (Andreas Bernacca)

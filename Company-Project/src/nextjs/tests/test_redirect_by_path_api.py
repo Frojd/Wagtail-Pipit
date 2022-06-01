@@ -1,9 +1,7 @@
-from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
-from wagtail.tests.utils import WagtailPageTests
-from wagtail.core.models import Site
+from wagtail.test.utils import WagtailPageTests
+from wagtail.models import Site
 from wagtail.contrib.redirects.models import Redirect
-import wagtail_factories
 
 
 class RedirectByPathApiTest(WagtailPageTests):
@@ -23,7 +21,7 @@ class RedirectByPathApiTest(WagtailPageTests):
         self.assertEqual(response.status_code, 404)
 
     def test_redirect_is_detected(self):
-        redirect = Redirect.add_redirect("/random/", "https://wagtail.io")
+        Redirect.add_redirect("/random/", "https://wagtail.io")
         response = self.client.get(
             reverse("nextjs:redirect_by_path:detail"), {"html_path": "/random/"}
         )

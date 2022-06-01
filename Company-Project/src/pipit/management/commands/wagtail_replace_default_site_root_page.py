@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from wagtail.core.models import Site, Page
+from wagtail.models import Site, Page
 
 from main.models import HomePage
 

@@ -13,5 +13,5 @@ This boilerplate comes ready made with a CircleCI slack notification using the C
 - Create a CircleCI context called "CIRCLECI_BOT"
     - Provide your access token to the variable `SLACK_ACCESS_TOKEN`
 - Create a regular environment variable in Circle CI for your channel
-    - Name the variable `SLACK_DEFAULT_CHANNEL` and provide the id for your channel (*you can get it by right-clicking the channel, click on copy link then fetching the last part, example `https://frojd.slack.com/archives/<MYID>`*)
+    - Name the variable `SLACK_DEFAULT_CHANNEL` and provide the id for your channel (*you can get it by right-clicking the channel, click on copy link then fetching the last part, example `https://frojd.slack.com/archives/<MY_CANNEL_ID>, <MY_CANNEL_ID> is the value your want`*)
 - Done

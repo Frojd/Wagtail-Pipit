@@ -1,4 +1,4 @@
-from typing import Dict, Any, Optional, Callable, List, Tuple, Union
+from typing import Any, Callable, Dict, List, Tuple, Type, Union
 
 from django.db import models
 from django.http import JsonResponse
@@ -7,17 +7,16 @@ from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django.utils.functional import cached_property
 from rest_framework.serializers import Serializer
-from wagtail.admin.edit_handlers import (
-    BaseFormEditHandler,
+from wagtail.admin.panels import (
     EditHandler,
     FieldPanel,
     MultiFieldPanel,
     ObjectList,
+    PanelGroup,
     TabbedInterface,
     WagtailAdminPageForm,
 )
-from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.models import Page
 from wagtail.utils.decorators import cached_classmethod
 from wagtail_meta_preview.panels import (
     FacebookFieldPreviewPanel,
@@ -129,7 +128,7 @@ class SeoMixin(Page):
             [
                 FieldPanel("og_title"),
                 FieldPanel("og_description"),
-                ImageChooserPanel("og_image"),
+                FieldPanel("og_image"),
             ],
             heading=_("Facebook"),
         ),
@@ -137,7 +136,7 @@ class SeoMixin(Page):
             [
                 FieldPanel("twitter_title"),
                 FieldPanel("twitter_description"),
-                ImageChooserPanel("twitter_image"),
+                FieldPanel("twitter_image"),
             ],
             heading=_("Twitter"),
         ),
@@ -226,7 +225,7 @@ class SeoMixin(Page):
 
 
 class EnhancedEditHandlerMixin:
-    edit_handler: BaseFormEditHandler
+    edit_handler: PanelGroup
     content_panels: List[EditHandler]
     promote_panels: List[EditHandler]
     settings_panels: List[EditHandler]
@@ -241,7 +240,7 @@ class EnhancedEditHandlerMixin:
         """
 
         if hasattr(cls, "edit_handler"):
-            return cls.edit_handler.bind_to(model=cls)
+            return cls.edit_handler.bind_to_model(cls)
 
         # construct a TabbedInterface made up of content_panels, promote_panels
         # and settings_panels, skipping any which are empty
@@ -268,7 +267,7 @@ class EnhancedEditHandlerMixin:
 
         EditHandler = TabbedInterface(tabs, base_form_class=cls.base_form_class)
 
-        return EditHandler.bind_to(model=cls)
+        return EditHandler.bind_to_model(cls)
 
 
 class TimestampMixin(models.Model):
@@ -282,19 +281,19 @@ class TimestampMixin(models.Model):
 class ReactViewMixin(object):
     request: HttpRequest
     component_name: str
-    serializer_class: Union[str, Serializer]
+    serializer_class: Union[str, Type[Serializer]]
 
     def render_to_response(self, context, **response_kwargs):
         props = self.get_component_data({"request": self.request})
         return JsonResponse(props)
 
-    def get_component_data(self, context: Optional[Dict]) -> Dict[str, Any]:
+    def get_component_data(self, context: Dict) -> Dict[str, Any]:
         return {
             "component_name": self.component_name,
             "component_props": self.to_dict(context),
         }
 
-    def to_dict(self, context: Optional[Dict]) -> Dict[str, Any]:
+    def to_dict(self, context: Dict[Any, Any]) -> Dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
             self.get_component_props(), context=context,
@@ -302,7 +301,7 @@ class ReactViewMixin(object):
 
         return serializer.data
 
-    def get_serializer_class(self) -> Serializer:
+    def get_serializer_class(self) -> Type[Serializer]:
         if isinstance(self.serializer_class, str):
             return import_string(self.serializer_class)
 

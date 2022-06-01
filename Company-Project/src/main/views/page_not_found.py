@@ -1,4 +1,3 @@
-from django.template.response import TemplateResponse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView
 

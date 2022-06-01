@@ -17,10 +17,10 @@
         "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
-        "@sentry/nextjs": "^6.19.7",
+        "@sentry/nextjs": "^7.0.0",
         "@types/react": "^17.0.38",
         "classnames": "^2.3.1",
-        "i18next": "^21.7.1",
+        "i18next": "^21.8.5",
         "next": "12.1.6",
         "next-compose-plugins": "^2.2.1",
         "prop-types": "^15.8.1",
@@ -54,18 +54,18 @@
         "@storybook/manager-webpack5": "^6.4.22",
         "@storybook/react": "^6.4.22",
         "@svgr/webpack": "^6.2.1",
-        "@swc/core": "^1.2.177",
-        "@swc/jest": "^0.2.20",
+        "@swc/core": "^1.2.196",
+        "@swc/jest": "^0.2.21",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^12.1.5",
-        "@testing-library/user-event": "^14.1.1",
+        "@testing-library/user-event": "^14.2.0",
         "babel-loader": "^8.2.5",
         "babel-plugin-transform-dynamic-import": "^2.1.0",
         "cross-env": "^7.0.3",
         "css-loader": "^6.7.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.6",
-        "husky": "^7.0.4",
+        "husky": "^8.0.1",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^28.1.0",
         "jest-junit": "^13.2.0",
@@ -76,3 +76,4 @@
         "style-loader": "^3.3.1"
     }
 }
+
