@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Run `manage.py new_page` on CI (@marteinn)
 - Update django-stubs to 1.11.0
 - Update sentry_sdk to 1.5.12
+- Update @babel/core to 7.17.10
+- Update @swc/core to 1.2.196
+- Update @swc/jest to 0.2.21
+- Update i18next to 21.8.5
+- Update @sentry/nextjs to 7.0.0
+- Update @testing-library/user-event to 14.2.0
+- Update husky to 8.0.1
 
 ## [8.7.0] - 2022-05-07
 ### Added
