@@ -1,20 +1,14 @@
-import React from 'react';
-import {
-    shallow,
-    // mount
-} from 'enzyme';
-
+import { render, /* screen */ } from '@testing-library/react';
 import RawHtml from './';
 // import data from './RawHtml.data';
 
 describe('<RawHtml />', () => {
     it('Renders an empty RawHtml', () => {
-        const component = shallow(<RawHtml />);
-        expect(component).toBeTruthy();
+        render(<RawHtml />);
     });
 
     // it('Renders RawHtml with data', () => {
-    //     const component = mount(<RawHtml {...data} />);
-    //     expect(component).toMatchSnapshot();
+    //     const { container } = render(<RawHtml {...data} />);
+    //     expect(container).toMatchSnapshot();
     // });
 });

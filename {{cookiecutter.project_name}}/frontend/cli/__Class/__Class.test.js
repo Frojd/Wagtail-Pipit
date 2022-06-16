@@ -1,20 +1,14 @@
-import React from 'react';
-import {
-    shallow,
-    // mount
-} from 'enzyme';
-
+import { render, /* screen */ } from '@testing-library/react';
 import __Class from './';
 // import data from './__Class.data';
 
 describe('<__Class />', () => {
     it('Renders an empty __Class', () => {
-        const component = shallow(<__Class />);
-        expect(component).toBeTruthy();
+        render(<__Class />);
     });
 
     // it('Renders __Class with data', () => {
-    //     const component = mount(<__Class {...data} />);
-    //     expect(component).toMatchSnapshot();
+    //     const { container } = render(<__Class {...data} />);
+    //     expect(container).toMatchSnapshot();
     // });
 });
