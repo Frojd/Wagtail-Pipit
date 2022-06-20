@@ -8,10 +8,8 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
   testPathIgnorePatterns: ['/node_modules/', '/.next/', '/cli/'],
   testEnvironment: 'jest-environment-jsdom',
-  transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest'],
-    '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
-    '^.+\\.svg$': '<rootDir>/config/jest/svgTransform.js',
+  moduleNameMapper: {
+    '\\.svg': '<rootDir>/__mocks__/svg.js',
   },
 };
 
