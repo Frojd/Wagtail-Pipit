@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.admin",
+    "wagtail.search",
     "wagtail",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

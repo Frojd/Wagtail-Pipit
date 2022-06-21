@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Remove enzyme in favour of testing-library (@rinti)
+- Add missing wagtai.search app (@itekhi)
 
 ## [8.8.0] - 2022-06-01
 
