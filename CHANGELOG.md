@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Drop unused REACT_HOST env var from provisioning django .env (@marteinn)
 - Fix issue with provisioned nginx beeing copied instead of generated (@marteinn)
 - Add missing semicolon to nginx provision conf (@marteinn)
+- Fix invalid output in pm2_application_count for nginx in provision (@marteinn)
 
 ## [8.8.0] - 2022-06-01
 

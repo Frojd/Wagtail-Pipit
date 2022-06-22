@@ -100,7 +100,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_ignore_headers Cache-Control Set-Cookie Expires Vary;
     add_header X-Proxy-Cache $upstream_cache_status;
-    proxy_pass http://localhost:{{ pm2_application_count }};
+    proxy_pass http://localhost:{{ pm2_application_count.stdout }};
   }
 
   # what to serve if upstream is not available or crashes
