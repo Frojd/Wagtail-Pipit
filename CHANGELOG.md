@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove enzyme in favour of testing-library (@rinti)
 - Add missing wagtai.search app (@itekhi)
 
+### Fixed
+- Drop unused REACT_HOST env var from provisioning django .env (@marteinn)
+
 ## [8.8.0] - 2022-06-01
 
 ### Changed
