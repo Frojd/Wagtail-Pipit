@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Remove enzyme in favour of testing-library (@rinti)
 - Add missing wagtail.search app (@itekhi)
+- Assume systemd calls in deploy requires root user (@marteinn)
 
 ### Fixed
 - Drop unused REACT_HOST env var from provisioning django .env (@marteinn)

@@ -5,14 +5,20 @@
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py collectstatic --noinput"
 
 - name: Restart uWSGI
+  become: yes
+  become_user: root
   service:
     name: uwsgi
     state: restarted
 
 - name: Restart PM2 app
+  become: yes
+  become_user: root
   shell: "pm2 restart {{ project_slug }}"
 
 - name: Restart Nginx
+  become: yes
+  become_user: root
   service:
     name: nginx
     state: restarted
