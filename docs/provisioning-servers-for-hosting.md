@@ -82,5 +82,17 @@ Configuration:
     ```
 - Done!
 
+
+## Troubleshooting
+
+-  I'm having issues running the initial migrations: `Permission denied to create extension "postgis" HINT:  Must be superuser to create this extension`
+    - Connect to your server as root/superuser
+    - Run `psql` on the server
+    - Open your db `\c mydb`
+    - Run `CREATE EXTENSION IF NOT EXISTS postgis`
+
+- I'm getting the error `Failed to import the required Python library` when running `Creates postgres database` when running playbook in `--check` mode
+    - It's a known issue, because of this check mode is not supported for the provision playbook
+
 ## Note
 - This script does not perform server provisioning, only application provisioning. But there are plenty of [guides on how to do this](https://clouding.io/hc/en-us/articles/360013788600-How-to-provision-Ubuntu-server-with-Ansible-scripts).
