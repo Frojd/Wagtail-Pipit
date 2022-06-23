@@ -8,4 +8,4 @@ isort
 pipdeptree
 ptvsd
 django-stubs==1.11.0
-djangorestframework-stubs==1.6.0
+djangorestframework-stubs==1.7.0
