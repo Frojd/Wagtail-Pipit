@@ -5,7 +5,7 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Where to go from here?](#where-to-get-from-here)
+- [Where to go from here?](#where-to-go-from-here)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Debugging](#debugging)
