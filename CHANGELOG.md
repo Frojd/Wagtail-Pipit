@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add missing semicolon to nginx provision conf (@marteinn)
 - Fix invalid output in pm2_application_count for nginx in provision (@marteinn)
 - Fix typo in cms path ignore in robots.txt (@marteinn)
+- Exclude django media dir from being synced in deployment
 
 ## [8.8.0] - 2022-06-01
 
