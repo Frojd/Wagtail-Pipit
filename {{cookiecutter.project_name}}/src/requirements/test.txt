@@ -5,4 +5,4 @@
 pytest-django==4.5.2
 coverage
 pytest-env
-wagtail-factories==2.0.1
+wagtail-factories==3.0.0
