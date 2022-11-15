@@ -3,9 +3,9 @@ import React, { PureComponent } from 'react';
 // import i18n from '../../i18n';
 // import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
-import styles from './__Class.module.css';
+import styles from './__Container.module.css';
 
-class __Class extends PureComponent {
+class __Container extends PureComponent {
     state = {};
 
     static defaultProps = {};
@@ -13,8 +13,8 @@ class __Class extends PureComponent {
     static propTypes = {};
 
     render() {
-        return <div className={styles['__Class']}>__Class</div>;
+        return <div className={styles['__Container']}>__Container</div>;
     }
 }
 
-export default basePageWrap(__Class);
+export default basePageWrap(__Container);
