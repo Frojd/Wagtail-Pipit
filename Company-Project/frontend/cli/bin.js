@@ -13,13 +13,14 @@ program
     .command('new <component> [subComponent...]')
     .description('Creates a new component')
     .option('-c, --container', 'Create container component')
-    .option('-C, --class', 'Create class component')
     .option('-f, --folder <folder>', 'Change components folder')
     .action((component, subComponents, options) => {
-        const componentType = options.class ? '__Class' : '__Pure';
         let folder = 'components';
+        let componentType = '__Component'
+
         if (options.container) {
             folder = 'containers';
+            componentType = '__Container'
         }
         if (options.folder) {
             folder = options.folder;

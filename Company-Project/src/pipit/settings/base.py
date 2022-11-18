@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     "wagtail.contrib.settings",
     "modelcluster",
     "taggit",
-    "wagtailfontawesome",
     "wagtail_meta_preview",
     "wagtail_headless_preview",
     "rest_framework",
