@@ -1,8 +1,8 @@
 // import PropTypes from 'prop-types';
-import styles from './__Component.module.css';
+import s from './__Component.module.css';
 
 const __Component = () => {
-    return <div className={styles['__Component']}>__Component</div>;
+    return <div className={s.Root}>__Component</div>;
 };
 
 __Component.propTypes = {};
