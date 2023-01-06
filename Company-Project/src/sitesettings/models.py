@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.panels import FieldPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import RichTextField
 
 
 @register_setting
-class SiteSetting(BaseSetting):
+class SiteSetting(BaseSiteSetting):
     gtm_id = models.CharField(max_length=50, blank=True)
     google_site_verification = models.CharField(max_length=255, blank=True)
 
