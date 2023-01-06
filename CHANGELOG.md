@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade swc to 1.3.25
 - Upgrade sentry/nextjs to 7.29.0
 - Upgrade jest-junit to 15.0.0
+- Upgrade psycopg2 to 2.9.5
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
