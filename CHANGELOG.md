@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Next.js to 13 (@rinti)
 - Change css class naming convention from style to s (@rinti)
 - Use .Root as base name for component styling (@rinti)
+- Upgrade Python to 3.10
 
 ### Fixed
 - Drop unused REACT_HOST env var from provisioning django .env (@marteinn)

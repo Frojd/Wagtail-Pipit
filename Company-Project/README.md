@@ -19,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.10+
 - Pip
 - Virtualenv (or the package manage of your choice)
 - Node 16
