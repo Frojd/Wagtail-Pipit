@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Generate WAGTAILADMIN_BASE_URL variable (@marteinn)
 - Fix wrong port for https in project readme (@marteinn)
 - Ignore storybook static and public dir for prettier (@marteinn)
+- Upgrade @types/react, css-loader, eslint, husky and prettier
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
