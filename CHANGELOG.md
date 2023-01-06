@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix linting errors in cli (@rinti)
 - Generate WAGTAILADMIN_BASE_URL variable (@marteinn)
 - Fix wrong port for https in project readme (@marteinn)
+- Ignore storybook static and public dir for prettier (@marteinn)
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
