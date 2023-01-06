@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade wagtail_headless_preview to 0.4.0 (@rinti)
 - Fix linting errors in cli (@rinti)
 - Generate WAGTAILADMIN_BASE_URL variable (@marteinn)
+- Fix wrong port for https in project readme (@marteinn)
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)

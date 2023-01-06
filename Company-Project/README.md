@@ -73,8 +73,8 @@
     npm i
     npm run dev
     ```
-8. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
-    - ...or login to [https://example.com.test:8081/wt/cms](https://example.com.test:8081/wt/cms) (Username: `admin` and password: `admin`)
+8. Visit your site on: [https://example.com.test:8082](https://example.com.test:8082)
+    - ...or login to [https://example.com.test:8082/wt/cms](https://example.com.test:8082/wt/cms) (Username: `admin` and password: `admin`)
 
 
 ## Where to go from here?

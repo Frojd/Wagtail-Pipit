@@ -73,8 +73,8 @@
     npm i
     npm run dev
     ```
-8. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}})
-    - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/wt/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}/wt/cms) (Username: `admin` and password: `admin`)
+8. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}})
+    - ...or login to [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}}/wt/cms](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}}/wt/cms) (Username: `admin` and password: `admin`)
 
 
 ## Where to go from here?
