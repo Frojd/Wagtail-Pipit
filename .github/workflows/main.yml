@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: "actions/setup-python@v2"
         with:
-          python-version: "3.8"
+          python-version: "3.10"
       - name: Install cookiecutter
         run: |
           python -m pip install --upgrade pip
@@ -61,7 +61,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: "actions/setup-node@v2"
         with:
-          node-version: "16"
+          node-version: "18"
       - run: rm -rf Company-Project
       - name: Restore generated-project
         uses: actions/download-artifact@v2

@@ -32,9 +32,7 @@ export async function getPasswordProtectedPage(
 }
 
 export async function getAllPages() {
-    return await getRequest(
-        `${API_URL}/v1/page_relative_urls/`,
-    );
+    return await getRequest(`${API_URL}/v1/page_relative_urls/`);
 }
 
 export async function getPagePreview(contentType, token, params, options) {

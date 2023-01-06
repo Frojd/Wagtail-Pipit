@@ -74,7 +74,7 @@
     - shell: echo "" > /mnt/persist/uwsgi/conf.d/django.ini
 
     - name: Copies nginx config
-      copy:
+      template:
         src: "files/nginx.conf.j2"
         dest: "/mnt/persist/nginx/conf.d/{{ project_slug }}.conf"
         mode: 0664

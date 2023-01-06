@@ -4,6 +4,60 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+### Changed
+### Fixed
+### Removed
+
+## [8.8.0] - 2023-01-06
+
+### Added
+- Add troubleshooting section to provisioning docs (@marteinn)
+- Add next-i18next for translations (@rinti)
+
+### Changed
+- Upgrade Django to 4.1 (@rinti)
+- Upgrade Wagtail to 4.1 (@rinti)
+- Upgrade Next.js to 13 (@rinti)
+- Remove enzyme in favour of testing-library (@rinti)
+- Add missing wagtail.search app (@itekhi)
+- Assume systemd calls in deploy requires root user (@marteinn)
+- Upgrade storybook to 6.5 (@rinti)
+- Change css class naming convention from style to s (@rinti)
+- Use .Root as base name for component styling (@rinti)
+- Upgrade Python to 3.10 (@marteinn)
+- Replace BaseSetting with BaseSiteSetting for SiteSetting (@marteinn)
+
+### Fixed
+- Drop unused REACT_HOST env var from provisioning django .env (@marteinn)
+- Fix issue with provisioned nginx beeing copied instead of generated (@marteinn)
+- Add missing semicolon to nginx provision conf (@marteinn)
+- Fix invalid output in pm2_application_count for nginx in provision (@marteinn)
+- Fix typo in cms path ignore in robots.txt (@marteinn)
+- Exclude django media dir from being synced in deployment
+- Pin meta preview (@rinti)
+- Upgrade wagtail_headless_preview to 0.4.0 (@rinti)
+- Fix linting errors in cli (@rinti)
+- Generate WAGTAILADMIN_BASE_URL variable (@marteinn)
+- Fix wrong port for https in project readme (@marteinn)
+- Ignore storybook static and public dir for prettier (@marteinn)
+- Upgrade @types/react, css-loader, eslint, husky and prettier
+- Upgrade swc to 1.3.25
+- Upgrade sentry/nextjs to 7.29.0
+- Upgrade jest-junit to 15.0.0
+- Upgrade psycopg2 to 2.9.5
+- Upgrade python-dotenv to 0.21.0
+- Upgrade wagtail_headless_preview to 0.5.0
+- Upgrade wagtail-factories to 4.0.0
+- Upgrade sentry-sdk to 1.12.1
+- Replace deprecated jsxBracketSameLine with bracketSameLine in prettier (@marteinn)
+
+### Removed
+- Remove deprecated fontawesome (@rinti)
+- Remove storybook next-preset (@rinti)
+- Drop support for class based components in frontend cli (@rinti)
+
 ## [8.8.0] - 2022-06-01
 
 ### Changed

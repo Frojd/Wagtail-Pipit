@@ -1,6 +1,9 @@
 import querystring from 'querystring';
 import {
-    getPage, getRedirect, getAllPages, WagtailApiResponseError
+    getPage,
+    getRedirect,
+    getAllPages,
+    WagtailApiResponseError,
 } from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
@@ -29,22 +32,14 @@ export async function getServerSideProps({ req, params, res }) {
     // Try to serve page
     try {
         const {
-            json: {
-                componentName,
-                componentProps,
-                redirect,
-                customResponse,
-            },
+            json: { componentName, componentProps, redirect, customResponse },
             headers,
-        } = await getPage(
-            path,
-            queryParams, {
-                headers: {
-                    cookie: req.headers.cookie,
-                    host,
-                },
-            }
-        );
+        } = await getPage(path, queryParams, {
+            headers: {
+                cookie: req.headers.cookie,
+                host,
+            },
+        });
 
         // Forward any cookie we encounter
         const cookies = headers.get('set-cookie');
@@ -56,9 +51,7 @@ export async function getServerSideProps({ req, params, res }) {
             const { body, body64, contentType } = customResponse;
             res.setHeader('Content-Type', contentType);
             res.statusCode = 200;
-            res.write(
-                body64 ? Buffer.from(body64, 'base64') : body
-            );
+            res.write(body64 ? Buffer.from(body64, 'base64') : body);
             res.end();
 
             return { props: {} };
@@ -70,8 +63,8 @@ export async function getServerSideProps({ req, params, res }) {
                 redirect: {
                     destination: destination,
                     permanent: isPermanent,
-                }
-            }
+                },
+            };
         }
 
         return { props: { componentName, componentProps } };
@@ -109,8 +102,8 @@ export async function getServerSideProps({ req, params, res }) {
             redirect: {
                 destination: destination,
                 permanent: isPermanent,
-            }
-        }
+            },
+        };
     } catch (err) {
         if (!(err instanceof WagtailApiResponseError)) {
             throw err;

@@ -5,7 +5,7 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Where to go from here?](#where-to-get-from-here)
+- [Where to go from here?](#where-to-go-from-here)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Debugging](#debugging)
@@ -19,7 +19,7 @@
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.10+
 - Pip
 - Virtualenv (or the package manage of your choice)
 - Node 16
@@ -73,8 +73,8 @@
     npm i
     npm run dev
     ```
-8. Visit your site on: [https://example.com.test:8081](https://example.com.test:8081)
-    - ...or login to [https://example.com.test:8081/wt/cms](https://example.com.test:8081/wt/cms) (Username: `admin` and password: `admin`)
+8. Visit your site on: [https://example.com.test:8082](https://example.com.test:8082)
+    - ...or login to [https://example.com.test:8082/wt/cms](https://example.com.test:8082/wt/cms) (Username: `admin` and password: `admin`)
 
 
 ## Where to go from here?

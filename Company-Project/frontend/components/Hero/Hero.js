@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Hero.module.css';
-import Logo from '../../public/img/logo.svg'
+import Logo from '../../public/img/logo.svg';
 
 const Hero = ({ title }) => (
     <div className={s.Container}>

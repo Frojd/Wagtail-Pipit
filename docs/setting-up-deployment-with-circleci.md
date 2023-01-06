@@ -17,7 +17,7 @@ In this tutorial we'll explain how to successfully set up a Continious Integrati
 ## Guide
 
 - Start by generating a new ssh-key (without a passphrase) for your stage environment
-- Run: `ssh-keygen -m PEM -t rsa -b 4096 -C "ci@frojd.se"`
+- Run: `ssh-keygen -t ed25519 -C "ci@frojd.se"`
 - When the "Enter file in which to save the key" prompt pops up, select a name for your key. I recommend naming it after the environment you wish to connect, such as `stage.example.com`, to makes it easier to identify which key belong where.
 - On the next prompt ("Enter passphrase"), press Enter
 - On the next prompt ("Enter passphrase again"), press Enter

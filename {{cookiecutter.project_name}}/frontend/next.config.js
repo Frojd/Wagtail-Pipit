@@ -1,14 +1,14 @@
-const withPlugins = require('next-compose-plugins');
+const { i18n } = require('./next-i18next.config');
 
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const basePath = '';
 
 let nextConfig = {
-    webpack5: true,
     trailingSlash: true,
     productionBrowserSourceMaps: true,
     basePath,
+    i18n,
 };
 
 const withSvgr = (nextConfig = {}) => {
@@ -17,7 +17,7 @@ const withSvgr = (nextConfig = {}) => {
             config.module.rules.push({
                 test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
-                use: [{ loader: '@svgr/webpack', options: { ref: true } }],
+                use: ['@svgr/webpack'],
             });
             return config;
         },
@@ -37,16 +37,15 @@ const SentryWebpackPluginOptions = {
     // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
 
-nextConfig = withSentryConfig(nextConfig, SentryWebpackPluginOptions);
+// nextConfig = withSentryConfig(nextConfig, SentryWebpackPluginOptions);
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //     enabled: process.env.ANALYZE === 'true',
 // });
 
-module.exports = withPlugins(
-    [
-        withSvgr,
-        //withBundleAnalyzer,
-    ],
-    nextConfig
-);
+module.exports = () => {
+    const plugins = [withSvgr];
+    return plugins.reduce((acc, plugin) => plugin(acc), {
+        ...nextConfig,
+    });
+};
