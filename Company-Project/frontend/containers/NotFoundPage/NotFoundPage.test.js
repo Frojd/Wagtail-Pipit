@@ -1,4 +1,4 @@
-import { render, /* screen */ } from '@testing-library/react';
+import { render /* screen */ } from '@testing-library/react';
 import NotFoundPage from './';
 // import data from './NotFoundPage.data';
 

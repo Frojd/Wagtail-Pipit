@@ -1,4 +1,4 @@
-import { render, /* screen */ } from '@testing-library/react';
+import { render /* screen */ } from '@testing-library/react';
 import RawHtml from './';
 // import data from './RawHtml.data';
 
