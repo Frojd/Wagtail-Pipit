@@ -45,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade wagtail_headless_preview to 0.5.0
 - Upgrade wagtail-factories to 4.0.0
 - Upgrade sentry-sdk to 1.12.1
-
+- Replace deprecated jsxBracketSameLine with bracketSameLine in prettier (@marteinn)
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
