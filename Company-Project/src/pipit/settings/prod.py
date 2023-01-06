@@ -60,6 +60,9 @@ SESSION_COOKIE_SECURE = True
 # Use a secure cookie for the CSRF cookie
 CSRF_COOKIE_SECURE = True
 
+# Email notification url
+WAGTAILADMIN_BASE_URL = "https://example.com"
+
 # Sentry
 SENTRY_DSN = get_env("SENTRY_DSN")
 SENTRY_ENVIRONMENT = "prod"
