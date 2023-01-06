@@ -11,14 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add next-i18next for translations (@rinti)
 
 ### Changed
+- Upgrade Django to 4.1 (@rinti)
+- Upgrade Wagtail to 4.1 (@rinti)
+- Upgrade Next.js to 13 (@rinti)
 - Remove enzyme in favour of testing-library (@rinti)
 - Add missing wagtail.search app (@itekhi)
 - Assume systemd calls in deploy requires root user (@marteinn)
 - Upgrade storybook to 6.5 (@rinti)
-- Upgrade Next.js to 13 (@rinti)
 - Change css class naming convention from style to s (@rinti)
 - Use .Root as base name for component styling (@rinti)
-- Upgrade Python to 3.10
+- Upgrade Python to 3.10 (@marteinn)
 - Replace BaseSetting with BaseSiteSetting for SiteSetting (@marteinn)
 
 ### Fixed
@@ -29,8 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix typo in cms path ignore in robots.txt (@marteinn)
 - Exclude django media dir from being synced in deployment
 - Pin meta preview (@rinti)
-- Upgrade Django to 4.1 (@rinti)
-- Upgrade Wagtail to 4.1 (@rinti)
 - Upgrade wagtail_headless_preview to 0.4.0 (@rinti)
 - Fix linting errors in cli (@rinti)
 - Generate WAGTAILADMIN_BASE_URL variable (@marteinn)
