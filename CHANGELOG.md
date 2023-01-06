@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade psycopg2 to 2.9.5
 - Upgrade python-dotenv to 0.21.0
 - Upgrade wagtail_headless_preview to 0.5.0
+- Upgrade wagtail-factories to 4.0.0
+
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
