@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @types/react, css-loader, eslint, husky and prettier
 - Upgrade swc to 1.3.25
 - Upgrade sentry/nextjs to 7.29.0
+- Upgrade jest-junit to 15.0.0
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
