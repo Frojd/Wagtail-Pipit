@@ -41,7 +41,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade jest-junit to 15.0.0
 - Upgrade psycopg2 to 2.9.5
 - Upgrade python-dotenv to 0.21.0
-- Upgrade django-stubs to 1.13.1
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
