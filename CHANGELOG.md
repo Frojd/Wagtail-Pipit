@@ -36,7 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix wrong port for https in project readme (@marteinn)
 - Ignore storybook static and public dir for prettier (@marteinn)
 - Upgrade @types/react, css-loader, eslint, husky and prettier
-- Updrade swc to 1.3.25
+- Upgrade swc to 1.3.25
+- Upgrade sentry/nextjs to 7.29.0
 
 ### Removed
 - Remove deprecated fontawesome (@rinti)
