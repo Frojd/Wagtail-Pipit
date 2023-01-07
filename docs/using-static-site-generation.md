@@ -34,7 +34,7 @@ npm run build
 After that, create a html [export](https://nextjs.org/docs/advanced-features/static-html-export).
 
 ```
-npm export
+npm run export
 ```
 
 This will create a folder called `/frontend/out` that will contain your website exported as static html files.
