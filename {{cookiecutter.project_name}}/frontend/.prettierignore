@@ -1,6 +1,12 @@
+.env
+.gitignore
 .gitkeep
 .next
+.nvmrc
+.prettierignore
+.swcrc
 cli
+components/WagtailUserbar/WagtailUserbar.js
 node_modules
 public
 storybook-static

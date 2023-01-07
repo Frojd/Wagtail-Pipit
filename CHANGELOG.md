@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Fix issue with missing ignores in prettier template conf
+
 ### Removed
 
 ## [8.8.0] - 2023-01-06
