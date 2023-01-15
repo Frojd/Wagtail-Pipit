@@ -55,6 +55,11 @@ case "$CMD" in
         exec pytest --ds=pipit.settings.test
         ;;
 
+    "coverage" )
+        echo Running coverage
+        exec coverage run -m  pytest --ds=pipit.settings.test
+        ;;
+
     "typecheck" )
         echo Running typecheck
         exec mypy .

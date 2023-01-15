@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add playbook for generating deploy keys for environments
+- Add docker-entrypoint command for running coverage
 
 ### Changed
 - Upgrade Next.js to 13.1 (@marteinn)
