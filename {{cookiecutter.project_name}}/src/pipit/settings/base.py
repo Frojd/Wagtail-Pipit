@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 
-from pipit.settings import get_env, get_env_bool
+from pipit.env_utils import get_env, get_env_bool  # NOQA: F401
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -11,15 +11,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 APP_VERSION = "{{cookiecutter.version}}"
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env("SECRET_KEY")
+SECRET_KEY = get_env("SECRET_KEY", required=True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 # This is when debug is off, else django wont allow you to visit the site
-ALLOWED_HOSTS = get_env("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = get_env("ALLOWED_HOSTS", required=True).split(",")
 
-INTERNAL_IPS = ("127.0.0.1",)
+INTERNAL_IPS = ["127.0.0.1"]
 
 
 # Application definition
@@ -112,11 +112,11 @@ WSGI_APPLICATION = "pipit.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": get_env("DATABASE_NAME"),
-        "USER": get_env("DATABASE_USER"),
-        "PASSWORD": get_env("DATABASE_PASSWORD"),
-        "HOST": get_env("DATABASE_HOST"),
-        "PORT": get_env("DATABASE_PORT", default=5432),
+        "NAME": get_env("DATABASE_NAME", required=True),
+        "USER": get_env("DATABASE_USER", required=True),
+        "PASSWORD": get_env("DATABASE_PASSWORD", required=True),
+        "HOST": get_env("DATABASE_HOST", required=True),
+        "PORT": int(get_env("DATABASE_PORT", default="5432")),
     }
 }
 
@@ -154,14 +154,14 @@ DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com"
 AUTH_USER_MODEL = "customuser.User"
 
 # Wagtail
-WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
+WAGTAIL_SITE_NAME = "Company-Project"
 WAGTAILIMAGES_IMAGE_MODEL = "customimage.CustomImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "customdocument.CustomDocument"
 WAGTAIL_ALLOW_UNICODE_SLUGS = False
 
 WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.search.backends.database',
+    "default": {
+        "BACKEND": "wagtail.search.backends.database",
     }
 }
 
@@ -171,11 +171,11 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
 }
 
 # File storage
-if get_env("AWS_ACCESS_KEY_ID", ""):
+if get_env("AWS_ACCESS_KEY_ID"):
     AWS_ACCESS_KEY_ID = get_env("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME")
-    if get_env("AWS_S3_ENDPOINT_URL", ""):
+    AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY", required=True)
+    AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME", required=True)
+    if get_env("AWS_S3_ENDPOINT_URL", default=""):
         AWS_S3_ENDPOINT_URL = get_env("AWS_S3_ENDPOINT_URL")
 
     AWS_QUERYSTRING_AUTH = False
@@ -190,7 +190,7 @@ if get_env("AWS_ACCESS_KEY_ID", ""):
 
 # Uploaded media
 MEDIA_URL = "/wt/media/"
-MEDIA_ROOT = get_env("MEDIA_PATH")
+MEDIA_ROOT = get_env("MEDIA_PATH", required=True)
 
 
 # Static files, if in production use static root, else use static dirs
@@ -200,7 +200,7 @@ STATIC_URL = "/wt/static/"
 
 # The absolute path to the directory where collectstatic will collect static
 # files for deployment. Example: "/var/www/example.com/static/"I
-STATIC_ROOT = get_env("STATIC_PATH")
+STATIC_ROOT = get_env("STATIC_PATH", required=True)
 
 # This setting defines the additional locations the staticfiles will traverse
 STATICFILES_DIRS = (
@@ -223,4 +223,4 @@ WAGTAIL_HEADLESS_PREVIEW = {
 
 # Sentry
 SENTRY_DSN: Optional[str] = None
-SENTRY_ENVIRONMENT: Optional[str]= None
+SENTRY_ENVIRONMENT: Optional[str] = None

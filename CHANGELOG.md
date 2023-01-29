@@ -8,14 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add playbook for generating deploy keys for environments
 - Add docker-entrypoint command for running coverage
+- Add pyproject.toml config
+- Add ruff linter
 
 ### Changed
 - Upgrade Next.js to 13.1 (@marteinn)
+- Move env var retrival to pipit.env_utils
+- Make get_env default str type
 
 ### Fixed
 - Fix issue with missing ignores in prettier template conf
 - Upgrade next-i18next to 13.0.1
 - Upgrade prettier to 2.8.2
+- Upgrade django-stubs to 1.14.0
+- Upgrade djangorestframework-stubs to 1.8.0
 
 ### Removed
 

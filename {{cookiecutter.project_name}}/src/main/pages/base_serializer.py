@@ -2,8 +2,8 @@ import re
 from typing import List
 
 from rest_framework import serializers
-from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
 from wagtail import fields
+from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
 from wagtail.api.v2 import serializers as wagtail_serializers
 
 from sitesettings.models import SiteSetting
@@ -52,7 +52,7 @@ class BasePageSerializer(serializers.ModelSerializer):
             return None
 
         html = wagtailuserbar({"request": request, "self": page})
-        html = re.sub(r'<script.+?</script>', '', html, flags=re.DOTALL)
+        html = re.sub(r"<script.+?</script>", "", html, flags=re.DOTALL)
 
         if not html:
             return None

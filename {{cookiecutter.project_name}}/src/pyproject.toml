@@ -1,0 +1,17 @@
+[tool.ruff]
+line-length = 88
+
+# Never enforce `E501` (line length violations).
+ignore = ["E501"]
+
+exclude = [
+    "venv",
+    "*/migrations/*",
+    "node_modules",
+]
+
+[tool.ruff.per-file-ignores]
+"pipit/settings/local.py" = ["F405", "F403"]
+"pipit/settings/test.py" = ["F405", "F403"]
+"pipit/settings/stage.py" = ["F405", "F403"]
+"pipit/settings/prod.py" = ["F405", "F403"]

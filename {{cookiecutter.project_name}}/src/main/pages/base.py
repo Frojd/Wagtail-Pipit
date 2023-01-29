@@ -6,7 +6,7 @@ from django.http.request import HttpRequest
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
-from wagtail.models import Page
+from wagtail.models import Page, PageManager
 
 from ..mixins import EnhancedEditHandlerMixin, SeoMixin
 
@@ -18,6 +18,8 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
     extra_panels: List[Tuple[str, str]] = []
     serializer_class = "main.pages.BasePageSerializer"
 
+    objects: PageManager
+
     def __init__(self, *args, **kwargs):
         self.template = "pages/empty.html"
         self.component_name = self.__class__.__name__
@@ -28,7 +30,9 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         setattr(request, "is_preview", is_preview)
 
         json = self.get_component_data({"request": request})
-        response_cls = Response if isinstance(request, Request) else JsonResponse
+        response_cls: Union[Type[Response], Type[JsonResponse]] = (
+            Response if isinstance(request, Request) else JsonResponse
+        )
         return response_cls(json)
 
     def get_component_data(
@@ -62,7 +66,8 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         return serializer.data
 
     def get_serializer_class(self) -> Type[Serializer]:
-        return import_string(self.serializer_class)
+        cls: Type[Serializer] = import_string(self.serializer_class)
+        return cls
 
     def get_preview_url(self, token):
         """
@@ -74,8 +79,8 @@ class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
         preview_url = (
             preview_url
             + "&"
-            + urllib.parse.urlencode({
-                "host": f"{self.get_site().hostname}:{self.get_site().port}"
-            })
+            + urllib.parse.urlencode(
+                {"host": f"{self.get_site().hostname}:{self.get_site().port}"}
+            )
         )
         return preview_url
