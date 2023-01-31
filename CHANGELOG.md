@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade prettier to 2.8.2
 - Upgrade django-stubs to 1.14.0
 - Upgrade djangorestframework-stubs to 1.8.0
+- Upgrade python-dotenv to 0.21.1
 
 ### Removed
 
