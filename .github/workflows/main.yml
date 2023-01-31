@@ -53,6 +53,7 @@ jobs:
           cd Company-Project
           docker-compose -f docker-compose-circleci.yml run --rm python test
           docker-compose -f docker-compose-circleci.yml run --rm python typecheck
+          docker-compose -f docker-compose-circleci.yml run --rm python lint
 
   frontend:
     needs: build

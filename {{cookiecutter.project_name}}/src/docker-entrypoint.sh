@@ -65,6 +65,11 @@ case "$CMD" in
         exec mypy .
         ;;
 
+    "lint" )
+        echo Running linting
+        exec ruff .
+        ;;
+
     * )
         # Run custom command. Thanks to this line we can still use
         # "docker run our_container /bin/bash" and it will work
