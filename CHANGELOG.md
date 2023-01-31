@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix issue with missing ignores in prettier template conf
 - Run ruff linting in project CI
+- Reset and rebuild migrations for customdocument, customimage and main
 - Upgrade next-i18next to 13.0.1
 - Upgrade prettier to 2.8.2
 - Upgrade django-stubs to 1.14.0
