@@ -6,20 +6,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Add playbook for generating deploy keys for environments
-- Add docker-entrypoint command for running coverage
-- Add pyproject.toml config
-- Add ruff linter
+### Changed
+### Fixed
+### Removed
+
+## [8.9.1] - 2023-01-31
+
+### Added
+- Add playbook for generating deploy keys for environments (@marteinn)
+- Add docker-entrypoint command for running coverage (@marteinn)
+- Add pyproject.toml config (@marteinn)
+- Add ruff linter (@marteinn)
 
 ### Changed
 - Upgrade Next.js to 13.1 (@marteinn)
-- Move env var retrival to pipit.env_utils
-- Make get_env default str type
+- Move env var retrival to pipit.env_utils (@marteinn)
+- Make get_env default str type (@marteinn)
 
 ### Fixed
 - Fix issue with missing ignores in prettier template conf
 - Run ruff linting in project CI
-- Reset and rebuild migrations for customdocument, customimage and main
+- Reset and rebuild migrations for customdocument, customimage and main (@marteinn)
 - Upgrade next-i18next to 13.0.1
 - Upgrade prettier to 2.8.2
 - Upgrade django-stubs to 1.14.0
@@ -28,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [8.8.0] - 2023-01-06
+## [8.9.0] - 2023-01-06
 
 ### Added
 - Add troubleshooting section to provisioning docs (@marteinn)
