@@ -1,6 +1,6 @@
 {% raw -%}
 ---
-- name: Deploy django application
+- name: Deploy Django and Next.js application
   hosts: all
 
   vars:

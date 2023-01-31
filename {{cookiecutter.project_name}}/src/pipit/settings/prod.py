@@ -10,7 +10,9 @@ from pipit.settings.base import *  # NOQA
 
 DEBUG = False
 
-DATABASES["default"]["CONN_MAX_AGE"] = get_env("DATABASE_CONN_MAX_AGE", default=60)
+DATABASES["default"]["CONN_MAX_AGE"] = int(
+    get_env("DATABASE_CONN_MAX_AGE", default="60")
+)
 
 CACHES = {
     "default": {
@@ -23,7 +25,7 @@ CACHES = {
         "TIMEOUT": 600,
         "OPTIONS": {
             "MAX_ENTRIES": 1000,
-        }
+        },
     },
 }
 
@@ -64,7 +66,7 @@ CSRF_COOKIE_SECURE = True
 WAGTAILADMIN_BASE_URL = "https://{{cookiecutter.domain_prod}}"
 
 # Sentry
-SENTRY_DSN = get_env("SENTRY_DSN")
+SENTRY_DSN = get_env("SENTRY_DSN", required=True)
 SENTRY_ENVIRONMENT = "prod"
 
 sentry_sdk.init(

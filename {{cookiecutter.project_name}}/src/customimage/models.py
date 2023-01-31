@@ -1,5 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
+
+
+User = get_user_model()
 
 
 class CustomImage(AbstractImage):
@@ -12,6 +16,8 @@ class CustomImage(AbstractImage):
         # Then add the field names here to make them appear in the form:
         # 'caption',
     )
+
+    uploaded_by_user = User
 
 
 class CustomRendition(AbstractRendition):

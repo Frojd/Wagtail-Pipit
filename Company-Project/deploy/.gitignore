@@ -1,3 +1,6 @@
 roles.galaxy
 .vagrant
 *.retry
+
+deploy_keys/*
+!deploy_keys/.gitkeep

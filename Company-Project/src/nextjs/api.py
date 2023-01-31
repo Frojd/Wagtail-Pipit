@@ -223,7 +223,7 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
     def detail_view(self, request, pk):
         try:
             view_resource = self.view_register[pk]
-        except:
+        except KeyError:
             raise Http404
 
         if isinstance(view_resource, str):
@@ -276,7 +276,7 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
 
     def get_object(self):
         path = self.request.GET.get("html_path", None)
-        if path == None:
+        if path is None:
             raise ValidationError({"html_path": "Missing value"})
 
         if not path.startswith("/"):
