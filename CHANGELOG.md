@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Upgrade circleci slack orb
+
 ### Removed
 
 ## [8.9.1] - 2023-01-31
