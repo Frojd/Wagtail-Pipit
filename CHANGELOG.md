@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 - Upgrade circleci slack orb
+- Fix issue with cluster mode and memory in pm2
 
 ### Removed
 
