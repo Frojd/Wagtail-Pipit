@@ -14,7 +14,8 @@ ENV PYTHONUNBUFFERED=1 \
     DATABASE_PASSWORD=postgres \
     DATABASE_NAME=postgres \
     DATABASE_HOST=db \
-    PYTHONPATH="${PYTHONPATH}:/app"
+    PYTHONPATH="${PYTHONPATH}:/app" \
+    IN_DOCKER=1
 
 WORKDIR /app
 ADD . /app/
