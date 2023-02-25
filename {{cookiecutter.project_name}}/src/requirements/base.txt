@@ -1,6 +1,6 @@
 Django==4.1.7
 boto3>1.19,<1.25
-django-storages==1.12.3
+django-storages==1.13.2
 psycopg2==2.9.5
 sentry_sdk==1.15.0
 python-dotenv==1.0.0
