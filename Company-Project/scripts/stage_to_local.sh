@@ -56,10 +56,10 @@ $manage_command change_user_password --user=admin --password=admin
 echo "The application is ready at: $LOCAL_DOMAIN"
 echo "Username/Password is admin/admin"
 
-read -p "Sync images? [y/n]" -n 1 -r
+read -p "Sync media? [y/n]" -n 1 -r
 echo # nl
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
-rsync -re ssh $ssh_host:$REMOTE_MEDIA_PATH/* ${src_dir}/media
+rsync -re ssh $SSH_HOST:$REMOTE_MEDIA_PATH/* ${src_dir}/media
