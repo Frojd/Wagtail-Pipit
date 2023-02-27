@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Make sure .env.local are not used in docker (@rinti)
 - Upgrade python-dotenv to 1.0.0
-- Upgrade sentry_sdk to 1.15.0
+- Upgrade sentry_sdk to 1.16.0
 - Upgrade django to 4.1.7
 - Upgrade djangorestframework-stubs to 1.9.0
 
