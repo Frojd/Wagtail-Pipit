@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade django to 4.1.7
 
 ### Removed
+- Drop AWS S3 storage (@marteinn)
 
 ## [8.9.2] - 2023-02-16
 

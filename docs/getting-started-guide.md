@@ -31,15 +31,12 @@ ssh_host_prod [blog.acme.com]:
 ssh_host_stage [stage-blog.acme.com]:
 db_name_prod [acme_blog]:
 db_name_stage [acme_blog]:
-s3_bucket_prod [s3.blog.acme.com]:
-s3_bucket_stage [s3.stage-blog.acme.com]:
 docker_web_port [8081]:
 docker_web_ssl_port [8083]:
 docker_db_port [8083]:
 nextjs_port [3000]:
 storybook_port [3001]:
 docker_vscode_debug_port [5678]:
-aws_devops_iam_username [acme_blog_devops]:
 version [0.1.0]:
 Select software_license:
 1 - proprietary
