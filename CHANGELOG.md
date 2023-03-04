@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade django to 4.1.7
 - Upgrade djangorestframework-stubs to 1.9.0
 - Upgrade djangp-stubs to 1.15.0
+- Upgrade djangorestframework-stubs to 1.9.1
 
 ### Removed
 - Drop AWS S3 storage (@marteinn)
