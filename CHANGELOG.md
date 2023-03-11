@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @swc/core to 1.3.39
 - Upgrade @sentry/nextjs to 7.42.0
 - Upgrade eslint to 8.36.0
+- Upgrade prettier to 2.8.4
 
 ### Removed
 - Drop AWS S3 storage (@marteinn)
