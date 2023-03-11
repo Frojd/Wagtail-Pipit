@@ -1,15 +1,11 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
-
-
-User = get_user_model()
 
 
 class CustomImage(AbstractImage):
     # Add any extra fields to image here
 
-    # eg. To add a caption field:
+    # To add a caption field:
     # caption = models.CharField(max_length=255, blank=True)
 
     admin_form_fields = Image.admin_form_fields + (
@@ -17,12 +13,10 @@ class CustomImage(AbstractImage):
         # 'caption',
     )
 
-    uploaded_by_user = User
-
 
 class CustomRendition(AbstractRendition):
     image = models.ForeignKey(
-        CustomImage, related_name="renditions", on_delete=models.CASCADE
+        CustomImage, on_delete=models.CASCADE, related_name="renditions"
     )
 
     class Meta:

@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add Wagtail 4.2 support (@marteinn)
+
 ### Changed
 ### Fixed
 - Make sure .env.local are not used in docker (@rinti)
