@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade storybook-addon-next to 1.7.3
 - Upgrade eslint-config-prettier to 8.7.0
 - Upgrade i18next
+- Upgrade eslint-config-next to 13.2.4
 
 ### Removed
 - Drop AWS S3 storage (@marteinn)
