@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade eslint to 8.36.0
 - Upgrade prettier to 2.8.4
 - Upgrade @types/react to 18.0.28
+- Upgrade storybook to 6.5.16
+- Upgrade storybook-addon-next to 1.7.3
 
 ### Removed
 - Drop AWS S3 storage (@marteinn)
