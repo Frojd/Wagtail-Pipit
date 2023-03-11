@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade djangp-stubs to 1.15.0
 - Upgrade djangorestframework-stubs to 1.9.1
 - Upgrade @swc/core to 1.3.39
+- Upgrade @sentry/nextjs to 7.42.0
 
 ### Removed
 - Drop AWS S3 storage (@marteinn)
