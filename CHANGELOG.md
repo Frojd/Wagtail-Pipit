@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Wagtail 4.2 support (@marteinn)
 
 ### Changed
+- Upgrade next to 13.2.4 (@marteinn)
+
 ### Fixed
 - Make sure .env.local are not used in docker (@rinti)
 - Upgrade python-dotenv to 1.0.0
