@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     "django.contrib.gis",
     # Third party apps
-    "storages",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -169,24 +168,6 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
     "png": "jpeg",
     "webp": "webp",
 }
-
-# File storage
-if get_env("AWS_ACCESS_KEY_ID"):
-    AWS_ACCESS_KEY_ID = get_env("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = get_env("AWS_SECRET_ACCESS_KEY", required=True)
-    AWS_STORAGE_BUCKET_NAME = get_env("AWS_BUCKET_NAME", required=True)
-    if get_env("AWS_S3_ENDPOINT_URL", default=""):
-        AWS_S3_ENDPOINT_URL = get_env("AWS_S3_ENDPOINT_URL")
-
-    AWS_QUERYSTRING_AUTH = False
-    AWS_S3_FILE_OVERWRITE = False
-
-    AWS_EXPIRY = 60 * 60 * 24 * 7  # One week
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age={}".format(AWS_EXPIRY)}
-
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    THUMBNAIL_DEFAULT_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
 
 # Uploaded media
 MEDIA_URL = "/wt/media/"

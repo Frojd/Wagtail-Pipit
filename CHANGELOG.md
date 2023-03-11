@@ -10,6 +10,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [8.10.0] - 2023-03-11
+
+### Added
+- Add Wagtail 4.2 support (@marteinn)
+
+### Changed
+- Upgrade next to 13.2.4 (@marteinn)
+
+### Fixed
+- Make sure .env.local are not used in docker (@rinti)
+- Upgrade python-dotenv to 1.0.0
+- Upgrade sentry_sdk to 1.16.0
+- Upgrade django to 4.1.7
+- Upgrade djangorestframework-stubs to 1.9.0
+- Upgrade djangp-stubs to 1.15.0
+- Upgrade djangorestframework-stubs to 1.9.1
+- Upgrade @swc/core to 1.3.39
+- Upgrade @sentry/nextjs to 7.42.0
+- Upgrade eslint to 8.36.0
+- Upgrade prettier to 2.8.4
+- Upgrade @types/react to 18.0.28
+- Upgrade storybook to 6.5.16
+- Upgrade storybook-addon-next to 1.7.3
+- Upgrade eslint-config-prettier to 8.7.0
+- Upgrade i18next
+- Upgrade eslint-config-next to 13.2.4
+- Upgrade frontend testing libraries
+
+### Removed
+- Drop AWS S3 storage (@marteinn)
+
 ## [8.9.2] - 2023-02-16
 
 ### Fixed

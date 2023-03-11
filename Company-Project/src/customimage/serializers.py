@@ -37,7 +37,7 @@ class CustomImageSerializer(serializers.ModelSerializer):
             return None
 
         renditions = {}
-        for (name, spec) in self._renditions:
+        for name, spec in self._renditions:
             rendition = get_rendition_or_not_found(obj, spec)
             renditions[name] = rendition.attrs_dict
 

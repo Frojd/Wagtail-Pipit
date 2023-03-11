@@ -4,14 +4,7 @@
 #
 # Please note: This is an example on how a script that updates your stage environment
 # with data from prod can look like. You will most likely need to do changes here
-# depending on your server configuration ana aws preferences.
-#
-# You need to add the aws user `<awa_profile>` to ~/.aws/config
-#
-#   [profile company_project_devops]
-#   aws_access_key_id=<MY_AWS_ACCESS_KEY_ID>
-#   aws_secret_access_key=<MY_AWS_SECRET_ACCESS_KEY>
-#   region=eu-west-1
+# depending on your server configuration.
 #
 # Example usage `scripts/prod_to_stage.sh`
 
@@ -19,6 +12,9 @@ set -e
 
 readonly STAGE_HOST=deploy@stage.example.com
 readonly PROD_HOST=deploy@example.com
+readonly REMOTE_MEDIA_PATH=/mnt/persist/www/company_project/shared/media
+
+scripts_dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 
 read -p "This will replace the STAGE database - Are you sure? [y/n]" -n 1 -r
 echo # nl
@@ -26,11 +22,6 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
-
-type aws >/dev/null 2>&1 || {
-    echo >&2 "aws-cli must be installed for s3 sync to work (pip install awscli)"
-    exit 1
-}
 
 echo "Creating database dump from prod..."
 ssh $PROD_HOST "pg_dump -h localhost -Fc -f /tmp/db-dump.sql -U postgres company_project -x -O"
@@ -53,7 +44,10 @@ manage_prefix="source /mnt/persist/www/company_project/shared/venv/bin/activate 
 
 ssh $STAGE_HOST "$manage_prefix python manage.py change_site_domain --site_id=1 --new_site_domain='stage.example.com'"
 
-echo "Syncing s3 buckets..."
-aws --profile company_project_devops s3 sync s3://s3.stage.example.com s3://s3.example.com --acl public-read
+echo "Syncing media..."
+src_dir=${scripts_dir}/../src
+
+rsync -re ssh $PROD_HOST:$REMOTE_MEDIA_PATH/* ${src_dir}/media
+rsync -r ${src_dir}/media $STAGE_HOST:$REMOTE_MEDIA_PATH
 
 echo "Done!"
