@@ -5,7 +5,7 @@
 black
 django-debug-toolbar
 django-stubs==1.15.0
-djangorestframework-stubs==1.9.1
+djangorestframework-stubs==1.10.0
 isort
 pipdeptree
 ptvsd
