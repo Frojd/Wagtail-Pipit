@@ -41,10 +41,15 @@ We also instruct the view to use a new react component called `ProductListDetail
 
 
 ```python
-# main/pages/product_list.py
-from django.shortcuts import get_object_or_404.
+# main/pages/productlist.py
+from django.shortcuts import get_object_or_404
 ...
 from example_app.models import Product  # You will need to create this
+
+I found this line slightly confusing... In case I didn't overlook the code:
+If product is a model in main.models it doesn't have a serializer page and ProductSerializer
+In case product can be under pages, maybe an example pages/article.py
+
 ...
 
 
@@ -67,10 +72,10 @@ class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
         return response_cls(data)
 ```
 
-4. In the example below we are referring to a new serializer called `ProductListDetailSerializer` in `main/pages/product_list_serializer.py`, the serializer extends on `ProductListPageSerializer` should look something like this.
+4. In the example below we are referring to a new serializer called `ProductListDetailSerializer` in `main/pages/productlist_serializer.py`, the serializer extends on `ProductListPageSerializer` should look something like this.
 
 ```python
-# main/pages/product_list_serializer.py
+# main/pages/productlist_serializer.py
 ...
 from example_app.serializer import ProductSerializer  # You will need to create this
 ...
@@ -95,15 +100,16 @@ class ProductListDetailSerializer(ProductListPageSerializer):
 ## Full example
 
 ```python
-# main/pages/product_list.py
+# main/pages/productlist.py
 from django.shortcuts import get_object_or_404
 from rest_framework.request import Request
 from rest_framework.response import Response
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail_headless_preview.models import HeadlessPreviewMixin
+from rest_framework import serializers
 
 from example_app.models import Product
-from main.base import BasePage
+from .base import BasePage
 
 
 class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
