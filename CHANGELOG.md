@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Only set Next.js preview cookies on /preview
+
 ### Removed
 
 ## [8.10.0] - 2023-03-11
