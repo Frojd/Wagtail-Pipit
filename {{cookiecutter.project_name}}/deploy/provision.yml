@@ -68,6 +68,11 @@
         type: database
         role: "{{ database_user }}"
 
+    - name: Adds postgis extension
+      postgresql_ext:
+        name: postgis
+        db: "{{ database_name }}"
+
     - name: Creates uWSGI config
       template:
         src: files/uwsgi.ini.j2

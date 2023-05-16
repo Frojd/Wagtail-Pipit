@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Only set Next.js preview cookies on /preview
 - Fix issue with geodjango deps not being properly installed on CI (@ludwi)
 - Drop deprecated postgresql_user priv in favor of postgresql_user in provision
+- Activate postgis postgresql extension in provision
 
 ### Removed
 
