@@ -60,7 +60,13 @@
         db: "{{ database_name }}"
         name: "{{ database_user }}"
         password: "{{ database_password }}"
-        priv: ALL
+
+    - name: Associate postgres user to database
+      postgresql_privs:
+        db: "{{ database_name }}"
+        privs: ALL
+        type: database
+        role: "{{ database_user }}"
 
     - name: Creates uWSGI config
       template:
