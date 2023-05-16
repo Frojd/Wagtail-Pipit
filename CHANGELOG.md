@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix issue with geodjango deps not being properly installed on CI (@ludwi)
 - Drop deprecated postgresql_user priv in favor of postgresql_user in provision
 - Activate postgis postgresql extension in provision
+- Add sv_SE.utf8 collate when creating database in provision
 
 ### Removed
 

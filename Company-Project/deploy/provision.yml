@@ -52,6 +52,9 @@
     - name: Creates postgres database
       postgresql_db:
         name: "{{ database_name }}"
+        lc_collate: sv_SE.utf8
+        lc_ctype: sv_SE.utf8
+        template: template0
 
     - name: Creates postgres user
       postgresql_user:
