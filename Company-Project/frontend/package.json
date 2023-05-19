@@ -17,7 +17,7 @@
         "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
-        "@sentry/nextjs": "^7.42.0",
+        "@sentry/nextjs": "^7.51.1",
         "@types/react": "^18.0.28",
         "classnames": "^2.3.2",
         "i18next": "^22.4.11",
