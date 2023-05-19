@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade style-loader to 3.3.3
 - Upgrade @swc/jest to 0.2.26
 - Upgrade eslint-config-prettier to 8.8.0
+- Upgrade jest-junit to 16.0.0
 
 ### Removed
 - Drop automatic SVG to component, instead use inline components (@marteinn)
