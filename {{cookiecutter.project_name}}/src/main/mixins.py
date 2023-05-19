@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.functional import cached_property
 from rest_framework.serializers import Serializer
 from wagtail.admin.panels import (
-    EditHandler,
+    Panel,
     FieldPanel,
     MultiFieldPanel,
     ObjectList,
@@ -226,18 +226,18 @@ class SeoMixin(Page):
         abstract = True
 
 
-class EnhancedEditHandlerMixin:
+class EnhancedPanelMixin:
     edit_handler: PanelGroup
-    content_panels: List[EditHandler]
-    promote_panels: List[EditHandler]
-    settings_panels: List[EditHandler]
+    content_panels: List[Panel]
+    promote_panels: List[Panel]
+    settings_panels: List[Panel]
     extra_panels: List[Tuple[str, str]]
     base_form_class: WagtailAdminPageForm
 
     @cached_classmethod
-    def get_edit_handler(cls) -> EditHandler:
+    def get_edit_handler(cls) -> Panel:
         """
-        Get the EditHandler to use in the Wagtail admin when editing
+        Get the Panel to use in the Wagtail admin when editing
         this page type.
         """
 
@@ -267,9 +267,9 @@ class EnhancedEditHandlerMixin:
                 )
             )
 
-        EditHandler = TabbedInterface(tabs, base_form_class=cls.base_form_class)
+        Panel_ = TabbedInterface(tabs, base_form_class=cls.base_form_class)
 
-        return EditHandler.bind_to_model(cls)
+        return Panel_.bind_to_model(cls)
 
 
 class TimestampMixin(models.Model):

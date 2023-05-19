@@ -8,10 +8,10 @@ from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from wagtail.models import Page, PageManager
 
-from ..mixins import EnhancedEditHandlerMixin, SeoMixin
+from ..mixins import EnhancedPanelMixin, SeoMixin
 
 
-class BasePage(EnhancedEditHandlerMixin, SeoMixin, Page):
+class BasePage(EnhancedPanelMixin, SeoMixin, Page):
     is_creatable = False
     show_in_menus_default = True
 

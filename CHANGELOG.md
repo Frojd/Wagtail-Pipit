@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add Wagtail 5.0 support (@marteinn)
+
 ### Changed
 ### Fixed
 - Only set Next.js preview cookies on /preview
