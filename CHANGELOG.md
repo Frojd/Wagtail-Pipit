@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add sv_SE.utf8 collate when creating database in provision
 - Upgrade psycopg2 to 2.9.6
 - Upgrade sentry_sdk to 1.23.1
+- Upgrade djangorestframework-stubs to 3.14.0
 
 ### Removed
 
