@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make paths/imports better reflect scaffolder in Working with Wagtails routable pages (@DBonbon )
 
 ### Fixed
+- Replace deprecated STATICFILES_STORAGE setting with STORAGES (@marteinn)
 - Only set Next.js preview cookies on /preview
 - Fix issue with geodjango deps not being properly installed on CI (@ludwi)
 - Drop deprecated postgresql_user priv in favor of postgresql_user in provision
