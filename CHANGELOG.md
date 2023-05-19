@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Django 4.2 support (@marteinn)
 
 ### Changed
+- Make paths/imports better reflect scaffolder in Working with Wagtails routable pages (@DBonbon )
+
 ### Fixed
 - Only set Next.js preview cookies on /preview
 - Fix issue with geodjango deps not being properly installed on CI (@ludwi)
