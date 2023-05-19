@@ -122,6 +122,7 @@ jobs:
       - run:
           name: Install additional geodjango deps
           command: |
+            sudo apt-get update
             sudo apt-get install -y libproj-dev gdal-bin
       - run:
           name: Make sure black has been applied to .py files
@@ -229,4 +230,4 @@ workflows:
           requires:
             - frontend
             - django
- 
+

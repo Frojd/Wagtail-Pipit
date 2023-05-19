@@ -11,19 +11,6 @@ let nextConfig = {
     i18n,
 };
 
-const withSvgr = (nextConfig = {}) => {
-    return Object.assign({}, nextConfig, {
-        webpack(config) {
-            config.module.rules.push({
-                test: /\.svg$/i,
-                issuer: /\.[jt]sx?$/,
-                use: ['@svgr/webpack'],
-            });
-            return config;
-        },
-    });
-};
-
 const SentryWebpackPluginOptions = {
     // Additional config options for the Sentry Webpack plugin. Keep in mind that
     // the following options are set automatically, and overriding them is not
@@ -44,7 +31,7 @@ const SentryWebpackPluginOptions = {
 // });
 
 module.exports = () => {
-    const plugins = [withSvgr];
+    const plugins = [];
     return plugins.reduce((acc, plugin) => plugin(acc), {
         ...nextConfig,
     });

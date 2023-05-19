@@ -5,10 +5,48 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## Added
+## Changed
+## Fixed
+## Removed
+
+## [8.11.0] - 2023-05-19
+
 ### Added
+- Add Wagtail 5.0 support (@marteinn)
+- Add Django 4.2 support (@marteinn)
+
 ### Changed
+- Make paths/imports better reflect scaffolder in Working with Wagtails routable pages (@DBonbon )
+- Upgrade next to 13.4.3 (@marteinn)
+- Upgrade storybook to v7 (@marteinn)
+
 ### Fixed
+- Replace deprecated STATICFILES_STORAGE setting with STORAGES (@marteinn)
+- Only set Next.js preview cookies on /preview
+- Fix issue with geodjango deps not being properly installed on CI (@ludwi)
+- Drop deprecated postgresql_user priv in favor of postgresql_user in provision
+- Activate postgis postgresql extension in provision
+- Add sv_SE.utf8 collate when creating database in provision
+- Upgrade psycopg2 to 2.9.6
+- Upgrade sentry_sdk to 1.23.1
+- Upgrade djangorestframework-stubs to 3.14.0
+- Upgrade prettier to 2.8.8
+- Upgrade @sentry/nextjs to 7.51.1
+- Upgrade @swc/core to 1.3.59
+- Upgrade eslint to 8.40.0
+- Upgrade css-loader to 6.7.4
+- Upgrade style-loader to 3.3.3
+- Upgrade @swc/jest to 0.2.26
+- Upgrade eslint-config-prettier to 8.8.0
+- Upgrade jest-junit to 16.0.0
+- Upgrade i18next to 22.5.0
+- Upgrade react-i18next to 12.3.1
+- Upgrade @types/react to 18.2.6
+
 ### Removed
+- Drop automatic SVG to component, instead use inline components (@marteinn)
 
 ## [8.10.0] - 2023-03-11
 
