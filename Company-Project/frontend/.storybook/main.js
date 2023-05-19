@@ -37,17 +37,6 @@ module.exports = {
          * @see https://github.com/storybookjs/storybook/issues/4082#issuecomment-758272734
          * @see https://webpack.js.org/migrate/5/
          */
-        const imageRule = config.module.rules.find((rule) =>
-            rule.test.test('.svg')
-        );
-        imageRule.exclude = /\.svg$/;
-
-        // add your rule as normal
-        config.module.rules.push({
-            test: /\.svg$/,
-            use: ['@svgr/webpack'],
-        });
-
         config.resolve.fallback = {
             fs: false,
             tls: false,
