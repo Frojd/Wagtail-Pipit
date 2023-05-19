@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Make paths/imports better reflect scaffolder in Working with Wagtails routable pages (@DBonbon )
+- Upgrade next to 13.3.4 (@marteinn)
 
 ### Fixed
 - Replace deprecated STATICFILES_STORAGE setting with STORAGES (@marteinn)
