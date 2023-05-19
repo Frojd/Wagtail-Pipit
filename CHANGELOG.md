@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade jest-junit to 16.0.0
 - Upgrade i18next to 22.5.0
 - Upgrade react-i18next to 12.3.1
+- Upgrade @types/react to 18.2.6
 
 ### Removed
 - Drop automatic SVG to component, instead use inline components (@marteinn)
