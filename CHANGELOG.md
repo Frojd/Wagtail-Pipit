@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade djangorestframework-stubs to 3.14.0
 - Upgrade prettier to 2.8.8
 - Upgrade @sentry/nextjs to 7.51.1
+- Upgrade @swc/core to 1.3.59
 
 ### Removed
 - Drop automatic SVG to component, instead use inline components (@marteinn)
