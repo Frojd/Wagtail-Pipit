@@ -16,7 +16,7 @@ export default async (req, res) => {
 
     res.setPreviewData({ contentType, token, host }, {
         path: "/_preview",
-    });
+    })
     res.redirect('/_preview');
     res.end();
 };

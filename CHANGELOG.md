@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade djangorestframework-stubs to 3.14.0
 
 ### Removed
+- Drop automatic SVG to component, instead use inline components (@marteinn)
 
 ## [8.10.0] - 2023-03-11
 
