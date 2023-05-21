@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Added
 ## Changed
 ## Fixed
+- Upgrade wagtail-meta-preview to 2.0.1
+
 ## Removed
 
 ## [8.11.0] - 2023-05-19
