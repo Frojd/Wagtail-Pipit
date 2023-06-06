@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
-## [8.11.0] - 2023-06-06
+## [8.11.1] - 2023-06-06
 
 ## Fixed
 - Make sure slug uses proper widget (@ludwi)
