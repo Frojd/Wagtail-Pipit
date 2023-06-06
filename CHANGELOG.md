@@ -5,9 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+### Changed
+### Fixed
+### Removed
 
-## Added
-## Changed
+## [8.11.0] - 2023-06-06
+
 ## Fixed
 - Make sure slug uses proper widget (@ludwi)
 - Upgrade wagtail-meta-preview to 2.0.1
@@ -25,8 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade css-loader to 6.8.1
 - Upgrade @types/react to 18.2.8
 - Upgrade @swc/core to 1.3.62
-
-## Removed
 
 ## [8.11.0] - 2023-05-19
 
