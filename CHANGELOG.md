@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade storybook and related packages to 7.0.18
 - Upgrade eslint to 8.42.0
 - Upgrade eslint-config-next to 13.4.4
+- Upgrade @sentry/nextjs to 7.54.0
+
 
 
 ## Removed
