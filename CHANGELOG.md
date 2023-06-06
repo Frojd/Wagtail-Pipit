@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade next-i18next to 13.3.0
 - Upgrade css-loader to 6.8.1
 - Upgrade @types/react to 18.2.8
+- Upgrade @swc/core to 1.3.62
 
 ## Removed
 
