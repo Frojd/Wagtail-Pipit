@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 - Upgrade wagtail-meta-preview to 2.0.1
 - Upgrade django to 4.2.2
+- Upgrade wagtail to 5.0.1
 
 ## Removed
 
