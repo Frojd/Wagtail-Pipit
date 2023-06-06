@@ -5,11 +5,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+### Changed
+### Fixed
+### Removed
 
-## Added
-## Changed
+## [8.11.0] - 2023-06-06
+
 ## Fixed
-## Removed
+- Make sure slug uses proper widget (@ludwi)
+- Upgrade wagtail-meta-preview to 2.0.1
+- Upgrade django to 4.2.2
+- Upgrade wagtail to 5.0.1
+- Upgrade sentry_sdk to 1.25.0
+- Upgrade django-stubs to 4.2.1
+- Upgrade djangorestframework-stubs to 3.14.1
+- Upgrade storybook and related packages to 7.0.18
+- Upgrade eslint to 8.42.0
+- Upgrade eslint-config-next to 13.4.4
+- Upgrade @sentry/nextjs to 7.54.0
+- Upgrade next.js to 13.4.4
+- Upgrade next-i18next to 13.3.0
+- Upgrade css-loader to 6.8.1
+- Upgrade @types/react to 18.2.8
+- Upgrade @swc/core to 1.3.62
 
 ## [8.11.0] - 2023-05-19
 

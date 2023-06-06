@@ -16,6 +16,7 @@ from wagtail.admin.panels import (
     TabbedInterface,
     WagtailAdminPageForm,
 )
+from wagtail.admin.widgets.slug import SlugInput
 from wagtail.models import Page
 from wagtail.utils.decorators import cached_classmethod
 from wagtail_meta_preview.panels import (
@@ -118,7 +119,7 @@ class SeoMixin(Page):
     )
 
     promote_panels = [
-        FieldPanel("slug"),
+        FieldPanel("slug", widget=SlugInput),
         GoogleFieldPreviewPanel(
             [
                 FieldPanel("seo_title"),
