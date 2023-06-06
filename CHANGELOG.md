@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade sentry_sdk to 1.25.0
 - Upgrade django-stubs to 4.2.1
 - Upgrade djangorestframework-stubs to 3.14.1
+- Upgrade storybook and related packages to 7.0.18
 
 
 ## Removed
