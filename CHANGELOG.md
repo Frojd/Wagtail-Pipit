@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Solve missing netcat installation candidate in docker
+
 ### Removed
 
 ## [8.11.1] - 2023-06-06

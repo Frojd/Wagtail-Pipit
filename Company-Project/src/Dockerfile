@@ -21,7 +21,7 @@ WORKDIR /app
 ADD . /app/
 
 RUN apt-get update \
-    && apt-get install -y netcat gcc libpq-dev \
+    && apt-get install -y netcat-traditional gcc libpq-dev \
     && apt-get install -y binutils libproj-dev gdal-bin \
     && apt-get install -y vim curl gettext \
     && rm -rf /var/lib/apt/lists/*
