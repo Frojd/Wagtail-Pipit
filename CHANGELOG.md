@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade react-i18next to 13.0.0
 
 ### Removed
+- Drop unised AWS variables from env provisioning
 
 ## [8.11.1] - 2023-06-06
 
