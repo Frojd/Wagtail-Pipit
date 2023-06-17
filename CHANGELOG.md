@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @types/react to 18.2.12
 - Upgrade next.js to 13.4.6
 - Upgrade eslint to 8.43.0
+- Upgrade eslint-config-next to 13.4.6
 
 ### Removed
 
