@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import s from './Hero.module.css';
 import logo from '../../public/img/logo.svg';
 
+import i18n from '../../i18n';
+
 const Hero = ({ title }) => (
     <div className={s.Container}>
         <img
@@ -19,6 +21,7 @@ const Hero = ({ title }) => (
             />
             {title}
         </h1>
+        <p className={s.Preamble}>{i18n.t("helloWorld")}</p>
     </div>
 );
 

@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add i18-next translation demo in Hero
+
 ### Changed
 ### Fixed
 - Solve missing netcat installation candidate in docker
