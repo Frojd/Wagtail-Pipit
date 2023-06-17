@@ -1,4 +1,4 @@
 User-agent: *
-Sitemap: http://example.com/wt/sitemap.xml
+Sitemap: https://example.com/wt/sitemap.xml
 Disallow: /wt/admin/
 Disallow: /wt/cms/

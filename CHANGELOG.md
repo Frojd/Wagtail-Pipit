@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix issue with broken npm run storbyook command
 - Use ansistrano_deploy_to instead of /mnt/persist/www/{project_slug} in deploy
 - Include project slug in CI key email signature
+- Use https in provisioned sitemap url
 
 ### Removed
 
