@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Solve missing netcat installation candidate in docker
 - Upgrade wagtail-meta-preview to 3.0.0
 - Upgrade wagtail_headless_preview to 0.6.0
+- Upgrade sentry_sdk to 1.25.1
 
 ### Removed
 
