@@ -5,7 +5,7 @@
 
   tasks:
     - name: Generate deploy key for {{ ansible_host }}
-      command: ssh-keygen -m PEM -t ed25519 -b 4096 -C "ci@frojd.se" -f deploy_keys/{{ ansible_host }} -N ""
+      command: ssh-keygen -m PEM -t ed25519 -b 4096 -C "ci+{{ project_slug }}@frojd.se" -f deploy_keys/{{ ansible_host }} -N ""
       delegate_to: 127.0.0.1
 {% endraw %}
 
