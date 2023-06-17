@@ -10,6 +10,6 @@ apps:
     uid: 'deploy'
     gid: 'www-data'
     env:
-      NODE_PORT: {{ 3000+(pm2_application_count.stdout|int) }}
+      PORT: {{ 3000+(pm2_application_count.stdout|int) }}
       NODE_ENV: production
 {% endraw %}
