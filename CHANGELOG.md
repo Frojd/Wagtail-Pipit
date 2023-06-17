@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use https in provisioned sitemap url
 - Use https when making Next.js backend calls to Wagtail on stage/prod
 - Change issue with Next.js not running correct port on stage/prod
+- Upgrade storybook and related packages to 7.0.22
 
 ### Removed
 
