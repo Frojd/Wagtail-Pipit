@@ -5,10 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+### Changed
+### Fixed
+### Removed
+
+## [8.12.0] - 2023-06-17
+
 ### Added
 - Add i18-next translation demo in Hero (@marteinn)
 
-### Changed
 ### Fixed
 - Solve missing netcat installation candidate in docker (@marteinn)
 - Update copy on meta fields (@marteinn)
@@ -34,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade react-i18next to 13.0.0
 
 ### Removed
-- Drop unised AWS variables from env provisioning
+- Drop unused AWS variables from env provisioning
 - Drop unused APP_LOG_DIR variable from provisioning
 
 ## [8.11.1] - 2023-06-06
