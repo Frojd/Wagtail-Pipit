@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 - Solve missing netcat installation candidate in docker
+- Upgrade wagtail-meta-preview to 3.0.0
 
 ### Removed
 
