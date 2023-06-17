@@ -6,22 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Add i18-next translation demo in Hero
+- Add i18-next translation demo in Hero (@marteinn)
 
 ### Changed
 ### Fixed
-- Solve missing netcat installation candidate in docker
+- Solve missing netcat installation candidate in docker (@marteinn)
 - Update copy on meta fields (@marteinn)
+- Clarify Node 18 dependency (@saraojelind)
+- Fix issue with broken npm run storbyook command (@marteinn)
+- Use ansistrano_deploy_to instead of /mnt/persist/www/{project_slug} in deploy (@saraojelind)
+- Include project slug in CI key email signature (@marteinn)
+- Use https in provisioned sitemap url (@marteinn)
+- Use https when making Next.js backend calls to Wagtail on stage/prod (@marteinn)
+- Fix issue with Next.js not running correct port on stage/prod (@marteinn)
 - Upgrade wagtail-meta-preview to 3.0.0
 - Upgrade wagtail_headless_preview to 0.6.0
 - Upgrade sentry_sdk to 1.25.1
-- Clarify Node 18 dependency
-- Fix issue with broken npm run storbyook command
-- Use ansistrano_deploy_to instead of /mnt/persist/www/{project_slug} in deploy
-- Include project slug in CI key email signature
-- Use https in provisioned sitemap url
-- Use https when making Next.js backend calls to Wagtail on stage/prod
-- Change issue with Next.js not running correct port on stage/prod
 - Upgrade storybook and related packages to 7.0.22
 - Upgrade @sentry/nextjs to 7.55.2
 - Upgrade @swc/core to 1.3.64
