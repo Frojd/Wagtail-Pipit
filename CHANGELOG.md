@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change issue with Next.js not running correct port on stage/prod
 - Upgrade storybook and related packages to 7.0.22
 - Upgrade @sentry/nextjs to 7.55.2
+- Upgrade @swc/core to 1.3.64
 
 ### Removed
 
