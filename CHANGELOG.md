@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Drop unised AWS variables from env provisioning
+- Drop unused APP_LOG_DIR variable from provisioning
 
 ## [8.11.1] - 2023-06-06
 
