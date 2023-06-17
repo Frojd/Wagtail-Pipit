@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade sentry_sdk to 1.25.1
 - Clarify Node 18 dependency
 - Fix issue with broken npm run storbyook command
+- Use ansistrano_deploy_to instead of /mnt/persist/www/{project_slug} in deploy
 
 ### Removed
 

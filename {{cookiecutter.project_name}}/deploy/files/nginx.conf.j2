@@ -27,29 +27,29 @@ server {
   # location /storybook/ {
   #   auth_basic "Restricted";
   #   auth_basic_user_file /mnt/persist/nginx/conf.d/.htpasswd;
-  #   alias /mnt/persist/www/{{ project_slug }}/current/src/frontend/storybook-static/;
+  #   alias {{ ansistrano_deploy_to }}/current/src/frontend/storybook-static/;
   # }
 
   location /_next/static/ {
     expires 30d;
     access_log off;
-    alias /mnt/persist/www/{{ project_slug }}/current/src/frontend/.next/static/;
+    alias {{ ansistrano_deploy_to }}/current/src/frontend/.next/static/;
   }
 
   location /wt/static/ {
     expires 30d;
     access_log off;
-    alias /mnt/persist/www/{{ project_slug }}/current/src/static/;
+    alias {{ ansistrano_deploy_to }}/current/src/static/;
   }
 
   location /wt/media/ {
     expires 30d;
     access_log off;
-    alias /mnt/persist/www/{{ project_slug }}/current/src/media/;
+    alias {{ ansistrano_deploy_to }}/current/src/media/;
   }
 
   location /robots.txt {
-    alias /mnt/persist/www/{{ project_slug }}/shared/robots.txt;
+    alias {{ ansistrano_deploy_to }}/shared/robots.txt;
   }
 
   location /wt/ {
