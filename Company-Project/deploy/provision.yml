@@ -120,6 +120,6 @@
     - name: Add wagtail cronjobs
       lineinfile:
         path: /mnt/persist/etc/crontab
-        line: "0 * * * *  www-data /mnt/persist/www/{{ project_slug }}/shared/venv/bin/python /mnt/persist/www/{{ project_slug }}/current/src/manage.py publish_scheduled_pages"
+        line: "0 * * * *  www-data {{ ansistrano_deploy_to }}/shared/venv/bin/python {{ ansistrano_deploy_to }}/current/src/manage.py publish_scheduled_pages"
 
 

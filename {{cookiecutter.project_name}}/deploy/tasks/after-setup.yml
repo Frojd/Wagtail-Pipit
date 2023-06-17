@@ -1,19 +1,19 @@
 {% raw -%}
 - name: Create Django .env file
   file:
-    path: "{{ansistrano_shared_path}}/.env"
+    path: "{{ ansistrano_shared_path }}/.env"
     state: touch
     mode: 0775
 
 - name: Create Next.js .env file
   file:
-    path: "{{ansistrano_shared_path}}/.env.next"
+    path: "{{ ansistrano_shared_path }}/.env.next"
     state: touch
     mode: 0775
 
 - name: Create media dir
   file:
-    path: "{{ansistrano_shared_path}}/media"
+    path: "{{ ansistrano_shared_path }}/media"
     owner: deploy
     group: www-data
     state: directory

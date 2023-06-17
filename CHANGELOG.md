@@ -5,12 +5,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Added
 ### Changed
 ### Fixed
 ### Removed
 
-## [8.11.0] - 2023-06-06
+## [8.12.0] - 2023-06-17
+
+### Added
+- Add i18-next translation demo in Hero (@marteinn)
+
+### Fixed
+- Solve missing netcat installation candidate in docker (@marteinn)
+- Update copy on meta fields (@marteinn)
+- Clarify Node 18 dependency (@saraojelind)
+- Fix issue with broken npm run storbyook command (@marteinn)
+- Use ansistrano_deploy_to instead of /mnt/persist/www/{project_slug} in deploy (@saraojelind)
+- Include project slug in CI key email signature (@marteinn)
+- Use https in provisioned sitemap url (@marteinn)
+- Use https when making Next.js backend calls to Wagtail on stage/prod (@marteinn)
+- Fix issue with Next.js not running correct port on stage/prod (@marteinn)
+- Upgrade wagtail-meta-preview to 3.0.0
+- Upgrade wagtail_headless_preview to 0.6.0
+- Upgrade sentry_sdk to 1.25.1
+- Upgrade storybook and related packages to 7.0.22
+- Upgrade @sentry/nextjs to 7.55.2
+- Upgrade @swc/core to 1.3.64
+- Upgrade @types/react to 18.2.12
+- Upgrade next.js to 13.4.6
+- Upgrade eslint to 8.43.0
+- Upgrade eslint-config-next to 13.4.6
+- Upgrade i18next to 23.1.0
+- Upgrade next-i18next to 14.0.0
+- Upgrade react-i18next to 13.0.0
+
+### Removed
+- Drop unused AWS variables from env provisioning
+- Drop unused APP_LOG_DIR variable from provisioning
+
+## [8.11.1] - 2023-06-06
 
 ## Fixed
 - Make sure slug uses proper widget (@ludwi)

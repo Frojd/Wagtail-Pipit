@@ -37,7 +37,7 @@ executors:
       - image: cimg/base:stable-20.04
   node:
     docker:
-      - image: cimg/node:16.15
+      - image: cimg/node:18:16
   python:
     docker:
       - image: cimg/python:3.8.13
@@ -230,4 +230,4 @@ workflows:
           requires:
             - frontend
             - django
-
+ 

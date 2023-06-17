@@ -6,14 +6,14 @@ master = true
 enable-threads = true
 processes = 1
 threads = 2
-wsgi-file = /mnt/persist/www/{{ project_slug }}/current/src/pipit/wsgi.py
-virtualenv = /mnt/persist/www/{{ project_slug }}/shared/venv
-chdir = /mnt/persist/www/{{ project_slug }}/current/src
-touch-reload = /mnt/persist/www/{{ project_slug }}/reload
+wsgi-file = {{ ansistrano_deploy_to }}/current/src/pipit/wsgi.py
+virtualenv = {{ ansistrano_deploy_to }}/shared/venv
+chdir = {{ ansistrano_deploy_to }}/current/src
+touch-reload = {{ ansistrano_deploy_to }}/reload
 memory-report = true
 stats = 127.0.0.1:{{ 9190+(uwsgi_application_count.stdout|int) }}
 
-for-readline = /mnt/persist/www/{{ project_slug }}/shared/.env
+for-readline = {{ ansistrano_deploy_to }}/shared/.env
   env = %(_)
 endfor =
 

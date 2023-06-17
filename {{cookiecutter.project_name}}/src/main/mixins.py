@@ -52,7 +52,7 @@ class SeoMixin(Page):
         blank=True,
         null=True,
         verbose_name=_("Facebook title"),
-        help_text=_("Fallbacks to seo title if empty"),
+        help_text=_("Falls back to seo title if empty"),
     )
 
     og_description = models.CharField(
@@ -60,7 +60,7 @@ class SeoMixin(Page):
         blank=True,
         null=True,
         verbose_name=_("Facebook description"),
-        help_text=_("Fallbacks to seo description if empty"),
+        help_text=_("Falls back to seo description if empty"),
     )
 
     og_image = models.ForeignKey(
@@ -81,7 +81,7 @@ class SeoMixin(Page):
         blank=True,
         null=True,
         verbose_name=_("Twitter title"),
-        help_text=_("Fallbacks to facebook title if empty"),
+        help_text=_("Falls back to facebook title if empty"),
     )
 
     twitter_description = models.CharField(
@@ -89,7 +89,7 @@ class SeoMixin(Page):
         blank=True,
         null=True,
         verbose_name=_("Twitter description"),
-        help_text=_("Fallbacks to facebook description if empty"),
+        help_text=_("Falls back to facebook description if empty"),
     )
 
     twitter_image = models.ForeignKey(
@@ -99,7 +99,7 @@ class SeoMixin(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         verbose_name=_("Twitter image"),
-        help_text=_("Fallbacks to facebook image if empty"),
+        help_text=_("Falls back to facebook image if empty"),
     )
 
     robot_noindex = models.BooleanField(
