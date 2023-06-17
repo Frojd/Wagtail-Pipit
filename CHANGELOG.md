@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use ansistrano_deploy_to instead of /mnt/persist/www/{project_slug} in deploy
 - Include project slug in CI key email signature
 - Use https in provisioned sitemap url
+- Use https when making Next.js backend calls to Wagtail on stage/prod
 
 ### Removed
 
