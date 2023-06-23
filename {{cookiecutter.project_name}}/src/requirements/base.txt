@@ -1,6 +1,6 @@
 Django==4.2.2
 psycopg2==2.9.6
-sentry_sdk==1.25.1
+sentry_sdk==1.26.0
 python-dotenv==1.0.0
 wagtail==5.0.1
 wagtail-meta-preview==3.0.0
