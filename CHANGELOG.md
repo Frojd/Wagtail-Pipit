@@ -5,11 +5,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
 ### Added
-### Changed
 ### Fixed
+### Changed
 ### Removed
+
+## [8.12.1] - 2023-06-28
+
+### Fixed
+- Upgrade Wagtail to 5.0.2
+- Upgrade sentry-sdk to 1.26.0
+- Upgrade django-stubs to 4.2.2
+- Upgrade djangorestframework-stubs to 3.14.2
+- Upgrade Next.js to 13.4.7
+- Upgrade @swc/core to 1.3.66
+- Upgrade @sentry/nextjs to 7.56.0
+- Upgrade @types/react to 18.2.14
+- Upgrade eslint-config-next 13.4.7
+- Upgrade react-i18next to 13.0.1
+- Upgrade @storybook/addon-actions to 7.0.24
+- Upgrade @storybook/addon-viewport to 7.0.24
+- Upgrade @storybook/addons to 7.0.24
+
 
 ## [8.12.0] - 2023-06-17
 
