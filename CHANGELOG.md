@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @sentry/nextjs to 7.56.0
 - Upgrade @types/react to 18.2.14
 - Upgrade eslint-config-next 13.4.7
+- Upgrade react-i18next to 13.0.1
 
 ### Removed
 
