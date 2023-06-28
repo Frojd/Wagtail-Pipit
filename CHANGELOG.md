@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade django-stubs to 4.2.2
 - Upgrade djangorestframework-stubs to 3.14.2
 - Upgrade Next.js to 13.4.7
+- Upgrade @swc/core to 1.3.66
 
 ### Removed
 
