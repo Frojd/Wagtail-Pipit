@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @types/react to 18.2.14
 - Upgrade eslint-config-next 13.4.7
 - Upgrade react-i18next to 13.0.1
+- Upgrade @storybook/addon-actions to 7.0.24
+- Upgrade @storybook/addon-viewport to 7.0.24
+- Upgrade @storybook/addons to 7.0.24
 
 ### Removed
 
