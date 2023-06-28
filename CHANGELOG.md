@@ -5,9 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
 ### Added
+### Fixed
 ### Changed
+### Removed
+
+## [8.12.1] - 2023-06-28
+
 ### Fixed
 - Upgrade Wagtail to 5.0.2
 - Upgrade sentry-sdk to 1.26.0
@@ -23,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @storybook/addon-viewport to 7.0.24
 - Upgrade @storybook/addons to 7.0.24
 
-### Removed
 
 ## [8.12.0] - 2023-06-17
 
