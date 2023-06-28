@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 - Upgrade Wagtail to 5.0.2
+- Upgrade sentry-sdk to 1.26.0
 
 ### Removed
 
