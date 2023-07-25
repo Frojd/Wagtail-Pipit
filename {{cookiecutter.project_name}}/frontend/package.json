@@ -50,7 +50,7 @@
         "@storybook/addon-a11y": "^7.0.22",
         "@storybook/addon-actions": "^7.0.24",
         "@storybook/addon-backgrounds": "^7.0.22",
-        "@storybook/addon-viewport": "^7.0.24",
+        "@storybook/addon-viewport": "^7.1.1",
         "@storybook/addons": "^7.0.24",
         "@storybook/nextjs": "^7.0.22",
         "@storybook/react": "^7.0.22",
