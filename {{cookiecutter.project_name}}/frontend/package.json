@@ -20,7 +20,7 @@
         "@sentry/nextjs": "^7.56.0",
         "@types/react": "^18.2.14",
         "classnames": "^2.3.2",
-        "i18next": "^23.1.0",
+        "i18next": "^23.4.1",
         "next": "13.4.7",
         "next-i18next": "^14.0.0",
         "prop-types": "^15.8.1",
