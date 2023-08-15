@@ -6,13 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+- Replace psycopg2 with psycopg3
+
 ### Fixed
 - Upgrade wagtail to 5.1.1
 - Upgrade Django to 4.2.4
 - Upgrade sentry_sdk to 1.29.2
 - Upgrade django-stubs to 4.2.3
 
-### Changed
 ### Removed
 
 ## [8.12.1] - 2023-06-28
