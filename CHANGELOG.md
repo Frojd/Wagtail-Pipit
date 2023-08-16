@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade eslint to 8.47.0
 - Upgradw eslint-config-next to 13.4.16
 - Upgrade prettier to 3.0.2
+- Upgrade eslint-config-prettier to 9.0.0
 
 ### Removed
 
