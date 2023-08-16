@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @testing-library/jest-dom 6.0.0
 - Upgrade @types/react to 18.2.20
 - Upgrade i18next to 23.4.4
+- Upgrade react-i18nex to 13.1.2
 
 ### Removed
 
