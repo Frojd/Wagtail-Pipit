@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [8.12.2] - 2023-08-16
+
+### Changed
 - Replace psycopg2 with psycopg3
 
 ### Fixed
@@ -28,8 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgradw eslint-config-next to 13.4.16
 - Upgrade prettier to 3.0.2
 - Upgrade eslint-config-prettier to 9.0.0
-
-### Removed
 
 ## [8.12.1] - 2023-06-28
 
