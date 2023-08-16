@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade i18next to 23.4.4
 - Upgrade react-i18nex to 13.1.2
 - Upgrade eslint to 8.47.0
+- Upgradw eslint-config-next to 13.4.16
 
 ### Removed
 
