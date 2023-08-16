@@ -21,7 +21,7 @@ const Hero = ({ title }) => (
             />
             {title}
         </h1>
-        <p className={s.Preamble}>{i18n.t("helloWorld")}</p>
+        <p className={s.Preamble}>{i18n.t('helloWorld')}</p>
     </div>
 );
 

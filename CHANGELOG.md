@@ -6,9 +6,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-### Fixed
 ### Changed
+### Fixed
 ### Removed
+
+## [8.12.2] - 2023-08-16
+
+### Changed
+- Replace psycopg2 with psycopg3
+
+### Fixed
+- Upgrade wagtail to 5.1.1
+- Upgrade Django to 4.2.4
+- Upgrade sentry_sdk to 1.29.2
+- Upgrade django-stubs to 4.2.3
+- Upgrade Next.js to 13.4.16
+- Upgrade @sentry/nextjs to 7.64.0
+- Upgrade storybook to 7.3.1
+- Upgrade @swc/core to 1.3.77
+- Upgrade @swc/jest 0.2.29
+- Upgrade jest 29.6.2
+- Upgrade @testing-library/jest-dom 6.0.0
+- Upgrade @types/react to 18.2.20
+- Upgrade i18next to 23.4.4
+- Upgrade react-i18nex to 13.1.2
+- Upgrade eslint to 8.47.0
+- Upgradw eslint-config-next to 13.4.16
+- Upgrade prettier to 3.0.2
+- Upgrade eslint-config-prettier to 9.0.0
 
 ## [8.12.1] - 2023-06-28
 
