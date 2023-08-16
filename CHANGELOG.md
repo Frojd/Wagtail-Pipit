@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade sentry_sdk to 1.29.2
 - Upgrade django-stubs to 4.2.3
 - Upgrade Next.js to 13.4.16
+- Upgrade @sentry/nextjs to 7.64.0
 
 ### Removed
 
