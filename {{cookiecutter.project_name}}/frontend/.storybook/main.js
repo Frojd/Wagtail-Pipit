@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
     staticDirs: ['../public'],
     stories: [
         '../stories/**/*.stories.js',
@@ -21,9 +21,12 @@ module.exports = {
     },
     docs: {
         autodocs: true,
+        defaultName: 'Documentation',
     },
     framework: {
         name: '@storybook/nextjs',
         options: {},
     },
 };
+
+export default config;
