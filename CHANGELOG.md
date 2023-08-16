@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @swc/jest 0.2.29
 - Upgrade jest 29.6.2
 - Upgrade @testing-library/jest-dom 6.0.0
+- Upgrade @types/react to 18.2.20
 
 ### Removed
 
