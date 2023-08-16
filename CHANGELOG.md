@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @sentry/nextjs to 7.64.0
 - Upgrade storybook to 7.3.1
 - Upgrade @swc/core to 1.3.77
+- Upgrade @swc/jest 0.2.29
 
 ### Removed
 
