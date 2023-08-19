@@ -10,14 +10,16 @@ export async function getServerSideProps({ req, preview, previewData }) {
         return { props: {} };
     }
 
-    const { contentType, token, host } = previewData;
+    const { contentType, token, host, inPreviewPanel } = previewData;
 
     // TODO: Add proper token verification and error message
     try {
         const { json: pagePreviewData } = await getPagePreview(
             contentType,
             token,
-            {},
+            {
+                in_preview_panel: inPreviewPanel,
+            },
             {
                 headers: {
                     cookie: req.headers.cookie,

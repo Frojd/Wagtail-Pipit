@@ -58,6 +58,10 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
     def listing_view(self, request):
         page = self.get_object()
         setattr(request, "is_preview", True)
+
+        in_preview_panel = request.GET.get("in_preview_panel", None) == "true"
+        setattr(request, "in_preview_panel", in_preview_panel)
+
         return page.serve(request)
 
     def get_object(self):
