@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 - Fix bug preventing request.is_preview from being set
+- Hide wagtail userbar on preview
 
 ### Removed
 
