@@ -57,6 +57,7 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
 
     def listing_view(self, request):
         page = self.get_object()
+        setattr(request, "is_preview", True)
         return page.serve(request)
 
     def get_object(self):

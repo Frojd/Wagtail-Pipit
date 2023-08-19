@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Fix bug preventing request.is_preview from being set
+
 ### Removed
 
 ## [8.12.2] - 2023-08-16
