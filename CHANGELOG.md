@@ -8,9 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
-- Fix bug preventing request.is_preview from being set
-- Hide wagtail userbar when in preview panel
-- Make sure in_preview_panel is set
+- Fix bug preventing request.is_preview from being set (@marteinn)
+- Hide wagtail userbar when in preview panel (@marteinn)
+- Make sure in_preview_panel is set (@marteinn)
 - Drop non running get_preview_url override from base page (@marteinn)
 
 ### Removed
