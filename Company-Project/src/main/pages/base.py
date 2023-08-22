@@ -68,19 +68,3 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
     def get_serializer_class(self) -> Type[Serializer]:
         cls: Type[Serializer] = import_string(self.serializer_class)
         return cls
-
-    def get_preview_url(self, token):
-        """
-        Override wagtail_headless_preview/get_preview_url and append hostname
-        """
-        import urllib
-
-        preview_url = super().get_preview_url(token)
-        preview_url = (
-            preview_url
-            + "&"
-            + urllib.parse.urlencode(
-                {"host": f"{self.get_site().hostname}:{self.get_site().port}"}
-            )
-        )
-        return preview_url
