@@ -8,13 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+### Removed
+
+## [8.12.3] - 2023-08-22
+
+### Fixed
 - Fix bug preventing request.is_preview from being set (@marteinn)
 - Hide wagtail userbar when in preview panel (@marteinn)
 - Make sure in_preview_panel is set (@marteinn)
 - Drop non running get_preview_url override from base page (@marteinn)
-- Remove deprecated wagtail.contrib.modeladmin from INSTALLED_APPS (@marteinn)
 
 ### Removed
+- Remove deprecated wagtail.contrib.modeladmin app from INSTALLED_APPS (@marteinn)
 
 ## [8.12.2] - 2023-08-16
 
