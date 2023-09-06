@@ -4,7 +4,7 @@
 # Add local extra requirements here (django-debug etc)
 black
 django-debug-toolbar
-django-stubs==4.2.3
+django-stubs==4.2.4
 djangorestframework-stubs==3.14.2
 isort
 pipdeptree
