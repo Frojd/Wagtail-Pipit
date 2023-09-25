@@ -81,7 +81,19 @@ jobs:
             mkdir -p test-results/jest
             cd frontend
             npm run test:ci
+
             echo "NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN" >> .env
+
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              echo "SENTRY_ENVIRONMENT=stage" >> .env
+              echo "SENTRY_RELEASE=develop-${CIRCLE_BRANCH}" >> .env
+            fi
+
+            if [ "${CIRCLE_TAG}" ]; then
+              echo "SENTRY_ENVIRONMENT=prod" >> .env
+              echo "SENTRY_RELEASE=${CIRCLE_TAG}" >> .env
+            fi
+
             npm run build
             npm run build-storybook
             # So we don't copy the gigantic node_modules on each deploy
