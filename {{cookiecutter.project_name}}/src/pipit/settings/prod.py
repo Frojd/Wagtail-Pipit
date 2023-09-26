@@ -78,9 +78,7 @@ sentry_sdk.init(
     dsn=SENTRY_DSN,
     release=APP_VERSION,
     environment=SENTRY_ENVIRONMENT,
-    integrations=[
-        DjangoIntegration()
-    ],
+    integrations=[DjangoIntegration()],
     traces_sample_rate=0.1,
 )
 

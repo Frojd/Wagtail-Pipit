@@ -47,8 +47,10 @@ if settings.DEBUG:
 
         urlpatterns += [path("wt/__debug__/", include(debug_toolbar.urls))]
 
+
 def trigger_error(request):
     division_by_zero = 1 / 0
+
 
 urlpatterns += [
     path("wt/sentry-debug/", trigger_error),

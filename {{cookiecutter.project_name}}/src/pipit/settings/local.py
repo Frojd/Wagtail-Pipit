@@ -11,7 +11,9 @@ TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # type: ignore[index]
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Email notification url
-WAGTAILADMIN_BASE_URL = "https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}"
+WAGTAILADMIN_BASE_URL = (
+    "https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}"
+)
 
 # Allow weak local passwords
 AUTH_PASSWORD_VALIDATORS = []
