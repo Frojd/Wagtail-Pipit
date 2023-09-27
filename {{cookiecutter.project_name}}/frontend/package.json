@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "@sentry/nextjs": "^7.69.0",
-        "@types/react": "^18.2.20",
+        "@types/react": "^18.2.23",
         "classnames": "^2.3.2",
         "i18next": "^23.4.4",
         "next": "13.4.16",
