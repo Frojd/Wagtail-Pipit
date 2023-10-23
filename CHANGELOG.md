@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Upgrade Sentry SDK and use django extra (@mikaelengstrom)
 - Improve Sentry Next.js integration (@mikaelengstrom)
-- Upgrade Wagtail to 5.2
+- Upgrade Wagtail to 5.2 (@marteinn)
+- Upgrade psycopg to 3.1.12
 
 ### Removed
 
