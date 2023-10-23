@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Wagtail to 5.2 (@marteinn)
 - Upgrade psycopg to 3.1.12
 - Upgrade Django to 4.2.6
+- Upgrade wagtail_headless_preview to 0.7.0
 
 ### Removed
 
