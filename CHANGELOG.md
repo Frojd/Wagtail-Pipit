@@ -6,8 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add wt/sentry-debug/ endpoint for verifying Sentry integration (@mikaelengstrom)
+- Add Sentry sample rate (@mikaelengstrom)
+
 ### Changed
 ### Fixed
+- Upgrade Sentry SDK and use django extra (@mikaelengstrom)
+- Improve Sentry Next.js integration (@mikaelengstrom)
 - Upgrade Wagtail to 5.2
 
 ### Removed
