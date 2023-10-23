@@ -49,7 +49,7 @@ if settings.DEBUG:
 
 
 def trigger_error(request):
-    division_by_zero = 1 / 0
+    division_by_zero = 1 / 0  # NOQA: F841
 
 
 urlpatterns += [
