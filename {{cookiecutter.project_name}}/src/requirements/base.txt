@@ -4,4 +4,4 @@ sentry_sdk[django]==1.31.0
 python-dotenv==1.0.0
 wagtail==5.1.1
 wagtail-meta-preview==3.0.0
-wagtail_headless_preview==0.6.0
+wagtail_headless_preview==0.7.0
