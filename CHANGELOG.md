@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [8.13.0] - 2023-10-24
+### Added
 - Add wt/sentry-debug/ endpoint for verifying Sentry integration (@mikaelengstrom)
 - Add Sentry sample rate (@mikaelengstrom)
 
-### Changed
 ### Fixed
 - Upgrade Sentry SDK and use django extra (@mikaelengstrom)
 - Improve Sentry Next.js integration (@mikaelengstrom)
@@ -30,9 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade next-i18next to 14.0.0
 - Upgrade storybook to 7.5.1
 
-
-### Removed
-
 ## [8.12.3] - 2023-08-22
 
 ### Fixed
@@ -43,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove deprecated wagtail.contrib.modeladmin app from INSTALLED_APPS (@marteinn)
+
 
 ## [8.12.2] - 2023-08-16
 
