@@ -80,6 +80,7 @@ sentry_sdk.init(
     environment=SENTRY_ENVIRONMENT,
     debug=True,
     integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
 )
 
 # Add sentry to logging

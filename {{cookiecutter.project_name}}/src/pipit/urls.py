@@ -47,7 +47,13 @@ if settings.DEBUG:
 
         urlpatterns += [path("wt/__debug__/", include(debug_toolbar.urls))]
 
+
+def trigger_error(request):
+    division_by_zero = 1 / 0  # NOQA: F841
+
+
 urlpatterns += [
+    path("wt/sentry-debug/", trigger_error),
     path(settings.ADMIN_URL, admin.site.urls),
     path("wt/api/nextjs/v1/", api_router.urls),
     path("wt/cms/", include(wagtailadmin_urls)),

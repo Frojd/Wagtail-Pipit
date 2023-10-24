@@ -25,7 +25,7 @@ class Command(BaseCommand):
         password = options["password"]
         email = options["email"]
 
-        User.objects.create_superuser(  # type: ignore[attr-defined]
+        User.objects.create_superuser(
             username=username,
             password=password,
             email=email,

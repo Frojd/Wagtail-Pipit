@@ -10,6 +10,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [8.13.0] - 2023-10-24
+### Added
+- Add wt/sentry-debug/ endpoint for verifying Sentry integration (@mikaelengstrom)
+- Add Sentry sample rate (@mikaelengstrom)
+
+### Fixed
+- Upgrade Sentry SDK and use django extra (@mikaelengstrom)
+- Improve Sentry Next.js integration (@mikaelengstrom)
+- Upgrade Wagtail to 5.2 (@marteinn)
+- Upgrade Next.js to 13.5.6 (@marteinn)
+- Upgrade psycopg to 3.1.12
+- Upgrade Django to 4.2.6
+- Upgrade wagtail_headless_preview to 0.7.0
+- Upgrade django-stubs to 4.2.6 and remove unused ignores (@marteinn)
+- Upgrade djangorestframework-stubs to 3.14.4
+- Upgrade @swc/core to 1.3.95
+- Upgrade @types/react to 18.2.31
+- Upgrade @sentry/nextjs to 7.75.0
+- Upgrade eslint to 8.52.0
+- Upgrade eslint-config-next to 13.5.6
+- Upgrade testing-library/jest-dom to 6.1.4
+- Upgrade i18next to 23.6.0
+- Upgrade next-i18next to 14.0.0
+- Upgrade storybook to 7.5.1
+
 ## [8.12.3] - 2023-08-22
 
 ### Fixed
@@ -20,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove deprecated wagtail.contrib.modeladmin app from INSTALLED_APPS (@marteinn)
+
 
 ## [8.12.2] - 2023-08-16
 

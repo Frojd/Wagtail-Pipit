@@ -1,7 +1,7 @@
-Django==4.2.4
-psycopg==3.1.10
-sentry_sdk==1.29.2
+Django==4.2.6
+psycopg==3.1.12
+sentry_sdk[django]==1.32.0
 python-dotenv==1.0.0
-wagtail==5.1.1
+wagtail==5.2rc1
 wagtail-meta-preview==3.0.0
-wagtail_headless_preview==0.6.0
+wagtail_headless_preview==0.7.0
