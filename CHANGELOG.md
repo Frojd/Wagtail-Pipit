@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade djangorestframework-stubs to 3.14.4
 - Upgrade @swc/core to 1.3.95
 - Upgrade @types/react to 18.2.31
+- Upgrade @sentry/nextjs to 7.75.0
 
 ### Removed
 
