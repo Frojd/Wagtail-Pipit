@@ -17,7 +17,6 @@ let nextConfig = {
 //     enabled: process.env.ANALYZE === 'true',
 // });
 
-
 const sentryWebpackPluginOptions = {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -26,8 +25,8 @@ const sentryWebpackPluginOptions = {
     silent: true,
     dryRun: process.env.IGNORE_SENTRY ? true : false,
 
-    org: "your-sentry-organization",
-    project: "your-sentry-project",
+    org: 'your-sentry-organization',
+    project: 'your-sentry-project',
 };
 
 const sentryOptions = {
@@ -41,21 +40,21 @@ const sentryOptions = {
     transpileClientSDK: false,
 
     // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-    tunnelRoute: "/monitoring",
+    tunnelRoute: '/monitoring',
 
     // Hides source maps from generated client bundles
     hideSourceMaps: true,
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
-}
+};
 
-const withSentry = (cnf) => withSentryConfig(cnf, sentryWebpackPluginOptions, sentryOptions);
-
+const withSentry = (cnf) =>
+    withSentryConfig(cnf, sentryWebpackPluginOptions, sentryOptions);
 
 module.exports = () => {
     // Sentry must be last
-    const plugins = [] // withSentry];
+    const plugins = []; // withSentry];
     return plugins.reduce((acc, plugin) => plugin(acc), {
         ...nextConfig,
     });

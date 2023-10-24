@@ -14,8 +14,8 @@ export default async (req, res) => {
     //   return res.status(401).json({ message: 'Invalid slug' })
     // }
 
-    const referer = req.headers?.referer || ""
-    const inPreviewPanel = referer.includes("in_preview_panel=true")
+    const referer = req.headers?.referer || '';
+    const inPreviewPanel = referer.includes('in_preview_panel=true');
 
     res.setPreviewData(
         { contentType, token, host, inPreviewPanel },
