@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade psycopg to 3.1.12
 - Upgrade Django to 4.2.6
 - Upgrade wagtail_headless_preview to 0.7.0
-- Upgrade django-stubs to 4.2.5 and remove unused ignores (@marteinn)
+- Upgrade django-stubs to 4.2.6 and remove unused ignores (@marteinn)
 - Upgrade djangorestframework-stubs to 3.14.4
 - Upgrade @swc/core to 1.3.95
 - Upgrade @types/react to 18.2.31
