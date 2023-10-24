@@ -61,7 +61,7 @@
         "@testing-library/user-event": "^14.4.3",
         "cross-env": "^7.0.3",
         "css-loader": "^6.8.1",
-        "eslint": "8.47.0",
+        "eslint": "8.52.0",
         "eslint-config-next": "13.4.16",
         "eslint-config-prettier": "^9.0.0",
         "husky": "^8.0.3",
