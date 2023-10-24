@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade testing-library/jest-dom to 6.1.4
 - Upgrade i18next to 23.6.0
 - Upgrade next-i18next to 14.0.0
+- Upgrade storybook to 7.5.1
 
 
 ### Removed
