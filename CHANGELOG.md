@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 - Fix issue with custom serializer not being applied (@saraojelind, @marteinn)
+- Rename test in page test template so it drops wording react_representation (@marteinn)
 
 ### Removed
 
