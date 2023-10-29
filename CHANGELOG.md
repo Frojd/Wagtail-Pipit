@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Fix issue with custom serializer not being applied (@saraojelind, @marteinn)
+
 ### Removed
 
 ## [8.13.0] - 2023-10-24

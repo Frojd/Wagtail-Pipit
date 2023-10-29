@@ -54,8 +54,11 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
         context = context or {}
         dict_serializer_cls: Optional[Type[Serializer]]
 
-        if isinstance(serializer_cls, str):
-            dict_serializer_cls = import_string(self.serializer_class)
+        if serializer_cls:
+            if isinstance(serializer_cls, str):
+                dict_serializer_cls = import_string(serializer_cls)
+            else:
+                dict_serializer_cls = serializer_cls
         else:
             dict_serializer_cls = self.get_serializer_class()
 
@@ -66,5 +69,9 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
         return serializer.data
 
     def get_serializer_class(self) -> Type[Serializer]:
-        cls: Type[Serializer] = import_string(self.serializer_class)
+        cls: Type[Serializer]
+        if isinstance(self.serializer_class, str):
+            cls = import_string(self.serializer_class)
+        else:
+            cls = self.serializer_class
         return cls
