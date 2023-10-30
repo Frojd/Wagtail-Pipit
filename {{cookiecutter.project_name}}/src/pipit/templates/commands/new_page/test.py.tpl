@@ -15,7 +15,7 @@ class {{ name }}PageTest(WagtailPageTests):
         page = {{ name }}PageFactory.create(title="{{ name }}", parent=self.root_page)
         self.assertEqual(page.get_serializer_class(), {{ name }}PageSerializer)
 
-    def test_to_react_representation(self):
+    def test_json_representation(self):
         page = {{ name }}PageFactory.create(title="{{ name }}", parent=self.root_page)
 
         data = page.get_component_data({})

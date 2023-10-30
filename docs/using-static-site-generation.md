@@ -22,19 +22,22 @@ Now proceed to disable SSR functions and enable SSG functions
 - In `frontend/pages/_preview`, uncomment `getStaticProps` and comment out `getServerSideProps`
 - In `frontend/pages/index.js`, uncomment the line below `// For SSG` and comment out the line after `// For SSR`
 
+- Open `next.config.js` and add/change `output` to export.
+
+    ```js
+    const nextConfig = {
+        output: 'export',
+        ...
+    }
+    ```
+
 
 ## Exporting
-
-Then run a build
-
-```
-npm run build
-```
 
 After that, create a html [export](https://nextjs.org/docs/advanced-features/static-html-export).
 
 ```
-npm run export
+npm run build
 ```
 
 This will create a folder called `/frontend/out` that will contain your website exported as static html files.
