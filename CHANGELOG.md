@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [8.14.0] - 2023-10-30
+### Added
 - Add Next.js 14.0 support (@marteinn)
 
 ### Changed
