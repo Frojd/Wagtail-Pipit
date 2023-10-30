@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix issue with custom serializer not being applied (@saraojelind, @marteinn)
 - Rename test in page test template so it drops wording react_representation (@marteinn)
+- Upgrade github actions (@marteinn)
 - Upgrade storybook to 7.5.2
 - Upgrade sentry/nextjs to 7.76.0
 - Upgrade eslint-config-next to 14.0.0

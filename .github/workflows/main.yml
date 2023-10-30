@@ -4,8 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: "actions/setup-python@v2"
+      - uses: actions/checkout@v4
+      - uses: "actions/setup-python@v4"
         with:
           python-version: "3.10"
       - name: Install cookiecutter
@@ -18,7 +18,7 @@ jobs:
           rm -rf Company-Project
           cookiecutter . --no-input
       - name: Archive generated-project
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: generated-project
           path: ./Company-Project
@@ -28,10 +28,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - run: rm -rf Company-Project
       - name: Restore generated-project
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: generated-project
           path: Company-Project
@@ -59,13 +59,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: "actions/setup-node@v2"
+      - uses: actions/checkout@v4
+      - uses: "actions/setup-node@v4"
         with:
           node-version: "20"
       - run: rm -rf Company-Project
       - name: Restore generated-project
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: generated-project
           path: Company-Project
