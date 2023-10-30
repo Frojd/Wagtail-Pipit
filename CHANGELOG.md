@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade to Node 20.9 (@marteinn)
+
 ### Fixed
 - Fix issue with custom serializer not being applied (@saraojelind, @marteinn)
 - Rename test in page test template so it drops wording react_representation (@marteinn)

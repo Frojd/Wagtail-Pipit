@@ -13,7 +13,7 @@ The server should have these applications/packages installed:
 - PostgreSQL 12+
 - PostGIS for PostgreSQL
 - GDAL (required for PostGIS)
-- Node 12+
+- Node 20+
 - [PM2](https://pm2.io/)
 - [psycopg2-binary](https://pypi.org/project/psycopg2-binary/) (this is required for the provision script that will create db and users)
 
