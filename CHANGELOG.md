@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename test in page test template so it drops wording react_representation (@marteinn)
 
 ### Removed
+- Drop `npm run export` as "next export" has been replaced with nextconfig export (@marteinn)
 
 ## [8.13.0] - 2023-10-24
 ### Added
