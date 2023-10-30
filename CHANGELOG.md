@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add Next.js 14.0 support (@marteinn)
+
 ### Changed
 - Change docker db-name to app to solve ansible issues (@mikaelengstrom)
 - Upgrade to Node 20.9 (@marteinn)
@@ -13,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix issue with custom serializer not being applied (@saraojelind, @marteinn)
 - Rename test in page test template so it drops wording react_representation (@marteinn)
+- Upgrade storybook to 7.5.2
+- Upgrade sentry/nextjs to 7.76.0
+- Upgrade eslint-config-next to 14.0.0
 
 ### Removed
 - Drop `npm run export` as "next export" has been replaced with nextconfig export (@marteinn)
