@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Change docker db-name to app to solve ansible issues (@mikaelengstrom)
 - Upgrade to Node 20.9 (@marteinn)
 
 ### Fixed
