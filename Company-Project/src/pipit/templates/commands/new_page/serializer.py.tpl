@@ -1,5 +1,5 @@
-from .base_serializer import BasePageSerializer
 from . import {{ name }}Page
+from .base_serializer import BasePageSerializer
 
 
 class {{ name }}PageSerializer(BasePageSerializer):
