@@ -1,4 +1,4 @@
-from wagtail.documents.models import Document, AbstractDocument
+from wagtail.documents.models import AbstractDocument, Document
 
 
 class CustomDocument(AbstractDocument):

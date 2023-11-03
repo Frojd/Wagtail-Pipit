@@ -3,15 +3,15 @@ from typing import Any, Callable, Dict, List, Tuple, Type, Union
 from django.db import models
 from django.http import JsonResponse
 from django.http.request import HttpRequest
+from django.utils.functional import cached_property
 from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
-from django.utils.functional import cached_property
 from rest_framework.serializers import Serializer
 from wagtail.admin.panels import (
-    Panel,
     FieldPanel,
     MultiFieldPanel,
     ObjectList,
+    Panel,
     PanelGroup,
     TabbedInterface,
     WagtailAdminPageForm,
@@ -24,11 +24,7 @@ from wagtail_meta_preview.panels import (
     GoogleFieldPreviewPanel,
     TwitterFieldPreviewPanel,
 )
-from wagtail_meta_preview.utils import (
-    TwitterSettings,
-    FacebookSettings,
-    GoogleSettings,
-)
+from wagtail_meta_preview.utils import FacebookSettings, GoogleSettings, TwitterSettings
 
 
 class RedirectUpMixin:

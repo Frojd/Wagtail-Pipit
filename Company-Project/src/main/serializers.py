@@ -3,6 +3,7 @@ from wagtail.models import Site
 
 from sitesettings.models import SiteSetting
 from sitesettings.serializers import SiteSettingSerializer
+
 from .pages import BasePage
 
 

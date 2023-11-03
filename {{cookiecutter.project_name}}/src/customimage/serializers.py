@@ -1,4 +1,4 @@
-from typing import cast, List, Optional
+from typing import List, Optional, cast
 
 from rest_framework import serializers
 from wagtail.images.shortcuts import get_rendition_or_not_found

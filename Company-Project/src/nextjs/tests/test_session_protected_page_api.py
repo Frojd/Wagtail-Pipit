@@ -1,6 +1,6 @@
 from django.urls import reverse
+from wagtail.models import BaseViewRestriction, Site
 from wagtail.test.utils import WagtailPageTests
-from wagtail.models import Site, BaseViewRestriction
 
 from main.factories.base_page import BasePageFactory
 from nextjs.factories import PageViewRestrictionFactory

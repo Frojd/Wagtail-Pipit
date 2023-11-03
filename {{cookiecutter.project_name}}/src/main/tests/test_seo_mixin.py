@@ -1,6 +1,6 @@
+import wagtail_factories
 from django.test.client import RequestFactory
 from wagtail.test.utils import WagtailPageTests
-import wagtail_factories
 
 from ..factories.base_page import BasePageFactory
 
