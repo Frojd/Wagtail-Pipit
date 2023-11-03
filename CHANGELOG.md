@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade python to 3.11 (@marteinn)
+
 ### Fixed
 - Apply black and isort formatting (@marteinn)
 - Use offical wagtail 5.2
