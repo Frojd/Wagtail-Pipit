@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Apply black and isort formatting (@marteinn)
+- Fix issue with broken login protected pages on local environment (@marteinn)
 - Use offical wagtail 5.2
 - Upgrade django to 4.2.7
 - Upgrade sentry_sdk to 1.34.0
