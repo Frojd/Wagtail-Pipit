@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Upgrade Django to 5.0 (@marteinn)
+
 ### Changed
 - Upgrade python to 3.11 (@marteinn)
 - Re-enable accessibility checker in Wagtail userbar (@marteinn)

@@ -1,4 +1,4 @@
-Django==4.2.7
+Django==5.0
 psycopg==3.1.16
 sentry_sdk[django]==1.39.1
 python-dotenv==1.0.0
