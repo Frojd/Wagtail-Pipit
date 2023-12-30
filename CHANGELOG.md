@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade sentry_sdk to 1.39.1
 - Upgrade djangorestframework-stubs to 3.14.5
 - Upgrade psycopg to 3.1.16
+- Upgrade django-stubs to 4.2.7
 
 
 ### Removed
