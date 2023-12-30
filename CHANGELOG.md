@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Upgrade python to 3.11 (@marteinn)
 - Re-enable accessibility checker in Wagtail userbar (@marteinn)
+- Make mypy a direct dependency (@marteinn)
 
 ### Fixed
 - Apply black and isort formatting (@marteinn)
