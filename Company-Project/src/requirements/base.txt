@@ -1,5 +1,5 @@
 Django==4.2.7
-psycopg==3.1.12
+psycopg==3.1.16
 sentry_sdk[django]==1.39.1
 python-dotenv==1.0.0
 wagtail==5.2.2
