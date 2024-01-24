@@ -52,6 +52,11 @@ def trigger_error(request):
     division_by_zero = 1 / 0  # NOQA: F841
 
 
+def health_check(request):
+    from django.http import HttpResponse
+    return HttpResponse("Its alive")
+
+
 urlpatterns += [
     path("wt/sentry-debug/", trigger_error),
     path(settings.ADMIN_URL, admin.site.urls),
@@ -59,6 +64,7 @@ urlpatterns += [
     path("wt/cms/", include(wagtailadmin_urls)),
     path("wt/documents/", include(wagtaildocs_urls)),
     path("wt/sitemap.xml", sitemap, name="sitemap"),
+    path("wt/health-check/", health_check, name="health_check"),
 ]
 
 urlpatterns += [re_path(r"", include(wagtail_urls))]
