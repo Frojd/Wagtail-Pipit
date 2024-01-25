@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Upgrade Django to 5.0.1 (@marteinn)
+- Upgrade Next.js to 14.1 (@marteinn)
 
 ### Changed
 - Upgrade python to 3.11 (@marteinn)
