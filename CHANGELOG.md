@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Upgrade Django to 5.0 (@marteinn)
+- Upgrade Django to 5.0.1 (@marteinn)
 
 ### Changed
 - Upgrade python to 3.11 (@marteinn)
@@ -17,7 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Apply black and isort formatting (@marteinn)
 - Fix issue with broken login protected pages on local environment (@marteinn)
 - Use offical wagtail 5.2
-- Upgrade django to 4.2.7
 - Upgrade sentry_sdk to 1.34.0
 - Upgrade Wagtail to 5.2.2
 - Upgrade wagtail-meta-preview to 4.0.0
