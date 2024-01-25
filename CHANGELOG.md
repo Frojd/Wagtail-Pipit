@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade psycopg to 3.1.16
 - Upgrade django-stubs to 4.2.7
 - Upgrade pytest-django to 4.7.0
+- Upgrade python-dotenv to 1.0.1
 
 
 ### Removed
