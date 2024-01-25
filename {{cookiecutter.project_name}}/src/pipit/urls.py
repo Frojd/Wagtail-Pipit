@@ -1,17 +1,17 @@
 import typing
 
-from django.contrib import admin
 from django.conf import settings
-from django.urls import include, path, re_path, URLResolver, URLPattern
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import URLPattern, URLResolver, include, path, re_path
 from django.views import defaults as default_views
-from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.documents import urls as wagtaildocs_urls
 from wagtail import urls as wagtail_urls
+from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
+from wagtail.documents import urls as wagtaildocs_urls
 
-from main.views.page_not_found import PageNotFoundView
 from main.views.error_500 import error_500_view
+from main.views.page_not_found import PageNotFoundView
 from nextjs.api import api_router
 
 handler404 = PageNotFoundView.as_view()
@@ -52,6 +52,11 @@ def trigger_error(request):
     division_by_zero = 1 / 0  # NOQA: F841
 
 
+def health_check(request):
+    from django.http import HttpResponse
+    return HttpResponse("Its alive")
+
+
 urlpatterns += [
     path("wt/sentry-debug/", trigger_error),
     path(settings.ADMIN_URL, admin.site.urls),
@@ -59,6 +64,7 @@ urlpatterns += [
     path("wt/cms/", include(wagtailadmin_urls)),
     path("wt/documents/", include(wagtaildocs_urls)),
     path("wt/sitemap.xml", sitemap, name="sitemap"),
+    path("wt/health-check/", health_check, name="health_check"),
 ]
 
 urlpatterns += [re_path(r"", include(wagtail_urls))]

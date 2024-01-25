@@ -9,7 +9,7 @@ The server should have these applications/packages installed:
 - Linux (Ubuntu 20.04+ is preffered)
 - Nginx
 - uWSGI
-- Python 3.10+
+- Python 3.11+
 - PostgreSQL 12+
 - PostGIS for PostgreSQL
 - GDAL (required for PostGIS)

@@ -1,7 +1,7 @@
 from django.urls import reverse
-from wagtail.test.utils import WagtailPageTests
-from wagtail.models import Site
 from wagtail.contrib.redirects.models import Redirect
+from wagtail.models import Site
+from wagtail.test.utils import WagtailPageTests
 
 
 class RedirectByPathApiTest(WagtailPageTests):

@@ -1,7 +1,7 @@
 import os
 
-from django.template.loader import render_to_string
 from django.core.management.base import BaseCommand
+from django.template.loader import render_to_string
 
 
 class Command(BaseCommand):

@@ -67,7 +67,7 @@ server {
         proxy_set_header Host $host:8081;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass ${PYTHON_HOST}:8000/wt;
+        proxy_pass ${PYTHON_HOST}:8000/_util;
     }
 
     location /wt {

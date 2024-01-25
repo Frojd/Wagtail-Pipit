@@ -1,6 +1,6 @@
 from django.urls import reverse
-from wagtail.test.utils import WagtailPageTests
 from wagtail.models import Site
+from wagtail.test.utils import WagtailPageTests
 
 from main.factories.base_page import BasePageFactory
 

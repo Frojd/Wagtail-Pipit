@@ -6,8 +6,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Upgrade Django to 5.0.1 (@marteinn)
+- Upgrade Next.js to 14.1 (@marteinn)
+- Add health check url for watchdogs/containerided applications (@mikaelengstrom)
+
 ### Changed
+- Upgrade python to 3.11 (@marteinn)
+- Re-enable accessibility checker in Wagtail userbar (@marteinn)
+- Make mypy a direct dependency (@marteinn)
+
 ### Fixed
+- Apply black and isort formatting (@marteinn)
+- Fix issue with broken login protected pages on local environment (@marteinn)
+- Use offical wagtail 5.2
+- Upgrade sentry_sdk to 1.34.0
+- Upgrade Wagtail to 5.2.2
+- Upgrade wagtail-meta-preview to 4.0.0
+- Upgrade sentry_sdk to 1.39.2
+- Upgrade djangorestframework-stubs to 3.14.5
+- Upgrade psycopg to 3.1.16
+- Upgrade django-stubs to 4.2.7
+- Upgrade pytest-django to 4.7.0
+- Upgrade python-dotenv to 1.0.1
+
+
 ### Removed
 
 ## [8.14.0] - 2023-10-30

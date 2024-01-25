@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
 
 from django.core import mail
 from django.template.loader import render_to_string

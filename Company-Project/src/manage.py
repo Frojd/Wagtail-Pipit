@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
+import inspect
 import os
 import sys
-import inspect
-import dotenv
 
-from django.core.management import execute_from_command_line
+import dotenv
 from django.conf import settings
+from django.core.management import execute_from_command_line
 
 
 def if_exists_load_env(name: str) -> None:

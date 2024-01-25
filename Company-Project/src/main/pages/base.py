@@ -1,8 +1,8 @@
-from typing import List, Dict, Any, Optional, Union, Tuple, Type
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
-from django.utils.module_loading import import_string
 from django.http import HttpResponse, JsonResponse
 from django.http.request import HttpRequest
+from django.utils.module_loading import import_string
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer

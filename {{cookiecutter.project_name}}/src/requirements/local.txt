@@ -4,9 +4,10 @@
 # Add local extra requirements here (django-debug etc)
 black
 django-debug-toolbar
-django-stubs==4.2.6
-djangorestframework-stubs==3.14.4
+django-stubs==4.2.7
+djangorestframework-stubs==3.14.5
 isort
+mypy==1.8.0
 pipdeptree
 ptvsd
 ruff
