@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [8.15.0] - 2024-01-25
+
+### Added
 - Upgrade Django to 5.0.1 (@marteinn)
 - Upgrade Next.js to 14.1 (@marteinn)
 - Add health check url for watchdogs/containerided applications (@mikaelengstrom)
@@ -28,9 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade django-stubs to 4.2.7
 - Upgrade pytest-django to 4.7.0
 - Upgrade python-dotenv to 1.0.1
-
-
-### Removed
 
 ## [8.14.0] - 2023-10-30
 ### Added
