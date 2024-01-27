@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 ### Removed
+- Drop classnames dependecy as its not used in the boilerplate (@marteinn)
 
 ## [8.15.0] - 2024-01-25
 
