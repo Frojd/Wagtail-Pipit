@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pass host as query param as Next.js will drop header in app router (@marteinn)
 
 ### Fixed
+- Upgrade storybook to 7.6.10
+
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
 
