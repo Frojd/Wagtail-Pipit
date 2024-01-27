@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Return seo robots as struct to prepare for Next.js metadata api (@marteinn)
+
 ### Fixed
 ### Removed
 

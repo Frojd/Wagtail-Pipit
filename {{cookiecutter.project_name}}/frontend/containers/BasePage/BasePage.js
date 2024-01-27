@@ -58,7 +58,7 @@ const BasePage = ({ children, seo, wagtailUserbar }) => {
                 {!!seoTwitterImage && (
                     <meta property="twitter:image" content={seoTwitterImage} />
                 )}
-                <meta name="robots" content={seoMetaRobots} />
+                <meta name="robots" content={seoMetaRobots.value} />
                 {!!canonicalLink && (
                     <link rel="canonical" href={canonicalLink} />
                 )}
@@ -82,7 +82,11 @@ BasePage.propTypes = {
         seoOgDescription: PropTypes.string,
         seoOgUrl: PropTypes.string,
         seoTwitterTitle: PropTypes.string,
-        seoMetaRobots: PropTypes.string,
+        seoMetaRobots: PropTypes.shape({
+            index: PropTypes.bool,
+            follow: PropTypes.bool,
+            value: PropTypes.string,
+        }),
     }),
     wagtailUserbar: PropTypes.shape({
         html: PropTypes.string,
