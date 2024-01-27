@@ -33,4 +33,7 @@ class SeoMixinTest(WagtailPageTests):
         self.assertEqual(self.page.seo_twitter_title, "My twitter title")
         self.assertEqual(self.page.seo_twitter_description, "My twitter description")
         self.assertEqual(self.page.seo_twitter_url, self.page.full_url)
-        self.assertEqual(self.page.seo_meta_robots, "index,follow")
+        self.assertEqual(
+            self.page.seo_meta_robots,
+            {"index": True, "follow": True, "value": "index,follow"},
+        )
