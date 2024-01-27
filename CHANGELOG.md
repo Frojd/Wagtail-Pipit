@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade prettier to 3.2.4
 - Upgrade pretty-quick to 4.0.0
 - Upgrade eslint and related packages
+- Upgrade i18next and related packages
 
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
