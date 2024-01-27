@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Upgrade storybook to 7.6.10
+- Upgrade prettier to 3.2.4
 
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
