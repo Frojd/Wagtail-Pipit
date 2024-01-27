@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade i18next and related packages
 - Upgrade husky to 9.0.6
 - Upgrade @sentry/nextjs to 7.98.0
+- Upgrade @testing-library and related packages
 
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
