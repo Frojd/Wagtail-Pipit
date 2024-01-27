@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - Return seo robots as struct to prepare for Next.js metadata api (@marteinn)
+- Pass host as query param as Next.js will drop header in app router (@marteinn)
 
 ### Fixed
 ### Removed
