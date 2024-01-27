@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
 - Drop @storybook/react dependecy as it's already included by @storybook/nextjs (@marteinn)
+- Drop react-i18next as it's already included by next-i18next (@marteinn)
 
 ## [8.15.0] - 2024-01-25
 
