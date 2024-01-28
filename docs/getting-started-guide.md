@@ -7,7 +7,7 @@ in just a few minutes
 Make sure you have the following requirement:
 - [Docker Compose](https://docs.docker.com/compose/)
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [Node](https://nodejs.org/en/) (v12 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
+- [Node](https://nodejs.org/en/) (v20 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
 
 
 ## Initialize Project
@@ -42,6 +42,7 @@ Select software_license:
 1 - proprietary
 2 - MIT
 Choose from 1, 2 [1]: 1
+experimental_use_app_router [y/n] (n):
 ```
 
 ## Setting up the frontend
