@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change nginx docker image from alpine to latest to avoid permisson issues (@mikaelengstrom)
 - Move env utils from pipit.env_utils to namespace utils.env (@mikaelengstrom @marteinn)
 - Move if_exists_load_env to env.utils (@mikaelengstrom @marteinn)
+- Load .env file in wsgi.oy (@mikaelengstrom)
 
 ### Fixed
 - Upgrade storybook to 7.6.10
