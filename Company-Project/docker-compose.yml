@@ -20,9 +20,13 @@ services:
 
   python:
     image: frojd/company_project_python
-    build: ./src
+    build:
+      context: ./src
+      args:
+        - ENVIRONMENT=local
+    command: "runserver"
     volumes:
-      - "./src:/app"
+      - "./src:/home/app/web"
     depends_on:
       - db
     env_file: ./docker/config/python.env

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add experimental app router support (@marteinn)
+- Add production ready python docker image with gunicorn (@mikaelengstrom)
 
 ### Changed
 - Return seo robots as struct to prepare for Next.js metadata api (@marteinn)
