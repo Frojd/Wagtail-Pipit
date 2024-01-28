@@ -79,18 +79,6 @@ async function getPageData({
             setCookieHeader = responseHeaders.get('set-cookie');
         }
 
-        /*
-        if (customResponse) {
-            const { body, body64, contentType } = customResponse;
-            res.setHeader('Content-Type', contentType);
-            res.statusCode = 200;
-            res.write(body64 ? Buffer.from(body64, 'base64') : body);
-            res.end();
-
-            return { props: {} };
-        }
-        */
-
         if (redirect) {
             const { destination, isPermanent } = redirect;
             return {
