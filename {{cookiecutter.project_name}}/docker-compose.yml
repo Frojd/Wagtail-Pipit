@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   web:
-    image: nginx:alpine
+    image: nginx:latest
     working_dir: /app
     ports:
       - "{{cookiecutter.docker_web_port}}:80"
