@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 
-from pipit.env_utils import get_env, get_env_bool  # NOQA: F401
+from utils.env import get_env, get_env_bool  # NOQA: F401
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
