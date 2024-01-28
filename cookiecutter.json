@@ -15,12 +15,14 @@
     "docker_vscode_debug_port": 5678,
     "version": "0.1.0",
     "software_license": ["proprietary", "MIT"],
+    "experimental_use_app_router": false,
     "_copy_without_render": [
         "*.git",
         "frontend/cli",
         "frontend/.next",
         "frontend/components",
         "frontend/containers",
-        "frontend/pages"
+        "frontend/pages",
+        "frontend/app"
     ]
 }

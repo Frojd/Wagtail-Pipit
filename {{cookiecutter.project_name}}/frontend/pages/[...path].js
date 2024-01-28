@@ -32,7 +32,7 @@ export async function getServerSideProps({ req, params, res }) {
     queryParams = {
         ...queryParams,
         host,
-    }
+    };
 
     // Try to serve page
     try {
