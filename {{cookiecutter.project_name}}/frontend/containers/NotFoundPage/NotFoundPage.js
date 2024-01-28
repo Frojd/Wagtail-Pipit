@@ -1,12 +1,10 @@
 import React from 'react';
 import s from './NotFoundPage.module.css';
 
-const NotFoundPage = () => {
-    return <div className={s.Container}>NotFoundPage</div>;
+const NotFoundPage = ({ exception }) => {
+    return <div className={s.Container}>{exception}</div>;
 };
 
 NotFoundPage.propTypes = {};
-
-NotFoundPage.defaultProps = {};
 
 export default NotFoundPage;

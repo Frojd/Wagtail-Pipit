@@ -82,7 +82,25 @@ export async function getRequest(url, params, options) {
         ...headers,
     };
     const queryString = querystring.stringify(params);
-    const res = await fetch(`${url}?${queryString}`, { headers });
+
+    let fetchOptions = { headers };
+
+    if (options?.cache) {
+        fetchOptions = {
+            ...fetchOptions,
+            cache: options.cache,
+        };
+    }
+
+    if (options?.revalidate) {
+        fetchOptions = {
+            ...fetchOptions,
+            next: {
+                revalidate: options.revalidate,
+            },
+        };
+    }
+    const res = await fetch(`${url}?${queryString}`, fetchOptions);
 
     if (res.status < 200 || res.status >= 300) {
         const error = new WagtailApiResponseError(res, url, params);
