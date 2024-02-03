@@ -27,6 +27,8 @@ services:
     command: "runserver"
     volumes:
       - "./src:/home/app/web"
+      - "./src/media:/home/app/media"
+      - "./src/static:/home/app/static"
     depends_on:
       - db
     env_file: ./docker/config/python.env

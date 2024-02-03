@@ -44,10 +44,12 @@ server {
     #     rewrite "^/wt/media/(.*)$" "https://${MEDIA_REMOTE_DOMAIN}/wt/media/$1" redirect;
     # }
 
-    location /wt/static/ {
-        expires 30d;
-        alias /app/static/;
-    }
+    # Uncomment if you do not wish to serve statics with whitenoise
+    #
+    # location /wt/static/ {
+    #     expires 30d;
+    #     alias /app/static/;
+    # }
 
     location / {
         proxy_set_header Host $host:8081;

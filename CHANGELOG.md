@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move env utils from pipit.env_utils to namespace utils.env (@mikaelengstrom @marteinn)
 - Move if_exists_load_env to env.utils (@mikaelengstrom @marteinn)
 - Load .env file in wsgi.oy (@mikaelengstrom)
+- Use whitenoise when serving static assets on stage/prod (@mikaelengstrom @marteinn)
 
 ### Fixed
 - Upgrade storybook to 7.6.10
