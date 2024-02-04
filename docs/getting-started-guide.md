@@ -57,11 +57,14 @@ cd Acme-Blog/frontend
 npm i
 npm run dev
 
-> frontend_nextjs@0.1.0 dev /Users/roger/www/Acme-Blog/frontend
+> frontend_nextjs@0.1.0 dev
 > next dev -p 3000
 
-ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-info  - Loaded env from /Users/roger/www/Acme-Blog/frontend/.env
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+   - Environments: .env
+
+ ✓ Ready in 1640ms
 ```
 
 `npm run dev` is a Next.js command that will start a frontend development server that supports both hot reloading and error reporting,
