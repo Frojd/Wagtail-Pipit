@@ -2,7 +2,8 @@
 -r base.txt
 
 # Add extra test requirements here (such as factory-boy)
-pytest-django==4.7.0
 coverage
+pytest==8.0.0
+pytest-django==4.7.0
 pytest-env
 wagtail-factories==4.1.0
