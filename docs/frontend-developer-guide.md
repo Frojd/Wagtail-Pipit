@@ -26,6 +26,7 @@ the contents (Some files omitted for brevity):
 ```bash
 ├── .storybook      # Configuration for storybook
 ├── api             # Contains api libraries for communicating with Wagtail
+├── app             # Contains Next.js [app](https://nextjs.org/docs/app) (If using app router)
 ├── cli             # Contains the cli tool for generating new components
 ├── components      # Contains all Components
 ├── config          # Contains various configurations, ex for jest
@@ -35,7 +36,7 @@ the contents (Some files omitted for brevity):
 ├── index.css       # Entrypoing for global css from styles
 ├── jest.config.js  # Configuration for jest
 ├── next.config.js  # Configuration for Next.js
-├── pages           # Contains Next.js [pages](https://nextjs.org/docs/basic-features/pages)
+├── pages           # Contains Next.js [pages](https://nextjs.org/docs/basic-features/pages) (If using pages router)
 ├── public          # Static files to be served by Next.js
 ├── setupTests.js   # Test suite configurations
 ├── stories         # Default storybook directory
