@@ -29,23 +29,23 @@ jobs:
           cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
       - name: Create docker-compose config for running boilerplate tests
         run: |
-          cp docker-compose-circleci.yml Company-Project/docker-compose-circleci.yml
+          cp docker-compose-ci.yml Company-Project/docker-compose-ci.yml
       - name: Build image
         run: |
           cd Company-Project
           chmod +x src/docker-entrypoint.sh
-          docker-compose -f docker-compose-circleci.yml build
+          docker-compose -f docker-compose-ci.yml build
       - name: Verify backend scaffolder
         run: |
           cd Company-Project
           set -x
-          docker-compose -f docker-compose-circleci.yml run --rm python python manage.py new_page --name=Article
+          docker-compose -f docker-compose-ci.yml run --rm python python manage.py new_page --name=Article
       - name: Run tests on container
         run: |
           cd Company-Project
-          docker-compose -f docker-compose-circleci.yml run --rm python test
-          docker-compose -f docker-compose-circleci.yml run --rm python typecheck
-          docker-compose -f docker-compose-circleci.yml run --rm python lint
+          docker-compose -f docker-compose-ci.yml run --rm python test
+          docker-compose -f docker-compose-ci.yml run --rm python typecheck
+          docker-compose -f docker-compose-ci.yml run --rm python lint
       - name: Run frontend tests
         run: |
           cd Company-Project/frontend
