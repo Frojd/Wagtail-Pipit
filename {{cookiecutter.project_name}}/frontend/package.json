@@ -6,7 +6,7 @@
         "dev": "next dev -p {{cookiecutter.nextjs_port}}",
         "build": "next build",
         "build:local": "IGNORE_SENTRY=1 next build",
-        "start": "next start -p {{cookiecutter.nextjs_port}}",
+        "start": "PORT={{cookiecutter.nextjs_port}} node .next/standalone/server.js",
         "storybook": "storybook dev -p 3001",
         "build-storybook": "storybook build",
         "fixcode": "npx prettier \"**/*(*.css|*.js|*.json|*.md|*.scss)\" --write",

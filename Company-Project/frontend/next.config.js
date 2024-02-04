@@ -9,6 +9,7 @@ let nextConfig = {
     productionBrowserSourceMaps: true,
     basePath,
     i18n,
+    output: "standalone",
 };
 
 // nextConfig = withSentryConfig(nextConfig, SentryWebpackPluginOptions);
