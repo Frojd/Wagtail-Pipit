@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [9.0.0-beta] - 2024-02-04
+
+### Added
 - Add experimental app router support (@marteinn)
 - Add production ready python docker image with gunicorn (@mikaelengstrom)
 - Add container for Next.js frontend (@mikaelengstrom)
