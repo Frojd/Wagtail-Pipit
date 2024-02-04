@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @swc/jest to 0.2.31
 - Upgrade pytest-django to 4.8.0
 - Update actions/setup-python to v5 in CI runner
+- Upgrade psycopg to 3.1.17
 
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
