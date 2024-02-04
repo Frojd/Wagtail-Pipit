@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade @testing-library and related packages
 - Upgrade @swc/jest to 0.2.31
 - Upgrade pytest-django to 4.8.0
+- Update actions/setup-python to v5 in CI runner
 
 ### Removed
 - Drop classnames dependecy as its not used in the boilerplate (@marteinn)
