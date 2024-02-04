@@ -29,6 +29,11 @@ export async function getServerSideProps({ req, params, res }) {
     }
     queryParams = querystring.parse(queryParams);
 
+    queryParams = {
+        ...queryParams,
+        host,
+    };
+
     // Try to serve page
     try {
         const {
@@ -37,7 +42,6 @@ export async function getServerSideProps({ req, params, res }) {
         } = await getPage(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
-                host,
             },
         });
 
@@ -94,7 +98,6 @@ export async function getServerSideProps({ req, params, res }) {
         const { json: redirect } = await getRedirect(path, queryParams, {
             headers: {
                 cookie: req.headers.cookie,
-                host,
             },
         });
         const { destination, isPermanent } = redirect;

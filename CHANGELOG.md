@@ -10,6 +10,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [9.0.0-beta] - 2024-02-04
+
+### Added
+- Add experimental app router support (@marteinn)
+- Add production ready python docker image with gunicorn (@mikaelengstrom)
+- Add container for Next.js frontend (@mikaelengstrom)
+
+### Changed
+- Return seo robots as struct to prepare for Next.js metadata api (@marteinn)
+- Pass host as query param as Next.js will drop header in app router (@marteinn)
+- Change nginx docker image from alpine to latest to avoid permisson issues (@mikaelengstrom)
+- Move env utils from pipit.env_utils to namespace utils.env (@mikaelengstrom @marteinn)
+- Move if_exists_load_env to env.utils (@mikaelengstrom @marteinn)
+- Load .env file in wsgi.oy (@mikaelengstrom)
+- Use whitenoise when serving static assets on stage/prod (@mikaelengstrom @marteinn)
+- Add pytest as a direct dependency (@marteinn)
+- Run next.js in standalone mode (@mikaelengstrom @marteinn)
+
+### Fixed
+- Upgrade storybook to 7.6.10
+- Upgrade prettier to 3.2.4
+- Upgrade pretty-quick to 4.0.0
+- Upgrade eslint and related packages
+- Upgrade i18next and related packages
+- Upgrade husky to 9.0.6
+- Upgrade @sentry/nextjs to 7.98.0
+- Upgrade @testing-library and related packages
+- Upgrade @swc/jest to 0.2.31
+- Upgrade pytest-django to 4.8.0
+- Update actions/setup-python to v5 in CI runner
+- Upgrade psycopg to 3.1.17
+
+### Removed
+- Drop classnames dependecy as its not used in the boilerplate (@marteinn)
+- Drop @storybook/react dependecy as it's already included by @storybook/nextjs (@marteinn)
+- Drop react-i18next as it's already included by next-i18next (@marteinn)
+- Drop react-i18next as it's already included by next-i18next (@marteinn)
+- Drop unused css-loader and style-loader (@marteinn)
+- Drop @swc/core dependecy as it's already included in Next.js (@marteinn)
+- Drop unused @types/react (@marteinn)
+
 ## [8.15.0] - 2024-01-25
 
 ### Added

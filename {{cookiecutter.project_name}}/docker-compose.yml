@@ -1,11 +1,11 @@
 version: "3.1"
 services:
   web:
-    image: nginx:alpine
+    image: nginx:latest
     working_dir: /app
     ports:
-      - "{{cookiecutter.docker_web_port}}:80"
-      - "{{cookiecutter.docker_web_ssl_port}}:443"
+      - "8081:80"
+      - "8082:443"
     depends_on:
       - python
     volumes:
@@ -16,13 +16,19 @@ services:
       - "./src/static:/app/static"
     environment:
       - PYTHON_HOST=http://python
-      - MEDIA_REMOTE_DOMAIN={{cookiecutter.domain_prod}}
+      - MEDIA_REMOTE_DOMAIN=example.com
 
   python:
-    image: frojd/{{cookiecutter.project_slug}}_python
-    build: ./src
+    image: frojd/company_project_python
+    build:
+      context: ./src
+      args:
+        - ENVIRONMENT=local
+    command: "runserver"
     volumes:
-      - "./src:/app"
+      - "./src:/home/app/web"
+      - "./src/media:/home/app/media"
+      - "./src/static:/home/app/static"
     depends_on:
       - db
     env_file: ./docker/config/python.env
@@ -30,7 +36,7 @@ services:
   db:
     image: postgis/postgis:12-2.5-alpine
     ports:
-      - "{{cookiecutter.docker_db_port}}:5432"
+      - "8083:5432"
     volumes:
       - "./docker/files/db-dumps/:/docker-entrypoint-initdb.d/"
       - "./docker/files/shared:/shared:rw"

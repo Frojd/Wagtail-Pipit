@@ -7,7 +7,7 @@ in just a few minutes
 Make sure you have the following requirement:
 - [Docker Compose](https://docs.docker.com/compose/)
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [Node](https://nodejs.org/en/) (v12 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
+- [Node](https://nodejs.org/en/) (v20 or later, the latest LTS version is recommended and also specified in the `.nvmrc` file)
 
 
 ## Initialize Project
@@ -42,6 +42,7 @@ Select software_license:
 1 - proprietary
 2 - MIT
 Choose from 1, 2 [1]: 1
+experimental_use_app_router [y/n] (n):
 ```
 
 ## Setting up the frontend
@@ -56,11 +57,14 @@ cd Acme-Blog/frontend
 npm i
 npm run dev
 
-> frontend_nextjs@0.1.0 dev /Users/roger/www/Acme-Blog/frontend
+> frontend_nextjs@0.1.0 dev
 > next dev -p 3000
 
-ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-info  - Loaded env from /Users/roger/www/Acme-Blog/frontend/.env
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+   - Environments: .env
+
+ ✓ Ready in 1640ms
 ```
 
 `npm run dev` is a Next.js command that will start a frontend development server that supports both hot reloading and error reporting,

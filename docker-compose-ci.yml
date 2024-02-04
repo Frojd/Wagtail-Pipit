@@ -2,7 +2,10 @@ version: '3'
 services:
   python:
     image: frojd/wagtail_pipit_python
-    build: ./src
+    build:
+      context: ./src
+      args:
+        - ENVIRONMENT=local
     depends_on:
       - db
     env_file: ./docker/config/python.env
@@ -16,3 +19,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=app
       - POSTGRES_HOST_AUTH_METHOD=trust
+
+  frontend:
+    image: frojd/wagtail_pipit_frontend
+    build: ./frontend

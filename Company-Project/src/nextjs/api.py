@@ -145,6 +145,9 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
     def listing_view(self, request):
         page, args, kwargs = self.get_object()
 
+        if request.GET.get("host", None):
+            request._wagtail_site = self.get_external_site_from_request(request)
+
         for restriction in page.get_view_restrictions():
             if not restriction.accept_request(request):
                 if restriction.restriction_type == PageViewRestriction.PASSWORD:
@@ -184,6 +187,11 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         if not path.startswith("/"):
             path = "/" + path
 
+        if self.request.GET.get("host", None):
+            self.request._wagtail_site = self.get_external_site_from_request(
+                self.request
+            )
+
         site = Site.find_for_request(self.request)
         if not site:
             raise Http404
@@ -209,6 +217,15 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
 
         page, args, kwargs = root_page.specific.route(self.request, path_components)
         return page, args, kwargs
+
+    @classmethod
+    def get_external_site_from_request(cls, request):
+        from wagtail.models.sites import get_site_for_hostname
+        from django.http.request import split_domain_port
+
+        host = request.GET.get("host")
+        hostname, port = split_domain_port(host)
+        return get_site_for_hostname(hostname, port)
 
     @classmethod
     def get_urlpatterns(cls):

@@ -48,6 +48,14 @@ case "$CMD" in
         exec uwsgi --ini uwsgi.ini
         ;;
 
+    "gunicorn" )
+        wait_for_db
+        setup_django
+
+        echo Starting using gunicorn
+        gunicorn -b 0.0.0.0:8000 -w 1 -k gevent --worker-tmp-dir /dev/shm --error-logfile - --access-logfile - --timeout 60 pipit.wsgi:application
+        ;;
+
     "test" )
         wait_for_db
 

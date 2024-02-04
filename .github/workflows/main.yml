@@ -1,74 +1,51 @@
 name: Test cookiecutter scaffolder
 on: [push, pull_request]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        experimental_use_app_router: [
+          {name: "Page router", value: "False"},
+          {name: "App router", value: "True"},
+        ]
+    name: Test ${{ matrix.experimental_use_app_router.name }}
     steps:
       - uses: actions/checkout@v4
-      - uses: "actions/setup-python@v4"
+      - uses: "actions/setup-python@v5"
         with:
           python-version: "3.11"
       - name: Install cookiecutter
         run: |
           python -m pip install --upgrade pip
           pip install cookiecutter
-      - name: Run cookiecutter
+      - name: Cleanup
         run: |
           set -x
           rm -rf Company-Project
-          cookiecutter . --no-input
-      - name: Archive generated-project
-        uses: actions/upload-artifact@v3
-        with:
-          name: generated-project
-          path: ./Company-Project
-          retention-days: 1
-
-  backend:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: rm -rf Company-Project
-      - name: Restore generated-project
-        uses: actions/download-artifact@v3
-        with:
-          name: generated-project
-          path: Company-Project
+      - name: Run cookiecutter
+        run: |
+          cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
       - name: Create docker-compose config for running boilerplate tests
         run: |
-          cp docker-compose-circleci.yml Company-Project/docker-compose-circleci.yml
+          cp docker-compose-ci.yml Company-Project/docker-compose-ci.yml
       - name: Build image
         run: |
           cd Company-Project
           chmod +x src/docker-entrypoint.sh
-          docker-compose -f docker-compose-circleci.yml build
+          docker-compose -f docker-compose-ci.yml build
       - name: Verify backend scaffolder
         run: |
           cd Company-Project
           set -x
-          docker-compose -f docker-compose-circleci.yml run --rm python python manage.py new_page --name=Article
+          docker-compose -f docker-compose-ci.yml run --rm python python manage.py new_page --name=Article
       - name: Run tests on container
         run: |
           cd Company-Project
-          docker-compose -f docker-compose-circleci.yml run --rm python test
-          docker-compose -f docker-compose-circleci.yml run --rm python typecheck
-          docker-compose -f docker-compose-circleci.yml run --rm python lint
-
-  frontend:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: "actions/setup-node@v4"
-        with:
-          node-version: "20"
-      - run: rm -rf Company-Project
-      - name: Restore generated-project
-        uses: actions/download-artifact@v3
-        with:
-          name: generated-project
-          path: Company-Project
+          docker-compose -f docker-compose-ci.yml run --rm python test
+          docker-compose -f docker-compose-ci.yml run --rm python typecheck
+          docker-compose -f docker-compose-ci.yml run --rm python lint
       - name: Run frontend tests
         run: |
           cd Company-Project/frontend

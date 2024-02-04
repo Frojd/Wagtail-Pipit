@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 
-from pipit.env_utils import get_env, get_env_bool  # NOQA: F401
+from utils.env import get_env, get_env_bool  # NOQA: F401
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -105,7 +105,7 @@ WSGI_APPLICATION = "pipit.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 # Using PostgreSQL
 DATABASES = {
     "default": {
@@ -118,12 +118,13 @@ DATABASES = {
     }
 }
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 
 # Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
-
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"  # NOQA
@@ -137,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
+# https://docs.djangoproject.com/en/5.0/topics/i18n/
 TIME_ZONE = "Europe/Stockholm"
 LANGUAGE_CODE = "sv-se"
 SITE_ID = 1
@@ -173,7 +174,8 @@ MEDIA_URL = "/wt/media/"
 MEDIA_ROOT = get_env("MEDIA_PATH", required=True)
 
 
-# Static files, if in production use static root, else use static dirs
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 # Static URL to use when referring to static files located in STATIC_ROOT.
 STATIC_URL = "/wt/static/"
@@ -197,7 +199,7 @@ ADMIN_URL = "wt/admin/"
 # NextJS
 WAGTAIL_HEADLESS_PREVIEW = {
     "CLIENT_URLS": {
-        "default": "/api/preview/",
+        "default": "/api/{{ 'draft' if cookiecutter.experimental_use_app_router == 'True' else 'preview' }}/",
     }
 }
 

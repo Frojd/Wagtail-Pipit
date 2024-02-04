@@ -1,8 +1,7 @@
 {% raw -%}
 apps:
   - name: {{ project_slug }}
-    script: {{ ansistrano_deploy_to }}/current/src/frontend/node_modules/next/dist/bin/next
-    args: start
+    script: {{ ansistrano_deploy_to }}/current/src/frontend/.next/standalone/server.js
     cwd: {{ ansistrano_deploy_to }}/current/src/frontend/
     exec_mode: cluster
     instances: 0

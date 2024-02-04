@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   web:
-    image: nginx:alpine
+    image: nginx:latest
     working_dir: /app
     ports:
       - "8081:80"
@@ -20,9 +20,15 @@ services:
 
   python:
     image: frojd/company_project_python
-    build: ./src
+    build:
+      context: ./src
+      args:
+        - ENVIRONMENT=local
+    command: "runserver"
     volumes:
-      - "./src:/app"
+      - "./src:/home/app/web"
+      - "./src/media:/home/app/media"
+      - "./src/static:/home/app/static"
     depends_on:
       - db
     env_file: ./docker/config/python.env
