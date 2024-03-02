@@ -54,6 +54,7 @@ def trigger_error(request):
 
 def health_check(request):
     from django.http import HttpResponse
+
     return HttpResponse("Its alive")
 
 
