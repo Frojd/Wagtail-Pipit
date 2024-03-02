@@ -1,4 +1,5 @@
 import os
+import re
 
 from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
@@ -24,20 +25,20 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         name = options["name"]
 
+        if name.endswith("Page"):
+            name = name[:-4]
+
         self.add_page(name)
         self.add_serializer(name)
         self.add_test(name)
         self.add_factory(name)
 
     def add_page(self, name, to_app="main"):
+        file_name = get_snake_from_pascal_case(name)
         pages_path = os.path.join(to_app, "pages/")
 
-        page_file = "{pages_path}{name}.py".format(
-            pages_path=pages_path, name=name.lower()
-        )
-        init_file = "{pages_path}__init__.py".format(
-            pages_path=pages_path,
-        )
+        page_file = f"{pages_path}{file_name}.py"
+        init_file = f"{pages_path}__init__.py"
 
         if os.path.exists(page_file):
             self.stdout.write(
@@ -50,18 +51,17 @@ class Command(BaseCommand):
         context = {"name": name, "project": to_app}
 
         with open(init_file, "a") as f:
-            f.write("from .{name} import *  # NOQA\n".format(name=name.lower()))
+            f.write(f"from .{file_name} import *  # NOQA\n")
             f.write(
-                "from .{name}_serializer import *  # NOQA\n".format(name=name.lower())
+                f"from .{file_name}_serializer import *  # NOQA\n"
             )
 
         self.create_file(page_file, page_template, context)
 
     def add_serializer(self, name, to_app="main"):
+        file_name = get_snake_from_pascal_case(name)
         serializer_path = os.path.join(to_app, "pages/")
-        serializer_file = "{serializer_path}{name}_serializer.py".format(
-            serializer_path=serializer_path, name=name.lower()
-        )
+        serializer_file = f"{serializer_path}{file_name}_serializer.py"
 
         if os.path.exists(serializer_file):
             self.stdout.write(
@@ -76,9 +76,10 @@ class Command(BaseCommand):
         self.create_file(serializer_file, serializer_template, context)
 
     def add_test(self, name, to_app="main"):
+        file_name = get_snake_from_pascal_case(name)
         test_path = os.path.join(to_app, "tests/")
         test_file = "{test_path}test_{name}_page.py".format(
-            test_path=test_path, name=name.lower()
+            test_path=test_path, name=file_name,
         )
 
         if os.path.exists(test_file):
@@ -94,10 +95,9 @@ class Command(BaseCommand):
         self.create_file(test_file, test_template, context)
 
     def add_factory(self, name, to_app="main"):
+        file_name = get_snake_from_pascal_case(name)
         factory_path = os.path.join(to_app, "factories/")
-        factory_file = "{factory_path}{name}_page.py".format(
-            factory_path=factory_path, name=name.lower()
-        )
+        factory_file = f"{factory_path}{file_name}_page.py"
 
         if os.path.exists(factory_file):
             self.stdout.write(
@@ -117,3 +117,8 @@ class Command(BaseCommand):
             f.write(content)
 
         self.stdout.write("Created {}".format(file_path))
+
+
+def get_snake_from_pascal_case(pascal_string: str) -> str:
+    snake_string = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", pascal_string).lower()
+    return snake_string

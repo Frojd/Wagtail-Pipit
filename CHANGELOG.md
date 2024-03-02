@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Use pascal case file name when generating file in new_page command
+- Drop possible Page suffix from name argument in new_page
+
 ### Fixed
 - Fix issue with canonical link not properly exposed with fallback (@marteinn)
 

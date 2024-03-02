@@ -2,7 +2,7 @@
 from wagtail_factories import SiteFactory
 
 from ..factories.base_page import BasePageFactory
-from ..factories.{{ name|lower }}_page import {{ name }}PageFactory
+from ..factories.{{ file_name }}_page import {{ name }}PageFactory
 from ..pages import {{ name }}PageSerializer
 
 
