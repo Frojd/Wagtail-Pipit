@@ -225,7 +225,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
 
         host = request.GET.get("host")
         hostname, port = split_domain_port(host)
-        return get_site_for_hostname(hostname, port)
+        return get_site_for_hostname(hostname, port or 443)
 
     @classmethod
     def get_urlpatterns(cls):
