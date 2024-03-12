@@ -1,5 +1,6 @@
 # Virtualenv
 venv/
+.venv
 
 # Python specific, Byte-compiled / optimized / DLL files
 *.pyc
