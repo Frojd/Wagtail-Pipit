@@ -52,6 +52,6 @@
         "prettier": "^3.2.4",
         "pretty-quick": "^4.0.0",
         "react-test-renderer": "^18.2.0",
-        "storybook": "^7.6.10"
+        "storybook": "^8.0.4"
     }
 }
