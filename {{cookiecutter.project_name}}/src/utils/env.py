@@ -29,7 +29,7 @@ def if_exists_load_env(name: str) -> None:
         return
 
     inspect_file = inspect.getfile(current_frame)
-    env_path = os.path.dirname(os.path.abspath(inspect_file))
+    env_path = os.path.dirname(os.path.dirname(os.path.abspath(inspect_file)))
     env_file = "{env_path}/{name}".format(env_path=env_path, name=name)
 
     if os.path.exists(env_file):
