@@ -39,7 +39,7 @@
         "@storybook/nextjs": "^7.6.10",
         "@swc/jest": "^0.2.31",
         "@testing-library/jest-dom": "^6.3.0",
-        "@testing-library/react": "^14.1.2",
+        "@testing-library/react": "^15.0.6",
         "@testing-library/user-event": "^14.5.2",
         "cross-env": "^7.0.3",
         "eslint": "8.56.0",
