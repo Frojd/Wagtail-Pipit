@@ -172,7 +172,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
         seoTwitterUrl,
         seoTwitterImage,
         seoMetaRobots,
-        canonicalLink,
+        seoCanonicalLink,
     } = seo;
 
     return {
@@ -192,7 +192,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
             images: [seoTwitterImage],
         },
         alternates: {
-            canonical: canonicalLink,
+            canonical: seoCanonicalLink,
         },
         robots: {
             index: seoMetaRobots.index,

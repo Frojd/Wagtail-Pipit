@@ -29,6 +29,10 @@ rm src/pipit/settings/base.py.bak
 sed -i.bak 's/^\( *\)"version": .*/\1"version": "'$VERSION'",/' $ROOTDIR/frontend/package.json
 rm frontend/package.json.bak
 
+# Bump docker version
+sed -i.bak 's/^LABEL version=.*/LABEL version="v'$VERSION'"/' $ROOTDIR/src/Dockerfile
+rm src/Dockerfile.bak
+
 # Commit changes
 git commit -a -m "Version bump $VERSION"
 

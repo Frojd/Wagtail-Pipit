@@ -61,6 +61,7 @@ Configuration:
     ```
     >>> ansible-galaxy install -r requirements.yml
     ```
+- (Optional) If you want another database collation then sv_SE update `lc_collate` and lc_ctype` in provision.yml
 - Now that we have everything installed, lets run the provisioning:
 - For stage
     ```

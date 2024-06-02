@@ -10,6 +10,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [9.1.0] - 2024-06-02
+### Changed
+- Upgrade Wagtail to 6.1.2
+- Upgrade Next.js to 14.2.3
+- Use pascal case file name when generating file in new_page command
+- Drop possible Page suffix from name argument in new_page
+- Clarify db collation on provisioning (@DBonbon)
+
+### Fixed
+- Fix issue with canonical link not properly exposed with fallback (@marteinn)
+- Default port to 443 to avoid broken site resolve from API (@rinti)
+- Ignore venv dirs named .venv
+- Make utils.env look for envfiles in ./src folder (@mikaelengstrom)
+- Upgrade django to 5.0.6
+- Upgrade pytest to 8.2.0
+- Upgrade wagtail-meta-preview to 4.1.0
+- Upgrade psycopg to 3.1.18
+- Upgrade gunicorn to 22.0.0
+- Upgrade mypy to 1.10.0
+- Upgrade gevent to 24.2.1
+- Upgrade sentry_sdk to 2.3.1
+- Upgrade husky to 9.0.11
+- Upgrade prettier to 3.3.0
+- Upgrade @swc/jes to 0.2.36
+- Upgrade react to 18.3.1
+- Upgrade i18next to 23.11.5
+- Upgrade sentry for js to 8.7.0
+- Upgrade wagtail_headless_preview to 0.8.0
+
+### Removed
+- Drop deprecated version key from docker-compose
+
 ## [9.0.0-beta] - 2024-02-04
 
 ### Added

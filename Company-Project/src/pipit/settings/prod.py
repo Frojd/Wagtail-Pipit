@@ -32,7 +32,7 @@ CACHES = {
 MIDDLEWARE = [
     *MIDDLEWARE[:1],
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    *MIDDLEWARE[1:]
+    *MIDDLEWARE[1:],
 ]
 
 STORAGES = {

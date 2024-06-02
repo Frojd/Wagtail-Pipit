@@ -51,7 +51,7 @@
         group: www-data
         mode: 0664
 
-    - name: Creates postgres database
+    - name: Creates postgres database (with sv_SE collation)
       postgresql_db:
         name: "{{ database_name }}"
         lc_collate: sv_SE.utf8

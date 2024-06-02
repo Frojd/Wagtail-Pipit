@@ -16,13 +16,13 @@
         "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
     },
     "dependencies": {
-        "@sentry/nextjs": "^7.98.0",
-        "i18next": "^23.7.20",
-        "next": "14.1.0",
+        "@sentry/nextjs": "^8.7.0",
+        "i18next": "^23.11.5",
+        "next": "14.2.3",
         "next-i18next": "^15.2.0",
         "prop-types": "^15.8.1",
-        "react": "^18.2.0",
-        "react-dom": "18.2.0"
+        "react": "^18.3.1",
+        "react-dom": "18.3.1"
     },
     "husky": {
         "hooks": {
@@ -37,7 +37,7 @@
         "@storybook/addon-viewport": "^7.6.10",
         "@storybook/addons": "^7.6.10",
         "@storybook/nextjs": "^7.6.10",
-        "@swc/jest": "^0.2.31",
+        "@swc/jest": "^0.2.36",
         "@testing-library/jest-dom": "^6.3.0",
         "@testing-library/react": "^14.1.2",
         "@testing-library/user-event": "^14.5.2",
@@ -45,13 +45,13 @@
         "eslint": "8.56.0",
         "eslint-config-next": "14.1.0",
         "eslint-config-prettier": "^9.1.0",
-        "husky": "^9.0.6",
+        "husky": "^9.0.11",
         "jest": "^29.6.2",
         "jest-environment-jsdom": "^29.6.2",
         "jest-junit": "^16.0.0",
-        "prettier": "^3.2.4",
+        "prettier": "^3.3.0",
         "pretty-quick": "^4.0.0",
-        "react-test-renderer": "^18.2.0",
+        "react-test-renderer": "^18.3.1",
         "storybook": "^7.6.10"
     }
 }
