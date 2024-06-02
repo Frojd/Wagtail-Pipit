@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make utils.env look for envfiles in ./src folder (@mikaelengstrom)
 - Upgrade django to 5.0.6
 - Upgrade pytest to 8.2.0
-- Upgradw wagtail-meta-preview to 4.1.0
+- Upgrade wagtail-meta-preview to 4.1.0
+- Upgrade psycopg to 3.1.18
 
 ### Removed
 - Drop deprecated version key from docker-compose
