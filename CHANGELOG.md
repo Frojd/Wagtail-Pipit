@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ignore venv dirs named .venv
 
 ### Removed
+- Drop deprecated version key from docker-compose
 
 ## [9.0.0-beta] - 2024-02-04
 
