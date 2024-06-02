@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade prettier to 3.3.0
 - Upgrade @swc/jes to 0.2.36
 - Upgrade react to 18.3.1
+- Upgrade i18next to 23.11.5
 
 ### Removed
 - Drop deprecated version key from docker-compose
