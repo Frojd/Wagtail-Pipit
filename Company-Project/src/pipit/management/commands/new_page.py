@@ -90,7 +90,7 @@ class Command(BaseCommand):
 
         test_template = "commands/new_page/test.py.tpl"
 
-        context = {"name": name, "file_name": file_name}
+        context = {"name": name}
 
         self.create_file(test_file, test_template, context)
 
@@ -107,7 +107,7 @@ class Command(BaseCommand):
 
         factory_template = "commands/new_page/factory.py.tpl"
 
-        context = {"name": name, "file_name": file_name}
+        context = {"name": name}
 
         self.create_file(factory_file, factory_template, context)
 
