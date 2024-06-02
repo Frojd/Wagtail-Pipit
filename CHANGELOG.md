@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - Upgrade Wagtail to 6.1.2
+- Upgrade Next.js to 14.2.3
 - Use pascal case file name when generating file in new_page command
 - Drop possible Page suffix from name argument in new_page
 
