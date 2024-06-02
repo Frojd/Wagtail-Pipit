@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [9.1.0] - 2024-06-02
+### Changed
 - Upgrade Wagtail to 6.1.2
 - Upgrade Next.js to 14.2.3
 - Use pascal case file name when generating file in new_page command
