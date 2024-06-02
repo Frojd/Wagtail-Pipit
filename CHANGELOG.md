@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix issue with canonical link not properly exposed with fallback (@marteinn)
 - Default port to 443 to avoid broken site resolve from API (@rinti)
 - Ignore venv dirs named .venv
+- Make utils.env look for envfiles in ./src folder (@mikaelengstrom)
 
 ### Removed
 - Drop deprecated version key from docker-compose
