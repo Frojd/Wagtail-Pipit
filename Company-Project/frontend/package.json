@@ -21,8 +21,8 @@
         "next": "14.2.3",
         "next-i18next": "^15.2.0",
         "prop-types": "^15.8.1",
-        "react": "^18.2.0",
-        "react-dom": "18.2.0"
+        "react": "^18.3.1",
+        "react-dom": "18.3.1"
     },
     "husky": {
         "hooks": {
@@ -51,7 +51,7 @@
         "jest-junit": "^16.0.0",
         "prettier": "^3.3.0",
         "pretty-quick": "^4.0.0",
-        "react-test-renderer": "^18.2.0",
+        "react-test-renderer": "^18.3.1",
         "storybook": "^7.6.10"
     }
 }
