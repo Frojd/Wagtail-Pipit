@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade pytest to 8.2.0
 - Upgrade wagtail-meta-preview to 4.1.0
 - Upgrade psycopg to 3.1.18
+- Upgrade gunicorn to 22.0.0
 
 ### Removed
 - Drop deprecated version key from docker-compose
