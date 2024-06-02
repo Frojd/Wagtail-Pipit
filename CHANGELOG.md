@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade mypy to 1.10.0
 - Upgrade gevent to 24.2.1
 - Upgrade sentry_sdk to 2.3.1
+- Upgrade husky to 9.0.11
 
 ### Removed
 - Drop deprecated version key from docker-compose
