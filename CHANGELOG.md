@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade sentry_sdk to 2.3.1
 - Upgrade husky to 9.0.11
 - Upgrade prettier to 3.3.0
+- Upgrade @swc/jes to 0.2.36
 
 ### Removed
 - Drop deprecated version key from docker-compose
