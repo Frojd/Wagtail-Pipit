@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Next.js to 14.2.3
 - Use pascal case file name when generating file in new_page command
 - Drop possible Page suffix from name argument in new_page
+- Clarify db collation on provisioning (@DBonbon)
 
 ### Fixed
 - Fix issue with canonical link not properly exposed with fallback (@marteinn)
@@ -31,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade react to 18.3.1
 - Upgrade i18next to 23.11.5
 - Upgrade sentry for js to 8.7.0
+- Upgrade wagtail_headless_preview to 0.8.0
 
 ### Removed
 - Drop deprecated version key from docker-compose
