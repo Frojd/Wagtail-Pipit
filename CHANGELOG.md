@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade psycopg to 3.1.18
 - Upgrade gunicorn to 22.0.0
 - Upgrade mypy to 1.10.0
+- Upgrade gevent to 24.2.1
 
 ### Removed
 - Drop deprecated version key from docker-compose
