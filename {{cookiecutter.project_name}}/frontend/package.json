@@ -33,7 +33,7 @@
     "devDependencies": {
         "@storybook/addon-a11y": "^7.6.10",
         "@storybook/addon-actions": "^7.6.10",
-        "@storybook/addon-backgrounds": "^7.6.10",
+        "@storybook/addon-backgrounds": "^8.1.11",
         "@storybook/addon-viewport": "^7.6.10",
         "@storybook/addons": "^7.6.10",
         "@storybook/nextjs": "^7.6.10",
