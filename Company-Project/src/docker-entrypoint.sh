@@ -75,7 +75,7 @@ case "$CMD" in
 
     "lint" )
         echo Running linting
-        exec ruff .
+        exec ruff check .
         ;;
 
     * )

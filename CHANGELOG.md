@@ -10,6 +10,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [9.1.1] - 2024-07-24
+### Changed
+- Upgrade storybook to 8.2.5
+
+### Fixed
+- Upgrade Next.js to 14.2.5
+- Upgrade Django to 5.0.7
+- Upgrade wagtail to 6.1.3
+- Upgrade whitenoise to 6.7.0
+- Upgrade pytest to 8.3.1
+- Upgrade wagtail-factories to 4.2.1
+- Replace deprecated ruff <path> with ruff check <path>
+- Upgrade django-stubs to 5.0.2
+- Upgrade mypy to 1.11.0
+- Upgrade djangorestframework-stubs to 3.15.0
+- Upgrade psycopg to 3.2.1
+- Upgrade sentry_sdk to 2.10.0
+- Upgrade prettier to 3.3.3
+- Upgrade husky to 9.1.1
+- Upgrade i18next to 23.12.2
+- Upgrade next-i18next to 15.3.0
+- Upgrade eslint-config-next to 14.2.5
+- Upgrade sentry/nextjs to 8.19.0
+- Fix storybook crash in HomePage when seo robots are undefined
+- Upgrade testing-library/jest-dom to 6.4.8
+- Upgrade testing-library/react to 16.0.0
+
 ## [9.1.0] - 2024-06-02
 ### Changed
 - Upgrade Wagtail to 6.1.2
