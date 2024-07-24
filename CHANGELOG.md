@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade husky to 9.1.1
 - Upgrade i18next to 23.12.2
 - Upgrade next-i18next to 15.3.0
+- Upgrade eslint-config-next to 14.2.5
 
 ### Removed
 
