@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade mypy to 1.11.0
 - Upgrade djangorestframework-stubs to 3.15.0
 - Upgrade psycopg to 3.2.1
+- Upgrade sentry_sdk to 2.10.0
 
 ### Removed
 
