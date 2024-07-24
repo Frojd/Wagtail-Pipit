@@ -27,6 +27,9 @@ const config = {
         name: '@storybook/nextjs',
         options: {},
     },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript'
+    }
 };
 
 export default config;

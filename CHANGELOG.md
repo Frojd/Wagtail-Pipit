@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade storybook to 8.2.5
+
 ### Fixed
 - Upgrade Next.js to 14.2.5
 - Upgrade Django to 5.0.7
