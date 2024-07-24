@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade sentry_sdk to 2.10.0
 - Upgrade prettier to 3.3.3
 - Upgrade husky to 9.1.1
+- Upgrade i18next to 23.12.2
+- Upgrade next-i18next to 15.3.0
 
 ### Removed
 
