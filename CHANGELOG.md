@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace deprecated ruff <path> with ruff check <path>
 - Upgrade django-stubs to 5.0.2
 - Upgrade mypy to 1.11.0
+- Upgrade djangorestframework-stubs to 3.15.0
 
 ### Removed
 
