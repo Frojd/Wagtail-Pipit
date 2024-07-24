@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade eslint-config-next to 14.2.5
 - Upgrade sentry/nextjs to 8.19.0
 - Fix storybook crash in HomePage when seo robots are undefined
+- Upgrade testing-library/jest-dom to 6.4.8
+- Upgrade testing-library/react to 16.0.0
 
 ### Removed
 
