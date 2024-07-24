@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [9.1.1] - 2024-07-24
+### Changed
 - Upgrade storybook to 8.2.5
 
 ### Fixed
@@ -31,8 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix storybook crash in HomePage when seo robots are undefined
 - Upgrade testing-library/jest-dom to 6.4.8
 - Upgrade testing-library/react to 16.0.0
-
-### Removed
 
 ## [9.1.0] - 2024-06-02
 ### Changed
