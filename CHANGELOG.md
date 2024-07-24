@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade i18next to 23.12.2
 - Upgrade next-i18next to 15.3.0
 - Upgrade eslint-config-next to 14.2.5
+- Upgrade sentry/nextjs to 8.19.0
 
 ### Removed
 
