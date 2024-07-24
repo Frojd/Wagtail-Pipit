@@ -69,7 +69,9 @@ const BasePage = ({ children, seo, shouldRenderSeo, wagtailUserbar }) => {
                             content={seoTwitterImage}
                         />
                     )}
-                    <meta name="robots" content={seoMetaRobots.value} />
+                    {!!seoMetaRobots && (
+                        <meta name="robots" content={seoMetaRobots.value} />
+                    )}
                     {!!canonicalLink && (
                         <link rel="canonical" href={canonicalLink} />
                     )}
