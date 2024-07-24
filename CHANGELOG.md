@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Upgrade Django to 5.0.7
 - Upgrade wagtail to 6.1.3
+- Upgrade whitenoise to 6.7.0
 
 ### Removed
 
