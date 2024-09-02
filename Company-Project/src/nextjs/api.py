@@ -3,6 +3,7 @@ from typing import Dict, Union, cast
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.http import Http404, HttpResponseRedirect
+from django.http.request import split_domain_port
 from django.middleware import csrf as csrf_middleware
 from django.shortcuts import get_object_or_404
 from django.urls import path
@@ -20,10 +21,17 @@ from wagtail.contrib.redirects.middleware import get_redirect
 from wagtail.contrib.redirects.models import Redirect
 from wagtail.forms import PasswordViewRestrictionForm
 from wagtail.models import Page, PageViewRestriction, Site
+from wagtail.models.sites import get_site_for_hostname
 from wagtail.wagtail_hooks import require_wagtail_login
 from wagtail_headless_preview.models import PagePreview
 
 api_router = WagtailAPIRouter("nextjs")
+
+
+def get_external_site_from_request(request) -> Site:
+    host = request.GET.get("host")
+    hostname, port = split_domain_port(host)
+    return get_site_for_hostname(hostname, port or 443)
 
 
 class PageRelativeUrlListSerializer(serializers.Serializer):
@@ -146,7 +154,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         page, args, kwargs = self.get_object()
 
         if request.GET.get("host", None):
-            request._wagtail_site = self.get_external_site_from_request(request)
+            request._wagtail_site = get_external_site_from_request(request)
 
         for restriction in page.get_view_restrictions():
             if not restriction.accept_request(request):
@@ -188,9 +196,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
             path = "/" + path
 
         if self.request.GET.get("host", None):
-            self.request._wagtail_site = self.get_external_site_from_request(
-                self.request
-            )
+            self.request._wagtail_site = get_external_site_from_request(self.request)
 
         site = Site.find_for_request(self.request)
         if not site:
@@ -217,15 +223,6 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
 
         page, args, kwargs = root_page.specific.route(self.request, path_components)
         return page, args, kwargs
-
-    @classmethod
-    def get_external_site_from_request(cls, request):
-        from wagtail.models.sites import get_site_for_hostname
-        from django.http.request import split_domain_port
-
-        host = request.GET.get("host")
-        hostname, port = split_domain_port(host)
-        return get_site_for_hostname(hostname, port or 443)
 
     @classmethod
     def get_urlpatterns(cls):
@@ -300,6 +297,11 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
         path = self.request.GET.get("html_path", None)
         if path is None:
             raise ValidationError({"html_path": "Missing value"})
+
+        request = self.request
+
+        if request.GET.get("host", None):
+            request._wagtail_site = get_external_site_from_request(request)
 
         if not path.startswith("/"):
             path = "/" + path

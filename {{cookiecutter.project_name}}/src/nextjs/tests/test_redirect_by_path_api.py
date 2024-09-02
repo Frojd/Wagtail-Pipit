@@ -2,6 +2,9 @@ from django.urls import reverse
 from wagtail.contrib.redirects.models import Redirect
 from wagtail.models import Site
 from wagtail.test.utils import WagtailPageTests
+from wagtail_factories import SiteFactory
+
+from main.factories.base_page import BasePageFactory
 
 
 class RedirectByPathApiTest(WagtailPageTests):
@@ -29,3 +32,19 @@ class RedirectByPathApiTest(WagtailPageTests):
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertEqual(data["destination"], "https://wagtail.io")
+
+    def test_host_is_respected(self):
+        page = BasePageFactory.create(title="Start", parent=None)
+        site2 = SiteFactory.create(root_page=page, hostname="example2.test")
+
+        Redirect.add_redirect("/random/", "https://wagtail.io", site=self.site)
+        Redirect.add_redirect("/random/", "https://wagtail2.io", site=site2)
+
+        response = self.client.get(
+            reverse("nextjs:redirect_by_path:detail"),
+            {"html_path": "/random/", "host": "example2.test"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["destination"], "https://wagtail2.io")
