@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix 'the input device is not a TTY' error in pre-push githook
 - Make sure host query arg are supported when loading redirects from api
+- Replace deprecated ruff lint options
 
 ### Removed
 
