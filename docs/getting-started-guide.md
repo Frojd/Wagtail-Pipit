@@ -90,7 +90,7 @@ services:
 
 The Django application will be served through Docker. To start it, run the following from the project root:
 ```
-docker-compose up
+docker compose up
 ```
 
 When Docker is finished, your app should be up and running on the `docker_web_port` specified in the wizard (`http://localhost:8081` in our example).
@@ -117,7 +117,7 @@ For convenience we are providing a script for that, so instead of running the us
 ```
 If you rather want to work within a shell in the docker container, you can do so:
 ```
-docker-compose exec python bash
+docker compose exec python bash
 ```
 
 ### Installing requirements need to happen `within` the docker environment
@@ -129,7 +129,7 @@ Like for management commands, we provide a script to for this. When adding requi
 If you prefer, you can start a shell in the container and go on as you are used to:
 
 ```
-docker-compose exec python bash
+docker compose exec python bash
 ```
 
 
@@ -186,7 +186,7 @@ For us to support local certificates you need to install a tool called [mkcert](
     sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf && rm -f docker/files/config/nginx.conf.bak
     ```
 
-- Remove your docker container `web` (`docker-compose stop && docker-compose rm -f web`)
+- Remove your docker container `web` (`docker compose stop && docker compose rm -f web`)
 - Restart docker
 
 ...there is also a alternative way by running `./scripts/enable_ssl.sh`

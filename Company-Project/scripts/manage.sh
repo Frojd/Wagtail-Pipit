@@ -8,4 +8,4 @@ set -e
 # Example usage `scripts/manage.sh migrate`
 
 manage_command="./manage.py $@"
-docker-compose exec python $manage_command
+docker compose exec python $manage_command

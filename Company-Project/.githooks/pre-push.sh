@@ -7,6 +7,6 @@
 # $1 -- Name of the remote to which the push is being done
 # $2 -- URL to which the push is being done
 
-docker-compose run -T --rm python test
+docker compose run -T --rm python test
 
 exit $?

@@ -6,13 +6,13 @@ Lets start with us saying that docker is a great tool. But in all this greatness
 
 ## Setup
 
-Begin by adding our included docker-compose override, it will change the `PYTHON_HOST` environment variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version. This override will also replace the python container with a no-op container.
+Begin by adding our included docker compose override, it will change the `PYTHON_HOST` environment variable in `docker-compose.yml` for the container `web` so we use a local running python interpreter instead of the docker version. This override will also replace the python container with a no-op container.
 
 ```
 cp docker-compose.override.local.yml docker-compose.override.yml
 ```
 
-If you have a existing web container, remove it `docker-compose rm web`
+If you have a existing web container, remove it `docker compose rm web`
 
 Create a custom .env file for your local db instance
 
@@ -57,7 +57,7 @@ Tip: If you are having issues installing `psycopg2` because your are lacking pos
 Start docker (without the `python` container)
 
 ```
-docker-compose up db web
+docker compose up db web
 ```
 
 And then finally start your python server

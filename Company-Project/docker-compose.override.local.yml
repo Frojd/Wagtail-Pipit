@@ -1,4 +1,4 @@
-# docker-compose override for running python with a local interpreter
+# docker compose override for running python with a local interpreter
 services:
   web:
     depends_on: []

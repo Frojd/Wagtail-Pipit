@@ -10,9 +10,9 @@ scripts_dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 docker_dir=${scripts_dir}/../docker
 
 echo "Rebuilding docker containers."
-docker-compose stop db
-docker-compose rm -f db
-docker-compose up -d db
+docker compose stop db
+docker compose rm -f db
+docker compose up -d db
 
 echo "Waiting for database ($DB_WAIT_TIME seconds)..."
 sleep $DB_WAIT_TIME
@@ -29,7 +29,7 @@ if $use_local_python;
 then
     manage_command="$src_dir/manage.py"
 else
-    manage_command="docker-compose exec python ./manage.py"
+    manage_command="docker compose exec python ./manage.py"
 fi
 
 echo "Adjusting database..."
