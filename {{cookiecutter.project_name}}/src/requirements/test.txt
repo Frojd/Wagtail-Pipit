@@ -4,6 +4,6 @@
 # Add extra test requirements here (such as factory-boy)
 coverage
 pytest==8.3.1
-pytest-django==4.8.0
+pytest-django==4.9.0
 pytest-env
 wagtail-factories==4.2.1
