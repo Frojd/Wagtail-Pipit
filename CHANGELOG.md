@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make sure host query arg are supported when loading redirects from api
 - Replace deprecated ruff lint options
 - Replace docker-compose cli command with docker-compose
+- Add missing tests for external view api
 
 ### Removed
 
