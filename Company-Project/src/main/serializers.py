@@ -10,12 +10,18 @@ from .pages import BasePage
 class NotFoundPageSerializer(serializers.Serializer):
     exception = serializers.CharField()
     site_setting = serializers.SerializerMethodField()
+    domain = serializers.SerializerMethodField()
 
     def get_site_setting(self, _page):
         request = self.context["request"]
         site = Site.find_for_request(request)
         site_setting = SiteSetting.for_site(site)
         return SiteSettingSerializer(site_setting).data
+
+    def get_domain(self, _page):
+        request = self.context["request"]
+        site = Site.find_for_request(request)
+        return site.hostname
 
 
 class SeoSerializer(serializers.ModelSerializer):

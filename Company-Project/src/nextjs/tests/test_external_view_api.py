@@ -1,6 +1,7 @@
 from django.urls import reverse
 from wagtail.models import Site
 from wagtail.test.utils import WagtailPageTests
+from wagtail_factories import SiteFactory
 
 from main.factories.base_page import BasePageFactory
 
@@ -16,10 +17,23 @@ class ExternalViewApiTest(WagtailPageTests):
     def test_retrieval(self):
         BasePageFactory.create(title="Child page", parent=self.root_page)
 
-        url = reverse("nextjs:external_view_data:detail", kwargs={"pk":"404"})
+        url = reverse("nextjs:external_view_data:detail", kwargs={"pk": "404"})
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
         response_data = response.json()
         self.assertEqual(response_data["component_name"], "NotFoundPage")
+
+    def test_request_host_are_respected(self):
+        site2 = SiteFactory.create(hostname="example.test")
+
+        BasePageFactory.create(title="Child page", parent=self.root_page)
+
+        url = reverse("nextjs:external_view_data:detail", kwargs={"pk": "404"})
+
+        response = self.client.get(f"{url}?host={site2.hostname}")
+        self.assertEqual(response.status_code, 200)
+
+        response_data = response.json()
+        self.assertEqual(response_data["component_props"]["domain"], "example.test")

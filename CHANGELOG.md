@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace deprecated ruff lint options
 - Replace docker-compose cli command with docker-compose
 - Add missing tests for external view api
+- Fix issue where host query arg where not supported in external view api
 
 ### Removed
 

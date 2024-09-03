@@ -251,6 +251,10 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
         view_cls: View = cast(View, view_resource)
 
         view = view_cls.as_view()
+
+        if request.GET.get("host", None):
+            request._wagtail_site = get_external_site_from_request(request)
+
         resp = view(request)
 
         if resp.status_code in [301, 302, 307]:
