@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump mypy to 1.11.2
 - Bump pytest-django to 4.9.0
 - Bump django-stubs to 5.0.4
-
+- Bump gunicorn to 23.0.0
 
 ### Removed
 

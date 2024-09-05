@@ -1,5 +1,5 @@
 Django==5.0.7
-gunicorn==22.0.0
+gunicorn==23.0.0
 gevent==24.2.1
 psycopg==3.2.1
 python-dotenv==1.0.1
