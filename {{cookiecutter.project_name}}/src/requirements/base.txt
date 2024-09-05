@@ -4,7 +4,7 @@ gevent==24.2.1
 psycopg==3.2.1
 python-dotenv==1.0.1
 sentry_sdk[django]==2.13.0
-wagtail==6.1.3
+wagtail==6.2.1
 wagtail-meta-preview==4.1.0
 wagtail_headless_preview==0.8.0
 whitenoise==6.7.0
