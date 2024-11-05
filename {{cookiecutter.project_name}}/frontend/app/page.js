@@ -147,6 +147,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
         searchParams: {
             host: headersList.get('host'),
         },
+        headers: {
+            cookie: headersList.get('cookie'),
+        },
         options: {
             //cache: 'force-cache',
             revalidate: 900, // 15 minutes
