@@ -35,7 +35,7 @@
         "@storybook/addon-actions": "^8.2.5",
         "@storybook/addon-backgrounds": "^8.2.5",
         "@storybook/addon-viewport": "^8.2.5",
-        "@storybook/nextjs": "^8.2.5",
+        "@storybook/nextjs": "^8.4.4",
         "@swc/jest": "^0.2.36",
         "@testing-library/jest-dom": "^6.4.8",
         "@testing-library/react": "^16.0.0",
