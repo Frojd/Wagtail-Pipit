@@ -34,18 +34,18 @@ jobs:
         run: |
           cd Company-Project
           chmod +x src/docker-entrypoint.sh
-          docker-compose -f docker-compose-ci.yml build
+          docker compose -f docker-compose-ci.yml build
       - name: Verify backend scaffolder
         run: |
           cd Company-Project
           set -x
-          docker-compose -f docker-compose-ci.yml run --rm python python manage.py new_page --name=Article
+          docker compose -f docker-compose-ci.yml run --rm python python manage.py new_page --name=Article
       - name: Run tests on container
         run: |
           cd Company-Project
-          docker-compose -f docker-compose-ci.yml run --rm python test
-          docker-compose -f docker-compose-ci.yml run --rm python typecheck
-          docker-compose -f docker-compose-ci.yml run --rm python lint
+          docker compose -f docker-compose-ci.yml run --rm python test
+          docker compose -f docker-compose-ci.yml run --rm python typecheck
+          docker compose -f docker-compose-ci.yml run --rm python lint
       - name: Run frontend tests
         run: |
           cd Company-Project/frontend
