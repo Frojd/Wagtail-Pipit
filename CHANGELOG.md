@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade postgres version to 13 (@marteinn)
+
 ### Fixed
 - Use docker compose v2 in github action test runner (@qgrp-m-kondratenko)
 - Fix issue where metadata was not being sent to frontend correctly
