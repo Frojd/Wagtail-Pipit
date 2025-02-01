@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Use docker compose v2 in github action test runner (@qgrp-m-kondratenko)
 - Fix issue where metadata was not being sent to frontend correctly
 - Fix 'the input device is not a TTY' error in pre-push githook
 - Make sure host query arg are supported when loading redirects from api
