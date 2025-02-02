@@ -8,8 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - Upgrade Wagtail to 6.3.2 (@marteinn)
+- Upgrade Next.js to 5.1.6 (@marteinn)
 - Upgrade postgres version to 13 (@marteinn)
 - Upgrade Django to 5.1.5 (@marteinn)
+- Upgrade React to 19 (@marteinn)
 
 ### Fixed
 - Use docker compose v2 in github action test runner (@qgrp-m-kondratenko)
@@ -31,8 +33,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump mypy to 1.14.1
 - Bump gevent to 24.11.1
 - Bump djangorestframework-stubs to 3.15.2
+- Bump @sentry/nextjs to 8.53.0
+- Bump i18next to 24.2.2
+- Bump next-i18next 15.4.1
+- Bump storybook to 8.5
+- Bump eslint to 9
 
 ### Removed
+- Drop react-test-renderer
 
 ## [9.1.1] - 2024-07-24
 ### Changed

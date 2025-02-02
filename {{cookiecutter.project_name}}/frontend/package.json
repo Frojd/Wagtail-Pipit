@@ -1,56 +1,55 @@
 {
-    "name": "frontend_nextjs",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev -p {{cookiecutter.nextjs_port}}",
-        "build": "next build",
-        "build:local": "IGNORE_SENTRY=1 next build",
-        "start": "PORT={{cookiecutter.nextjs_port}} node .next/standalone/server.js",
-        "storybook": "storybook dev -p 3001",
-        "build-storybook": "storybook build",
-        "fixcode": "npx prettier \"**/*(*.css|*.js|*.json|*.md|*.scss)\" --write",
-        "new": "node cli/bin.js new",
-        "new:container": "node cli/bin.js new --container",
-        "test": "jest --watch",
-        "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
-    },
-    "dependencies": {
-        "@sentry/nextjs": "^8.19.0",
-        "i18next": "^23.12.2",
-        "next": "14.2.5",
-        "next-i18next": "^15.3.0",
-        "prop-types": "^15.8.1",
-        "react": "^18.3.1",
-        "react-dom": "18.3.1"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --staged --pattern 'frontend/**' && jest --onlyChanged",
-            "pre-push": ""
-        }
-    },
-    "devDependencies": {
-        "@storybook/addon-a11y": "^8.2.5",
-        "@storybook/addon-actions": "^8.2.5",
-        "@storybook/addon-backgrounds": "^8.2.5",
-        "@storybook/addon-viewport": "^8.2.5",
-        "@storybook/nextjs": "^8.2.5",
-        "@swc/jest": "^0.2.36",
-        "@testing-library/jest-dom": "^6.4.8",
-        "@testing-library/react": "^16.0.0",
-        "@testing-library/user-event": "^14.5.2",
-        "cross-env": "^7.0.3",
-        "eslint": "8.56.0",
-        "eslint-config-next": "14.2.5",
-        "eslint-config-prettier": "^9.1.0",
-        "husky": "^9.1.1",
-        "jest": "^29.6.2",
-        "jest-environment-jsdom": "^29.6.2",
-        "jest-junit": "^16.0.0",
-        "prettier": "^3.3.3",
-        "pretty-quick": "^4.0.0",
-        "react-test-renderer": "^18.3.1",
-        "storybook": "^8.2.5"
+  "name": "frontend_nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p {{cookiecutter.nextjs_port}}",
+    "build": "next build",
+    "build:local": "IGNORE_SENTRY=1 next build",
+    "start": "PORT={{cookiecutter.nextjs_port}} node .next/standalone/server.js",
+    "storybook": "storybook dev -p 3001",
+    "build-storybook": "storybook build",
+    "fixcode": "npx prettier \"**/*(*.css|*.js|*.json|*.md|*.scss)\" --write",
+    "new": "node cli/bin.js new",
+    "new:container": "node cli/bin.js new --container",
+    "test": "jest --watch",
+    "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
+  },
+  "dependencies": {
+    "@sentry/nextjs": "^8.53.0",
+    "i18next": "^24.2.2",
+    "next": "15.1.6",
+    "next-i18next": "^15.4.1",
+    "prop-types": "^15.8.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --pattern 'frontend/**' && jest --onlyChanged",
+      "pre-push": ""
     }
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.5.3",
+    "@storybook/addon-actions": "^8.5.3",
+    "@storybook/addon-backgrounds": "^8.5.3",
+    "@storybook/addon-viewport": "^8.5.3",
+    "@storybook/nextjs": "^8.5.3",
+    "@swc/jest": "^0.2.37",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "cross-env": "^7.0.3",
+    "eslint": "9.19.0",
+    "eslint-config-next": "15.1.6",
+    "eslint-config-prettier": "^10.0.1",
+    "husky": "^9.1.7",
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
+    "jest-junit": "^16.0.0",
+    "prettier": "^3.4.2",
+    "pretty-quick": "^4.0.0",
+    "storybook": "^8.2.5"
+  }
 }
