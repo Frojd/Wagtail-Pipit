@@ -22,12 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix issue where host query arg where not supported in external view api
 - Bump mypy to 1.11.2
 - Bump pytest-django to 4.9.0
-- Bump django-stubs to 5.0.4
+- Bump django-stubs to 5.1.2
 - Bump gunicorn to 23.0.0
 - Bump sentry_sdk to 2.20.0
 - Bump pytest to 8.3.2
 - Bump whitenoise to 6.8.2
 - Bump pytest to 8.3.4
+- Bump mypy to 1.14.1
+- Bump gevent to 24.11.1
+- Bump djangorestframework-stubs to 3.15.2
 
 ### Removed
 
