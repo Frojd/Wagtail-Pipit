@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump sentry_sdk to 2.20.0
 - Bump pytest to 8.3.2
 - Bump whitenoise to 6.8.2
+- Bump pytest to 8.3.4
 
 ### Removed
 
