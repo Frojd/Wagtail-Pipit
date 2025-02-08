@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
-- Upgrade Wagtail to 6.3.2 (@marteinn)
+- Upgrade Wagtail to 6.4 (@marteinn)
 - Upgrade Next.js to 5.1.6 (@marteinn)
 - Upgrade postgres version to 13 (@marteinn)
 - Upgrade Django to 5.1.6 (@marteinn)
