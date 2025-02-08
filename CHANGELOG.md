@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump next-i18next 15.4.2
 - Bump storybook to 8.5
 - Bump eslint to 9.20
+- Bump django-stubs to 5.1.3
 
 ### Removed
 - Drop react-test-renderer
