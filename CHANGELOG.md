@@ -36,11 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump mypy to 1.14.1
 - Bump gevent to 24.11.1
 - Bump djangorestframework-stubs to 3.15.2
-- Bump @sentry/nextjs to 8.53.0
+- Bump @sentry/nextjs to 8.54.0
 - Bump i18next to 24.2.2
-- Bump next-i18next 15.4.1
+- Bump next-i18next 15.4.2
 - Bump storybook to 8.5
-- Bump eslint to 9
+- Bump eslint to 9.20
 
 ### Removed
 - Drop react-test-renderer
