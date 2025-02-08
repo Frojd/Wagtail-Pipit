@@ -16,10 +16,10 @@
     "test:ci": "npx jest --ci --runInBand --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
-    "@sentry/nextjs": "^8.53.0",
+    "@sentry/nextjs": "^8.54.0",
     "i18next": "^24.2.2",
     "next": "15.1.6",
-    "next-i18next": "^15.4.1",
+    "next-i18next": "^15.4.2",
     "prop-types": "^15.8.1",
     "react": "19.0.0",
     "react-dom": "19.0.0"
@@ -41,7 +41,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "cross-env": "^7.0.3",
-    "eslint": "9.19.0",
+    "eslint": "9.20.0",
     "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "^10.0.1",
     "husky": "^9.1.7",
