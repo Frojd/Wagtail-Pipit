@@ -13,7 +13,8 @@ import '../index.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export default async function RootLayout({ children, ...props }) {
-    const pathname = headers().get('x-pathname') || '';
+    const headerList = await headers()
+    const pathname = headerList.get('x-pathname') || '';
     // const data = await getPage({
     //     path: pathname,
     //     searchParams: {},

@@ -10,6 +10,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [9.2.0] - 2025-02-08
+### Changed
+- Upgrade Wagtail to 6.4 (@marteinn)
+- Upgrade Next.js to 5.1.6 (@marteinn)
+- Upgrade postgres version to 13 (@marteinn)
+- Upgrade Django to 5.1.6 (@marteinn)
+- Upgrade React to 19 (@marteinn)
+
+### Fixed
+- Use docker compose v2 in github action test runner (@qgrp-m-kondratenko)
+- Make Next.js app router compatible with Next.js 5.1 (@marteinn)
+- Fix issue where metadata was not being sent to frontend correctly (@rinti)
+- Fix 'the input device is not a TTY' error in pre-push githook (@mikaelengstrom)
+- Make sure host query arg are supported when loading redirects from api (@marteinn)
+- Replace deprecated ruff lint options
+- Replace docker-compose cli command with docker-compose
+- Add missing tests for external view api
+- Fix issue where host query arg where not supported in external view api
+- Drop unused version from docker-compose github ci runner config (@marteinn)
+- Fix broken DjangoModelFactory import (@marteinn)
+- Bump mypy to 1.11.2
+- Bump pytest-django to 4.9.0
+- Bump django-stubs to 5.1.2
+- Bump gunicorn to 23.0.0
+- Bump sentry_sdk to 2.20.0
+- Bump pytest to 8.3.2
+- Bump whitenoise to 6.9.0
+- Bump pytest to 8.3.4
+- Bump mypy to 1.14.1
+- Bump gevent to 24.11.1
+- Bump djangorestframework-stubs to 3.15.2
+- Bump @sentry/nextjs to 8.54.0
+- Bump i18next to 24.2.2
+- Bump next-i18next 15.4.2
+- Bump storybook to 8.5
+- Bump eslint to 9.20
+- Bump django-stubs to 5.1.3
+
+### Removed
+- Drop react-test-renderer
+
 ## [9.1.1] - 2024-07-24
 ### Changed
 - Upgrade storybook to 8.2.5

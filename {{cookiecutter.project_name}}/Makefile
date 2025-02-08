@@ -7,22 +7,22 @@ init:
 	ln -nfs $(PWD)/.githooks/bump-version.sh .git/hooks/post-flow-hotfix-start
 	mkdir -p src/media
 	mkdir -p src/static
-	docker-compose up -d
+	docker compose up -d
 	cd frontend && npm install && npm run dev
 
 test:
-	docker-compose run --rm python test
+	docker compose run --rm python test
 	cd frontend && npm run test
 
 fixcode:
-	docker-compose exec python black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
+	docker compose exec python black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
 
 translate:
-	docker-compose exec python bash -c "python manage.py makemessages -l sv_SE --ignore=venv"
+	docker compose exec python bash -c "python manage.py makemessages -l sv_SE --ignore=venv"
 
 coverage:
-	docker-compose exec python coverage run -m pytest --ds=pipit.settings.test
-	docker-compose exec python coverage html
+	docker compose exec python coverage run -m pytest --ds=pipit.settings.test
+	docker compose exec python coverage html
 
 typecheck:
-	docker-compose run --rm python typecheck
+	docker compose run --rm python typecheck

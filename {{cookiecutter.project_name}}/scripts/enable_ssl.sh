@@ -36,9 +36,9 @@ mkcert --cert-file docker/files/certs/cert.pem --key-file docker/files/certs/cer
 sed -i.bak 's/\#mkcert\ //g' docker/files/config/nginx.conf.template
 rm -f docker/files/config/nginx.conf.template.bak
 
-docker-compose stop
-docker-compose rm -f web
-docker-compose up -d
+docker compose stop
+docker compose rm -f web
+docker compose up -d
 
 echo "---"
 echo "Done!"

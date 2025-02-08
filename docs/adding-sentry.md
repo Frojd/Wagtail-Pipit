@@ -45,11 +45,11 @@ Before you get started, make sure you have the following:
 - We are done editing `python.env`, save the file
 - Restart your project
     ```
-    docker-compose stop && docker-compose up
+    docker compose stop && docker compose up
     ```
 - Open the python repl in docker
     ```
-    docker-compose exec python -c "./manage.py shell"
+    docker compose exec python -c "./manage.py shell"
     ```
 - Trigger a divison by zero error
     ```

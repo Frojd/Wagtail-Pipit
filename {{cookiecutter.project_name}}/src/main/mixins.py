@@ -43,7 +43,7 @@ class RedirectUpMixin:
 
 
 class SeoMixin(Page):
-    og_title = models.CharField(
+    og_title: models.CharField = models.CharField(
         max_length=40,
         blank=True,
         null=True,
@@ -51,7 +51,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to seo title if empty"),
     )
 
-    og_description = models.CharField(
+    og_description: models.CharField = models.CharField(
         max_length=300,
         blank=True,
         null=True,
@@ -59,7 +59,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to seo description if empty"),
     )
 
-    og_image = models.ForeignKey(
+    og_image: models.ForeignKey = models.ForeignKey(
         "customimage.CustomImage",
         null=True,
         blank=True,
@@ -72,7 +72,7 @@ class SeoMixin(Page):
         related_name="+",
     )
 
-    twitter_title = models.CharField(
+    twitter_title: models.CharField = models.CharField(
         max_length=40,
         blank=True,
         null=True,
@@ -80,7 +80,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to facebook title if empty"),
     )
 
-    twitter_description = models.CharField(
+    twitter_description: models.CharField = models.CharField(
         max_length=300,
         blank=True,
         null=True,
@@ -88,7 +88,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to facebook description if empty"),
     )
 
-    twitter_image = models.ForeignKey(
+    twitter_image: models.ForeignKey = models.ForeignKey(
         "customimage.CustomImage",
         null=True,
         blank=True,
@@ -98,19 +98,19 @@ class SeoMixin(Page):
         help_text=_("Falls back to facebook image if empty"),
     )
 
-    robot_noindex = models.BooleanField(
+    robot_noindex: models.BooleanField = models.BooleanField(
         default=False,
         verbose_name=_("No index"),
         help_text=_("Check to add noindex to robots"),
     )
 
-    robot_nofollow = models.BooleanField(
+    robot_nofollow: models.BooleanField = models.BooleanField(
         default=False,
         verbose_name=_("No follow"),
         help_text=_("Check to add nofollow to robots"),
     )
 
-    canonical_link = models.URLField(
+    canonical_link: models.URLField = models.URLField(
         blank=True, null=True, verbose_name=_("Canonical link")
     )
 

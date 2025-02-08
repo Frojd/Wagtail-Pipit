@@ -72,7 +72,7 @@ Make sure you follow the install instructions in the project README.md, in short
 
 ## Running docker
 
-To run docker, run `docker-compose up` from the project root (the folder contains a `docker-compose.yml` file).
+To run docker, run `docker compose up` from the project root (the folder contains a `docker compose.yml` file).
 
 This will create the following docker containers:
 
@@ -94,7 +94,7 @@ When all the containers are running, open your browser and navigate to either:
 Start by generating a new page in Wagtail, we have a management command to simplify the process called `new_page`.
 
 ```
-docker-compose exec python ./manage.py new_page --name=About
+docker compose exec python ./manage.py new_page --name=About
 ```
 
 This will create the following files:
@@ -159,13 +159,13 @@ class AboutPage(HeadlessPreviewMixin, BasePage):
 After adding our field we need to create a new database migration.
 
 ```
-docker-compose exec python ./manage.py makemigrations
+docker compose exec python ./manage.py makemigrations
 ```
 
 We also need to run the migration so database changes are applied.
 
 ```
-docker-compose exec python ./manage.py migrate
+docker compose exec python ./manage.py migrate
 ```
 
 Now login to the Wagtail cms at `http://blog.acme.com.test:8081/wt/cms` using:
@@ -195,7 +195,7 @@ def test_that_company_name_are_retuned(self):
 Now run it.
 
 ```
-docker-compose exec python pytest
+docker compose exec python pytest
 ```
 
 Oh no - It fails. But that's all right, that means we need to add `company_name` to our serializer.
@@ -221,7 +221,7 @@ class AboutPageSerializer(BasePageSerializer):
 Now run the tests again.
 
 ```
-docker-compose exec python pytest
+docker compose exec python pytest
 ```
 
 Tests pass.

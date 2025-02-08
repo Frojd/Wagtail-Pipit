@@ -33,7 +33,7 @@ services:
     env_file: ./docker/config/python.env
 
   db:
-    image: postgis/postgis:12-2.5-alpine
+    image: postgis/postgis:13-3.5-alpine
     ports:
       - "8083:5432"
     volumes:

@@ -63,7 +63,7 @@
 6. Start project
 
     ```
-    docker-compose up
+    docker compose up
     ```
 
 7. Install and start frontend
@@ -127,10 +127,10 @@ You should now be able to attach to the running Django server instance.
 
 ### pdb in Docker
 
-To use pdb you need to start the container with service-ports exposed instead of docker-compose up. This will create a container called `<project_prefix>_python_run_1`
+To use pdb you need to start the container with service-ports exposed instead of docker compose up. This will create a container called `<project_prefix>_python_run_1`
 
 ```
-docker-compose run --rm --service-ports python
+docker compose run --rm --service-ports python
 ```
 
 
@@ -195,7 +195,7 @@ Read the instructions for [Mac OS](https://docs.docker.com/docker-for-mac/instal
 ### How do I run the test suite locally?
 
 ```
-docker-compose run --rm python test
+docker compose run --rm python test
 ```
 
 
@@ -206,13 +206,13 @@ To run manage.py commands in docker is pretty straightforward, instead of target
 - Example: Create migrations
 
 ```
-docker-compose exec python ./manage.py makemigrations
+docker compose exec python ./manage.py makemigrations
 ```
 
 - Example: Run migrations
 
 ```
-docker-compose exec python ./manage.py migrate
+docker compose exec python ./manage.py migrate
 ```
 
 We also have a manage.sh script to make running management commands easier.
@@ -227,8 +227,8 @@ We also have a manage.sh script to make running management commands easier.
 First update your requirements/base.txt, then rebuild your container:
 
 ```
-docker-compose stop
-docker-compose up --build
+docker compose stop
+docker compose up --build
 ```
 
 

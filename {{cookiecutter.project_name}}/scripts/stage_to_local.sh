@@ -19,9 +19,9 @@ scp $SSH_HOST:/tmp/db-dump.sql $docker_dir/files/db-dumps/db-dump.sql
 ssh $SSH_HOST "rm /tmp/db-dump.sql"
 
 echo "Rebuilding database..."
-docker-compose stop db
-docker-compose rm -f db
-docker-compose up -d db
+docker compose stop db
+docker compose rm -f db
+docker compose up -d db
 
 echo "Waiting for database ($DB_WAIT_TIME seconds)..."
 sleep $DB_WAIT_TIME
@@ -46,7 +46,7 @@ if [[ $use_local_python == 1 ]]
 then
     manage_command="$src_dir/manage.py"
 else
-    manage_command="docker-compose exec python ./manage.py"
+    manage_command="docker compose exec python ./manage.py"
 fi
 
 echo "Adjusting database..."
