@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace docker-compose cli command with docker-compose
 - Add missing tests for external view api
 - Fix issue where host query arg where not supported in external view api
+- Drop unused version from docker-compose github ci runner config (@marteinn)
 - Bump mypy to 1.11.2
 - Bump pytest-django to 4.9.0
 - Bump django-stubs to 5.1.2
