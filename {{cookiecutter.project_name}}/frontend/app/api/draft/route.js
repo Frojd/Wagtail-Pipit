@@ -15,11 +15,12 @@ export async function GET(request) {
             .json({ message: 'Missing contentType and/or token' });
     }
 
-    const headersList = headers();
+    const headersList = await headers();
     const referer = headersList.get('referer') || '';
     const inPreviewPanel = referer.includes('in_preview_panel=true');
 
-    draftMode().enable();
+    const draft = await draftMode()
+    draft.enable()
 
     redirect(
         `/_draft?contentType=${contentType}&token=${token}&inPreviewPanel=${inPreviewPanel ? 'true' : 'false'}`

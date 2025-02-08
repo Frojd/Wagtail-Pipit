@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import { headers, draftMode } from 'next/headers';
-import { unstable_cache } from 'next/cache';
-import { cache } from 'react';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import LazyContainers from '../containers/LazyContainers';
 
@@ -141,9 +139,10 @@ async function getPageData({
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-    const headersList = headers();
+    const headersList = await headers();
+    const { path }= await params;
     const data = await getPageData({
-        path: params.path,
+        path: path,
         searchParams: {
             host: headersList.get('host'),
         },
@@ -160,7 +159,15 @@ export async function generateMetadata({ params, searchParams }, parent) {
         return {};
     }
 
+    if (data?.notFound) {
+        return {}
+    }
+
     const { seo } = data.props.componentProps;
+
+    if (!seo) {
+        return {}
+    }
 
     const {
         seoHtmlTitle,
@@ -205,13 +212,16 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function CatchAllPage(props) {
-    const headersList = headers();
+    const headersList = await headers();
     const { params, searchParams } = props;
-    const { isEnabled: isDraftEnabled } = draftMode();
+    const { path } = await params;
+    const { isEnabled: isDraftEnabled } = await draftMode();
+
+    const allSearchParams = await searchParams;
 
     let data = null;
-    if (isDraftEnabled && searchParams.contentType && searchParams.token) {
-        const { contentType, token, inPreviewPanel } = searchParams;
+    if (isDraftEnabled && allSearchParams.contentType && allSearchParams.token) {
+        const { contentType, token, inPreviewPanel } = await searchParams;
         data = await getPreviewPageData({
             contentType,
             token,
@@ -222,9 +232,9 @@ export default async function CatchAllPage(props) {
         });
     } else {
         data = await getPageData({
-            path: params.path,
+            path: path,
             searchParams: {
-                ...searchParams,
+                ...allSearchParams,
                 host: headersList.get('host'),
             },
             headers: {
