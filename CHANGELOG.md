@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [9.2.0] - 2025-02-08
+### Changed
 - Upgrade Wagtail to 6.4 (@marteinn)
 - Upgrade Next.js to 5.1.6 (@marteinn)
 - Upgrade postgres version to 13 (@marteinn)
@@ -16,9 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Use docker compose v2 in github action test runner (@qgrp-m-kondratenko)
 - Make Next.js app router compatible with Next.js 5.1 (@marteinn)
-- Fix issue where metadata was not being sent to frontend correctly
-- Fix 'the input device is not a TTY' error in pre-push githook
-- Make sure host query arg are supported when loading redirects from api
+- Fix issue where metadata was not being sent to frontend correctly (@rinti)
+- Fix 'the input device is not a TTY' error in pre-push githook (@mikaelengstrom)
+- Make sure host query arg are supported when loading redirects from api (@marteinn)
 - Replace deprecated ruff lint options
 - Replace docker-compose cli command with docker-compose
 - Add missing tests for external view api
