@@ -1,4 +1,4 @@
-Django==5.1.6
+Django==5.1.7
 gunicorn==23.0.0
 gevent==24.11.1
 psycopg==3.2.4
