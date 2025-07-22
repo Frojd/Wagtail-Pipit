@@ -11,17 +11,12 @@ const config = {
             ...options,
         };
     },
-    addons: [
-        '@storybook/addon-viewport',
-        '@storybook/addon-a11y',
-        '@storybook/addon-backgrounds',
-    ],
+    addons: ['@storybook/addon-a11y'],
     features: {
         babelModeV7: true,
     },
     docs: {
-        autodocs: true,
-        defaultName: 'Documentation',
+      defaultName: 'Documentation'
     },
     framework: {
         name: '@storybook/nextjs',
