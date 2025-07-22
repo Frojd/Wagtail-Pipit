@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update Storybook to v9 and simplify addon configuration (@rinti)
 - Update frontend dependencies: Next.js to 15.4.1, React to 19.1.0, Sentry to 9.39.0, i18next to 25.3.2 (@rinti)
 - Update development dependencies: jest to 30.0.4, eslint to 9.31.0, prettier to 3.6.2 (@rinti)
+- Update Python dependencies: Django to 5.2.4, Wagtail to 7.0.1, gevent to 25.5.1, psycopg to 3.2.9, python-dotenv to 1.1.1, sentry-sdk to 2.33.2, wagtail-meta-preview to 4.2.1 (@rinti)
+- Update test dependencies: pytest to 8.4.1, pytest-django to 4.11.1 (@rinti)
 ### Fixed
 ### Removed
 
