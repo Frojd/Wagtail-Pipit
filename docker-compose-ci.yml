@@ -10,7 +10,7 @@ services:
     env_file: ./docker/config/python.env
 
   db:
-    image: postgis/postgis:13-3.5
+    image: postgis/postgis:16-3.5
     ports:
       - "5433:5432"
     environment:

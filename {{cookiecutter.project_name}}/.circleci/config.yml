@@ -38,14 +38,14 @@ executors:
       - image: cimg/base:stable-20.04
   node:
     docker:
-      - image: cimg/node:20.9
+      - image: cimg/node:22
   python:
     docker:
       - image: cimg/python:3.11.6
   python_with_postgres:
     docker:
       - image: cimg/python:3.11.6
-      - image: cimg/postgres:13.18-postgis
+      - image: cimg/postgres:16.5-postgis
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test

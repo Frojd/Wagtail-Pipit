@@ -10,6 +10,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [9.3.0] - 2025-09-03
+### Changed
+- Update Wagtail to 7.1.1 (@rinit, @marteinn)
+- Update Django to 5.2.6 (@rinit, @marteinn)
+- Update Storybook to v9 and simplify addon configuration (@rinti)
+- Update React to 19.1.1, Sentry to 10.8.0, i18next to 25.3.2 (@rinti)
+- Upgrade Node to 22 (@marteinn)
+
+### Fixed
+- Update Sentry to 10.8.0 (@rinit)
+- Update i18next to 25.3.2 (@rinti)
+- Update jest to 30.0.4 (@rinti)
+- Update eslint to 9.34.0 (@rinti, @marteinn)
+- Update prettier to 3.6.2 (@rinti, @marteinn)
+- Update gevent to 25.8.2 (@rinit, @marteinn)
+- Update psycopg to 3.2.9 (@rinit)
+- Update python-dotenv to 1.1.1 (@rinit)
+- Update sentry-sdk to 2.35.2 (@rinit, @marteinn)
+- Update wagtail-meta-preview to 4.2.1 (@rinti)
+- Update test dependencies: pytest to 8.4.1, pytest-django to 4.11.1 (@rinti)
+- Upgrade postgres version to 16 (@rinti)
+- Drop redundant inheritance from ReactViewMixin (@marteinn)
+- Add .claude to gitignore (@marteinn)
+
 ## [9.2.0] - 2025-02-08
 ### Changed
 - Upgrade Wagtail to 6.4 (@marteinn)

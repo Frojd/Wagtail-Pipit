@@ -46,6 +46,9 @@ jobs:
           docker compose -f docker-compose-ci.yml run --rm python test
           docker compose -f docker-compose-ci.yml run --rm python typecheck
           docker compose -f docker-compose-ci.yml run --rm python lint
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Run frontend tests
         run: |
           cd Company-Project/frontend
