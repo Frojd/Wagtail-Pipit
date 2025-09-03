@@ -283,7 +283,7 @@ class TimestampMixin(models.Model):
         abstract = True
 
 
-class ReactViewMixin(object):
+class ReactViewMixin:
     request: HttpRequest
     component_name: str
     serializer_class: Union[str, Type[Serializer]]
