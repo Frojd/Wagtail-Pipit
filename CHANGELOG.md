@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 Update development dependencies: jest to 30.0.4, eslint to 9.31.0, prettier to 3.6.2 (@rinti, @marteinn)
-- Update gevent to 25.5.1 (@rinit)
+- Update gevent to 25.8.2 (@rinit, @marteinn)
 - Update psycopg to 3.2.9 (@rinit)
 - Update python-dotenv to 1.1.1 (@rinit)
 - Update sentry-sdk to 2.33.2 (@rinit)
