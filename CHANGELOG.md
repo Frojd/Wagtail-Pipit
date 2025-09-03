@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [9.3.0] - 2025-09-03
+### Changed
 - Update Wagtail to 7.1.1 (@rinit, @marteinn)
 - Update Django to 5.2.6 (@rinit, @marteinn)
 - Update Storybook to v9 and simplify addon configuration (@rinti)
@@ -28,8 +33,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade postgres version to 16 (@rinti)
 - Drop redundant inheritance from ReactViewMixin (@marteinn)
 - Add .claude to gitignore (@marteinn)
-
-### Removed
 
 ## [9.2.0] - 2025-02-08
 ### Changed
