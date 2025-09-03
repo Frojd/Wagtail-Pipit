@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update test dependencies: pytest to 8.4.1, pytest-django to 4.11.1 (@rinti)
 - Upgrade postgres version to 16 (@rinti)
 - Drop redundant inheritance from ReactViewMixin (@marteinn)
+- Add .claude to gitignore (@marteinn)
 
 ### Removed
 
