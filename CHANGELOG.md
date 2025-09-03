@@ -6,13 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
 ### Changed
 - Update Wagtail to 7.1.1 (@rinit, @marteinn)
 - Update Django to 5.2.6 (@rinit, @marteinn)
 - Update Storybook to v9 and simplify addon configuration (@rinti)
 - Update React to 19.1.1, Sentry to 10.8.0, i18next to 25.3.2 (@rinti)
-- Update development dependencies: jest to 30.0.4, eslint to 9.31.0, prettier to 3.6.2 (@rinti, @marteinn)
+
+### Fixed
+Update development dependencies: jest to 30.0.4, eslint to 9.31.0, prettier to 3.6.2 (@rinti, @marteinn)
 - Update gevent to 25.5.1 (@rinit)
 - Update psycopg to 3.2.9 (@rinit)
 - Update python-dotenv to 1.1.1 (@rinit)
@@ -21,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update test dependencies: pytest to 8.4.1, pytest-django to 4.11.1 (@rinti)
 - Upgrade postgres version to 16 (@rinti)
 
-### Fixed
 ### Removed
 
 ## [9.2.0] - 2025-02-08
