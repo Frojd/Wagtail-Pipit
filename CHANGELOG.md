@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update Django to 5.2.6 (@rinit, @marteinn)
 - Update Storybook to v9 and simplify addon configuration (@rinti)
 - Update React to 19.1.1, Sentry to 10.8.0, i18next to 25.3.2 (@rinti)
+- Upgrade Node to 22 (@marteinn)
 
 ### Fixed
-Update development dependencies: jest to 30.0.4, eslint to 9.31.0, prettier to 3.6.2 (@rinti, @marteinn)
+- Update jest to 30.0.4 (@rinti)
+- Update eslint to 9.34.0 (@rinti, @marteinn)
+- Update prettier to 3.6.2 (@rinti, @marteinn)
 - Update gevent to 25.8.2 (@rinit, @marteinn)
 - Update psycopg to 3.2.9 (@rinit)
 - Update python-dotenv to 1.1.1 (@rinit)
