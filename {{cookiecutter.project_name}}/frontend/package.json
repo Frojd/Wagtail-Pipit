@@ -34,7 +34,7 @@
     "@storybook/addon-a11y": "^9.0.17",
     "@storybook/nextjs": "^9.0.17",
     "@swc/jest": "^0.2.39",
-    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/jest-dom": "^6.9.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "cross-env": "^10.0.0",
