@@ -47,6 +47,6 @@
     "jest-junit": "^16.0.0",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
-    "storybook": "^9.0.17"
+    "storybook": "^9.1.9"
   }
 }
