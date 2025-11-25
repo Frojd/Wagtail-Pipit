@@ -3,18 +3,18 @@
 ###########
 
 # using ubuntu LTS version
-FROM ubuntu:22.04 AS builder-image
+FROM ubuntu:24.04 AS builder-image
 
 # avoid stuck build due to user prompt
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ENVIRONMENT=prod
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3.11 python3.11-dev libpq-dev python3.11-venv python3-pip python3-wheel build-essential && \
+RUN apt-get update && apt-get install --no-install-recommends -y python3.12 python3.12-dev libpq-dev python3.12-venv python3-pip python3-wheel build-essential && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # create and activate virtual environment
 # using final folder name to avoid path issues with packages
-RUN python3.11 -m venv /home/app/venv
+RUN python3.12 -m venv /home/app/venv
 ENV PATH="/home/app/venv/bin:$PATH"
 
 # install requirements
@@ -26,12 +26,12 @@ RUN pip3 install --no-cache-dir -r $ENVIRONMENT.txt
 # Final #
 ###########
 
-FROM ubuntu:22.04 AS runner-image
+FROM ubuntu:24.04 AS runner-image
 ARG ENVIRONMENT=prod
-RUN apt-get update && apt-get install --no-install-recommends -y netcat vim gettext curl python3.11 python3-venv tzdata gdal-bin && \
+RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3.12 python3-venv tzdata gdal-bin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN addgroup app --gid 1000 && adduser app --gid 1000 --uid 1000
+RUN groupadd -g 1001 app && useradd -u 1001 -g 1001 -m app
 COPY --from=builder-image /home/app/venv /home/app/venv
 
 RUN mkdir /home/app/web /home/app/static

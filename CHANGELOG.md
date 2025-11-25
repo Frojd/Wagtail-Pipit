@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade Python to 3.12 (@marteinn)
+- Upgrade docker image to use Ubuntu 24.04 (@marteinn)
+
 ### Fixed
 ### Removed
 
