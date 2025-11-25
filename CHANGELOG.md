@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Update gevent to 25.9.1 (@marteinn)
+- Update psycopg to 3.2.13 (@marteinn)
 
 ### Removed
 
