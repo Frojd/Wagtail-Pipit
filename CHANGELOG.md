@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update django-stubs to 5.2.7 (@marteinn)
 
 ### Removed
+- Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
 
 ## [9.3.0] - 2025-09-03
 ### Changed
