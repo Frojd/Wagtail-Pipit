@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Django to 5.2.8 (@marteinn)
 
 ### Fixed
+- Update gevent to 25.9.1 (@marteinn)
+
 ### Removed
 
 ## [9.3.0] - 2025-09-03
