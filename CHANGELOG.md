@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update whitenoise to 6.11.0 (@marteinn)
 - Update wagtail-factories to 4.3.0 (@marteinn)
 - Update pytest to 9.0.1 (@marteinn)
+- Update mypy to 1.18.2 (@marteinn)
+- Update djangorestframework-stubs to 3.16.5 (@marteinn)
+- Update django-stubs to 5.2.7 (@marteinn)
 
 ### Removed
 
