@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update sentry_sdk to 2.46.0 (@marteinn)
 - Update whitenoise to 6.11.0 (@marteinn)
 - Update wagtail-factories to 4.3.0 (@marteinn)
+- Update pytest to 9.0.1 (@marteinn)
 
 ### Removed
 
