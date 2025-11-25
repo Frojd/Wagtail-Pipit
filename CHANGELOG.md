@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Python to 3.12 (@marteinn)
 - Upgrade Wagtail to 7.2 (@marteinn)
 - Upgrade docker image to use Ubuntu 24.04 (@marteinn)
+- Upgrade Django to 5.2.8 (@marteinn)
 
 ### Fixed
 ### Removed
