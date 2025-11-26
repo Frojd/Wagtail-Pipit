@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improve typings in context_processor (@marteinn)
 - Update @sentry/nextjs to 10.27.0 (@marteinn)
 - Update i18next to 25.6.3 (@marteinn)
+- Upgrade jest to 30.2.0 (@marteinn)
+- Upgrade jest-environment-jsdom to 30.2.0 (@marteinn)
 
 ### Removed
 - Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
