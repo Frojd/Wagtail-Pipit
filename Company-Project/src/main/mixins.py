@@ -217,7 +217,7 @@ class SeoMixin(Page):
     def seo_meta_robots(self):
         index = "noindex" if self.robot_noindex else "index"
         follow = "nofollow" if self.robot_nofollow else "follow"
-        meta_value = "{},{}".format(index, follow)
+        meta_value = f"{index},{follow}"
 
         return {
             "index": not self.robot_noindex,
