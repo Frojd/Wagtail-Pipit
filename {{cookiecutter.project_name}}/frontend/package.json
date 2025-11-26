@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^9.0.17",
-    "@storybook/nextjs": "^9.0.17",
+    "@storybook/nextjs": "^10.1.0",
     "@swc/jest": "^0.2.39",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
