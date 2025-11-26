@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improve error message when having missing page serializer (@marteinn)
 - Improve typings in context_processor (@marteinn)
 - Update @sentry/nextjs to 10.27.0 (@marteinn)
+- Update i18next to 25.6.3 (@marteinn)
 
 ### Removed
 - Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
