@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 const WagtailUserbar = dynamic(() => import('../../components/WagtailUserbar'));
 
-const BasePage = ({ children, seo, shouldRenderSeo, wagtailUserbar }) => {
+const BasePage = ({ children, seo = {}, shouldRenderSeo, wagtailUserbar }) => {
     const {
         seoHtmlTitle,
         seoMetaDescription,

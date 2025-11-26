@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Next.js to 16 (@marteinn)
 - Upgrade docker image to use Ubuntu 24.04 (@marteinn)
 - Upgrade Django to 5.2.8 (@marteinn)
+- Upgrade Storybook to 10.1 (@marteinn)
 
 ### Fixed
 - Update gevent to 25.9.1 (@marteinn)
