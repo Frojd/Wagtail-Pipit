@@ -37,7 +37,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "cross-env": "^10.0.0",
+    "cross-env": "^10.1.0",
     "eslint": "^9.34.0",
     "eslint-config-next": "15.5.2",
     "eslint-config-prettier": "^10.1.5",
