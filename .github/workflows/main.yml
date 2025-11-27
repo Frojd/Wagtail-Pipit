@@ -50,9 +50,11 @@ jobs:
         with:
           node-version: "22"
       - name: Run frontend tests
+        env:
+          IGNORE_SENTRY: 1
         run: |
           cd Company-Project/frontend
           npm ci
           npm run test:ci
-          IGNORE_SENTRY=1 npm run build
+          NODE_ENV=production npm run build
           npm run build-storybook

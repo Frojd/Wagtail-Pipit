@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 const customJestConfig = {
     setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/', '/cli/'],
+    modulePathIgnorePatterns: ['<rootDir>/.next/'],
     testEnvironment: 'jest-environment-jsdom',
     moduleNameMapper: {
         '\\.svg': '<rootDir>/__mocks__/svg.js',

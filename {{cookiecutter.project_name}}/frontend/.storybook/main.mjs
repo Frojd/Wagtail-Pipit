@@ -19,7 +19,7 @@ const config = {
       defaultName: 'Documentation'
     },
     framework: {
-        name: '@storybook/nextjs',
+        name: '@storybook/nextjs-vite',
         options: {},
     },
     typescript: {

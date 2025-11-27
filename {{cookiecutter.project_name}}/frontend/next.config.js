@@ -1,5 +1,7 @@
+{%- if not cookiecutter.experimental_use_app_router %}
 const { i18n } = require('./next-i18next.config');
 
+{% endif -%}
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const basePath = '';
@@ -8,7 +10,9 @@ let nextConfig = {
     trailingSlash: true,
     productionBrowserSourceMaps: true,
     basePath,
+    {%- if not cookiecutter.experimental_use_app_router %}
     i18n,
+    {%- endif %}
     output: "standalone",
 };
 
