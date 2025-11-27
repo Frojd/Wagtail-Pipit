@@ -1,6 +1,7 @@
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
@@ -10,9 +11,10 @@ export async function GET(request) {
     const host = searchParams.get('host');
 
     if (!contentType || !token) {
-        return res
-            .status(401)
-            .json({ message: 'Missing contentType and/or token' });
+        return NextResponse.json(
+            { message: 'Missing contentType and/or token' },
+            { status: 401 }
+        );
     }
 
     const headersList = await headers();

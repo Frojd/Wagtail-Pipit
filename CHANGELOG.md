@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade jest-environment-jsdom to 30.2.0 (@marteinn)
 - Upgrade cross-env to 10.1.0 (@marteinn)
 - Bump year in license (@marteinn)
+- Fix invalid error response in app router api/draft/route (@marteinn)
 
 ### Removed
 - Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
