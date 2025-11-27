@@ -204,10 +204,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
         alternates: {
             canonical: seoCanonicalLink,
         },
-        robots: {
-            index: seoMetaRobots.index,
-            follow: seoMetaRobots.follow,
-        },
+        ...(seoMetaRobots && {
+            robots: {
+                index: seoMetaRobots.index,
+                follow: seoMetaRobots.follow,
+            },
+        }),
     };
 }
 
