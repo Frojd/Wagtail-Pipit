@@ -51,8 +51,6 @@ async function getPreviewPageData({
 
         throw err;
     }
-
-    return { notFound: true };
 }
 
 async function getPageData({
