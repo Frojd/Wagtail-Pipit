@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix invalid error response in app router api/draft/route (@marteinn)
 - Prevent crash if seo.seoMetaRobots is undefined in generateMetadata (@marteinn)
 - Drop unreachable code in app getPreviewPageData (@marteinn)
+- Drop redundant use client in app clientcomponent (@marteinn)
 
 ### Removed
 - Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
