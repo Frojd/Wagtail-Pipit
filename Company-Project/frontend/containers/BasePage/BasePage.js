@@ -96,12 +96,18 @@ BasePage.propTypes = {
         seoOgTitle: PropTypes.string,
         seoOgDescription: PropTypes.string,
         seoOgUrl: PropTypes.string,
+        seoOgImage: PropTypes.string,
+        seoOgType: PropTypes.string,
         seoTwitterTitle: PropTypes.string,
+        seoTwitterDescription: PropTypes.string,
+        seoTwitterUrl: PropTypes.string,
+        seoTwitterImage: PropTypes.string,
         seoMetaRobots: PropTypes.shape({
             index: PropTypes.bool,
             follow: PropTypes.bool,
             value: PropTypes.string,
         }),
+        canonicalLink: PropTypes.string,
     }),
     shouldRenderSeo: PropTypes.bool,
     wagtailUserbar: PropTypes.shape({
