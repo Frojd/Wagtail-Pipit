@@ -1,7 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import sv from '../public/locales/sv/common.json';
+// Fetch JSON from public directory for Vite compatibility
+const sv = await fetch('/locales/sv/common.json').then(r => r.json()).catch(() => ({}));
 
 i18n.use(initReactI18next).init({
     resources: {

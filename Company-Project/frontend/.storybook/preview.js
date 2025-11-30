@@ -27,28 +27,36 @@ const customViewports = {
 
 export const parameters = {
     layout: 'fullscreen',
-    viewport: { viewports: { ...customViewports, ...INITIAL_VIEWPORTS } },
+    viewport: { options: { ...customViewports, ...INITIAL_VIEWPORTS } },
     backgrounds: {
-        default: 'white',
-        values: [
-            {
+        options: {
+            white: {
                 name: 'white',
                 value: '#fff',
             },
-            {
+
+            primary_pink: {
                 name: 'primary pink',
                 value: '#c40064',
             },
-            {
+
+            primary_orange: {
                 name: 'primary orange',
                 value: '#c9472d',
             },
-            {
+
+            dark_grey: {
                 name: 'dark grey',
                 value: '#333',
-            },
-        ],
+            }
+        }
     },
 };
 
 export const tags = ['autodocs'];
+
+export const initialGlobals = {
+    backgrounds: {
+        value: 'white'
+    }
+};

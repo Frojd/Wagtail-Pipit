@@ -1,7 +1,10 @@
+from typing import Any, Dict
+
 from django.conf import settings
+from django.http.request import HttpRequest
 
 
-def settings_context_processor(request):
+def settings_context_processor(request: HttpRequest) -> Dict[str, Dict[str, Any]]:
     """
     Expose django settings to template engine
     """
@@ -16,7 +19,7 @@ def settings_context_processor(request):
     return {"SETTINGS": parsed_settings}
 
 
-def request_meta_context_processor(request):
+def request_meta_context_processor(request: HttpRequest) -> Dict[str, str]:
     domain = request.get_host().split(":")[0]
 
     return {

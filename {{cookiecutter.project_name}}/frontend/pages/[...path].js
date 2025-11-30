@@ -1,4 +1,5 @@
 import querystring from 'querystring';
+import * as Sentry from '@sentry/nextjs';
 import {
     getPage,
     getRedirect,
@@ -12,8 +13,17 @@ const isProd = process.env.NODE_ENV === 'production';
 export default function CatchAllPage({ componentName, componentProps }) {
     const Component = LazyContainers[componentName];
     if (!Component) {
-        return <h1>Component {componentName} not found</h1>;
+        Sentry.captureException(
+            new Error(`Missing component mapping: ${componentName}`)
+        );
+
+        if (!isProd) {
+            return <h1>Component {componentName}</h1>;
+        }
+
+        throw new Error(`Component ${componentName} not found`);
     }
+
     return <Component {...componentProps} />;
 }
 

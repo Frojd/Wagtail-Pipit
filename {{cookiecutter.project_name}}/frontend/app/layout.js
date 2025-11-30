@@ -1,19 +1,12 @@
 import { Inter } from 'next/font/google';
-import { headers, draftMode } from 'next/headers';
-import {
-    getPage,
-    getPagePreview,
-    getRedirect,
-    getAllPages,
-    WagtailApiResponseError,
-} from '../api/wagtail';
+import { headers } from 'next/headers';
 import '../index.css';
 // import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default async function RootLayout({ children, ...props }) {
-    const headerList = await headers()
+    const headerList = await headers();
     const pathname = headerList.get('x-pathname') || '';
     // const data = await getPage({
     //     path: pathname,

@@ -35,6 +35,19 @@ export async function getAllPages() {
     return await getRequest(`${API_URL}/v1/page_relative_urls/`);
 }
 
+export async function validatePreviewToken(contentType, token, options) {
+    const params = {
+        contentType,
+        token,
+    };
+
+    return await getRequest(
+        `${API_URL}/v1/validate_preview_token/`,
+        params,
+        options
+    );
+}
+
 export async function getPagePreview(contentType, token, params, options) {
     params = params || {};
     params = {

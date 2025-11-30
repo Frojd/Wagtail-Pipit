@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 const WagtailUserbar = dynamic(() => import('../../components/WagtailUserbar'));
 
-const BasePage = ({ children, seo, shouldRenderSeo, wagtailUserbar }) => {
+const BasePage = ({ children, seo = {}, shouldRenderSeo, wagtailUserbar }) => {
     const {
         seoHtmlTitle,
         seoMetaDescription,
@@ -96,12 +96,18 @@ BasePage.propTypes = {
         seoOgTitle: PropTypes.string,
         seoOgDescription: PropTypes.string,
         seoOgUrl: PropTypes.string,
+        seoOgImage: PropTypes.string,
+        seoOgType: PropTypes.string,
         seoTwitterTitle: PropTypes.string,
+        seoTwitterDescription: PropTypes.string,
+        seoTwitterUrl: PropTypes.string,
+        seoTwitterImage: PropTypes.string,
         seoMetaRobots: PropTypes.shape({
             index: PropTypes.bool,
             follow: PropTypes.bool,
             value: PropTypes.string,
         }),
+        canonicalLink: PropTypes.string,
     }),
     shouldRenderSeo: PropTypes.bool,
     wagtailUserbar: PropTypes.shape({

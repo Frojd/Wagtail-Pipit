@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { headers, draftMode } from 'next/headers';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import LazyContainers from '../containers/LazyContainers';
@@ -51,9 +50,12 @@ async function getPreviewPageData({
 
         throw err;
     }
-
-    return { notFound: true };
 }
+
+// Wrap getPageData with React cache
+// const getCachedPageData = cache(async ({ path, searchParams, headers = {}, options = null }) => {
+//     return await getPageData({ path, searchParams, headers, options });
+// });
 
 async function getPageData({
     path,
@@ -150,7 +152,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
             cookie: headersList.get('cookie'),
         },
         options: {
-            //cache: 'force-cache',
             revalidate: 900, // 15 minutes
         },
     });
@@ -186,7 +187,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     } = seo;
 
     return {
-        metadataBase: new URL(seoOgUrl),
+        ...(seoOgUrl && { metadataBase: new URL(seoOgUrl) }),
         title: seoHtmlTitle,
         description: seoMetaDescription,
         openGraph: {
@@ -204,10 +205,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
         alternates: {
             canonical: seoCanonicalLink,
         },
-        robots: {
-            index: seoMetaRobots.index,
-            follow: seoMetaRobots.follow,
-        },
+        ...(seoMetaRobots && {
+            robots: {
+                index: seoMetaRobots.index,
+                follow: seoMetaRobots.follow,
+            },
+        }),
     };
 }
 

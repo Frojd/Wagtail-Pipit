@@ -20,7 +20,7 @@ ArticlePage.defaultProps = {
 };
 
 ArticlePage.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     richText: PropTypes.string,
 };
 

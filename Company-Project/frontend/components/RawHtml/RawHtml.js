@@ -7,7 +7,7 @@ const RawHtml = ({ html }) => (
 );
 
 RawHtml.propTypes = {
-    html: PropTypes.string.isRequired,
+    html: PropTypes.string,
 };
 
 RawHtml.defaultProps = {

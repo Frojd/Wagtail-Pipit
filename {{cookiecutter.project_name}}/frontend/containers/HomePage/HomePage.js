@@ -17,7 +17,7 @@ HomePage.defaultProps = {
 };
 
 HomePage.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
 
 export default basePageWrap(HomePage);

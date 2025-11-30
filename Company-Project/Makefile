@@ -16,6 +16,7 @@ test:
 
 fixcode:
 	docker compose exec python black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
+	cd frontend && npm run fixcode
 
 translate:
 	docker compose exec python bash -c "python manage.py makemessages -l sv_SE --ignore=venv"

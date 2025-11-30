@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Hero.module.css';
-import logo from '../../public/img/logo.svg';
-
 import i18n from '../../i18n';
+import s from './Hero.module.css';
 
 const Hero = ({ title }) => (
     <div className={s.Container}>
         <img
             className={s.Logo}
-            src={logo.src}
-            width={logo.width}
-            heigh={logo.height}
+            src="/img/logo.svg"
+            alt="Logo"
         />
         <h1 className={s.Title}>
             <img
@@ -26,7 +23,7 @@ const Hero = ({ title }) => (
 );
 
 Hero.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
 
 Hero.defaultProps = {

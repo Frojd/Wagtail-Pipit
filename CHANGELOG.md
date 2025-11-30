@@ -10,24 +10,69 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [9.4.0] - 2025-11-30
+### Changed
+- Upgrade Python to 3.12 (@marteinn)
+- Upgrade Wagtail to 7.2 (@marteinn)
+- Upgrade Next.js to 16 (@marteinn)
+- Upgrade docker image to use Ubuntu 24.04 (@marteinn)
+- Upgrade Django to 5.2.8 (@marteinn)
+- Upgrade Storybook to 10.1 (@marteinn)
+- Upgrade React to 19.2 (@marteinn)
+- Replace outdated husky hook with direct prettier formatting (@marteinn)
+- Improve preview security by validating token before storing in preview state (@marteinn)
+- Make sure trigger_error can only be requested by authenticated users (@marteinn)
+
+### Fixed
+- Update gevent to 25.9.1 (@marteinn)
+- Update psycopg to 3.2.13 (@marteinn)
+- Update python-dotenv to 1.2.1 (@marteinn)
+- Update sentry_sdk to 2.46.0 (@marteinn)
+- Update whitenoise to 6.11.0 (@marteinn)
+- Update wagtail-factories to 4.3.0 (@marteinn)
+- Update pytest to 9.0.1 (@marteinn)
+- Update mypy to 1.18.2 (@marteinn)
+- Update djangorestframework-stubs to 3.16.5 (@marteinn)
+- Update django-stubs to 5.2.7 (@marteinn)
+- Improve error message when having missing page serializer (@marteinn)
+- Improve typings in context_processor (@marteinn)
+- Update @sentry/nextjs to 10.27.0 (@marteinn)
+- Update i18next to 25.6.3 (@marteinn)
+- Upgrade jest to 30.2.0 (@marteinn)
+- Upgrade jest-environment-jsdom to 30.2.0 (@marteinn)
+- Upgrade cross-env to 10.1.0 (@marteinn)
+- Bump year in license (@marteinn)
+- Fix invalid error response in app router api/draft/route (@marteinn)
+- Prevent crash if seo.seoMetaRobots is undefined in generateMetadata (@marteinn)
+- Drop unreachable code in app getPreviewPageData (@marteinn)
+- Drop redundant use client in app clientcomponent (@marteinn)
+- Fix contradicting prop types in react components (@marteinn)
+- Improve error reporting when CatchAllPage lacks mapping (@marteinn)
+- Use arm64 compatible database container (@marteinn)
+- Make sure buildHeadersWithCsrf is active as post method relies on it (@marteinn)
+- Add missing propTypes to BasePage (@marteinn)
+
+### Removed
+- Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
+
 ## [9.3.0] - 2025-09-03
 ### Changed
-- Update Wagtail to 7.1.1 (@rinit, @marteinn)
-- Update Django to 5.2.6 (@rinit, @marteinn)
+- Update Wagtail to 7.1.1 (@rinti, @marteinn)
+- Update Django to 5.2.6 (@rinti, @marteinn)
 - Update Storybook to v9 and simplify addon configuration (@rinti)
 - Update React to 19.1.1, Sentry to 10.8.0, i18next to 25.3.2 (@rinti)
 - Upgrade Node to 22 (@marteinn)
 
 ### Fixed
-- Update Sentry to 10.8.0 (@rinit)
+- Update Sentry to 10.8.0 (@rinti)
 - Update i18next to 25.3.2 (@rinti)
 - Update jest to 30.0.4 (@rinti)
 - Update eslint to 9.34.0 (@rinti, @marteinn)
 - Update prettier to 3.6.2 (@rinti, @marteinn)
-- Update gevent to 25.8.2 (@rinit, @marteinn)
-- Update psycopg to 3.2.9 (@rinit)
-- Update python-dotenv to 1.1.1 (@rinit)
-- Update sentry-sdk to 2.35.2 (@rinit, @marteinn)
+- Update gevent to 25.8.2 (@rinti, @marteinn)
+- Update psycopg to 3.2.9 (@rinti)
+- Update python-dotenv to 1.1.1 (@rinti)
+- Update sentry-sdk to 2.35.2 (@rinti, @marteinn)
 - Update wagtail-meta-preview to 4.2.1 (@rinti)
 - Update test dependencies: pytest to 8.4.1, pytest-django to 4.11.1 (@rinti)
 - Upgrade postgres version to 16 (@rinti)

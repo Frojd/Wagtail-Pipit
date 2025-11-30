@@ -64,9 +64,6 @@ SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-# Block content that appears to be an XSS attack in certain browsers
-SECURE_BROWSER_XSS_FILTER = True
-
 # Use a secure cookie for the session cookie
 SESSION_COOKIE_SECURE = True
 

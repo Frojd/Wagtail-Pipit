@@ -1,5 +1,6 @@
 from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
+from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse, JsonResponse
 from django.http.request import HttpRequest
 from django.utils.module_loading import import_string
@@ -63,7 +64,10 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
             dict_serializer_cls = self.get_serializer_class()
 
         if not dict_serializer_cls:
-            raise Exception("Serializer not found")
+            raise ImproperlyConfigured(
+                f"Serializer not found for {self.__class__.__name__}. "
+                f"Please define a serializer_class attribute."
+            )
 
         serializer = dict_serializer_cls(self, context=context)
         return serializer.data
