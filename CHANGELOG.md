@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [9.4.0] - 2025-11-30
+### Changed
 - Upgrade Python to 3.12 (@marteinn)
 - Upgrade Wagtail to 7.2 (@marteinn)
 - Upgrade Next.js to 16 (@marteinn)
