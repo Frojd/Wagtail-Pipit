@@ -105,6 +105,40 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
 api_router.register_endpoint("page_preview", PagePreviewAPIViewSet)
 
 
+class ValidatePreviewTokenAPIViewSet(BaseAPIViewSet):
+    known_query_parameters = BaseAPIViewSet.known_query_parameters.union(
+        ["content_type", "token"]
+    )
+
+    def listing_view(self, request):
+        content_type = request.GET.get("content_type")
+        if not content_type:
+            raise ValidationError({"content_type": "Missing value"})
+
+        token = request.GET.get("token")
+        if not token:
+            raise ValidationError({"token": "Missing value"})
+
+        app_label, model = content_type.split(".")
+        content_type_obj = ContentType.objects.get(app_label=app_label, model=model)
+
+        try:
+            PagePreview.objects.get(content_type=content_type_obj, token=token)
+        except PagePreview.DoesNotExist:
+            raise Http404("Invalid preview token")
+
+        return Response({"valid": True}, status=status.HTTP_200_OK)
+
+    @classmethod
+    def get_urlpatterns(cls):
+        return [
+            path("", cls.as_view({"get": "listing_view"}), name="listing"),
+        ]
+
+
+api_router.register_endpoint("validate_preview_token", ValidatePreviewTokenAPIViewSet)
+
+
 class PasswordProtectedPageViewSet(BaseAPIViewSet):
     known_query_parameters = BaseAPIViewSet.known_query_parameters.union(
         ["restriction_id", "page_id"]
