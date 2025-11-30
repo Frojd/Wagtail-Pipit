@@ -13,12 +13,12 @@ const buildHeaders = () => {
     };
 };
 
-// const buildHeadersWithCsrf = () => {
-//     return {
-//         'X-CSRFToken': getCookie('csrftoken'),
-//         ...defaultHeaders,
-//     }
-// }
+const buildHeadersWithCsrf = () => {
+    return {
+        'X-CSRFToken': getCookie('csrftoken'),
+        ...defaultHeaders,
+    }
+}
 
 const checkStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {

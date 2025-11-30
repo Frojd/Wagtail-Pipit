@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix contradicting prop types in react components (@marteinn)
 - Improve error reporting when CatchAllPage lacks mapping (@marteinn)
 - Use arm64 compatible database container (@marteinn)
+- Make sure buildHeadersWithCsrf is active as post method relies on it (@marteinn)
 
 ### Removed
 - Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
