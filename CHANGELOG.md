@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Drop unreachable code in app getPreviewPageData (@marteinn)
 - Drop redundant use client in app clientcomponent (@marteinn)
 - Fix contradicting prop types in react components (@marteinn)
+- Improve error reporting when CatchAllPage lacks mapping (@marteinn)
 
 ### Removed
 - Drop SECURE_BROWSER_XSS_FILTER as the setting is removed in Django (@marteinn)
