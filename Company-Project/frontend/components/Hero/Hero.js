@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Hero.module.css';
-
 import i18n from '../../i18n';
+import s from './Hero.module.css';
 
 const Hero = ({ title }) => (
     <div className={s.Container}>
@@ -24,7 +23,7 @@ const Hero = ({ title }) => (
 );
 
 Hero.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
 
 Hero.defaultProps = {
