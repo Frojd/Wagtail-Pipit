@@ -24,6 +24,16 @@ const config = {
     },
     typescript: {
         reactDocgen: 'react-docgen-typescript'
+    },
+    // Configure esbuild to parse .js files as JSX to support JSX syntax in JavaScript files
+    async viteFinal(config) {
+        config.optimizeDeps = config.optimizeDeps || {};
+        config.optimizeDeps.esbuildOptions = config.optimizeDeps.esbuildOptions || {};
+        config.optimizeDeps.esbuildOptions.loader = {
+            ...config.optimizeDeps.esbuildOptions.loader,
+            '.js': 'jsx',
+        };
+        return config;
     }
 };
 

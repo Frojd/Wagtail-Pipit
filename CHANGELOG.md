@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+### Fixed
+### Removed
+
+## [9.4.0] - 2025-11-30
+### Changed
 - Upgrade Python to 3.12 (@marteinn)
 - Upgrade Wagtail to 7.2 (@marteinn)
 - Upgrade Next.js to 16 (@marteinn)
 - Upgrade docker image to use Ubuntu 24.04 (@marteinn)
 - Upgrade Django to 5.2.8 (@marteinn)
 - Upgrade Storybook to 10.1 (@marteinn)
+- Upgrade React to 19.2 (@marteinn)
 - Replace outdated husky hook with direct prettier formatting (@marteinn)
 - Improve preview security by validating token before storing in preview state (@marteinn)
 - Make sure trigger_error can only be requested by authenticated users (@marteinn)
