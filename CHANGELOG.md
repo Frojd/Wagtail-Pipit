@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Storybook to 10.1 (@marteinn)
 - Replace outdated husky hook with direct prettier formatting (@marteinn)
 - Improve preview security by validating token before storing in preview state (@marteinn)
+- Make sure trigger_error can only be requested by authenticated users (@marteinn)
 
 ### Fixed
 - Update gevent to 25.9.1 (@marteinn)

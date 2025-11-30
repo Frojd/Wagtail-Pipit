@@ -3,6 +3,7 @@ import typing
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import URLPattern, URLResolver, include, path, re_path
 from django.views import defaults as default_views
 from wagtail import urls as wagtail_urls
@@ -48,7 +49,11 @@ if settings.DEBUG:
         urlpatterns += [path("wt/__debug__/", include(debug_toolbar.urls))]
 
 
-def trigger_error(request):
+@staff_member_required
+def trigger_error(_request):
+    """
+    Sentry debug endpoint - triggers a test error.
+    """
     division_by_zero = 1 / 0  # NOQA: F841
 
 
