@@ -7,7 +7,7 @@ django-debug-toolbar
 django-stubs==5.2.7
 djangorestframework-stubs==3.16.5
 isort
-mypy==1.18.2
+mypy==1.19.0
 pipdeptree
 ptvsd
 ruff
