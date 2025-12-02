@@ -1,7 +1,7 @@
 Django==5.2.8
 gunicorn==23.0.0
 gevent==25.9.1
-psycopg==3.2.13
+psycopg==3.3.0
 python-dotenv==1.2.1
 sentry_sdk[django]==2.46.0
 wagtail==7.2
