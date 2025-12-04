@@ -5,7 +5,7 @@
 black
 django-debug-toolbar
 django-stubs==5.2.7
-djangorestframework-stubs==3.16.5
+djangorestframework-stubs==3.16.6
 isort
 mypy==1.18.2
 pipdeptree
