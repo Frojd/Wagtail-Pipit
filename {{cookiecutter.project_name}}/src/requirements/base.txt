@@ -3,7 +3,7 @@ gunicorn==23.0.0
 gevent==25.9.1
 psycopg==3.2.13
 python-dotenv==1.2.1
-sentry_sdk[django]==2.46.0
+sentry_sdk[django]==2.47.0
 wagtail==7.2
 wagtail-meta-preview==4.2.1
 wagtail_headless_preview==0.8.0
