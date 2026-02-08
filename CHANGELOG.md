@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade Django to 6.0 (@marteinn)
 - Upgrade Wagtail to 7.3 (@marteinn)
 
 ### Fixed
