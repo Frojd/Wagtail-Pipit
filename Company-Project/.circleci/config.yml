@@ -119,18 +119,21 @@ jobs:
     executor: python_with_postgres
     steps:
       - *restore_repo
-      - restore_cache:
-          key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
       - run:
+          name: Install uv
+          command: curl -LsSf https://astral.sh/uv/0.10.3/install.sh | sh
+      - restore_cache:
+          key: v2-uv-{{ .Branch }}-{{ checksum "src/uv.lock" }}
+      - run:
+          name: Install Python dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r src/requirements/test.txt
+            cd src
+            uv sync --frozen --group dev
       - save_cache:
-          key: v1-requirements-{{ .Branch }}-{{ checksum "src/requirements/test.txt" }}
+          key: v2-uv-{{ .Branch }}-{{ checksum "src/uv.lock" }}
           paths:
-            - ~/repo/venv
-            - ~/.cache/pip
+            - ~/repo/src/.venv
+            - ~/.cache/uv
       - run:
           name: Install additional geodjango deps
           command: |
@@ -139,16 +142,14 @@ jobs:
       - run:
           name: Make sure black has been applied to .py files
           command: |
-            . venv/bin/activate
-            pip install black
-            black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" --check src
+            cd src
+            uv run black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" --check .
       - run:
           name: Run tests and show the 10 slowest cases
           command: |
-            . venv/bin/activate
             mkdir -p test-results/pytest
             cd src
-            pytest -c pytest.circleci.ini --durations 10 --junitxml=../test-results/pytest/junit.xml
+            uv run pytest -c pytest.circleci.ini --durations 10 --junitxml=../test-results/pytest/junit.xml
       - store_test_results:
           path: test-results/pytest
       - store_artifacts:
@@ -175,8 +176,11 @@ jobs:
           key: v1-django-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: v1-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Install uv
+          command: curl -LsSf https://astral.sh/uv/0.10.3/install.sh | sh
       - restore_cache:
-          key: v1-deploy-{{ checksum "deploy/requirements.txt" }}
+          key: v2-deploy-{{ checksum "deploy/requirements.txt" }}
       - run:
           name: Install rsync
           command: |
@@ -185,21 +189,18 @@ jobs:
           name: Install ansible and ansistrano
           command: |
             cd deploy
-            python -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
+            uv pip install --system -r requirements.txt
             ansible-galaxy install -r requirements.yml
       - save_cache:
-          key: v1-deploy-{{ checksum "deploy/requirements.txt" }}
+          key: v2-deploy-{{ checksum "deploy/requirements.txt" }}
           paths:
-            - deploy/venv
+            - ~/.cache/uv
       - run:
           command: |
             mv frontend src
       - run:
           command: |
             cd deploy
-            . venv/bin/activate
 
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               ansible-playbook deploy.yml -i stages/stage.yml

@@ -20,8 +20,7 @@
 ## Requirements
 
 - Python 3.12+
-- Pip
-- Virtualenv (or the package manager of your choice)
+- [uv](https://docs.astral.sh/uv/)
 - Node 22
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
@@ -224,12 +223,27 @@ We also have a manage.sh script to make running management commands easier.
 
 ### How do I add new python dependencies?
 
-First update your requirements/base.txt, then rebuild your container:
+Use uv inside the container to add the dependency:
+
+```
+docker compose exec python uv add <package-name>
+```
+
+Or use the helper script:
+
+```
+scripts/uv.sh add <package-name>
+```
+
+This updates `pyproject.toml` and `uv.lock`. Then rebuild your container:
 
 ```
 docker compose stop
 docker compose up --build
 ```
+
+For test-only dependencies: `scripts/uv.sh add --group test <package-name>`
+For dev-only dependencies: `scripts/uv.sh add --group dev <package-name>`
 
 
 ### How do I install the application on the web server?

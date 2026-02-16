@@ -23,7 +23,7 @@ touch src/.env.local
 And supply your env configuration, you can usually just copy paste the values you would have from `/docker/config/python.env` and only replace `DATABASE_HOST`.
 
 ```
-DJANGO_SETTINGS_MODULE=pipit.settings.local
+DJANGO_SETTINGS_MODULE=pipit.settings.dev
 ALLOWED_HOSTS=*
 INTERNAL_IPS=0.0.0.0
 SECRET_KEY=generatesecretkeyhere
@@ -36,19 +36,14 @@ DATABASE_HOST=localhost
 DATABASE_PORT=8083
 ```
 
-Setup virtualenv (but please note that there are many different ways of doing package management in python (pyenv, poetry etc), if you have a preffered way of doing things - do it :)
+Install [uv](https://docs.astral.sh/uv/) and sync the project dependencies:
 
 ```
 cd src
-python3 -m venv venv
-source venv/bin/activate
+uv sync --group dev
 ```
 
-Install local packages. We use test.txt here because it include both requirements for running the app with dev tools and testing requirements.
-
-```
-pip install -r requirements/test.txt
-```
+This creates a `.venv` virtualenv and installs all dependencies (base + test + dev) from the lock file.
 
 Tip: If you are having issues installing `psycopg2` because your are lacking postgres, replace `psycopg2` with `psycopg2-binary`
 

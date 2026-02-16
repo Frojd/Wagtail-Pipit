@@ -120,11 +120,11 @@ If you rather want to work within a shell in the docker container, you can do so
 docker compose exec python bash
 ```
 
-### Installing requirements need to happen `within` the docker environment
+### Installing dependencies needs to happen `within` the docker environment
 
-Like for management commands, we provide a script to for this. When adding requirement you can install them like this:
+Like for management commands, we provide a script for this. When adding a dependency you can install it like this:
 ```
-./scripts/pip.sh install -r requirements/local.txt
+./scripts/uv.sh add <package-name>
 ```
 If you prefer, you can start a shell in the container and go on as you are used to:
 

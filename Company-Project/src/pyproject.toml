@@ -1,3 +1,46 @@
+[project]
+name = "company_project"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "Django==6.0.2",
+    "gunicorn==23.0.0",
+    "gevent==25.9.1",
+    "psycopg==3.2.13",
+    "python-dotenv==1.2.1",
+    "sentry_sdk[django]==2.46.0",
+    "wagtail==7.3",
+    "wagtail-meta-preview==4.2.1",
+    "wagtail_headless_preview==0.8.0",
+    "whitenoise==6.11.0",
+]
+
+[dependency-groups]
+test = [
+    "coverage",
+    "pytest==9.0.1",
+    "pytest-django==4.11.1",
+    "pytest-env",
+    "wagtail-factories==4.3.0",
+]
+dev = [
+    {include-group = "test"},
+    "black",
+    "django-debug-toolbar",
+    "django-stubs==5.2.9",
+    "djangorestframework-stubs==3.16.8",
+    "isort",
+    "mypy==1.18.2",
+    "pipdeptree",
+    "ptvsd",
+    "ruff",
+]
+prod = []
+stage = []
+
+[tool.uv]
+package = false
+
 [tool.ruff]
 line-length = 88
 
@@ -11,7 +54,7 @@ exclude = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"pipit/settings/local.py" = ["F405", "F403"]
+"pipit/settings/dev.py" = ["F405", "F403"]
 "pipit/settings/test.py" = ["F405", "F403"]
 "pipit/settings/stage.py" = ["F405", "F403"]
 "pipit/settings/prod.py" = ["F405", "F403"]

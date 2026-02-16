@@ -40,9 +40,7 @@ Configuration:
 - Begin by going to the deploy dir in your project and install [Ansible](https://www.ansible.com/)
     ```
     >>> cd deploy
-    >>> python3 -m venv venv
-    >>> . venv/bin/activate
-    >>> pip install -r requirements.txt
+    >>> uv pip install --system -r requirements.txt
     ```
 
 - Make sure you can connect to the server by pinging it

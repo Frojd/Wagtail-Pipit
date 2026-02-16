@@ -12,7 +12,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Email notification url
 WAGTAILADMIN_BASE_URL = (
-    "https://example.com.test:8081"
+    "https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_port}}"
 )
 
 # Allow weak local passwords
@@ -29,7 +29,7 @@ if get_env_bool("DEBUG_TOOLBAR", default=False):
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
     DEBUG_TOOLBAR_CONFIG = {
-        "SHOW_TOOLBAR_CALLBACK": "pipit.settings.local.show_toolbar"
+        "SHOW_TOOLBAR_CALLBACK": "pipit.settings.dev.show_toolbar"
     }
 
 

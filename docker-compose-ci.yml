@@ -4,7 +4,7 @@ services:
     build:
       context: ./src
       args:
-        - ENVIRONMENT=local
+        - ENVIRONMENT=dev
     depends_on:
       - db
     env_file: ./docker/config/python.env
