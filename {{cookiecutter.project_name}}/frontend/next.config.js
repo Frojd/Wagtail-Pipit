@@ -14,6 +14,7 @@ let nextConfig = {
     i18n,
     {%- endif %}
     output: "standalone",
+    allowedDevOrigins: ["{{ cookiecutter.domain_prod }}.test"],
 };
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({

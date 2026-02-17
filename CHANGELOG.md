@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update React to 19.2.4
 - Update Storybook to 10.2.9
 - Update @sentry/nextjs to 10.39.0
+- Add allowedDevOrigins to Next.js config
 
 ### Removed
 
