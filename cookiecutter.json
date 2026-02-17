@@ -24,6 +24,7 @@
         "frontend/containers",
         "frontend/pages",
         "frontend/app",
-        "src/uv.lock"
+        "src/uv.lock",
+        "frontend/package-lock.json"
     ]
 }

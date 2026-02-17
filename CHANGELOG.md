@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update pytest-django to 4.12.0
 - Update wagtail-factories to 4.4.0
 - Update mypy to 1.19.1
+- Update Next.js to 16.1.6
+- Update React to 19.2.4
+- Update Storybook to 10.2.9
+- Update @sentry/nextjs to 10.39.0
 
 ### Removed
 
