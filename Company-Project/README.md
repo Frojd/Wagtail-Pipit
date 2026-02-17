@@ -69,7 +69,7 @@
     ```
     cd frontend
     nvm use
-    npm i
+    npm ci
     npm run dev
     ```
 8. Visit your site on: [https://example.com.test:8082](https://example.com.test:8082)
