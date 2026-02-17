@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Wagtail to 7.3 (@marteinn)
 - Replace pip with uv and uv.lock (@marteinn)
 - Rename local environment to dev to follow python standard (@marteinn)
+- Recommend npm ci instead of npm i when installing packages (@marteinn)
 
 ### Fixed
 - Update gunicorn to 25.1.0

@@ -69,7 +69,7 @@
     ```
     cd frontend
     nvm use
-    npm i
+    npm ci
     npm run dev
     ```
 8. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}})

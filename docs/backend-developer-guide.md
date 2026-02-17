@@ -252,7 +252,7 @@ First make sure you have your frontend installed:
 
 ```
 cd frontend
-npm i
+npm ci
 ```
 
 Then create a container component representing our About page by using our cli:

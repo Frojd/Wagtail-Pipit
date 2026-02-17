@@ -54,7 +54,7 @@ Webpack is running, go to the `./frontend` folder in your newly created project
 
 ```
 cd Acme-Blog/frontend
-npm i
+npm ci
 npm run dev
 
 > frontend_nextjs@0.1.0 dev

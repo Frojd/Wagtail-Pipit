@@ -48,7 +48,7 @@ the contents (Some files omitted for brevity):
 To get up and running we first need to install the npm dependencies from the frontend directory:
 ```bash
 cd frontend     # if not there already
-npm i
+npm ci
 ```
 
 Next, we start [Storybook](https://storybook.js.org/)
