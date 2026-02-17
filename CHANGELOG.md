@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename local environment to dev to follow python standard (@marteinn)
 
 ### Fixed
+- Update gunicorn to 25.1.0
+- Update psycopg to 3.3.2
+- Update sentry_sdk to 2.53.0
+- Update pytest to 9.0.2
+- Update pytest-django to 4.12.0
+- Update wagtail-factories to 4.4.0
+- Update mypy to 1.19.1
+
 ### Removed
 
 ## [9.4.0] - 2025-11-30
