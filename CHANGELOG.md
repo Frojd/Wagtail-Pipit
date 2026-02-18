@@ -6,12 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add Docker HEALTHCHECK that pings /wt/health-check/ endpoint (@marteinn)
+
 ### Changed
 - Upgrade Django to 6.0 (@marteinn)
 - Upgrade Wagtail to 7.3 (@marteinn)
 - Replace pip with uv and uv.lock (@marteinn)
 - Rename local environment to dev to follow python standard (@marteinn)
 - Recommend npm ci instead of npm i when installing packages (@marteinn)
+- Return JSON response from health check endpoint (@marteinn)
 
 ### Fixed
 - Update gunicorn to 25.1.0

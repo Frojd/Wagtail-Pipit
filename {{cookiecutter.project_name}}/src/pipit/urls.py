@@ -58,9 +58,9 @@ def trigger_error(_request):
 
 
 def health_check(request):
-    from django.http import HttpResponse
+    from django.http import JsonResponse
 
-    return HttpResponse("Its alive")
+    return JsonResponse({"status": "Its alive"})
 
 
 urlpatterns += [
