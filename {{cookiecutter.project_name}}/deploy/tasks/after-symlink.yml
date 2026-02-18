@@ -5,11 +5,11 @@
 - name: Collect static
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py collectstatic --noinput"
 
-- name: Restart uWSGI
+- name: Restart Gunicorn
   become: yes
   become_user: root
-  service:
-    name: uwsgi
+  systemd:
+    name: "gunicorn-{{ project_slug }}"
     state: restarted
 
 - name: Restart PM2 app

@@ -100,7 +100,7 @@ Before you get started, make sure you have the following:
 - We are done editing `.env`, save the file
 - Restart your application
     ```
-    service uwsgi restart
+    sudo systemctl restart gunicorn-<your-project-slug>
     ```
 - Open the python repl
     ```

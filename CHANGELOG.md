@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add allowedDevOrigins to Next.js config
 
 ### Removed
+- Remove uWSGI support in favour of Gunicorn
 
 ## [9.4.0] - 2025-11-30
 ### Changed

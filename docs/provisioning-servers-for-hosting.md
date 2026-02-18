@@ -8,7 +8,6 @@ In this guide we'll explain how to use the included provisioning script to insta
 The server should have these applications/packages installed:
 - Linux (Ubuntu 20.04+ is preffered)
 - Nginx
-- uWSGI
 - Python 3.12+
 - PostgreSQL 12+
 - PostGIS for PostgreSQL
@@ -22,7 +21,7 @@ Linux should have these users (with passwordless login using RSA keys):
 - "deploy" - Used for deployment
 
 Configuration:
-- Systemd jobs for Nginx, uWSGI and pm2
+- Systemd jobs for Nginx, Gunicorn and pm2
 - Nginx configuration are stored at `/mnt/persist/nginx/conf.d/*`
 - Node configuration are stored at `/mnt/persist/nodejs/*`
 - Your web applications are stored at `/mnt/persist/www/*`
