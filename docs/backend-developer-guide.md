@@ -50,14 +50,10 @@ The project backend, based on Wagtail and the CMS Wagtail is located in `/src`, 
 │   ├── urls.py                 # The entrypoint for all routing
 │   ├── wagtail_hooks.py        # Contains pipit specific Wagtail overrides
 │   └── wsgi.py                 # Default Django wsgi configuration
-├── pytest.circleci.ini         # Custom Pytest configuration for Circle CI
+├── pytest.github.ini           # Custom Pytest configuration for GitHub Actions
 ├── pytest.ini                  # Pytest configuration
-├── requirements                # Contains pip requirements
-│   ├── base.txt                # Put any mandatory requirements here (example wagtail)
-│   ├── local.txt               # Put local environment requirements here (example django-debug-toolbar)
-│   ├── prod.txt                # Put production only requirements here (example boto)
-│   ├── stage.txt               # Put stage only requirements here (example boto)
-│   └── test.txt                # Put requirements only used in test here (example factory-boy)
+├── pyproject.toml              # Project metadata and dependencies (managed by uv)
+├── uv.lock                     # Lock file for reproducible installs
 ├── sitesettings                # Contains site customizations
 ├── utils                       # Contains global python utility functions
 ```
@@ -256,7 +252,7 @@ First make sure you have your frontend installed:
 
 ```
 cd frontend
-npm i
+npm ci
 ```
 
 Then create a container component representing our About page by using our cli:

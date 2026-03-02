@@ -17,11 +17,10 @@ def main():
         if_exists_load_env(".env.local")
 
     # enable vs code remote debugging
-    # https://github.com/Microsoft/PTVS/issues/1057
     if settings.DEBUG and settings.VS_CODE_REMOTE_DEBUG and os.environ.get("RUN_MAIN"):
-        import ptvsd
+        import debugpy
 
-        ptvsd.enable_attach(address=("0.0.0.0", 5678))
+        debugpy.listen(("0.0.0.0", 5678))
 
     execute_from_command_line(sys.argv)
 

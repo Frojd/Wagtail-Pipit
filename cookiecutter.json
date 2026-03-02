@@ -23,6 +23,8 @@
         "frontend/components",
         "frontend/containers",
         "frontend/pages",
-        "frontend/app"
+        "frontend/app",
+        "src/uv.lock",
+        "frontend/package-lock.json"
     ]
 }

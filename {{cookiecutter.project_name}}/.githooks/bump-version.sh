@@ -22,7 +22,6 @@ ROOTDIR=$(git rev-parse --show-toplevel)
 
 # Bump django version
 sed -i.bak 's/^APP_VERSION.=.*/APP_VERSION = "'$VERSION'"/' $ROOTDIR/src/pipit/settings/base.py
-
 rm src/pipit/settings/base.py.bak
 
 # Bump package.version
@@ -32,6 +31,10 @@ rm frontend/package.json.bak
 # Bump docker version
 sed -i.bak 's/^LABEL version=.*/LABEL version="v'$VERSION'"/' $ROOTDIR/src/Dockerfile
 rm src/Dockerfile.bak
+
+# Bump pyproject.toml version
+sed -i.bak 's/^version = .*/version = "'$VERSION'"/' $ROOTDIR/src/pyproject.toml
+rm src/pyproject.toml.bak
 
 # Commit changes
 git commit -a -m "Version bump $VERSION"

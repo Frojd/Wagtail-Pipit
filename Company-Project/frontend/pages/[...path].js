@@ -23,6 +23,7 @@ export default function CatchAllPage({ componentName, componentProps }) {
 
         throw new Error(`Component ${componentName} not found`);
     }
+
     return <Component {...componentProps} />;
 }
 

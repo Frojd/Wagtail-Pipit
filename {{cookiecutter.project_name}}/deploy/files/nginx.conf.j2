@@ -60,9 +60,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header REMOTE_USER $remote_user;
     proxy_set_header AUTH_TYPE Basic;
-    uwsgi_pass  unix:///run/uwsgi/app/{{ project_slug }}/socket;
-    uwsgi_param UWSGI_SETENV ENVIRONMENT=production;
-    include     uwsgi_params;
+    proxy_pass http://unix:/run/gunicorn/{{ project_slug }}.sock;
   }
 
   location /_util/ {
@@ -73,9 +71,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header REMOTE_USER $remote_user;
     proxy_set_header AUTH_TYPE Basic;
-    uwsgi_pass  unix:///run/uwsgi/app/{{ project_slug }}/socket;
-    uwsgi_param UWSGI_SETENV ENVIRONMENT=production;
-    include     uwsgi_params;
+    proxy_pass http://unix:/run/gunicorn/{{ project_slug }}.sock;
   }
 
   location ^~ /sitemap.xml {
@@ -86,9 +82,7 @@ server {
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header REMOTE_USER $remote_user;
     proxy_set_header AUTH_TYPE Basic;
-    uwsgi_pass  unix:///run/uwsgi/app/{{ project_slug }}/socket;
-    uwsgi_param UWSGI_SETENV ENVIRONMENT=production;
-    include     uwsgi_params;
+    proxy_pass http://unix:/run/gunicorn/{{ project_slug }}.sock;
   }
 
   location / {

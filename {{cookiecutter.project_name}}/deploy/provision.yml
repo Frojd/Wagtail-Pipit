@@ -1,7 +1,7 @@
 {% raw -%}
 
 ---
-- name: Installs python application on server (secret gen, db setup, nginx, uwsgi and pm2 config)
+- name: Installs python application on server (secret gen, db setup, nginx, gunicorn and pm2 config)
   hosts: all
 
   vars:
@@ -13,10 +13,6 @@
       set_fact:
         secret_key: "{{ lookup('password', '/dev/null chars=ascii_letters length=80') }}"
         database_password: "{{ lookup('password', '/dev/null chars=ascii_letters length=40') }}"
-
-    - name: Counts previous uwsgi apps
-      shell: ls -1 /mnt/persist/uwsgi/conf.d/ | wc -l
-      register: uwsgi_application_count
 
     - name: Counts previous pm2 apps
       shell: ls -1 /mnt/persist/nodejs/ | wc -l
@@ -76,18 +72,26 @@
         name: postgis
         db: "{{ database_name }}"
 
-    - name: Creates uWSGI config
+    - name: Deploys gunicorn config
       template:
-        src: files/uwsgi.ini.j2
-        dest: "/mnt/persist/uwsgi/conf.d/{{ project_slug }}.ini"
+        src: files/gunicorn.conf.py.j2
+        dest: "{{ ansistrano_deploy_to }}/shared/gunicorn.conf.py"
+        owner: deploy
+        group: www-data
         mode: 0664
 
-    - name: Replaces default uwsgi conf with empty
-      file:
-        path: "/mnt/persist/uwsgi/conf.d/django.ini"
-        state: absent
+    - name: Deploys gunicorn systemd service
+      template:
+        src: files/gunicorn.service.j2
+        dest: "/etc/systemd/system/gunicorn-{{ project_slug }}.service"
+        mode: 0644
 
-    - shell: echo "" > /mnt/persist/uwsgi/conf.d/django.ini
+    - name: Enables and starts gunicorn service
+      systemd:
+        name: "gunicorn-{{ project_slug }}"
+        enabled: yes
+        state: started
+        daemon_reload: yes
 
     - name: Copies nginx config
       template:

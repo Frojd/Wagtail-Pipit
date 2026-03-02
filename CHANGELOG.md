@@ -10,6 +10,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [10.0.0] - 2026-03-02
+### Added
+- Add Docker HEALTHCHECK that pings /wt/health-check/ endpoint (@marteinn)
+
+### Changed
+- Upgrade Django to 6.0 (@marteinn)
+- Upgrade Wagtail to 7.3 (@marteinn)
+- Replace pip with uv and uv.lock (@marteinn)
+- Rename local environment to dev to follow python standard (@marteinn)
+- Recommend npm ci instead of npm i when installing packages (@marteinn)
+- Return JSON response from health check endpoint (@marteinn)
+- Migrate CI for project from Circle CI to Github Actions (@marteinn)
+
+### Fixed
+- Update gunicorn to 25.1.0
+- Update psycopg to 3.3.2
+- Update sentry_sdk to 2.53.0
+- Update pytest to 9.0.2
+- Update pytest-django to 4.12.0
+- Update wagtail-factories to 4.4.0
+- Update mypy to 1.19.1
+- Update Next.js to 16.1.6
+- Update React to 19.2.4
+- Update Storybook to 10.2.9
+- Update @sentry/nextjs to 10.39.0
+- Add allowedDevOrigins to Next.js config
+
+### Removed
+- Remove uWSGI support in favour of Gunicorn
+
 ## [9.4.0] - 2025-11-30
 ### Changed
 - Upgrade Python to 3.12 (@marteinn)
@@ -49,7 +79,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix contradicting prop types in react components (@marteinn)
 - Improve error reporting when CatchAllPage lacks mapping (@marteinn)
 - Use arm64 compatible database container (@marteinn)
-- Make sure buildHeadersWithCsrf is active as post method relies on it (@marteinn)
 - Add missing propTypes to BasePage (@marteinn)
 
 ### Removed

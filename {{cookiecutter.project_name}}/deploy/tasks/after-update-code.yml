@@ -17,15 +17,17 @@
     dest: "{{ ansistrano_release_path.stdout }}/src/media"
     state: link
 
-- name: Install dependencies in virtualenv
-  pip: virtualenv="{{ ansistrano_shared_path}}/venv"
-       requirements={{ ansistrano_release_path.stdout }}/src/requirements/{{ stage_name }}.txt
-       virtualenv_python={{ python_version }}
+- name: Install uv
+  shell: "curl -LsSf https://astral.sh/uv/0.10.3/install.sh | sh"
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/uv"
 
-- name: Install node modules
-  npm:
-    path="{{ ansistrano_release_path.stdout }}/src/frontend/"
-    production=yes
+- name: Install dependencies in virtualenv
+  shell: >
+    cd {{ ansistrano_release_path.stdout }}/src &&
+    {{ ansible_env.HOME }}/.local/bin/uv sync --frozen
+  environment:
+    UV_PROJECT_ENVIRONMENT: "{{ ansistrano_shared_path }}/venv"
 
 - name: Run Migrations
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py migrate --noinput"

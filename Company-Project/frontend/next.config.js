@@ -11,6 +11,7 @@ let nextConfig = {
     basePath,
     i18n,
     output: "standalone",
+    allowedDevOrigins: ["example.com.test"],
 };
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({

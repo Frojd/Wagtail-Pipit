@@ -20,8 +20,7 @@
 ## Requirements
 
 - Python 3.12+
-- Pip
-- Virtualenv (or the package manager of your choice)
+- [uv](https://docs.astral.sh/uv/)
 - Node 22
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
@@ -70,7 +69,7 @@
     ```
     cd frontend
     nvm use
-    npm i
+    npm ci
     npm run dev
     ```
 8. Visit your site on: [https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}}](https://{{cookiecutter.domain_prod}}.test:{{cookiecutter.docker_web_ssl_port}})
@@ -84,8 +83,7 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Frontend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/frontend-developer-guide.md)
 - [Backend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/backend-developer-guide.md)
 - [Provision and configure a webserver for hosting](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/provisioning-servers-for-hosting.md)
-- [Setting up deployment on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/setting-up-deployment-with-circleci.md)
-- [Adding Slack notifications to CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-slack-notifications-to-circleci.md)
+- [Setting up deployment on GitHub Actions](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/setting-up-deployment-with-github-actions.md)
 - [Sync data between environments](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/sync-data-between-environments.md)
 - [Running python locally](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/running-python-locally.md)
 - [Using static site generation](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/using-static-site-generation.md)
@@ -123,7 +121,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/dev/intern
 This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/python.env` and restart your container to enable it.
 You should now be able to attach to the running Django server instance.
 
-[PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
+[debugpy](https://github.com/microsoft/debugpy) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
 
 ### pdb in Docker
 
@@ -224,17 +222,32 @@ We also have a manage.sh script to make running management commands easier.
 
 ### How do I add new python dependencies?
 
-First update your requirements/base.txt, then rebuild your container:
+Use uv inside the container to add the dependency:
+
+```
+docker compose exec python uv add <package-name>
+```
+
+Or use the helper script:
+
+```
+scripts/uv.sh add <package-name>
+```
+
+This updates `pyproject.toml` and `uv.lock`. Then rebuild your container:
 
 ```
 docker compose stop
 docker compose up --build
 ```
 
+For test-only dependencies: `scripts/uv.sh add --group test <package-name>`
+For dev-only dependencies: `scripts/uv.sh add --group dev <package-name>`
+
 
 ### How do I install the application on the web server?
 
-This project includes a provision script that sets up anything necessary to run the application (install db, add nginx/uwsgi conf).
+This project includes a provision script that sets up anything necessary to run the application (install db, add nginx/gunicorn conf).
 
 ```
 ansible-playbook provision.yml -i stages/<stage>.yml

@@ -54,7 +54,7 @@ Webpack is running, go to the `./frontend` folder in your newly created project
 
 ```
 cd Acme-Blog/frontend
-npm i
+npm ci
 npm run dev
 
 > frontend_nextjs@0.1.0 dev
@@ -120,11 +120,11 @@ If you rather want to work within a shell in the docker container, you can do so
 docker compose exec python bash
 ```
 
-### Installing requirements need to happen `within` the docker environment
+### Installing dependencies needs to happen `within` the docker environment
 
-Like for management commands, we provide a script to for this. When adding requirement you can install them like this:
+Like for management commands, we provide a script for this. When adding a dependency you can install it like this:
 ```
-./scripts/pip.sh install -r requirements/local.txt
+./scripts/uv.sh add <package-name>
 ```
 If you prefer, you can start a shell in the container and go on as you are used to:
 
@@ -145,7 +145,7 @@ Therefore, we recommend you to install [git flow](https://github.com/petervander
 $ git flow init
 Initialized empty Git repository in /Users/roger/www/Acme-Blog/.git/
 No branches exist yet. Base branches must be created now.
-Branch name for production releases: [master]
+Branch name for production releases: [main]
 Branch name for "next release" development: [develop]
 
 How to name your supporting branch prefixes?

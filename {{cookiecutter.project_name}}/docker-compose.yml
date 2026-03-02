@@ -22,7 +22,7 @@ services:
     build:
       context: ./src
       args:
-        - ENVIRONMENT=local
+        - ENVIRONMENT=dev
     command: "runserver"
     volumes:
       - "./src:/home/app/web"

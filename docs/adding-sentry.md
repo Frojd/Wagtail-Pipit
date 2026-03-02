@@ -19,8 +19,8 @@ Before you get started, make sure you have the following:
 - Copy your DSN key, we'll use it through this guide
 - Open your project general settings and copy your project name (will later be used as `SENTRY_PROJECT`)
 - Open your organization settings, click on general settings and copy organization slug (will later be used as `SENTRY_ORG`)
-- Create a auth token by going to your organization settings / developer settings and create a new internal integration for Circle CI
-    - Name: CircleCI
+- Create a auth token by going to your organization settings / developer settings and create a new internal integration for GitHub Actions
+    - Name: GitHub Actions
     - Overview: "Makes it possible to upload project sourcemaps"
     - Project: No Access
     - Team: No Access
@@ -100,7 +100,7 @@ Before you get started, make sure you have the following:
 - We are done editing `.env`, save the file
 - Restart your application
     ```
-    service uwsgi restart
+    sudo systemctl restart gunicorn-<your-project-slug>
     ```
 - Open the python repl
     ```
@@ -116,9 +116,9 @@ Before you get started, make sure you have the following:
 - This will trigger and error and send it to sentry
 
 #### Next.js
-- When it comes to Next.js we need to define the DSN before `npm run build` runs, which is normally in our CI pipeline. Here we assume you use Circle CI as it's the default CI service for Pipit.
-- Login to Circle CI
-- Open your environment variable management in Circle CI by going to My repository / Project Settings / Environment Variables
+- When it comes to Next.js we need to define the DSN before `npm run build` runs, which is normally in our CI pipeline. Here we assume you use GitHub Actions as it's the default CI service for Pipit.
+- Go to your repository on GitHub
+- Navigate to Settings > Secrets and variables > Actions
 - Add the following Sentry details that you obtained in the beginning of this guide
     - `NEXT_PUBLIC_SENTRY_DSN=https://public@sentry.example.com/1`
     - `SENTRY_AUTH_TOKEN=random123`

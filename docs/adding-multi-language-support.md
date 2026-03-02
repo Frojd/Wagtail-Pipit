@@ -2,7 +2,7 @@
 
 Wagtail and Pipit assumes by default that all content comes in a single language, to add support for multiple languages you need to do the following:
 
-1. Install `wagtail_localize` (`pip install wagtail_localize`)
+1. Install `wagtail_localize` (`scripts/uv.sh add wagtail-localize`)
 
 2. Add `"wagtail_localize"` and `"wagtail_localize.locales"` to `INSTALLED_APPS`
 
