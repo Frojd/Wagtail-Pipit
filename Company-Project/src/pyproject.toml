@@ -25,14 +25,11 @@ test = [
 ]
 dev = [
     {include-group = "test"},
-    "black",
     "django-debug-toolbar",
     "django-stubs==5.2.9",
     "djangorestframework-stubs==3.16.8",
-    "isort",
     "mypy==1.19.1",
-    "pipdeptree",
-    "ptvsd",
+    "debugpy",
     "ruff",
 ]
 prod = []
@@ -44,14 +41,17 @@ package = false
 [tool.ruff]
 line-length = 88
 
-# Never enforce `E501` (line length violations).
-lint.ignore = ["E501"]
-
 exclude = [
     "venv",
     "*/migrations/*",
     "node_modules",
 ]
+
+[tool.ruff.lint]
+# Never enforce `E501` (line length violations).
+ignore = ["E501"]
+# Enable isort rules for import sorting
+extend-select = ["I"]
 
 [tool.ruff.lint.per-file-ignores]
 "pipit/settings/dev.py" = ["F405", "F403"]

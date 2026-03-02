@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [10.0.0] - 2026-03-02
+### Added
 - Add Docker HEALTHCHECK that pings /wt/health-check/ endpoint (@marteinn)
 
 ### Changed
@@ -15,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename local environment to dev to follow python standard (@marteinn)
 - Recommend npm ci instead of npm i when installing packages (@marteinn)
 - Return JSON response from health check endpoint (@marteinn)
+- Migrate CI for project from Circle CI to Github Actions (@marteinn)
 
 ### Fixed
 - Update gunicorn to 25.1.0

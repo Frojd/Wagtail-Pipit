@@ -50,7 +50,7 @@ The project backend, based on Wagtail and the CMS Wagtail is located in `/src`, 
 │   ├── urls.py                 # The entrypoint for all routing
 │   ├── wagtail_hooks.py        # Contains pipit specific Wagtail overrides
 │   └── wsgi.py                 # Default Django wsgi configuration
-├── pytest.circleci.ini         # Custom Pytest configuration for Circle CI
+├── pytest.github.ini           # Custom Pytest configuration for GitHub Actions
 ├── pytest.ini                  # Pytest configuration
 ├── pyproject.toml              # Project metadata and dependencies (managed by uv)
 ├── uv.lock                     # Lock file for reproducible installs

@@ -83,8 +83,7 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Frontend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/frontend-developer-guide.md)
 - [Backend Developer Guide](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/backend-developer-guide.md)
 - [Provision and configure a webserver for hosting](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/provisioning-servers-for-hosting.md)
-- [Setting up deployment on CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/setting-up-deployment-with-circleci.md)
-- [Adding Slack notifications to CircleCI](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-slack-notifications-to-circleci.md)
+- [Setting up deployment on GitHub Actions](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/setting-up-deployment-with-github-actions.md)
 - [Sync data between environments](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/sync-data-between-environments.md)
 - [Running python locally](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/running-python-locally.md)
 - [Using static site generation](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/using-static-site-generation.md)
@@ -122,7 +121,7 @@ We follow the [django coding style](https://docs.djangoproject.com/en/dev/intern
 This project is configured for remote debugging using VS Code with the official Python extension. Set `VS_CODE_REMOTE_DEBUG=True` in `docker/config/python.env` and restart your container to enable it.
 You should now be able to attach to the running Django server instance.
 
-[PTVSD](https://github.com/Microsoft/ptvsd) (Python Tools for Visual Studio debug server) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
+[debugpy](https://github.com/microsoft/debugpy) is configured to listen for connections on port {{cookiecutter.docker_vscode_debug_port}}.
 
 ### pdb in Docker
 

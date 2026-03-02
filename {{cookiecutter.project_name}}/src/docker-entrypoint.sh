@@ -68,6 +68,11 @@ case "$CMD" in
         exec ruff check .
         ;;
 
+    "format" )
+        echo Running formatting
+        exec ruff format .
+        ;;
+
     * )
         # Run custom command. Thanks to this line we can still use
         # "docker run our_container /bin/bash" and it will work

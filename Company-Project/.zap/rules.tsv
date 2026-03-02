@@ -1,0 +1,4 @@
+# ZAP Baseline Scan Rules
+# https://www.zaproxy.org/docs/docker/baseline-scan/#configuration-file
+# Format: Rule ID	Action	Description
+# Actions: IGNORE, WARN, FAIL, PASS

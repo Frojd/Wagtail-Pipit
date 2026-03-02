@@ -77,5 +77,8 @@ USER app
 # /dev/shm is mapped to shared memory and should be used for gunicorn heartbeat
 # this will improve performance and avoid random freezes
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:8000/wt/health-check/ || exit 1
+
 ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["gunicorn"]

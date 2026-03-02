@@ -38,16 +38,6 @@ case "$CMD" in
         exec python manage.py runserver 0.0.0.0:8000
         ;;
 
-    "uwsgi" )
-        wait_for_db
-        setup_django
-
-		uv pip install uwsgi==2.0.31
-
-        echo Starting using uwsgi
-        exec uwsgi --ini uwsgi.ini
-        ;;
-
     "gunicorn" )
         wait_for_db
         setup_django
@@ -76,6 +66,11 @@ case "$CMD" in
     "lint" )
         echo Running linting
         exec ruff check .
+        ;;
+
+    "format" )
+        echo Running formatting
+        exec ruff format .
         ;;
 
     * )

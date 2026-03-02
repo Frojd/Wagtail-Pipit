@@ -1,0 +1,21 @@
+[Unit]
+Description=Gunicorn daemon for {{ project_slug }}
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+RuntimeDirectory=gunicorn
+WorkingDirectory={{ ansistrano_deploy_to }}/current/src
+EnvironmentFile={{ ansistrano_deploy_to }}/shared/.env
+Environment=ENVIRONMENT=production
+ExecStart={{ ansistrano_deploy_to }}/shared/venv/bin/gunicorn --config {{ ansistrano_deploy_to }}/shared/gunicorn.conf.py
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

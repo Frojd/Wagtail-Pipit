@@ -28,11 +28,6 @@
   environment:
     UV_PROJECT_ENVIRONMENT: "{{ ansistrano_shared_path }}/venv"
 
-- name: Install node modules
-  npm:
-    path="{{ ansistrano_release_path.stdout }}/src/frontend/"
-    production=yes
-
 - name: Run Migrations
   shell: "{{ ansistrano_shared_path }}/venv/bin/python {{ ansistrano_release_path.stdout }}/src/manage.py migrate --noinput"
 
