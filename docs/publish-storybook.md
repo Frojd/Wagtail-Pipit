@@ -7,7 +7,7 @@ Pipit includes Storybook out of the box as a development tool, but if you want t
 
 ## Guide
 
-1. Make sure `npm run build-storybook` runs in your `.circleci/config.yml` (this is enabled out of the box).
+1. Make sure `npm run build-storybook` runs in your `.github/workflows/deploy.yml` (this is enabled out of the box).
 
 2. Open your Nginx configuration on stage and/or prod environment and uncomment this code (replace `my_project` with your project name):
 

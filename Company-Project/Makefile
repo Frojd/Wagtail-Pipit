@@ -15,7 +15,8 @@ test:
 	cd frontend && npm run test
 
 fixcode:
-	docker compose exec python black --exclude "/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|migrations)/" ./
+	docker compose exec python ruff format .
+	docker compose exec python ruff check --fix .
 	cd frontend && npm run fixcode
 
 translate:

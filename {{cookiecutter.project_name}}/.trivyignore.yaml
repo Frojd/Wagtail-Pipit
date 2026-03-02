@@ -1,0 +1,6 @@
+# https://aquasecurity.github.io/trivy/latest/docs/configuration/filtering/#by-inline-comments
+# Add approved exceptions below with justification, tracking link, and review date.
+
+vulnerabilities: []
+
+misconfigurations: []

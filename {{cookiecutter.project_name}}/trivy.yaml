@@ -1,0 +1,14 @@
+ignorefile: .trivyignore.yaml
+
+severity:
+  - CRITICAL
+  - HIGH
+  - MEDIUM
+
+scan:
+  skip-dirs:
+    - frontend/node_modules
+    - deploy/venv
+    - venv
+    - .git
+    - __pycache__

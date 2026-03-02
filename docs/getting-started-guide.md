@@ -145,7 +145,7 @@ Therefore, we recommend you to install [git flow](https://github.com/petervander
 $ git flow init
 Initialized empty Git repository in /Users/roger/www/Acme-Blog/.git/
 No branches exist yet. Base branches must be created now.
-Branch name for production releases: [master]
+Branch name for production releases: [main]
 Branch name for "next release" development: [develop]
 
 How to name your supporting branch prefixes?

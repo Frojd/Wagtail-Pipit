@@ -1,0 +1,10 @@
+bind = "unix:/run/gunicorn/{{ project_slug }}.sock"
+workers = 1
+threads = 2
+worker_class = "gevent"
+worker_tmp_dir = "/dev/shm"
+timeout = 60
+wsgi_app = "pipit.wsgi:application"
+errorlog = "-"
+accesslog = "-"
+

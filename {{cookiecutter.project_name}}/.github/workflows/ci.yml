@@ -1,0 +1,176 @@
+{% raw -%}
+name: CI
+
+on:
+  push:
+    branches: ["*"]
+    tags: ["v*"]
+  pull_request:
+    branches: [develop, main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.1
+
+      - uses: actions/setup-node@v6.1.0
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: frontend
+
+      - name: Lint
+        run: npm run lint
+        working-directory: frontend
+
+  lint-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.1
+
+      - uses: astral-sh/setup-uv@v7.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: "src/uv.lock"
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: cd src && uv sync --frozen --group dev
+
+      - name: Lint with ruff
+        run: |
+          cd src
+          uv run ruff check
+
+      - name: Check formatting
+        run: |
+          cd src
+          uv run ruff format --check .
+
+      - name: Install geodjango dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libproj-dev gdal-bin
+
+      - name: Run mypy
+        run: |
+          cd src
+          uv run mypy .
+        env:
+          SECRET_KEY: typecheck-secret-key
+          ALLOWED_HOSTS: localhost
+          DATABASE_NAME: typecheck
+          DATABASE_USER: typecheck
+          DATABASE_PASSWORD: typecheck
+          DATABASE_HOST: localhost
+          MEDIA_PATH: /tmp/media
+          STATIC_PATH: /tmp/static
+
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.1
+
+      - uses: actions/setup-node@v6.1.0
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: frontend
+
+      - name: Run tests
+        run: npm run test:ci
+        working-directory: frontend
+        env:
+          JEST_JUNIT_OUTPUT_DIR: ../test-results/jest/
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: jest-test-results
+          path: test-results/jest/
+
+  test-backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:16-3.5
+        env:
+          POSTGRES_USER: ci_user
+          POSTGRES_DB: ci_test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U ci_user -d ci_test"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    steps:
+      - uses: actions/checkout@v6.0.1
+
+      - uses: astral-sh/setup-uv@v7.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: "src/uv.lock"
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: cd src && uv sync --frozen --group dev
+
+      - name: Install geodjango dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libproj-dev gdal-bin
+
+      - name: Run tests
+        run: |
+          mkdir -p test-results/pytest
+          cd src
+          uv run pytest -c pytest.github.ini --durations 10 --junitxml=../test-results/pytest/junit.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: pytest-test-results
+          path: test-results/pytest/
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.1
+
+      - name: Trivy Filesystem Scan
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          trivy-config: trivy.yaml
+          scanners: "vuln,misconfig,secret"
+          exit-code: "1"
+          format: "table"
+
+  deploy:
+    needs: [lint-frontend, lint-backend, test-frontend, test-backend, security]
+    if: github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+{% endraw %}

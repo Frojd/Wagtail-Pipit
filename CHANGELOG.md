@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename local environment to dev to follow python standard (@marteinn)
 - Recommend npm ci instead of npm i when installing packages (@marteinn)
 - Return JSON response from health check endpoint (@marteinn)
+- Migrate CI for project from Circle CI to Github Actions (@marteinn)
 
 ### Fixed
 - Update gunicorn to 25.1.0
