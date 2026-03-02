@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [10.0.0] - 2026-03-02
+### Added
 - Add Docker HEALTHCHECK that pings /wt/health-check/ endpoint (@marteinn)
 
 ### Changed
