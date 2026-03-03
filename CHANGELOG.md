@@ -8,9 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Fix uv.lock project name mismatch causing frozen sync failures (@marteinn)
 - Update Wagtail to 7.3.1 (@marteinn)
 - Update Django to 6.0.3 (@marteinn)
-- Fix uv.lock project name mismatch causing frozen sync failures (@marteinn)
+- Update psycopg to 3.3.3 (@marteinn)
+- Update python-dotenv to 1.2.2 (@marteinn)
+- Update sentry_sdk to 2.54.0 (@marteinn)
+- Update whitenoise to 6.12.0 (@marteinn)
 
 ### Removed
 
