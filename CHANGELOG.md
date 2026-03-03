@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update python-dotenv to 1.2.2 (@marteinn)
 - Update sentry_sdk to 2.54.0 (@marteinn)
 - Update whitenoise to 6.12.0 (@marteinn)
+- Update @storybook/nextjs-vite to 10.2.14 (@marteinn)
 
 ### Removed
 
