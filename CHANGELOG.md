@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+### Removed
+
+## [10.0.1] - 2026-03-03
+### Fixed
 - Fix uv.lock project name mismatch causing frozen sync failures (@marteinn)
 - Update Wagtail to 7.3.1 (@marteinn)
 - Update Django to 6.0.3 (@marteinn)
@@ -16,8 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update sentry_sdk to 2.54.0 (@marteinn)
 - Update whitenoise to 6.12.0 (@marteinn)
 - Update @storybook/nextjs-vite to 10.2.14 (@marteinn)
-
-### Removed
 
 ## [10.0.0] - 2026-03-02
 ### Added
