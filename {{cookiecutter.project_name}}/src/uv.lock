@@ -132,6 +132,83 @@ wheels = [
 ]
 
 [[package]]
+name = "company-project"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "django" },
+    { name = "gevent" },
+    { name = "gunicorn" },
+    { name = "psycopg" },
+    { name = "python-dotenv" },
+    { name = "sentry-sdk", extra = ["django"] },
+    { name = "wagtail" },
+    { name = "wagtail-headless-preview" },
+    { name = "wagtail-meta-preview" },
+    { name = "whitenoise" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "coverage" },
+    { name = "debugpy" },
+    { name = "django-debug-toolbar" },
+    { name = "django-stubs" },
+    { name = "djangorestframework-stubs" },
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-django" },
+    { name = "pytest-env" },
+    { name = "ruff" },
+    { name = "wagtail-factories" },
+]
+test = [
+    { name = "coverage" },
+    { name = "pytest" },
+    { name = "pytest-django" },
+    { name = "pytest-env" },
+    { name = "wagtail-factories" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "django", specifier = "==6.0.3" },
+    { name = "gevent", specifier = "==25.9.1" },
+    { name = "gunicorn", specifier = "==25.1.0" },
+    { name = "psycopg", specifier = "==3.3.2" },
+    { name = "python-dotenv", specifier = "==1.2.1" },
+    { name = "sentry-sdk", extras = ["django"], specifier = "==2.53.0" },
+    { name = "wagtail", specifier = "==7.3.1" },
+    { name = "wagtail-headless-preview", specifier = "==0.8.0" },
+    { name = "wagtail-meta-preview", specifier = "==4.2.1" },
+    { name = "whitenoise", specifier = "==6.11.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "coverage" },
+    { name = "debugpy" },
+    { name = "django-debug-toolbar" },
+    { name = "django-stubs", specifier = "==5.2.9" },
+    { name = "djangorestframework-stubs", specifier = "==3.16.8" },
+    { name = "mypy", specifier = "==1.19.1" },
+    { name = "pytest", specifier = "==9.0.2" },
+    { name = "pytest-django", specifier = "==4.12.0" },
+    { name = "pytest-env" },
+    { name = "ruff" },
+    { name = "wagtail-factories", specifier = "==4.4.0" },
+]
+prod = []
+stage = []
+test = [
+    { name = "coverage" },
+    { name = "pytest", specifier = "==9.0.2" },
+    { name = "pytest-django", specifier = "==4.12.0" },
+    { name = "pytest-env" },
+    { name = "wagtail-factories", specifier = "==4.4.0" },
+]
+
+[[package]]
 name = "coverage"
 version = "7.13.4"
 source = { registry = "https://pypi.org/simple" }
@@ -992,83 +1069,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/65/58/5de8765687d6f9dfcbb72c89251036c3b901126404f872b936b13377a3fe/telepath-0.3.1.tar.gz", hash = "sha256:925c0609e0a8a6488ec4a55b19d485882cf72223b2b19fe2359a50fddd813c9c", size = 11622, upload-time = "2023-06-12T12:07:42.559Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5f/50/0f246d316f223b14ba5a88fbe2ff0b480d4a6064b866d48008dd57fd5930/telepath-0.3.1-py38-none-any.whl", hash = "sha256:c280aa8e77ad71ce80e96500a4e4d4a32f35b7e0b52e896bb5fde9a5bcf0699a", size = 10926, upload-time = "2023-06-12T12:07:41.443Z" },
-]
-
-[[package]]
-name = "tempproject"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "django" },
-    { name = "gevent" },
-    { name = "gunicorn" },
-    { name = "psycopg" },
-    { name = "python-dotenv" },
-    { name = "sentry-sdk", extra = ["django"] },
-    { name = "wagtail" },
-    { name = "wagtail-headless-preview" },
-    { name = "wagtail-meta-preview" },
-    { name = "whitenoise" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "coverage" },
-    { name = "debugpy" },
-    { name = "django-debug-toolbar" },
-    { name = "django-stubs" },
-    { name = "djangorestframework-stubs" },
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-django" },
-    { name = "pytest-env" },
-    { name = "ruff" },
-    { name = "wagtail-factories" },
-]
-test = [
-    { name = "coverage" },
-    { name = "pytest" },
-    { name = "pytest-django" },
-    { name = "pytest-env" },
-    { name = "wagtail-factories" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "django", specifier = "==6.0.3" },
-    { name = "gevent", specifier = "==25.9.1" },
-    { name = "gunicorn", specifier = "==25.1.0" },
-    { name = "psycopg", specifier = "==3.3.2" },
-    { name = "python-dotenv", specifier = "==1.2.1" },
-    { name = "sentry-sdk", extras = ["django"], specifier = "==2.53.0" },
-    { name = "wagtail", specifier = "==7.3.1" },
-    { name = "wagtail-headless-preview", specifier = "==0.8.0" },
-    { name = "wagtail-meta-preview", specifier = "==4.2.1" },
-    { name = "whitenoise", specifier = "==6.11.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "coverage" },
-    { name = "debugpy" },
-    { name = "django-debug-toolbar" },
-    { name = "django-stubs", specifier = "==5.2.9" },
-    { name = "djangorestframework-stubs", specifier = "==3.16.8" },
-    { name = "mypy", specifier = "==1.19.1" },
-    { name = "pytest", specifier = "==9.0.2" },
-    { name = "pytest-django", specifier = "==4.12.0" },
-    { name = "pytest-env" },
-    { name = "ruff" },
-    { name = "wagtail-factories", specifier = "==4.4.0" },
-]
-prod = []
-stage = []
-test = [
-    { name = "coverage" },
-    { name = "pytest", specifier = "==9.0.2" },
-    { name = "pytest-django", specifier = "==4.12.0" },
-    { name = "pytest-env" },
-    { name = "wagtail-factories", specifier = "==4.4.0" },
 ]
 
 [[package]]

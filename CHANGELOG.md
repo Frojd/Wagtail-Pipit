@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Update Wagtail to 7.3.1 (@marteinn)
 - Update Django to 6.0.3 (@marteinn)
+- Fix uv.lock project name mismatch causing frozen sync failures (@marteinn)
 
 ### Removed
 
