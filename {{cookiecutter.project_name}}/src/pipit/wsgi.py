@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 
 import os
 
-from utils.env import if_exists_load_env
-
 from django.core.wsgi import get_wsgi_application
+
+from utils.env import if_exists_load_env
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pipit.settings.prod")
 if_exists_load_env(".env")
