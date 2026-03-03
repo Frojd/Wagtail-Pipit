@@ -7,7 +7,6 @@ from sentry_sdk.integrations.django import DjangoIntegration
 
 from pipit.settings.base import *  # NOQA
 
-
 DEBUG = False
 
 DATABASES["default"]["CONN_MAX_AGE"] = int(

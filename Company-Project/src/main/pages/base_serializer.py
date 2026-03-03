@@ -7,6 +7,7 @@ from wagtail.api.v2 import serializers as wagtail_serializers
 
 from sitesettings.models import SiteSetting
 from sitesettings.serializers import SiteSettingSerializer
+
 from ..serializers import SeoSerializer
 from . import BasePage
 

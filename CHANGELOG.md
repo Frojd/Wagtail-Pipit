@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 
+## [10.0.1] - 2026-03-03
+### Fixed
+- Fix uv.lock project name mismatch causing frozen sync failures (@marteinn)
+- Update Wagtail to 7.3.1 (@marteinn)
+- Update Django to 6.0.3 (@marteinn)
+- Update psycopg to 3.3.3 (@marteinn)
+- Update python-dotenv to 1.2.2 (@marteinn)
+- Update sentry_sdk to 2.54.0 (@marteinn)
+- Update whitenoise to 6.12.0 (@marteinn)
+- Update @storybook/nextjs-vite to 10.2.14 (@marteinn)
+
 ## [10.0.0] - 2026-03-02
 ### Added
 - Add Docker HEALTHCHECK that pings /wt/health-check/ endpoint (@marteinn)
