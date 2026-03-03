@@ -7,3 +7,15 @@ updates:
     time: "04:00"
   open-pull-requests-limit: 1
   target-branch: develop
+
+# Disable scanning of Company-Project/ (regenerated CI output)
+- package-ecosystem: pip
+  directory: "/Company-Project/src"
+  open-pull-requests-limit: 0
+  schedule:
+    interval: daily
+- package-ecosystem: npm
+  directory: "/Company-Project/frontend"
+  open-pull-requests-limit: 0
+  schedule:
+    interval: daily
