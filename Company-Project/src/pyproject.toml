@@ -3,7 +3,7 @@ name = "company_project"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
-    "Django==6.0.2",
+    "Django==6.0.3",
     "gunicorn==25.1.0",
     "gevent==25.9.1",
     "psycopg==3.3.2",
