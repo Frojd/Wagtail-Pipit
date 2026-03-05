@@ -40,7 +40,7 @@
     "jest-junit": "^16.0.0",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
-    "storybook": "^10.2.9",
+    "storybook": "^10.2.15",
     "@storybook/nextjs-vite": "10.2.14"
   }
 }
