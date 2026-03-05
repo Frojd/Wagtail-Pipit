@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@sentry/nextjs": "^10.39.0",
-    "i18next": "^25.6.3",
+    "i18next": "^25.8.14",
     "next": "16.1.6",
     "next-i18next": "^15.4.2",
     "prop-types": "^15.8.1",
