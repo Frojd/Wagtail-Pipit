@@ -18,7 +18,7 @@ dependencies = [
 [dependency-groups]
 test = [
     "coverage",
-    "pytest==9.0.2",
+    "pytest==9.0.3",
     "pytest-django==4.12.0",
     "pytest-env",
     "wagtail-factories==4.4.0",
