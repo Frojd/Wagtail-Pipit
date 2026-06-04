@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 - Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
+- Update urllib3 to 2.7.0 to fix CVE-2026-44432 (@marteinn)
 
 ### Removed
 
