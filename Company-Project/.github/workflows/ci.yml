@@ -43,7 +43,7 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: "src/uv.lock"
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Install Python dependencies
         run: cd src && uv sync --frozen --group dev
@@ -129,7 +129,7 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: "src/uv.lock"
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Install Python dependencies
         run: cd src && uv sync --frozen --group dev

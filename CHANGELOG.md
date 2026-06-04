@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Upgrade Python to 3.14 (@marteinn)
+- Upgrade base Docker image to Ubuntu 26.04 (@marteinn)
+
 ### Fixed
 - Disable Dependabot scanning of Company-Project/ directory (@marteinn)
+- Fix docker-entrypoint.sh wildcard case using unquoted exec causing word-splitting on arguments with spaces (@marteinn)
+- Create virtualenv without pip since uv handles all package installation (@marteinn)
 
 ### Removed
 

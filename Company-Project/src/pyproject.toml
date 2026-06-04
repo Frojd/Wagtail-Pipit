@@ -1,7 +1,7 @@
 [project]
 name = "company_project"
 version = "0.1.0"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
     "Django==6.0.3",
     "gunicorn==25.1.0",

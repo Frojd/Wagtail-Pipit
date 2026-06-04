@@ -3,13 +3,13 @@
 ###########
 
 # using ubuntu LTS version
-FROM ubuntu:24.04 AS builder-image
+FROM ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64 AS builder-image
 
 # avoid stuck build due to user prompt
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ENVIRONMENT=prod
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3.12 python3.12-dev libpq-dev python3.12-venv build-essential && \
+RUN apt-get update && apt-get install --no-install-recommends -y python3 python3-dev libpq-dev python3-venv build-essential && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv
@@ -17,7 +17,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.10.3@sha256:7a88d4c4e6f44200575000638453a5a38
 
 # create and activate virtual environment
 # using final folder name to avoid path issues with packages
-RUN python3.12 -m venv /home/app/venv
+RUN python3 -m venv --without-pip /home/app/venv
 ENV PATH="/home/app/venv/bin:$PATH"
 ENV UV_PROJECT_ENVIRONMENT="/home/app/venv"
 
@@ -30,15 +30,18 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Final #
 ###########
 
-FROM ubuntu:24.04 AS runner-image
+FROM ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64 AS runner-image
 ARG ENVIRONMENT=prod
-RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3.12 python3-venv tzdata gdal-bin && \
+RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv (for runtime package management if needed)
 COPY --from=ghcr.io/astral-sh/uv:0.10.3@sha256:7a88d4c4e6f44200575000638453a5a381db0ae31ad5c3a51b14f8687c9d93a3 /uv /uvx /usr/local/bin/
 
-RUN groupadd -g 1001 app && useradd -u 1001 -g 1001 -m app
+# Ubuntu 26.04 ships with a default ubuntu user (uid 1000); remove it to use our own
+RUN userdel -r ubuntu
+
+RUN groupadd -g 1000 app && useradd -u 1000 -g 1000 -m app
 COPY --from=builder-image /home/app/venv /home/app/venv
 
 RUN mkdir /home/app/web /home/app/static
