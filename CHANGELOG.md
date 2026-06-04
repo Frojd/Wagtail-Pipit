@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Disable Dependabot scanning of Company-Project/ directory (@marteinn)
 - Fix docker-entrypoint.sh wildcard case using unquoted exec causing word-splitting on arguments with spaces (@marteinn)
 - Create virtualenv without pip since uv handles all package installation (@marteinn)
+- Fix Dependabot parse error by redirecting it to Company-Project (@marteinn)
 
 ### Removed
 
