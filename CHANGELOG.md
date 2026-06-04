@@ -21,7 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
 - Update urllib3 to 2.7.0 to fix CVE-2026-44432 (@marteinn)
-- Update idna to 3.18 to fix ReDoS bypass of CVE-2024-3651 fix (CVE-2026-45409) (@marteinn)
+- Update idna to 3.18 to fix CVE-2026-45409 (@marteinn)
+- Update Wagtail to 7.3.2 to fix CVE-2026-44200 (@marteinn)
 
 ### Removed
 
