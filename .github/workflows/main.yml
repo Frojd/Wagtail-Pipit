@@ -12,43 +12,51 @@ jobs:
         ]
     name: Test ${{ matrix.experimental_use_app_router.name }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: "actions/setup-python@v5"
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
         with:
-          python-version: "3.12"
+          python-version: '3.14'
+
       - name: Install cookiecutter
-        run: |
-          python -m pip install --upgrade pip
-          pip install cookiecutter
+        run: uv tool install cookiecutter
+
       - name: Cleanup
         run: |
           set -x
           rm -rf Company-Project
+
       - name: Run cookiecutter
         run: |
-          cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
+          uvx cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
+
       - name: Create docker compose config for running boilerplate tests
         run: |
           cp docker-compose-ci.yml Company-Project/docker-compose-ci.yml
+
       - name: Build image
         run: |
           cd Company-Project
           chmod +x src/docker-entrypoint.sh
           docker compose -f docker-compose-ci.yml build
+
       - name: Verify backend scaffolder
         run: |
           cd Company-Project
           set -x
           docker compose -f docker-compose-ci.yml run --rm python python manage.py new_page --name=Article
+
       - name: Run tests on container
         run: |
           cd Company-Project
           docker compose -f docker-compose-ci.yml run --rm python test
           docker compose -f docker-compose-ci.yml run --rm python typecheck
           docker compose -f docker-compose-ci.yml run --rm python lint
-      - uses: actions/setup-node@v4
+
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           node-version: "22"
+
       - name: Run frontend tests
         env:
           IGNORE_SENTRY: 1
