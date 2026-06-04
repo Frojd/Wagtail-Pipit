@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix Dependabot parse error by redirecting it to Company-Project (@marteinn)
 - Improve CI workflow security by upgrading and using SHA-pinned github actions (@marteinn)
 
+### Security
+- Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
+
 ### Removed
 
 ## [10.0.1] - 2026-03-03
