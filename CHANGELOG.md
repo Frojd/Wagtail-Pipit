@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add Trivy vulnerability scan step in repo CI to detect CVE:s in docker image (@marteinn)
+- Add Trivy uv packages scan step in repo CI to detect CVE:s in Python dependencies (@marteinn)
 
 ### Changed
 - Upgrade Python to 3.14 (@marteinn)
