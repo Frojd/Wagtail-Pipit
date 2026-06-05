@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Trivy uv packages scan step in repo CI to detect CVE:s in Python dependencies (@marteinn)
 
 ### Changed
+- Upgrade Next.js to 16.2.7 (@marteinn)
 - Upgrade Python to 3.14 (@marteinn)
 - Upgrade base Docker image to Ubuntu 26.04 (@marteinn)
 
