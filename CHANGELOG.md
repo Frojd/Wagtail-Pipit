@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update urllib3 to 2.7.0 to fix CVE-2026-44432 (@marteinn)
 - Update idna to 3.18 to fix CVE-2026-45409 (@marteinn)
 - Update Wagtail to 7.3.2 to fix CVE-2026-44200 (@marteinn)
+- Update @sentry/nextjs to 10.56.0 and jest-junit to 17.0.0 to fix CVE-2026-41907 (@marteinn)
 
 ### Removed
 
