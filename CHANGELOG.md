@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Create virtualenv without pip since uv handles all package installation (@marteinn)
 - Fix Dependabot parse error by redirecting it to Company-Project (@marteinn)
 - Improve CI workflow security by upgrading and using SHA-pinned github actions (@marteinn)
+- Update jest to 30.4.2 and jest-environment-jsdom to 30.4.1 (@marteinn)
 
 ### Security
 - Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
