@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Next.js to 16.2.7 (@marteinn)
 - Upgrade Python to 3.14 (@marteinn)
 - Upgrade base Docker image to Ubuntu 26.04 (@marteinn)
+- Upgrade and SHA-pin GitHub Actions in boilerplate CI/deploy workflows (@marteinn)
 
 ### Fixed
 - Update Django to 6.0.6 (@marteinn)
