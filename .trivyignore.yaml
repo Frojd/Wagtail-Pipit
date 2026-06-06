@@ -11,3 +11,4 @@ vulnerabilities:
   - id: CVE-2026-39826
   - id: CVE-2026-39836
   - id: CVE-2026-42499
+  - id: CVE-2026-42504
