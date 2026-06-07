@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update jest to 30.4.2 and jest-environment-jsdom to 30.4.1 (@marteinn)
 - Update pytest to 9.0.3 (@marteinn)
 - Update requests to 2.34.2 (@marteinn)
+- Update Storybook to 10.4.2 (@marteinn)
 
 ### Security
 - Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
