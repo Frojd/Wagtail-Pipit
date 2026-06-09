@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add Trivy vulnerability scan step in repo CI to detect CVE:s in docker image (@marteinn)
 - Add Trivy uv packages scan step in repo CI to detect CVE:s in Python dependencies (@marteinn)
+- Improve npm install security and consistency by adding .npmrc (@marteinn)
 
 ### Changed
 - Upgrade Wagtail to 7.4.1 (@marteinn)
