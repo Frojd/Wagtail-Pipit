@@ -27,6 +27,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update pytest to 9.0.3 (@marteinn)
 - Update requests to 2.34.2 (@marteinn)
 - Update Storybook to 10.4.2 (@marteinn)
+- Update i18next to 26.3.1 (@marteinn)
+- Update i18next-fs-backend to 2.6.6 (@marteinn)
+- Update @testing-library/react to 16.3.2 (@marteinn)
+- Update next-i18next to 16.0.7 and add react-i18next 17.0.8 as explicit dependency (next-i18next v16 moved react-i18next to a peer dependency) (@marteinn)
+- Update react and react-dom to 19.2.7 (@marteinn)
+- Update eslint to 9.39.4 (@marteinn)
+- Update prettier to 3.8.3 (@marteinn)
 
 ### Security
 - Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
@@ -36,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update @sentry/nextjs to 10.56.0 and jest-junit to 17.0.0 to fix CVE-2026-41907 (@marteinn)
 - Update terser-webpack-plugin to 5.6.1 to fix CVE-2026-34043 (@marteinn)
 - Suppress CVE-2026-42504 in Trivy scans (Go stdlib in Ubuntu system binary not used by app) (@marteinn)
+- Force postcss >=8.5.10 via npm overrides to partially fix CVE-2026-41305 (@marteinn)
 
 ### Removed
 
