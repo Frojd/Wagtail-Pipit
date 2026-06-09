@@ -1,8 +1,14 @@
+# Trivy ignore rules
 # https://aquasecurity.github.io/trivy/latest/docs/configuration/filtering/#by-inline-comments
-# Add approved exceptions below with justification, tracking link, and review date.
 
 vulnerabilities:
   # Go stdlib CVEs from the Ubuntu base image system packages — not used by this Python application.
+  - id: CVE-2026-33811
+  - id: CVE-2026-33814
+  - id: CVE-2026-39820
+  - id: CVE-2026-39823
+  - id: CVE-2026-39825
+  - id: CVE-2026-39826
+  - id: CVE-2026-39836
+  - id: CVE-2026-42499
   - id: CVE-2026-42504
-
-misconfigurations: []

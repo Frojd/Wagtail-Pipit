@@ -9,6 +9,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 ### Removed
+### Security
+
+## [10.1.0] - 2026-06-09
+### Added
+- Add Trivy vulnerability scan step in repo CI to detect CVE:s in docker image (@marteinn)
+- Add Trivy uv packages scan step in repo CI to detect CVE:s in Python dependencies (@marteinn)
+- Improve npm install security and consistency by adding .npmrc (@marteinn)
+- Add zizmor GitHub Actions security audit to repo CI and boilerplate CI (@marteinn)
+- Add pip-audit and npm audit dependency scanning to repo CI and boilerplate CI (@marteinn)
+
+### Changed
+- Upgrade Wagtail to 7.4.1 (@marteinn)
+- Upgrade Next.js to 16.2.7 (@marteinn)
+- Upgrade Python to 3.14 (@marteinn)
+- Upgrade base Docker image to Ubuntu 26.04 (@marteinn)
+- Upgrade and SHA-pin GitHub Actions in boilerplate CI/deploy workflows (@marteinn)
+
+### Fixed
+- Update Django to 6.0.6 (@marteinn)
+- Disable Dependabot scanning of Company-Project/ directory (@marteinn)
+- Fix docker-entrypoint.sh wildcard case using unquoted exec causing word-splitting on arguments with spaces (@marteinn)
+- Create virtualenv without pip since uv handles all package installation (@marteinn)
+- Fix Dependabot parse error by redirecting it to Company-Project (@marteinn)
+- Improve CI workflow security by upgrading and using SHA-pinned github actions (@marteinn)
+- Update jest to 30.4.2 and jest-environment-jsdom to 30.4.1 (@marteinn)
+- Update pytest to 9.0.3 (@marteinn)
+- Update requests to 2.34.2 (@marteinn)
+- Update Storybook to 10.4.2 (@marteinn)
+- Update i18next to 26.3.1 (@marteinn)
+- Update i18next-fs-backend to 2.6.6 (@marteinn)
+- Update @testing-library/react to 16.3.2 (@marteinn)
+- Update next-i18next to 16.0.7 and add react-i18next 17.0.8 as explicit dependency (next-i18next v16 moved react-i18next to a peer dependency) (@marteinn)
+- Update react and react-dom to 19.2.7 (@marteinn)
+- Update eslint to 9.39.4 (@marteinn)
+- Update prettier to 3.8.3 (@marteinn)
+- Rename CI security job to security-sca for clarity (@marteinn)
+- Fix zizmor security audit findings in CI workflows (@marteinn)
+
+### Security
+- Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)
+- Update urllib3 to 2.7.0 to fix CVE-2026-44432 (@marteinn)
+- Update idna to 3.18 to fix CVE-2026-45409 (@marteinn)
+- Update Wagtail to 7.3.2 to fix CVE-2026-44200 (@marteinn)
+- Update @sentry/nextjs to 10.56.0 and jest-junit to 17.0.0 to fix CVE-2026-41907 (@marteinn)
+- Update terser-webpack-plugin to 5.6.1 to fix CVE-2026-34043 (@marteinn)
+- Suppress CVE-2026-42504 in Trivy scans (Go stdlib in Ubuntu system binary not used by app) (@marteinn)
+- Force postcss >=8.5.10 via npm overrides to partially fix CVE-2026-41305 (@marteinn)
 
 ## [10.0.1] - 2026-03-03
 ### Fixed

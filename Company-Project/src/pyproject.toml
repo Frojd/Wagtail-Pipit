@@ -1,15 +1,15 @@
 [project]
 name = "company_project"
 version = "0.1.0"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
-    "Django==6.0.3",
+    "Django==6.0.6",
     "gunicorn==25.1.0",
     "gevent==25.9.1",
     "psycopg==3.3.3",
     "python-dotenv==1.2.2",
     "sentry_sdk[django]==2.54.0",
-    "wagtail==7.3.1",
+    "wagtail==7.4.1",
     "wagtail-meta-preview==4.2.1",
     "wagtail_headless_preview==0.8.0",
     "whitenoise==6.12.0",
@@ -18,7 +18,7 @@ dependencies = [
 [dependency-groups]
 test = [
     "coverage",
-    "pytest==9.0.2",
+    "pytest~=9.0.3",
     "pytest-django==4.12.0",
     "pytest-env",
     "wagtail-factories==4.4.0",

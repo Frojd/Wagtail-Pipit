@@ -1,9 +1,23 @@
 version: 2
 updates:
+# Scan the generated example project — the template's pyproject.toml contains
+# cookiecutter variables that uv cannot parse as a package name.
 - package-ecosystem: uv
-  directory: "/{{cookiecutter.project_name}}/src"
+  directory: "/Company-Project/src"
   schedule:
     interval: daily
     time: "04:00"
+  cooldown:
+    default-days: 7
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: npm
+  directory: "/Company-Project/frontend"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop

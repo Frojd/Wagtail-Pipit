@@ -1,0 +1,4 @@
+# Trivy scanner configuration
+# https://aquasecurity.github.io/trivy/latest/docs/references/configuration/config-file/
+
+ignorefile: .trivyignore.yaml
