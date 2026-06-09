@@ -181,8 +181,24 @@ jobs:
       - name: Audit GitHub Actions workflows
         run: uvx zizmor==1.25.2 --min-confidence medium .
 
+  security-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10  # v6.0.3
+
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39  # v8.2.0
+        with:
+          python-version: '3.14'
+
+      - name: Audit Python dependencies
+        run: cd src && uv export --frozen --no-dev | uvx pip-audit==2.10.0 -r /dev/stdin
+
+      - name: Audit npm dependencies
+        run: npm audit --audit-level=high
+        working-directory: frontend
+
   deploy:
-    needs: [lint-frontend, lint-backend, test-frontend, test-backend, security-sca, security-iac]
+    needs: [lint-frontend, lint-backend, test-frontend, test-backend, security-sca, security-iac, security-deps]
     if: github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')
     uses: ./.github/workflows/deploy.yml
     secrets:
