@@ -6,7 +6,7 @@ dependencies = [
     "Django==6.0.6",
     "gunicorn==25.1.0",
     "gevent==25.9.1",
-    "psycopg==3.3.3",
+    "psycopg==3.3.4",
     "python-dotenv==1.2.2",
     "sentry_sdk[django]==2.54.0",
     "wagtail==7.4.1",
