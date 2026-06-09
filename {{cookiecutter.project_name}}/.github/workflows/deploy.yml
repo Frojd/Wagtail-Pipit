@@ -3,7 +3,14 @@ name: Deploy
 run-name: "${{ format('Deploy to {0} ({1})', inputs.environment || 'auto', inputs.ref || github.ref_name) }}"
 
 on:
-  workflow_call: {}
+  workflow_call:
+    secrets:
+      SSH_DEPLOY_KEY:
+        required: true
+      SENTRY_AUTH_TOKEN:
+        required: false
+      NEXT_PUBLIC_SENTRY_DSN:
+        required: false
   workflow_dispatch:
     inputs:
       environment:
@@ -53,8 +60,9 @@ jobs:
 
       - name: Configure Sentry environment
         working-directory: frontend
+        env:
+          BRANCH: ${{ inputs.ref || github.ref_name }}
         run: |
-          BRANCH="${{ inputs.ref || github.ref_name }}"
           echo "NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN" >> .env
 
           if [ "$BRANCH" == "develop" ]; then

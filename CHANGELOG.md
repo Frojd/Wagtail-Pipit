@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update eslint to 9.39.4 (@marteinn)
 - Update prettier to 3.8.3 (@marteinn)
 - Rename CI security job to security-sca for clarity (@marteinn)
+- Fix zizmor security audit findings in CI workflows (@marteinn)
 
 ### Security
 - Update Pillow to 12.2.0 to fix CVE-2026-42309 (@marteinn)

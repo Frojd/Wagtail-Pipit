@@ -1,5 +1,7 @@
 name: Test cookiecutter scaffolder
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   security-iac:
     runs-on: ubuntu-latest
