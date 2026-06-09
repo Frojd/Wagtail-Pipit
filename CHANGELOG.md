@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+### Security
+
+## [10.1.0] - 2026-06-09
+### Added
 - Add Trivy vulnerability scan step in repo CI to detect CVE:s in docker image (@marteinn)
 - Add Trivy uv packages scan step in repo CI to detect CVE:s in Python dependencies (@marteinn)
 - Improve npm install security and consistency by adding .npmrc (@marteinn)
@@ -49,8 +56,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update terser-webpack-plugin to 5.6.1 to fix CVE-2026-34043 (@marteinn)
 - Suppress CVE-2026-42504 in Trivy scans (Go stdlib in Ubuntu system binary not used by app) (@marteinn)
 - Force postcss >=8.5.10 via npm overrides to partially fix CVE-2026-41305 (@marteinn)
-
-### Removed
 
 ## [10.0.1] - 2026-03-03
 ### Fixed
