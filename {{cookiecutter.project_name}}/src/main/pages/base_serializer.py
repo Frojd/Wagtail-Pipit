@@ -1,5 +1,7 @@
 from typing import List
+from urllib.parse import urlsplit
 
+from django.conf import settings
 from rest_framework import serializers
 from wagtail import fields
 from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
@@ -54,6 +56,16 @@ class BasePageSerializer(serializers.ModelSerializer):
 
         if not hasattr(request, "user"):
             return None
+
+        # The userbar tag builds absolute asset URLs (vendor.js/userbar.js)
+        # from the request host. On the SSR fetch the reverse proxy forwards an
+        # internal Host the browser can't reach, so rewrite it to the public
+        # host from WAGTAILADMIN_BASE_URL before rendering.
+        base_url = getattr(settings, "WAGTAILADMIN_BASE_URL", None)
+        if base_url:
+            host = urlsplit(base_url).netloc
+            request.META["HTTP_HOST"] = host
+            request.META.pop("HTTP_X_FORWARDED_HOST", None)
 
         html = wagtailuserbar({"request": request, "self": page})
 

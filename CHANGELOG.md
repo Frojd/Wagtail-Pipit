@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- Show the Wagtail userbar for logged-in editors on the headless frontend by adding DRF SessionAuthentication so the SSR page fetch authenticates, and rewrite the userbar asset host to WAGTAILADMIN_BASE_URL so vendor.js/userbar.js load from a browser-reachable host (@ottoreimers)
 ### Removed
 ### Security
 
