@@ -1,0 +1,24 @@
+services:
+  python:
+    image: frojd/wagtail_pipit_python
+    build:
+      context: ./src
+      args:
+        - ENVIRONMENT=dev
+    depends_on:
+      - db
+    env_file: ./docker/config/python.env
+
+  db:
+    image: postgis/postgis:16-3.5
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=app
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  frontend:
+    image: frojd/wagtail_pipit_frontend
+    build: ./frontend

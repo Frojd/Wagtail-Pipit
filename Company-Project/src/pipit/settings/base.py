@@ -169,6 +169,18 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
     "webp": "webp",
 }
 
+# Django REST Framework
+# The headless page data is served through DRF viewsets, which resolve
+# request.user via their own authentication classes rather than Django's
+# session middleware. SessionAuthentication lets the SSR page fetch (which
+# forwards the logged-in editor's session cookie) authenticate, so the
+# wagtailuserbar tag renders the "edit this page" bar for editors.
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+}
+
 # Uploaded media
 MEDIA_URL = "/wt/media/"
 MEDIA_ROOT = get_env("MEDIA_PATH", required=True)
