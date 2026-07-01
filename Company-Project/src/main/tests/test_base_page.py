@@ -85,7 +85,13 @@ class BasePageWagtailUserbarTest(WagtailPageTests):
         self.assertIsNotNone(result)
         self.assertIn("<wagtail-userbar></wagtail-userbar>", result["html"])
 
-    @override_settings(WAGTAILADMIN_BASE_URL="http://example.test:8355")
+    # The rewritten host must be in ALLOWED_HOSTS, since the userbar tag calls
+    # request.build_absolute_uri() which validates get_host(). In prod/stage
+    # WAGTAILADMIN_BASE_URL's domain is always allowlisted; mirror that here.
+    @override_settings(
+        WAGTAILADMIN_BASE_URL="http://example.test:8355",
+        ALLOWED_HOSTS=["example.test", "testserver"],
+    )
     def test_userbar_assets_use_public_host_not_internal_proxy_host(self):
         # The reverse proxy forwards the SSR fetch with an internal Host
         # (":8081") the browser can't reach, so the userbar tag would otherwise
