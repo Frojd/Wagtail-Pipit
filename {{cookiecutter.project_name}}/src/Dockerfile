@@ -3,7 +3,7 @@
 ###########
 
 # using ubuntu LTS version
-FROM ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64 AS builder-image
+FROM ubuntu:26.04@sha256:b7f48194d4d8b763a478a621cdc81c27be222ba2206ca3ca6bc42b49685f3d9e AS builder-image
 
 # avoid stuck build due to user prompt
 ARG DEBIAN_FRONTEND=noninteractive
@@ -30,7 +30,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Final #
 ###########
 
-FROM ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64 AS runner-image
+FROM ubuntu:26.04@sha256:b7f48194d4d8b763a478a621cdc81c27be222ba2206ca3ca6bc42b49685f3d9e AS runner-image
 ARG ENVIRONMENT=prod
 RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -38,8 +38,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd 
 # Install uv (for runtime package management if needed)
 COPY --from=ghcr.io/astral-sh/uv:0.10.3@sha256:7a88d4c4e6f44200575000638453a5a381db0ae31ad5c3a51b14f8687c9d93a3 /uv /uvx /usr/local/bin/
 
-# Ubuntu 26.04 ships with a default ubuntu user (uid 1000); remove it to use our own
-RUN userdel -r ubuntu
+# Ubuntu 26.04 ships with a default ubuntu user (uid 1000); remove it to use our own.
+# It also bundles Canonical's Pebble service manager, which we don't use and whose
+# statically linked Go dependencies get flagged by the Trivy image scan
+RUN userdel -r ubuntu && rm -f /usr/bin/pebble
 
 RUN groupadd -g 1000 app && useradd -u 1000 -g 1000 -m app
 COPY --from=builder-image /home/app/venv /home/app/venv

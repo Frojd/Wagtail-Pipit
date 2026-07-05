@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Removed
 ### Security
+- Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)
 
 ## [10.1.0] - 2026-06-09
 ### Added
