@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
-- Update backend packages: gunicorn 26.0.0, gevent 26.5.0, psycopg 3.3.4, sentry-sdk 2.64.0, wagtail 7.4.2, wagtail-headless-preview 0.9.0, pytest 9.1.1, wagtail-factories 4.5.0, django-stubs 6.0.6, djangorestframework-stubs 3.17.0 and mypy 2.1.0 (@rinti)
+- Update gunicorn 26.0.0, gevent 26.5.0, psycopg 3.3.4, sentry-sdk 2.64.0, wagtail-headless-preview 0.9.0, pytest 9.1.1, wagtail-factories 4.5.0 and mypy 2.1.0 (@rinti)
+- Upgrade Wagtail to 8.0 (@marteinn)
+- Upgrade Django to 6.1.1 (@marteinn)
+- Upgrade django-stubs to 6.1.0 and djangorestframework-stubs to 3.18.1, required by Wagtail 8 (@marteinn)
+
 ### Fixed
 - Pin ruff to 0.15.1, ruff 0.16 expanded its default rule set from 59 to 413 rules (@marteinn)
 

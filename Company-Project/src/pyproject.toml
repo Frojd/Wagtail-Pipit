@@ -3,13 +3,13 @@ name = "company_project"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "Django==6.0.6",
+    "Django==6.1.1",
     "gunicorn==26.0.0",
     "gevent==26.5.0",
     "psycopg==3.3.4",
     "python-dotenv==1.2.2",
     "sentry_sdk[django]==2.64.0",
-    "wagtail==7.4.2",
+    "wagtail==8.0",
     "wagtail-meta-preview==4.2.1",
     "wagtail_headless_preview==0.9.0",
     "whitenoise==6.12.0",
@@ -26,8 +26,8 @@ test = [
 dev = [
     {include-group = "test"},
     "django-debug-toolbar",
-    "django-stubs==6.0.6",
-    "djangorestframework-stubs==3.17.0",
+    "django-stubs==6.1.0",
+    "djangorestframework-stubs==3.18.1",
     "mypy==2.1.0",
     "debugpy",
     "ruff==0.15.1",
