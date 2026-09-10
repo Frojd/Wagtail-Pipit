@@ -25,8 +25,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         name = options["name"]
 
-        if name.endswith("Page"):
-            name = name[:-4]
+        name = name.removesuffix("Page")
 
         self.add_page(name)
         self.add_serializer(name)
@@ -42,7 +41,7 @@ class Command(BaseCommand):
 
         if os.path.exists(page_file):
             self.stdout.write(
-                "Did not create {} as it already exists".format(page_file)
+                f"Did not create {page_file} as it already exists"
             )
             return False
 
@@ -65,7 +64,7 @@ class Command(BaseCommand):
 
         if os.path.exists(serializer_file):
             self.stdout.write(
-                "Did not create {} as it already exists".format(serializer_file)
+                f"Did not create {serializer_file} as it already exists"
             )
             return False
 
@@ -78,13 +77,11 @@ class Command(BaseCommand):
     def add_test(self, name, to_app="main"):
         file_name = get_snake_from_pascal_case(name)
         test_path = os.path.join(to_app, "tests/")
-        test_file = "{test_path}test_{name}_page.py".format(
-            test_path=test_path, name=file_name,
-        )
+        test_file = f"{test_path}test_{file_name}_page.py"
 
         if os.path.exists(test_file):
             self.stdout.write(
-                "Did not create {} as it already exists".format(test_file)
+                f"Did not create {test_file} as it already exists"
             )
             return False
 
@@ -101,7 +98,7 @@ class Command(BaseCommand):
 
         if os.path.exists(factory_file):
             self.stdout.write(
-                "Did not create {} as it already exists".format(factory_file)
+                f"Did not create {factory_file} as it already exists"
             )
             return False
 
@@ -116,7 +113,7 @@ class Command(BaseCommand):
             content = render_to_string(template, context)
             f.write(content)
 
-        self.stdout.write("Created {}".format(file_path))
+        self.stdout.write(f"Created {file_path}")
 
 
 def get_snake_from_pascal_case(pascal_string: str) -> str:

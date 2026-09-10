@@ -9,7 +9,7 @@ class SeoMixinTest(WagtailPageTests):
     def setUp(self):
         self.site = wagtail_factories.SiteFactory()
         self.factory = RequestFactory(
-            SERVER_NAME="{}:{}".format(self.site.hostname, self.site.port)
+            SERVER_NAME=f"{self.site.hostname}:{self.site.port}"
         )
 
     def test_common_fields(self):

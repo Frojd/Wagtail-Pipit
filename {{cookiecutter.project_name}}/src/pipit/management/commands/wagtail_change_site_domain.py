@@ -28,4 +28,4 @@ class Command(BaseCommand):
         site.port = port
         site.save()
 
-        self.stdout.write("Domain changed to {}".format(new_site_domain))
+        self.stdout.write(f"Domain changed to {new_site_domain}")

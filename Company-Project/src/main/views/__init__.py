@@ -1,1 +1,1 @@
-from .page_not_found import *  # NOQA
+from .page_not_found import *

@@ -1,5 +1,4 @@
 import os
-from typing import Optional
 
 from utils.env import get_env, get_env_bool  # NOQA: F401
 
@@ -127,12 +126,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"  # NOQA
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},  # NOQA
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},  # NOQA
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"  # NOQA
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"
     },
 ]
 
@@ -204,5 +203,5 @@ WAGTAIL_HEADLESS_PREVIEW = {
 }
 
 # Sentry
-SENTRY_DSN: Optional[str] = None
-SENTRY_ENVIRONMENT: Optional[str] = None
+SENTRY_DSN: str | None = None
+SENTRY_ENVIRONMENT: str | None = None

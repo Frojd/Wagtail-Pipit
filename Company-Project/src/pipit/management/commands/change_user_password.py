@@ -25,4 +25,4 @@ class Command(BaseCommand):
         user.set_password(password)
         user.save()
 
-        self.stdout.write("Password for {} changed".format(username))
+        self.stdout.write(f"Password for {username} changed")

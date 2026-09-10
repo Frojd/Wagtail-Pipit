@@ -1,4 +1,5 @@
-from typing import Any, Callable, Dict, List, Tuple, Type, Union
+from collections.abc import Callable
+from typing import Any
 
 from django.db import models
 from django.http import JsonResponse
@@ -231,10 +232,10 @@ class SeoMixin(Page):
 
 class EnhancedPanelMixin:
     edit_handler: PanelGroup
-    content_panels: List[Panel]
-    promote_panels: List[Panel]
-    settings_panels: List[Panel]
-    extra_panels: List[Tuple[str, str]]
+    content_panels: list[Panel]
+    promote_panels: list[Panel]
+    settings_panels: list[Panel]
+    extra_panels: list[tuple[str, str]]
     base_form_class: WagtailAdminPageForm
 
     @cached_classmethod
@@ -286,19 +287,19 @@ class TimestampMixin(models.Model):
 class ReactViewMixin:
     request: HttpRequest
     component_name: str
-    serializer_class: Union[str, Type[Serializer]]
+    serializer_class: str | type[Serializer]
 
     def render_to_response(self, context, **response_kwargs):
         props = self.get_component_data({"request": self.request})
         return JsonResponse(props)
 
-    def get_component_data(self, context: Dict) -> Dict[str, Any]:
+    def get_component_data(self, context: dict) -> dict[str, Any]:
         return {
             "component_name": self.component_name,
             "component_props": self.to_dict(context),
         }
 
-    def to_dict(self, context: Dict[Any, Any]) -> Dict[str, Any]:
+    def to_dict(self, context: dict[Any, Any]) -> dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
             self.get_component_props(),
@@ -307,8 +308,8 @@ class ReactViewMixin:
 
         return serializer.data
 
-    def get_serializer_class(self) -> Type[Serializer]:
-        serializer_class: Type[Serializer]
+    def get_serializer_class(self) -> type[Serializer]:
+        serializer_class: type[Serializer]
         if isinstance(self.serializer_class, str):
             serializer_class = import_string(self.serializer_class)
         else:
@@ -321,5 +322,5 @@ class ReactViewMixin:
 
         return self.__class__.__name__
 
-    def get_component_props(self) -> Dict[str, Any]:
+    def get_component_props(self) -> dict[str, Any]:
         return {}

@@ -1,4 +1,3 @@
-import typing
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -19,7 +18,7 @@ handler404 = PageNotFoundView.as_view()
 handler500 = error_500_view
 
 URL = URLPattern | URLResolver
-URLList = typing.List[URL]
+URLList = list[URL]
 
 urlpatterns: URLList = []
 
@@ -29,18 +28,18 @@ if settings.DEBUG:
             "wt/400/",
             default_views.bad_request,
             kwargs={"exception": Exception("Bad Request!")},
-        ),  # NOQA
+        ),
         path(
             "wt/403/",
             default_views.permission_denied,
             kwargs={"exception": Exception("Permission Denied")},
-        ),  # NOQA
+        ),
         path(
             "wt/404/", handler404, kwargs={"exception": Exception("Page not Found")}
-        ),  # NOQA
+        ),
         path(
             "wt/500/", handler500, kwargs={"exception": Exception("Internal error")}
-        ),  # NOQA
+        ),
     ]
 
     if "debug_toolbar" in settings.INSTALLED_APPS:

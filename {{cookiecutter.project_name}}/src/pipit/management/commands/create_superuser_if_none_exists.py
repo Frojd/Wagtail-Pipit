@@ -31,4 +31,4 @@ class Command(BaseCommand):
             email=email,
         )
 
-        self.stdout.write('Local user "{}" was created'.format(username))
+        self.stdout.write(f'Local user "{username}" was created')

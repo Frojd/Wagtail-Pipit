@@ -1,4 +1,4 @@
-from typing import List, Optional, cast
+from typing import cast
 
 from rest_framework import serializers
 from wagtail.images.shortcuts import get_rendition_or_not_found
@@ -14,8 +14,8 @@ class CustomImageSerializer(serializers.ModelSerializer):
 
     _mocked_id: int
     _mocked_url: str
-    _mocked_renditions: List
-    _renditions: List
+    _mocked_renditions: list
+    _renditions: list
 
     def get_id(self, obj) -> int:
         if hasattr(self, "_mocked_id"):
@@ -23,7 +23,7 @@ class CustomImageSerializer(serializers.ModelSerializer):
 
         return cast(int, obj.pk)
 
-    def get_url(self, obj) -> Optional[str]:
+    def get_url(self, obj) -> str | None:
         if hasattr(self, "_mocked_url"):
             return self._mocked_url
 
@@ -53,7 +53,7 @@ class CustomImageSerializer(serializers.ModelSerializer):
             background_x = min(round(obj.focal_point_x / obj.width, 4), 1)
             background_y = min(round(obj.focal_point_y / obj.height, 4), 1)
 
-        return {"x": "{:.2%}".format(background_x), "y": "{:.2%}".format(background_y)}
+        return {"x": f"{background_x:.2%}", "y": f"{background_y:.2%}"}
 
     class Meta:
         model = CustomImage

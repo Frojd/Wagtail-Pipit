@@ -2,9 +2,9 @@
 Write test settings here (for ci environment), or override base settings
 """
 import logging
-from typing import Any, Dict
+from typing import Any
 
-from pipit.settings.base import *  # NOQA
+from pipit.settings.base import *
 
 DEBUG = False
 
@@ -31,6 +31,6 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore[index]
     )
 ]
 
-LOGGING: Dict[str, Any] = {}
+LOGGING: dict[str, Any] = {}
 
 TEST_RUNNER = "pipit.test_runner.PytestTestRunner"

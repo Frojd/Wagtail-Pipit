@@ -1,4 +1,3 @@
-from typing import List
 
 from rest_framework import serializers
 from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
@@ -21,7 +20,7 @@ class BasePageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BasePage
-        fields: List[str] = [
+        fields: list[str] = [
             "title",
             "last_published_at",
             "seo_title",

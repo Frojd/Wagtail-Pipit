@@ -1,4 +1,4 @@
-from typing import Dict, Union, cast
+from typing import cast
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -269,7 +269,7 @@ api_router.register_endpoint("page_by_path", PageByPathAPIViewSet)
 
 
 class ExternalViewDataAPIViewSet(BaseAPIViewSet):
-    view_register: Dict[str, Union[View, str]] = {
+    view_register: dict[str, View | str] = {
         "404": "main.views.page_not_found.PageNotFoundView",
     }
 

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Tuple, Type, Union
+from typing import Any
 
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse, JsonResponse
@@ -16,7 +16,7 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
     is_creatable = False
     show_in_menus_default = True
 
-    extra_panels: List[Tuple[str, str]] = []
+    extra_panels: list[tuple[str, str]] = []
     serializer_class = "main.pages.BasePageSerializer"
 
     objects: PageManager
@@ -31,17 +31,17 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
         setattr(request, "is_preview", is_preview)  # noqa: B010
 
         json = self.get_component_data({"request": request})
-        response_cls: Union[Type[Response], Type[JsonResponse]] = (
+        response_cls: type[Response | JsonResponse] = (
             Response if isinstance(request, Request) else JsonResponse
         )
         return response_cls(json)
 
     def get_component_data(
         self,
-        context: Optional[Dict],
-        component_name: Optional[str] = None,
-        serializer_cls: Optional[Union[str, Type[Serializer]]] = None,
-    ) -> Dict[str, Any]:
+        context: dict | None,
+        component_name: str | None = None,
+        serializer_cls: str | type[Serializer] | None = None,
+    ) -> dict[str, Any]:
         return {
             "component_name": component_name or self.component_name,
             "component_props": self.to_dict(context, serializer_cls=serializer_cls),
@@ -49,11 +49,11 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
 
     def to_dict(
         self,
-        context: Optional[Dict],
-        serializer_cls: Optional[Union[str, Type[Serializer]]] = None,
-    ) -> Dict[str, Any]:
+        context: dict | None,
+        serializer_cls: str | type[Serializer] | None = None,
+    ) -> dict[str, Any]:
         context = context or {}
-        dict_serializer_cls: Optional[Type[Serializer]]
+        dict_serializer_cls: type[Serializer] | None
 
         if serializer_cls:
             if isinstance(serializer_cls, str):
@@ -72,8 +72,8 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
         serializer = dict_serializer_cls(self, context=context)
         return serializer.data
 
-    def get_serializer_class(self) -> Type[Serializer]:
-        cls: Type[Serializer]
+    def get_serializer_class(self) -> type[Serializer]:
+        cls: type[Serializer]
         if isinstance(self.serializer_class, str):
             cls = import_string(self.serializer_class)
         else:
