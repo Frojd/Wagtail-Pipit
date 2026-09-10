@@ -49,11 +49,14 @@ exclude = [
 
 [tool.ruff.lint]
 # Never enforce `E501` (line length violations).
-ignore = ["E501"]
+# RUF012: mutable class attributes are the Django/DRF idiom (Meta.fields, panels).
+ignore = ["E501", "RUF012"]
 # Enable isort rules for import sorting
 extend-select = ["I"]
 
 [tool.ruff.lint.per-file-ignores]
+# T100: debugpy is wired up on purpose for VS Code remote debugging.
+"manage.py" = ["T100"]
 "pipit/settings/dev.py" = ["F405", "F403"]
 "pipit/settings/test.py" = ["F405", "F403"]
 "pipit/settings/stage.py" = ["F405", "F403"]

@@ -28,7 +28,7 @@ class BasePage(EnhancedPanelMixin, SeoMixin, Page):
 
     def serve(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         is_preview = getattr(request, "is_preview", False)
-        setattr(request, "is_preview", is_preview)
+        setattr(request, "is_preview", is_preview)  # noqa: B010
 
         json = self.get_component_data({"request": request})
         response_cls: Union[Type[Response], Type[JsonResponse]] = (

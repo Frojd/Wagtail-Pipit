@@ -13,7 +13,7 @@ def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pipit.settings.prod")
 
     if_exists_load_env(".env")
-    if not os.environ.get("IN_DOCKER", False):
+    if not os.environ.get("IN_DOCKER"):
         if_exists_load_env(".env.local")
 
     # enable vs code remote debugging

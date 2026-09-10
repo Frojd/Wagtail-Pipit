@@ -18,7 +18,7 @@ from nextjs.api import api_router
 handler404 = PageNotFoundView.as_view()
 handler500 = error_500_view
 
-URL = typing.Union[URLPattern, URLResolver]
+URL = URLPattern | URLResolver
 URLList = typing.List[URL]
 
 urlpatterns: URLList = []
