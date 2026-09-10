@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Pin ruff to 0.15.1, ruff 0.16 expanded its default rule set from 59 to 413 rules (@marteinn)
+- Import WagtailAdminPageForm from wagtail.admin.forms, it is no longer re-exported from wagtail.admin.panels in Wagtail 8 (@marteinn)
+- Move the StreamField serializer mapping into a MainConfig app config, Wagtail 8 resolves the swappable Page model on wagtail.api.v2 import (@marteinn)
+- Drop bare ForeignKey annotations on the nullable og_image and twitter_image fields, rejected by django-stubs 6.1 (@marteinn)
 
 ### Removed
 ### Security

@@ -1,9 +1,7 @@
 from typing import List
 
 from rest_framework import serializers
-from wagtail import fields
 from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
-from wagtail.api.v2 import serializers as wagtail_serializers
 
 from sitesettings.models import SiteSetting
 from sitesettings.serializers import SiteSettingSerializer
@@ -15,9 +13,6 @@ from . import BasePage
 class BasePageSerializer(serializers.ModelSerializer):
     serializer_field_mapping = (
         serializers.ModelSerializer.serializer_field_mapping.copy()
-    )
-    serializer_field_mapping.update(
-        {fields.StreamField: wagtail_serializers.StreamField}
     )
 
     seo = serializers.SerializerMethodField()

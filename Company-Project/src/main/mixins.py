@@ -7,6 +7,7 @@ from django.utils.functional import cached_property
 from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from rest_framework.serializers import Serializer
+from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
@@ -14,7 +15,6 @@ from wagtail.admin.panels import (
     Panel,
     PanelGroup,
     TabbedInterface,
-    WagtailAdminPageForm,
 )
 from wagtail.admin.widgets.slug import SlugInput
 from wagtail.models import Page
@@ -59,7 +59,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to seo description if empty"),
     )
 
-    og_image: models.ForeignKey = models.ForeignKey(
+    og_image = models.ForeignKey(
         "customimage.CustomImage",
         null=True,
         blank=True,
@@ -88,7 +88,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to facebook description if empty"),
     )
 
-    twitter_image: models.ForeignKey = models.ForeignKey(
+    twitter_image = models.ForeignKey(
         "customimage.CustomImage",
         null=True,
         blank=True,
