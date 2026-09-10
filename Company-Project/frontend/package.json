@@ -17,35 +17,36 @@
     "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
-    "@sentry/nextjs": "^10.56.0",
-    "i18next": "^26.2.0",
-    "next": "16.2.7",
-    "next-i18next": "^16.0.7",
+    "@sentry/nextjs": "10.73.0",
+    "i18next": "26.4.2",
+    "next": "16.3.4",
+    "next-i18next": "16.3.0",
     "prop-types": "^15.8.1",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "react-i18next": "^17.0.8"
+    "react-i18next": "17.0.13"
   },
-  "//overrides": "Force postcss>=8.5.10 everywhere - GHSA-qx2v-qp2m-jg93 - remove when next ships with postcss>=8.5.10",
+  "//overrides": "Force postcss>=8.5.23 everywhere - GHSA-fxqj-rqcc-2cmp - remove when transitive deps ship with postcss>=8.5.23",
   "overrides": {
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.23"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^10.2.17",
+    "@storybook/addon-a11y": "10.6.0",
+    "@storybook/nextjs-vite": "10.6.0",
     "@swc/jest": "^0.2.39",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
-    "eslint-config-next": "16.2.7",
+    "eslint-config-next": "16.3.4",
     "eslint-config-prettier": "^10.1.5",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "jest-junit": "^17.0.0",
     "prettier": "^3.8.3",
     "pretty-quick": "^4.2.2",
-    "storybook": "^10.2.17",
-    "@storybook/nextjs-vite": "10.4.2"
+    "storybook": "10.6.0",
+    "vite": "8.2.2"
   }
 }
