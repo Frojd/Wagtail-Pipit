@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)
 - Raise postcss override to >=8.5.23 to fix GHSA-fxqj-rqcc-2cmp, clearing all 18 npm audit findings including 10 high and 1 critical (@marteinn)
+- Update pillow 12.3.0, pillow-heif 1.7.0, pygments 2.21.0, soupsieve 2.9.2 and sqlparse 0.6.0 to clear advisories flagged by pip-audit (@marteinn)
 
 ## [10.1.0] - 2026-06-09
 ### Added
