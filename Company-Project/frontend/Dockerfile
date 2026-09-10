@@ -1,6 +1,6 @@
 FROM node:22-alpine as BUILD_IMAGE
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json .npmrc ./
 # install dependencies
 RUN npm ci --audit=false
 RUN npm rebuild --arch=x64 --platform=linux --libc=musl sharp

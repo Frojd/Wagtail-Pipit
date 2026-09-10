@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Import WagtailAdminPageForm from wagtail.admin.forms, it is no longer re-exported from wagtail.admin.panels in Wagtail 8 (@marteinn)
 - Move the StreamField serializer mapping into a MainConfig app config, Wagtail 8 resolves the swappable Page model on wagtail.api.v2 import (@marteinn)
 - Drop bare ForeignKey annotations on the nullable og_image and twitter_image fields, rejected by django-stubs 6.1 (@marteinn)
+- Copy .npmrc into the frontend Docker build, npm ci ran without legacy-peer-deps and rejected the lockfile since it carries no peer tree (@marteinn)
 - Update eslint-config-next to 16.3.4 (@marteinn)
 - Update @sentry/nextjs to 10.73.0 (@marteinn)
 - Update next-i18next to 16.3.0, i18next to 26.4.2 and react-i18next to 17.0.13 (@marteinn)
