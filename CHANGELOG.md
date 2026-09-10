@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update backend packages: gunicorn 26.0.0, gevent 26.5.0, psycopg 3.3.4, sentry-sdk 2.64.0, wagtail 7.4.2, wagtail-headless-preview 0.9.0, pytest 9.1.1, wagtail-factories 4.5.0, django-stubs 6.0.6, djangorestframework-stubs 3.17.0 and mypy 2.1.0 (@rinti)
 ### Fixed
+- Pin ruff to 0.15.1, ruff 0.16 expanded its default rule set from 59 to 413 rules (@marteinn)
+
 ### Removed
 ### Security
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)

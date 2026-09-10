@@ -202,7 +202,7 @@ dev = [
     { name = "pytest", specifier = "~=9.1.1" },
     { name = "pytest-django", specifier = "==4.12.0" },
     { name = "pytest-env" },
-    { name = "ruff" },
+    { name = "ruff", specifier = "==0.15.1" },
     { name = "wagtail-factories", specifier = "==4.5.0" },
 ]
 prod = []

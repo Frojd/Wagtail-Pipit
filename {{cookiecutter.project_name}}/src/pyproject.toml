@@ -30,7 +30,7 @@ dev = [
     "djangorestframework-stubs==3.17.0",
     "mypy==2.1.0",
     "debugpy",
-    "ruff",
+    "ruff==0.15.1",
 ]
 prod = []
 stage = []
