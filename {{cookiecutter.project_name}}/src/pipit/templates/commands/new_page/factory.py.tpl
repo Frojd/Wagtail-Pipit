@@ -1,5 +1,5 @@
-{% raw %}from .base_page import BasePageFactory
-from ..pages.{{ file_name }} import {{ name }}Page
+{% raw %}from ..pages.{{ file_name }} import {{ name }}Page
+from .base_page import BasePageFactory
 
 
 class {{ name }}PageFactory(BasePageFactory):

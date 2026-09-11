@@ -1,8 +1,7 @@
 from wagtail.test.utils import WagtailPageTests
 from wagtail_factories import SiteFactory
 
-from ..factories.base_page import BasePageFactory
-from ..factories.{{ file_name }}_page import {{ name }}PageFactory
+{{ factory_imports }}
 from ..pages import {{ name }}PageSerializer
 
 

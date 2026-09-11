@@ -98,7 +98,7 @@ jobs:
         run: |
           cd Company-Project
           set -x
-          docker compose -f docker-compose-ci.yml run --rm python python manage.py new_page --name=Article
+          docker compose -f docker-compose-ci.yml run --rm python bash -c "python manage.py new_page --name=Article && ruff check ."
 
       - name: Run tests on container
         run: |

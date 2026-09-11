@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update @sentry/nextjs to 10.73.0 (@marteinn)
 - Update next-i18next to 16.3.0, i18next to 26.4.2 and react-i18next to 17.0.13 (@marteinn)
 - Update Storybook to 10.6.0 and align storybook, @storybook/nextjs-vite and @storybook/addon-a11y on the same version (@marteinn)
+- Fix new_page emitting unused noqa directives, unsorted imports and an unrendered file_name in generated files (@marteinn)
 
 ### Removed
 ### Security

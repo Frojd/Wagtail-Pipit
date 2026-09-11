@@ -49,11 +49,16 @@ class Command(BaseCommand):
 
         context = {"name": name, "project": to_app}
 
-        with open(init_file, "a") as f:
-            f.write(f"from .{file_name} import *  # NOQA\n")
-            f.write(
-                f"from .{file_name}_serializer import *  # NOQA\n"
-            )
+        with open(init_file) as f:
+            imports = [line.strip() for line in f if line.strip()]
+
+        imports += [
+            f"from .{file_name} import *",
+            f"from .{file_name}_serializer import *",
+        ]
+
+        with open(init_file, "w") as f:
+            f.write("\n".join(sorted(set(imports))) + "\n")
 
         self.create_file(page_file, page_template, context)
 
@@ -87,7 +92,18 @@ class Command(BaseCommand):
 
         test_template = "commands/new_page/test.py.tpl"
 
-        context = {"name": name}
+        factory_imports = sorted(
+            [
+                "from ..factories.base_page import BasePageFactory",
+                f"from ..factories.{file_name}_page import {name}PageFactory",
+            ]
+        )
+
+        context = {
+            "name": name,
+            "file_name": file_name,
+            "factory_imports": "\n".join(factory_imports),
+        }
 
         self.create_file(test_file, test_template, context)
 
@@ -104,7 +120,7 @@ class Command(BaseCommand):
 
         factory_template = "commands/new_page/factory.py.tpl"
 
-        context = {"name": name}
+        context = {"name": name, "file_name": file_name}
 
         self.create_file(factory_file, factory_template, context)
 
