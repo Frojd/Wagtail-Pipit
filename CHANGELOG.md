@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vite as explicit devDependency, @storybook/nextjs-vite needs it as a peer and .npmrc sets legacy-peer-deps so peers are not auto-installed (@marteinn)
 
 ### Changed
+- Refresh the Ubuntu 26.04 base image digest and upgrade uv to 0.12.17 in the Python Docker image (@marteinn)
+- Upgrade Node to 24 LTS in .nvmrc, the frontend Docker image and the repo, CI and deploy workflows (@marteinn)
+- Align dev and CI on postgis 16-3.5-alpine, dev ran 3.4 while CI ran 3.5 (@marteinn)
+- Pin the db service to linux/amd64, postgis publishes no arm64 image and the tag fails to pull on Apple Silicon without it (@marteinn)
+- Pin the nginx image to 1.31 instead of tracking latest (@marteinn)
+- Correct stale version requirements in the READMEs and docs, now Python 3.14+, Node 24 and Next.js 16.3.4 (@marteinn)
 - Upgrade Wagtail to 8.0 (@marteinn)
 - Upgrade Django to 6.1.1 (@marteinn)
 - Upgrade Next.js and eslint-config-next to 16.3.4 (@marteinn)

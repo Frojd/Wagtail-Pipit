@@ -10,7 +10,9 @@ services:
     env_file: ./docker/config/python.env
 
   db:
-    image: postgis/postgis:16-3.5
+    image: postgis/postgis:16-3.5-alpine
+    # postgis publishes amd64 only; be explicit so Apple Silicon emulates instead of failing to pull
+    platform: linux/amd64
     ports:
       - "5433:5432"
     environment:

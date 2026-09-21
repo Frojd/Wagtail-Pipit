@@ -8,11 +8,11 @@ In this guide we'll explain how to use the included provisioning script to insta
 The server should have these applications/packages installed:
 - Linux (Ubuntu 20.04+ is preffered)
 - Nginx
-- Python 3.12+
-- PostgreSQL 12+
+- Python 3.14+
+- PostgreSQL 16+
 - PostGIS for PostgreSQL
 - GDAL (required for PostGIS)
-- Node 20+
+- Node 24+
 - [PM2](https://pm2.io/)
 - [psycopg2-binary](https://pypi.org/project/psycopg2-binary/) (this is required for the provision script that will create db and users)
 

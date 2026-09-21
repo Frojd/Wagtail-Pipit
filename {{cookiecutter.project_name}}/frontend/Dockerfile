@@ -1,4 +1,4 @@
-FROM node:22-alpine as BUILD_IMAGE
+FROM node:24-alpine AS BUILD_IMAGE
 WORKDIR /app
 COPY package.json package-lock.json .npmrc ./
 # install dependencies
@@ -14,7 +14,7 @@ ENV NEXT_SHARP_PATH=/app/.next/standalone/node_modules/sharp
 
 RUN npm run build
 
-FROM node:22-alpine
+FROM node:24-alpine
 WORKDIR /app
 
 RUN apk update && apk add --no-cache dumb-init

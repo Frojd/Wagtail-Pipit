@@ -60,7 +60,7 @@ npm run dev
 > frontend_nextjs@0.1.0 dev
 > next dev -p 3000
 
-   ▲ Next.js 14.1.0
+   ▲ Next.js 16.3.4
    - Local:        http://localhost:3000
    - Environments: .env
 

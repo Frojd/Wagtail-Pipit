@@ -3,7 +3,7 @@
 ###########
 
 # using ubuntu LTS version
-FROM ubuntu:26.04@sha256:b7f48194d4d8b763a478a621cdc81c27be222ba2206ca3ca6bc42b49685f3d9e AS builder-image
+FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS builder-image
 
 # avoid stuck build due to user prompt
 ARG DEBIAN_FRONTEND=noninteractive
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y python3 python3
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.10.3@sha256:7a88d4c4e6f44200575000638453a5a381db0ae31ad5c3a51b14f8687c9d93a3 /uv /uvx /usr/local/bin/
+COPY --from=ghcr.io/astral-sh/uv:0.12.17@sha256:10787c682e4184e4f290de1171fd4703dc63de99221f10fe1c99002ce7fa9acc /uv /uvx /usr/local/bin/
 
 # create and activate virtual environment
 # using final folder name to avoid path issues with packages
@@ -30,13 +30,13 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Final #
 ###########
 
-FROM ubuntu:26.04@sha256:b7f48194d4d8b763a478a621cdc81c27be222ba2206ca3ca6bc42b49685f3d9e AS runner-image
+FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS runner-image
 ARG ENVIRONMENT=prod
 RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv (for runtime package management if needed)
-COPY --from=ghcr.io/astral-sh/uv:0.10.3@sha256:7a88d4c4e6f44200575000638453a5a381db0ae31ad5c3a51b14f8687c9d93a3 /uv /uvx /usr/local/bin/
+COPY --from=ghcr.io/astral-sh/uv:0.12.17@sha256:10787c682e4184e4f290de1171fd4703dc63de99221f10fe1c99002ce7fa9acc /uv /uvx /usr/local/bin/
 
 # Ubuntu 26.04 ships with a default ubuntu user (uid 1000); remove it to use our own.
 # It also bundles Canonical's Pebble service manager, which we don't use and whose

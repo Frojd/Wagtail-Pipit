@@ -12,6 +12,3 @@ services:
     volumes: []
     depends_on: []
 
-  # if on m1 mac:
-  # db:
-  #   image: gangstead/postgis:13-3.1-arm

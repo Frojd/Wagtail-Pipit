@@ -19,9 +19,9 @@
 
 ## Requirements
 
-- Python 3.12+
+- Python 3.14+
 - [uv](https://docs.astral.sh/uv/)
-- Node 22
+- Node 24
 - Docker ([Install instructions](#how-do-i-install-docker-on-macoswindows))
 - [mkcert](https://github.com/FiloSottile/mkcert)
 

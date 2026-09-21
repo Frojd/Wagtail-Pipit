@@ -1,6 +1,6 @@
 services:
   web:
-    image: nginx:latest
+    image: nginx:1.31
     working_dir: /app
     ports:
       - "8081:80"
@@ -33,7 +33,9 @@ services:
     env_file: ./docker/config/python.env
 
   db:
-    image: postgis/postgis:16-3.4-alpine
+    image: postgis/postgis:16-3.5-alpine
+    # postgis publishes amd64 only; be explicit so Apple Silicon emulates instead of failing to pull
+    platform: linux/amd64
     ports:
       - "8083:5432"
     volumes:
