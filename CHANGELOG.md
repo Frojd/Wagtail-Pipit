@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vite as explicit devDependency, @storybook/nextjs-vite needs it as a peer and .npmrc sets legacy-peer-deps so peers are not auto-installed (@marteinn)
 
 ### Changed
+- Unify the duplicated GitHub Actions pins and upgrade checkout to v7.0.1, setup-node to v7.0.0, setup-uv to v10.2.0 and cache to v6.1.0 (@marteinn)
+- Upgrade zizmor to 1.30.1 and pip-audit to 2.10.1 (@marteinn)
+- Call the deploy workflow through GitHub's self-repository syntax, which pins the reference to the running commit, flagged by zizmor 1.30 (@marteinn)
+- Set persist-credentials false on the remaining checkouts in the repo CI workflow (@marteinn)
 - Refresh the Ubuntu 26.04 base image digest and upgrade uv to 0.12.17 in the Python Docker image (@marteinn)
 - Upgrade Node to 24 LTS in .nvmrc, the frontend Docker image and the repo, CI and deploy workflows (@marteinn)
 - Align dev and CI on postgis 16-3.5-alpine, dev ran 3.4 while CI ran 3.5 (@marteinn)
