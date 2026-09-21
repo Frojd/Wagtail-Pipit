@@ -10,32 +10,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vite as explicit devDependency, @storybook/nextjs-vite needs it as a peer and .npmrc sets legacy-peer-deps so peers are not auto-installed (@marteinn)
 
 ### Changed
-- Update gunicorn 26.0.0, gevent 26.5.0, psycopg 3.3.4, sentry-sdk 2.64.0, wagtail-headless-preview 0.9.0, pytest 9.1.1, wagtail-factories 4.5.0 and mypy 2.1.0 (@rinti)
 - Upgrade Wagtail to 8.0 (@marteinn)
 - Upgrade Django to 6.1.1 (@marteinn)
-- Upgrade django-stubs to 6.1.0 and djangorestframework-stubs to 3.18.1, required by Wagtail 8 (@marteinn)
-- Upgrade Next.js to 16.3.4 (@marteinn)
+- Upgrade Next.js and eslint-config-next to 16.3.4 (@marteinn)
+- Upgrade React and React DOM to 19.3.0 (@marteinn)
+- Update gunicorn 26.2.0, gevent 26.9.0, psycopg 3.3.6, python-dotenv 1.2.3 and sentry-sdk 2.69.2 (@rinti, @marteinn)
+- Update pytest 9.1.1, pytest-django 4.14.0, wagtail-factories 4.5.0 and wagtail-headless-preview 0.9.0 (@rinti, @marteinn)
+- Upgrade mypy to 2.3.1, django-stubs to 6.1.1 and djangorestframework-stubs to 3.18.1, the stubs required by Wagtail 8 (@rinti, @marteinn)
+- Upgrade ruff to 0.16.8 and adopt its expanded default rule set, 413 rules by default instead of 59 (@marteinn)
 - Ignore RUF012 and per-file T100 so the Django and debugpy idioms survive the ruff 0.16 default rule set (@marteinn)
-- Upgrade ruff to 0.16.6 and adopt its expanded default rule set, 413 rules by default instead of 59 (@marteinn)
 - Modernise annotations to PEP 585 and PEP 604 and convert format calls to f-strings via ruff autofix (@marteinn)
 - Migrate email configuration from the deprecated EMAIL_BACKEND setting to Django 6.1 MAILERS (@marteinn)
+- Update @sentry/nextjs to 10.74.0 and vite to 8.3.0 (@marteinn)
+- Update next-i18next to 16.3.0, i18next to 26.4.2 and react-i18next to 17.0.13 (@marteinn)
+- Update Storybook to 10.6.0 and align storybook, @storybook/nextjs-vite and @storybook/addon-a11y on the same version (@marteinn)
+- Relock transitive dependencies, moving django-debug-toolbar to 8.0.0 and django-treebeard to 5.3.1, both inside the ranges Wagtail 8.0 declares (@marteinn)
 
 ### Fixed
-- Pin ruff to 0.15.1, ruff 0.16 expanded its default rule set from 59 to 413 rules (@marteinn)
 - Import WagtailAdminPageForm from wagtail.admin.forms, it is no longer re-exported from wagtail.admin.panels in Wagtail 8 (@marteinn)
 - Move the StreamField serializer mapping into a MainConfig app config, Wagtail 8 resolves the swappable Page model on wagtail.api.v2 import (@marteinn)
 - Drop bare ForeignKey annotations on the nullable og_image and twitter_image fields, rejected by django-stubs 6.1 (@marteinn)
 - Copy .npmrc into the frontend Docker build, npm ci ran without legacy-peer-deps and rejected the lockfile since it carries no peer tree (@marteinn)
-- Update eslint-config-next to 16.3.4 (@marteinn)
-- Update @sentry/nextjs to 10.73.0 (@marteinn)
-- Update next-i18next to 16.3.0, i18next to 26.4.2 and react-i18next to 17.0.13 (@marteinn)
-- Update Storybook to 10.6.0 and align storybook, @storybook/nextjs-vite and @storybook/addon-a11y on the same version (@marteinn)
 - Fix new_page emitting unused noqa directives, unsorted imports and an unrendered file_name in generated files (@marteinn)
 
 ### Removed
 ### Security
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)
-- Raise postcss override to >=8.5.23 to fix GHSA-fxqj-rqcc-2cmp, clearing all 18 npm audit findings including 10 high and 1 critical (@marteinn)
+- Clear GHSA-fxqj-rqcc-2cmp, postcss now resolves to 8.5.23 or later through Next.js itself and npm audit reports no findings (@marteinn)
 - Update pillow 12.3.0, pillow-heif 1.7.0, pygments 2.21.0, soupsieve 2.9.2 and sqlparse 0.6.0 to clear advisories flagged by pip-audit (@marteinn)
 
 ## [10.1.0] - 2026-06-09
