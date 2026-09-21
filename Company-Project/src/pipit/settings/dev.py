@@ -8,7 +8,7 @@ VS_CODE_REMOTE_DEBUG = get_env_bool("VS_CODE_REMOTE_DEBUG", default=False)
 DEBUG = True
 TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # type: ignore[index]
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+MAILERS = {"default": {"BACKEND": "django.core.mail.backends.console.EmailBackend"}}
 
 # Email notification url
 WAGTAILADMIN_BASE_URL = (

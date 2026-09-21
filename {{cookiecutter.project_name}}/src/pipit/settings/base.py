@@ -147,6 +147,15 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 # Email
 DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", default="noreply@example.com")
+MAILERS = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "OPTIONS": {
+            "host": "localhost",
+            "port": 25,
+        },
+    }
+}
 
 # Auth
 AUTH_USER_MODEL = "customuser.User"

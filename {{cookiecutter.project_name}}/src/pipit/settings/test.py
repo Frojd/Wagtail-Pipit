@@ -19,7 +19,7 @@ CACHES = {
     }
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
+MAILERS = {"default": {"BACKEND": "django.core.mail.backends.dummy.EmailBackend"}}
 
 TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore[index]
     (

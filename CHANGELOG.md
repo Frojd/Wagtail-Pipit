@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ignore RUF012 and per-file T100 so the Django and debugpy idioms survive the ruff 0.16 default rule set (@marteinn)
 - Upgrade ruff to 0.16.6 and adopt its expanded default rule set, 413 rules by default instead of 59 (@marteinn)
 - Modernise annotations to PEP 585 and PEP 604 and convert format calls to f-strings via ruff autofix (@marteinn)
+- Migrate email configuration from the deprecated EMAIL_BACKEND setting to Django 6.1 MAILERS (@marteinn)
 
 ### Fixed
 - Pin ruff to 0.15.1, ruff 0.16 expanded its default rule set from 59 to 413 rules (@marteinn)
