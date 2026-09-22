@@ -1,18 +1,31 @@
 import { useState, useEffect } from 'react';
-import { getViewData, getPublicViewData } from '../api/wagtail';
+import {
+    getPublicViewData,
+    // getViewData, // Uncomment together with getStaticProps below
+} from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
 export default function DynamicNotFoundPage() {
     // 404 does not support getServerSideProps, must fetch client side data
     // https://github.com/vercel/next.js/blob/master/errors/404-get-initial-props.md
     const [data, setData] = useState(null);
+    const [hasError, setHasError] = useState(false);
+
     useEffect(() => {
         async function fetchData() {
-            const { json: pageData } = await getPublicViewData('404');
-            setData(pageData);
+            try {
+                const { json: pageData } = await getPublicViewData('404');
+                setData(pageData);
+            } catch {
+                setHasError(true);
+            }
         }
         fetchData();
     }, []);
+
+    if (hasError) {
+        return <h1>Page not found</h1>;
+    }
 
     if (!data) {
         return null;

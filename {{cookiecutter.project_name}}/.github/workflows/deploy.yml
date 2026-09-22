@@ -92,8 +92,8 @@ jobs:
       - name: Remove non-deployment files
         run: |
           rm -rf .next/cache
-          rm -rf stories .storybook __mocks__ cli
-          rm -f jest.config.js setupTests.js .prettierrc.js .prettierignore .swcrc
+          rm -rf stories .storybook __mocks__ __tests__ cli
+          rm -f jest.config.js setupTests.js .prettierrc.js .prettierignore
         working-directory: frontend
 
       - name: Upload frontend build

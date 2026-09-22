@@ -43,6 +43,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Copy .npmrc into the frontend Docker build, npm ci ran without legacy-peer-deps and rejected the lockfile since it carries no peer tree (@marteinn)
 - Fix new_page emitting unused noqa directives, unsorted imports and an unrendered file_name in generated files (@marteinn)
 - Restore the SEO meta tags, React 19 ignores defaultProps on function components so BasePage never rendered them, and drop the equally inert prop-types (@marteinn)
+- Handle api failures on the 404 page, an error left it rendering null forever and logged an unhandled rejection (@marteinn)
+- Stop utils/Http.js exporting httpPostWithCsrfToken, the function is a commented example so the module was a SyntaxError under native ESM (@marteinn)
+
+### Removed
+- Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
 
 ### Security
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)

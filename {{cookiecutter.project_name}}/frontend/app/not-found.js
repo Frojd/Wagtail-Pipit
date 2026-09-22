@@ -1,18 +1,28 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getViewData, getPublicViewData } from '../api/wagtail';
+import { getPublicViewData } from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';
 
 export default function DynamicNotFoundPage() {
     const [data, setData] = useState(null);
+    const [hasError, setHasError] = useState(false);
+
     useEffect(() => {
         async function fetchData() {
-            const { json: pageData } = await getPublicViewData('404');
-            setData(pageData);
+            try {
+                const { json: pageData } = await getPublicViewData('404');
+                setData(pageData);
+            } catch {
+                setHasError(true);
+            }
         }
         fetchData();
     }, []);
+
+    if (hasError) {
+        return <h1>Page not found</h1>;
+    }
 
     if (!data) {
         return null;

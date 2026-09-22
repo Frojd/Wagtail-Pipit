@@ -4,7 +4,6 @@
 .next
 .nvmrc
 .prettierignore
-.swcrc
 cli
 components/WagtailUserbar/WagtailUserbar.js
 node_modules

@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/nextjs';
 import {
     getPage,
     getRedirect,
-    getAllPages,
+    // getAllPages, // Uncomment for SSG, see docs/using-static-site-generation.md
     WagtailApiResponseError,
 } from '../api/wagtail';
 import LazyContainers from '../containers/LazyContainers';

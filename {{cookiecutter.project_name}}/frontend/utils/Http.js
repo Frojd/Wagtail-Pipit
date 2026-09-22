@@ -60,4 +60,5 @@ const httpPost = (url, data) =>
         .then(checkStatus)
         .then(parseJSON);
 
-export { httpPostWithCsrfToken, httpGet, httpPost };
+// Add httpPostWithCsrfToken here once the csrf example above is uncommented
+export { httpGet, httpPost };

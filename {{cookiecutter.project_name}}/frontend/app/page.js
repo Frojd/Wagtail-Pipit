@@ -6,7 +6,6 @@ import {
     getPage,
     getPagePreview,
     getRedirect,
-    getAllPages,
     WagtailApiResponseError,
 } from '../api/wagtail';
 import ClientComponent from './clientcomponent';

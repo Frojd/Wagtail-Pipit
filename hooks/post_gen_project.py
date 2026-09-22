@@ -13,10 +13,14 @@ shutil.copyfile(
     os.path.join(DOCKER_DIR, "python.env"),
 )
 
+FRONTEND_DIR = os.path.join(PROJECT_DIRECTORY, "frontend")
+
 if EXPERIMENTAL_USE_APP_ROUTER:
-    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, "frontend", "pages"))
+    shutil.rmtree(os.path.join(FRONTEND_DIR, "pages"))
+    os.remove(os.path.join(FRONTEND_DIR, "__tests__", "404.test.js"))
 else:
-    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, "frontend", "app"))
+    shutil.rmtree(os.path.join(FRONTEND_DIR, "app"))
+    os.remove(os.path.join(FRONTEND_DIR, "__tests__", "not-found.test.js"))
 
 # Patch uv.lock with the actual project slug (the lock file is copied
 # without rendering so it ships with the default name "company-project")

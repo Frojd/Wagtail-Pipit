@@ -18,7 +18,7 @@ cd frontend
 
 Now proceed to disable SSR functions and enable SSG functions
 
-- In `frontend/pages/[...path].js`, comment out `getServerSideProps` and un-comment `getStaticProps` and `getStaticPaths`
+- In `frontend/pages/[...path].js`, comment out `getServerSideProps` and un-comment `getStaticProps`, `getStaticPaths` and the `getAllPages` import that `getStaticPaths` uses
 - In `frontend/pages/_preview`, uncomment `getStaticProps` and comment out `getServerSideProps`
 - In `frontend/pages/index.js`, uncomment the line below `// For SSG` and comment out the line after `// For SSR`
 
