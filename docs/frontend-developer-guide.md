@@ -122,17 +122,12 @@ const Button = ({ onClick, text }) => (
     </button>
 );
 
-Button.propTypes = {};
-
-Button.defaultProps = {};
-
 export default Button;
 ```
 
-This allows us to render a Button which accepts the props `onClick` and `text`. In a real-life scenario,
-you would also want to specify [`propTypes`](https://reactjs.org/docs/typechecking-with-proptypes.html) and
-[`defaultProps`](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values) but that is 
-outside the scope for this tutorial.
+This allows us to render a Button which accepts the props `onClick` and `text`. React 19 ignores
+`propTypes` and `defaultProps` on function components, so give props their defaults in the
+argument list instead, for example `({ onClick, text = 'Click me' })`.
 
 ### Providing data for storybook
 
@@ -209,10 +204,6 @@ import RawHtml from '../../components/RawHtml';
 
 class WordCountPage extends PureComponent {
     state = {};
-
-    static defaultProps = {};
-
-    static propTypes = {};
 
     handleWordCountClick = () => {
         const quickAndDirtyWordCount = this.props.richText.replace(/<[^>]+>/g, ' ')

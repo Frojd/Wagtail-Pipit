@@ -42,8 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Drop bare ForeignKey annotations on the nullable og_image and twitter_image fields, rejected by django-stubs 6.1 (@marteinn)
 - Copy .npmrc into the frontend Docker build, npm ci ran without legacy-peer-deps and rejected the lockfile since it carries no peer tree (@marteinn)
 - Fix new_page emitting unused noqa directives, unsorted imports and an unrendered file_name in generated files (@marteinn)
+- Restore the SEO meta tags, React 19 ignores defaultProps on function components so BasePage never rendered them, and drop the equally inert prop-types (@marteinn)
 
-### Removed
 ### Security
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)
 - Clear GHSA-fxqj-rqcc-2cmp, postcss now resolves to 8.5.23 or later through Next.js itself and npm audit reports no findings (@marteinn)

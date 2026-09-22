@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
 import s from './__Container.module.css';
 

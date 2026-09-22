@@ -5,6 +5,4 @@ const NotFoundPage = ({ exception }) => {
     return <div className={s.Container}>{exception}</div>;
 };
 
-NotFoundPage.propTypes = {};
-
 export default NotFoundPage;

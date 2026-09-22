@@ -267,7 +267,6 @@ Now modify the newly created container `containers/AboutPage/AboutPage.js" and i
 import React, { PureComponent } from 'react';
 
 // import i18n from '../../i18n';
-import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
 import s from './AboutPage.module.css';
 
@@ -276,10 +275,6 @@ class AboutPage extends PureComponent {
 
     static defaultProps = {
         companyName: '',
-    };
-
-    static propTypes = {
-        companyName: PropTypes.string,
     };
 
     render() {

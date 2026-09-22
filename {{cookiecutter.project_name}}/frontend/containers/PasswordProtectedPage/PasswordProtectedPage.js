@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
     getPasswordProtectedPage,
     WagtailApiResponseError,
@@ -81,12 +80,6 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
             <button onClick={handleFormChange}>Continue</button>
         </div>
     );
-};
-
-PasswordProtectedPage.propTypes = {
-    restrictionId: PropTypes.number.isRequired,
-    pageId: PropTypes.number.isRequired,
-    csrfToken: PropTypes.string.isRequired,
 };
 
 export default PasswordProtectedPage;

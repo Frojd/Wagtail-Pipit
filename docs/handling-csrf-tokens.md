@@ -38,27 +38,18 @@ class HomeSerializer(BasePageSerializer):
 ```javascript
 // containers/HomePage/HomePage.js
 import React from 'react';
-import PropTypes from 'prop-types';
 import { basePageWrap } from '../BasePage';
 import Hero from '../../components/Hero';
 import ContactForm from '../../components/ContactForm';
 import s from './HomePage.module.css';
 
-const HomePage = ({ title, csrfToken }) => {
+const HomePage = ({ title = '', csrfToken }) => {
     return (
         <div className={s.Container}>
             <Hero title={title} />
             <ContactForm csrfToken={csrfToken} />
         </div>
     );
-};
-
-HomePage.defaultProps = {
-    title: '',
-};
-
-HomePage.propTypes = {
-    title: PropTypes.string.isRequired,
 };
 
 export default basePageWrap(HomePage);

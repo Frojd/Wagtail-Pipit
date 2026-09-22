@@ -1,11 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
-import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 
 const WagtailUserbar = dynamic(() => import('../../components/WagtailUserbar'));
 
-const BasePage = ({ children, seo = {}, shouldRenderSeo, wagtailUserbar }) => {
+const BasePage = ({
+    children,
+    seo = {},
+    shouldRenderSeo = true,
+    wagtailUserbar,
+}) => {
     const {
         seoHtmlTitle,
         seoMetaDescription,
@@ -81,38 +85,6 @@ const BasePage = ({ children, seo = {}, shouldRenderSeo, wagtailUserbar }) => {
             {!!wagtailUserbar && <WagtailUserbar {...wagtailUserbar} />}
         </>
     );
-};
-
-BasePage.defaultProps = {
-    seo: {},
-    shouldRenderSeo: true,
-};
-
-BasePage.propTypes = {
-    children: PropTypes.node,
-    seo: PropTypes.shape({
-        seoHtmlTitle: PropTypes.string,
-        seoMetaDescription: PropTypes.string,
-        seoOgTitle: PropTypes.string,
-        seoOgDescription: PropTypes.string,
-        seoOgUrl: PropTypes.string,
-        seoOgImage: PropTypes.string,
-        seoOgType: PropTypes.string,
-        seoTwitterTitle: PropTypes.string,
-        seoTwitterDescription: PropTypes.string,
-        seoTwitterUrl: PropTypes.string,
-        seoTwitterImage: PropTypes.string,
-        seoMetaRobots: PropTypes.shape({
-            index: PropTypes.bool,
-            follow: PropTypes.bool,
-            value: PropTypes.string,
-        }),
-        canonicalLink: PropTypes.string,
-    }),
-    shouldRenderSeo: PropTypes.bool,
-    wagtailUserbar: PropTypes.shape({
-        html: PropTypes.string,
-    }),
 };
 
 export default BasePage;
