@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { headers, draftMode } from 'next/headers';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import LazyContainers from '../containers/LazyContainers';
@@ -50,11 +51,6 @@ async function getPreviewPageData({
         throw err;
     }
 }
-
-// Wrap getPageData with React cache
-// const getCachedPageData = cache(async ({ path, searchParams, headers = {}, options = null }) => {
-//     return await getPageData({ path, searchParams, headers, options });
-// });
 
 async function getPageData({
     path,
@@ -139,34 +135,42 @@ async function getPageData({
     return { notFound: true };
 }
 
-export async function generateMetadata({ params, searchParams }, parent) {
+const getCachedPageData = cache(async (path, searchParamsJson, cookie) =>
+    getPageData({
+        path,
+        searchParams: JSON.parse(searchParamsJson),
+        headers: { cookie },
+    })
+);
+
+// Both entry points below must build identical arguments or nothing dedupes
+async function loadPageData({ params, searchParams }) {
     const headersList = await headers();
-    const { path }= await params;
-    const data = await getPageData({
-        path: path,
-        searchParams: {
-            host: headersList.get('host'),
-        },
-        headers: {
-            cookie: headersList.get('cookie'),
-        },
-        options: {
-            revalidate: 900, // 15 minutes
-        },
-    });
+    const { path } = (await params) ?? {};
+    const query = (await searchParams) ?? {};
+
+    return await getCachedPageData(
+        Array.isArray(path) ? path.join('/') : (path ?? ''),
+        JSON.stringify({ ...query, host: headersList.get('host') }),
+        headersList.get('cookie')
+    );
+}
+
+export async function generateMetadata(props) {
+    const data = await loadPageData(props);
 
     if (data?.redirect) {
         return {};
     }
 
     if (data?.notFound) {
-        return {}
+        return {};
     }
 
     const { seo } = data.props.componentProps;
 
     if (!seo) {
-        return {}
+        return {};
     }
 
     const {
@@ -215,15 +219,16 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function CatchAllPage(props) {
     const headersList = await headers();
-    const { params, searchParams } = props;
-    const { path } = await params;
     const { isEnabled: isDraftEnabled } = await draftMode();
-
-    const allSearchParams = await searchParams;
+    const allSearchParams = (await props.searchParams) ?? {};
 
     let data = null;
-    if (isDraftEnabled && allSearchParams.contentType && allSearchParams.token) {
-        const { contentType, token, inPreviewPanel } = await searchParams;
+    if (
+        isDraftEnabled &&
+        allSearchParams.contentType &&
+        allSearchParams.token
+    ) {
+        const { contentType, token, inPreviewPanel } = allSearchParams;
         data = await getPreviewPageData({
             contentType,
             token,
@@ -233,16 +238,7 @@ export default async function CatchAllPage(props) {
             },
         });
     } else {
-        data = await getPageData({
-            path: path,
-            searchParams: {
-                ...allSearchParams,
-                host: headersList.get('host'),
-            },
-            headers: {
-                cookie: headersList.get('cookie'),
-            },
-        });
+        data = await loadPageData(props);
     }
 
     if (data?.redirect) {

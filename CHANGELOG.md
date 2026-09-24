@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stop utils/Http.js exporting httpPostWithCsrfToken, the function is a commented example so the module was a SyntaxError under native ESM (@marteinn)
 - Move the app router draft route to app/%5Fdraft, an underscore prefixed folder is private so /_draft fell through to the catch all and asked Wagtail for it (@marteinn)
 - Validate the preview token in the app router draft route, it enabled draft mode for any caller unlike its pages router equivalent (@marteinn)
+- Join the app router catch all segments, a nested url sent repeated html_path params to Wagtail instead of one joined path (@marteinn)
+- Share one cached loader between generateMetadata and the app router page, they fetched twice and metadata ignored the query string (@marteinn)
 
 ### Removed
 - Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
