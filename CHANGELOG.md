@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Call the deploy workflow through the GitHub self-repository syntax, which pins the reference to the running commit (@marteinn)
 - Set persist-credentials false on the remaining checkouts in the repo CI workflow (@marteinn)
 - Correct stale version requirements in the READMEs and docs, now Python 3.14+ and Node 24 (@marteinn)
+- Document how to activate Sentry in Next.js since the shipped config files are not loaded until you wire them up (@marteinn)
 
 ### Fixed
 - Import WagtailAdminPageForm from wagtail.admin.forms, it is no longer re-exported from wagtail.admin.panels in Wagtail 8 (@marteinn)
