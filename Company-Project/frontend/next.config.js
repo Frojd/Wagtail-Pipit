@@ -1,7 +1,7 @@
 
 const { i18n } = require('./next-i18next.config');
 
-const { withSentryConfig } = require('@sentry/nextjs');
+const { withSentryConfig } = require('@sentry/nextjs/config');
 
 const basePath = '';
 

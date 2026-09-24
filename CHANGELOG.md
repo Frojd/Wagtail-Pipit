@@ -36,6 +36,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set persist-credentials false on the remaining checkouts in the repo CI workflow (@marteinn)
 - Correct stale version requirements in the READMEs and docs, now Python 3.14+ and Node 24 (@marteinn)
 - Document how to activate Sentry in Next.js since the shipped config files are not loaded until you wire them up (@marteinn)
+- Import withSentryConfig from @sentry/nextjs/config, the old path is deprecated and stops working in Sentry v11 (@marteinn)
+- Rename the i18next languages option to supportedLngs, languages is not an option and was silently ignored (@marteinn)
+- Set Storybook reactDocgen to react-docgen, the typescript variant cannot read props from a codebase with no TypeScript (@marteinn)
 
 ### Fixed
 - Import WagtailAdminPageForm from wagtail.admin.forms, it is no longer re-exported from wagtail.admin.panels in Wagtail 8 (@marteinn)
@@ -55,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Drop productionBrowserSourceMaps since the Sentry config already sets hideSourceMaps (@marteinn)
+- Remove the inert Storybook babel option and babelModeV7 feature flag, both are webpack era settings ignored by nextjs-vite (@marteinn)
 - Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
 
 ### Security

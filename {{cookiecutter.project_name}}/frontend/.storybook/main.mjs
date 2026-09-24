@@ -5,16 +5,7 @@ const config = {
         '../components/**/*.stories.js',
         '../containers/**/*.stories.js',
     ],
-    babel: async (options) => {
-        options.presets = ['next/babel'];
-        return {
-            ...options,
-        };
-    },
     addons: ['@storybook/addon-a11y'],
-    features: {
-        babelModeV7: true,
-    },
     docs: {
       defaultName: 'Documentation'
     },
@@ -23,7 +14,7 @@ const config = {
         options: {},
     },
     typescript: {
-        reactDocgen: 'react-docgen-typescript'
+        reactDocgen: 'react-docgen'
     },
     // Configure esbuild to parse .js files as JSX to support JSX syntax in JavaScript files
     async viteFinal(config) {

@@ -14,7 +14,7 @@ import en from './translations/en.json';
 import sv from './translations/sv.json';
 
 i18next.init({
-    languages: ['en', 'sv'],
+    supportedLngs: ['en', 'sv'],
     fallbackLng: ['en'],
     resources: {
         en: {
