@@ -50,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Join the app router catch all segments, a nested url sent repeated html_path params to Wagtail instead of one joined path (@marteinn)
 - Share one cached loader between generateMetadata and the app router page, they fetched twice and metadata ignored the query string (@marteinn)
 - Render the app router not-found on the server, it was a client component so a 404 shipped no body in the initial html (@marteinn)
+- Set the app router html lang from next-i18next.config.js, it was hardcoded to en while the config declares sv (@marteinn)
 
 ### Removed
 - Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
