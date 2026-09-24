@@ -54,6 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set the app router html lang from next-i18next.config.js, it was hardcoded to en while the config declares sv (@marteinn)
 
 ### Removed
+- Drop productionBrowserSourceMaps since the Sentry config already sets hideSourceMaps (@marteinn)
 - Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
 
 ### Security

@@ -7,7 +7,6 @@ const basePath = '';
 
 let nextConfig = {
     trailingSlash: true,
-    productionBrowserSourceMaps: true,
     basePath,
     i18n,
     output: "standalone",

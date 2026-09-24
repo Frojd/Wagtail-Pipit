@@ -8,7 +8,6 @@ const basePath = '';
 
 let nextConfig = {
     trailingSlash: true,
-    productionBrowserSourceMaps: true,
     basePath,
     {%- if not cookiecutter.experimental_use_app_router %}
     i18n,
