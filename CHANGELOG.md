@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set Storybook reactDocgen to react-docgen, the typescript variant cannot read props from a codebase with no TypeScript (@marteinn)
 
 ### Fixed
+- Update @sentry/nextjs to 10.76.1 react-i18next to 17.0.16 and Storybook packages to 10.6.1 (@marteinn)
+- Update jest and jest-environment-jsdom to 30.5.2 @testing-library/dom to 10.4.2 and prettier to 3.9.9 (@marteinn)
 - Import WagtailAdminPageForm from wagtail.admin.forms, it is no longer re-exported from wagtail.admin.panels in Wagtail 8 (@marteinn)
 - Move the StreamField serializer mapping into a MainConfig app config, Wagtail 8 resolves the swappable Page model on wagtail.api.v2 import (@marteinn)
 - Drop bare ForeignKey annotations on the nullable og_image and twitter_image fields, rejected by django-stubs 6.1 (@marteinn)
