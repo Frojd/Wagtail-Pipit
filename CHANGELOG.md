@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vite as explicit devDependency, @storybook/nextjs-vite needs it as a peer and .npmrc sets legacy-peer-deps so peers are not auto-installed (@marteinn)
 
 ### Changed
+- Update Next.js and eslint-config-next to 16.4.0, fixing a critical RCE in next/og ImageResponse and other advisories (@marteinn)
 - Upgrade Wagtail to 8.0 (@marteinn)
 - Upgrade Django to 6.1.1 (@marteinn)
 - Update Next.js and eslint-config-next to 16.3.5, next-i18next to 16.3.1, react-i18next to 17.0.14 and i18next to 26.4.2 (@marteinn)
