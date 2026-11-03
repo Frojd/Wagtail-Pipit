@@ -1,14 +1,23 @@
 import React from 'react';
+import Image from 'next/image';
 import i18n from '../../i18n';
 import s from './Hero.module.css';
 
 const Hero = ({ title = '' }) => (
     <div className={s.Container}>
-        <img className={s.Logo} src="/img/logo.svg" alt="Logo" />
+        <Image
+            className={s.Logo}
+            src="/img/logo.svg"
+            alt="Logo"
+            width={100}
+            height={100}
+        />
         <h1 className={s.Title}>
-            <img
-                src={'/img/white_circle.png'}
+            <Image
+                src="/img/white_circle.png"
                 alt="Logo"
+                width={32}
+                height={32}
                 className={s.TitleIcon}
             />
             {title}

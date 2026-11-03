@@ -35,6 +35,8 @@ class CustomDocument extends Document {
                 <Head />
                 <body>
                     {!!gtmId && (
+                        // @next/third-parties would add a dependency and still needs the noscript fallback below
+                        // eslint-disable-next-line @next/next/next-script-for-ga
                         <script
                             dangerouslySetInnerHTML={{
                                 __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

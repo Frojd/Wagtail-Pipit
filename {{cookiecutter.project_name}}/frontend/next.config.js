@@ -1,4 +1,4 @@
-{%- if not cookiecutter.experimental_use_app_router %}
+{%- if not cookiecutter.experimental_use_app_router -%}
 const { i18n } = require('./next-i18next.config');
 
 {% endif -%}
@@ -12,8 +12,8 @@ let nextConfig = {
     {%- if not cookiecutter.experimental_use_app_router %}
     i18n,
     {%- endif %}
-    output: "standalone",
-    allowedDevOrigins: ["{{ cookiecutter.domain_prod }}.test"],
+    output: 'standalone',
+    allowedDevOrigins: ['{{ cookiecutter.domain_prod }}.test'],
 };
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({

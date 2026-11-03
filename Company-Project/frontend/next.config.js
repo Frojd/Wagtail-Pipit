@@ -1,4 +1,3 @@
-
 const { i18n } = require('./next-i18next.config');
 
 const { withSentryConfig } = require('@sentry/nextjs/config');
@@ -9,8 +8,8 @@ let nextConfig = {
     trailingSlash: true,
     basePath,
     i18n,
-    output: "standalone",
-    allowedDevOrigins: ["example.com.test"],
+    output: 'standalone',
+    allowedDevOrigins: ['example.com.test'],
 };
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({

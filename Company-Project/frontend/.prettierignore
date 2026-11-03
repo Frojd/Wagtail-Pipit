@@ -9,3 +9,5 @@ components/WagtailUserbar/WagtailUserbar.js
 node_modules
 public
 storybook-static
+package.json
+package-lock.json

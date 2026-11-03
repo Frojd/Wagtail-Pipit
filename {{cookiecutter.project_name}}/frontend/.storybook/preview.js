@@ -48,8 +48,8 @@ export const parameters = {
             dark_grey: {
                 name: 'dark grey',
                 value: '#333',
-            }
-        }
+            },
+        },
     },
 };
 
@@ -57,6 +57,6 @@ export const tags = ['autodocs'];
 
 export const initialGlobals = {
     backgrounds: {
-        value: 'white'
-    }
+        value: 'white',
+    },
 };

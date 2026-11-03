@@ -121,6 +121,8 @@ jobs:
         run: |
           cd Company-Project/frontend
           npm ci
+          npm run lint
+          npm run fixcode:check
           npm run test:ci
           NODE_ENV=production npm run build
           npm run build-storybook

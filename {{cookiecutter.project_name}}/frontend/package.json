@@ -11,6 +11,8 @@
     "build-storybook": "storybook build",
     "fixcode": "prettier --write .",
     "fixcode:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "new": "node cli/bin.js new",
     "new:container": "node cli/bin.js new --container",
     "test": "jest --watch",
@@ -40,6 +42,7 @@
     "prettier": "^3.9.10",
     "pretty-quick": "^4.2.2",
     "storybook": "10.6.5",
+    "typescript": "6.0.3",
     "vite": "8.3.5"
   }
 }
