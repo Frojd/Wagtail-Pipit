@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y python3 python3
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.12.17@sha256:10787c682e4184e4f290de1171fd4703dc63de99221f10fe1c99002ce7fa9acc /uv /uvx /usr/local/bin/
+COPY --from=ghcr.io/astral-sh/uv:0.13.5@sha256:32a7bb39b496babbd997b0a39a4d66c126bdaf5661b302bf6f06abda8deca6ff /uv /uvx /usr/local/bin/
 
 # create and activate virtual environment
 # using final folder name to avoid path issues with packages
@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd 
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv (for runtime package management if needed)
-COPY --from=ghcr.io/astral-sh/uv:0.12.17@sha256:10787c682e4184e4f290de1171fd4703dc63de99221f10fe1c99002ce7fa9acc /uv /uvx /usr/local/bin/
+COPY --from=ghcr.io/astral-sh/uv:0.13.5@sha256:32a7bb39b496babbd997b0a39a4d66c126bdaf5661b302bf6f06abda8deca6ff /uv /uvx /usr/local/bin/
 
 # Ubuntu 26.04 ships with a default ubuntu user (uid 1000); remove it to use our own.
 # It also bundles Canonical's Pebble service manager, which we don't use and whose

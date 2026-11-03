@@ -16,10 +16,23 @@
     dest: "{{ ansistrano_release_path.stdout }}/src/media"
     state: link
 
+- name: Download uv
+  get_url:
+    url: "https://github.com/astral-sh/uv/releases/download/{{ uv_version }}/uv-{{ ansible_architecture }}-unknown-linux-gnu.tar.gz"
+    dest: "/tmp/uv-{{ uv_version }}-{{ ansible_architecture }}.tar.gz"
+    checksum: "sha256:{{ uv_sha256[ansible_architecture] }}"
+
+- name: Create uv bin dir
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+
 - name: Install uv
-  shell: "curl -LsSf https://astral.sh/uv/0.10.3/install.sh | sh"
-  args:
-    creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+  unarchive:
+    src: "/tmp/uv-{{ uv_version }}-{{ ansible_architecture }}.tar.gz"
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    extra_opts: ["--strip-components=1"]
 
 - name: Install dependencies in virtualenv
   shell: >

@@ -12,10 +12,12 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           python-version: '3.14'
 
       - name: Audit GitHub Actions workflows
-        run: uvx zizmor==1.30.1 --min-confidence medium .
+        run: uv run --project .github/tools --frozen --only-group zizmor zizmor --min-confidence medium .
 
   security-deps:
     runs-on: ubuntu-latest
@@ -26,10 +28,29 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           python-version: '3.14'
 
+      - name: Check that every uv lock matches its pyproject
+        run: |
+          for project in .github/tools Company-Project/src Company-Project/.github/tools Company-Project/deploy; do
+            uv lock --check --project "$project"
+          done
+
+      - name: Check that template locks match the generated project
+        run: |
+          for lock in src/uv.lock .github/tools/uv.lock deploy/uv.lock; do
+            cmp "{{cookiecutter.project_name}}/$lock" "Company-Project/$lock"
+          done
+
       - name: Audit Python dependencies
-        run: cd Company-Project/src && uv export --frozen --no-dev | uvx pip-audit==2.10.1 -r /dev/stdin
+        run: |
+          audit() { uv run --project .github/tools --frozen --only-group pip-audit pip-audit -r /dev/stdin; }
+          uv export --project Company-Project/src --frozen --no-dev | audit
+          uv export --project Company-Project/deploy --frozen | audit
+          uv export --project .github/tools --frozen --all-groups | audit
+          uv export --project Company-Project/.github/tools --frozen --all-groups | audit
 
       - name: Audit npm dependencies
         run: npm audit --audit-level=high
@@ -52,10 +73,9 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           python-version: '3.14'
-
-      - name: Install cookiecutter
-        run: uv tool install cookiecutter
 
       - name: Cleanup
         run: |
@@ -64,7 +84,7 @@ jobs:
 
       - name: Run cookiecutter
         run: |
-          uvx cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
+          uv run --project .github/tools --frozen --only-group cookiecutter cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
 
       - name: Create docker compose config for running boilerplate tests
         run: |

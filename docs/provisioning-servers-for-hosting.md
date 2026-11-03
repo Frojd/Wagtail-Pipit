@@ -36,10 +36,11 @@ Configuration:
 
 ## Guide
 
-- Begin by going to the deploy dir in your project and install [Ansible](https://www.ansible.com/)
+- Begin by going to the deploy dir in your project and install [Ansible](https://www.ansible.com/) from the hash pinned `uv.lock`, then activate the virtualenv
     ```
     >>> cd deploy
-    >>> uv pip install --system -r requirements.txt
+    >>> uv sync --frozen
+    >>> source .venv/bin/activate
     ```
 
 - Make sure you can connect to the server by pinging it

@@ -41,6 +41,8 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           enable-cache: true
           cache-dependency-glob: "src/uv.lock"
           python-version: '3.14'
@@ -127,6 +129,8 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           enable-cache: true
           cache-dependency-glob: "src/uv.lock"
           python-version: '3.14'
@@ -176,10 +180,12 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           python-version: '3.14'
 
       - name: Audit GitHub Actions workflows
-        run: uvx zizmor==1.30.1 --min-confidence medium .
+        run: uv run --project .github/tools --frozen --only-group zizmor zizmor --min-confidence medium .
 
   security-deps:
     runs-on: ubuntu-latest
@@ -188,10 +194,16 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           python-version: '3.14'
 
       - name: Audit Python dependencies
-        run: cd src && uv export --frozen --no-dev | uvx pip-audit==2.10.1 -r /dev/stdin
+        run: |
+          audit() { uv run --project .github/tools --frozen --only-group pip-audit pip-audit -r /dev/stdin; }
+          uv export --project src --frozen --no-dev | audit
+          uv export --project deploy --frozen | audit
+          uv export --project .github/tools --frozen --all-groups | audit
 
       - name: Audit npm dependencies
         run: npm audit --audit-level=high

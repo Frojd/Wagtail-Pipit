@@ -12,6 +12,36 @@ updates:
   open-pull-requests-limit: 1
   target-branch: develop
 
+- package-ecosystem: uv
+  directory: "/.github/tools"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 7
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: uv
+  directory: "/Company-Project/.github/tools"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 7
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: uv
+  directory: "/Company-Project/deploy"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 7
+  open-pull-requests-limit: 1
+  target-branch: develop
+
 - package-ecosystem: npm
   directory: "/Company-Project/frontend"
   schedule:

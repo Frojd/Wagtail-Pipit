@@ -80,6 +80,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
 
 ### Security
+- Update uv to 0.13.5 in Docker, CI and on servers and require at least 0.13.4, fixing the critical eMudhra CA trust issue GHSA-hq85-5cpj-mr62 (@marteinn)
+- Install uv on servers from a checksum verified release instead of curl piped to sh, so existing servers are also upgraded (@marteinn)
+- Install zizmor, pip-audit, cookiecutter and Ansible from hash pinned uv lock files instead of unpinned uvx and requirements.txt installs (@marteinn)
+- Check uv locks against pyproject and template mirrors in CI and run pip-audit on the tool and deploy locks (@marteinn)
 - Relock frontend transitive dependencies to brace-expansion 1.1.21 and 5.0.12 and zod 4.6.7, clearing the high npm audit findings that failed CI (@marteinn)
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)
 - Clear GHSA-fxqj-rqcc-2cmp, postcss now resolves to 8.5.23 or later through Next.js itself and npm audit reports no findings (@marteinn)

@@ -37,6 +37,7 @@ stage = []
 
 [tool.uv]
 package = false
+required-version = ">=0.13.4"
 
 [tool.ruff]
 line-length = 88

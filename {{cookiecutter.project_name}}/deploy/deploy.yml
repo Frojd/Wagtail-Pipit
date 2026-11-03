@@ -12,6 +12,11 @@
     ansistrano_after_symlink_tasks_file: "tasks/after-symlink.yml"
 
     ansistrano_allow_anonymous_stats: no
+
+    uv_version: "0.13.5"
+    uv_sha256:
+      x86_64: "f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f"
+      aarch64: "4bb69cf95ed13f23713bb7bc09f241896ea0c75b7c557e615a20604b82f9c403"
   roles:
     - { role: ansistrano.deploy }
 {% endraw %}

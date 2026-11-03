@@ -135,8 +135,10 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           enable-cache: true
-          cache-dependency-glob: "deploy/requirements.txt"
+          cache-dependency-glob: "deploy/uv.lock"
           python-version: '3.14'
 
       - name: Download backend build
@@ -156,9 +158,8 @@ jobs:
 
       - name: Install Ansible and Ansistrano
         run: |
-          uv venv
-          uv pip install -r deploy/requirements.txt
-          echo "$PWD/.venv/bin" >> $GITHUB_PATH
+          uv sync --project deploy --frozen
+          echo "$PWD/deploy/.venv/bin" >> $GITHUB_PATH
           cd deploy
           ansible-galaxy install -r requirements.yml
 
@@ -236,8 +237,10 @@ jobs:
 
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
         with:
+          version: '0.13.5'
+          checksum: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
           enable-cache: true
-          cache-dependency-glob: "deploy/requirements.txt"
+          cache-dependency-glob: "deploy/uv.lock"
           python-version: '3.14'
 
       - name: Download backend build
@@ -257,9 +260,8 @@ jobs:
 
       - name: Install Ansible and Ansistrano
         run: |
-          uv venv
-          uv pip install -r deploy/requirements.txt
-          echo "$PWD/.venv/bin" >> $GITHUB_PATH
+          uv sync --project deploy --frozen
+          echo "$PWD/deploy/.venv/bin" >> $GITHUB_PATH
           cd deploy
           ansible-galaxy install -r requirements.yml
 
