@@ -13,6 +13,24 @@ Sentry.init({
     dsn: SENTRY_DSN,
     environment: SENTRY_ENVIRONMENT,
     tracesSampleRate: SENTRY_ENVIRONMENT === 'stage' ? 1.0 : 0.1,
+
+    // Sentry v11 collects cookies, user info and request bodies by default, keep the v10 restrictive baseline
+    dataCollection: {
+        userInfo: false,
+        cookies: false,
+        httpHeaders: {
+            request: { deny: ['forwarded', '-ip', 'remote-', 'via', '-user'] },
+            response: { deny: ['forwarded', '-ip', 'remote-', 'via', '-user'] },
+        },
+        httpBodies: [],
+        urlQueryParams: {
+            deny: ['forwarded', '-ip', 'remote-', 'via', '-user'],
+        },
+        genAI: { inputs: false, outputs: false },
+        databaseQueryData: false,
+        queues: false,
+        graphQL: { document: false, variables: false },
+    },
     // ...
     // Note: if you want to override the automatic release value, do not set a
     // `release` value here - use the environment variable `SENTRY_RELEASE`, so

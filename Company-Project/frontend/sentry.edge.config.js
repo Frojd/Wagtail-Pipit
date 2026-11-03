@@ -15,6 +15,24 @@ Sentry.init({
     environment: SENTRY_ENVIRONMENT,
     tracesSampleRate: SENTRY_ENVIRONMENT === 'stage' ? 1.0 : 0.1,
 
+    // Sentry v11 collects cookies, user info and request bodies by default, keep the v10 restrictive baseline
+    dataCollection: {
+        userInfo: false,
+        cookies: false,
+        httpHeaders: {
+            request: { deny: ['forwarded', '-ip', 'remote-', 'via', '-user'] },
+            response: { deny: ['forwarded', '-ip', 'remote-', 'via', '-user'] },
+        },
+        httpBodies: [],
+        urlQueryParams: {
+            deny: ['forwarded', '-ip', 'remote-', 'via', '-user'],
+        },
+        genAI: { inputs: false, outputs: false },
+        databaseQueryData: false,
+        queues: false,
+        graphQL: { document: false, variables: false },
+    },
+
     // Setting this option to true will print useful information to the console while you're setting up Sentry.
     debug: false,
 });

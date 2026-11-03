@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update mypy to 2.4.0 (@marteinn)
 - Update ruff to 0.16.10 (@marteinn)
 - Update coverage to 7.16.2 (@marteinn)
-- Update @sentry/nextjs to 10.76.1 (@marteinn)
+- Upgrade @sentry/nextjs to 11.10.0, set dataCollection to keep the restrictive v10 defaults and replace the removed disableLogger option (@marteinn)
 - Update react-i18next to 17.1.9 (@marteinn)
 - Update jest and jest-environment-jsdom to 30.5.2 (@marteinn)
 - Update @testing-library/dom to 10.4.2 (@marteinn)
