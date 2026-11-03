@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vite as explicit devDependency, @storybook/nextjs-vite needs it as a peer and .npmrc sets legacy-peer-deps so peers are not auto-installed (@marteinn)
 
 ### Changed
+- Upgrade Wagtail to 8.1 and Django to 6.1.3, redirects are now only auto created for live pages (@marteinn)
+- Update psycopg 3.3.7, sentry-sdk 2.73.0, pytest 9.2.0, mypy 2.4.1, ruff 0.17.3 and djangorestframework-stubs 3.18.2 and relock to Pillow 13 (@marteinn)
 - Update Next.js and eslint-config-next to 16.4.3, which keeps the 16.4.1 fix for a critical RCE in next/og ImageResponse and other advisories (@marteinn)
 - Upgrade Wagtail to 8.0 (@marteinn)
 - Upgrade Django to 6.1.1 (@marteinn)
