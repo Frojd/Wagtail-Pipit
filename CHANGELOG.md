@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modernise annotations to PEP 585 and PEP 604 and convert format calls to f-strings via ruff autofix (@marteinn)
 - Migrate email configuration from the deprecated EMAIL_BACKEND setting to Django 6.1 MAILERS (@marteinn)
 - Refresh the Ubuntu 26.04 base image digest and upgrade uv to 0.12.17 in the Python Docker image (@marteinn)
-- Upgrade Node to 24 LTS in .nvmrc, the frontend Docker image and the repo, CI and deploy workflows (@marteinn)
+- Upgrade Node to 24.22.2 LTS, pinned in .nvmrc which all CI workflows now read and by digest in the frontend Docker image (@marteinn)
 - Align dev and CI on postgis 16-3.5-alpine and pin the db service to linux/amd64, postgis publishes no arm64 image (@marteinn)
 - Pin the nginx image to 1.31 instead of tracking latest (@marteinn)
 - Unify the duplicated GitHub Actions pins and upgrade checkout to v7.0.1, setup-node to v7.0.0, setup-uv to v10.2.0 and cache to v6.1.0 (@marteinn)
