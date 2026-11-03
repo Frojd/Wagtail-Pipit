@@ -2,7 +2,6 @@
 Write prod settings here, or override base settings
 """
 import sentry_sdk
-from sentry_sdk import configure_scope
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from pipit.settings.base import *
@@ -85,5 +84,4 @@ sentry_sdk.init(
 )
 
 # Add sentry to logging
-with configure_scope() as scope:
-    scope.level = "error"
+sentry_sdk.get_global_scope().set_level("error")

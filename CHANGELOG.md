@@ -46,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set Storybook reactDocgen to react-docgen, the typescript variant cannot read props from a codebase with no TypeScript (@marteinn)
 
 ### Fixed
+- Replace deprecated sentry_sdk configure_scope (@marteinn)
 - Run lint and prettier check in repo CI and fix their findings, basePageWrap display name, Hero next/image and prettier drift in config files (@marteinn)
 - Update Django to 6.1.2 (@marteinn)
 - Update django-stubs to 6.1.2 (@marteinn)
