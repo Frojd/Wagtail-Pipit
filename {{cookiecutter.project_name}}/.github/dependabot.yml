@@ -1,0 +1,74 @@
+version: 2
+updates:
+- package-ecosystem: uv
+  directory: "/src"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: uv
+  directory: "/.github/tools"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: uv
+  directory: "/deploy"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: npm
+  directory: "/frontend"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: docker
+  directory: "/src"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop
+
+- package-ecosystem: docker
+  directory: "/frontend"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop
+  ignore:
+  - dependency-name: node
+    update-types: ["version-update:semver-major"]
+
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  cooldown:
+    default-days: 3
+  open-pull-requests-limit: 1
+  target-branch: develop

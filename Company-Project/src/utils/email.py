@@ -1,4 +1,3 @@
-
 from django.core import mail
 from django.template.loader import render_to_string
 

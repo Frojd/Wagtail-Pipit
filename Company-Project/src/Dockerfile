@@ -9,7 +9,7 @@ FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc8
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ENVIRONMENT=prod
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3 python3-dev libpq-dev python3-venv build-essential && \
+RUN apt-get update && apt-get install --no-install-recommends -y python3 python3-venv && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv

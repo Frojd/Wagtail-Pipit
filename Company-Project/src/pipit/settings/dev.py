@@ -1,6 +1,7 @@
 """
 Write local settings here, or override base settings
 """
+
 from pipit.settings.base import *  # NOQA
 
 
@@ -11,9 +12,7 @@ TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # type: ignore[index]
 MAILERS = {"default": {"BACKEND": "django.core.mail.backends.console.EmailBackend"}}
 
 # Email notification url
-WAGTAILADMIN_BASE_URL = (
-    "https://example.com.test:8081"
-)
+WAGTAILADMIN_BASE_URL = "https://example.com.test:8081"
 
 # Allow weak local passwords
 AUTH_PASSWORD_VALIDATORS = []
@@ -28,9 +27,7 @@ if get_env_bool("DEBUG_TOOLBAR", default=False):
 
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
-    DEBUG_TOOLBAR_CONFIG = {
-        "SHOW_TOOLBAR_CALLBACK": "pipit.settings.dev.show_toolbar"
-    }
+    DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": "pipit.settings.dev.show_toolbar"}
 
 
 # Allow django-debug-bar under docker

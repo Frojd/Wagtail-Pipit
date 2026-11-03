@@ -24,3 +24,14 @@ class PageRelativeUrlsTest(WagtailPageTests):
         self.assertEqual(data["meta"]["total_count"], 2)
         self.assertEqual(len(data["items"]), 2)
         self.assertEqual(data["items"][0]["relative_url"], "/")
+
+    def test_list_is_not_paginated(self):
+        for i in range(25):
+            BasePageFactory.create(title=f"Page {i}", parent=self.root_page)
+
+        url = reverse("nextjs:page_relative_urls:listing")
+        response = self.client.get(url)
+
+        data = response.json()
+        self.assertEqual(data["meta"]["total_count"], 26)
+        self.assertEqual(len(data["items"]), 26)

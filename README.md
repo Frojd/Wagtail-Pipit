@@ -17,10 +17,10 @@ Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide 
 - [Storybook](https://storybook.js.org/) for rapid component development
 
 ## Installation
-1. Make sure you have [cookiecutter](https://github.com/audreyr/cookiecutter/blob/master/docs/index.rst) installed. If not run `pip install cookiecutter` (or via brew)
-2. Run cookiecutter:
+1. Make sure you have [uv](https://docs.astral.sh/uv/) 0.13.4 or later installed
+2. Run [cookiecutter](https://github.com/cookiecutter/cookiecutter) through uv:
 ```
-cookiecutter https://github.com/Frojd/Wagtail-Pipit.git
+uvx cookiecutter@2.7.1 https://github.com/Frojd/Wagtail-Pipit.git
 ```
 
 3. Fill in the questions and you are done!

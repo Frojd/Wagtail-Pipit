@@ -40,9 +40,7 @@ class Command(BaseCommand):
         init_file = f"{pages_path}__init__.py"
 
         if os.path.exists(page_file):
-            self.stdout.write(
-                f"Did not create {page_file} as it already exists"
-            )
+            self.stdout.write(f"Did not create {page_file} as it already exists")
             return False
 
         page_template = "commands/new_page/page.py.tpl"
@@ -68,9 +66,7 @@ class Command(BaseCommand):
         serializer_file = f"{serializer_path}{file_name}_serializer.py"
 
         if os.path.exists(serializer_file):
-            self.stdout.write(
-                f"Did not create {serializer_file} as it already exists"
-            )
+            self.stdout.write(f"Did not create {serializer_file} as it already exists")
             return False
 
         serializer_template = "commands/new_page/serializer.py.tpl"
@@ -85,9 +81,7 @@ class Command(BaseCommand):
         test_file = f"{test_path}test_{file_name}_page.py"
 
         if os.path.exists(test_file):
-            self.stdout.write(
-                f"Did not create {test_file} as it already exists"
-            )
+            self.stdout.write(f"Did not create {test_file} as it already exists")
             return False
 
         test_template = "commands/new_page/test.py.tpl"
@@ -113,9 +107,7 @@ class Command(BaseCommand):
         factory_file = f"{factory_path}{file_name}_page.py"
 
         if os.path.exists(factory_file):
-            self.stdout.write(
-                f"Did not create {factory_file} as it already exists"
-            )
+            self.stdout.write(f"Did not create {factory_file} as it already exists")
             return False
 
         factory_template = "commands/new_page/factory.py.tpl"

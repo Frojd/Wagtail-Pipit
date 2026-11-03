@@ -9,7 +9,10 @@ class CustomDocument(AbstractDocument):
     #     null=True
     # )
 
-    admin_form_fields = Document.admin_form_fields + (
-        # Add all custom fields names to make them appear in the form:
-        # "source",
+    admin_form_fields = (
+        Document.admin_form_fields
+        + (
+            # Add all custom fields names to make them appear in the form:
+            # "source",
+        )
     )

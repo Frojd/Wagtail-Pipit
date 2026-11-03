@@ -48,6 +48,13 @@ class PageRelativeUrlListAPIViewSet(PagesAPIViewSet):
     def get_serializer(self, qs, many=True):
         return PageRelativeUrlListSerializer(qs, many=many)
 
+    def listing_view(self, request):
+        queryset = self.get_queryset()
+        self.check_query_parameters(queryset)
+        queryset = self.filter_queryset(queryset)
+        items = self.get_serializer(queryset, many=True).data
+        return Response({"meta": {"total_count": len(items)}, "items": items})
+
     @classmethod
     def get_urlpatterns(cls):
         return [

@@ -65,7 +65,8 @@ case "$CMD" in
 
     "lint" )
         echo Running linting
-        exec ruff check .
+        ruff check . || exit 1
+        exec ruff format --check .
         ;;
 
     "format" )

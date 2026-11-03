@@ -1,4 +1,3 @@
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -34,12 +33,8 @@ if settings.DEBUG:
             default_views.permission_denied,
             kwargs={"exception": Exception("Permission Denied")},
         ),
-        path(
-            "wt/404/", handler404, kwargs={"exception": Exception("Page not Found")}
-        ),
-        path(
-            "wt/500/", handler500, kwargs={"exception": Exception("Internal error")}
-        ),
+        path("wt/404/", handler404, kwargs={"exception": Exception("Page not Found")}),
+        path("wt/500/", handler500, kwargs={"exception": Exception("Internal error")}),
     ]
 
     if "debug_toolbar" in settings.INSTALLED_APPS:

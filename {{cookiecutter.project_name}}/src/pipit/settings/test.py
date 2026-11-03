@@ -1,6 +1,7 @@
 """
 Write test settings here (for ci environment), or override base settings
 """
+
 import logging
 from typing import Any
 
