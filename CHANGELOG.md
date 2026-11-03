@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Call the deploy workflow through the GitHub self-repository syntax, which pins the reference to the running commit (@marteinn)
 - Set persist-credentials false on the remaining checkouts in the repo CI workflow (@marteinn)
 - Correct stale version requirements in the READMEs and docs, now Python 3.14+ and Node 24 (@marteinn)
-- Document how to activate Sentry in Next.js since the shipped config files are not loaded until you wire them up (@marteinn)
+- Ship instrumentation.js and instrumentation-client.js so Sentry captures server and browser errors with a DSN set, Turbopack ignores sentry.client.config.js (@marteinn)
 - Import withSentryConfig from @sentry/nextjs/config, the old path is deprecated and stops working in Sentry v11 (@marteinn)
 - Rename the i18next languages option to supportedLngs, languages is not an option and was silently ignored (@marteinn)
 - Set Storybook reactDocgen to react-docgen, the typescript variant cannot read props from a codebase with no TypeScript (@marteinn)

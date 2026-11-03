@@ -2,7 +2,7 @@
 
 It's important to capture and track errors once your app is deployed, that is why Pipit ships with Sentry support, this guide explains how you activate it.
 
-The Django side only needs a DSN. The Next.js side ships as scaffolding you have to finish, see [Activating Sentry in Next.js](#activating-sentry-in-nextjs).
+The Django side only needs a DSN. The Next.js side only needs a DSN for error capture, source maps need the build plugin, see [Activating Sentry in Next.js](#activating-sentry-in-nextjs).
 
 ## Requirements
 
@@ -34,29 +34,11 @@ Before you get started, make sure you have the following:
 
 ### Activating Sentry in Next.js
 
-Pipit ships the three `sentry.*.config.js` files but nothing loads them. Two changes turn them on.
+Pipit ships `instrumentation.js` and `instrumentation-client.js`, which Next.js loads automatically. They load the server, edge and browser configs, so setting `NEXT_PUBLIC_SENTRY_DSN` is enough to capture server and browser errors.
 
-#### 1. Add an instrumentation file
+#### Enable the build plugin for source maps
 
-Create `frontend/instrumentation.js`. This loads the server and edge configs, and is enough on its own for server side errors.
-
-```js
-export async function register() {
-    if (process.env.NEXT_RUNTIME === 'nodejs') {
-        await import('./sentry.server.config');
-    }
-
-    if (process.env.NEXT_RUNTIME === 'edge') {
-        await import('./sentry.edge.config');
-    }
-}
-
-export { captureRequestError as onRequestError } from '@sentry/nextjs';
-```
-
-#### 2. Enable the build plugin
-
-This adds browser errors, source map upload and the `tunnelRoute`. In `frontend/next.config.js`, set your org and project in
+Source map upload and the `tunnelRoute` come from the Sentry build plugin. In `frontend/next.config.js`, set your org and project in
 `sentryWebpackPluginOptions` and enable the plugin:
 
 ```js
@@ -67,12 +49,6 @@ module.exports = () => {
         ...nextConfig,
     });
 };
-```
-
-Importing `withSentryConfig` from `@sentry/nextjs` is deprecated and stops working in v11, so update the import too:
-
-```js
-const { withSentryConfig } = require('@sentry/nextjs/config');
 ```
 
 ### Setup and test locally
@@ -107,7 +83,6 @@ const { withSentryConfig } = require('@sentry/nextjs/config');
 
 #### Next.js
 
-- Complete both steps in [Activating Sentry in Next.js](#activating-sentry-in-nextjs)
 - Update `frontend/.env` and add your Sentry DSN:
     ```
     NEXT_PUBLIC_SENTRY_DSN=https://public@sentry.example.com/1
@@ -163,7 +138,7 @@ const { withSentryConfig } = require('@sentry/nextjs/config');
 - This will trigger and error and send it to sentry
 
 #### Next.js
-- Requires [Activating Sentry in Next.js](#activating-sentry-in-nextjs), source maps are uploaded by `withSentryConfig`.
+- Source maps are uploaded by `withSentryConfig`, which requires the build plugin from [Activating Sentry in Next.js](#activating-sentry-in-nextjs).
 - When it comes to Next.js we need to define the DSN before `npm run build` runs, which is normally in our CI pipeline. Here we assume you use GitHub Actions as it's the default CI service for Pipit.
 - Go to your repository on GitHub
 - Navigate to Settings > Secrets and variables > Actions
