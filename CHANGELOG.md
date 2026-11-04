@@ -85,6 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove the app router client component that copied Wagtail Set-Cookie headers into document.cookie, it broke on HttpOnly and multiple cookies (@marteinn)
 - Remove csrf_token from the password protected page response, the form now fetches its own token (@marteinn)
 - Remove the Inter Google font from the app router layout, it was fetched from Google at build time (@marteinn)
+- Remove the experimental_use_app_router option, generated projects now always use the Next.js App Router and preview at /api/draft/ (@marteinn)
 
 ### Security
 - Refuse source builds with uv no-build and drop build tools from the Docker builder (@marteinn)

@@ -58,14 +58,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        experimental_use_app_router: [
-          {name: "Page router", value: "False"},
-          {name: "App router", value: "True"},
-        ]
-    name: Test ${{ matrix.experimental_use_app_router.name }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
@@ -84,7 +76,7 @@ jobs:
 
       - name: Run cookiecutter
         run: |
-          uv run --project .github/tools --frozen --only-group cookiecutter cookiecutter . --no-input experimental_use_app_router=${{ matrix.experimental_use_app_router.value }}
+          uv run --project .github/tools --frozen --only-group cookiecutter cookiecutter . --no-input
 
       - name: Create docker compose config for running boilerplate tests
         run: |

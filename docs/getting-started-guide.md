@@ -44,7 +44,6 @@ Select software_license:
 1 - proprietary
 2 - MIT
 Choose from 1, 2 [1]: 1
-experimental_use_app_router [y/n] (n):
 ```
 
 ## Setting up the frontend

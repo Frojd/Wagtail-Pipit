@@ -1,9 +1,9 @@
 This is a cookiecutter project where we generate headless website running Next.js on frontend and Wagtail/Django on the backend.
 
-The boilerplate generates Next.js in to flavours, using pages and app router.
+The boilerplate generates Next.js using the App Router.
 
 # File structure
-- Company-Project - Contains a generated example project generated from {{cookiecutter.project_name}}/ (default is Next.js pages)
+- Company-Project - Contains a generated example project generated from {{cookiecutter.project_name}}/
 - {{cookiecutter.project_name}}/ - Cookiecutter template
 - hooks - Cookiecutter hooks
 - cookiecutter.json - Cookiecutter config

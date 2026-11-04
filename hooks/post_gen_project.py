@@ -2,7 +2,6 @@ import os
 import shutil
 
 
-EXPERIMENTAL_USE_APP_ROUTER = "{{ cookiecutter.experimental_use_app_router }}" == "True"
 PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
@@ -15,13 +14,8 @@ shutil.copyfile(
 
 FRONTEND_DIR = os.path.join(PROJECT_DIRECTORY, "frontend")
 
-if EXPERIMENTAL_USE_APP_ROUTER:
-    shutil.rmtree(os.path.join(FRONTEND_DIR, "pages"))
-    os.remove(os.path.join(FRONTEND_DIR, "__tests__", "404.test.js"))
-else:
-    shutil.rmtree(os.path.join(FRONTEND_DIR, "app"))
-    shutil.rmtree(os.path.join(FRONTEND_DIR, "routing"))
-    os.remove(os.path.join(FRONTEND_DIR, "__tests__", "not-found.test.js"))
+shutil.rmtree(os.path.join(FRONTEND_DIR, "pages"))
+os.remove(os.path.join(FRONTEND_DIR, "__tests__", "404.test.js"))
 
 # Patch uv.lock with the actual project slug (the lock file is copied
 # without rendering so it ships with the default name "company-project")
