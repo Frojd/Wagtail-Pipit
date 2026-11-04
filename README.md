@@ -4,7 +4,7 @@
 Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide an easy and modern developer workflow with a React-rendered frontend.
 
 ## Features
-- Hybrid static and server rendered React using [Next.js](https://nextjs.org/)
+- Server rendered React using the [Next.js](https://nextjs.org/) App Router
 - Page scaffolding
 - [12-Factor App](https://12factor.net/) compliant
 - Docker development environment
@@ -33,15 +33,15 @@ We recommend you to start by checking out the [Getting Started Guide](/docs/gett
 - [Setting up deployment on GitHub Actions](/docs/setting-up-deployment-with-github-actions.md)
 - [Sync data between environments](/docs/sync-data-between-environments.md)
 - [Running python locally](/docs/running-python-locally.md)
-- [Using static site generation](/docs/using-static-site-generation.md)
 - [Working with Wagtail's routable pages](/docs/working-with-wagtails-routable-pages.md)
-- [Serving custom content type data through Next.js](/docs/serving-custom-content-type-data-through-nextjs.md)
+- [Serving non-HTML content](/docs/serving-non-html-content.md)
 - [Adding multi language support](/docs/adding-multi-language-support.md)
 - [Adding wagtail-2fa support](/docs/adding-wagtail-2fa-support.md)
 - [Adding Sentry](/docs/adding-sentry.md)
 - [Handling CSRF Tokens](/docs/handling-csrf-tokens.md)
 - [Publish storybook](/docs/publish-storybook.md)
 - [Scaffolding](/docs/scaffolding.md)
+- [Migrating from the Pages Router](/docs/migrating-from-pages-router.md)
 
 
 ## Contribute

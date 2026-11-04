@@ -87,16 +87,11 @@ module.exports = () => {
     ```
     NEXT_PUBLIC_SENTRY_DSN=https://public@sentry.example.com/1
     ```
-- Update `frontend/pages/[...path].js` and make it throw an error
+- Update `frontend/routing/catchAll.js` and make the page component throw an error
     ```
-    export default function CatchAllPage({ componentName, componentProps }) {
+    export default async function CatchAllPage(props) {
         throw Error("This is a Next.js error");
-
-        const Component = LazyContainers[componentName];
-        if (!Component) {
-            return <h1>Component {componentName} not found</h1>;
-        }
-        return <Component {...componentProps} />;
+        ...
     }
     ```
 - Compile next
@@ -109,6 +104,8 @@ module.exports = () => {
     ```
 - Open the website in your browser
 - This will trigger the error and send it to Sentry
+
+Server errors are reported through `onRequestError` in `frontend/instrumentation.js`. Errors thrown while rendering in the browser are caught by `frontend/app/global-error.js`, which reports them to Sentry and renders a fallback page.
 
 
 ### In production

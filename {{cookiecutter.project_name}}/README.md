@@ -86,14 +86,14 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Setting up deployment on GitHub Actions](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/setting-up-deployment-with-github-actions.md)
 - [Sync data between environments](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/sync-data-between-environments.md)
 - [Running python locally](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/running-python-locally.md)
-- [Using static site generation](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/using-static-site-generation.md)
 - [Working with Wagtail's routable pages](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/working-with-wagtails-routable-pages.md)
-- [Serving custom content type data through Next.js](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/serving-custom-content-type-data-through-nextjs.md)
+- [Serving non-HTML content](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/serving-non-html-content.md)
 - [Adding multi language support](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-multi-language-support.md)
 - [Adding wagtail-2fa support](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-wagtail-2fa-support.md)
 - [Adding Sentry](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/adding-sentry.md)
 - [Handling CSRF Tokens](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/handling-csrf-tokens.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/scaffolding.md)
+- [Migrating from the Pages Router](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/migrating-from-pages-router.md)
 
 
 ## Versioning

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vite as explicit devDependency, @storybook/nextjs-vite needs it as a peer and .npmrc sets legacy-peer-deps so peers are not auto-installed (@marteinn)
 - Add a csrf_token api endpoint that postRequest calls automatically, so client side forms get a token without cookies forwarded during SSR (@marteinn)
 - Add app/global-error.js so client render errors in the app router reach Sentry (@marteinn)
-- Add commented nginx examples for serving non HTML paths such as feeds straight from Django (@marteinn)
+- Add commented nginx examples and a guide for serving non HTML paths such as feeds straight from Django (@marteinn)
 
 ### Changed
 - Use uvx cookiecutter 2.7.1 in the README install instructions (@marteinn)
@@ -86,7 +86,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove csrf_token from the password protected page response, the form now fetches its own token (@marteinn)
 - Remove the Inter Google font from the app router layout, it was fetched from Google at build time (@marteinn)
 - Remove the experimental_use_app_router option, generated projects now always use the Next.js App Router and preview at /api/draft/ (@marteinn)
-- Remove the Next.js Pages Router and the next/head SEO block in BasePage, page metadata now comes from generateMetadata (@marteinn)
+- Remove the Next.js Pages Router and the next/head SEO block in BasePage, see docs/migrating-from-pages-router.md (@marteinn)
+- Remove the static site generation and customResponse guides, neither applies to the App Router (@marteinn)
 
 ### Security
 - Refuse source builds with uv no-build and drop build tools from the Docker builder (@marteinn)

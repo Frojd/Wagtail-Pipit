@@ -1,105 +1,73 @@
 # Handling CSRF Tokens in Pipit
 
-There are several ways of working with CSRF tokens, you can either:
-- Set a cookie containing the CSRF on your backend and then pick it up on the clientside using js
-- Pass the csrf token to your frontend using a API (this guide will cover this)
+Django protects all unsafe requests (POST, PUT, PATCH, DELETE) with a CSRF token. In Pipit the browser talks to Django directly through `/wt`, which is the same origin as the frontend, so Django can set and read its own `csrftoken` cookie without Next.js being involved.
 
 ## Requirements
 
 - An understanding of [CSRF (Cross-Site Request Forgery)](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
 
-## Guide
+## How it works
 
-In this guide we will generate a CSRF token in a page serializer and pass that along to a React container component, that will pass it to a form component, that will use to to send data to a fictional api.
+- The backend exposes `csrf_token/` on the Next.js API router (`src/nextjs/api.py`). It sets the `csrftoken` cookie and returns the token as JSON.
+- `getCsrfToken()` in `frontend/api/wagtail.js` fetches that token.
+- `postRequest()` in the same file calls `getCsrfToken()` and adds the `X-CSRFToken` header automatically, unless you pass one yourself.
 
-- First start with returning a CSRF token from a page serializer
+This means a client component can post to Django without handling the token at all. `PasswordProtectedPage` is the reference implementation.
 
-```python
-# src/main/pages/home_serializer.py
-from django.middleware import csrf as csrf_middleware
+## Posting from a client component
 
-from .base_serializer import BasePageSerializer
-from . import HomePage
+Add an api function that uses `postRequest` and the browser relative `NEXT_PUBLIC_WAGTAIL_API_URL`:
 
-class HomeSerializer(BasePageSerializer):
-    csrf_token = serializers.SerializerMethodField()
-
-    def get_csrf_token(self, _obj):
-        request = self.context.get("request")
-        return csrf_middleware.get_token(request)
-
-    class Meta:
-        model = HomePage
-        fields = ['csrf_token'] + BasePageSerializer.Meta.fields
+```js
+// frontend/api/wagtail.js
+export async function postContactForm(params) {
+    return await postRequest(`${NEXT_PUBLIC_API_URL}/v1/contact/`, params);
+}
 ```
 
-- Pick up the CSRF token in your `HomePage` container component and pass it to your `ContactForm` component
+Call it from a client component:
 
-```javascript
-// containers/HomePage/HomePage.js
-import React from 'react';
-import { basePageWrap } from '../BasePage';
-import Hero from '../../components/Hero';
-import ContactForm from '../../components/ContactForm';
-import s from './HomePage.module.css';
+```js
+'use client';
 
-const HomePage = ({ title = '', csrfToken }) => {
+import { useState } from 'react';
+import { postContactForm, WagtailApiResponseError } from '../../api/wagtail';
+
+const ContactForm = () => {
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            await postContactForm({ message });
+        } catch (err) {
+            if (!(err instanceof WagtailApiResponseError)) {
+                throw err;
+            }
+            setError(err.response.status === 403 ? 'Forbidden' : 'Technical issues');
+        }
+    };
+
     return (
-        <div className={s.Container}>
-            <Hero title={title} />
-            <ContactForm csrfToken={csrfToken} />
-        </div>
+        <form onSubmit={handleSubmit}>
+            {!!error && <p>{error}</p>}
+            <textarea value={message} onChange={(e) => setMessage(e.target.value)} />
+            <button type="submit">Send</button>
+        </form>
     );
 };
 
-export default basePageWrap(HomePage);
-```
-
-- Finally create a `ContactForm` component that will communicate with your API pass the CSRF token in the request header
-
-```javascript
-// components/ContactForm/ContactForm.js
-import React from 'react';
-
-class ContactForm extends React.Component {
-    state = {
-        name: '',
-    }
-
-    handleChange = (event) => {
-        this.setState({value: event.target.value});  
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-
-        const { csrfToken } = this.props;
-
-        fetch('https://example.test/api/contact', {
-            body: JSON.stringify({ name: this.state.name }),
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
-            },
-        }).then(resp => console.log(resp));
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" value={this.state.name} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-        );
-    }
-}
-
 export default ContactForm;
 ```
-- Done!
 
-TIP: If you want have your CSRF token globally accessible on the frontend, why not use a react context?
+On the backend, protect the endpoint with `csrf_protect` (the password protected page endpoint in `src/nextjs/api.py` is an example). If the request changes what the server renders, for example a session cookie that unlocks content, call `router.refresh()` from `next/navigation` after the request succeeds.
+
+## Alternative: Server Actions
+
+If you would rather keep the request on the server, use a [Server Action](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations). The action runs in Next.js, so it must fetch a token from `csrf_token/` and send both the `X-CSRFToken` header and the `csrftoken` cookie to Django itself. Any cookie Django returns stays on the server unless you set it with `cookies()` from `next/headers`.
+
+## Running behind HTTPS
+
+Django checks the `Origin` header on secure requests. Make sure nginx forwards the original `Host` and `X-Forwarded-Proto` headers, which `SECURE_PROXY_SSL_HEADER` in the stage and prod settings relies on. If the frontend is served from another domain than Django, add it to `CSRF_TRUSTED_ORIGINS`.

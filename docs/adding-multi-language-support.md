@@ -53,4 +53,15 @@ class BasePageSerializer(serializers.ModelSerializer):
         } for x in translations]
 ```
 
-6. Done!
+6. Add the languages to the frontend in `frontend/i18n/config.js`, the first path segment decides `<html lang>`:
+
+```js
+module.exports = {
+    defaultLocale: 'sv',
+    locales: ['sv', 'en', 'de'],
+};
+```
+
+Wagtail owns the locale routing, so do not add an `app/[lang]` segment or locale detection in `frontend/proxy.js`. Next.js passes the full path, including the language prefix, to Wagtail.
+
+7. Done!
