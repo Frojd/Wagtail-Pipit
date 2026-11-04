@@ -6,7 +6,7 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
 
@@ -16,7 +16,7 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
 
@@ -26,7 +26,7 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
 
@@ -36,7 +36,7 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
 
@@ -46,7 +46,7 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
 
@@ -56,7 +56,7 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
   ignore:
@@ -69,6 +69,6 @@ updates:
     interval: daily
     time: "04:00"
   cooldown:
-    default-days: 3
+    default-days: 7
   open-pull-requests-limit: 1
   target-branch: develop
