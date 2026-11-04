@@ -22,7 +22,6 @@
         "frontend/components",
         "frontend/containers",
         "frontend/__tests__",
-        "frontend/pages",
         "frontend/app",
         "frontend/routing",
         "src/uv.lock",

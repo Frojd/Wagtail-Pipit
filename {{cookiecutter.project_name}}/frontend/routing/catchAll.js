@@ -250,5 +250,5 @@ export default async function CatchAllPage(props) {
     if (!Component) {
         return <h1>Component {componentName} not found</h1>;
     }
-    return <Component {...componentProps} shouldRenderSeo={false} />;
+    return <Component {...componentProps} />;
 }
