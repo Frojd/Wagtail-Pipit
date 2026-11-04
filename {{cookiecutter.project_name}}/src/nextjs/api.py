@@ -11,7 +11,7 @@ from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.utils.module_loading import import_string
 from django.views import View
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -146,6 +146,21 @@ class ValidatePreviewTokenAPIViewSet(BaseAPIViewSet):
 api_router.register_endpoint("validate_preview_token", ValidatePreviewTokenAPIViewSet)
 
 
+class CsrfTokenAPIViewSet(BaseAPIViewSet):
+    @method_decorator(ensure_csrf_cookie)
+    def listing_view(self, request):
+        return Response({"csrf_token": csrf_middleware.get_token(request)})
+
+    @classmethod
+    def get_urlpatterns(cls):
+        return [
+            path("", cls.as_view({"get": "listing_view"}), name="listing"),
+        ]
+
+
+api_router.register_endpoint("csrf_token", CsrfTokenAPIViewSet)
+
+
 class PasswordProtectedPageViewSet(BaseAPIViewSet):
     known_query_parameters = BaseAPIViewSet.known_query_parameters.union(
         ["restriction_id", "page_id"]
@@ -206,7 +221,6 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                             "component_props": {
                                 "restriction_id": restriction.id,
                                 "page_id": page.id,
-                                "csrf_token": csrf_middleware.get_token(request),
                             },
                         }
                     )

@@ -25,6 +25,7 @@
         "frontend/__tests__",
         "frontend/pages",
         "frontend/app",
+        "frontend/routing",
         "src/uv.lock",
         ".github/tools/uv.lock",
         "deploy/uv.lock",

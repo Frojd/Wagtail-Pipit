@@ -1,35 +1,27 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
     getPasswordProtectedPage,
     WagtailApiResponseError,
 } from '../../api/wagtail';
-import LazyContainers from '../LazyContainers';
 
-const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
+const PasswordProtectedPage = ({ restrictionId, pageId }) => {
+    const router = useRouter();
     const [values, setValues] = useState({ password: '' });
     const [error, setError] = useState(null);
-    const [pageData, setPageData] = useState(null);
 
     const handleFormChange = async (e) => {
         e.preventDefault();
 
         try {
-            const { json } = await getPasswordProtectedPage(
-                restrictionId,
-                pageId,
-                {
-                    ...values,
-                },
-                {
-                    headers: {
-                        'X-CSRFToken': csrfToken,
-                    },
-                }
-            );
+            await getPasswordProtectedPage(restrictionId, pageId, {
+                ...values,
+            });
 
-            setPageData(json);
+            // Django has set the session cookie, render the unlocked page on the server
+            router.refresh();
         } catch (e) {
             if (!(e instanceof WagtailApiResponseError)) {
                 throw e;
@@ -53,15 +45,6 @@ const PasswordProtectedPage = ({ restrictionId, pageId, csrfToken }) => {
         const { name, value } = e.target;
         setValues({ ...values, [name]: value });
     };
-
-    if (pageData) {
-        const { componentName, componentProps } = pageData;
-        const Component = LazyContainers[componentName];
-        if (!Component) {
-            return <h1>Component {componentName} not found</h1>;
-        }
-        return <Component {...componentProps} />;
-    }
 
     return (
         <div>

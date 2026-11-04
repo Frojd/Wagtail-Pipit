@@ -1,5 +1,5 @@
 {%- if not cookiecutter.experimental_use_app_router -%}
-const { i18n } = require('./next-i18next.config');
+const i18n = require('./i18n/config');
 
 {% endif -%}
 const { withSentryConfig } = require('@sentry/nextjs/config');

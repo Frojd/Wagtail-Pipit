@@ -20,6 +20,7 @@ if EXPERIMENTAL_USE_APP_ROUTER:
     os.remove(os.path.join(FRONTEND_DIR, "__tests__", "404.test.js"))
 else:
     shutil.rmtree(os.path.join(FRONTEND_DIR, "app"))
+    shutil.rmtree(os.path.join(FRONTEND_DIR, "routing"))
     os.remove(os.path.join(FRONTEND_DIR, "__tests__", "not-found.test.js"))
 
 # Patch uv.lock with the actual project slug (the lock file is copied

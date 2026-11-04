@@ -1,4 +1,1 @@
-import CatchAllPage, { generateMetadata } from '../page';
-
-export { generateMetadata };
-export default CatchAllPage;
+export { default, generateMetadata } from '../../routing/catchAll';

@@ -1,6 +1,7 @@
 import { draftMode, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
+import * as Sentry from '@sentry/nextjs';
 import { validatePreviewToken } from '../../../api/wagtail';
 
 export async function GET(request) {
@@ -26,7 +27,14 @@ export async function GET(request) {
                 host: host || headersList.get('host'),
             },
         });
-    } catch {
+    } catch (error) {
+        Sentry.captureException(error, {
+            tags: {
+                errorType: 'preview_token_validation_failed',
+                contentType,
+            },
+        });
+
         return NextResponse.json(
             { message: 'Invalid or expired preview token' },
             { status: 401 }

@@ -5,6 +5,7 @@ import {
 } from '../utils/caseconverters';
 
 const API_URL = process.env.WAGTAIL_API_URL;
+// Relative to the browser origin, for requests made from client components
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_WAGTAIL_API_URL;
 
 export async function getPage(path, params, options) {
@@ -29,6 +30,11 @@ export async function getPasswordProtectedPage(
         params,
         options
     );
+}
+
+export async function getCsrfToken() {
+    const { json } = await getRequest(`${NEXT_PUBLIC_API_URL}/v1/csrf_token/`);
+    return json.csrfToken;
 }
 
 export async function getAllPages() {
@@ -137,6 +143,9 @@ export async function postRequest(url, params, options) {
         'Content-Type': 'application/json',
         ...headers,
     };
+    if (!headers['X-CSRFToken']) {
+        headers['X-CSRFToken'] = await getCsrfToken();
+    }
     const res = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(params),
