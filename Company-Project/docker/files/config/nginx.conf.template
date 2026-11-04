@@ -78,4 +78,12 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass ${PYTHON_HOST}:8000/wt;
     }
+
+    # Serve a non-HTML path (feed, file download) straight from Django, it must also be routed in urls.py
+    # location ^~ /feeds/ {
+    #     proxy_set_header Host $host:8081;
+    #     proxy_set_header X-Real-IP $remote_addr;
+    #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #     proxy_pass ${PYTHON_HOST}:8000/feeds/;
+    # }
 }

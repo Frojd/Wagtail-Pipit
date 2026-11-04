@@ -205,7 +205,7 @@ ADMIN_URL = "wt/admin/"
 # NextJS
 WAGTAIL_HEADLESS_PREVIEW = {
     "CLIENT_URLS": {
-        "default": "/api/preview/",
+        "default": "/api/draft/",
     }
 }
 

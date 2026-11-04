@@ -1,35 +1,33 @@
 import { render, screen } from '@testing-library/react';
-import NotFoundRoute from '../pages/404';
-import { getPublicViewData, WagtailApiResponseError } from '../api/wagtail';
+import NotFound from '../app/not-found';
+import { getViewData, WagtailApiResponseError } from '../api/wagtail';
 
-// Lives outside pages/ on purpose: any .js under pages/ becomes a route
+// Lives outside app/ on purpose: a .js file there is treated as route source
 jest.mock('../api/wagtail', () => ({
-    getPublicViewData: jest.fn(),
+    getViewData: jest.fn(),
     WagtailApiResponseError: class extends Error {},
 }));
 
-describe('404 route', () => {
+describe('not-found route', () => {
     afterEach(() => jest.resetAllMocks());
 
     it('Renders a fallback when the api call fails', async () => {
-        getPublicViewData.mockRejectedValue(
-            new WagtailApiResponseError('boom')
-        );
+        getViewData.mockRejectedValue(new WagtailApiResponseError('boom'));
 
-        render(<NotFoundRoute />);
+        render(await NotFound());
 
-        expect(await screen.findByText('Page not found')).toBeInTheDocument();
+        expect(screen.getByText('Page not found')).toBeInTheDocument();
     });
 
     it('Renders the resolved container on success', async () => {
-        getPublicViewData.mockResolvedValue({
+        getViewData.mockResolvedValue({
             json: {
                 componentName: 'NotFoundPage',
                 componentProps: { exception: 'Nothing here' },
             },
         });
 
-        render(<NotFoundRoute />);
+        render(await NotFound());
 
         expect(await screen.findByText('Nothing here')).toBeInTheDocument();
     });
