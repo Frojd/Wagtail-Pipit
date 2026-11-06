@@ -47,7 +47,76 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         )
         self.assertEqual(response.status_code, 401)
 
-    def test_correct_password_returns_ok(self):
+    def test_restriction_from_another_page_returns_404(self):
+        restricted_page = BasePageFactory.create(title="Public", parent=self.root_page)
+        other_page = BasePageFactory.create(title="Other", parent=self.root_page)
+        page_view_restriction = PageViewRestrictionFactory.create(
+            page=restricted_page,
+            password="hello",
+        )
+
+        url = reverse(
+            "nextjs:password_protected_page:detail_view",
+            args=(page_view_restriction.pk, other_page.pk),
+        )
+
+        response = self.client.post(
+            url,
+            json.dumps({"password": "hello"}),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def test_unpublished_page_returns_404(self):
+        draft_page = BasePageFactory.create(
+            title="Draft", parent=self.root_page, live=False
+        )
+        page_view_restriction = PageViewRestrictionFactory.create(
+            page=draft_page,
+            password="hello",
+        )
+
+        url = reverse(
+            "nextjs:password_protected_page:detail_view",
+            args=(page_view_restriction.pk, draft_page.pk),
+        )
+
+        response = self.client.post(
+            url,
+            json.dumps({"password": "hello"}),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def test_correct_password_unlocks_page_inheriting_the_restriction(self):
+        parent_page = BasePageFactory.create(title="Parent", parent=self.root_page)
+        child_page = BasePageFactory.create(title="Child", parent=parent_page)
+        page_view_restriction = PageViewRestrictionFactory.create(
+            page=parent_page,
+            password="hello",
+        )
+        page_url = (
+            f"{reverse('nextjs:page_by_path:listing')}"
+            f"?html_path={child_page.relative_url(self.site)}"
+        )
+
+        locked = self.client.get(page_url).json()
+        self.assertEqual(locked["component_name"], "PasswordProtectedPage")
+
+        response = self.client.post(
+            reverse(
+                "nextjs:password_protected_page:detail_view",
+                args=(page_view_restriction.pk, child_page.pk),
+            ),
+            json.dumps({"password": "hello"}),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 204)
+
+        unlocked = self.client.get(page_url).json()
+        self.assertEqual(unlocked["component_props"]["title"], "Child")
+
+    def test_correct_password_returns_no_page_data(self):
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
         page_view_restriction = PageViewRestrictionFactory.create(
             page=sub_page,
@@ -64,4 +133,5 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
             json.dumps({"password": "hello"}),
             content_type="application/json",
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.content, b"")

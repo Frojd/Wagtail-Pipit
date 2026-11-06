@@ -41,4 +41,24 @@ describe('postRequest', () => {
         expect(fetch).toHaveBeenCalledTimes(1);
         expect(fetch.mock.calls[0][1].headers['X-CSRFToken']).toBe('own-token');
     });
+
+    it('Resolves without a body on 204 No Content', async () => {
+        fetch.mockResolvedValueOnce({
+            status: 204,
+            headers: new Headers(),
+            json: async () => {
+                throw new SyntaxError('Unexpected end of JSON input');
+            },
+        });
+
+        const { json } = await postRequest(
+            '/endpoint/',
+            {},
+            {
+                headers: { 'X-CSRFToken': 'own-token' },
+            }
+        );
+
+        expect(json).toBeNull();
+    });
 });

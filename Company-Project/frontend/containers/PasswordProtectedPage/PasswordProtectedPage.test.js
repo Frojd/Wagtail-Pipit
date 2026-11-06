@@ -32,7 +32,7 @@ describe('<PasswordProtectedPage />', () => {
     afterEach(() => jest.resetAllMocks());
 
     it('Refreshes the route once the password is accepted', async () => {
-        getPasswordProtectedPage.mockResolvedValue({ json: {} });
+        getPasswordProtectedPage.mockResolvedValue({ json: null });
 
         await submit('hello');
 

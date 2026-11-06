@@ -171,7 +171,9 @@ class PasswordProtectedPageViewSet(BaseAPIViewSet):
         restriction = get_object_or_404(
             PageViewRestriction, id=page_view_restriction_id
         )
-        page = get_object_or_404(Page, id=page_id).specific
+        page = get_object_or_404(Page.objects.live(), id=page_id).specific
+        if not page.get_view_restrictions().filter(id=restriction.id).exists():
+            raise Http404
 
         post = request.data.copy()
         post["return_url"] = "/required_for_validation"
@@ -182,12 +184,7 @@ class PasswordProtectedPageViewSet(BaseAPIViewSet):
 
         restriction.mark_as_passed(request)
 
-        data = page.get_component_data(
-            {
-                "request": request,
-            }
-        )
-        return Response(data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @classmethod
     def get_urlpatterns(cls):

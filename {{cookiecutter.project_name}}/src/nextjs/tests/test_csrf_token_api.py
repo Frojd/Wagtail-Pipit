@@ -47,7 +47,7 @@ class CsrfTokenApiTest(WagtailPageTests):
             content_type="application/json",
             headers={"X-CSRFToken": token},
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 204)
 
     def test_password_post_without_token_is_forbidden(self):
         self.client.get(reverse("nextjs:csrf_token:listing"))

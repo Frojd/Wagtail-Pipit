@@ -158,6 +158,10 @@ export async function postRequest(url, params, options) {
         throw error;
     }
 
+    if (res.status === 204) {
+        return { headers: res.headers, json: null };
+    }
+
     const json = await res.json();
     return {
         headers: res.headers,
