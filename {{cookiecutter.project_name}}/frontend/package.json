@@ -13,11 +13,13 @@
     "fixcode:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "new": "node cli/bin.mts new",
-    "new:container": "node cli/bin.mts new --container",
+    "new": "node cli/new.mts",
+    "new:component": "node cli/new.mts",
+    "new:container": "node cli/new.mts --container",
     "typecheck": "tsc -p cli",
     "test": "jest --watch",
-    "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
+    "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
+    "test:cli": "node --test cli/new.test.mts"
   },
   "dependencies": {
     "@sentry/nextjs": "11.10.0",

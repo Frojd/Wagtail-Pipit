@@ -5,7 +5,6 @@ import HomePage from './HomePage';
 import data from './HomePage.data';
 
 export default {
-    title: 'Containers/HomePage',
     component: HomePage,
 };
 

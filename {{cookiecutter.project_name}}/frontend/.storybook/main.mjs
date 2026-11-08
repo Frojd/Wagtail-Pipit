@@ -2,8 +2,16 @@ const config = {
     staticDirs: ['../public'],
     stories: [
         '../stories/**/*.stories.js',
-        '../components/**/*.stories.js',
-        '../containers/**/*.stories.js',
+        {
+            directory: '../components',
+            files: '**/*.stories.js',
+            titlePrefix: 'Components',
+        },
+        {
+            directory: '../containers',
+            files: '**/*.stories.js',
+            titlePrefix: 'Containers',
+        },
     ],
     addons: ['@storybook/addon-a11y'],
     docs: {

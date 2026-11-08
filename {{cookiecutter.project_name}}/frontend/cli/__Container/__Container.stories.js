@@ -5,7 +5,6 @@ import __Container from './__Container';
 import data from './__Container.data';
 
 const __ContainerStory = {
-    title: 'Containers/__Container',
     component: __Container,
 };
 export default __ContainerStory;

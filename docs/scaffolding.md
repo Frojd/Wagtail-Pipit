@@ -29,9 +29,8 @@ cd frontend
 npm run new:container NewsPage
 ```
 
-- This will create the following page:
-    - `frontend/containers/NewsPage`
-
+- This will create `frontend/containers/NewsPage` and register it in `frontend/containers/LazyContainers.js`, so a Wagtail page with the component name `NewsPage` renders it.
+- If the name ends with `Page` the matching backend command is printed, `NewsPage` pairs with `new_page --name=News`.
 
 ## Creating a component
 
@@ -39,17 +38,24 @@ This command will create a frontend component (something reusable):
 
 ```sh
 cd frontend
-npm run new Button
+npm run new:component Button
 ```
 - This will create the following component:
     - `frontend/components/Button`
 
+`npm run new` is an alias for `npm run new:component`.
+
 ## Options
 
 ```sh
-npm run new Card Header                 # nested, creates frontend/components/Card/Header
-npm run new Button -- --folder stories  # creates frontend/stories/Button
-npm run new -- --help
+npm run new:component Card Header                 # nested, creates frontend/components/Card/Header
+npm run new:container Landing CampaignPage        # nested, creates frontend/containers/Landing/CampaignPage
+npm run new:component Button -- --dir stories     # creates frontend/stories/Button
+npm run new:component -- --help
 ```
 
-The scaffolding cli lives in `frontend/cli/bin.mts` and runs as TypeScript directly on Node 24, the templates are in `frontend/cli/__Component` and `frontend/cli/__Container`.
+- Names must be PascalCase (letters and digits, starting with an uppercase letter).
+- `--dir` must point inside the frontend folder.
+- Storybook titles follow the folder structure, `components/Card/Header` shows up as `Components/Card/Header`.
+
+The scaffolding cli lives in `frontend/cli/new.mts` and runs as TypeScript directly on Node 24, the templates are in `frontend/cli/__Component` and `frontend/cli/__Container`. Its tests run with `npm run test:cli`.

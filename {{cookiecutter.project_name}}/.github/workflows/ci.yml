@@ -100,6 +100,10 @@ jobs:
         env:
           JEST_JUNIT_OUTPUT_DIR: ../test-results/jest/
 
+      - name: Test scaffolding cli
+        run: npm run test:cli
+        working-directory: frontend
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2

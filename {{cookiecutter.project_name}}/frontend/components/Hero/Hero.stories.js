@@ -5,7 +5,6 @@ import Hero from './Hero';
 import data from './Hero.data';
 
 export default {
-    title: 'Components/Hero',
     component: Hero,
 };
 

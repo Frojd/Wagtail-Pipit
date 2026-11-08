@@ -1,4 +1,4 @@
-import { basePageWrap } from '../BasePage';
+import { basePageWrap } from '__CONTAINERS__/BasePage';
 import s from './__Container.module.css';
 
 const __Container = () => {

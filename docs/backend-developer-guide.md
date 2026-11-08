@@ -290,16 +290,10 @@ class AboutPage extends PureComponent {
 export default basePageWrap(AboutPage);
 ```
 
-Then, to expose your container to Next.js you also need to put your container in our container register: `containers/LazyContainers.js`
+The cli has already registered the container in `containers/LazyContainers.js`, which is how Next.js finds it:
 
-```bash
-import dynamic from 'next/dynamic';
-
-export default {
-    // Other containers
-    ...
-    AboutPage: dynamic(() => import('./AboutPage')),
-};
+```js
+AboutPage: dynamic(() => import('./AboutPage')),
 ```
 
 The last step is to start your Next.js app (`npm run dev`) and open `http://blog.acme.com.test:8081/my-about-page`

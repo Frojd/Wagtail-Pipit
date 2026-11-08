@@ -6,7 +6,6 @@ import RawHtml from './RawHtml';
 import data from './RawHtml.data';
 
 export default {
-    title: 'Components/RawHtml',
     component: RawHtml,
 };
 

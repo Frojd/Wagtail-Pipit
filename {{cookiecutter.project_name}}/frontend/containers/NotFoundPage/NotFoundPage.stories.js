@@ -5,7 +5,6 @@ import NotFoundPage from './NotFoundPage';
 import data from './NotFoundPage.data';
 
 export default {
-    title: 'Containers/NotFoundPage',
     component: NotFoundPage,
 };
 

@@ -11,5 +11,5 @@
         "noEmit": true,
         "skipLibCheck": true
     },
-    "files": ["bin.mts"]
+    "files": ["new.mts", "new.test.mts"]
 }

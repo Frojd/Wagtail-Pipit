@@ -74,7 +74,7 @@ add a `Button` component.
 
 Start by scaffolding a component using the CLI:
 ```bash
-npm run new Button
+npm run new:component Button
 ```
 
 This will create the following files:
@@ -182,11 +182,11 @@ code nice and tidy.  From our point of view a container differs from a component
 - The container handles javascript bindings and pass it down to its components. i.e. a click handler should be defined in the container and be passed down via props
 
 
-To build our container, launch the scaffolder again, this time using the flag `-c` for `Container`
+To build our container, launch the scaffolder again, this time with `new:container`
 ```bash
 npm run new:container WordCountPage
 ```
-Now you should see your newly created container in `./containers/WordCountPage`
+Now you should see your newly created container in `./containers/WordCountPage`, already registered in `./containers/LazyContainers.js`
 
 ### Building the container javascript/jsx
 
