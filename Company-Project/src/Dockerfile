@@ -1,15 +1,39 @@
+# Ubuntu archive snapshot all stages install from, so rebuilds give the same packages.
+# Bump to pick up OS security updates, to midnight UTC 3 days before today.
+ARG APT_SNAPSHOT=20261105T000000Z
+
+############
+# APT BASE #
+############
+
+# using ubuntu LTS version
+FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS apt-base
+ARG APT_SNAPSHOT
+
+# The base image has no CA bundle yet, package integrity comes from the archive signature.
+# Snapshots only cover amd64, arm64 builds (Apple Silicon) use the live ports archive.
+RUN if grep -q "ports.ubuntu.com" /etc/apt/sources.list.d/ubuntu.sources; then \
+		echo "WARNING: ports archive has no snapshots, building against the live archive"; \
+	else \
+		sed -i "/^Signed-By:/a Snapshot: ${APT_SNAPSHOT}" /etc/apt/sources.list.d/ubuntu.sources && \
+		grep -q "^Snapshot: ${APT_SNAPSHOT}" /etc/apt/sources.list.d/ubuntu.sources; \
+	fi && \
+	apt-get -o Acquire::https::snapshot.ubuntu.com::Verify-Peer=false -o APT::Update::Error-Mode=any -o Acquire::Retries=3 update && \
+	apt-get -o Acquire::https::snapshot.ubuntu.com::Verify-Peer=false install --no-install-recommends -y ca-certificates && \
+	apt-get clean && rm -rf /var/lib/apt/lists/*
+
 ###########
 # BUILDER #
 ###########
 
-# using ubuntu LTS version
-FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS builder-image
+FROM apt-base AS builder-image
 
 # avoid stuck build due to user prompt
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ENVIRONMENT=prod
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3 python3-venv && \
+RUN apt-get -o APT::Update::Error-Mode=any -o Acquire::Retries=3 update && \
+	apt-get install --no-install-recommends -y python3 python3-venv && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv
@@ -30,9 +54,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Final #
 ###########
 
-FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS runner-image
+FROM apt-base AS runner-image
 ARG ENVIRONMENT=prod
-RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
+RUN apt-get -o APT::Update::Error-Mode=any -o Acquire::Retries=3 update && \
+    apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
+    apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv (for runtime package management if needed)

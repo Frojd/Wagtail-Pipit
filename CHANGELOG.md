@@ -100,6 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Check uv locks against pyproject and template mirrors in CI and run pip-audit on the tool and deploy locks (@marteinn)
 - Relock frontend transitive dependencies to brace-expansion 1.1.21 and 5.0.12 and zod 4.6.7, clearing the high npm audit findings that failed CI (@marteinn)
 - Remove unused Pebble binary bundled in Ubuntu 26.04 base image and repin base digest, fixing HIGH CVE findings in the Trivy image scan (@rinti)
+- Pin the Python Docker image to a dated Ubuntu archive snapshot and upgrade OS packages, fixing HIGH CVE-2026-109518 in apt (@marteinn)
 - Clear GHSA-fxqj-rqcc-2cmp, postcss now resolves to 8.5.23 or later through Next.js itself and npm audit reports no findings (@marteinn)
 - Update pillow 13.0.0, pillow-heif 1.8.1, pygments 2.21.0, soupsieve 4.0 and sqlparse 0.6.1 to clear advisories flagged by pip-audit (@marteinn)
 
