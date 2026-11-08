@@ -91,6 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 - Fix the password protected page endpoint returning any page by id, it now requires the restriction to cover a live page and returns no page data (@marteinn)
+- Validate the GTM id in site settings so only GTM container ids can be injected into the GTM snippet (@marteinn)
 - Refuse source builds with uv no-build and drop build tools from the Docker builder (@marteinn)
 - Update uv to 0.13.5 in Docker, CI and on servers and require at least 0.13.4, fixing the critical eMudhra CA trust issue GHSA-hq85-5cpj-mr62 (@marteinn)
 - Install uv on servers from a checksum verified release instead of curl piped to sh, so existing servers are also upgraded (@marteinn)
