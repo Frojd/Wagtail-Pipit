@@ -7,11 +7,11 @@ Next.js renders all HTML pages in Pipit. Some paths should return something else
 Add a view and route it in `src/pipit/urls.py`, above the line that includes `wagtail_urls`:
 
 ```python
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.urls import path
 
 
-def feed(request):
+def feed(request: HttpRequest) -> HttpResponse:
     return HttpResponse(
         '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"></rss>',
         content_type="application/rss+xml",

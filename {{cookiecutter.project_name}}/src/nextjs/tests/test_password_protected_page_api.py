@@ -9,14 +9,14 @@ from nextjs.factories import PageViewRestrictionFactory
 
 
 class PasswordProtectedPageApiTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.site = Site.objects.first()
 
         self.root_page = BasePageFactory.create(title="Start", parent=None)
         self.site.root_page = self.root_page
         self.site.save()
 
-    def test_missing_password_yeilds_401(self):
+    def test_missing_password_yeilds_401(self) -> None:
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
         page_view_restriction = PageViewRestrictionFactory.create(page=sub_page)
 
@@ -28,7 +28,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         response = self.client.post(url)
         self.assertEqual(response.status_code, 401)
 
-    def test_incorrect_password_returns_401(self):
+    def test_incorrect_password_returns_401(self) -> None:
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
         page_view_restriction = PageViewRestrictionFactory.create(
             page=sub_page,
@@ -47,7 +47,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         )
         self.assertEqual(response.status_code, 401)
 
-    def test_restriction_from_another_page_returns_404(self):
+    def test_restriction_from_another_page_returns_404(self) -> None:
         restricted_page = BasePageFactory.create(title="Public", parent=self.root_page)
         other_page = BasePageFactory.create(title="Other", parent=self.root_page)
         page_view_restriction = PageViewRestrictionFactory.create(
@@ -67,7 +67,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         )
         self.assertEqual(response.status_code, 404)
 
-    def test_unpublished_page_returns_404(self):
+    def test_unpublished_page_returns_404(self) -> None:
         draft_page = BasePageFactory.create(
             title="Draft", parent=self.root_page, live=False
         )
@@ -88,7 +88,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         )
         self.assertEqual(response.status_code, 404)
 
-    def test_correct_password_unlocks_page_inheriting_the_restriction(self):
+    def test_correct_password_unlocks_page_inheriting_the_restriction(self) -> None:
         parent_page = BasePageFactory.create(title="Parent", parent=self.root_page)
         child_page = BasePageFactory.create(title="Child", parent=parent_page)
         page_view_restriction = PageViewRestrictionFactory.create(
@@ -116,7 +116,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         unlocked = self.client.get(page_url).json()
         self.assertEqual(unlocked["component_props"]["title"], "Child")
 
-    def test_correct_password_returns_no_page_data(self):
+    def test_correct_password_returns_no_page_data(self) -> None:
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
         page_view_restriction = PageViewRestrictionFactory.create(
             page=sub_page,

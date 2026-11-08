@@ -7,14 +7,14 @@ from nextjs.factories import PageViewRestrictionFactory
 
 
 class PasswordProtectedPageApiTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.site = Site.objects.first()
 
         self.root_page = BasePageFactory.create(title="Start", parent=None)
         self.site.root_page = self.root_page
         self.site.save()
 
-    def test_redirect_page_if_user_is_not_logged_in(self):
+    def test_redirect_page_if_user_is_not_logged_in(self) -> None:
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)
         PageViewRestrictionFactory.create(
             page=sub_page,
@@ -30,7 +30,7 @@ class PasswordProtectedPageApiTest(WagtailPageTests):
         data = response.json()
         self.assertTrue("redirect" in data)
 
-    def test_proper_page_if_user_is_logged_in(self):
+    def test_proper_page_if_user_is_logged_in(self) -> None:
         self.login()
 
         sub_page = BasePageFactory.create(title="Child page", parent=self.root_page)

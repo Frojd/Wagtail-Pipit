@@ -1,3 +1,6 @@
+from typing import Any
+
+from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView
 
@@ -9,10 +12,12 @@ class PageNotFoundView(ReactViewMixin, TemplateView):
     component_name = "NotFoundPage"
     serializer_class = NotFoundPageSerializer
 
-    def render_to_response(self, context, **response_kwargs):
+    def render_to_response(
+        self, context: dict[str, Any], **response_kwargs: Any
+    ) -> HttpResponse:
         response = super().render_to_response(context, **response_kwargs)
         response.status_code = 404
         return response
 
-    def get_component_props(self):
+    def get_component_props(self) -> dict[str, Any]:
         return {"exception": _("Page not found")}

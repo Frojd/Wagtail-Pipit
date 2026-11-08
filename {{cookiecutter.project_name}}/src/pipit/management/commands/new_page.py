@@ -1,7 +1,8 @@
 import os
 import re
+from typing import Any
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from django.template.loader import render_to_string
 
 
@@ -19,10 +20,10 @@ class Command(BaseCommand):
         + src/main/tests/test_news.py
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("--name", required=True)
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         name = options["name"]
 
         name = name.removesuffix("Page")
@@ -32,7 +33,7 @@ class Command(BaseCommand):
         self.add_test(name)
         self.add_factory(name)
 
-    def add_page(self, name, to_app="main"):
+    def add_page(self, name: str, to_app: str = "main") -> None:
         file_name = get_snake_from_pascal_case(name)
         pages_path = os.path.join(to_app, "pages/")
 
@@ -41,7 +42,7 @@ class Command(BaseCommand):
 
         if os.path.exists(page_file):
             self.stdout.write(f"Did not create {page_file} as it already exists")
-            return False
+            return
 
         page_template = "commands/new_page/page.py.tpl"
 
@@ -60,14 +61,14 @@ class Command(BaseCommand):
 
         self.create_file(page_file, page_template, context)
 
-    def add_serializer(self, name, to_app="main"):
+    def add_serializer(self, name: str, to_app: str = "main") -> None:
         file_name = get_snake_from_pascal_case(name)
         serializer_path = os.path.join(to_app, "pages/")
         serializer_file = f"{serializer_path}{file_name}_serializer.py"
 
         if os.path.exists(serializer_file):
             self.stdout.write(f"Did not create {serializer_file} as it already exists")
-            return False
+            return
 
         serializer_template = "commands/new_page/serializer.py.tpl"
 
@@ -75,14 +76,14 @@ class Command(BaseCommand):
 
         self.create_file(serializer_file, serializer_template, context)
 
-    def add_test(self, name, to_app="main"):
+    def add_test(self, name: str, to_app: str = "main") -> None:
         file_name = get_snake_from_pascal_case(name)
         test_path = os.path.join(to_app, "tests/")
         test_file = f"{test_path}test_{file_name}_page.py"
 
         if os.path.exists(test_file):
             self.stdout.write(f"Did not create {test_file} as it already exists")
-            return False
+            return
 
         test_template = "commands/new_page/test.py.tpl"
 
@@ -101,14 +102,14 @@ class Command(BaseCommand):
 
         self.create_file(test_file, test_template, context)
 
-    def add_factory(self, name, to_app="main"):
+    def add_factory(self, name: str, to_app: str = "main") -> None:
         file_name = get_snake_from_pascal_case(name)
         factory_path = os.path.join(to_app, "factories/")
         factory_file = f"{factory_path}{file_name}_page.py"
 
         if os.path.exists(factory_file):
             self.stdout.write(f"Did not create {factory_file} as it already exists")
-            return False
+            return
 
         factory_template = "commands/new_page/factory.py.tpl"
 
@@ -116,7 +117,9 @@ class Command(BaseCommand):
 
         self.create_file(factory_file, factory_template, context)
 
-    def create_file(self, file_path, template, context):
+    def create_file(
+        self, file_path: str, template: str, context: dict[str, str]
+    ) -> None:
         with open(file_path, "w") as f:
             content = render_to_string(template, context)
             f.write(content)

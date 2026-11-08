@@ -7,22 +7,22 @@ from main.models import BasePage, BasePageSerializer
 
 
 class BasePageTest(WagtailPageTests):
-    def test_factories_inheritance(self):
+    def test_factories_inheritance(self) -> None:
         page = BasePageFactory.create(title="Start", parent=None)
         self.assertIsNotNone(page.id)
 
         sub_page = BasePageFactory.create(title="Start", parent=page)
         self.assertEqual(sub_page.get_parent().id, page.id)
 
-    def test_to_dict_uses_default_serializer(self):
+    def test_to_dict_uses_default_serializer(self) -> None:
         page = BasePageFactory.create(title="Start", parent=None)
         SiteFactory.create(root_page=page)
 
         self.assertEqual(page.get_serializer_class(), BasePageSerializer)
         self.assertIn("title", page.to_dict({}))
 
-    def test_to_dict_accepts_override_serializer(self):
-        class OverrideSerializer(serializers.ModelSerializer):
+    def test_to_dict_accepts_override_serializer(self) -> None:
+        class OverrideSerializer(serializers.ModelSerializer[BasePage]):
             random = serializers.SerializerMethodField()
 
             class Meta:
@@ -31,8 +31,9 @@ class BasePageTest(WagtailPageTests):
                     "random",
                 ]
 
-            def get_random(self, page):
-                return page.title
+            def get_random(self, page: BasePage) -> str:
+                title: str = page.title
+                return title
 
         page = BasePageFactory.create(title="Start", parent=None)
         SiteFactory.create(root_page=page)

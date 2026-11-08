@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
 
@@ -12,7 +14,7 @@ class Command(BaseCommand):
         manage.py wagtail_replace_default_site_root_page
     """
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         if Site.objects.count() > 1:
             return
 

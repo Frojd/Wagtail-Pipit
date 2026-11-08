@@ -4,7 +4,7 @@ from django.apps import AppConfig
 class MainConfig(AppConfig):
     name = "main"
 
-    def ready(self):
+    def ready(self) -> None:
         from wagtail import fields
         from wagtail.api.v2 import serializers as wagtail_serializers
 

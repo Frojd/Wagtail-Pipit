@@ -6,6 +6,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from pipit.settings.base import *
+from utils.env import get_env
 
 DEBUG = False
 

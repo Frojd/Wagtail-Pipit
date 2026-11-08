@@ -1,8 +1,11 @@
+from typing import Any
+
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from sentry_sdk import last_event_id
 
 
-def error_500_view(request, *args, **argv):
+def error_500_view(request: HttpRequest, *args: Any, **argv: Any) -> HttpResponse:
     return render(
         request,
         "500.html",

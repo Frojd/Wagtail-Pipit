@@ -1,5 +1,7 @@
+from typing import Any
+
 from django.contrib.auth import get_user_model
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 
 
 class Command(BaseCommand):
@@ -10,12 +12,12 @@ class Command(BaseCommand):
         manage.py create_superuser_if_none_exists --user=admin --password=123
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("--user", required=True)
         parser.add_argument("--password", required=True)
         parser.add_argument("--email", default="admin@example.com")
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         User = get_user_model()
 
         if User.objects.exists():

@@ -35,16 +35,17 @@ This will make sure languages are served as `example.com/en/about/` and `example
 
 ```python
 ...
-class BasePageSerializer(serializers.ModelSerializer):
+class BasePageSerializer(serializers.ModelSerializer[BasePage]):
     ...
     language_code = serializers.SerializerMethodField()
     translations = serializers.SerializerMethodField()
     ...
 
-    def get_language_code(self, page):
-        return self.locale.language_code
+    def get_language_code(self, page: BasePage) -> str:
+        language_code: str = page.locale.language_code
+        return language_code
 
-    def get_translations(self, page):
+    def get_translations(self, page: BasePage) -> list[dict[str, str]]:
         translations = page.get_translations(inclusive=False)
         return [{
             "title": x.title,

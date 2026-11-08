@@ -1,4 +1,6 @@
-from django.core.management.base import BaseCommand
+from typing import Any
+
+from django.core.management.base import BaseCommand, CommandParser
 from wagtail.models import Site
 
 
@@ -10,11 +12,11 @@ class Command(BaseCommand):
         manage.py wagtail_change_site_domain --site_id=2 --new_site_domain=frojd.se:443
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("--site_id", type=int, default=1)
         parser.add_argument("--new_site_domain", required=True)
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         site_id = options["site_id"]
         new_site_domain = options["new_site_domain"]
         port = 80

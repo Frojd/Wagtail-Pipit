@@ -5,7 +5,7 @@ from wagtail_factories import SiteFactory
 from .models import SiteSetting
 
 
-class SiteSettingFactory(DjangoModelFactory):
+class SiteSettingFactory(DjangoModelFactory[SiteSetting]):
     site = factory.SubFactory(SiteFactory)
 
     class Meta:

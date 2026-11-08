@@ -1,4 +1,4 @@
-from typing import cast
+from typing import Any, cast
 
 from rest_framework import serializers
 from wagtail.images.shortcuts import get_rendition_or_not_found
@@ -6,7 +6,7 @@ from wagtail.images.shortcuts import get_rendition_or_not_found
 from customimage.models import CustomImage
 
 
-class CustomImageSerializer(serializers.ModelSerializer):
+class CustomImageSerializer(serializers.ModelSerializer[CustomImage]):
     renditions = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     id = serializers.SerializerMethodField()
@@ -14,36 +14,36 @@ class CustomImageSerializer(serializers.ModelSerializer):
 
     _mocked_id: int
     _mocked_url: str
-    _mocked_renditions: list
-    _renditions: list
+    _mocked_renditions: dict[str, dict[str, Any]]
+    _renditions: list[tuple[str, str]]
 
-    def get_id(self, obj) -> int:
+    def get_id(self, obj: CustomImage) -> int:
         if hasattr(self, "_mocked_id"):
             return self._mocked_id
 
         return cast(int, obj.pk)
 
-    def get_url(self, obj) -> str | None:
+    def get_url(self, obj: CustomImage) -> str | None:
         if hasattr(self, "_mocked_url"):
             return self._mocked_url
 
         return obj.file.url if obj.file else None
 
-    def get_renditions(self, obj):
+    def get_renditions(self, obj: CustomImage) -> dict[str, dict[str, Any]] | None:
         if hasattr(self, "_mocked_renditions"):
             return self._mocked_renditions
 
         if not hasattr(self, "_renditions"):
             return None
 
-        renditions = {}
+        renditions: dict[str, dict[str, Any]] = {}
         for name, spec in self._renditions:
             rendition = get_rendition_or_not_found(obj, spec)
             renditions[name] = rendition.attrs_dict
 
         return renditions
 
-    def get_focal(self, obj):
+    def get_focal(self, obj: CustomImage) -> dict[str, str]:
         # Default focal point values
         background_x = 0.5
         background_y = 0.5
@@ -68,8 +68,10 @@ class CustomImageSerializer(serializers.ModelSerializer):
         ]
 
 
-def get_image_serializer(renditions=None):
-    renditions = renditions if renditions else []
+def get_image_serializer(
+    renditions: list[tuple[str, str]] | None = None,
+) -> type[CustomImageSerializer]:
+    rendition_specs = renditions or []
     """
     :param renditions: [(renditionName, wagtailspec,)]
     :return: Monkey patched CustomImageSerializer
@@ -85,6 +87,6 @@ def get_image_serializer(renditions=None):
     """
 
     class PatchedSerializer(CustomImageSerializer):
-        _renditions = renditions
+        _renditions = rendition_specs
 
     return PatchedSerializer

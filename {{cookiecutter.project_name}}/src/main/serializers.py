@@ -1,3 +1,5 @@
+from typing import Any
+
 from rest_framework import serializers
 from wagtail.models import Site
 
@@ -7,24 +9,25 @@ from sitesettings.serializers import SiteSettingSerializer
 from .pages import BasePage
 
 
-class NotFoundPageSerializer(serializers.Serializer):
+class NotFoundPageSerializer(serializers.Serializer[dict[str, Any]]):
     exception = serializers.CharField()
     site_setting = serializers.SerializerMethodField()
     domain = serializers.SerializerMethodField()
 
-    def get_site_setting(self, _page):
+    def get_site_setting(self, _page: dict[str, Any]) -> dict[str, Any]:
         request = self.context["request"]
         site = Site.find_for_request(request)
         site_setting = SiteSetting.for_site(site)
         return SiteSettingSerializer(site_setting).data
 
-    def get_domain(self, _page):
+    def get_domain(self, _page: dict[str, Any]) -> str:
         request = self.context["request"]
         site = Site.find_for_request(request)
-        return site.hostname
+        hostname: str = site.hostname
+        return hostname
 
 
-class SeoSerializer(serializers.ModelSerializer):
+class SeoSerializer(serializers.ModelSerializer[BasePage]):
     seo_og_image = serializers.SerializerMethodField()
     seo_twitter_image = serializers.SerializerMethodField()
 
@@ -45,7 +48,7 @@ class SeoSerializer(serializers.ModelSerializer):
             "seo_canonical_link",
         ]
 
-    def get_seo_og_image(self, page):
+    def get_seo_og_image(self, page: BasePage) -> str | None:
         root_url = page.get_site().root_url
         image = page.seo_og_image
 
@@ -54,7 +57,7 @@ class SeoSerializer(serializers.ModelSerializer):
 
         return f"{root_url}{image}"
 
-    def get_seo_twitter_image(self, page):
+    def get_seo_twitter_image(self, page: BasePage) -> str | None:
         root_url = page.get_site().root_url
         image = page.seo_twitter_image
 

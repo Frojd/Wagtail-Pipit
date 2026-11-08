@@ -6,13 +6,13 @@ from ..factories.base_page import BasePageFactory
 
 
 class SeoMixinTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.site = wagtail_factories.SiteFactory()
         self.factory = RequestFactory(
             SERVER_NAME=f"{self.site.hostname}:{self.site.port}"
         )
 
-    def test_common_fields(self):
+    def test_common_fields(self) -> None:
         self.page = BasePageFactory.create(
             title="Start | Test site",
             seo_title="My start",
@@ -38,7 +38,7 @@ class SeoMixinTest(WagtailPageTests):
             {"index": True, "follow": True, "value": "index,follow"},
         )
 
-    def test_make_sure_canonical_link_are_used(self):
+    def test_make_sure_canonical_link_are_used(self) -> None:
         self.page = BasePageFactory.create(
             canonical_link="https://test.test",
         )

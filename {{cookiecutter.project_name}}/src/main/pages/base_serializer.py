@@ -1,3 +1,5 @@
+from typing import Any
+
 from rest_framework import serializers
 from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
 
@@ -8,7 +10,7 @@ from ..serializers import SeoSerializer
 from . import BasePage
 
 
-class BasePageSerializer(serializers.ModelSerializer):
+class BasePageSerializer(serializers.ModelSerializer[BasePage]):
     serializer_field_mapping = (
         serializers.ModelSerializer.serializer_field_mapping.copy()
     )
@@ -29,14 +31,14 @@ class BasePageSerializer(serializers.ModelSerializer):
             "wagtail_userbar",
         ]
 
-    def get_seo(self, page):
+    def get_seo(self, page: BasePage) -> dict[str, Any]:
         return SeoSerializer(page).data
 
-    def get_site_setting(self, page):
+    def get_site_setting(self, page: BasePage) -> dict[str, Any]:
         site_setting = SiteSetting.for_site(page.get_site())
         return SiteSettingSerializer(site_setting).data
 
-    def get_wagtail_userbar(self, page):
+    def get_wagtail_userbar(self, page: BasePage) -> dict[str, str] | None:
         request = self.context.get("request", None)
         if not request:
             return None

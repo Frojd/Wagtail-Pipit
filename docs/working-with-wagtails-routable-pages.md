@@ -10,6 +10,9 @@ We won't go into detail on how routable pages work since the [Wagtail documentat
 1. Declare a model that adds RoutablePageMixin and extends from our BasePage model. We do this by generating a new page `python manage.py new_page --name=ProductList` and then eidting it so it includes the `RoutablePageMixin`.
 
 ```python
+from typing import Any
+
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from rest_framework.request import Request
 from rest_framework.response import Response
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -28,10 +31,12 @@ class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
 class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
 
     @route(r'^$')
-    def index_route(self, request, *args, **kwargs):
+    def index_route(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         data = self.get_component_data({"request": request})
         # Decide response depending if called through api or wagtail routing
-        response_cls = Response if isinstance(request, Request) else JsonResponse
+        response_cls: type[Response | JsonResponse] = (
+            Response if isinstance(request, Request) else JsonResponse
+        )
         return response_cls(data)
 ```
 
@@ -53,7 +58,9 @@ class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
     ...
 
     @route(r'^products/(?P<slug>.+)/$')
-    def product_detail(self, request, slug=None, *args, **kwargs):
+    def product_detail(
+        self, request: HttpRequest, slug: str | None = None, *args: Any, **kwargs: Any
+    ) -> HttpResponse:
         product = get_object_or_404(Product, slug=slug)
 
         context = {"request": request, "product": product}
@@ -64,7 +71,9 @@ class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
         )
 
         # Decide response depending if called through api or wagtail routing
-        response_cls = Response if isinstance(request, Request) else JsonResponse
+        response_cls: type[Response | JsonResponse] = (
+            Response if isinstance(request, Request) else JsonResponse
+        )
         return response_cls(data)
 ```
 
@@ -85,7 +94,7 @@ class ProductListDetailSerializer(ProductListPageSerializer):
             "product",
         ]
 
-    def get_product(self, _page):
+    def get_product(self, _page: ProductListPage) -> dict[str, Any]:
         product = self.context.get("product")
         return ProductSerializer(product).data
 ```
@@ -97,8 +106,10 @@ class ProductListDetailSerializer(ProductListPageSerializer):
 
 ```python
 # main/pages/productlist.py
+from typing import Any
+
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
-from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.response import Response
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -110,13 +121,17 @@ from .base import BasePage
 
 class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
     @route(r'^$')
-    def index_route(self, request, *args, **kwargs):
+    def index_route(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         data = self.get_component_data({"request": request})
-        response_cls = Response if isinstance(request, Request) else JsonResponse
+        response_cls: type[Response | JsonResponse] = (
+            Response if isinstance(request, Request) else JsonResponse
+        )
         return response_cls(data)
 
     @route(r'^products/(?P<slug>.+)/$')
-    def product_detail(self, request, slug=None, *args, **kwargs):
+    def product_detail(
+        self, request: HttpRequest, slug: str | None = None, *args: Any, **kwargs: Any
+    ) -> HttpResponse:
         product = get_object_or_404(Product, slug=slug)
 
         data = self.get_component_data(
@@ -125,16 +140,22 @@ class ProductListPage(HeadlessPreviewMixin, RoutablePageMixin, BasePage):
             serializer_cls="main.pages.ProductListDetailSerializer",
         )
 
-        response_cls = Response if isinstance(request, Request) else JsonResponse
+        response_cls: type[Response | JsonResponse] = (
+            Response if isinstance(request, Request) else JsonResponse
+        )
         return response_cls(data)
 ```
 
 
 ```python
 # main/pages/product_list_serializer.py
-from .base_serializer import BasePageSerializer
-from . import ProductListPage
+from typing import Any
+
+from rest_framework import serializers
+
 from example_app.serializer import ProductSerializer
+from . import ProductListPage
+from .base_serializer import BasePageSerializer
 
 
 class ProductListPageSerializer(BasePageSerializer):
@@ -152,7 +173,7 @@ class ProductListDetailSerializer(ProductListPageSerializer):
             "product",
         ]
 
-    def get_product(self, _page):
+    def get_product(self, _page: ProductListPage) -> dict[str, Any]:
         product = self.context["product"]
         return ProductSerializer(product).data
 ```

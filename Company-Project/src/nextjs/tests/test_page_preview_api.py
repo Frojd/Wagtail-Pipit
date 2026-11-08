@@ -7,20 +7,20 @@ from main.factories.home_page import HomePageFactory
 
 
 class PagePreviewApiTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.site = Site.objects.first()
 
         self.root_page = HomePageFactory.create(title="Start", parent=None)
         self.site.root_page = self.root_page
         self.site.save()
 
-    def test_missing_args_returns_400(self):
+    def test_missing_args_returns_400(self) -> None:
         response = self.client.get(
             reverse("nextjs:page_preview:listing"),
         )
         self.assertEqual(response.status_code, 400)
 
-    def test_preview_retrieval(self):
+    def test_preview_retrieval(self) -> None:
         sub_page = HomePageFactory.create(title="Child page", parent=self.root_page)
         preview = sub_page.create_page_preview()
         content_type = ContentType.objects.get_for_model(sub_page.__class__)

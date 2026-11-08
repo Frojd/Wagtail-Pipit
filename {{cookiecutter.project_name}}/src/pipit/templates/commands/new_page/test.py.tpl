@@ -6,15 +6,15 @@ from ..pages import {{ name }}PageSerializer
 
 
 class {{ name }}PageTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.root_page = BasePageFactory.create(title="Start", parent=None)
         SiteFactory.create(root_page=self.root_page)
 
-    def test_get_serializer_class(self):
+    def test_get_serializer_class(self) -> None:
         page = {{ name }}PageFactory.create(title="{{ name }}", parent=self.root_page)
         self.assertEqual(page.get_serializer_class(), {{ name }}PageSerializer)
 
-    def test_json_representation(self):
+    def test_json_representation(self) -> None:
         page = {{ name }}PageFactory.create(title="{{ name }}", parent=self.root_page)
 
         data = page.get_component_data({})

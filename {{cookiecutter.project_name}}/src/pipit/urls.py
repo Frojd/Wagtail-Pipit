@@ -1,7 +1,10 @@
+from typing import NoReturn
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpRequest, JsonResponse
 from django.urls import URLPattern, URLResolver, include, path, re_path
 from django.views import defaults as default_views
 from wagtail import urls as wagtail_urls
@@ -44,16 +47,14 @@ if settings.DEBUG:
 
 
 @staff_member_required
-def trigger_error(_request):
+def trigger_error(_request: HttpRequest) -> NoReturn:
     """
     Sentry debug endpoint - triggers a test error.
     """
-    division_by_zero = 1 / 0  # NOQA: F841
+    raise ZeroDivisionError("Sentry debug error")
 
 
-def health_check(request):
-    from django.http import JsonResponse
-
+def health_check(request: HttpRequest) -> JsonResponse:
     return JsonResponse({"status": "Its alive"})
 
 

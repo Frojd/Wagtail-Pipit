@@ -8,15 +8,14 @@
 - Add a extended version of the VerifyUserPermissionsMiddleware that comes with `wagtail-2fa`, it should look as follows:
 
 ```python
-import json
-
-from django.http.response import HttpResponseRedirect, JsonResponse
+from django.http import HttpRequest
+from django.http.response import HttpResponseBase, HttpResponseRedirect, JsonResponse
 from wagtail_2fa.middleware import VerifyUserPermissionsMiddleware
 
 
 class NextVerifyUserPermissionsMiddleware(VerifyUserPermissionsMiddleware):
-    def process_request(self, request):
-        result = super().process_request(request)
+    def process_request(self, request: HttpRequest) -> HttpResponseBase | None:
+        result: HttpResponseBase | None = super().process_request(request)
 
         if (
             result

@@ -4,7 +4,7 @@ from wagtail.models import BaseViewRestriction, PageViewRestriction
 from wagtail_factories import PageFactory
 
 
-class PageViewRestrictionFactory(DjangoModelFactory):
+class PageViewRestrictionFactory(DjangoModelFactory[PageViewRestriction]):
     page = factory.SubFactory(PageFactory)
     restriction_type = BaseViewRestriction.PASSWORD
 

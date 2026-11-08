@@ -5,7 +5,7 @@ from django.test import TestCase
 
 
 class NoPendingMigrationsTest(TestCase):
-    def test_migrations(self):
+    def test_migrations(self) -> None:
         output = StringIO()
         call_command("makemigrations", interactive=False, dry_run=True, stdout=output)
         self.assertIn("No changes detected", output.getvalue())

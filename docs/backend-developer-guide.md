@@ -181,7 +181,7 @@ Name the page "My about page" and in the field "Company Name" write "Acme Inc", 
 Modify `main/tests/test_about_page.py` and include this test case.
 
 ```python
-def test_that_company_name_are_retuned(self):
+def test_that_company_name_are_retuned(self) -> None:
     page = AboutPageFactory.create(title="About", company_name="Acme", parent=self.root_page)
 
     data = page.get_component_data({})
@@ -325,3 +325,5 @@ Options:
 #### Put your page models in `main/pages`
 Although a Wagtail page is also a model, we have taken the decision to separate models and page models, because of this they live in their own directory.
 
+#### Type checking
+mypy runs in strict mode in CI (`make typecheck` runs it locally), so every function and method needs full annotations, including tests (`-> None`). Wagtail, `wagtail_factories` and `wagtail_headless_preview` ship no type information, so their classes and decorators are treated as `Any`. This is why `disallow_subclassing_any` and `disallow_untyped_decorators` are turned off in `src/mypy.ini`.

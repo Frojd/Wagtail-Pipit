@@ -6,14 +6,14 @@ from main.factories.base_page import BasePageFactory
 
 
 class PageRelativeUrlsTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.site = Site.objects.first()
 
         self.root_page = BasePageFactory.create(title="Start", parent=None)
         self.site.root_page = self.root_page
         self.site.save()
 
-    def test_list_generation(self):
+    def test_list_generation(self) -> None:
         BasePageFactory.create(title="Child page", parent=self.root_page)
 
         url = reverse("nextjs:page_relative_urls:listing")
@@ -25,7 +25,7 @@ class PageRelativeUrlsTest(WagtailPageTests):
         self.assertEqual(len(data["items"]), 2)
         self.assertEqual(data["items"][0]["relative_url"], "/")
 
-    def test_list_is_not_paginated(self):
+    def test_list_is_not_paginated(self) -> None:
         for i in range(25):
             BasePageFactory.create(title=f"Page {i}", parent=self.root_page)
 

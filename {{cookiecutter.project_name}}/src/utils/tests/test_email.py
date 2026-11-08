@@ -5,7 +5,7 @@ from utils.email import send_templated_email
 
 
 class TestSendTemplatedEmail(TestCase):
-    def test_base_page(self):
+    def test_base_page(self) -> None:
         self.assertEqual(len(mail.outbox), 0)
 
         send_templated_email(

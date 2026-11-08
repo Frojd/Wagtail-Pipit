@@ -1,8 +1,8 @@
 from collections.abc import Callable
-from typing import Any
+from typing import Any, Protocol
 
 from django.db import models
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.http.request import HttpRequest
 from django.utils.functional import cached_property
 from django.utils.module_loading import import_string
@@ -29,9 +29,9 @@ from wagtail_meta_preview.utils import FacebookSettings, GoogleSettings, Twitter
 
 
 class RedirectUpMixin:
-    get_parent: Callable
+    get_parent: Callable[[], Page]
 
-    def serve(self, request, *args, **kwargs):
+    def serve(self, request: HttpRequest, *args: Any, **kwargs: Any) -> JsonResponse:
         parent = self.get_parent()
         return JsonResponse(
             {
@@ -43,8 +43,14 @@ class RedirectUpMixin:
         )
 
 
+class MetaPreviewSettings(Protocol):
+    def get_title(self) -> str: ...
+    def get_description(self) -> str: ...
+    def get_image(self) -> str: ...
+
+
 class SeoMixin(Page):
-    og_title: models.CharField = models.CharField(
+    og_title = models.CharField(
         max_length=40,
         blank=True,
         null=True,
@@ -52,7 +58,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to seo title if empty"),
     )
 
-    og_description: models.CharField = models.CharField(
+    og_description = models.CharField(
         max_length=300,
         blank=True,
         null=True,
@@ -73,7 +79,7 @@ class SeoMixin(Page):
         related_name="+",
     )
 
-    twitter_title: models.CharField = models.CharField(
+    twitter_title = models.CharField(
         max_length=40,
         blank=True,
         null=True,
@@ -81,7 +87,7 @@ class SeoMixin(Page):
         help_text=_("Falls back to facebook title if empty"),
     )
 
-    twitter_description: models.CharField = models.CharField(
+    twitter_description = models.CharField(
         max_length=300,
         blank=True,
         null=True,
@@ -99,19 +105,19 @@ class SeoMixin(Page):
         help_text=_("Falls back to facebook image if empty"),
     )
 
-    robot_noindex: models.BooleanField = models.BooleanField(
+    robot_noindex = models.BooleanField(
         default=False,
         verbose_name=_("No index"),
         help_text=_("Check to add noindex to robots"),
     )
 
-    robot_nofollow: models.BooleanField = models.BooleanField(
+    robot_nofollow = models.BooleanField(
         default=False,
         verbose_name=_("No follow"),
         help_text=_("Check to add nofollow to robots"),
     )
 
-    canonical_link: models.URLField = models.URLField(
+    canonical_link = models.URLField(
         blank=True, null=True, verbose_name=_("Canonical link")
     )
 
@@ -151,11 +157,12 @@ class SeoMixin(Page):
     ]
 
     @cached_property
-    def google_setting(self):
-        return GoogleSettings(self)
+    def google_setting(self) -> MetaPreviewSettings:
+        meta_settings: MetaPreviewSettings = GoogleSettings(self)
+        return meta_settings
 
     @cached_property
-    def seo_html_title(self):
+    def seo_html_title(self) -> str:
         title = self.google_setting.get_title()
         site = self.get_site()
         if not site.site_name:
@@ -163,59 +170,61 @@ class SeoMixin(Page):
         return f"{title} | {site.site_name}"
 
     @cached_property
-    def seo_meta_description(self):
+    def seo_meta_description(self) -> str:
         return self.google_setting.get_description()
 
     @cached_property
-    def seo_canonical_link(self):
+    def seo_canonical_link(self) -> str:
         return self.canonical_link or self.full_url
 
     @cached_property
-    def facebook_setting(self):
-        return FacebookSettings(self)
+    def facebook_setting(self) -> MetaPreviewSettings:
+        meta_settings: MetaPreviewSettings = FacebookSettings(self)
+        return meta_settings
 
     @cached_property
-    def seo_og_image(self):
+    def seo_og_image(self) -> str:
         return self.facebook_setting.get_image()
 
     @cached_property
-    def seo_og_title(self):
+    def seo_og_title(self) -> str:
         return self.facebook_setting.get_title()
 
     @cached_property
-    def seo_og_description(self):
+    def seo_og_description(self) -> str:
         return self.facebook_setting.get_description()
 
     @cached_property
-    def seo_og_url(self):
+    def seo_og_url(self) -> str:
         return self.seo_canonical_link
 
     @cached_property
-    def seo_og_type(self):
+    def seo_og_type(self) -> None:
         return None
 
     @cached_property
-    def twitter_setting(self):
-        return TwitterSettings(self)
+    def twitter_setting(self) -> MetaPreviewSettings:
+        meta_settings: MetaPreviewSettings = TwitterSettings(self)
+        return meta_settings
 
     @cached_property
-    def seo_twitter_title(self):
+    def seo_twitter_title(self) -> str:
         return self.twitter_setting.get_title()
 
     @cached_property
-    def seo_twitter_description(self):
+    def seo_twitter_description(self) -> str:
         return self.twitter_setting.get_description()
 
     @cached_property
-    def seo_twitter_url(self):
+    def seo_twitter_url(self) -> str:
         return self.seo_canonical_link
 
     @cached_property
-    def seo_twitter_image(self):
+    def seo_twitter_image(self) -> str:
         return self.twitter_setting.get_image()
 
     @cached_property
-    def seo_meta_robots(self):
+    def seo_meta_robots(self) -> dict[str, bool | str]:
         index = "noindex" if self.robot_noindex else "index"
         follow = "nofollow" if self.robot_nofollow else "follow"
         meta_value = f"{index},{follow}"
@@ -287,19 +296,21 @@ class TimestampMixin(models.Model):
 class ReactViewMixin:
     request: HttpRequest
     component_name: str
-    serializer_class: str | type[Serializer]
+    serializer_class: str | type[Serializer[Any]]
 
-    def render_to_response(self, context, **response_kwargs):
+    def render_to_response(
+        self, context: dict[str, Any], **response_kwargs: Any
+    ) -> HttpResponse:
         props = self.get_component_data({"request": self.request})
         return JsonResponse(props)
 
-    def get_component_data(self, context: dict) -> dict[str, Any]:
+    def get_component_data(self, context: dict[str, Any]) -> dict[str, Any]:
         return {
             "component_name": self.component_name,
             "component_props": self.to_dict(context),
         }
 
-    def to_dict(self, context: dict[Any, Any]) -> dict[str, Any]:
+    def to_dict(self, context: dict[str, Any]) -> dict[str, Any]:
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(
             self.get_component_props(),
@@ -308,8 +319,8 @@ class ReactViewMixin:
 
         return serializer.data
 
-    def get_serializer_class(self) -> type[Serializer]:
-        serializer_class: type[Serializer]
+    def get_serializer_class(self) -> type[Serializer[Any]]:
+        serializer_class: type[Serializer[Any]]
         if isinstance(self.serializer_class, str):
             serializer_class = import_string(self.serializer_class)
         else:

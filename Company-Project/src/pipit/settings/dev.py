@@ -2,8 +2,10 @@
 Write local settings here, or override base settings
 """
 
-from pipit.settings.base import *  # NOQA
+from django.http import HttpRequest
 
+from pipit.settings.base import *
+from utils.env import get_env, get_env_bool
 
 VS_CODE_REMOTE_DEBUG = get_env_bool("VS_CODE_REMOTE_DEBUG", default=False)
 DEBUG = True
@@ -31,5 +33,5 @@ if get_env_bool("DEBUG_TOOLBAR", default=False):
 
 
 # Allow django-debug-bar under docker
-def show_toolbar(request):
+def show_toolbar(request: HttpRequest) -> bool:
     return True

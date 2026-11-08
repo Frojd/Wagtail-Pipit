@@ -11,7 +11,7 @@ from nextjs.factories import PageViewRestrictionFactory
 
 
 class CsrfTokenApiTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.client = Client(enforce_csrf_checks=True)
 
         site = Site.objects.first()
@@ -29,14 +29,14 @@ class CsrfTokenApiTest(WagtailPageTests):
             args=(self.restriction.pk, self.sub_page.pk),
         )
 
-    def test_returns_token_and_sets_cookie(self):
+    def test_returns_token_and_sets_cookie(self) -> None:
         response = self.client.get(reverse("nextjs:csrf_token:listing"))
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(settings.CSRF_COOKIE_NAME, response.cookies)
         self.assertTrue(response.json()["csrf_token"])
 
-    def test_token_passes_csrf_on_password_post(self):
+    def test_token_passes_csrf_on_password_post(self) -> None:
         token = self.client.get(reverse("nextjs:csrf_token:listing")).json()[
             "csrf_token"
         ]
@@ -49,7 +49,7 @@ class CsrfTokenApiTest(WagtailPageTests):
         )
         self.assertEqual(response.status_code, 204)
 
-    def test_password_post_without_token_is_forbidden(self):
+    def test_password_post_without_token_is_forbidden(self) -> None:
         self.client.get(reverse("nextjs:csrf_token:listing"))
 
         response = self.client.post(

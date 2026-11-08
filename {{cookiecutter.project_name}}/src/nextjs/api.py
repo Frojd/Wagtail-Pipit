@@ -1,12 +1,14 @@
-from typing import cast
+from typing import Any, cast
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.http import Http404, HttpResponseRedirect
+from django.db.models import QuerySet
+from django.http import Http404, HttpRequest, HttpResponseRedirect
 from django.http.request import split_domain_port
+from django.http.response import HttpResponseBase
 from django.middleware import csrf as csrf_middleware
 from django.shortcuts import get_object_or_404
-from django.urls import path
+from django.urls import URLPattern, path
 from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.utils.module_loading import import_string
@@ -14,6 +16,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError
+from rest_framework.request import Request
 from rest_framework.response import Response
 from wagtail.api.v2.router import WagtailAPIRouter
 from wagtail.api.v2.views import BaseAPIViewSet, PagesAPIViewSet
@@ -28,14 +31,14 @@ from wagtail_headless_preview.models import PagePreview
 api_router = WagtailAPIRouter("nextjs")
 
 
-def get_external_site_from_request(request) -> Site:
-    host = request.GET.get("host")
+def get_external_site_from_request(request: HttpRequest) -> Site:
+    host = request.GET.get("host", "")
     hostname, port = split_domain_port(host)
     return get_site_for_hostname(hostname, port or 443)
 
 
-class PageRelativeUrlListSerializer(serializers.Serializer):
-    def to_representation(self, obj):
+class PageRelativeUrlListSerializer(serializers.Serializer[Page]):
+    def to_representation(self, obj: Page) -> dict[str, Any]:
         return {
             "title": obj.title,
             "relative_url": obj.get_url(None),
@@ -45,10 +48,12 @@ class PageRelativeUrlListSerializer(serializers.Serializer):
 class PageRelativeUrlListAPIViewSet(PagesAPIViewSet):
     """Return all pages and their relative url"""
 
-    def get_serializer(self, qs, many=True):
+    def get_serializer(
+        self, qs: QuerySet[Page], many: bool = True
+    ) -> PageRelativeUrlListSerializer:
         return PageRelativeUrlListSerializer(qs, many=many)
 
-    def listing_view(self, request):
+    def listing_view(self, request: Request) -> Response:
         queryset = self.get_queryset()
         self.check_query_parameters(queryset)
         queryset = self.filter_queryset(queryset)
@@ -56,7 +61,7 @@ class PageRelativeUrlListAPIViewSet(PagesAPIViewSet):
         return Response({"meta": {"total_count": len(items)}, "items": items})
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("", cls.as_view({"get": "listing_view"}), name="listing"),
         ]
@@ -70,29 +75,30 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
         ["content_type", "token"]
     )
 
-    def listing_view(self, request):
+    def listing_view(self, request: Request) -> HttpResponseBase:
         page = self.get_object()
         setattr(request, "is_preview", True)  # noqa: B010
 
         in_preview_panel = request.GET.get("in_preview_panel", None) == "true"
         setattr(request, "in_preview_panel", in_preview_panel)  # noqa: B010
 
-        return page.serve(request)
+        response: HttpResponseBase = page.serve(request)
+        return response
 
-    def get_object(self):
+    def get_object(self) -> Page:
         content_type = self.request.GET.get("content_type")
         if not content_type:
             raise ValidationError({"content_type": "Missing value"})
 
         app_label, model = content_type.split(".")
-        content_type = ContentType.objects.get(app_label=app_label, model=model)
+        content_type_obj = ContentType.objects.get(app_label=app_label, model=model)
 
         token = self.request.GET.get("token")
         if not token:
             raise ValidationError({"token": "Missing value"})
 
         page_preview = PagePreview.objects.get(
-            content_type=content_type,
+            content_type=content_type_obj,
             token=token,
         )
         page = page_preview.as_page()
@@ -103,7 +109,7 @@ class PagePreviewAPIViewSet(BaseAPIViewSet):
         return page
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("", cls.as_view({"get": "listing_view"}), name="listing"),
         ]
@@ -117,7 +123,7 @@ class ValidatePreviewTokenAPIViewSet(BaseAPIViewSet):
         ["content_type", "token"]
     )
 
-    def listing_view(self, request):
+    def listing_view(self, request: Request) -> Response:
         content_type = request.GET.get("content_type")
         if not content_type:
             raise ValidationError({"content_type": "Missing value"})
@@ -137,7 +143,7 @@ class ValidatePreviewTokenAPIViewSet(BaseAPIViewSet):
         return Response({"valid": True}, status=status.HTTP_200_OK)
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("", cls.as_view({"get": "listing_view"}), name="listing"),
         ]
@@ -148,11 +154,11 @@ api_router.register_endpoint("validate_preview_token", ValidatePreviewTokenAPIVi
 
 class CsrfTokenAPIViewSet(BaseAPIViewSet):
     @method_decorator(ensure_csrf_cookie)
-    def listing_view(self, request):
+    def listing_view(self, request: Request) -> Response:
         return Response({"csrf_token": csrf_middleware.get_token(request)})
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("", cls.as_view({"get": "listing_view"}), name="listing"),
         ]
@@ -167,13 +173,21 @@ class PasswordProtectedPageViewSet(BaseAPIViewSet):
     )
 
     @method_decorator(csrf_protect)
-    def detail_view(self, request, page_view_restriction_id=None, page_id=None):
+    def detail_view(
+        self,
+        request: Request,
+        page_view_restriction_id: int | None = None,
+        page_id: int | None = None,
+    ) -> Response:
         restriction = get_object_or_404(
             PageViewRestriction, id=page_view_restriction_id
         )
         page = get_object_or_404(Page.objects.live(), id=page_id).specific
         if not page.get_view_restrictions().filter(id=restriction.id).exists():
             raise Http404
+
+        if not isinstance(request.data, dict):
+            raise ValidationError({"password": "Missing value"})
 
         post = request.data.copy()
         post["return_url"] = "/required_for_validation"
@@ -187,7 +201,7 @@ class PasswordProtectedPageViewSet(BaseAPIViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path(
                 "<int:page_view_restriction_id>/<int:page_id>/",
@@ -203,11 +217,12 @@ api_router.register_endpoint("password_protected_page", PasswordProtectedPageVie
 class PageByPathAPIViewSet(BaseAPIViewSet):
     known_query_parameters = BaseAPIViewSet.known_query_parameters.union(["html_path"])
 
-    def listing_view(self, request):
+    def listing_view(self, request: Request) -> HttpResponseBase:
         page, args, kwargs = self.get_object()
 
         if request.GET.get("host", None):
-            request._wagtail_site = get_external_site_from_request(request)
+            site = get_external_site_from_request(request)
+            setattr(request, "_wagtail_site", site)  # noqa: B010
 
         for restriction in page.get_view_restrictions():
             if not restriction.accept_request(request):
@@ -237,9 +252,10 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
                         }
                     )
 
-        return page.serve(request, *args, **kwargs)
+        response: HttpResponseBase = page.serve(request, *args, **kwargs)
+        return response
 
-    def get_object(self):
+    def get_object(self) -> tuple[Page, tuple[Any, ...], dict[str, Any]]:
         path = self.request.GET.get("html_path", None)
         if path is None:
             raise ValidationError({"html_path": "Missing value"})
@@ -248,7 +264,8 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
             path = "/" + path
 
         if self.request.GET.get("host", None):
-            self.request._wagtail_site = get_external_site_from_request(self.request)
+            site = get_external_site_from_request(self.request)
+            setattr(self.request, "_wagtail_site", site)  # noqa: B010
 
         site = Site.find_for_request(self.request)
         if not site:
@@ -277,7 +294,7 @@ class PageByPathAPIViewSet(BaseAPIViewSet):
         return page, args, kwargs
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("", cls.as_view({"get": "listing_view"}), name="listing"),
         ]
@@ -287,11 +304,11 @@ api_router.register_endpoint("page_by_path", PageByPathAPIViewSet)
 
 
 class ExternalViewDataAPIViewSet(BaseAPIViewSet):
-    view_register: dict[str, View | str] = {
+    view_register: dict[str, type[View] | str] = {
         "404": "main.views.page_not_found.PageNotFoundView",
     }
 
-    def detail_view(self, request, pk):
+    def detail_view(self, request: Request, pk: str) -> HttpResponseBase:
         try:
             view_resource = self.view_register[pk]
         except KeyError:
@@ -300,12 +317,13 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
         if isinstance(view_resource, str):
             view_resource = import_string(view_resource)
 
-        view_cls: View = cast(View, view_resource)
+        view_cls = cast(type[View], view_resource)
 
         view = view_cls.as_view()
 
         if request.GET.get("host", None):
-            request._wagtail_site = get_external_site_from_request(request)
+            site = get_external_site_from_request(request)
+            setattr(request, "_wagtail_site", site)  # noqa: B010
 
         resp = view(request)
 
@@ -324,7 +342,7 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
         return resp
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("<str:pk>/", cls.as_view({"get": "detail_view"}), name="detail"),
         ]
@@ -333,7 +351,7 @@ class ExternalViewDataAPIViewSet(BaseAPIViewSet):
 api_router.register_endpoint("external_view_data", ExternalViewDataAPIViewSet)
 
 
-class RedirectSerializer(serializers.ModelSerializer):
+class RedirectSerializer(serializers.ModelSerializer[Redirect]):
     destination = serializers.CharField(source="link")
 
     class Meta:
@@ -344,12 +362,12 @@ class RedirectSerializer(serializers.ModelSerializer):
 class RedirectByPathAPIViewSet(BaseAPIViewSet):
     known_query_parameters = BaseAPIViewSet.known_query_parameters.union(["html_path"])
 
-    def detail_view(self, request):
+    def detail_view(self, request: Request) -> Response:
         redirect = self.get_object()
         serializer = self.get_serializer(redirect, many=False)
         return Response(serializer.data)
 
-    def get_object(self):
+    def get_object(self) -> Redirect:
         path = self.request.GET.get("html_path", None)
         if path is None:
             raise ValidationError({"html_path": "Missing value"})
@@ -357,7 +375,8 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
         request = self.request
 
         if request.GET.get("host", None):
-            request._wagtail_site = get_external_site_from_request(request)
+            site = get_external_site_from_request(request)
+            setattr(request, "_wagtail_site", site)  # noqa: B010
 
         if not path.startswith("/"):
             path = "/" + path
@@ -369,11 +388,11 @@ class RedirectByPathAPIViewSet(BaseAPIViewSet):
             raise Http404
         return redirect
 
-    def get_serializer(self, qs, many=True):
+    def get_serializer(self, qs: Redirect, many: bool = True) -> RedirectSerializer:
         return RedirectSerializer(qs, many=many)
 
     @classmethod
-    def get_urlpatterns(cls):
+    def get_urlpatterns(cls) -> list[URLPattern]:
         return [
             path("", cls.as_view({"get": "detail_view"}), name="detail"),
         ]

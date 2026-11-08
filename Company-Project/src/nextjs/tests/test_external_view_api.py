@@ -7,14 +7,14 @@ from main.factories.base_page import BasePageFactory
 
 
 class ExternalViewApiTest(WagtailPageTests):
-    def setUp(self):
+    def setUp(self) -> None:
         self.site = Site.objects.first()
 
         self.root_page = BasePageFactory.create(title="Start", parent=None)
         self.site.root_page = self.root_page
         self.site.save()
 
-    def test_retrieval(self):
+    def test_retrieval(self) -> None:
         BasePageFactory.create(title="Child page", parent=self.root_page)
 
         url = reverse("nextjs:external_view_data:detail", kwargs={"pk": "404"})
@@ -25,7 +25,7 @@ class ExternalViewApiTest(WagtailPageTests):
         response_data = response.json()
         self.assertEqual(response_data["component_name"], "NotFoundPage")
 
-    def test_request_host_are_respected(self):
+    def test_request_host_are_respected(self) -> None:
         site2 = SiteFactory.create(hostname="example.test")
 
         BasePageFactory.create(title="Child page", parent=self.root_page)
