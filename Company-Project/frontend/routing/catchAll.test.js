@@ -1,11 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
-import { getPage, getRedirect, WagtailApiResponseError } from '../api/wagtail';
-import CatchAllPage from './catchAll';
+import {
+    getPage,
+    getPagePreview,
+    getRedirect,
+    WagtailApiResponseError,
+} from '../api/wagtail';
+import CatchAllPage, { generateMetadata } from './catchAll';
+
+let mockDraftModeEnabled = false;
 
 jest.mock('next/headers', () => ({
     headers: async () => new Headers({ host: 'example.com', cookie: '' }),
-    draftMode: async () => ({ isEnabled: false }),
+    draftMode: async () => ({ isEnabled: mockDraftModeEnabled }),
 }));
 
 jest.mock('next/navigation', () => ({
@@ -112,5 +119,54 @@ describe('CatchAllPage', () => {
         api.getPage.mockRejectedValue(new api.WagtailApiResponseError(500));
 
         await expect(ProdCatchAllPage(props)).rejects.toThrow('500');
+    });
+});
+
+describe('generateMetadata', () => {
+    afterEach(() => {
+        jest.resetAllMocks();
+        mockDraftModeEnabled = false;
+    });
+
+    const pageWithSeo = (title) => ({
+        json: {
+            componentName: 'HomePage',
+            componentProps: {
+                seo: { seoHtmlTitle: title, seoMetaDescription: 'Desc' },
+            },
+        },
+    });
+
+    it('Builds metadata from the live page', async () => {
+        getPage.mockResolvedValue(pageWithSeo('Live title'));
+
+        const metadata = await generateMetadata(props);
+
+        expect(metadata.title).toBe('Live title');
+        expect(getPagePreview).not.toHaveBeenCalled();
+    });
+
+    it('Builds metadata from the preview in draft mode', async () => {
+        mockDraftModeEnabled = true;
+        getPagePreview.mockResolvedValue(pageWithSeo('Draft title'));
+
+        const metadata = await generateMetadata({
+            params: Promise.resolve({}),
+            searchParams: Promise.resolve({
+                contentType: 'main.homepage',
+                token: 'abc',
+                inPreviewPanel: 'true',
+            }),
+        });
+
+        expect(metadata.title).toBe('Draft title');
+        expect(metadata.description).toBe('Desc');
+        expect(getPagePreview).toHaveBeenCalledWith(
+            'main.homepage',
+            'abc',
+            { in_preview_panel: true },
+            expect.anything()
+        );
+        expect(getPage).not.toHaveBeenCalled();
     });
 });

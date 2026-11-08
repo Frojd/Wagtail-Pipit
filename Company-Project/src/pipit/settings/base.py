@@ -205,7 +205,8 @@ ADMIN_URL = "wt/admin/"
 WAGTAIL_HEADLESS_PREVIEW = {
     "CLIENT_URLS": {
         "default": "/api/draft/",
-    }
+    },
+    "REDIRECT_ON_PREVIEW": True,
 }
 
 # Sentry

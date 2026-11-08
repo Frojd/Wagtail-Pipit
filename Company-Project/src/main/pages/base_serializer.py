@@ -43,10 +43,6 @@ class BasePageSerializer(serializers.ModelSerializer[BasePage]):
         if not request:
             return None
 
-        in_preview_panel = getattr(request, "in_preview_panel", False)
-        if in_preview_panel:
-            return None
-
         if not hasattr(request, "user"):
             return None
 

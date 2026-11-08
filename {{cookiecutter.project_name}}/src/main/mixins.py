@@ -20,6 +20,7 @@ from wagtail.admin.panels import (
 from wagtail.admin.widgets.slug import SlugInput
 from wagtail.models import Page
 from wagtail.utils.decorators import cached_classmethod
+from wagtail_headless_preview.models import HeadlessPreviewMixin
 from wagtail_meta_preview.panels import (
     FacebookFieldPreviewPanel,
     GoogleFieldPreviewPanel,
@@ -41,6 +42,14 @@ class RedirectUpMixin:
                 }
             }
         )
+
+
+class HeadlessPreviewPanelMixin(HeadlessPreviewMixin):
+    def get_preview_url(self, request: HttpRequest, token: str) -> str:
+        url: str = super().get_preview_url(request, token)
+        if getattr(request, "in_preview_panel", False):
+            url += "&in_preview_panel=true"
+        return url
 
 
 class MetaPreviewSettings(Protocol):

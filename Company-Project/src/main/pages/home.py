@@ -1,11 +1,11 @@
 from django.utils.translation import gettext_lazy as _
 from wagtail.models import PageManager
-from wagtail_headless_preview.models import HeadlessPreviewMixin
 
+from ..mixins import HeadlessPreviewPanelMixin
 from .base import BasePage
 
 
-class HomePage(HeadlessPreviewMixin, BasePage):
+class HomePage(HeadlessPreviewPanelMixin, BasePage):
     extra_panels = BasePage.extra_panels
     serializer_class = "main.pages.HomePageSerializer"
 

@@ -2,12 +2,12 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import PageManager
-from wagtail_headless_preview.models import HeadlessPreviewMixin
 
+from ..mixins import HeadlessPreviewPanelMixin
 from .base import BasePage
 
 
-class ArticlePage(HeadlessPreviewMixin, BasePage):
+class ArticlePage(HeadlessPreviewPanelMixin, BasePage):
     rich_text = RichTextField(blank=True, null=True, verbose_name=_("Rich text"))
 
     content_panels = BasePage.content_panels + [FieldPanel("rich_text")]

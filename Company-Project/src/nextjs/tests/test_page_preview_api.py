@@ -36,3 +36,30 @@ class PagePreviewApiTest(WagtailPageTests):
             },
         )
         self.assertEqual(response.status_code, 200)
+
+    def get_preview_panel_userbar(self) -> object:
+        sub_page = HomePageFactory.create(title="Child page", parent=self.root_page)
+        preview = sub_page.create_page_preview()
+
+        response = self.client.get(
+            reverse("nextjs:page_preview:listing"),
+            {
+                "content_type": sub_page.get_content_type_str(),
+                "token": preview.token,
+                "in_preview_panel": "true",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        return response.json()["component_props"]["wagtail_userbar"]
+
+    def test_preview_panel_renders_content_checker_for_editors(self) -> None:
+        self.login()
+
+        userbar = self.get_preview_panel_userbar()
+
+        self.assertIsNotNone(userbar)
+        assert isinstance(userbar, dict)
+        self.assertIn("checker-axe-configuration", userbar["html"])
+
+    def test_preview_panel_has_no_userbar_for_anonymous(self) -> None:
+        self.assertIsNone(self.get_preview_panel_userbar())

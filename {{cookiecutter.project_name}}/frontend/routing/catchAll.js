@@ -148,8 +148,35 @@ async function loadPageData({ params, searchParams }) {
     );
 }
 
+const getCachedPreviewPageData = cache(
+    async (contentType, token, inPreviewPanel, cookie) =>
+        getPreviewPageData({
+            contentType,
+            token,
+            inPreviewPanel,
+            headers: { cookie },
+        })
+);
+
+async function loadRouteData(props) {
+    const { isEnabled: isDraftEnabled } = await draftMode();
+    const query = (await props.searchParams) ?? {};
+
+    if (isDraftEnabled && query.contentType && query.token) {
+        const headersList = await headers();
+        return await getCachedPreviewPageData(
+            query.contentType,
+            query.token,
+            query.inPreviewPanel === 'true',
+            headersList.get('cookie')
+        );
+    }
+
+    return await loadPageData(props);
+}
+
 export async function generateMetadata(props) {
-    const data = await loadPageData(props);
+    const data = await loadRouteData(props);
 
     if (data?.redirect) {
         return {};
@@ -210,28 +237,7 @@ export async function generateMetadata(props) {
 }
 
 export default async function CatchAllPage(props) {
-    const headersList = await headers();
-    const { isEnabled: isDraftEnabled } = await draftMode();
-    const allSearchParams = (await props.searchParams) ?? {};
-
-    let data = null;
-    if (
-        isDraftEnabled &&
-        allSearchParams.contentType &&
-        allSearchParams.token
-    ) {
-        const { contentType, token, inPreviewPanel } = allSearchParams;
-        data = await getPreviewPageData({
-            contentType,
-            token,
-            inPreviewPanel: inPreviewPanel === 'true',
-            headers: {
-                cookie: headersList.get('cookie'),
-            },
-        });
-    } else {
-        data = await loadPageData(props);
-    }
+    const data = await loadRouteData(props);
 
     if (data?.redirect) {
         const { destination, permanent } = data.redirect;

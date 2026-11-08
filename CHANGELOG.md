@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add a csrf_token api endpoint that postRequest calls automatically, so client side forms get a token without cookies forwarded during SSR (@marteinn)
 - Add app/global-error.js so client render errors in the app router reach Sentry (@marteinn)
 - Add commented nginx examples and a guide for serving non HTML paths such as feeds straight from Django (@marteinn)
+- Enable the Wagtail Checks panel in previews with page metadata, content metrics and accessibility checks, and render SEO meta tags on draft previews (@marteinn)
 
 ### Changed
 - Pin GitHub Actions runners to ubuntu-26.04 instead of ubuntu-latest (@marteinn)
