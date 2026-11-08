@@ -30,7 +30,7 @@ npm run new:container NewsPage
 ```
 
 - This will create the following page:
-    - `frontend/containers/WordCountPage`
+    - `frontend/containers/NewsPage`
 
 
 ## Creating a component
@@ -43,3 +43,13 @@ npm run new Button
 ```
 - This will create the following component:
     - `frontend/components/Button`
+
+## Options
+
+```sh
+npm run new Card Header                 # nested, creates frontend/components/Card/Header
+npm run new Button -- --folder stories  # creates frontend/stories/Button
+npm run new -- --help
+```
+
+The scaffolding cli lives in `frontend/cli/bin.mts` and runs as TypeScript directly on Node 24, the templates are in `frontend/cli/__Component` and `frontend/cli/__Container`.

@@ -53,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Report invalid preview tokens from the app router draft route to Sentry, as the pages router preview route does (@marteinn)
 
 ### Fixed
+- Fix npm run new crashing on missing fs-extra and commander, port the scaffolding cli to TypeScript run natively by Node 24 and typecheck it in CI (@marteinn)
 - Return all pages from page_relative_urls, SSG only pre-rendered the first 20 (@marteinn)
 - Format backend code with ruff and check formatting in lint, generated project CI failed on it (@marteinn)
 - Document that the db service runs emulated on Apple Silicon and correct the Node requirement in the getting started guide to v24 (@marteinn)

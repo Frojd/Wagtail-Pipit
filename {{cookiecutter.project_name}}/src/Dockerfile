@@ -32,7 +32,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS runner-image
 ARG ENVIRONMENT=prod
-RUN apt-get update && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
+RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install uv (for runtime package management if needed)

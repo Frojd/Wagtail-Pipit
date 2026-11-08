@@ -35,6 +35,10 @@ jobs:
         run: npm run lint
         working-directory: frontend
 
+      - name: Typecheck
+        run: npm run typecheck
+        working-directory: frontend
+
   lint-backend:
     runs-on: ubuntu-latest
     steps:
