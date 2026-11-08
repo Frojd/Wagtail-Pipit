@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   lint-frontend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
@@ -40,7 +40,7 @@ jobs:
         working-directory: frontend
 
   lint-backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
@@ -80,7 +80,7 @@ jobs:
           STATIC_PATH: /tmp/static
 
   test-frontend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
@@ -112,7 +112,7 @@ jobs:
           path: test-results/jest/
 
   test-backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     services:
       postgres:
         image: postgres:16-alpine
@@ -156,7 +156,7 @@ jobs:
           path: test-results/pytest/
 
   security-sca:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
@@ -171,7 +171,7 @@ jobs:
           format: "table"
 
   security-iac:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
@@ -187,7 +187,7 @@ jobs:
         run: uv run --project .github/tools --frozen --only-group zizmor zizmor --min-confidence medium .
 
   security-deps:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 

@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add commented nginx examples and a guide for serving non HTML paths such as feeds straight from Django (@marteinn)
 
 ### Changed
+- Pin GitHub Actions runners to ubuntu-26.04 instead of ubuntu-latest (@marteinn)
 - Improve the scaffolding cli with name validation and automatic container registration (@marteinn)
 - Enable strict mypy and add full type annotations to the backend, management commands, tests and new_page templates (@marteinn)
 - Use uvx cookiecutter 2.7.1 in the README install instructions (@marteinn)
