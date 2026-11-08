@@ -65,11 +65,6 @@ jobs:
           cd src
           uv run ruff format --check .
 
-      - name: Install geodjango dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libproj-dev gdal-bin
-
       - name: Run mypy
         run: |
           cd src
@@ -116,7 +111,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgis/postgis:16-3.5-alpine
+        image: postgres:16-alpine
         env:
           POSTGRES_USER: ci_user
           POSTGRES_DB: ci_test
@@ -142,11 +137,6 @@ jobs:
 
       - name: Install Python dependencies
         run: cd src && uv sync --frozen --group dev
-
-      - name: Install geodjango dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libproj-dev gdal-bin
 
       - name: Run tests
         run: |

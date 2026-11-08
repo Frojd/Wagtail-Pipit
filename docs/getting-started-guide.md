@@ -9,8 +9,6 @@ Make sure you have the following requirement:
 - [cookiecutter](https://github.com/audreyr/cookiecutter)
 - [Node](https://nodejs.org/en/) (v24 LTS, as specified in the `.nvmrc` file)
 
-On Apple Silicon the database runs emulated, since the PostGIS image is amd64 only.
-
 
 ## Initialize Project
 

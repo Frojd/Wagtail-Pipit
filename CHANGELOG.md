@@ -36,7 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migrate email configuration from the deprecated EMAIL_BACKEND setting to Django 6.1 MAILERS (@marteinn)
 - Refresh the Ubuntu 26.04 base image digest in the Python Docker image (@marteinn)
 - Upgrade Node to 24.22.2 LTS, pinned in .nvmrc which all CI workflows now read and by digest in the frontend Docker image (@marteinn)
-- Align dev and CI on postgis 16-3.5-alpine and pin the db service to linux/amd64, postgis publishes no arm64 image (@marteinn)
 - Pin the nginx image to 1.31 instead of tracking latest (@marteinn)
 - Unify the duplicated GitHub Actions pins and upgrade checkout to v7.0.1 and cache to v6.1.0 (@marteinn)
 - Upgrade zizmor to 1.30.1 and pip-audit to 2.10.1 (@marteinn)
@@ -56,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix npm run new crashing on missing fs-extra and commander, port the scaffolding cli to TypeScript run natively by Node 24 and typecheck it in CI (@marteinn)
 - Return all pages from page_relative_urls, SSG only pre-rendered the first 20 (@marteinn)
 - Format backend code with ruff and check formatting in lint, generated project CI failed on it (@marteinn)
-- Document that the db service runs emulated on Apple Silicon and correct the Node requirement in the getting started guide to v24 (@marteinn)
+- Correct the Node requirement in the getting started guide to v24 (@marteinn)
 - Replace deprecated sentry_sdk configure_scope (@marteinn)
 - Run lint and prettier check in repo CI and fix their findings, basePageWrap display name, Hero next/image and prettier drift in config files (@marteinn)
 - Upgrade @sentry/nextjs to 11.10.0, set dataCollection to keep the restrictive v10 defaults and replace the removed disableLogger option (@marteinn)
@@ -89,6 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove the experimental_use_app_router option, generated projects now always use the Next.js App Router and preview at /api/draft/ (@marteinn)
 - Remove the Next.js Pages Router and the next/head SEO block in BasePage, see docs/migrating-from-pages-router.md (@marteinn)
 - Remove the static site generation and customResponse guides, neither applies to the App Router (@marteinn)
+- Drop PostGIS and GDAL from generated projects, the db now uses the multi-arch postgres image and runs natively on Apple Silicon (@marteinn)
 
 ### Security
 - Fix the password protected page endpoint returning any page by id, it now requires the restriction to cover a live page and returns no page data (@marteinn)

@@ -75,7 +75,7 @@ This will create the following docker containers:
 ```
 ├── web         # Contains the web server we make requests to, it will either direct requests to the python container or our locally running Next.js application
 ├── python      # Contains python and runs the django runserver development server
-├── db          # Contains PostgreSQL with the PostGIS extension
+├── db          # Contains PostgreSQL
 ```
 
 When all the containers are running, open your browser and navigate to either:

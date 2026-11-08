@@ -10,8 +10,6 @@ The server should have these applications/packages installed:
 - Nginx
 - Python 3.14+
 - PostgreSQL 16+
-- PostGIS for PostgreSQL
-- GDAL (required for PostGIS)
 - Node 24+
 - [PM2](https://pm2.io/)
 - [psycopg2-binary](https://pypi.org/project/psycopg2-binary/) (this is required for the provision script that will create db and users)
@@ -83,12 +81,6 @@ Configuration:
 
 
 ## Troubleshooting
-
--  I'm having issues running the initial migrations: `Permission denied to create extension "postgis" HINT:  Must be superuser to create this extension`
-    - Connect to your server as root/superuser
-    - Run `psql` on the server
-    - Open your db `\c mydb`
-    - Run `CREATE EXTENSION IF NOT EXISTS postgis`
 
 - I'm getting the error `Failed to import the required Python library` when running `Creates postgres database` when running playbook in `--check` mode
     - It's a known issue, because of this check mode is not supported for the provision playbook

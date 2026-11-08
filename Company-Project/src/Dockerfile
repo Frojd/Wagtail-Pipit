@@ -57,7 +57,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 FROM apt-base AS runner-image
 ARG ENVIRONMENT=prod
 RUN apt-get -o APT::Update::Error-Mode=any -o Acquire::Retries=3 update && \
-    apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata gdal-bin && \
+    apt-get install --no-install-recommends -y netcat-openbsd vim gettext curl python3 python3-venv tzdata libpq5 && \
     apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
