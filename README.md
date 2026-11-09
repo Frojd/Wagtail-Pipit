@@ -51,6 +51,8 @@ If you have ideas for improvement, please share your thoughts through an issue. 
 - Source Code: [https://github.com/Frojd/Wagtail-Pipit](https://github.com/Frojd/Wagtail-Pipit)
 - Discussions: You can find us on the [Wagtail slack](https://wagtail.io/slack/) under the channel `#pipit`
 
+For parallel work, `claude -w <name>` gives each session its own worktree, the hooks in `.claude/settings.json` run the scripts in `Company-Project/scripts/worktree`. With Nix each worktree also gets an isolated stack under `<worktree>/Company-Project`, see [Parallel Claude worktrees](Company-Project/README.md#parallel-claude-worktrees). Regenerating `Company-Project` in a worktree must keep ignored files such as `node_modules`, `.venv`, `.env.local`, `.devenv`, `devenv.local.nix` and `.envrc`.
+
 ## Security
 If you believe you have found a security issue with any of our projects please email us at [security@frojd.se](security@frojd.se).
 

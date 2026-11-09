@@ -1,4 +1,6 @@
 # yaml-language-server: $schema=https://devenv.sh/devenv.schema.json
+# Fail on a busy port instead of moving a service to another port than the env vars say
+strict_ports: true
 inputs:
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling

@@ -16,8 +16,18 @@ __pycache__/
 !.vscode/settings.json
 
 # Claude
-.claude
+.claude/*
+!.claude/settings.json
 CLAUDE.local.md
+
+# Nix / devenv
+.devenv*
+.direnv
+.envrc
+devenv.local.nix
+
+# Plans
+/plans
 
 # Installer logs
 pip-log.txt

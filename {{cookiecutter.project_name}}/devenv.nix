@@ -28,12 +28,8 @@ in
   };
 
   config = {
+    # Python comes from uv (.python-version), its standalone builds work the same on macOS and Linux
     packages = [ pkgs.uv ];
-
-    languages.python = {
-      enable = true;
-      package = pkgs.python314;
-    };
 
     languages.javascript = {
       enable = true;
@@ -46,7 +42,15 @@ in
       listen_addresses = "127.0.0.1";
       port = pgPort;
       initialDatabases = [ { name = "app"; } ];
-      initialScript = "CREATE ROLE postgres WITH SUPERUSER LOGIN PASSWORD 'postgres';";
+      initialScript = ''
+        DO $$ BEGIN
+          IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'postgres') THEN
+            CREATE ROLE postgres WITH SUPERUSER LOGIN PASSWORD 'postgres';
+          ELSE
+            ALTER ROLE postgres WITH LOGIN PASSWORD 'postgres';
+          END IF;
+        END $$;
+      '';
     };
 
     services.nginx = {
@@ -54,13 +58,12 @@ in
       httpConfig = ''
         server {
           listen 127.0.0.1:${toString nginxPort};
-          listen [::1]:${toString nginxPort};
           server_name _;
           proxy_read_timeout 120s;
           client_max_body_size 128M;
 
           location /wt/media {
-            alias ${root}/src/media;
+            alias "${root}/src/media";
           }
 
           location / {
@@ -93,16 +96,24 @@ in
       after = [ "devenv:processes:postgres" ];
     };
 
-    processes.nextdev.exec = ''cd "$DEVENV_ROOT/frontend" && exec npx next dev -p "$NEXT_PORT"'';
+    processes.nextdev.exec = ''cd "$DEVENV_ROOT/frontend" && exec npx next dev -H 127.0.0.1 -p "$NEXT_PORT"'';
 
-    processes.storybook = {
-      exec = ''cd "$DEVENV_ROOT/frontend" && exec npx storybook dev -p "$STORYBOOK_PORT" --no-open'';
-      start.enable = false;
-    };
+    scripts.stack-up.exec = ''exec bash "$DEVENV_ROOT/scripts/worktree/up.sh" --services "$DEVENV_ROOT"'';
+    scripts.stack-down.exec = ''cd "$DEVENV_ROOT" && devenv processes down'';
+    scripts.storybook-dev.exec = ''cd "$DEVENV_ROOT/frontend" && exec npx storybook dev -p "$STORYBOOK_PORT" --no-open'';
 
+    # Also in the shell env so pytest and other tools that skip manage.py get them.
+    # DJANGO_SETTINGS_MODULE stays out of it, pytest-django would prefer it over pytest.ini.
     env = {
+      SECRET_KEY = "worktree-local-secret-key";
+      ALLOWED_HOSTS = "localhost,127.0.0.1,.localhost";
+      DATABASE_NAME = "app";
+      DATABASE_USER = "postgres";
+      DATABASE_PASSWORD = "postgres";
       DATABASE_HOST = "127.0.0.1";
       DATABASE_PORT = toString pgPort;
+      MEDIA_PATH = "${root}/src/media";
+      STATIC_PATH = "${root}/src/static";
       NGINX_PORT = toString nginxPort;
       RUNSERVER_PORT = toString runserverPort;
       NEXT_PORT = toString nextPort;
@@ -110,23 +121,26 @@ in
       WORKTREE_SLOT = toString slot;
     };
 
-    # manage.py loads src/.env.local outside Docker and Next prefers frontend/.env.local over .env
+    # manage.py loads src/.env with override, so the values are repeated in src/.env.local which it loads after.
+    # Only in worktrees with a slot, so entering the shell in the main checkout never rewires its env files.
     enterShell = ''
-      cat > "$DEVENV_ROOT/src/.env.local" <<ENV
+      if [ -f "$DEVENV_ROOT/devenv.local.nix" ]; then
+        cat > "$DEVENV_ROOT/src/.env.local" <<ENV
       DJANGO_SETTINGS_MODULE=pipit.settings.dev
-      SECRET_KEY=worktree-local-secret-key
-      ALLOWED_HOSTS=localhost,127.0.0.1,.localhost
-      DATABASE_NAME=app
-      DATABASE_USER=postgres
-      DATABASE_PASSWORD=postgres
+      SECRET_KEY=$SECRET_KEY
+      ALLOWED_HOSTS=$ALLOWED_HOSTS
+      DATABASE_NAME=$DATABASE_NAME
+      DATABASE_USER=$DATABASE_USER
+      DATABASE_PASSWORD=$DATABASE_PASSWORD
       DATABASE_HOST=$DATABASE_HOST
       DATABASE_PORT=$DATABASE_PORT
-      MEDIA_PATH=$DEVENV_ROOT/src/media
-      STATIC_PATH=$DEVENV_ROOT/src/static
+      MEDIA_PATH=$MEDIA_PATH
+      STATIC_PATH=$STATIC_PATH
       ENV
-      cat > "$DEVENV_ROOT/frontend/.env.local" <<ENV
+        cat > "$DEVENV_ROOT/frontend/.env.local" <<ENV
       WAGTAIL_API_URL=http://127.0.0.1:$NGINX_PORT/wt/api/nextjs
       ENV
+      fi
       if [ -f "$DEVENV_ROOT/src/.venv/bin/activate" ]; then
         source "$DEVENV_ROOT/src/.venv/bin/activate"
       fi

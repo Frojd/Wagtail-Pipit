@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "WorktreeCreate": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/Company-Project/scripts/worktree/create.sh\"", "timeout": 120 } ] }
+    ],
+    "WorktreeRemove": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/Company-Project/scripts/worktree/remove.sh\"", "timeout": 120 } ] }
+    ],
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/Company-Project/scripts/worktree/session-start.sh\"", "timeout": 900 } ] }
+    ],
+    "SessionEnd": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/Company-Project/scripts/worktree/session-end.sh\"", "timeout": 60 } ] }
+    ]
+  }
+}

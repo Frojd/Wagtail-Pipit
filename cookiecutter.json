@@ -18,6 +18,7 @@
     "_copy_without_render": [
         "*.git",
         "frontend/cli",
+        "scripts/worktree",
         "frontend/.next",
         "frontend/components",
         "frontend/containers",
@@ -27,6 +28,7 @@
         "src/uv.lock",
         ".github/tools/uv.lock",
         "deploy/uv.lock",
-        "frontend/package-lock.json"
+        "frontend/package-lock.json",
+        "devenv.lock"
     ]
 }

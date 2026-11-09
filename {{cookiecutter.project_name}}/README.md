@@ -6,6 +6,7 @@
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Where to go from here?](#where-to-go-from-here)
+- [Parallel Claude worktrees](#parallel-claude-worktrees)
 - [Versioning](#versioning)
 - [Style Guide](#style-guide)
 - [Debugging](#debugging)
@@ -94,6 +95,50 @@ We recommend you to check out our [Getting Started Guide](https://github.com/Fro
 - [Handling CSRF Tokens](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/handling-csrf-tokens.md)
 - [Scaffolding](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/scaffolding.md)
 - [Migrating from the Pages Router](https://github.com/Frojd/Wagtail-Pipit/blob/main/docs/migrating-from-pages-router.md)
+
+
+## Parallel Claude worktrees
+
+`claude -w <name>` starts a session in its own git worktree, `.claude/worktrees/<name>` on branch `worktree-<name>` from `develop`. Env files and `CLAUDE.local.md` are copied over.
+
+With Nix installed each worktree also gets its own database and dev servers, so parallel sessions never share data or ports. Without Nix the worktree is a plain checkout. The main checkout keeps using Docker either way.
+
+### Setup
+
+1. Install Nix and open a new terminal
+
+    ```bash
+    curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+    ```
+
+2. Install devenv and direnv, then build the toolchain once in the main checkout (takes several minutes)
+
+    ```bash
+    nix profile install nixpkgs#devenv nixpkgs#direnv
+    devenv shell -- true
+    ```
+
+If devenv warns that you are not a trusted user, add `trusted-users = root <your user>` to `/etc/nix/nix.custom.conf` and restart the Nix daemon, so it can use the binary cache.
+
+### Usage
+
+A session start prepares the venv, `node_modules` and env files, then:
+
+- `stack-up` starts Postgres, Django, Next.js and nginx. The first start loads `docker/files/db-dumps/*.sql` (if any) and creates `admin/admin`
+- `stack-down` stops them, they also stop when the session ends
+- `storybook-dev` runs Storybook
+
+Claude gets these commands automatically. In your own terminal run them inside `devenv shell` in the worktree, or hook direnv into your shell.
+
+Each worktree gets a slot `n` from 1 to 9 and uses the Docker ports plus `100n`, so the first worktree is on `http://<name>.localhost:{{ cookiecutter.docker_web_port|int + 100 }}`. Claude is told the exact ports at session start. Set `WORKTREE_AUTOSTART=1` to run `stack-up` on every session start.
+
+Other scripts in `scripts/worktree/`:
+
+- `restore-db.sh`: reset the worktree db from the dump
+- `remove.sh <path>`: remove a worktree by hand
+- `prune.sh [--remove]`: list (or remove) worktrees left behind by subagents
+
+If `stack-up` fails, see `.devenv/worktree-up.log`. A port that is already taken stops it with an error, change the slot in `devenv.local.nix`.
 
 
 ## Versioning

@@ -1,6 +1,7 @@
 venv
 .venv
 .idea
-.claude
+.claude/*
+!.claude/settings.json
 CLAUDE.local.md
 /plans

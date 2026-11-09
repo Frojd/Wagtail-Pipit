@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add Claude worktree hooks to generated projects with an optional isolated Nix stack per worktree (@marteinn)
 - Add dependabot.yml to generated projects with a 7 day cooldown (@marteinn)
 - Add ESLint flat config, lint scripts and typescript as devDependency, fixing the generated project CI lint job that had no lint script to run (@marteinn)
 - Add @testing-library/dom as explicit devDependency, jest-dom 7 requires it as a peer and it was only present because storybook depends on it (@marteinn)
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enable the Wagtail Checks panel in previews with page metadata, content metrics and accessibility checks, and render SEO meta tags on draft previews (@marteinn)
 
 ### Changed
+- Use psycopg with the binary extra in generated projects so the bundled libpq works outside Docker, such as in Nix worktrees (@marteinn)
 - Pin GitHub Actions runners to ubuntu-26.04 instead of ubuntu-latest (@marteinn)
 - Improve the scaffolding cli with name validation and automatic container registration (@marteinn)
 - Enable strict mypy and add full type annotations to the backend, management commands, tests and new_page templates (@marteinn)
