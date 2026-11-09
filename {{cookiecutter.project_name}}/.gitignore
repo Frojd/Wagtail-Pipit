@@ -17,6 +17,7 @@ __pycache__/
 
 # Claude
 .claude
+CLAUDE.local.md
 
 # Installer logs
 pip-log.txt

@@ -83,6 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set the app router html lang from the locale prefix in the path, it was hardcoded to en while the config declares sv (@marteinn)
 
 ### Removed
+- Remove CLAUDE.local.md from generated projects, it described the cookiecutter repo and moved to the root CLAUDE.md, and gitignore it (@marteinn)
 - Drop productionBrowserSourceMaps since the Sentry config already sets hideSourceMaps (@marteinn)
 - Remove the inert Storybook babel option and babelModeV7 feature flag, both are webpack era settings ignored by nextjs-vite (@marteinn)
 - Remove containers/index.js, .swcrc and the unused next-i18next, @swc/jest and cross-env packages, nothing referenced them (@marteinn)
