@@ -134,7 +134,20 @@ jobs:
           cd Company-Project/frontend
           npm ci
           npm run lint
+          npm run typecheck
+          npm run test:cli
           npm run fixcode:check
           npm run test:ci
           NODE_ENV=production npm run build
           npm run build-storybook
+
+      - name: Verify frontend scaffolder
+        run: |
+          cd Company-Project/frontend
+          set -x
+          npm run new -- Button
+          npm run new:container -- NewsPage
+          npm run typecheck
+          npm run lint
+          npm run fixcode:check
+          npx jest --ci components/Button containers/NewsPage

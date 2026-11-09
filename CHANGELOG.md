@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Add typecheck, cli tests and a frontend scaffolder check to repo CI so a broken cli template fails the build (@rinti)
 - Add Claude worktree hooks to generated projects with an optional isolated Nix stack per worktree (@marteinn)
 - Add dependabot.yml to generated projects with a 7 day cooldown (@marteinn)
 - Add ESLint flat config, lint scripts and typescript as devDependency, fixing the generated project CI lint job that had no lint script to run (@marteinn)
