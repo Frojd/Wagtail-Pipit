@@ -34,11 +34,11 @@ the contents (Some files omitted for brevity):
 ├── data            # Hold fixtures and factories for storybook and tests
 ├── i18n            # Contains locale config and the module for translation strings
 ├── index.css       # Entrypoing for global css from styles
-├── jest.config.js  # Configuration for jest
-├── next.config.js  # Configuration for Next.js
+├── jest.config.ts  # Configuration for jest
+├── next.config.ts  # Configuration for Next.js
 ├── public          # Static files to be served by Next.js
 ├── routing         # Shared page loading and rendering used by the app routes
-├── setupTests.js   # Test suite configurations
+├── setupTests.ts   # Test suite configurations
 ├── stories         # Default storybook directory
 ├── styles          # Global styling (h1, h2, resets etc)
 └── utils           # Where you should place your utility functions
@@ -50,6 +50,8 @@ To get up and running we first need to install the npm dependencies from the fro
 cd frontend     # if not there already
 npm ci
 ```
+
+`npm run typecheck` runs TypeScript 7. The `typescript` package in `node_modules` is the TypeScript 6 compatibility package `@typescript/typescript6`, kept for ESLint and Storybook. It has no `tsserver.js`, so editor settings that point at the workspace TypeScript, such as "Use Workspace Version", `typescript.tsdk` or typescript-language-server, do not work. Use the TypeScript version bundled with your editor or the TypeScript 7 native language service.
 
 Next, we start [Storybook](https://storybook.js.org/)
 ```bash
@@ -81,42 +83,47 @@ This will create the following files:
 ```
 ├── components
 │   ├── Button
-│   │   ├── Button.data.js
-│   │   ├── Button.js
+│   │   ├── Button.data.ts
+│   │   ├── Button.tsx
 │   │   ├── Button.module.css
-│   │   ├── Button.test.js
-│   │   ├── Button.stories.js
-│   │   └── index.js
+│   │   ├── Button.test.tsx
+│   │   ├── Button.stories.tsx
+│   │   └── index.ts
 ```
 
-#### Button.data.js
-Exporting a JS-object representing the `props` the component will use in the dev-server,
-which will be passed down from higher order components/containers in the actual app
+#### Button.data.ts
+Exporting an object representing the `props` the component will use in the dev-server,
+which will be passed down from higher order components/containers in the actual app.
+`satisfies ButtonProps` makes TypeScript check the object against the component props.
 
 #### Button.module.css
 The stylesheet for the component. It uses [CSS Modules](https://github.com/css-modules/css-modules) where class names are scoped locally.
 
-#### index.js
-Decides what the module exports. It defaults to the component `Button` and you can almost always ignore this file.
+#### index.ts
+Decides what the module exports. It defaults to the component `Button` and its `ButtonProps` type, and you can almost always ignore this file.
 
-#### Buttons.stories.js
+#### Button.stories.tsx
 Declares the stories for the [Storybook integration](https://storybook.js.org/). You can ignore this for now.
 
-#### Button.js
-The javascript code for the react component.
+#### Button.tsx
+The TypeScript code for the React component. `ButtonProps` declares the props it accepts.
 
-#### Button.test.js
+#### Button.test.tsx
 Tests for the component. It will run when you run "npm run test"
 
 
-### Writing the javascript/jsx
+### Writing the component
 
-Let’s start coding the javascript, modify the `Button.js` so that it looks like this:
-```js
-import React from 'react';
+Let’s start coding the component, modify `Button.tsx` so that it looks like this:
+```tsx
 import s from './Button.module.css';
 
-const Button = ({ onClick, text }) => (
+export type ButtonProps = {
+    onClick?: () => void;
+    text?: string;
+};
+
+const Button = ({ onClick, text }: ButtonProps) => (
     <button className={s.Button} onClick={onClick}>
         {text}
     </button>
@@ -127,17 +134,19 @@ export default Button;
 
 This allows us to render a Button which accepts the props `onClick` and `text`. React 19 ignores
 `propTypes` and `defaultProps` on function components, so give props their defaults in the
-argument list instead, for example `({ onClick, text = 'Click me' })`.
+argument list instead, for example `({ onClick, text = 'Click me' }: ButtonProps)`.
 
 ### Providing data for storybook
 
 We need to provide the props `text` and `onClick` to our component to be able to work with it in the dev server.
-Add the following to `Button.data.js`:
-```js
+Replace the contents of `Button.data.ts` with:
+```ts
+import type { ButtonProps } from './Button';
+
 export default {
-    'text': 'Button text',
-    'onClick': function() {console.log('clicked');}
-};
+    text: 'Button text',
+    onClick: () => console.log('clicked'),
+} satisfies ButtonProps;
 ```
 
 Now if you look at the component in the browser on [http://localhost:3001/?path=/story/components-button--with-data](http://localhost:3001/?path=/story/components-button--with-data) you
@@ -186,14 +195,14 @@ To build our container, launch the scaffolder again, this time with `new:contain
 ```bash
 npm run new:container WordCountPage
 ```
-Now you should see your newly created container in `./containers/WordCountPage`, already registered in `./containers/LazyContainers.js`
+Now you should see your newly created container in `./containers/WordCountPage`, already registered in `./containers/LazyContainers.ts`
 
-### Building the container javascript/jsx
+### Writing the container
 
 We now need to import our components and place them in our container:
 
-```js
-import React, { PureComponent } from 'react';
+```tsx
+import { PureComponent } from 'react';
 import { basePageWrap } from '../BasePage';
 import s from './WordCountPage.module.css';
 
@@ -202,11 +211,16 @@ import i18n from '../../i18n';
 import Button from '../../components/Button';
 import RawHtml from '../../components/RawHtml';
 
-class WordCountPage extends PureComponent {
+export type WordCountPageProps = {
+    richText?: string;
+};
+
+class WordCountPage extends PureComponent<WordCountPageProps> {
     state = {};
 
     handleWordCountClick = () => {
-        const quickAndDirtyWordCount = this.props.richText.replace(/<[^>]+>/g, ' ')
+        const { richText = '' } = this.props;
+        const quickAndDirtyWordCount = richText.replace(/<[^>]+>/g, ' ')
             .split(' ').filter(x => x).length;
 
         alert(`This article contains ${quickAndDirtyWordCount} words`);
@@ -216,10 +230,10 @@ class WordCountPage extends PureComponent {
         const {richText} = this.props;
         return (
             <div className={s.WordCountPage}>
-                <div className={[s.Section, s.SectionBody]}>
+                <div className={`${s.Section} ${s.SectionBody}`}>
                     <RawHtml html={richText} />
                 </div>
-                <div className={[s.Section, s.SectionButton]}>
+                <div className={`${s.Section} ${s.SectionButton}`}>
                     <Button text={i18n.t('wordcountpage.buttonText')} onClick={this.handleWordCountClick} />
                 </div>
             </div>
@@ -233,7 +247,7 @@ export default basePageWrap(WordCountPage);
 First we import our components then we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (`=>`) functions here
 to make sure that the `this` keyword refers to the `WordCountPage` instance inside of that function scope.  In this
 particular case, we just do a very quick and dirty wordcount of the component prop "richText" which will be provided
-by Wagtail (from `WordCountPage.data.js` in the dev-server).
+by Wagtail (from `WordCountPage.data.ts` in the dev-server).
 
 In the render-function, we simply wrap our components in div-elements because we want to put some margins on
 them.
@@ -257,11 +271,13 @@ Open the file `./i18n/translations/en.json` and replace it with this:
 
 As with the component, we need to provide storybook data. This should look as your Wagtail Page-serialization. 
 
-In our case, we only care about the `richText`-field. Add to `WordCountPage.data.js` like:
-```js
+In our case, we only care about the `richText`-field. Replace the contents of `WordCountPage.data.ts` with:
+```ts
+import type { WordCountPageProps } from './WordCountPage';
+
 export default {
-    'richText': '<p>paragraph one</p><p>Another paragraph</p>'
-};
+    richText: '<p>paragraph one</p><p>Another paragraph</p>',
+} satisfies WordCountPageProps;
 ```
 
 ### Add styling

@@ -34,21 +34,23 @@ Before you get started, make sure you have the following:
 
 ### Activating Sentry in Next.js
 
-Pipit ships `instrumentation.js` and `instrumentation-client.js`, which Next.js loads automatically. They load the server, edge and browser configs, so setting `NEXT_PUBLIC_SENTRY_DSN` is enough to capture server and browser errors.
+Pipit ships `instrumentation.ts` and `instrumentation-client.ts`, which Next.js loads automatically. They load the server, edge and browser configs, so setting `NEXT_PUBLIC_SENTRY_DSN` is enough to capture server and browser errors.
 
 #### Enable the build plugin for source maps
 
-Source map upload and the `tunnelRoute` come from the Sentry build plugin. In `frontend/next.config.js`, set your org and project in
+Source map upload and the `tunnelRoute` come from the Sentry build plugin. In `frontend/next.config.ts`, set your org and project in
 `sentryWebpackPluginOptions` and enable the plugin:
 
-```js
-module.exports = () => {
+```ts
+const config = () => {
     // Sentry must be last
-    const plugins = [withSentry];
+    const plugins: ((config: NextConfig) => NextConfig)[] = [withSentry];
     return plugins.reduce((acc, plugin) => plugin(acc), {
         ...nextConfig,
     });
 };
+
+export default config;
 ```
 
 ### Setup and test locally
@@ -87,9 +89,9 @@ module.exports = () => {
     ```
     NEXT_PUBLIC_SENTRY_DSN=https://public@sentry.example.com/1
     ```
-- Update `frontend/routing/catchAll.js` and make the page component throw an error
+- Update `frontend/routing/catchAll.tsx` and make the page component throw an error
     ```
-    export default async function CatchAllPage(props) {
+    export default async function CatchAllPage(props: CatchAllProps) {
         throw Error("This is a Next.js error");
         ...
     }
@@ -105,7 +107,7 @@ module.exports = () => {
 - Open the website in your browser
 - This will trigger the error and send it to Sentry
 
-Server errors are reported through `onRequestError` in `frontend/instrumentation.js`. Errors thrown while rendering in the browser are caught by `frontend/app/global-error.js`, which reports them to Sentry and renders a fallback page.
+Server errors are reported through `onRequestError` in `frontend/instrumentation.ts`. Errors thrown while rendering in the browser are caught by `frontend/app/global-error.tsx`, which reports them to Sentry and renders a fallback page.
 
 
 ### In production

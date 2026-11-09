@@ -35,3 +35,6 @@ out
 
 # Sentry
 .sentryclirc
+
+*.tsbuildinfo
+next-env.d.ts

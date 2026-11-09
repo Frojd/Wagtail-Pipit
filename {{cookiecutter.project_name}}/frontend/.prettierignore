@@ -5,7 +5,8 @@
 .nvmrc
 .prettierignore
 cli
-components/WagtailUserbar/WagtailUserbar.js
+components/WagtailUserbar/WagtailUserbar.tsx
+next-env.d.ts
 node_modules
 public
 storybook-static

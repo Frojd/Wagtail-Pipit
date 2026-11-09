@@ -29,7 +29,7 @@ cd frontend
 npm run new:container NewsPage
 ```
 
-- This will create `frontend/containers/NewsPage` and register it in `frontend/containers/LazyContainers.js`, so a Wagtail page with the component name `NewsPage` renders it.
+- This will create `frontend/containers/NewsPage` and register it in `frontend/containers/LazyContainers.ts`, so a Wagtail page with the component name `NewsPage` renders it.
 - If the name ends with `Page` the matching backend command is printed, `NewsPage` pairs with `new_page --name=News`.
 
 ## Creating a component

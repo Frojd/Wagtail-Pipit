@@ -9,10 +9,12 @@ const cli = path.join(import.meta.dirname, 'new.mts');
 
 const registry = `import dynamic from 'next/dynamic';
 
-export default {
+const LazyContainers = {
     BasePage: dynamic(() => import('./BasePage')),
     HomePage: dynamic(() => import('./HomePage')),
 };
+
+export default LazyContainers;
 `;
 
 let cwd: string;
@@ -26,7 +28,7 @@ function run(...args: string[]) {
 
 function readRegistry(): string {
     return fs.readFileSync(
-        path.join(cwd, 'containers', 'LazyContainers.js'),
+        path.join(cwd, 'containers', 'LazyContainers.ts'),
         'utf8'
     );
 }
@@ -36,9 +38,9 @@ beforeEach(() => {
     fs.mkdirSync(path.join(cwd, 'containers', 'BasePage'), {
         recursive: true,
     });
-    fs.writeFileSync(path.join(cwd, 'containers', 'BasePage', 'index.js'), '');
+    fs.writeFileSync(path.join(cwd, 'containers', 'BasePage', 'index.tsx'), '');
     fs.writeFileSync(
-        path.join(cwd, 'containers', 'LazyContainers.js'),
+        path.join(cwd, 'containers', 'LazyContainers.ts'),
         registry
     );
 });
@@ -81,6 +83,27 @@ describe('name validation', () => {
     });
 });
 
+describe('components', () => {
+    it('writes TypeScript files named after the component', () => {
+        run('Button');
+
+        const dir = path.join(cwd, 'components', 'Button');
+        const files = fs.readdirSync(dir).sort();
+        assert.deepEqual(files, [
+            'Button.data.ts',
+            'Button.module.css',
+            'Button.stories.tsx',
+            'Button.test.tsx',
+            'Button.tsx',
+            'index.ts',
+        ]);
+        for (const file of files) {
+            const source = fs.readFileSync(path.join(dir, file), 'utf8');
+            assert.doesNotMatch(source, /__Component/, file);
+        }
+    });
+});
+
 describe('containers', () => {
     it('registers a new container sorted by name', () => {
         const result = run('--container', 'ArticlePage');
@@ -101,9 +124,9 @@ describe('containers', () => {
     });
 
     it('leaves an unrecognized registry alone', () => {
-        const custom = 'export default { ...other };\n';
+        const custom = 'const LazyContainers = { ...other };\n';
         fs.writeFileSync(
-            path.join(cwd, 'containers', 'LazyContainers.js'),
+            path.join(cwd, 'containers', 'LazyContainers.ts'),
             custom
         );
 
@@ -118,11 +141,11 @@ describe('containers', () => {
         run('--container', 'Sub', 'NewsPage');
 
         const dir = path.join(cwd, 'containers', 'Sub', 'NewsPage');
-        const source = fs.readFileSync(path.join(dir, 'NewsPage.js'), 'utf8');
+        const source = fs.readFileSync(path.join(dir, 'NewsPage.tsx'), 'utf8');
         const basePage = /from '(.+\/BasePage)'/.exec(source)?.[1];
 
         assert.ok(basePage);
-        assert.ok(fs.existsSync(path.resolve(dir, basePage, 'index.js')));
+        assert.ok(fs.existsSync(path.resolve(dir, basePage, 'index.tsx')));
         assert.match(readRegistry(), /import\('\.\/Sub\/NewsPage'\)/);
     });
 

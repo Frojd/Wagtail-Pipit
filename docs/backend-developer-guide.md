@@ -261,38 +261,41 @@ Then create a container component representing our About page by using our cli:
 npm run new:container AboutPage
 ```
 
-Now modify the newly created container `containers/AboutPage/AboutPage.js" and include our new field in the container component.
+Now modify the newly created container `containers/AboutPage/AboutPage.tsx` and include our new field in the container component.
 
-```javascript
-import React, { PureComponent } from 'react';
-
+```tsx
 // import i18n from '../../i18n';
 import { basePageWrap } from '../BasePage';
 import s from './AboutPage.module.css';
 
-class AboutPage extends PureComponent {
-    state = {};
+export type AboutPageProps = {
+    companyName?: string;
+};
 
-    static defaultProps = {
-        companyName: '',
-    };
-
-    render() {
-        const { companyName } = this.props;
-        return (
-            <div className={s['AboutPage']}>
-                <p>Company name: {companyName}</p>
-            </div>
-        );
-    }
-}
+const AboutPage = ({ companyName = '' }: AboutPageProps) => {
+    return (
+        <div className={s.Root}>
+            <p>Company name: {companyName}</p>
+        </div>
+    );
+};
 
 export default basePageWrap(AboutPage);
 ```
 
-The cli has already registered the container in `containers/LazyContainers.js`, which is how Next.js finds it:
+Replace the contents of `containers/AboutPage/AboutPage.data.ts` so the Storybook data matches the new props:
 
-```js
+```ts
+import type { AboutPageProps } from './AboutPage';
+
+export default {
+    companyName: 'Acme',
+} satisfies AboutPageProps;
+```
+
+The cli has already registered the container in `containers/LazyContainers.ts`, which is how Next.js finds it:
+
+```ts
 AboutPage: dynamic(() => import('./AboutPage')),
 ```
 

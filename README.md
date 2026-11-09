@@ -5,6 +5,7 @@ Pipit is a [Wagtail CMS](https://wagtail.io/) boilerplate which aims to provide 
 
 ## Features
 - Server rendered React using the [Next.js](https://nextjs.org/) App Router
+- Frontend written in TypeScript and type-checked with TypeScript 7
 - Page scaffolding
 - [12-Factor App](https://12factor.net/) compliant
 - Docker development environment
