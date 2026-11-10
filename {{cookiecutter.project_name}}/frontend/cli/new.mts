@@ -57,20 +57,18 @@ function registerContainer(
 ): string {
     const importPath = `./${toPosix(path.relative(containersDir, componentPath))}`;
     const entry = `    ${name}: dynamic(() => import('${importPath}')),`;
-    const registry = ['LazyContainers.ts', 'LazyContainers.js']
-        .map((file) => path.join(containersDir, file))
-        .find((file) => fs.existsSync(file));
-    const manual = `Add it manually to containers/LazyContainers:\n${entry}`;
+    const registry = path.join(containersDir, 'LazyContainers.ts');
+    const manual = `Add it manually to containers/LazyContainers.ts:\n${entry}`;
 
     if (!isInside(containersDir, componentPath)) {
         return `Not registered, it is outside containers. ${manual}`;
     }
-    if (!registry) {
+    if (!fs.existsSync(registry)) {
         return `Not registered, LazyContainers was not found. ${manual}`;
     }
 
     const lines = fs.readFileSync(registry, 'utf8').split('\n');
-    const start = lines.indexOf('export default {');
+    const start = lines.indexOf('const LazyContainers = {');
     const end = lines.indexOf('};', start);
     const entries = lines.slice(start + 1, end);
 
@@ -93,7 +91,7 @@ function registerContainer(
     lines.splice(start + 1, entries.length, ...sorted);
     fs.writeFileSync(registry, lines.join('\n'));
 
-    return `Registered ${name} in containers/${path.basename(registry)}`;
+    return `Registered ${name} in containers/LazyContainers.ts`;
 }
 
 function run(argv: string[], cwd: string): void {

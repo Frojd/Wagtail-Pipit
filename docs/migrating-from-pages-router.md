@@ -8,15 +8,15 @@ The simplest way is to generate a new project with the same name and copy the fi
 
 | Pages Router | App Router |
 |---|---|
-| `pages/_app.js` | `app/layout.js`, which also imports `index.css` |
-| `pages/_document.js` | `app/layout.js` renders `<html lang>`, GTM moved to `containers/BasePage` |
-| `pages/index.js`, `pages/[...path].js` | `app/page.js` and `app/[...path]/page.js`, both re-export `routing/catchAll.js` |
-| `getServerSideProps` in `pages/[...path].js` | `loadPageData` and `generateMetadata` in `routing/catchAll.js` |
-| `pages/_preview.js` | `app/%5Fdraft/page.js`, gated by `draftMode()` |
-| `pages/api/preview.js` | `app/api/draft/route.js` |
-| `pages/404.js` | `app/not-found.js` |
-| `pages/_error.js` | `app/global-error.js` for render errors, `onRequestError` in `instrumentation.js` for server errors |
-| `next-i18next.config.js` | `i18n/config.js` |
+| `pages/_app.js` | `app/layout.tsx`, which also imports `index.css` |
+| `pages/_document.js` | `app/layout.tsx` renders `<html lang>`, GTM moved to `containers/BasePage` |
+| `pages/index.js`, `pages/[...path].js` | `app/page.ts` and `app/[...path]/page.ts`, both re-export `routing/catchAll.tsx` |
+| `getServerSideProps` in `pages/[...path].js` | `loadPageData` and `generateMetadata` in `routing/catchAll.tsx` |
+| `pages/_preview.js` | `app/%5Fdraft/page.tsx`, gated by `draftMode()` |
+| `pages/api/preview.js` | `app/api/draft/route.ts` |
+| `pages/404.js` | `app/not-found.tsx` |
+| `pages/_error.js` | `app/global-error.tsx` for render errors, `onRequestError` in `instrumentation.ts` for server errors |
+| `next-i18next.config.js` | `i18n/config.ts` |
 
 Delete the `pages` directory when the App Router files are in place, Next.js does not allow the same route in both.
 
@@ -34,7 +34,7 @@ Delete the `pages` directory when the App Router files are in place, Next.js doe
 
 ## SEO
 
-`BasePage` no longer renders `<title>` and meta tags with `next/head`. Metadata is built by `generateMetadata` in `routing/catchAll.js` from the same `seo` fields. Remove `next/head` from your own containers.
+`BasePage` no longer renders `<title>` and meta tags with `next/head`. Metadata is built by `generateMetadata` in `routing/catchAll.tsx` from the same `seo` fields. Remove `next/head` from your own containers.
 
 ## Google Tag Manager
 
@@ -46,11 +46,11 @@ Replace `useRouter` from `next/router` with `useRouter` from `next/navigation` i
 
 ## CSRF and cookies
 
-Next.js no longer forwards `Set-Cookie` headers from Django. Client components post straight to Django through `/wt`, and `postRequest` in `api/wagtail.js` adds the CSRF token automatically. See [Handling CSRF Tokens](/docs/handling-csrf-tokens.md).
+Next.js no longer forwards `Set-Cookie` headers from Django. Client components post straight to Django through `/wt`, and `postRequest` in `api/wagtail.ts` adds the CSRF token automatically. See [Handling CSRF Tokens](/docs/handling-csrf-tokens.md).
 
 ## Locales
 
-Next.js no longer handles locale routing, the `i18n` key in `next.config.js` is removed. Wagtail resolves the locale from the path and `app/layout.js` sets `<html lang>` from the first path segment. See [Adding multi language support](/docs/adding-multi-language-support.md).
+Next.js no longer handles locale routing, the `i18n` key in `next.config.js` is removed. Wagtail resolves the locale from the path and `app/layout.tsx` sets `<html lang>` from the first path segment. See [Adding multi language support](/docs/adding-multi-language-support.md).
 
 ## Non-HTML responses
 

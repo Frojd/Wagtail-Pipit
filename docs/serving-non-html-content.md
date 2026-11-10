@@ -41,9 +41,9 @@ location ^~ /feeds/ {
 
 ## Without nginx in front
 
-If Next.js is served without nginx, rewrite the path to Django in `frontend/proxy.js` instead, replacing the host with the address of your Django server:
+If Next.js is served without nginx, rewrite the path to Django in `frontend/proxy.ts` instead, replacing the host with the address of your Django server:
 
-```js
+```ts
 if (pathname.startsWith('/feeds/')) {
     return NextResponse.rewrite(new URL(pathname, 'http://python:8000'));
 }

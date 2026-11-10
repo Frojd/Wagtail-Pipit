@@ -9,7 +9,7 @@ Django protects all unsafe requests (POST, PUT, PATCH, DELETE) with a CSRF token
 ## How it works
 
 - The backend exposes `csrf_token/` on the Next.js API router (`src/nextjs/api.py`). It sets the `csrftoken` cookie and returns the token as JSON.
-- `getCsrfToken()` in `frontend/api/wagtail.js` fetches that token.
+- `getCsrfToken()` in `frontend/api/wagtail.ts` fetches that token.
 - `postRequest()` in the same file calls `getCsrfToken()` and adds the `X-CSRFToken` header automatically, unless you pass one yourself.
 
 This means a client component can post to Django without handling the token at all. `PasswordProtectedPage` is the reference implementation.
@@ -18,26 +18,27 @@ This means a client component can post to Django without handling the token at a
 
 Add an api function that uses `postRequest` and the browser relative `NEXT_PUBLIC_WAGTAIL_API_URL`:
 
-```js
-// frontend/api/wagtail.js
-export async function postContactForm(params) {
-    return await postRequest(`${NEXT_PUBLIC_API_URL}/v1/contact/`, params);
+```ts
+// frontend/api/wagtail.ts
+export async function postContactForm(params: { message: string }) {
+    return await postRequest<null>(`${NEXT_PUBLIC_API_URL}/v1/contact/`, params);
 }
 ```
 
 Call it from a client component:
 
-```js
+```tsx
 'use client';
 
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { postContactForm, WagtailApiResponseError } from '../../api/wagtail';
 
 const ContactForm = () => {
     const [message, setMessage] = useState('');
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {

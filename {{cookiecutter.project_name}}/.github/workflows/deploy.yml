@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
         with:
           path: frontend/.next/cache
-          key: nextjs-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}-${{ hashFiles('frontend/**/*.js', 'frontend/**/*.jsx', 'frontend/**/*.scss') }}
+          key: nextjs-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}-${{ hashFiles('frontend/**/*.ts', 'frontend/**/*.tsx', 'frontend/**/*.scss') }}
           restore-keys: |
             nextjs-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}-
 
@@ -93,7 +93,7 @@ jobs:
         run: |
           rm -rf .next/cache
           rm -rf stories .storybook __mocks__ __tests__ cli
-          rm -f jest.config.js setupTests.js .prettierrc.js .prettierignore
+          rm -f jest.config.ts setupTests.ts .prettierrc.mts .prettierignore
         working-directory: frontend
 
       - name: Upload frontend build
