@@ -1,14 +1,11 @@
-import { render /* screen */ } from '@testing-library/react';
-import __Component from './';
-// import data from './__Component.data';
+import { render, screen } from '@testing-library/react';
+import __Component from './__Component';
+import data from './__Component.data';
 
 describe('<__Component />', () => {
-    it('Renders an empty __Component', () => {
-        render(<__Component />);
-    });
+    it('Renders the title', () => {
+        render(<__Component {...data} />);
 
-    // it('Renders __Component with data', () => {
-    //     const { container } = render(<__Component {...data} />);
-    //     expect(container).toMatchSnapshot();
-    // });
+        expect(screen.getByText(data.title)).toBeInTheDocument();
+    });
 });

@@ -1,10 +1,13 @@
-import React from 'react';
-import type { Meta } from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import RawHtml from './RawHtml';
-
 import data from './RawHtml.data';
 
-export default { component: RawHtml } satisfies Meta<typeof RawHtml>;
+const meta = {
+    component: RawHtml,
+} satisfies Meta<typeof RawHtml>;
 
-export const RawHtmlWithoutData = () => <RawHtml />;
-export const RawHtmlWithData = () => <RawHtml {...data} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+export const WithData: Story = { args: data };

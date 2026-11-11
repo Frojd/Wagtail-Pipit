@@ -1,9 +1,13 @@
-import React from 'react';
-import type { Meta } from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Hero from './Hero';
 import data from './Hero.data';
 
-export default { component: Hero } satisfies Meta<typeof Hero>;
+const meta = {
+    component: Hero,
+} satisfies Meta<typeof Hero>;
 
-export const HeroWithoutData = () => <Hero />;
-export const HeroWithData = () => <Hero {...data} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+export const WithData: Story = { args: data };

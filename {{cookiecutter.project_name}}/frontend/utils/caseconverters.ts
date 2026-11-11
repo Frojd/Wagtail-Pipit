@@ -41,7 +41,7 @@ const convertObjectKeys = (
         return obj.map((x) => convertObjectKeys(x, removeNull, converter));
     }
 
-    if (typeof obj !== 'object') {
+    if (obj === null || typeof obj !== 'object') {
         return obj;
     }
 

@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import type { BasePageProps } from '../containers/BasePage';
 import type {
     ContainerName,
@@ -59,6 +58,19 @@ export type PageRelativeUrlsData = {
     meta: { totalCount: number };
     items: { title: string; relativeUrl?: string }[];
 };
+
+function toQueryString(params: QueryParams): string {
+    const query = new URLSearchParams();
+    for (const [key, value] of Object.entries(params)) {
+        if (value === null || value === undefined) {
+            continue;
+        }
+        for (const item of Array.isArray(value) ? value : [value]) {
+            query.append(key, String(item));
+        }
+    }
+    return query.toString();
+}
 
 function withoutNullHeaders(headers: RequestHeaders): Record<string, string> {
     const present: Record<string, string> = {};
@@ -195,7 +207,7 @@ export async function getRequest<T>(
         'Content-Type': 'application/json',
         ...headers,
     };
-    const queryString = querystring.stringify(params);
+    const queryString = toQueryString(params);
 
     let fetchOptions: RequestInit = { headers };
 

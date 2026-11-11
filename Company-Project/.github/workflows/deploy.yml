@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   build-frontend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     env:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
@@ -53,7 +53,7 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
         with:
           path: frontend/.next/cache
-          key: nextjs-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}-${{ hashFiles('frontend/**/*.js', 'frontend/**/*.jsx', 'frontend/**/*.scss') }}
+          key: nextjs-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}-${{ hashFiles('frontend/**/*.ts', 'frontend/**/*.tsx', 'frontend/**/*.scss') }}
           restore-keys: |
             nextjs-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}-
 
@@ -92,7 +92,7 @@ jobs:
         run: |
           rm -rf .next/cache
           rm -rf stories .storybook __mocks__ __tests__ cli
-          rm -f jest.config.js setupTests.js .prettierrc.js .prettierignore
+          rm -f jest.config.ts setupTests.ts .prettierrc.mts .prettierignore
         working-directory: frontend
 
       - name: Upload frontend build
@@ -103,7 +103,7 @@ jobs:
           include-hidden-files: true
 
   build-backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
@@ -116,7 +116,7 @@ jobs:
           path: src/
 
   deploy-staging:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     needs: [build-frontend, build-backend]
     if: >-
       github.ref == 'refs/heads/develop' ||
@@ -190,7 +190,7 @@ jobs:
           exit 1
 
   dast:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     needs: [deploy-staging]
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
@@ -216,7 +216,7 @@ jobs:
           path: report_html.html
 
   deploy-production:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     needs: [build-frontend, build-backend, dast]
     if: >-
       !cancelled() &&

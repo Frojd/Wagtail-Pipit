@@ -1,14 +1,13 @@
-import { render /* screen */ } from '@testing-library/react';
-import RawHtml from './';
-// import data from './RawHtml.data';
+import { render, screen } from '@testing-library/react';
+import RawHtml from './RawHtml';
 
 describe('<RawHtml />', () => {
-    it('Renders an empty RawHtml', () => {
-        render(<RawHtml />);
-    });
+    it('Renders the html as markup', () => {
+        render(<RawHtml html="<h2>Heading</h2><p>Body</p>" />);
 
-    // it('Renders RawHtml with data', () => {
-    //     const { container } = render(<RawHtml {...data} />);
-    //     expect(container).toMatchSnapshot();
-    // });
+        expect(
+            screen.getByRole('heading', { level: 2, name: 'Heading' })
+        ).toBeInTheDocument();
+        expect(screen.getByText('Body')).toBeInTheDocument();
+    });
 });

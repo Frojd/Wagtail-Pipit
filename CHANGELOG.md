@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Disable build-time type checking in next build, npm run typecheck with TypeScript 7 is the type gate (@rinti)
 - Convert the frontend to TypeScript and typecheck it with TypeScript 7, aliasing typescript to @typescript/typescript6 for typescript-eslint and Storybook (@rinti)
+- Use CSF3 stories and asserting tests in scaffold templates and examples, build query strings with URLSearchParams instead of the Node querystring module (@marteinn)
 - Use psycopg with the binary extra in generated projects so the bundled libpq works outside Docker, such as in Nix worktrees (@marteinn)
 - Pin GitHub Actions runners to ubuntu-26.04 instead of ubuntu-latest (@marteinn)
 - Improve the scaffolding cli with name validation and automatic container registration (@marteinn)
@@ -61,6 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Report invalid preview tokens from the app router draft route to Sentry, as the pages router preview route does (@marteinn)
 
 ### Fixed
+- Fix the frontend developer guide container that broke next build, moving the click handler to a client component and adding test update steps (@marteinn)
+- Keep null items in arrays as null when converting API response keys, they became empty objects (@marteinn)
 - Stop server side API requests from sending the literal header "cookie: null" when the request has no cookies (@rinti)
 - Pass tunnelRoute, widenClientFileUpload and the webpack options to withSentry in the second argument, Sentry 11 ignored the third argument (@rinti)
 - Fix npm run new crashing on missing fs-extra and commander, port the scaffolding cli to TypeScript run natively by Node 24 and typecheck it in CI (@marteinn)
@@ -90,6 +93,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set the app router html lang from the locale prefix in the path, it was hardcoded to en while the config declares sv (@marteinn)
 
 ### Removed
+- Remove the unused utils/Http fetch helpers from generated projects (@marteinn)
 - Remove CLAUDE.local.md from generated projects, it described the cookiecutter repo and moved to the root CLAUDE.md, and gitignore it (@marteinn)
 - Drop productionBrowserSourceMaps since the Sentry config already sets hideSourceMaps (@marteinn)
 - Remove the inert Storybook babel option and babelModeV7 feature flag, both are webpack era settings ignored by nextjs-vite (@marteinn)

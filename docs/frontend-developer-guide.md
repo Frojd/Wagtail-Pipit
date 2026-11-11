@@ -156,6 +156,28 @@ To be able to mock the props like this is very handy since you can develop the w
 the actual Wagtail implementation in place. It helps you to test the frontend in an isolated context and in a team
 setting you can have different members of your team working on the frontend and backend without blocking each other.
 
+### Updating the test
+
+The scaffolded test checks the `title` prop we just replaced, so `npm run typecheck` and `npm run test` now fail.
+Replace the contents of `Button.test.tsx` with a test for the new props:
+```tsx
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Button from './Button';
+import data from './Button.data';
+
+describe('<Button />', () => {
+    it('Renders the text and calls onClick', async () => {
+        const onClick = jest.fn();
+        render(<Button {...data} onClick={onClick} />);
+
+        await userEvent.click(screen.getByRole('button', { name: data.text }));
+
+        expect(onClick).toHaveBeenCalled();
+    });
+});
+```
+
 ### Add styling
 
 To style the component, we simply add some css-rules to `Button.module.css`:
@@ -186,9 +208,9 @@ read more about models and serialization in our [Backend Developer Guide](./back
 
 From a React-point of view, a container is the same thing as a component. We keep them separated only to make our
 code nice and tidy.  From our point of view a container differs from a component in the following ways:
-- The container handles the state and pass it down to its components
+- The container receives the page data from Wagtail and passes it down to its components
 - The container is responsible for the layout of the components it uses, the component styling should not affect the component's placement
-- The container handles javascript bindings and pass it down to its components. i.e. a click handler should be defined in the container and be passed down via props
+- The container is a Server Component, state and event handlers live in small Client Components next to it, i.e. a click handler is defined in a `'use client'` file in the container folder
 
 
 To build our container, launch the scaffolder again, this time with `new:container`
@@ -199,68 +221,77 @@ Now you should see your newly created container in `./containers/WordCountPage`,
 
 ### Writing the container
 
-We now need to import our components and place them in our container:
+Containers render as React Server Components, they run on the server and send HTML to the browser. Event handlers
+such as `onClick`, hooks and class components only work in Client Components, so the interactive part goes in its own
+file marked with `'use client'`. Create `WordCountButton.tsx` in the container folder:
 
 ```tsx
-import { PureComponent } from 'react';
-import { basePageWrap } from '../BasePage';
-import s from './WordCountPage.module.css';
-
-import i18n from '../../i18n';
+'use client';
 
 import Button from '../../components/Button';
+import i18n from '../../i18n';
+
+export type WordCountButtonProps = {
+    richText: string;
+};
+
+const countWords = (html: string) =>
+    html
+        .replace(/<[^>]+>/g, ' ')
+        .split(/\s+/)
+        .filter(Boolean).length;
+
+const WordCountButton = ({ richText }: WordCountButtonProps) => (
+    <Button
+        text={i18n.t('wordcountpage.buttonText')}
+        onClick={() =>
+            alert(`This article contains ${countWords(richText)} words`)
+        }
+    />
+);
+
+export default WordCountButton;
+```
+
+Then place the components in the container, replace the contents of `WordCountPage.tsx` with:
+
+```tsx
+import { basePageWrap } from '../BasePage';
 import RawHtml from '../../components/RawHtml';
+import WordCountButton from './WordCountButton';
+import s from './WordCountPage.module.css';
 
 export type WordCountPageProps = {
     richText?: string;
 };
 
-class WordCountPage extends PureComponent<WordCountPageProps> {
-    state = {};
-
-    handleWordCountClick = () => {
-        const { richText = '' } = this.props;
-        const quickAndDirtyWordCount = richText.replace(/<[^>]+>/g, ' ')
-            .split(' ').filter(x => x).length;
-
-        alert(`This article contains ${quickAndDirtyWordCount} words`);
-    }
-
-    render() {
-        const {richText} = this.props;
-        return (
-            <div className={s.WordCountPage}>
-                <div className={`${s.Section} ${s.SectionBody}`}>
-                    <RawHtml html={richText} />
-                </div>
-                <div className={`${s.Section} ${s.SectionButton}`}>
-                    <Button text={i18n.t('wordcountpage.buttonText')} onClick={this.handleWordCountClick} />
-                </div>
-            </div>
-        );
-    }
-}
+const WordCountPage = ({ richText = '' }: WordCountPageProps) => (
+    <div className={s.WordCountPage}>
+        <div className={s.Section}>
+            <RawHtml html={richText} />
+        </div>
+        <div className={s.Section}>
+            <WordCountButton richText={richText} />
+        </div>
+    </div>
+);
 
 export default basePageWrap(WordCountPage);
 ```
 
-First we import our components then we declare a click-handler for our button `handleWordCountClick`, note that we use fat-arrow (`=>`) functions here
-to make sure that the `this` keyword refers to the `WordCountPage` instance inside of that function scope.  In this
-particular case, we just do a very quick and dirty wordcount of the component prop "richText" which will be provided
-by Wagtail (from `WordCountPage.data.ts` in the dev-server).
-
-In the render-function, we simply wrap our components in div-elements because we want to put some margins on
-them.
-
-Finally we pass along the required `props` to our components and we are done!
+The container stays a Server Component and only `WordCountButton` and `Button` are sent to the browser as
+JavaScript. `WordCountButton` does a very quick and dirty word count of the prop `richText`, which will be provided
+by Wagtail (from `WordCountPage.data.ts` in the dev-server). We wrap the components in div-elements because we want
+to put some margins on them.
 
 Please note that we are using the function `i18n.t` for the Button text.  This is because our app
 will be internationalized. You could simply write the string "Count words" if you only target one language,
 but for now, add an English translation for our button text.
 
-Open the file `./i18n/translations/en.json` and replace it with this:
+Open the file `./i18n/translations/en.json` and add the `wordcountpage` key:
 ```json
 {
+    "helloWorld": "Hello world",
     "wordcountpage": {
         "buttonText": "Count words"
     }
@@ -294,7 +325,30 @@ When styling the container-level, we mostly do the layout. Add some margins:
 }
 ```
 
-Now you should have a working page Container on `http://localhost:3001/WordCountPage`.
+### Updating the test
+
+As with the component, replace the contents of `WordCountPage.test.tsx` with a test for the new props:
+```tsx
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import WordCountPage from './WordCountPage';
+import data from './WordCountPage.data';
+
+describe('<WordCountPage />', () => {
+    it('Counts the words of the rich text', async () => {
+        const alert = jest.spyOn(window, 'alert').mockImplementation(() => {});
+        render(<WordCountPage {...data} />);
+
+        await userEvent.click(
+            screen.getByRole('button', { name: 'Count words' })
+        );
+
+        expect(alert).toHaveBeenCalledWith('This article contains 4 words');
+    });
+});
+```
+
+Now you should have a working page Container on [http://localhost:3001/?path=/story/containers-wordcountpage--with-data](http://localhost:3001/?path=/story/containers-wordcountpage--with-data).
 
 ## Customizing the scaffolder
 @todo

@@ -1,14 +1,10 @@
-import { render /* screen */ } from '@testing-library/react';
-import NotFoundPage from './';
-// import data from './NotFoundPage.data';
+import { render, screen } from '@testing-library/react';
+import NotFoundPage from './NotFoundPage';
 
 describe('<NotFoundPage />', () => {
-    it('Renders an empty NotFoundPage', () => {
-        render(<NotFoundPage />);
-    });
+    it('Renders the exception message', () => {
+        render(<NotFoundPage exception="Page missing" />);
 
-    // it('Renders NotFoundPage with data', () => {
-    //     const { container } = render(<NotFoundPage {...data} />);
-    //     expect(container).toMatchSnapshot();
-    // });
+        expect(screen.getByText('Page missing')).toBeInTheDocument();
+    });
 });

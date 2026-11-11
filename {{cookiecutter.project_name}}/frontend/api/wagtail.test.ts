@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { postRequest } from './wagtail';
+import { getRequest, postRequest } from './wagtail';
 
 // The node environment provides fetch and Response, jsdom has neither
 const jsonResponse = (body: unknown) =>
@@ -61,5 +61,36 @@ describe('postRequest', () => {
         );
 
         expect(json).toBeNull();
+    });
+});
+
+describe('getRequest', () => {
+    let fetchSpy: jest.SpiedFunction<typeof fetch>;
+
+    beforeEach(() => {
+        fetchSpy = jest
+            .spyOn(global, 'fetch')
+            .mockResolvedValue(jsonResponse({}));
+    });
+
+    afterEach(() => {
+        fetchSpy.mockRestore();
+    });
+
+    it('Sends params as snake case, repeats arrays and skips empty values', async () => {
+        await getRequest('/endpoint/', {
+            htmlPath: '/a b/',
+            tags: ['x', 'y'],
+            page: 2,
+            token: undefined,
+            preview: null,
+        });
+
+        const url = new URL(String(fetchSpy.mock.calls[0][0]), 'http://host');
+        expect(url.searchParams.get('html_path')).toBe('/a b/');
+        expect(url.searchParams.getAll('tags')).toEqual(['x', 'y']);
+        expect(url.searchParams.get('page')).toBe('2');
+        expect(url.searchParams.has('token')).toBe(false);
+        expect(url.searchParams.has('preview')).toBe(false);
     });
 });
