@@ -199,7 +199,7 @@ describe('generateMetadata', () => {
         expect(getPagePreview).toHaveBeenCalledWith(
             'main.homepage',
             'abc',
-            { in_preview_panel: true },
+            { in_preview_panel: true, host: 'example.com' },
             expect.anything()
         );
         expect(getPage).not.toHaveBeenCalled();

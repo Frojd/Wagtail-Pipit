@@ -1,6 +1,10 @@
+import copy
 from typing import Any
 
+from django.core.exceptions import DisallowedHost
+from django.http import HttpRequest
 from rest_framework import serializers
+from rest_framework.request import Request
 from wagtail.admin.templatetags.wagtailuserbar import wagtailuserbar
 
 from sitesettings.models import SiteSetting
@@ -8,6 +12,31 @@ from sitesettings.serializers import SiteSettingSerializer
 
 from ..serializers import SeoSerializer
 from . import BasePage
+
+
+def with_public_host(request: HttpRequest | Request) -> HttpRequest | Request:
+    """Copy the request with HTTP_HOST set to the browser host forwarded as ?host=,
+    so the userbar builds asset and admin URLs the browser can reach"""
+    host = request.GET.get("host", "")
+    if not host:
+        return request
+
+    django_request = request._request if isinstance(request, Request) else request
+    public_request = copy.copy(django_request)
+    public_request.META = {**django_request.META, "HTTP_HOST": host}
+    public_request.META.pop("HTTP_X_FORWARDED_HOST", None)
+
+    try:
+        public_request.get_host()
+    except DisallowedHost:
+        return request
+
+    if not isinstance(request, Request):
+        return public_request
+
+    public_drf_request = copy.copy(request)
+    public_drf_request._request = public_request
+    return public_drf_request
 
 
 class BasePageSerializer(serializers.ModelSerializer[BasePage]):
@@ -46,7 +75,7 @@ class BasePageSerializer(serializers.ModelSerializer[BasePage]):
         if not hasattr(request, "user"):
             return None
 
-        html = wagtailuserbar({"request": request, "self": page})
+        html = wagtailuserbar({"request": with_public_host(request), "self": page})
 
         if not html:
             return None

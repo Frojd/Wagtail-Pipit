@@ -42,11 +42,13 @@ async function getPreviewPageData({
     contentType,
     token,
     inPreviewPanel,
+    host,
     headers = {},
 }: {
     contentType: string | string[];
     token: string | string[];
     inPreviewPanel: boolean;
+    host: string | null;
     headers?: RequestHeaders;
 }): Promise<RouteData> {
     try {
@@ -55,6 +57,7 @@ async function getPreviewPageData({
             token,
             {
                 in_preview_panel: inPreviewPanel,
+                host,
             },
             {
                 headers,
@@ -193,12 +196,14 @@ const getCachedPreviewPageData = cache(
         contentType: string | string[],
         token: string | string[],
         inPreviewPanel: boolean,
+        host: string | null,
         cookie: string | null
     ) =>
         getPreviewPageData({
             contentType,
             token,
             inPreviewPanel,
+            host,
             headers: { cookie },
         })
 );
@@ -213,6 +218,7 @@ async function loadRouteData(props: CatchAllProps): Promise<RouteData> {
             query.contentType,
             query.token,
             query.inPreviewPanel === 'true',
+            headersList.get('host'),
             headersList.get('cookie')
         );
     }

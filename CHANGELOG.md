@@ -64,6 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix the frontend developer guide container that broke next build, moving the click handler to a client component and adding test update steps (@marteinn)
 - Keep null items in arrays as null when converting API response keys, they became empty objects (@marteinn)
+- Fix the Wagtail userbar on the headless frontend and in previews by building its URLs from the browser host, keep the port in dev nginx (@ottoreimers, @marteinn)
 - Stop server side API requests from sending the literal header "cookie: null" when the request has no cookies (@rinti)
 - Pass tunnelRoute, widenClientFileUpload and the webpack options to withSentry in the second argument, Sentry 11 ignored the third argument (@rinti)
 - Fix npm run new crashing on missing fs-extra and commander, port the scaffolding cli to TypeScript run natively by Node 24 and typecheck it in CI (@marteinn)
