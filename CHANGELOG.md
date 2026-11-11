@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+### Security
+
+## [11.0.0] - 2026-11-11
+### Added
 - Add Claude worktree hooks with an optional isolated Nix stack per worktree (@marteinn)
 - Add dependabot.yml with a 7 day cooldown to generated projects (@marteinn)
 - Add ESLint flat config and lint scripts to the frontend (@marteinn)
