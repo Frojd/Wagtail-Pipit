@@ -4,14 +4,14 @@ requires-python = ">=3.14"
 
 [[package]]
 name = "ansible"
-version = "14.5.0"
+version = "14.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ansible-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dd/bf/9e39662e848e3162641ee33332787b7c156be63d20c84869ca69e83e503a/ansible-14.5.0.tar.gz", hash = "sha256:daeafe730cb2cf82ebe1a1a30960dcdfc0d624c497eb96d57d81713ec19ef19f", size = 51396854, upload-time = "2026-10-06T18:51:37.336Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/86/91/8d1eee9e7c065a60119845c2919d6762dd5b734d784ac8be1180fa5c506a/ansible-14.6.0.tar.gz", hash = "sha256:47cd013f4b6462f15b65485d09b713ae64697036733078f0623f636a94f5df45", size = 53253957, upload-time = "2026-11-04T20:12:16.828Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ee/aa/3ce05576b36ceb86591dc0ab3bb187b4333b65b6de3e64dae535fb7a1354/ansible-14.5.0-py3-none-any.whl", hash = "sha256:245623ccc2d31d0f6f4bdb63168d550cad305fb032cc43d96e8f61ce8ab0ba84", size = 51399217, upload-time = "2026-10-06T18:51:32.421Z" },
+    { url = "https://files.pythonhosted.org/packages/b0/c0/75a74f279e36569fc11626c3b7a5628dfc249c7115dc85f5c950882f46a2/ansible-14.6.0-py3-none-any.whl", hash = "sha256:a9d06a68d73a06eb4651ac7ea0c3b0ad18ddffbdb4feb745855dea70e8891e75", size = 53238676, upload-time = "2026-11-04T20:12:10.583Z" },
 ]
 
 [[package]]
@@ -161,7 +161,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "ansible", specifier = "==14.5.0" }]
+requires-dist = [{ name = "ansible", specifier = "==14.6.0" }]
 
 [[package]]
 name = "jinja2"
